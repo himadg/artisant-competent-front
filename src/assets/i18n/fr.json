@@ -1,0 +1,590 @@
+{
+  "home": {
+    "title": "Votre tiers de confiance pour faire réaliser vos petits travaux",
+    "how": {
+      "title": "COMMENT ÇA MARCHE ?",
+      "forClients": "Pour les clients (particuliers & entreprises)"
+    },
+    "cmod": {
+      "title": "CMOD: votre conseiller neutre",
+      "body": "Un Conseiller à Maître d'Ouvrage Digital vous accompagne à distance pour sécuriser votre chantier.",
+      "items": {
+        "indep": "Professionnel indépendant, sans lien avec l'intervenant.",
+        "expert": "Au moins 3 ans d'expérience terrain.",
+        "role": "Conseil en cas de litige."
+      }
+    },
+    "what": {
+      "title": "Qu'est-ce qu'Artisan-Compétent ?",
+      "body": "Artisan-Compétent est une web application de mise en relation sécurisée de professionnel à particulier, mais aussi de particulier à particulier, exclusivement dans le monde du bâtiment."
+    },
+    "specialized": {
+      "title": "La plateforme est 100 % spécialisée bâtiment",
+      "body": "Contrairement aux simples annuaires ou plateformes de mise en relation passives, Artisan-Compétent agit comme tiers de confiance tout au long du projet:",
+      "item1": "de la demande initiale,",
+      "item2": "jusqu'au procès-verbal de fin de chantier,",
+      "item3": "en passant par le paiement sécurisé,",
+      "item4": "le suivi des travaux,",
+      "item5": "et la gestion des litiges si nécessaire."
+    },
+    "process": {
+      "title": "Processus entièrement digitalisé",
+      "body": "De la demande jusqu'au procès-verbal de réception, tout se déroule directement sur le dashboard du client, sans paperasse externe."
+    },
+    "objective": {
+      "title": "Notre objectif",
+      "body": "Permettre aux clients de réaliser leurs travaux sereinement, sans stress, sans arnaque, et avec une visibilité totale sur ce qui se passe."
+    },
+    "where": {
+      "title": "Où intervenons-nous ?",
+      "cities": {
+        "paris": "Paris et Ile-de-France",
+        "marseille": "Marseille et environs",
+        "lyon": "Lyon et environs",
+        "toulouse": "Toulouse et environs",
+        "nice": "Nice et environs",
+        "nantes": "Nantes et environs",
+        "montpellier": "Montpellier et environs",
+        "strasbourg": "Strasbourg et environs",
+        "bordeaux": "Bordeaux et environs",
+        "lille": "Lille et environs",
+        "rennes": "Rennes et environs",
+        "toulon": "Toulon et environs"
+      }
+    },
+    "local": {
+      "title": "La première plateforme qui sécurise réellement vos chantiers.",
+      "body1": "Vous ne payez que lorsque les travaux sont validés, fonds séquestrés et libérés uniquement après réception.",
+      "body2": "Un expert bâtiment indépendant vous accompagne gratuitement si besoin.",
+      "body3": "Suivez votre chantier en temps réel avec preuve photo étape par étape.",
+      "body4": "Urgences 24/7 : plomberie, serrurerie, électricité.",
+      "body5": "Protection contre les abus et surfacturations.",
+      "body6": "12 métiers à votre service."
+    },
+    "steps": {
+      "title": "Les étapes pour utiliser Artisan-Compétent",
+      "items1": {
+        "title": "Consultation de la plateforme",
+        "p1": "Vous découvrez Artisan-Compétent, ses garanties, son fonctionnement et les métiers disponibles, exclusivement dans le domaine du bâtiment."
+      },
+      "items2": {
+        "title": "Inscription sécurisée",
+        "p1": "Vous créez votre compte en quelques minutes:",
+        "li1": "particulier ou entreprise,",
+        "li2": "informations de base,",
+        "li3": "accès immédiat à votre tableau de bord personnel."
+      },
+      "items3": {
+        "title": "Création d'une demande de travaux",
+        "p1": "Depuis le tableau de bord ou depuis la page d'accueil, vous :",
+        "li1": "sélectionnez le métier (plombier, électricien, maçon, serrurier, etc.),",
+        "li2": "définissez le périmètre géographique,",
+        "li3": "expliquez votre besoin via:",
+        "li3a": "une vidéo (recommandée),",
+        "li3b": "des photos,",
+        "li3c": "ou un texte descriptif.",
+        "note": "Cette étape ne prend que quelques secondes."
+      },
+      "items4": {
+        "title": "Diffusion automatique de la demande",
+        "p1": "La demande est transmise automatiquement:",
+        "li1": "aux professionnels qualifiés,",
+        "li2": "et/ou aux particuliers compétents,",
+        "li3": "correspondant aux critères définis.",
+        "note": "Tous les intervenants reçoivent la demande simultanément, garantissant transparence et concurrence équitable."
+      },
+      "items5": {
+        "title": "Réception et comparaison des devis",
+        "p1": "Les intervenants intéressés proposent leurs devis. Vous pouvez:",
+        "li1": "comparer les offres,",
+        "li2": "poser des questions,",
+        "li3": "consulter les profils,",
+        "li4": "vérifier les assurances (pour les professionnels).",
+        "note": "Vous restez libre de votre choix."
+      },
+      "items6": {
+        "title": "Signature du devis",
+        "p1": "Une fois le devis sélectionné:",
+        "li1": "le devis est signé directement sur la plateforme,",
+        "li2": "les conditions sont figées,",
+        "li3": "le chantier peut être enclenché."
+      },
+      "items7": {
+        "title": "Paiement sécurisé et séquestré",
+        "p1": "Vous réglez le montant via Artisan-Compétent:",
+        "li1": "jusqu'à 5 000 €: 100 % du montant est séquestré.",
+        "li2": "Au-delà de 5 000 €: seule la main-d'œuvre est séquestrée (sauf exception artisans fabricants).",
+        "note": "Les fonds ne sont jamais versés directement avant validation finale."
+      },
+      "items8": {
+        "title": "Désignation automatique du CMOD",
+        "p1": "Après paiement:",
+        "li1": "un CMOD (Conseiller à Maître d'Ouvrage Digital) est automatiquement désigné,",
+        "li2": "professionnel indépendant avec minimum 3 ans d'expérience,",
+        "li3": "il suit le chantier à distance et vous conseille si nécessaire."
+      },
+      "items9": {
+        "title": "Démarrage et suivi du chantier",
+        "p1": "Pendant toute la durée des travaux:",
+        "li1": "l'intervenant publie des photos et commentaires réguliers,",
+        "li2": "vous suivez l'avancement depuis votre tableau de bord,",
+        "li3": "chaque étape est tracée et documentée.",
+        "note": "Vous restez maître d'ouvrage et validez les étapes clés."
+      },
+      "items10": {
+        "title": "Réception des travaux",
+        "p1": "À la fin du chantier:",
+        "p2": "un procès-verbal de réception est généré de manière digitale, vous pouvez:",
+        "li1": "accepter les travaux,",
+        "li2": "ou émettre des réserves.",
+        "note": "Sans procès-verbal signé, aucun paiement n'est libéré."
+      },
+      "items11": {
+        "title": "Libération des fonds",
+        "p1": "Une fois le procès-verbal validé:",
+        "li1": "les fonds séquestrés sont libérés,",
+        "li2": "le paiement est versé à l'intervenant sous 72 heures maximum.",
+        "note": "En cas de réserve ou de malfaçon confirmée, la plateforme ajuste ou rembourse la partie concernée."
+      },
+      "items12": {
+        "title": "Avis et clôture du chantier",
+        "p1": "Vous laissez un avis:",
+        "li1": "transparent,",
+        "li2": "constructif,",
+        "li3": "utile à la communauté.",
+        "note": "Le chantier est officiellement clôturé."
+      }
+    }
+  },
+  "common": {
+    "delete": "Supprimer",
+    "home": "Accueil",
+    "jobs": "Métiers"
+  },
+  "auth": {
+    "register": "Inscription",
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "forget_password": "Mot de passe oublié ?",
+    "reset_password": "Réinitialiser le mot de passe",
+    "roles": {
+      "individual": "Je suis un particulier",
+      "professional": "Je suis un professionnel",
+      "supplier": "Je suis un fournisseur"
+    }
+  },
+  "jobs": {
+    "title": "Nos métiers",
+    "description": "Découvrez les métiers et compétences disponibles sur la plateforme.",
+    "list": {
+      "electrician": {
+        "title": "Électricien compétent (24/7)",
+        "name": "Électricien (24/7)",
+        "description": {
+          "p1": "Avec Artisan-Compétent, trouver un électricien compétent n'a jamais été aussi simple. En quelques secondes, vous décrivez votre problème en audio, vidéo ou photo, et notre solution vous met directement en relation avec des électriciens qualifiés près de chez vous.",
+          "p2": "Plus besoin de formulaires compliqués ou d'attendre un rappel: vous comparez les propositions reçues, choisissez l'artisan qui vous inspire confiance et bénéficiez d'une intervention rapide et sécurisée.",
+          "p3": "Finis les arnaques avec notre système de séquestration de paiement, vous ne prenez plus aucun risque !"
+        }
+      },
+      "locksmithMetaller": {
+        "title": "Serrurier & métallier compétent (24/7)",
+        "name": "Serrurier & métallier (24/7)",
+        "description": {
+          "p1": "Avec Artisan-Competent.com, vous décrivez simplement votre problème: porte claquée, serrure forcée, clé perdue ou installation de nouvelle serrure. Votre demande est envoyée instantanément aux serruriers compétents proches de chez vous.",
+          "p2": "Vous recevez rapidement des propositions claires, avec des tarifs justes et sans mauvaise surprise. Grâce à notre système de mise en relation, vous gagnez du temps, vous comparez en toute transparence et vous choisissez le serrurier compétent qui correspond le mieux à vos besoins. Sécurité, rapidité et fiabilité: trouvez enfin un serrurier de confiance en quelques clics.",
+          "p3": "Finis les arnaques avec notre système de séquestration de paiement, vous ne prenez plus aucun risque !"
+        }
+      },
+      "plumberSanitary": {
+        "title": "Plombier sanitaire compétent (24/7)",
+        "name": "Plombier sanitaire (24/7)",
+        "description": {
+          "p1": "Avec Artisan-Competent.com, votre demande est transmise immédiatement aux plombiers compétents proches de chez vous, qui vous répondent rapidement avec leurs propositions et devis.",
+          "p2": "Vous comparez en toute transparence, choisissez le professionnel le mieux adapté et profitez d'une intervention fiable au juste prix. Grâce à notre solution innovante, trouver un plombier compétent n'a jamais été aussi simple, rapide et sécurisé.",
+          "p3": "Finis les arnaques avec notre système de séquestration de paiement, vous ne prenez plus aucun risque !"
+        }
+      },
+      "drainUnblocker": {
+        "title": "Déboucheur de canalisations compétent (24/7)",
+        "name": "Déboucheur de canalisations (24/7)",
+        "description": {
+          "p1": "Lorsqu'une canalisation est obstruée, il est essentiel de faire appel à un déboucheur compétent capable d'identifier rapidement la cause du problème et de proposer une solution adaptée.",
+          "p2": "Grâce à son savoir-faire et à des outils professionnels, un déboucheur compétent garantit un résultat efficace tout en préservant vos installations. Que ce soit pour un évier bouché, des toilettes obstruées ou une canalisation engorgée, vous bénéficiez d'une intervention fiable et durable.",
+          "p3": "Finis les arnaques avec notre système de séquestration de paiement, vous ne prenez plus aucun risque !"
+        }
+      },
+      "heatingTech": {
+        "title": "Chauffagiste compétent",
+        "name": "Chauffagiste",
+        "description": {
+          "p1": "Faire appel à un chauffagiste compétent est essentiel pour garantir le bon fonctionnement et la durabilité de vos installations de chauffage.",
+          "p2": "Qu'il s'agisse de l'installation d'une chaudière, de l'entretien régulier ou d'un dépannage en urgence, un chauffagiste compétent vous assure une intervention rapide, efficace et conforme aux normes. Grâce à son expertise, vous bénéficiez non seulement d'un confort optimal, mais aussi d'économies d'énergie sur le long terme.",
+          "p3": "Finis les arnaques avec notre système de séquestration de paiement, vous ne prenez plus aucun risque !"
+        }
+      },
+      "hvacInstaller": {
+        "title": "Installateur / réparateur climatisation compétent",
+        "name": "Installateur / réparateur climatisation",
+        "description": {
+          "p1": "L'installation et la maintenance des systèmes de climatisation exigent l'expertise d'un technicien froid compétent. Ce professionnel maîtrise les normes de sécurité et garantit des interventions précises, qu'il s'agisse d'une mise en service, d'un entretien préventif ou d'une réparation en urgence.",
+          "p2": "En choisissant un technicien froid compétent, vous assurez la performance et la durabilité de vos équipements, tout en bénéficiant d'un confort thermique optimal et d'économies d'énergie.",
+          "p3": "Finis les arnaques avec notre système de séquestration de paiement, vous ne prenez plus aucun risque !"
+        }
+      },
+      "carpenterGlazier": {
+        "title": "Menuisier & vitrier compétent",
+        "name": "Menuisier & vitrier (stores, fenêtres, portes...)",
+        "description": {
+          "p1": "La menuiserie et la vitrerie exigent précision, technicité et savoir-faire. Faire appel à un menuisier vitrier compétent, c'est bénéficier d'un accompagnement de qualité, que ce soit pour la pose de fenêtres, la réparation de vitrages cassés, la création de portes sur mesure ou l'aménagement intérieur.",
+          "p2": "Grâce à son expertise, un menuisier vitrier compétent assure des finitions impeccables, une isolation optimale et une durabilité dans le temps. Que vous soyez un particulier ou un professionnel, vous gagnez en sécurité, confort et esthétisme.",
+          "p3": "Finis les arnaques avec notre système de séquestration de paiement, vous ne prenez plus aucun risque !"
+        }
+      },
+      "painterInteriorFacade": {
+        "title": "Peintre d'intérieur & façadier compétent",
+        "name": "Peintre d'intérieur & façadier",
+        "description": {
+          "p1": "Faire appel à un peintre façadier compétent, c'est l'assurance de bénéficier d'un travail soigné et durable, aussi bien pour vos murs intérieurs que pour vos façades extérieures. Ce professionnel maîtrise les techniques adaptées à chaque support et utilise des matériaux de qualité pour garantir un rendu esthétique et une protection optimale de vos surfaces.",
+          "p2": "Que ce soit pour un ravalement, une rénovation ou une mise en valeur de votre habitat, un peintre façadier compétent vous garantit un résultat qui allie solidité, esthétique et respect des délais.",
+          "p3": "Finis les arnaques avec notre système de séquestration de paiement, vous ne prenez plus aucun risque !"
+        }
+      },
+      "floorCoverings": {
+        "title": "Revêtements de sols compétent",
+        "name": "Revêtements de sols (carrelage, parquet...)",
+        "description": {
+          "p1": "Un revêtement de sol est une couche de peinture ou de carrelage qui protège les sols contre les rayons UV, les brusques chocs et les agressions extérieures.",
+          "p2": "Il peut également être utilisé pour ajouter de la texture et de la couleur au sol, en particulier lors de travaux de construction ou de rénovation.",
+          "p3": "Finis les arnaques avec notre système de séquestration de paiement, vous ne prenez plus aucun risque !"
+        }
+      },
+      "alarmVideoSurveillance": {
+        "title": "Installateur alarme & vidéosurveillance compétent",
+        "name": "Installateur alarme & vidéosurveillance",
+        "description": {
+          "p1": "La pose d'une alarme ou d'un système de vidéosurveillance demande une installation soignée et adaptée à votre logement ou local.",
+          "p2": "Un installateur compétent vous conseille sur le matériel, positionne les capteurs/caméras, sécurise les accès et assure une mise en service fiable.",
+          "p3": "Finis les arnaques avec notre système de séquestration de paiement, vous ne prenez plus aucun risque !"
+        }
+      },
+      "insulationInOut": {
+        "title": "Plaquiste & jointeur & isolation compétent",
+        "name": "Plaquiste & jointeur & isolation",
+        "description": {
+          "p1": "L'isolation intérieure et extérieure est essentielle pour améliorer le confort, réduire les déperditions et protéger votre bâti.",
+          "p2": "Un professionnel peut aussi intervenir en plaquisterie et jointure: cloisons, doublages, faux plafonds, finitions et préparation avant peinture.",
+          "p3": "Finis les arnaques avec notre système de séquestration de paiement, vous ne prenez plus aucun risque !"
+        }
+      },
+      "pestControl": {
+        "title": "Traitement anti-nuisibles compétent",
+        "name": "Traitement anti-nuisibles (rongeurs, punaises...)",
+        "description": {
+          "p1": "Faire appel à un technicien en traitement des nuisibles compétent, c'est la garantie d'une intervention rapide, efficace et durable. Rongeurs, punaises de lit, cafards, fourmis ou guêpes: chaque infestation demande une méthode adaptée et des produits spécifiques. Grâce à son expertise, le technicien en traitement des nuisibles compétent identifie la source du problème, applique les solutions les plus sûres et prévient les récidives.",
+          "p2": "Que ce soit pour protéger votre maison, vos bureaux ou vos locaux commerciaux, ce professionnel vous apporte tranquillité d'esprit et sécurité au quotidien.",
+          "p3": "Finis les arnaques avec notre système de séquestration de paiement, vous ne prenez plus aucun risque !"
+        }
+      }
+    }
+  },
+  "faq": {
+    "title": "Artisan compétent : comment ça marche ?",
+    "q1": {
+      "title": "Comment trouver un artisan compétent sur Artisan-Compétent ?",
+      "p1": "Trouver un intervenant sur Artisan-Compétent est simple, rapide et 100 % digitalisé.",
+      "intro": "Après votre inscription, il vous suffit de:",
+      "steps": {
+        "item1": "choisir le métier dont vous avez besoin (plomberie, électricité, maçonnerie...)",
+        "item2": "définir un périmètre géographique",
+        "item3": "expliquer votre besoin, idéalement via une courte vidéo, mais aussi avec des photos ou du texte selon votre préférence"
+      },
+      "p2": "Votre demande est transmise aux professionnels qualifiés et/ou particuliers compétents correspondant à vos critères. Vous recevez plusieurs propositions pour comparer et choisir en toute transparence."
+    },
+    "q2": {
+      "title": "Quelles sont les garanties offertes par Artisan-Compétent ?",
+      "items": {
+        "escrow1": "Paiement séquestré: la totalité du devis jusqu'à 5 000 € est séquestrée.",
+        "escrow2": "Au-delà de 5 000 €, seule la main-d'œuvre est séquestrée (sauf artisans fabricants, selon cas).",
+        "tracking": "Suivi digitalisé du chantier: photos, commentaires et étapes en temps réel.",
+        "cmod": "CMOD: un professionnel indépendant conseille et intervient en cas de doute ou litige.",
+        "abuse": "Protection contre les abus: intervention possible (dans un délai de 12 à 48h) en cas de devis signé de nuit et payé (urgence) manifestement excessif (même après procès verbal validé dans un délai maximum de 48h, à signaler depuis votre tableau de bord).",
+        "pv": "Procès-verbal numérique: aucun paiement libéré sans validation formelle."
+      }
+    },
+    "q3": {
+      "title": "Que se passe-t-il si j'ai payé mais que l'artisan n'est pas intervenu ?",
+      "items": {
+        "escrow": "Les fonds étant séquestrés, l'intervenant ne peut pas être payé.",
+        "report": "Vous signalez la situation depuis votre tableau de bord.",
+        "review": "Le CMOD et les administrateurs analysent le dossier.",
+        "refund": "Remboursement intégral si aucune intervention n'a eu lieu dans le délai prévu dans le devis, les frais de séquestre vous sont offerts par Artisan-Compétent !"
+      },
+      "cta": "Vous ne prenez donc aucun risque financier."
+    },
+    "q4": {
+      "title": "Pourquoi passer uniquement par Artisan-Compétent pour vos petits travaux et urgences ?",
+      "items": {
+        "id": "Intervenants identifiés et encadrés.",
+        "price": "Prix dans les standards du marché.",
+        "block": "Paiement bloqué tant que le travail n'est pas validé.",
+        "neutral": "Interlocuteur neutre en cas de problème (CMOD + plateforme)."
+      },
+      "p": "Artisan-Compétent transforme une situation stressante en processus sécurisé et contrôlé."
+    },
+    "q5": {
+      "title": "Quel est le taux de TVA appliqué en France pour les travaux de rénovation ?",
+      "items": {
+        "rate55": "5,5 %: travaux d'amélioration énergétique (isolation, PAC, etc.).",
+        "rate10": "10 %: la plupart des autres travaux de rénovation.",
+        "rate20": "20 %: taux normal en dehors des cas éligibles."
+      },
+      "note": "Les taux réduits s'appliquent aux logements achevés depuis plus de 2 ans et peuvent couvrir main-d'œuvre et fournitures si fournies par le professionnel.",
+      "advice": "Il est souvent plus avantageux de confier fourniture et pose à l'artisan (sinon le matériel acheté par vous-même est à 20 %).",
+      "source": "Source: Ministère de l'Économie (TVA à taux réduit)."
+    },
+    "q6": {
+      "title": "Quelles sont les consignes / obligations pour les prestataires ?",
+      "items": {
+        "goals": "Artisan-Compétent réduit la prospection, élimine les impayés, sécurise les paiements et professionnalise la relation client.",
+        "sector": "Plateforme exclusivement dédiée au bâtiment.",
+        "commissionPro": "Commission de 20 % uniquement sur la main-d'œuvre.",
+        "cmodShare": "Sur ces 20 %, 5 % reversés au CMOD."
+      }
+    },
+    "q7": {
+      "title": "Quelles sont les consignes / obligations en tant que client ?",
+      "intro": "Afin de garantir la sécurité des paiements, de protéger toutes les parties et d'éviter les litiges, chaque client utilisant la plateforme Artisan Compétent s'engage à respecter un cadre de fonctionnement clair et transparent.",
+      "pay": {
+        "title": "Concernant le paiement et les fournitures",
+        "upTo5000": "Pour les interventions dont le montant total est inférieur ou égal à 5 000 €, la totalité du montant du devis (main-d'œuvre et fournitures) peut être séquestrée sur la plateforme jusqu'à la validation du procès-verbal de fin de chantier.",
+        "laborOnly": "Toutefois, afin de faciliter le travail des artisans et de tenir compte de certaines réalités du terrain, vous avez également la possibilité, jusqu'à 5 000 €, de ne séquestrer que la partie main-d'œuvre sur la plateforme.",
+        "laborOnlyWhy": "Cette option peut être utile lorsque l'artisan ne dispose pas de la trésorerie nécessaire pour avancer les matériaux, notamment si ses fournisseurs habituels ne lui accordent pas de délais de paiement. Elle permet également de limiter les frais liés au séquestre, qui peuvent être répercutés à l'artisan à partir de certains montants.",
+        "optionsIntro": "Dans ce cas, plusieurs solutions sont possibles :",
+        "options": {
+          "li1": "vous pouvez accompagner l'artisan chez le fournisseur et régler directement les matériaux,",
+          "li2": "l'artisan peut également se rendre seul chez le fournisseur, avancer les frais des fournitures, puis être remboursé par vos soins une fois les matériaux livrés et présents sur le chantier."
+        },
+        "advanceNote": "Dans cette configuration, le remboursement des fournitures avancées par l'artisan peut intervenir dès leur livraison, sans attendre la validation du procès-verbal de fin de chantier. La séquestration reste alors limitée à la partie main-d'œuvre, qui sera libérée une fois les travaux validés.",
+        "above5000": "Pour les chantiers supérieurs à 5 000 €, seule la main-d'œuvre est séquestrée sur la plateforme, pour les mêmes raisons évoquées ci-dessus.",
+        "directSupplier": "Les fournitures doivent être réglées directement au fournisseur, idéalement en présence de l'artisan.",
+        "discourageDirectArtisan": "Le paiement direct des matériaux à l'artisan est fortement déconseillé, sauf dans des situations exceptionnelles clairement encadrées et justifiées."
+      },
+      "obl": {
+        "title": "Vos obligations en tant que client",
+        "items": {
+          "req": "formuler une demande claire, précise et honnête concernant vos travaux,",
+          "insurance": "vérifier l'assurance professionnelle de l'artisan (RC professionnelle et/ou assurance décennale) en contactant directement l'assureur afin de confirmer que l'artisan est bien couvert pour les travaux qu'il s'apprête à réaliser chez vous,",
+          "tracking": "suivre l'avancement du chantier, idéalement en présentiel et, si nécessaire, en contradictoire via votre tableau de bord dédié,",
+          "report": "signaler immédiatement tout problème, doute ou désaccord (sollicitation du CMOD uniquement en cas de litige ou de suspicion concrète de fraude),",
+          "noBypass": "ne jamais contourner le système de paiement."
+        },
+        "noteInsurance": "Même si Artisan Compétent effectue déjà ces vérifications en amont, il est possible qu'un artisan perde son assurance entre-temps pour diverses raisons, ou que certains travaux spécifiques ne soient pas couverts par son contrat.",
+        "also": "Vous devez également :"
+      },
+      "bypass": {
+        "title": "Important : respect du paiement sécurisé",
+        "items": {
+          "cancelGuarantees": "l'annulation de toutes les garanties proposées par la plateforme,",
+          "disengagement": "le désengagement total d'Artisan Compétent,",
+          "cmodImpossible": "l'impossibilité d'intervention du CMOD en cas de litige."
+        }
+      },
+      "pv": {
+        "title": "Validation du chantier",
+        "text": "Le procès-verbal de fin de chantier est obligatoire pour permettre la libération des fonds. Sans validation formelle de ce document, aucun paiement ne pourra être effectué."
+      },
+      "goal": "Ces règles ont un objectif simple : vous protéger, prévenir les abus et garantir une expérience de travaux sécurisée, transparente et sereine pour toutes les parties."
+    },
+    "q8": {
+      "title": "Un CMOD, c'est quoi ?",
+      "items": {
+        "indep": "Professionnel du bâtiment indépendant, sans lien avec l'intervenant du chantier.",
+        "remote": "Intervient à distance via la plateforme.",
+        "exp": "Minimum 3 ans d'expérience terrain.",
+        "role1": "Vous accompagne dans la compréhension technique et l'analyse des devis.",
+        "role2": "Intervient en cas de doute, incompréhension ou litige.",
+        "role3": "Confirme objectivement la conformité des travaux."
+      },
+      "note": "Le CMOD n'est pas un chef de chantier et n'intervient pas physiquement. Sa présence est une garantie de sécurité et de neutralité."
+    }
+  },
+  "not-found": {
+    "title": "Page introuvable",
+    "message": "Page non trouvée"
+  },
+  "toggle": {
+    "theme": "Basculer le thème",
+    "lang": "Basculer la langue"
+  },
+  "register": {
+    "title": "Inscription du particulier",
+    "addPhoto": "Ajouter une photo",
+    "addId": "Ajouter une carte d'identité",
+    "addRib": "Ajouter un RIB",
+    "offerServices": "Je souhaite offrir mes services",
+    "captcha": "Je ne suis pas un robot",
+    "cgu": "J'accepte les CGU",
+    "submit": "Valider",
+    "gender": {
+      "select": "Sélectionner le genre",
+      "female": "Femme",
+      "male": "Homme"
+    },
+    "fields": {
+      "lastName": "Nom",
+      "firstName": "Prénom",
+      "birthDate": "Date de naissance",
+      "email": "Adresse email",
+      "password": "Mot de passe",
+      "passwordConfirm": "Confirmation mot de passe",
+      "phone": "Numéro de téléphone",
+      "trades": "Métiers",
+      "services": "Services proposés",
+      "address": {
+        "number": "Numéro de voie",
+        "street": "Nom de voie",
+        "complement": "Complément d'adresse",
+        "zip": "Code postal",
+        "city": "Ville"
+      }
+    },
+    "options": {
+      "trades": {
+        "plumbing": "Plomberie",
+        "electricity": "Électricité",
+        "masonry": "Maçonnerie",
+        "gardening": "Jardinage",
+        "locksmith": "Serrurerie"
+      },
+      "services": {
+        "installation": "Installation",
+        "repair": "Dépannage",
+        "maintenance": "Entretien",
+        "consulting": "Conseil"
+      }
+    }
+  },
+  "supplier": {
+    "title": "Inscription du fournisseur",
+    "addLogo": "Ajouter un logo",
+    "addRib": "Ajouter un RIB",
+    "submit": "Valider",
+    "fields": {
+      "lastName": "Nom",
+      "firstName": "Prénom",
+      "companyName": "Nom de la société",
+      "openingHours": "Horaires d'ouverture",
+      "siret": "Numéro SIRET",
+      "services": "Services proposés",
+      "phone": "Numéro de téléphone",
+      "email": "Adresse email",
+      "password": "Mot de passe",
+      "passwordConfirm": "Confirmation du mot de passe",
+      "address": {
+        "number": "Numéro de voie",
+        "street": "Nom de voie",
+        "complement": "Complément d'adresse",
+        "zip": "Code postal",
+        "city": "Ville"
+      }
+    },
+    "days": {
+      "monday": "Lundi",
+      "tuesday": "Mardi",
+      "wednesday": "Mercredi",
+      "thursday": "Jeudi",
+      "friday": "Vendredi",
+      "saturday": "Samedi",
+      "sunday": "Dimanche"
+    },
+    "open": "Ouvert",
+    "errors": {
+      "timeRequired": "Heures requises pour une journée ouverte",
+      "timeOrder": "L'heure d'ouverture doit être avant la fermeture"
+    }
+  },
+  "professional": {
+    "title": "Inscription du professionnel",
+    "next": "Suivant",
+    "back": "Retour",
+    "submit": "Valider",
+    "optional": "champ optionnel",
+    "addPhoto": "Ajouter photo",
+    "addIdFront": "Ajouter carte d'identité recto",
+    "addIdBack": "Ajouter carte d'identité verso",
+    "addInsuranceDoc": "Ajouter document d'assurance",
+    "addDiplomaDoc": "Ajouter diplôme ou justificatif",
+    "addLogo": "Ajouter un logo",
+    "addRib": "Ajouter un RIB",
+      "onCall": "Astreinte",
+      "errors": {
+      "emailRequired": "Au moins un email est requis",
+      "required": "Champ requis",
+      "passwordMismatch": "Les mots de passe sont différents",
+      "siretPattern": "Le SIRET doit contenir 14 chiffres",
+      "captchaRequired": "Veuillez cocher cette case",
+      "termsRequired": "Veuillez accepter les CGU",
+      "descriptionMax": "500 caractères maximum",
+      "yearsMin": "Doit être supérieur ou égal à 0",
+      "formSummary": {
+        "title": "Le formulaire contient des erreurs :",
+        "photoRequired": "Photo requise",
+        "idFrontRequired": "CNI (recto) requise",
+        "idBackRequired": "CNI (verso) requise",
+        "insuranceDocRequired": "Document d'assurance requis",
+        "diplomaDocRequired": "Diplôme requis",
+        "logoRequired": "Logo requis",
+        "ribRequired": "RIB requis"
+      }
+      },
+    "manager": {
+      "company": "Société",
+      "sole": "Auto-entrepreneur"
+    },
+    "fields": {
+      "lastName": "Nom",
+      "firstName": "Prénom",
+      "birthDate": "Date de naissance",
+      "managerStatus": "Statut du gérant",
+      "managerPhone": "Numéro de téléphone du gérant",
+      "personalEmail": "Email personnel du gérant",
+      "professionalEmail": "Email professionnel du gérant",
+      "password": "Mot de passe",
+      "passwordConfirm": "Confirmation du mot de passe",
+      "address": {
+        "number": "Numéro de voie",
+        "street": "Nom de voie",
+        "complement": "Complément d'adresse",
+        "zip": "Code postal",
+        "city": "Ville"
+      },
+      "insuranceName": "Nom de l'assurance",
+      "insuranceNumber": "Numéro d'assurance",
+      "insuranceExpiry": "Date d'expiration",
+      "companyName": "Nom de la société",
+      "workAddress": {
+        "number": "Numéro de voie",
+        "street": "Nom de voie",
+        "complement": "Complément d'adresse",
+        "zip": "Code postal",
+        "city": "Ville"
+      },
+      "siret": "Numéro SIRET",
+      "trades": "Métiers",
+      "yearsExperience": "Années d'expérience",
+      "openingHours": "Horaires d'ouverture",
+      "description": "Descriptif vendeur (500 caractères max)",
+      "services": "Services proposés",
+      "trustName": "Nom de la personne de confiance",
+      "trustPhone": "Téléphone de la personne de confiance",
+      "suppliers": "Liste des fournisseurs"
+    }
+  },
+  "searchPro": {
+    "placeholder": "Rechercher un professionnel ou un service",
+    "button": "Rechercher",
+    "addressLabel": "Adresse ou ville",
+    "tradeLabel": "Sélectionner un métier",
+    "kilometersLabel": "Rayon de recherche (km)"
+  }
+}

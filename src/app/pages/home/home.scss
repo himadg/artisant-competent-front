@@ -1,0 +1,87 @@
+:host ::ng-deep .pictures-frame {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: picturesFade 15s infinite;
+  clip-path: ellipse(100% 60% at 50% 40%);
+  filter: brightness(0.6);
+}
+
+:host ::ng-deep .pictures-frame:nth-child(1) {
+  animation-delay: 0s;
+}
+
+:host ::ng-deep .pictures-frame:nth-child(2) {
+  animation-delay: 3s;
+}
+
+:host ::ng-deep .pictures-frame:nth-child(3) {
+  animation-delay: 6s;
+}
+
+:host ::ng-deep .pictures-frame:nth-child(4) {
+  animation-delay: 9s;
+}
+
+:host ::ng-deep .pictures-frame:nth-child(5) {
+  animation-delay: 12s;
+}
+
+@keyframes picturesFade {
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  20% { opacity: 1; }
+  25% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+.local {
+  margin: 6rem auto !important;
+}
+
+:host ::ng-deep .h-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-brown) transparent;
+}
+
+:host ::ng-deep .h-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+:host ::ng-deep .h-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+:host ::ng-deep .h-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--tertiary-brown);
+  border-radius: 9999px;
+}
+
+/* Étapes accordéon: cacher l'icône flèche par défaut sur summary */
+.steps-accordion summary {
+  list-style: none;
+}
+
+.steps-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.steps-accordion summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.steps-accordion summary::after {
+  content: "+";
+  font-weight: 700;
+  color: var(--primary-brown);
+  display: inline-block;
+  width: 1rem;
+  text-align: center;
+}
+
+.steps-accordion details[open] > summary::after {
+  content: "−";
+}

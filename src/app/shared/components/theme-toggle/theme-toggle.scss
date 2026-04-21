@@ -1,0 +1,63 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+}
+
+.theme-switch {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  border: 0;
+  border-radius: 9999px;
+  padding: 0;
+  cursor: pointer;
+  background: var(--primary-beige);
+}
+
+.theme-switch .track {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--secondary-beige) 20%, transparent);
+}
+
+.theme-switch .knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: transform 200ms ease;
+  transform: translateX(24px);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.theme-switch.dark .knob {
+  transform: translateX(0);
+}
+
+.theme-switch .knob ng-icon,
+.theme-switch .knob iconify-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.theme-switch.dark .knob ng-icon,
+.theme-switch.dark .knob iconify-icon {
+  color: #0f172a;
+  color: var(--secondary-brown);
+}
+
+.theme-switch:not(.dark) .knob ng-icon,
+.theme-switch:not(.dark) .knob iconify-icon {
+  color: #f59e0b;
+  color: var(--secondary-brown);
+}

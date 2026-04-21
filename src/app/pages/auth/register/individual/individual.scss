@@ -1,0 +1,27 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-color);
+  background-color: var(--primary-beige);
+  color: var(--color);
+  cursor: pointer;
+}
+
+.chip.selected {
+  background-color: var(--tertiary-brown);
+  color: var(--primary-beige);
+  border-color: var(--tertiary-brown);
+}
+
+:host-context(.dark) .chip {
+  background-color: var(--primary-brown);
+  color: var(--secondary-beige);
+}
+
+:host-context(.dark) .chip.selected {
+  background-color: var(--tertiary-brown);
+  color: var(--primary-beige);
+}

@@ -1,0 +1,253 @@
+<div class="my-12 md:my-24">
+    <h1 class="my-8 text-4xl font-semibold text-center">{{ 'supplier.title' | transloco }}</h1>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="py-8 mx-auto space-y-4 max-w-[29rem] autofill-fix">
+        <div class="grid gap-4 items-stretch md:grid-cols-2">
+            <div class="flex justify-center items-stretch h-36">
+                <div class="overflow-hidden relative w-36 h-full rounded-md border group">
+                    @if (logoPreview()) {
+                        <img
+                            [src]="logoPreview()"
+                            alt="Logo"
+                            class="object-cover w-full h-full cursor-pointer"
+                            (click)="removeLogo()"
+                        />
+                        <div
+                            class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                            (click)="removeLogo()"
+                        >
+                            {{ 'common.delete' | transloco }}
+                        </div>
+                    } @else if (logoName()) {
+                        <div
+                            class="flex justify-center items-center w-full h-full text-center cursor-pointer"
+                            (click)="removeLogo()"
+                        >
+                            <span class="text-[10px]">{{ logoName() }}</span>
+                            <span
+                                class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                                (click)="removeLogo()"
+                                >{{ 'common.delete' | transloco }}</span
+                            >
+                        </div>
+                    } @else {
+                        <div class="flex flex-col justify-center items-center w-full h-full text-center">
+                            <span class="text-4xl leading-none">+</span>
+                            <span class="mt-1 text-xs">{{ 'supplier.addLogo' | transloco }}</span>
+                        </div>
+                        <input
+                            type="file"
+                            class="absolute inset-0 opacity-0 cursor-pointer"
+                            accept="image/*,.pdf"
+                            (change)="addLogo($event)"
+                        />
+                    }
+                </div>
+            </div>
+            <div class="space-y-3">
+                <select formControlName="gender" class="appearance-none px-3 py-2 w-full rounded border text-[0.85rem]">
+                    <option value="">{{ 'register.gender.select' | transloco }} *</option>
+                    <option value="female">{{ 'register.gender.female' | transloco }}</option>
+                    <option value="male">{{ 'register.gender.male' | transloco }}</option>
+                </select>
+                <input
+                    type="text"
+                    formControlName="lastName"
+                    class="px-3 py-2 w-full rounded border"
+                    placeholder="{{ 'supplier.fields.lastName' | transloco }} *"
+                />
+                <input
+                    type="text"
+                    formControlName="firstName"
+                    class="px-3 py-2 w-full rounded border"
+                    placeholder="{{ 'supplier.fields.firstName' | transloco }} *"
+                />
+            </div>
+        </div>
+
+        <input
+            type="text"
+            formControlName="companyName"
+            class="px-3 py-2 w-full rounded border"
+            placeholder="{{ 'supplier.fields.companyName' | transloco }} *"
+        />
+
+        <input
+            type="text"
+            formControlName="siret"
+            class="px-3 py-2 w-full rounded border"
+            placeholder="{{ 'supplier.fields.siret' | transloco }} *"
+        />
+
+        <div formGroupName="address" class="space-y-4">
+            <input
+                type="text"
+                formControlName="streetNumber"
+                class="px-3 py-2 w-full rounded border"
+                placeholder="{{ 'supplier.fields.address.number' | transloco }} *"
+            />
+            <input
+                type="text"
+                formControlName="streetName"
+                class="px-3 py-2 w-full rounded border"
+                placeholder="{{ 'supplier.fields.address.street' | transloco }} *"
+            />
+            <input
+                type="text"
+                formControlName="additionalInfo"
+                class="px-3 py-2 w-full rounded border"
+                placeholder="{{ 'supplier.fields.address.complement' | transloco }}"
+            />
+            <input
+                type="text"
+                formControlName="postalCode"
+                class="px-3 py-2 w-full rounded border"
+                placeholder="{{ 'supplier.fields.address.zip' | transloco }} *"
+            />
+            <input
+                type="text"
+                formControlName="city"
+                class="px-3 py-2 w-full rounded border"
+                placeholder="{{ 'supplier.fields.address.city' | transloco }} *"
+            />
+        </div>
+
+        <input
+            type="tel"
+            formControlName="phone"
+            class="px-3 py-2 w-full rounded border"
+            placeholder="{{ 'supplier.fields.phone' | transloco }} *"
+        />
+
+        <input
+            type="email"
+            formControlName="email"
+            class="px-3 py-2 w-full rounded border"
+            placeholder="{{ 'supplier.fields.email' | transloco }} *"
+        />
+
+        <input
+            type="password"
+            formControlName="password"
+            class="px-3 py-2 w-full rounded border"
+            placeholder="{{ 'supplier.fields.password' | transloco }} *"
+        />
+
+        <input
+            type="password"
+            formControlName="confirmPassword"
+            class="px-3 py-2 w-full rounded border"
+            placeholder="{{ 'supplier.fields.passwordConfirm' | transloco }} *"
+        />
+
+        <div class="space-y-3">
+            <label class="inline-block w-full font-black text-center">{{
+                'supplier.fields.openingHours' | transloco
+            }}</label>
+            <div class="space-y-2">
+                @for (ctrl of hours.controls; track $index) {
+                    <div class="grid grid-cols-2 gap-3 items-center">
+                        <span class="font-medium">{{ 'supplier.days.' + ctrl.value.day | transloco }}</span>
+                        <div class="flex gap-2 justify-end items-center">
+                            <input
+                                type="time"
+                                [formControl]="$any(ctrl.get('start'))"
+                                class="px-3 py-2 w-28 font-mono text-center rounded border md:w-32"
+                            />
+                            <span>–</span>
+                            <input
+                                type="time"
+                                [formControl]="$any(ctrl.get('end'))"
+                                class="px-3 py-2 w-28 font-mono text-center rounded border md:w-32"
+                            />
+                        </div>
+                        @if (ctrl.errors?.['timeRequired']) {
+                            <span class="col-span-2 text-xs text-red-600">{{
+                                'supplier.errors.timeRequired' | transloco
+                            }}</span>
+                        } @else if (ctrl.errors?.['timeOrder']) {
+                            <span class="col-span-2 text-xs text-red-600">{{
+                                'supplier.errors.timeOrder' | transloco
+                            }}</span>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="overflow-hidden relative mx-auto w-40 h-28 rounded-md border group">
+            @if (ribPreview()) {
+                <img
+                    [src]="ribPreview()"
+                    alt="RIB"
+                    class="object-cover w-full h-full cursor-pointer"
+                    (click)="removeRib()"
+                />
+                <div
+                    class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                    (click)="removeRib()"
+                >
+                    {{ 'common.delete' | transloco }}
+                </div>
+            } @else if (ribName()) {
+                <div
+                    class="flex justify-center items-center w-full h-full text-center cursor-pointer"
+                    (click)="removeRib()"
+                >
+                    <span class="text-[10px]">{{ ribName() }}</span>
+                    <span
+                        class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                        (click)="removeRib()"
+                        >{{ 'common.delete' | transloco }}</span
+                    >
+                </div>
+            } @else {
+                <div class="flex flex-col justify-center items-center w-full h-full text-center">
+                    <span class="text-4xl leading-none">+</span>
+                    <span class="mt-1 text-xs">{{ 'supplier.addRib' | transloco }}</span>
+                </div>
+                <input
+                    type="file"
+                    class="absolute inset-0 opacity-0 cursor-pointer"
+                    accept="image/*,.pdf"
+                    (change)="addRib($event)"
+                />
+            }
+        </div>
+
+        <div class="flex flex-col">
+            <label class="mb-3 font-medium">{{ 'supplier.fields.services' | transloco }}</label>
+            <div class="flex flex-wrap gap-2">
+                @for (service of servicesKeys; track service) {
+                    <button
+                        type="button"
+                        (click)="toggleService(service)"
+                        class="chip"
+                        [class.selected]="isServiceSelected(service)"
+                    >
+                        {{ 'register.options.services.' + service | transloco }}
+                    </button>
+                }
+            </div>
+        </div>
+
+        <div class="flex gap-2 items-center">
+            <input type="checkbox" formControlName="captcha" />
+            <span>{{ 'register.captcha' | transloco }} *</span>
+        </div>
+
+        <div class="flex gap-2 items-center">
+            <input type="checkbox" formControlName="terms" />
+            <span>{{ 'register.cgu' | transloco }} *</span>
+        </div>
+
+        <button
+            type="submit"
+            class="px-4 py-2 rounded-lg text-[var(--primary-beige)] bg-grad-water-green disabled:bg-gray-400 block mx-auto"
+            [disabled]="form.invalid || form.value.password !== form.value.confirmPassword"
+            (click)="submit()"
+        >
+            {{ 'supplier.submit' | transloco }}
+        </button>
+    </form>
+</div>

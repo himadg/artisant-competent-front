@@ -1,0 +1,20 @@
+@switch (user.type) {
+    @case ('professional') {
+        <professional-profile [user]="user"></professional-profile>
+    }
+    @case ('individual') {
+        <individual-profile [user]="user"></individual-profile>
+    }
+    @case ('supplier') {
+        <supplier-profile [user]="user"></supplier-profile>
+    }
+    @case ('admin') {
+        <admin-profile [user]="user"></admin-profile>
+    }
+    @case ('management') {
+        <management-profile [user]="user"></management-profile>
+    }
+    @default {
+        <not-found></not-found>
+    }
+}

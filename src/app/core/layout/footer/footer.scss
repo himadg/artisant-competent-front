@@ -1,0 +1,11 @@
+footer {
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: fill-available;
+  border-top: 1px solid var(--border-color);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  z-index: 100;
+  background: var(--v-grad-brown);
+}

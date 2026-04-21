@@ -1,0 +1,14 @@
+@switch (userType) {
+    @case ('professional') {
+        <register-professional></register-professional>
+    }
+    @case ('individual') {
+        <register-individual></register-individual>
+    }
+    @case ('supplier') {
+        <register-supplier></register-supplier>
+    }
+    @default {
+        <not-found></not-found>
+    }
+}

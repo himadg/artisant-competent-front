@@ -1,0 +1,114 @@
+<nav class="flex justify-between items-center w-full">
+    <button
+        type="button"
+        class="grid py-4 place-items-center size-16 rounded-full bg-[var(--tertiary-brown)]"
+        (click)="toggleMobileNav()"
+        aria-label="Menu"
+        [attr.aria-expanded]="mobileNavOpen"
+    >
+        <span class="block w-6 h-0.5 bg-[var(--primary-beige)]"></span>
+        <span class="block w-6 h-0.5 bg-[var(--primary-beige)]"></span>
+        <span class="block w-6 h-0.5 bg-[var(--primary-beige)]"></span>
+    </button>
+    <div
+        class="fixed top-0 right-0 h-screen w-8/12 max-w-[320px] p-4 flex flex-col gap-2 bg-grad-brown border-l border-[var(--secondary-beige)] transition-transform duration-700 ease-in-out"
+        [class.translate-x-full]="!mobileNavOpen"
+        [class.translate-x-0]="mobileNavOpen"
+    >
+        <button type="button" (click)="closeMobileNav()" class="self-end px-3 text-3xl">×</button>
+
+        <a
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="p-2 no-underline rounded-lg hover:bg-grad-water-green"
+        >
+            {{ 'common.home' | transloco }}
+        </a>
+        <a routerLink="/jobs" routerLinkActive="active" class="p-2 no-underline rounded-lg hover:bg-grad-water-green">
+            {{ 'jobs.title' | transloco }}
+        </a>
+
+        <button
+            type="button"
+            class="flex justify-between items-center p-2 no-underline"
+            (click)="toggleMobileNavRegister()"
+            [attr.aria-expanded]="mobileNavRegisterOpen"
+        >
+            <span>{{ 'auth.register' | transloco }}</span>
+            <span class="" [class.rotate-180]="mobileNavRegisterOpen">▾</span>
+        </button>
+        <div
+            class="overflow-hidden transition-all duration-700 ease-in-out"
+            [class.max-h-0]="!mobileNavRegisterOpen"
+            [class.max-h-40]="mobileNavRegisterOpen"
+            [class.border-t]="mobileNavRegisterOpen"
+            [class.border-b]="mobileNavRegisterOpen"
+            [class.py-2]="mobileNavRegisterOpen"
+        >
+            <a
+                [routerLink]="['/auth/register']"
+                [queryParams]="{ t: 'individual' }"
+                class="block p-2 pl-6 no-underline rounded-lg hover:bg-grad-water-green"
+            >
+                {{ 'auth.roles.individual' | transloco }}
+            </a>
+            <a
+                [routerLink]="['/auth/register']"
+                [queryParams]="{ t: 'professional' }"
+                class="block p-2 pl-6 no-underline rounded-lg hover:bg-grad-water-green"
+            >
+                {{ 'auth.roles.professional' | transloco }}
+            </a>
+            <a
+                [routerLink]="['/auth/register']"
+                [queryParams]="{ t: 'supplier' }"
+                class="block p-2 pl-6 no-underline rounded-lg hover:bg-grad-water-green"
+            >
+                {{ 'auth.roles.supplier' | transloco }}
+            </a>
+        </div>
+
+        <button
+            type="button"
+            class="flex justify-between items-center p-2 no-underline"
+            (click)="toggleMobileNavLogin()"
+            [attr.aria-expanded]="mobileNavLoginOpen"
+        >
+            <span>{{ 'auth.login' | transloco }}</span>
+            <span class="" [class.rotate-180]="mobileNavLoginOpen">▾</span>
+        </button>
+        <div
+            class="overflow-hidden py-2 transition-all duration-700 ease-in-out"
+            [class.max-h-0]="!mobileNavLoginOpen"
+            [class.max-h-40]="mobileNavLoginOpen"
+            [class.border-t]="mobileNavLoginOpen"
+            [class.border-b]="mobileNavLoginOpen"
+            [class.py-2]="mobileNavLoginOpen"
+        >
+            <a
+                [routerLink]="['/auth/login']"
+                [queryParams]="{ t: 'individual' }"
+                class="block p-2 pl-6 no-underline rounded-lg hover:bg-grad-water-green"
+                >{{ 'auth.roles.individual' | transloco }}</a
+            >
+            <a
+                [routerLink]="['/auth/login']"
+                [queryParams]="{ t: 'professional' }"
+                class="block p-2 pl-6 no-underline rounded-lg hover:bg-grad-water-green"
+                >{{ 'auth.roles.professional' | transloco }}</a
+            >
+            <a
+                [routerLink]="['/auth/login']"
+                [queryParams]="{ t: 'supplier' }"
+                class="block p-2 pl-6 no-underline rounded-lg hover:bg-grad-water-green"
+                >{{ 'auth.roles.supplier' | transloco }}</a
+            >
+        </div>
+
+        <div class="flex gap-3 items-center p-2">
+            <lang-toggle></lang-toggle>
+            <theme-toggle></theme-toggle>
+        </div>
+    </div>
+</nav>

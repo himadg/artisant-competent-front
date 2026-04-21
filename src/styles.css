@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global theme setup */
+:root {
+  color-scheme: light;
+
+  --primary-beige: #f6ede4;
+  --secondary-beige: #dac2aa;
+  --tertiary-beige: #c5a483;
+  --primary-brown: #4a2e14;
+  --secondary-brown: #351f0a;
+  --tertiary-brown: #a97849;
+  --primary-water-green: #00637b;
+  --secondary-water-green: #004353;
+
+  --color: var(--secondary-water-green);
+  --background-color: var(--primary-beige);
+  --border-color: var(--secondary-brown);
+  --hover-color: var(--v-grad-water-green);
+  --btn-color: var(--v-grad-water-green);
+  --nav-bg-color: var(--secondary-brown);
+  --v-grad-beige: linear-gradient(170deg, var(--primary-beige) 0%, var(--tertiary-brown) 100%);
+  --h-grad-beige: linear-gradient(90deg, var(--primary-beige) 0%, var(--tertiary-brown) 100%);
+  --v-grad-brown: linear-gradient(170deg, var(--secondary-brown) 0%, var(--tertiary-brown) 100%);
+  --h-grad-brown: linear-gradient(90deg, var(--secondary-brown) 0%, var(--tertiary-brown) 100%);
+  --v-grad-water-green: linear-gradient(170deg, var(--primary-water-green) 0%, var(--secondary-water-green) 100%);
+  --h-grad-water-green: linear-gradient(90deg, var(--primary-water-green) 0%, var(--secondary-water-green) 100%);
+
+  input,
+  select {
+    border-color: var(--border-color);
+    background-color: var(--primary-beige);
+  }
+
+  input::placeholder {
+    color: var(--color);
+    opacity: 0.6;
+  }
+
+  select option:checked {
+    background-color: var(--tertiary-brown);
+    color: var(--primary-beige);
+  }
+
+  input:-moz-autofill,
+  select:-moz-autofill,
+  textarea:-moz-autofill {
+    background-color: var(--primary-beige) !important;
+    color: var(--color) !important;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  textarea:-webkit-autofill {
+    -webkit-text-fill-color: var(--color);
+    caret-color: var(--color);
+    box-shadow: 0 0 0 1000px var(--primary-beige) inset;
+  }
+
+  .title {
+    border-left: 0.25rem solid var(--tertiary-brown);
+    padding-left: 1rem;
+  }
+}
+
+:root.dark {
+  color-scheme: dark;
+
+  --primary-beige: #c5a483;
+  --secondary-beige: #dac2aa;
+  --tertiary-beige: #f6ede4;
+  --primary-brown: #351f0a;
+  --secondary-brown: #4a2e14;
+  --tertiary-brown: #a97849;
+  --primary-water-green: #00637b;
+  --secondary-water-green: #004353;
+
+  --color: var(--secondary-water-green);
+  --background-color: var(--primary-beige);
+  --border-color: var(--secondary-beige);
+  --hover-color: var(--v-grad-water-green);
+  --btn-color: var(--v-grad-water-green);
+  --nav-bg-color: var(--primary-beige);
+  --v-grad-beige: linear-gradient(170deg, var(--primary-beige) 0%, var(--secondary-beige) 100%);
+  --h-grad-beige: linear-gradient(90deg, var(--primary-beige) 0%, var(--secondary-beige) 100%);
+  --v-grad-brown: linear-gradient(170deg, var(--secondary-brown) 0%, var(--tertiary-brown) 100%);
+  --h-grad-brown: linear-gradient(90deg, var(--secondary-brown) 0%, var(--tertiary-brown) 100%);
+  --v-grad-water-green: linear-gradient(170deg, var(--primary-water-green) 0%, var(--secondary-water-green) 100%);
+  --h-grad-water-green: linear-gradient(90deg, var(--primary-water-green) 0%, var(--secondary-water-green) 100%);
+
+  input,
+  select {
+    background-color: var(--primary-brown);
+    color: var(--secondary-beige);
+  }
+
+  input::placeholder {
+    color: var(--secondary-beige);
+    opacity: 0.7;
+  }
+
+  select option:checked {
+    background-color: var(--tertiary-brown);
+    color: var(--primary-beige);
+  }
+
+  input:-moz-autofill,
+  select:-moz-autofill,
+  textarea:-moz-autofill {
+    background-color: var(--primary-brown) !important;
+    color: var(--secondary-beige) !important;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  textarea:-webkit-autofill {
+    -webkit-text-fill-color: var(--secondary-beige);
+    caret-color: var(--secondary-beige);
+    box-shadow: 0 0 0 1000px var(--primary-brown) inset;
+  }
+
+  .title {
+    border-left: 0.25rem solid var(--primary-brown);
+    padding-left: 1rem;
+  }
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  color: var(--primary-beige);
+  background-color: var(--background-color);
+}
+
+* {
+  font-family: 'Inter', 'Roboto', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Montserrat', 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* Keeps links the same color as the text */
+nav *:link,
+nav *:visited,
+nav *:hover,
+nav *:active {
+  color: var(--primary-beige);
+  text-decoration-color: var(--primary-beige);
+}
+
+/* Smaller placeholders inside registration forms */
+.autofill-fix input::placeholder {
+  font-size: 0.85rem;
+}
+
+select option {
+  border-radius: 0.5rem;
+}
+
+/* Gradient utility helpers for Tailwind interop */
+.bg-grad-beige {
+  background: var(--v-grad-beige);
+}
+
+.bg-grad-brown {
+  background: var(--v-grad-brown);
+}
+
+.bg-grad-water-green {
+  background: var(--v-grad-water-green);
+}
+
+.hover\:bg-grad-beige:hover {
+  background: var(--v-grad-beige);
+}
+
+.hover\:bg-grad-brown:hover {
+  background: var(--v-grad-brown);
+}
+
+.hover\:bg-grad-water-green:hover {
+  background: var(--v-grad-water-green);
+}
+
+.border {
+  border-color: var(--border-color);
+}

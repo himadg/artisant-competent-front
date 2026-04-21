@@ -1,0 +1,14 @@
+<button
+    type="button"
+    class="theme-switch"
+    [class.dark]="themeService.effectiveDark()"
+    (click)="toggle()"
+    [attr.aria-label]="'toggle.theme' | transloco"
+    role="switch"
+    [attr.aria-checked]="themeService.effectiveDark()"
+>
+    <span class="track"></span>
+    <span class="knob">
+        <iconify-icon [attr.icon]="themeService.effectiveDark() ? 'lucide:moon' : 'lucide:sun'"></iconify-icon>
+    </span>
+</button>

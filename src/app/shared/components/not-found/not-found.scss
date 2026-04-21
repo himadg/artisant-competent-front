@@ -1,0 +1,19 @@
+.not-found {
+  min-height: 60vh;
+  display: grid;
+  align-content: center;
+  place-items: center;
+  text-align: center;
+  color: var(--primary-beige);
+}
+
+.code {
+  font-size: clamp(3rem, 12vw, 8rem);
+  line-height: 1;
+  margin: 0;
+}
+
+.message {
+  font-size: clamp(1rem, 3vw, 2rem);
+  margin: 0;
+}

@@ -1,0 +1,622 @@
+<div class="my-12 md:my-24">
+    <h1 class="my-8 text-4xl font-semibold text-center">{{ 'professional.title' | transloco }}</h1>
+
+    @if (step() === 1) {
+        <form [formGroup]="form" class="py-8 mx-auto space-y-4 max-w-[29rem] autofill-fix">
+            <div class="grid gap-4 items-stretch md:grid-cols-2">
+                <div class="flex justify-center items-stretch h-36">
+                    <div class="overflow-hidden relative w-36 h-full rounded-full border group">
+                        @if (photoPreview()) {
+                            <img
+                                [src]="photoPreview()"
+                                alt="Photo"
+                                class="object-cover w-full h-full cursor-pointer"
+                                (click)="removeFile('photo')"
+                            />
+                            <div
+                                class="flex absolute inset-0 justify-center items-center text-xs text-white rounded-full opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                                (click)="removeFile('photo')"
+                            >
+                                {{ 'common.delete' | transloco }}
+                            </div>
+                        } @else if (photoName()) {
+                            <div
+                                class="flex justify-center items-center w-full h-full text-center cursor-pointer"
+                                (click)="removeFile('photo')"
+                            >
+                                <span class="text-[10px]">{{ photoName() }}</span>
+                                <span
+                                    class="flex absolute inset-0 justify-center items-center text-xs text-white rounded-full opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                                    (click)="removeFile('photo')"
+                                    >{{ 'common.delete' | transloco }}</span
+                                >
+                            </div>
+                        } @else {
+                            <div class="flex flex-col justify-center items-center w-full h-full text-center">
+                                <span class="text-4xl leading-none">+</span>
+                                <span class="text-[0.72rem] mt-1">{{ 'professional.addPhoto' | transloco }}</span>
+                            </div>
+                            <input
+                                type="file"
+                                class="absolute inset-0 opacity-0 cursor-pointer"
+                                accept="image/*"
+                                (change)="addFile('photo', $event)"
+                            />
+                        }
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <select formControlName="gender" class="appearance-none px-3 py-2 w-full rounded border text-[0.85rem]">
+                        <option value="">{{ 'register.gender.select' | transloco }} *</option>
+                        <option value="female">{{ 'register.gender.female' | transloco }}</option>
+                        <option value="male">{{ 'register.gender.male' | transloco }}</option>
+                    </select>
+                    <input
+                        type="text"
+                        formControlName="lastName"
+                        class="px-3 py-2 w-full rounded border"
+                        placeholder="{{ 'professional.fields.lastName' | transloco }} *"
+                    />
+                    <input
+                        type="text"
+                        formControlName="firstName"
+                        class="px-3 py-2 w-full rounded border"
+                        placeholder="{{ 'professional.fields.firstName' | transloco }} *"
+                    />
+                </div>
+            </div>
+            <div class="relative">
+                <input
+                    type="date"
+                    formControlName="birthDate"
+                    class="px-3 py-2 w-full rounded border"
+                />
+                <!-- <span
+                    class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[var(--secondary-beige)] bg-[var(--primary-brown)] text-[0.85rem] peer-focus:hidden"
+                    [class.hidden]="!!form.get('birthDate')?.value"
+                >
+                    {{ 'professional.fields.birthDate' | transloco }} *
+                </span> -->
+            </div>
+
+            <select formControlName="managerStatus" class="appearance-none px-3 py-2 w-full rounded border text-[0.85rem]">
+                <option value="">{{ 'professional.fields.managerStatus' | transloco }} *</option>
+                <option value="company">{{ 'professional.manager.company' | transloco }}</option>
+                <option value="sole">{{ 'professional.manager.sole' | transloco }}</option>
+            </select>
+
+            <input
+                type="tel"
+                formControlName="managerPhone"
+                class="px-3 py-2 w-full rounded border"
+                placeholder="{{ 'professional.fields.managerPhone' | transloco }} *"
+            />
+
+            <div [formGroup]="$any(form.get('emails'))" class="space-y-2">
+                <input
+                    type="email"
+                    formControlName="personalEmail"
+                    class="px-3 py-2 w-full rounded border"
+                    placeholder="{{ 'professional.fields.personalEmail' | transloco }}"
+                />
+                <input
+                    type="email"
+                    formControlName="professionalEmail"
+                    class="px-3 py-2 w-full rounded border"
+                    placeholder="{{ 'professional.fields.professionalEmail' | transloco }}"
+                />
+                @if (form.get('emails')?.errors?.['emailRequired']) {
+                    <span class="text-xs text-red-600">{{ 'professional.errors.emailRequired' | transloco }}</span>
+                }
+            </div>
+
+            <input
+                type="password"
+                formControlName="password"
+                class="px-3 py-2 w-full rounded border"
+                placeholder="{{ 'professional.fields.password' | transloco }} *"
+            />
+            <input
+                type="password"
+                formControlName="confirmPassword"
+                class="px-3 py-2 w-full rounded border"
+                placeholder="{{ 'professional.fields.passwordConfirm' | transloco }} *"
+            />
+
+            <div formGroupName="address" class="space-y-4">
+                <input
+                    type="text"
+                    formControlName="streetNumber"
+                    class="px-3 py-2 w-full rounded border"
+                    placeholder="{{ 'professional.fields.address.number' | transloco }} *"
+                />
+                <input
+                    type="text"
+                    formControlName="streetName"
+                    class="px-3 py-2 w-full rounded border"
+                    placeholder="{{ 'professional.fields.address.street' | transloco }} *"
+                />
+                <input
+                    type="text"
+                    formControlName="additionalInfo"
+                    class="px-3 py-2 w-full rounded border"
+                    placeholder="{{ 'professional.fields.address.complement' | transloco }}"
+                />
+                <input
+                    type="text"
+                    formControlName="postalCode"
+                    class="px-3 py-2 w-full rounded border"
+                    placeholder="{{ 'professional.fields.address.zip' | transloco }} *"
+                />
+                <input
+                    type="text"
+                    formControlName="city"
+                    class="px-3 py-2 w-full rounded border"
+                    placeholder="{{ 'professional.fields.address.city' | transloco }} *"
+                />
+            </div>
+
+            <div class="grid gap-4 md:grid-cols-2">
+                <div class="overflow-hidden relative w-full h-28 rounded-md border group">
+                    @if (idFrontPreview()) {
+                        <img
+                            [src]="idFrontPreview()"
+                            alt="ID front"
+                            class="object-cover w-full h-full cursor-pointer"
+                            (click)="removeFile('idFront')"
+                        />
+                        <div
+                            class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                            (click)="removeFile('idFront')"
+                        >
+                            {{ 'common.delete' | transloco }}
+                        </div>
+                    } @else if (idFrontName()) {
+                        <div
+                            class="flex justify-center items-center w-full h-full text-center cursor-pointer"
+                            (click)="removeFile('idFront')"
+                        >
+                            <span class="text-[10px]">{{ idFrontName() }}</span>
+                            <span
+                                class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                                (click)="removeFile('idFront')"
+                                >{{ 'common.delete' | transloco }}</span
+                            >
+                        </div>
+                    } @else {
+                        <div class="flex flex-col justify-center items-center w-full h-full text-center">
+                            <span class="text-4xl leading-none">+</span>
+                            <span class="mt-1 text-xs">{{ 'professional.addIdFront' | transloco }} *</span>
+                        </div>
+                        <input
+                            type="file"
+                            class="absolute inset-0 opacity-0 cursor-pointer"
+                            accept="image/*,.pdf"
+                            (change)="addFile('idFront', $event)"
+                        />
+                    }
+                </div>
+                <div class="overflow-hidden relative w-full h-28 rounded-md border group">
+                    @if (idBackPreview()) {
+                        <img
+                            [src]="idBackPreview()"
+                            alt="ID back"
+                            class="object-cover w-full h-full cursor-pointer"
+                            (click)="removeFile('idBack')"
+                        />
+                        <div
+                            class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                            (click)="removeFile('idBack')"
+                        >
+                            {{ 'common.delete' | transloco }}
+                        </div>
+                    } @else if (idBackName()) {
+                        <div
+                            class="flex justify-center items-center w-full h-full text-center cursor-pointer"
+                            (click)="removeFile('idBack')"
+                        >
+                            <span class="text-[10px]">{{ idBackName() }}</span>
+                            <span
+                                class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                                (click)="removeFile('idBack')"
+                                >{{ 'common.delete' | transloco }}</span
+                            >
+                        </div>
+                    } @else {
+                        <div class="flex flex-col justify-center items-center w-full h-full text-center">
+                            <span class="text-4xl leading-none">+</span>
+                            <span class="mt-1 text-xs">{{ 'professional.addIdBack' | transloco }} *</span>
+                        </div>
+                        <input
+                            type="file"
+                            class="absolute inset-0 opacity-0 cursor-pointer"
+                            accept="image/*,.pdf"
+                            (change)="addFile('idBack', $event)"
+                        />
+                    }
+                </div>
+            </div>
+
+            <div class="grid gap-4 md:grid-cols-2">
+                <div class="overflow-hidden relative w-full h-28 rounded-md border group">
+                    @if (diplomaPreview()) {
+                        <img
+                            [src]="diplomaPreview()"
+                            alt="Diplôme"
+                            class="object-cover w-full h-full cursor-pointer"
+                            (click)="removeFile('diplomaDoc')"
+                        />
+                        <div
+                            class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                            (click)="removeFile('diplomaDoc')"
+                        >
+                            {{ 'common.delete' | transloco }}
+                        </div>
+                    } @else if (diplomaName()) {
+                        <div
+                            class="flex justify-center items-center w-full h-full text-center cursor-pointer"
+                            (click)="removeFile('diplomaDoc')"
+                        >
+                            <span class="text-[10px]">{{ diplomaName() }}</span>
+                            <span
+                                class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                                (click)="removeFile('diplomaDoc')"
+                                >{{ 'common.delete' | transloco }}</span
+                            >
+                        </div>
+                    } @else {
+                        <div class="flex flex-col justify-center items-center w-full h-full text-center">
+                            <span class="text-4xl leading-none">+</span>
+                            <span class="mt-1 text-xs">{{ 'professional.addDiplomaDoc' | transloco }} *</span>
+                        </div>
+                        <input
+                            type="file"
+                            class="absolute inset-0 opacity-0 cursor-pointer"
+                            accept="image/*,.pdf"
+                            (change)="addFile('diplomaDoc', $event)"
+                        />
+                    }
+                </div>
+                <div class="overflow-hidden relative w-full h-28 rounded-md border group">
+                    @if (insuranceDocPreview()) {
+                        <img
+                            [src]="insuranceDocPreview()"
+                            alt="Assurance"
+                            class="object-cover w-full h-full cursor-pointer"
+                            (click)="removeFile('insuranceDoc')"
+                        />
+                        <div
+                            class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                            (click)="removeFile('insuranceDoc')"
+                        >
+                            {{ 'common.delete' | transloco }}
+                        </div>
+                    } @else if (insuranceDocName()) {
+                        <div
+                            class="flex justify-center items-center w-full h-full text-center cursor-pointer"
+                            (click)="removeFile('insuranceDoc')"
+                        >
+                            <span class="text-[10px]">{{ insuranceDocName() }}</span>
+                            <span
+                                class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                                (click)="removeFile('insuranceDoc')"
+                                >{{ 'common.delete' | transloco }}</span
+                            >
+                        </div>
+                    } @else {
+                        <div class="flex flex-col justify-center items-center w-full h-full text-center">
+                            <span class="text-4xl leading-none">+</span>
+                            <span class="mt-1 text-xs">{{ 'professional.addInsuranceDoc' | transloco }} *</span>
+                        </div>
+                        <input
+                            type="file"
+                            class="absolute inset-0 opacity-0 cursor-pointer"
+                            accept="image/*,.pdf"
+                            (change)="addFile('insuranceDoc', $event)"
+                        />
+                    }
+                </div>
+            </div>
+
+            <input
+                type="text"
+                formControlName="insuranceName"
+                class="px-3 py-2 w-full rounded border"
+                placeholder="{{ 'professional.fields.insuranceName' | transloco }} *"
+            />
+            <input
+                type="text"
+                formControlName="insuranceNumber"
+                class="px-3 py-2 w-full rounded border"
+                placeholder="{{ 'professional.fields.insuranceNumber' | transloco }} *"
+            />
+            <div class="relative">
+                <input
+                    type="date"
+                    formControlName="insuranceExpiry"
+                    class="px-3 py-2 w-full rounded border peer"
+                />
+                <!-- <span
+                    class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[var(--secondary-beige)] bg-[var(--primary-brown)] text-[0.85rem] peer-focus:hidden"
+                    [class.hidden]="!!form.get('insuranceExpiry')?.value"
+                >
+                    {{ 'professional.fields.insuranceExpiry' | transloco }} *
+                </span> -->
+            </div>
+
+            <div class="flex justify-end">
+                <button
+                    type="button"
+                    class="px-4 py-2 rounded-lg text-[var(--primary-beige)] bg-grad-water-green"
+                    (click)="nextStep()"
+                >
+                    {{ 'professional.next' | transloco }}
+                </button>
+            </div>
+        </form>
+    } @else if (step() === 2) {
+        <form [formGroup]="form" class="p-4 mx-auto space-y-4 max-w-xl autofill-fix">
+            <div class="grid gap-6 items-stretch md:grid-cols-2">
+                <div class="flex justify-center items-stretch">
+                    <div class="overflow-hidden relative w-40 h-28 rounded-md border group">
+                        @if (logoPreview()) {
+                            <img
+                                [src]="logoPreview()"
+                                alt="Logo"
+                                class="object-cover w-full h-full cursor-pointer"
+                                (click)="removeFile('logo')"
+                            />
+                            <div
+                                class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                                (click)="removeFile('logo')"
+                            >
+                                Supprimer
+                            </div>
+                        } @else if (logoName()) {
+                            <div
+                                class="flex justify-center items-center w-full h-full text-center cursor-pointer"
+                                (click)="removeFile('logo')"
+                            >
+                                <span class="text-[10px]">{{ logoName() }}</span>
+                                <span
+                                    class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                                    (click)="removeFile('logo')"
+                                    >Supprimer</span
+                                >
+                            </div>
+                        } @else {
+                            <div class="flex flex-col justify-center items-center w-full h-full text-center">
+                                <span class="text-4xl leading-none">+</span>
+                                <span class="mt-1 text-xs">{{ 'professional.addLogo' | transloco }}</span>
+                            </div>
+                            <input
+                                type="file"
+                                class="absolute inset-0 opacity-0 cursor-pointer"
+                                accept="image/*,.pdf"
+                                (change)="addFile('logo', $event)"
+                            />
+                        }
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <input
+                        type="text"
+                        formControlName="companyName"
+                        class="px-3 py-2 w-full rounded border"
+                        placeholder="{{ 'professional.fields.companyName' | transloco }} *"
+                    />
+                    <div formGroupName="workAddress" class="space-y-2">
+                        <input
+                            type="text"
+                            formControlName="streetNumber"
+                            class="px-3 py-2 w-full rounded border"
+                            placeholder="{{ 'professional.fields.workAddress.number' | transloco }} *"
+                        />
+                        <input
+                            type="text"
+                            formControlName="streetName"
+                            class="px-3 py-2 w-full rounded border"
+                            placeholder="{{ 'professional.fields.workAddress.street' | transloco }} *"
+                        />
+                        <input
+                            type="text"
+                            formControlName="additionalInfo"
+                            class="px-3 py-2 w-full rounded border"
+                            placeholder="{{ 'professional.fields.workAddress.complement' | transloco }}"
+                        />
+                        <input
+                            type="text"
+                            formControlName="postalCode"
+                            class="px-3 py-2 w-full rounded border"
+                            placeholder="{{ 'professional.fields.workAddress.zip' | transloco }} *"
+                        />
+                        <input
+                            type="text"
+                            formControlName="city"
+                            class="px-3 py-2 w-full rounded border"
+                            placeholder="{{ 'professional.fields.workAddress.city' | transloco }} *"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <input
+                type="text"
+                formControlName="siret"
+                class="px-3 py-2 w-full rounded border"
+                placeholder="{{ 'professional.fields.siret' | transloco }} *"
+            />
+
+            <div class="overflow-hidden relative mx-auto w-40 h-28 rounded-md border group">
+                @if (ribPreview()) {
+                    <img
+                        [src]="ribPreview()"
+                        alt="RIB"
+                        class="object-cover w-full h-full cursor-pointer"
+                        (click)="removeFile('rib')"
+                    />
+                    <div
+                        class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                        (click)="removeFile('rib')"
+                    >
+                        {{ 'common.delete' | transloco }}
+                    </div>
+                } @else if (ribName()) {
+                    <div
+                        class="flex justify-center items-center w-full h-full text-center cursor-pointer"
+                        (click)="removeFile('rib')"
+                    >
+                        <span class="text-[10px]">{{ ribName() }}</span>
+                        <span
+                            class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                            (click)="removeFile('rib')"
+                            >{{ 'common.delete' | transloco }}</span
+                        >
+                    </div>
+                } @else {
+                    <div class="flex flex-col justify-center items-center w-full h-full text-center">
+                        <span class="text-4xl leading-none">+</span>
+                        <span class="mt-1 text-xs">{{ 'professional.addRib' | transloco }}</span>
+                    </div>
+                    <input
+                        type="file"
+                        class="absolute inset-0 opacity-0 cursor-pointer"
+                        accept="image/*,.pdf"
+                        (change)="addFile('rib', $event)"
+                    />
+                }
+            </div>
+
+            <div class="flex flex-col">
+                <label class="font-medium">{{ 'professional.fields.trades' | transloco }}</label>
+                <div class="space-y-2">
+                    @for (trade of tradesKeys; track trade) {
+                        <label class="inline-flex gap-2 items-center">
+                            <input type="checkbox" [checked]="isTradeSelected(trade)" (change)="toggleTrade(trade)" />
+                            <span>{{ 'register.options.trades.' + trade | transloco }}</span>
+                        </label>
+                    }
+                </div>
+            </div>
+
+            <input
+                type="number"
+                formControlName="yearsExperience"
+                class="px-3 py-2 w-full rounded border"
+                placeholder="{{ 'professional.fields.yearsExperience' | transloco }} *"
+            />
+
+            @if (isTradeSelected('locksmith') || isTradeSelected('plumbing') || isTradeSelected('electricity')) {
+                <label class="inline-flex gap-2 items-center">
+                    <input type="checkbox" formControlName="onCall" />
+                    <span>{{ 'professional.onCall' | transloco }}</span>
+                </label>
+                <div class="space-y-3">
+                    <label class="font-medium">{{ 'professional.fields.openingHours' | transloco }}</label>
+                    <div class="space-y-2">
+                        @for (ctrl of hours.controls; track $index) {
+                            <div class="grid grid-cols-2 gap-3 items-center">
+                                <span class="font-medium">{{ 'supplier.days.' + ctrl.value.day | transloco }}</span>
+                                <div class="flex gap-2 justify-end items-center">
+                                    <input
+                                        type="time"
+                                        [formControl]="$any(ctrl.get('start'))"
+                                        class="px-3 py-2 w-28 font-mono text-center rounded border md:w-32"
+                                    />
+                                    <span>–</span>
+                                    <input
+                                        type="time"
+                                        [formControl]="$any(ctrl.get('end'))"
+                                        class="px-3 py-2 w-28 font-mono text-center rounded border md:w-32"
+                                    />
+                                </div>
+                                @if (ctrl.errors?.['timeRequired']) {
+                                    <span class="col-span-2 text-xs text-red-600">{{
+                                        'supplier.errors.timeRequired' | transloco
+                                    }}</span>
+                                } @else if (ctrl.errors?.['timeOrder']) {
+                                    <span class="col-span-2 text-xs text-red-600">{{
+                                        'supplier.errors.timeOrder' | transloco
+                                    }}</span>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+
+            <textarea
+                formControlName="description"
+                class="px-3 py-2 w-full rounded border"
+                placeholder="{{ 'professional.fields.description' | transloco }} *"
+                maxlength="500"
+            ></textarea>
+
+            <div class="flex flex-col">
+                <label class="font-medium">{{ 'professional.fields.services' | transloco }}</label>
+                <div class="flex flex-wrap gap-2">
+                    @for (service of servicesKeys; track service) {
+                        <button
+                            type="button"
+                            (click)="toggleService(service)"
+                            class="chip"
+                            [class.selected]="isServiceSelected(service)"
+                        >
+                            {{ 'register.options.services.' + service | transloco }}
+                        </button>
+                    }
+                </div>
+            </div>
+
+            <input
+                type="text"
+                formControlName="trustName"
+                class="px-3 py-2 w-full rounded border"
+                placeholder="{{ 'professional.fields.trustName' | transloco }} ({{
+                    'professional.optional' | transloco
+                }})"
+            />
+            <input
+                type="tel"
+                formControlName="trustPhone"
+                class="px-3 py-2 w-full rounded border"
+                placeholder="{{ 'professional.fields.trustPhone' | transloco }} ({{
+                    'professional.optional' | transloco
+                }})"
+            />
+
+            <textarea
+                formControlName="suppliers"
+                class="px-3 py-2 w-full rounded border"
+                placeholder="{{ 'professional.fields.suppliers' | transloco }} *"
+            ></textarea>
+
+            <div class="flex gap-2 items-center">
+                <input type="checkbox" formControlName="captcha" />
+                <span>{{ 'register.captcha' | transloco }} *</span>
+            </div>
+            <div class="flex gap-2 items-center">
+                <input type="checkbox" formControlName="terms" />
+                <span>{{ 'register.cgu' | transloco }} *</span>
+            </div>
+
+            <div class="flex justify-between">
+                <button
+                    type="button"
+                    class="px-4 py-2 rounded-lg text-[var(--color)] border-[2px] border-solid border-[var(--color)]"
+                    (click)="backStep()"
+                >
+                    {{ 'professional.back' | transloco }}
+                </button>
+                <button
+                    type="submit"
+                    class="px-4 py-2 rounded-lg text-[var(--primary-beige)] bg-grad-water-green disabled:bg-gray-400"
+                    [disabled]="form.invalid || form.value.password !== form.value.confirmPassword"
+                    (click)="submit()"
+                >
+                    {{ 'professional.submit' | transloco }}
+                </button>
+            </div>
+        </form>
+    }
+</div>

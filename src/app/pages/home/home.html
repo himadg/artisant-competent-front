@@ -1,0 +1,542 @@
+<div class="overflow-hidden absolute top-0 left-0 z-0 w-full h-[30rem] pictures-fader md:h-[42rem]">
+    <img
+        src="assets/img/image-qui-defile-1.webp"
+        alt="Image qui défile 1"
+        class="object-cover w-full h-full pictures-frame"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+    />
+    <img
+        src="assets/img/image-qui-defile-2.webp"
+        alt="Image qui défile 2"
+        class="object-cover w-full h-full pictures-frame"
+        loading="lazy"
+        fetchpriority="low"
+        decoding="async"
+    />
+    <img
+        src="assets/img/image-qui-defile-3.webp"
+        alt="Image qui défile 3"
+        class="object-cover w-full h-full pictures-frame"
+        loading="lazy"
+        fetchpriority="low"
+        decoding="async"
+    />
+    <img
+        src="assets/img/image-qui-defile-4.webp"
+        alt="Image qui défile 4"
+        class="object-cover w-full h-full pictures-frame"
+        loading="lazy"
+        fetchpriority="low"
+        decoding="async"
+    />
+    <img
+        src="assets/img/image-qui-defile-5.webp"
+        alt="Image qui défile 5"
+        class="object-cover w-full h-full pictures-frame"
+        loading="lazy"
+        fetchpriority="low"
+        decoding="async"
+    />
+</div>
+
+<div class="pt-[3rem] pb-12 mx-auto space-y-6 max-w-screen-lg z-10 relative md:pt-[10rem]">
+    <h1 class="text-center font-extrabold text-[var(--primary-beige)] text-2xl md:text-3xl lg:text-5xl">
+        {{ 'home.title' | transloco }}
+    </h1>
+
+    <search-pro></search-pro>
+
+    <div class="p-6 space-y-2 rounded-lg bg-[var(--primary-water-green)] text-[var(--primary-beige)] w-fit local">
+        <h3 class="mb-6 text-base font-semibold text-center md:text-xl">{{ 'home.local.title' | transloco }}</h3>
+        <ul class="list-disc list-inside">
+            <li>{{ 'home.local.body1' | transloco }}</li>
+            <li>{{ 'home.local.body2' | transloco }}</li>
+            <li>{{ 'home.local.body3' | transloco }}</li>
+            <li>{{ 'home.local.body4' | transloco }}</li>
+            <li>{{ 'home.local.body5' | transloco }}</li>
+            <li>{{ 'home.local.body6' | transloco }}</li>
+        </ul>
+    </div>
+
+    <section class="flex flex-col gap-4 items-left">
+        <h2 class="text-base font-semibold shrink-0 md:text-4xl title">{{ 'home.where.title' | transloco }}</h2>
+        <div class="overflow-x-auto py-2 w-full h-scroll">
+            <div class="flex gap-4">
+                <div class="overflow-hidden w-48 rounded-lg border shrink-0">
+                    <img src="assets/img/paris.webp" alt="Paris" class="object-cover w-full h-24 md:h-40" />
+                    <div class="p-4">{{ 'home.where.cities.paris' | transloco }}</div>
+                </div>
+                <div class="overflow-hidden w-48 rounded-lg border shrink-0">
+                    <img src="assets/img/marseille.webp" alt="Marseille" class="object-cover w-full h-24 md:h-40" />
+                    <div class="p-4">{{ 'home.where.cities.marseille' | transloco }}</div>
+                </div>
+                <div class="overflow-hidden w-48 rounded-lg border shrink-0">
+                    <img src="assets/img/lyon.webp" alt="Lyon" class="object-cover w-full h-24 md:h-40" />
+                    <div class="p-4">{{ 'home.where.cities.lyon' | transloco }}</div>
+                </div>
+                <div class="overflow-hidden w-48 rounded-lg border shrink-0">
+                    <img src="assets/img/toulouse.webp" alt="Toulouse" class="object-cover w-full h-24 md:h-40" />
+                    <div class="p-4">{{ 'home.where.cities.toulouse' | transloco }}</div>
+                </div>
+                <div class="overflow-hidden w-48 rounded-lg border shrink-0">
+                    <img src="assets/img/nice.webp" alt="Nice" class="object-cover w-full h-24 md:h-40" />
+                    <div class="p-4">{{ 'home.where.cities.nice' | transloco }}</div>
+                </div>
+                <div class="overflow-hidden w-48 rounded-lg border shrink-0">
+                    <img src="assets/img/nantes.webp" alt="Nantes" class="object-cover w-full h-24 md:h-40" />
+                    <div class="p-4">{{ 'home.where.cities.nantes' | transloco }}</div>
+                </div>
+                <div class="overflow-hidden w-48 rounded-lg border shrink-0">
+                    <img src="assets/img/montpellier.webp" alt="Montpellier" class="object-cover w-full h-24 md:h-40" />
+                    <div class="p-4">{{ 'home.where.cities.montpellier' | transloco }}</div>
+                </div>
+                <div class="overflow-hidden w-48 rounded-lg border shrink-0">
+                    <img src="assets/img/strasbourg.webp" alt="Strasbourg" class="object-cover w-full h-24 md:h-40" />
+                    <div class="p-4">{{ 'home.where.cities.strasbourg' | transloco }}</div>
+                </div>
+                <div class="overflow-hidden w-48 rounded-lg border shrink-0">
+                    <img src="assets/img/bordeaux.jpg" alt="Bordeaux" class="object-cover w-full h-24 md:h-40" />
+                    <div class="p-4">{{ 'home.where.cities.bordeaux' | transloco }}</div>
+                </div>
+                <div class="overflow-hidden w-48 rounded-lg border shrink-0">
+                    <img src="assets/img/lille.webp" alt="Lille" class="object-cover w-full h-24 md:h-40" />
+                    <div class="p-4">{{ 'home.where.cities.lille' | transloco }}</div>
+                </div>
+                <div class="overflow-hidden w-48 rounded-lg border shrink-0">
+                    <img src="assets/img/rennes.webp" alt="Rennes" class="object-cover w-full h-24 md:h-40" />
+                    <div class="p-4">{{ 'home.where.cities.rennes' | transloco }}</div>
+                </div>
+                <div class="overflow-hidden w-48 rounded-lg border shrink-0">
+                    <img src="assets/img/toulon.webp" alt="Toulon" class="object-cover w-full h-24 md:h-40" />
+                    <div class="p-4">{{ 'home.where.cities.toulon' | transloco }}</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="flex flex-col gap-4 items-left">
+        <h2 class="text-base font-semibold shrink-0 md:text-4xl title">{{ 'jobs.title' | transloco }}</h2>
+        <div class="overflow-x-auto py-2 w-full h-scroll">
+            <div class="flex gap-6">
+                <a class="block w-48 text-center shrink-0" [routerLink]="['/jobs', 'electrician']">
+                    <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
+                        <img
+                            src="assets/img/electricien.jpg"
+                            alt="{{ 'jobs.list.electrician.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                        />
+                    </div>
+                    <div class="mt-2">{{ 'jobs.list.electrician.name' | transloco }}</div>
+                </a>
+                <a class="block w-48 text-center shrink-0" [routerLink]="['/jobs', 'locksmith-metaller']">
+                    <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
+                        <img
+                            src="assets/img/serrurier-metallier.jpg"
+                            alt="{{ 'jobs.list.locksmithMetaller.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                        />
+                    </div>
+                    <div class="mt-2">{{ 'jobs.list.locksmithMetaller.name' | transloco }}</div>
+                </a>
+                <a class="block w-48 text-center shrink-0" [routerLink]="['/jobs', 'plumber-sanitary']">
+                    <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
+                        <img
+                            src="assets/img/plombier.jpg"
+                            alt="{{ 'jobs.list.plumberSanitary.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                        />
+                    </div>
+                    <div class="mt-2">{{ 'jobs.list.plumberSanitary.name' | transloco }}</div>
+                </a>
+                <a class="block w-48 text-center shrink-0" [routerLink]="['/jobs', 'heating-tech']">
+                    <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
+                        <img
+                            src="assets/img/chauffagiste.jpg"
+                            alt="{{ 'jobs.list.heatingTech.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                        />
+                    </div>
+                    <div class="mt-2">{{ 'jobs.list.heatingTech.name' | transloco }}</div>
+                </a>
+                <a class="block w-48 text-center shrink-0" [routerLink]="['/jobs', 'drain-unblocker']">
+                    <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
+                        <img
+                            src="assets/img/deboucheur-canalisation.jpg"
+                            alt="{{ 'jobs.list.drainUnblocker.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                        />
+                    </div>
+                    <div class="mt-2">{{ 'jobs.list.drainUnblocker.name' | transloco }}</div>
+                </a>
+                <a class="block w-48 text-center shrink-0" [routerLink]="['/jobs', 'hvac-installer']">
+                    <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
+                        <img
+                            src="assets/img/installateur-clim.jpg"
+                            alt="{{ 'jobs.list.hvacInstaller.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                        />
+                    </div>
+                    <div class="mt-2">{{ 'jobs.list.hvacInstaller.name' | transloco }}</div>
+                </a>
+                <a class="block w-48 text-center shrink-0" [routerLink]="['/jobs', 'carpenter-glazier']">
+                    <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
+                        <img
+                            src="assets/img/vitrier.jpg"
+                            alt="{{ 'jobs.list.carpenterGlazier.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                        />
+                    </div>
+                    <div class="mt-2">{{ 'jobs.list.carpenterGlazier.name' | transloco }}</div>
+                </a>
+                <a class="block w-48 text-center shrink-0" [routerLink]="['/jobs', 'insulation-in-out']">
+                    <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
+                        <img
+                            src="assets/img/isolation.jpg"
+                            alt="{{ 'jobs.list.insulationInOut.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                        />
+                    </div>
+                    <div class="mt-2">{{ 'jobs.list.insulationInOut.name' | transloco }}</div>
+                </a>
+                <a class="block w-48 text-center shrink-0" [routerLink]="['/jobs', 'painter-interior-facade']">
+                    <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
+                        <img
+                            src="assets/img/peintre.jpg"
+                            alt="{{ 'jobs.list.painterInteriorFacade.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                        />
+                    </div>
+                    <div class="mt-2">{{ 'jobs.list.painterInteriorFacade.name' | transloco }}</div>
+                </a>
+                <a class="block w-48 text-center shrink-0" [routerLink]="['/jobs', 'floor-coverings']">
+                    <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
+                        <img
+                            src="assets/img/revetement-sol.webp"
+                            alt="{{ 'jobs.list.floorCoverings.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                        />
+                    </div>
+                    <div class="mt-2">{{ 'jobs.list.floorCoverings.name' | transloco }}</div>
+                </a>
+                <a class="block w-48 text-center shrink-0" [routerLink]="['/jobs', 'pest-control']">
+                    <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
+                        <img
+                            src="assets/img/anti-nuisible.jpg"
+                            alt="{{ 'jobs.list.pestControl.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                        />
+                    </div>
+                    <div class="mt-2">{{ 'jobs.list.pestControl.name' | transloco }}</div>
+                </a>
+                <a class="block w-48 text-center shrink-0" [routerLink]="['/jobs', 'alarm-video-surveillance']">
+                    <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
+                        <img
+                            src="assets/img/alarme-video-surveillance.webp"
+                            alt="{{ 'jobs.list.alarmVideoSurveillance.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                        />
+                    </div>
+                    <div class="mt-2">{{ 'jobs.list.alarmVideoSurveillance.name' | transloco }}</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="mt-12 space-y-6 steps-accordion">
+        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.steps.title' | transloco }}</h2>
+        <div class="space-y-6">
+            <details class="p-4 rounded-lg border">
+                <summary class="text-base font-semibold cursor-pointer md:text-xl">
+                    <em>1. {{ 'home.steps.items1.title' | transloco }} / {{ 'home.steps.items2.title' | transloco }}</em>
+                </summary>
+                <div class="mt-3 space-y-4">
+                    <div class="space-y-2">
+                        <p class="font-semibold">{{ 'home.steps.items1.title' | transloco }}</p>
+                        <p>{{ 'home.steps.items1.p1' | transloco }}</p>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="font-semibold">{{ 'home.steps.items2.title' | transloco }}</p>
+                        <p>{{ 'home.steps.items2.p1' | transloco }}</p>
+                        <ul class="pl-6 space-y-1 list-disc">
+                            <li>{{ 'home.steps.items2.li1' | transloco }}</li>
+                            <li>{{ 'home.steps.items2.li2' | transloco }}</li>
+                            <li>{{ 'home.steps.items2.li3' | transloco }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
+            <details class="p-4 rounded-lg border">
+                <summary class="text-base font-semibold cursor-pointer md:text-xl">
+                    <em>2. {{ 'home.steps.items3.title' | transloco }} / {{ 'home.steps.items4.title' | transloco }}</em>
+                </summary>
+                <div class="mt-3 space-y-4">
+                    <div class="space-y-2">
+                        <p class="font-semibold">{{ 'home.steps.items3.title' | transloco }}</p>
+                        <p>{{ 'home.steps.items3.p1' | transloco }}</p>
+                        <ul class="pl-6 space-y-1 list-disc">
+                            <li>{{ 'home.steps.items3.li1' | transloco }}</li>
+                            <li>{{ 'home.steps.items3.li2' | transloco }}</li>
+                            <li>{{ 'home.steps.items3.li3' | transloco }}</li>
+                        </ul>
+                        <ul class="pl-12 space-y-1 list-disc">
+                            <li>{{ 'home.steps.items3.li3a' | transloco }}</li>
+                            <li>{{ 'home.steps.items3.li3b' | transloco }}</li>
+                            <li>{{ 'home.steps.items3.li3c' | transloco }}</li>
+                        </ul>
+                        <p>{{ 'home.steps.items3.note' | transloco }}</p>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="font-semibold">{{ 'home.steps.items4.title' | transloco }}</p>
+                        <p>{{ 'home.steps.items4.p1' | transloco }}</p>
+                        <ul class="pl-6 space-y-1 list-disc">
+                            <li>{{ 'home.steps.items4.li1' | transloco }}</li>
+                            <li>{{ 'home.steps.items4.li2' | transloco }}</li>
+                            <li>{{ 'home.steps.items4.li3' | transloco }}</li>
+                        </ul>
+                        <p>{{ 'home.steps.items4.note' | transloco }}</p>
+                    </div>
+                </div>
+            </details>
+            <details class="p-4 rounded-lg border">
+                <summary class="text-base font-semibold cursor-pointer md:text-xl">
+                    <em>
+                        3. {{ 'home.steps.items5.title' | transloco }} / {{ 'home.steps.items6.title' | transloco }} /
+                        {{ 'home.steps.items7.title' | transloco }}
+                    </em>
+                </summary>
+                <div class="mt-3 space-y-4">
+                    <div class="space-y-2">
+                        <p class="font-semibold">{{ 'home.steps.items5.title' | transloco }}</p>
+                        <p>{{ 'home.steps.items5.p1' | transloco }}</p>
+                        <ul class="pl-6 space-y-1 list-disc">
+                            <li>{{ 'home.steps.items5.li1' | transloco }}</li>
+                            <li>{{ 'home.steps.items5.li2' | transloco }}</li>
+                            <li>{{ 'home.steps.items5.li3' | transloco }}</li>
+                            <li>{{ 'home.steps.items5.li4' | transloco }}</li>
+                        </ul>
+                        <p>{{ 'home.steps.items5.note' | transloco }}</p>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="font-semibold">{{ 'home.steps.items6.title' | transloco }}</p>
+                        <p>{{ 'home.steps.items6.p1' | transloco }}</p>
+                        <ul class="pl-6 space-y-1 list-disc">
+                            <li>{{ 'home.steps.items6.li1' | transloco }}</li>
+                            <li>{{ 'home.steps.items6.li2' | transloco }}</li>
+                            <li>{{ 'home.steps.items6.li3' | transloco }}</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="font-semibold">{{ 'home.steps.items7.title' | transloco }}</p>
+                        <p>{{ 'home.steps.items7.p1' | transloco }}</p>
+                        <ul class="pl-6 space-y-1 list-disc">
+                            <li>{{ 'home.steps.items7.li1' | transloco }}</li>
+                            <li>{{ 'home.steps.items7.li2' | transloco }}</li>
+                        </ul>
+                        <p>{{ 'home.steps.items7.note' | transloco }}</p>
+                    </div>
+                </div>
+            </details>
+            <details class="p-4 rounded-lg border">
+                <summary class="text-base font-semibold cursor-pointer md:text-xl">
+                    <em>4. {{ 'home.steps.items8.title' | transloco }} / {{ 'home.steps.items9.title' | transloco }}</em>
+                </summary>
+                <div class="mt-3 space-y-4">
+                    <div class="space-y-2">
+                        <p class="font-semibold">{{ 'home.steps.items8.title' | transloco }}</p>
+                        <p>{{ 'home.steps.items8.p1' | transloco }}</p>
+                        <ul class="pl-6 space-y-1 list-disc">
+                            <li>{{ 'home.steps.items8.li1' | transloco }}</li>
+                            <li>{{ 'home.steps.items8.li2' | transloco }}</li>
+                            <li>{{ 'home.steps.items8.li3' | transloco }}</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="font-semibold">{{ 'home.steps.items9.title' | transloco }}</p>
+                        <p>{{ 'home.steps.items9.p1' | transloco }}</p>
+                        <ul class="pl-6 space-y-1 list-disc">
+                            <li>{{ 'home.steps.items9.li1' | transloco }}</li>
+                            <li>{{ 'home.steps.items9.li2' | transloco }}</li>
+                            <li>{{ 'home.steps.items9.li3' | transloco }}</li>
+                        </ul>
+                        <p>{{ 'home.steps.items9.note' | transloco }}</p>
+                    </div>
+                </div>
+            </details>
+            <details class="p-4 rounded-lg border">
+                <summary class="text-base font-semibold cursor-pointer md:text-xl">
+                    <em>
+                        5. {{ 'home.steps.items10.title' | transloco }} / {{ 'home.steps.items11.title' | transloco }} /
+                        {{ 'home.steps.items12.title' | transloco }}
+                    </em>
+                </summary>
+                <div class="mt-3 space-y-4">
+                    <div class="space-y-2">
+                        <p class="font-semibold">{{ 'home.steps.items10.title' | transloco }}</p>
+                        <p>{{ 'home.steps.items10.p1' | transloco }}</p>
+                        <p>{{ 'home.steps.items10.p2' | transloco }}</p>
+                        <ul class="pl-6 space-y-1 list-disc">
+                            <li>{{ 'home.steps.items10.li1' | transloco }}</li>
+                            <li>{{ 'home.steps.items10.li2' | transloco }}</li>
+                        </ul>
+                        <p>{{ 'home.steps.items10.note' | transloco }}</p>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="font-semibold">{{ 'home.steps.items11.title' | transloco }}</p>
+                        <p>{{ 'home.steps.items11.p1' | transloco }}</p>
+                        <ul class="pl-6 space-y-1 list-disc">
+                            <li>{{ 'home.steps.items11.li1' | transloco }}</li>
+                            <li>{{ 'home.steps.items11.li2' | transloco }}</li>
+                        </ul>
+                        <p>{{ 'home.steps.items11.note' | transloco }}</p>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="font-semibold">{{ 'home.steps.items12.title' | transloco }}</p>
+                        <p>{{ 'home.steps.items12.p1' | transloco }}</p>
+                        <ul class="pl-6 space-y-1 list-disc">
+                            <li>{{ 'home.steps.items12.li1' | transloco }}</li>
+                            <li>{{ 'home.steps.items12.li2' | transloco }}</li>
+                            <li>{{ 'home.steps.items12.li3' | transloco }}</li>
+                        </ul>
+                        <p>{{ 'home.steps.items12.note' | transloco }}</p>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <section class="mt-12">
+        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'faq.title' | transloco }}</h2>
+        <div class="grid gap-6 items-center md:grid-cols-2">
+            <div>
+                <details class="p-4">
+                    <summary class="font-semibold cursor-pointer">{{ 'faq.q1.title' | transloco }}</summary>
+                    <div class="mt-3 space-y-2">
+                        <p>{{ 'faq.q1.p1' | transloco }}</p>
+                        <p>{{ 'faq.q1.intro' | transloco }}</p>
+                        <ul class="pl-6 space-y-1 list-disc">
+                            <li>{{ 'faq.q1.steps.item1' | transloco }}</li>
+                            <li>{{ 'faq.q1.steps.item2' | transloco }}</li>
+                            <li>{{ 'faq.q1.steps.item3' | transloco }}</li>
+                        </ul>
+                        <p>{{ 'faq.q1.p2' | transloco }}</p>
+                    </div>
+                </details>
+                <details class="p-4">
+                    <summary class="font-semibold cursor-pointer">{{ 'faq.q2.title' | transloco }}</summary>
+                    <ul class="pl-6 mt-3 space-y-1 list-disc">
+                        <li>{{ 'faq.q2.items.escrow1' | transloco }}</li>
+                        <li>{{ 'faq.q2.items.escrow2' | transloco }}</li>
+                        <li>{{ 'faq.q2.items.tracking' | transloco }}</li>
+                        <li>{{ 'faq.q2.items.cmod' | transloco }}</li>
+                        <li>{{ 'faq.q2.items.abuse' | transloco }}</li>
+                        <li>{{ 'faq.q2.items.pv' | transloco }}</li>
+                    </ul>
+                </details>
+                <details class="p-4">
+                    <summary class="font-semibold cursor-pointer">{{ 'faq.q3.title' | transloco }}</summary>
+                    <ul class="pl-6 mt-3 space-y-1 list-disc">
+                        <li>{{ 'faq.q3.items.escrow' | transloco }}</li>
+                        <li>{{ 'faq.q3.items.report' | transloco }}</li>
+                        <li>{{ 'faq.q3.items.review' | transloco }}</li>
+                        <li>{{ 'faq.q3.items.refund' | transloco }}</li>
+                    </ul>
+                    <p class="mt-2">{{ 'faq.q3.cta' | transloco }}</p>
+                </details>
+                <details class="p-4">
+                    <summary class="font-semibold cursor-pointer">{{ 'faq.q4.title' | transloco }}</summary>
+                    <ul class="pl-6 mt-3 space-y-1 list-disc">
+                        <li>{{ 'faq.q4.items.id' | transloco }}</li>
+                        <li>{{ 'faq.q4.items.price' | transloco }}</li>
+                        <li>{{ 'faq.q4.items.block' | transloco }}</li>
+                        <li>{{ 'faq.q4.items.neutral' | transloco }}</li>
+                    </ul>
+                    <p class="mt-2">{{ 'faq.q4.p' | transloco }}</p>
+                </details>
+                <details class="p-4">
+                    <summary class="font-semibold cursor-pointer">{{ 'faq.q5.title' | transloco }}</summary>
+                    <ul class="pl-6 mt-3 space-y-1 list-disc">
+                        <li>{{ 'faq.q5.items.rate55' | transloco }}</li>
+                        <li>{{ 'faq.q5.items.rate10' | transloco }}</li>
+                        <li>{{ 'faq.q5.items.rate20' | transloco }}</li>
+                    </ul>
+                    <p class="mt-2">{{ 'faq.q5.note' | transloco }}</p>
+                    <p>{{ 'faq.q5.advice' | transloco }}</p>
+                    <p class="text-sm">{{ 'faq.q5.source' | transloco }}</p>
+                </details>
+                <details class="p-4">
+                    <summary class="font-semibold cursor-pointer">{{ 'faq.q6.title' | transloco }}</summary>
+                    <ul class="pl-6 mt-3 space-y-1 list-disc">
+                        <li>{{ 'faq.q6.items.goals' | transloco }}</li>
+                        <li>{{ 'faq.q6.items.sector' | transloco }}</li>
+                        <li>{{ 'faq.q6.items.commissionPro' | transloco }}</li>
+                        <li>{{ 'faq.q6.items.cmodShare' | transloco }}</li>
+                    </ul>
+                </details>
+                <details class="p-4">
+                    <summary class="font-semibold cursor-pointer">{{ 'faq.q7.title' | transloco }}</summary>
+                    <div class="mt-3 space-y-3">
+                        <p>{{ 'faq.q7.intro' | transloco }}</p>
+                        <h6 class="font-semibold">{{ 'faq.q7.pay.title' | transloco }}</h6>
+                        <p>{{ 'faq.q7.pay.upTo5000' | transloco }}</p>
+                        <p>{{ 'faq.q7.pay.laborOnly' | transloco }}</p>
+                        <p>{{ 'faq.q7.pay.laborOnlyWhy' | transloco }}</p>
+                        <p>{{ 'faq.q7.pay.optionsIntro' | transloco }}</p>
+                        <ul class="pl-6 space-y-1 list-disc">
+                            <li>{{ 'faq.q7.pay.options.li1' | transloco }}</li>
+                            <li>{{ 'faq.q7.pay.options.li2' | transloco }}</li>
+                        </ul>
+                        <p>{{ 'faq.q7.pay.advanceNote' | transloco }}</p>
+                        <p>{{ 'faq.q7.pay.above5000' | transloco }}</p>
+                        <p>{{ 'faq.q7.pay.directSupplier' | transloco }}</p>
+                        <p>{{ 'faq.q7.pay.discourageDirectArtisan' | transloco }}</p>
+                        <h6 class="font-semibold">{{ 'faq.q7.obl.title' | transloco }}</h6>
+                        <ul class="pl-6 space-y-1 list-disc">
+                            <li>{{ 'faq.q7.obl.items.req' | transloco }}</li>
+                            <li>{{ 'faq.q7.obl.items.insurance' | transloco }}</li>
+                        </ul>
+                        <p>{{ 'faq.q7.obl.noteInsurance' | transloco }}</p>
+                        <p>{{ 'faq.q7.obl.also' | transloco }}</p>
+                        <ul class="pl-6 space-y-1 list-disc">
+                            <li>{{ 'faq.q7.obl.items.tracking' | transloco }}</li>
+                            <li>{{ 'faq.q7.obl.items.report' | transloco }}</li>
+                            <li>{{ 'faq.q7.obl.items.noBypass' | transloco }}</li>
+                        </ul>
+                        <h6 class="font-semibold">{{ 'faq.q7.bypass.title' | transloco }}</h6>
+                        <ul class="pl-6 space-y-1 list-disc">
+                            <li>{{ 'faq.q7.bypass.items.cancelGuarantees' | transloco }}</li>
+                            <li>{{ 'faq.q7.bypass.items.disengagement' | transloco }}</li>
+                            <li>{{ 'faq.q7.bypass.items.cmodImpossible' | transloco }}</li>
+                        </ul>
+                        <h6 class="font-semibold">{{ 'faq.q7.pv.title' | transloco }}</h6>
+                        <p>{{ 'faq.q7.pv.text' | transloco }}</p>
+                        <p>{{ 'faq.q7.goal' | transloco }}</p>
+                    </div>
+                </details>
+                <details class="p-4">
+                    <summary class="font-semibold cursor-pointer">{{ 'faq.q8.title' | transloco }}</summary>
+                    <ul class="pl-6 mt-3 space-y-1 list-disc">
+                        <li>{{ 'faq.q8.items.indep' | transloco }}</li>
+                        <li>{{ 'faq.q8.items.remote' | transloco }}</li>
+                        <li>{{ 'faq.q8.items.exp' | transloco }}</li>
+                        <li>{{ 'faq.q8.items.role1' | transloco }}</li>
+                        <li>{{ 'faq.q8.items.role2' | transloco }}</li>
+                        <li>{{ 'faq.q8.items.role3' | transloco }}</li>
+                    </ul>
+                    <p class="mt-2">{{ 'faq.q8.note' | transloco }}</p>
+                </details>
+            </div>
+
+            <div class="rounded-lg border p-6 w-fit h-fit text-[var(--primary-beige)] bg-[var(--primary-water-green)]">
+                <h3 class="text-base font-semibold md:text-xl">{{ 'home.cmod.title' | transloco }}</h3>
+                <p class="mt-2">{{ 'home.cmod.body' | transloco }}</p>
+                <ul class="pl-6 mt-3 space-y-1 list-disc">
+                    <li>{{ 'home.cmod.items.indep' | transloco }}</li>
+                    <li>{{ 'home.cmod.items.expert' | transloco }}</li>
+                    <li>{{ 'home.cmod.items.role' | transloco }}</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,15 @@
+<button
+    type="button"
+    class="lang-switch"
+    [class.fr]="langService.lang() === 'fr'"
+    [class.en]="langService.lang() === 'en'"
+    (click)="toggle()"
+    [attr.aria-label]="'toggle.lang' | transloco"
+    role="switch"
+    [attr.aria-checked]="langService.lang() === 'en'"
+>
+    <span class="track"></span>
+    <span class="knob">
+        <iconify-icon [attr.icon]="langService.lang() === 'fr' ? 'circle-flags:fr' : 'circle-flags:us'"></iconify-icon>
+    </span>
+</button>

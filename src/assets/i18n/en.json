@@ -1,0 +1,592 @@
+{
+  "home": {
+    "title": "Your trusted third party for getting small jobs done",
+    "how": {
+      "title": "HOW DOES IT WORK?",
+      "forClients": "For clients (individuals & businesses)"
+    },
+    "cmod": {
+      "title": "CMOD: your neutral advisor",
+      "body": "A Digital Advisor to the Client supports you remotely to secure your project.",
+      "items": {
+        "indep": "Independent professional, no link to the provider.",
+        "expert": "At least 3 years of field experience.",
+        "role": "Advice in case of dispute."
+      }
+    },
+    "what": {
+      "title": "What is Artisan-Compétent?",
+      "body": "Artisan-Compétent is a secure matchmaking web app between professionals and individuals, and also between individuals, exclusively in the construction world."
+    },
+    "specialized": {
+      "title": "The platform is 100% construction-focused",
+      "body": "Unlike passive directories, Artisan-Compétent acts as a trusted third party throughout the project:",
+      "item1": "from the initial request,",
+      "item2": "to the final acceptance report,",
+      "item3": "including secure payment,",
+      "item4": "work progress tracking,",
+      "item5": "and dispute handling when needed."
+    },
+    "process": {
+      "title": "Fully digital process",
+      "body": "From the request to the acceptance report, everything happens on the client's dashboard, without external paperwork."
+    },
+    "objective": {
+      "title": "Our goal",
+      "body": "Enable clients to carry out their work with peace of mind, no scams, and full visibility."
+    },
+    "where": {
+      "title": "Where do we operate?",
+      "cities": {
+        "paris": "Paris and Ile-de-France",
+        "marseille": "Marseille and surrounding",
+        "lyon": "Lyon and surrounding",
+        "toulouse": "Toulouse and surrounding",
+        "nice": "Nice and surrounding",
+        "nantes": "Nantes and surrounding",
+        "montpellier": "Montpellier and surrounding",
+        "strasbourg": "Strasbourg and surrounding",
+        "bordeaux": "Bordeaux and surrounding",
+        "lille": "Lille and surrounding",
+        "rennes": "Rennes and surrounding",
+        "toulon": "Toulon and surrounding"
+      }
+    },
+    "local": {
+      "title": "The first platform that truly secures your worksites.",
+      "body1": "You only pay once the work is validated; funds are held in escrow and released only after acceptance.",
+      "body2": "An independent construction expert supports you free of charge if needed.",
+      "body3": "Track your worksite in real time with step-by-step photo proof.",
+      "body4": "24/7 emergencies: plumbing, locksmithing, electricity.",
+      "body5": "Protection against abuse and overcharging.",
+      "body6": "12 trades at your service."
+    },
+    "steps": {
+      "title": "Steps to use Artisan-Compétent",
+      "items1": {
+        "title": "Explore the platform",
+        "p1": "You discover Artisan-Compétent, its guarantees, how it works and the available trades, exclusively in construction."
+      },
+      "items2": {
+        "title": "Secure sign-up",
+        "p1": "You create your account in minutes:",
+        "li1": "individual or business,",
+        "li2": "basic information,",
+        "li3": "instant access to your personal dashboard."
+      },
+      "items3": {
+        "title": "Create a work request",
+        "p1": "From your dashboard or the homepage, you:",
+        "li1": "select the trade (plumber, electrician, mason, locksmith, etc.),",
+        "li2": "define the geographic area,",
+        "li3": "describe your need via:",
+        "li3a": "a video (recommended),",
+        "li3b": "photos,",
+        "li3c": "or a descriptive text.",
+        "note": "This step only takes a few seconds."
+      },
+      "items4": {
+        "title": "Automatic request broadcast",
+        "p1": "The request is automatically sent:",
+        "li1": "to qualified professionals,",
+        "li2": "and/or competent individuals,",
+        "li3": "matching the defined criteria.",
+        "note": "All parties receive the request simultaneously, ensuring transparency and fair competition."
+      },
+      "items5": {
+        "title": "Receive and compare quotes",
+        "p1": "Interested providers submit their quotes. You can:",
+        "li1": "compare offers,",
+        "li2": "ask questions,",
+        "li3": "review profiles,",
+        "li4": "verify insurances (for professionals).",
+        "note": "You remain free to choose."
+      },
+      "items6": {
+        "title": "Quote signature",
+        "p1": "Once a quote is selected:",
+        "li1": "it is signed directly on the platform,",
+        "li2": "conditions are finalized,",
+        "li3": "the work can start."
+      },
+      "items7": {
+        "title": "Secure and escrowed payment",
+        "p1": "You pay via Artisan-Compétent:",
+        "li1": "Up to €5,000: 100% of the amount is held in escrow.",
+        "li2": "Above €5,000: only labor is held (except manufacturer artisans).",
+        "note": "Funds are never released before final validation."
+      },
+      "items8": {
+        "title": "Automatic CMOD assignment",
+        "p1": "After payment:",
+        "li1": "an CMOD (Digital Advisor to the Client) is automatically assigned,",
+        "li2": "independent professional with at least 3 years' experience,",
+        "li3": "they monitor the project remotely and advise you if needed."
+      },
+      "items9": {
+        "title": "Work start and tracking",
+        "p1": "Throughout the work:",
+        "li1": "the provider posts regular photos and comments,",
+        "li2": "you track progress from your dashboard,",
+        "li3": "each step is logged and documented.",
+        "note": "You stay in control and validate key milestones."
+      },
+      "items10": {
+        "title": "Work acceptance",
+        "p1": "At the end of the work:",
+        "p2": "a digital acceptance report is generated; you can:",
+        "li1": "accept the work,",
+        "li2": "or raise reservations.",
+        "note": "Without a signed report, no payment is released."
+      },
+      "items11": {
+        "title": "Funds release",
+        "p1": "Once the report is validated:",
+        "li1": "escrowed funds are released,",
+        "li2": "payment is transferred to the provider within 72 hours.",
+        "note": "In case of reservation or confirmed defect, the platform adjusts or refunds the relevant part."
+      },
+      "items12": {
+        "title": "Review and project closure",
+        "p1": "You leave a review:",
+        "li1": "transparent,",
+        "li2": "constructive,",
+        "li3": "useful to the community.",
+        "note": "The project is officially closed."
+      }
+    }
+  },
+  "common": {
+    "delete": "Delete",
+    "home": "Home"
+  },
+  "auth": {
+    "register": "Sign up",
+    "login": "Log in",
+    "logout": "Log out",
+    "forget_password": "Forget password ?",
+    "reset_password": "Reset password",
+    "roles": {
+      "individual": "I am an individual",
+      "professional": "I am a professional",
+      "supplier": "I am a supplier"
+    }
+  },
+  "jobs": {
+    "title": "Our jobs",
+    "description": "Explore the trades and skills available on the platform.",
+    "list": {
+      "electrician": {
+        "title": "Electrician (24/7)",
+        "name": "Electrician (24/7)",
+        "description": {
+          "p1": "With Artisan-Compétent, finding a competent electrician has never been easier. In seconds, describe your issue via audio, video or photo, and our solution connects you directly with qualified electricians near you.",
+          "p2": "No more complex forms or waiting for callbacks: compare proposals, choose the professional you trust, and get fast, secure service.",
+          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+        }
+      },
+      "locksmithMetaller": {
+        "title": "Locksmith & Metalworker (24/7)",
+        "name": "Locksmith & Metalworker (24/7)",
+        "description": {
+          "p1": "With Artisan-Competent.com, simply describe your issue: door slammed, forced lock, lost key or installing a new lock. Your request is instantly sent to competent locksmiths near you.",
+          "p2": "You quickly receive clear proposals with fair prices and no surprises. Our matchmaking system saves time, lets you compare transparently, and choose the competent locksmith that best fits your needs. Security, speed and reliability — find a trusted locksmith in a few clicks.",
+          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+        }
+      },
+      "plumberSanitary": {
+        "title": "Plumber Sanitary (24/7)",
+        "name": "Plumber Sanitary (24/7)",
+        "description": {
+          "p1": "With Artisan-Competent.com, your request is immediately sent to competent plumbers near you who reply quickly with their proposals and quotes.",
+          "p2": "Compare transparently, choose the most suitable professional and enjoy reliable service at a fair price. With our innovative solution, finding a competent plumber has never been simpler, faster or more secure.",
+          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+        }
+      },
+      "drainUnblocker": {
+        "title": "Drain Unblocker (24/7)",
+        "name": "Drain Unblocker (24/7)",
+        "description": {
+          "p1": "When a pipe is clogged, it's essential to call a competent unblocker who can quickly identify the cause and propose an appropriate solution.",
+          "p2": "With know-how and professional tools, a competent unblocker ensures effective results while preserving your installations. Whether it's a blocked sink, clogged toilets or an overloaded pipe, you get reliable and lasting intervention.",
+          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+        }
+      },
+      "heatingTech": {
+        "title": "Heating Technician",
+        "name": "Heating Technician",
+        "description": {
+          "p1": "Calling on a competent heating technician is essential to ensure proper operation and durability of your heating installations.",
+          "p2": "Whether installing a boiler, regular maintenance or urgent repair, a competent technician provides fast, efficient, standards-compliant service. With their expertise, you enjoy optimal comfort and long-term energy savings.",
+          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+        }
+      },
+      "hvacInstaller": {
+        "title": "HVAC installer/repairer technician",
+        "name": "HVAC installer/repairer technician",
+        "description": {
+          "p1": "Installing and maintaining air-conditioning systems requires the expertise of a competent cooling technician. This professional masters safety standards and guarantees precise interventions, whether commissioning, preventive maintenance or urgent repair.",
+          "p2": "By choosing a competent cooling technician, you ensure your equipment's performance and durability, while benefiting from optimal thermal comfort and energy savings.",
+          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+        }
+      },
+      "carpenterGlazier": {
+        "title": "Carpenter & Glazier (blinds, windows, doors, etc.)",
+        "name": "Carpenter & Glazier (blinds, windows, doors, etc.)",
+        "description": {
+          "p1": "Carpentry and glazing require precision, technical skills and craftsmanship. Calling on a competent carpenter-glazier means quality support, whether installing windows, repairing broken glass, building custom doors or interior fittings.",
+          "p2": "Thanks to their expertise, a competent carpenter-glazier delivers flawless finishes, optimal insulation and long-lasting results. Whether you're an individual or a business, you gain safety, comfort and aesthetics.",
+          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+        }
+      },
+      "painterInteriorFacade": {
+        "title": "Interior Painter & Facade Worker",
+        "name": "Interior Painter & Facade Worker",
+        "description": {
+          "p1": "Calling on a competent facade painter ensures careful, durable work for your interior walls and exterior facades. This professional masters techniques for each substrate and uses quality materials to guarantee aesthetics and optimal protection.",
+          "p2": "Whether for facade refurbishment, renovation or enhancing your home, a competent painter guarantees results that combine durability, aesthetics and meeting deadlines.",
+          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+        }
+      },
+      "floorCoverings": {
+        "title": "Floor Covering Specialist (tiles, parquet, etc.)",
+        "name": "Floor Covering Specialist (tiles, parquet, etc.)",
+        "description": {
+          "p1": "A floor covering is a finishing layer (tile, parquet, coating) protecting floors from wear, impacts and external aggressions.",
+          "p2": "It also adds texture and color, particularly for construction or renovation projects.",
+          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+        }
+      },
+      "alarmVideoSurveillance": {
+        "title": "Alarm & CCTV installer",
+        "name": "Alarm & CCTV installer",
+        "description": {
+          "p1": "Installing an alarm or CCTV system requires a clean setup adapted to your home or business premises.",
+          "p2": "A competent installer helps you choose the right equipment, places sensors/cameras properly, secures access and ensures reliable commissioning.",
+          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+        }
+      },
+      "insulationInOut": {
+        "title": "Drywall & jointing & insulation",
+        "name": "Drywall & jointing & insulation",
+        "description": {
+          "p1": "Interior and exterior insulation improves comfort, reduces heat loss and protects your building.",
+          "p2": "The same professional can also handle drywall and jointing: partitions, linings, false ceilings and finishing preparation before painting.",
+          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+        }
+      },
+      "pestControl": {
+        "title": "Pest Control (rodents, bedbugs, etc.)",
+        "name": "Pest Control (rodents, bedbugs, etc.)",
+        "description": {
+          "p1": "Calling on a competent pest control technician guarantees fast, effective and lasting intervention. Rodents, bedbugs, cockroaches, ants or wasps: each infestation requires an adapted method and specific products. Thanks to their expertise, the technician identifies the source, applies the safest solutions and prevents recurrence.",
+          "p2": "Whether protecting your home, offices or commercial premises, this professional brings peace of mind and everyday safety.",
+          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+        }
+      }
+    }
+  },
+  "faq": {
+    "title": "Skilled craftsman : how does it work ?",
+    "q1": {
+      "title": "How to find a competent craftsman on Artisan-Compétent?",
+      "p1": "Finding a service provider on Artisan-Compétent is simple, fast and fully digital.",
+      "intro": "After signing up, you just need to:",
+      "steps": {
+        "item1": "choose the trade you need (plumbing, electricity, masonry...)",
+        "item2": "define a geographic area",
+        "item3": "explain your need via a short video, photos or text"
+      },
+      "p2": "Your request is sent to qualified professionals and/or competent individuals matching your criteria. You receive several proposals to compare and choose transparently."
+    },
+    "q2": {
+      "title": "What guarantees does Artisan-Compétent provide?",
+      "items": {
+        "escrow1": "Escrow payment: the entire quote up to €5,000 is held.",
+        "escrow2": "Above €5,000, only labor is held (except manufacturer artisans, case by case).",
+        "tracking": "Digital worksite tracking: photos, comments and steps in real time.",
+        "cmod": "CMOD: an independent professional advises and intervenes in case of doubt or dispute.",
+        "abuse": "Protection against abuses: possible intervention (within 12 to 48 hours) in case of a night-time (emergency) signed and paid quote that is clearly excessive (even after the digital report is validated within a maximum of 48 hours, please report from your dashboard).",
+        "pv": "Digital report: no payment released without formal validation."
+      }
+    },
+    "q3": {
+      "title": "What if I paid but the craftsman did not intervene?",
+      "items": {
+        "escrow": "Funds are held in escrow: the provider cannot be paid.",
+        "report": "You can immediately report via your dashboard.",
+        "review": "CMOD and admins review the case.",
+        "refund": "Full refund if no intervention occurred within the timeframe stated in the quote; Artisan‑Compétent covers the escrow fees for you!"
+      },
+      "cta": "You take no financial risk."
+    },
+    "q4": {
+      "title": "Why use Artisan-Compétent only for small jobs and emergencies?",
+      "items": {
+        "id": "Providers are identified and supervised.",
+        "price": "Prices stay within market standards.",
+        "block": "Payment is blocked until validated.",
+        "neutral": "Neutral contact in case of issue (CMOD + platform)."
+      },
+      "p": "Artisan-Compétent turns a stressful situation into a secure, controlled process."
+    },
+    "q5": {
+      "title": "What VAT rate applies in France for renovation works?",
+      "items": {
+        "rate55": "5.5%: energy efficiency improvements (insulation, heat pumps, etc.).",
+        "rate10": "10%: most other renovation works.",
+        "rate20": "20%: standard rate outside eligible cases."
+      },
+      "note": "Reduced rates apply to dwellings built over 2 years ago and may cover labor and supplies if provided by the professional.",
+      "advice": "It's often better to let the professional supply and install; self-purchased materials are at 20%.",
+      "source": "Source: Ministry of Economy (Reduced VAT)."
+    },
+    "q6": {
+      "title": "What are the guidelines/obligations for providers?",
+      "items": {
+        "goals": "Artisan-Compétent reduces prospecting, eliminates unpaid invoices, secures payments and professionalizes client relations.",
+        "sector": "Platform exclusively dedicated to construction.",
+        "commissionPro": "20% commission on labor only.",
+        "cmodShare": "Of these 20%, 5% goes to the CMOD."
+      }
+    },
+    "q7": {
+      "title": "What are the guidelines/obligations for clients?",
+      "intro": "To secure payments, protect all parties and avoid disputes, each client using the Artisan‑Compétent platform commits to a clear and transparent operating framework.",
+      "pay": {
+        "title": "Regarding payment and supplies",
+        "upTo5000": "For interventions whose total amount is less than or equal to €5,000, the full quote amount (labor and supplies) can be held in escrow on the platform until the final acceptance report is validated.",
+        "laborOnly": "However, to better fit real-world constraints, you may also choose, up to €5,000, to escrow only the labor portion on the platform.",
+        "laborOnlyWhy": "This option can be useful when the craftsman cannot advance materials (for example, when suppliers do not grant payment terms). It can also help limit escrow-related fees, which may be passed on to the craftsman from certain amounts.",
+        "optionsIntro": "In that case, several options are possible:",
+        "options": {
+          "li1": "you can go with the craftsman to the supplier and pay the materials directly,",
+          "li2": "the craftsman can also go alone, advance the cost of supplies, then be reimbursed by you once the materials are delivered and on site."
+        },
+        "advanceNote": "In this setup, reimbursement for supplies advanced by the craftsman may occur as soon as they are delivered, without waiting for the final acceptance report. Escrow then remains limited to the labor portion, which is released once the work is validated.",
+        "above5000": "For projects above €5,000, only labor is held in escrow on the platform, for the same reasons mentioned above.",
+        "directSupplier": "Supplies must be paid directly to the supplier, ideally with the craftsman present.",
+        "discourageDirectArtisan": "Paying materials directly to the craftsman is strongly discouraged, except in clearly framed and justified exceptional situations."
+      },
+      "obl": {
+        "title": "Your obligations as a client",
+        "items": {
+          "req": "submit a clear, precise and honest request regarding your work,",
+          "insurance": "verify the craftsman's professional insurance (professional liability and/or 10‑year warranty) by contacting the insurer directly to confirm coverage for the work to be carried out,",
+          "tracking": "track work progress, ideally on site and, if needed, via your dedicated dashboard,",
+          "report": "report any problem, doubt or disagreement immediately (contact CMOD only in case of dispute or concrete suspicion of fraud),",
+          "noBypass": "never bypass the payment system."
+        },
+        "noteInsurance": "Even if Artisan‑Compétent performs these checks upstream, coverage can change over time for various reasons, or certain specific works may not be included in the policy.",
+        "also": "You must also:"
+      },
+      "bypass": {
+        "title": "Important: secure payment",
+        "items": {
+          "cancelGuarantees": "cancellation of all guarantees provided by the platform,",
+          "disengagement": "complete disengagement of Artisan‑Compétent,",
+          "cmodImpossible": "impossibility for CMOD to intervene in case of dispute."
+        }
+      },
+      "pv": {
+        "title": "Project validation",
+        "text": "The final acceptance report is mandatory to release funds. Without formal validation of this document, no payment can be made."
+      },
+      "goal": "These rules have a simple goal: protect you, prevent abuses and ensure a secure, transparent and smooth experience for all parties."
+    },
+    "q8": {
+      "title": "What is an CMOD?",
+      "items": {
+        "indep": "Independent construction professional, no link to the site provider.",
+        "remote": "Operates remotely via the platform.",
+        "exp": "Minimum 3 years of field experience.",
+        "role1": "Helps you with technical understanding and quote analysis.",
+        "role2": "Intervenes in case of doubt, misunderstanding or dispute.",
+        "role3": "Objectively confirms work compliance."
+      },
+      "note": "The CMOD is not a site manager and does not intervene physically. It's a guarantee of safety and neutrality."
+    }
+  },
+  "not-found": {
+    "title": "Page not found",
+    "message": "Page not found"
+  },
+  "toggle": {
+    "theme": "Toggle theme",
+    "lang": "Toggle language"
+  },
+  "register": {
+    "title": "Sign up as an individual",
+    "addPhoto": "Add a photo",
+    "addId": "Add an ID card",
+    "addRib": "Add bank account (RIB)",
+    "offerServices": "I want to offer my services",
+    "captcha": "I am not a robot",
+    "cgu": "I accept the Terms",
+    "submit": "Submit",
+    "gender": {
+      "select": "Select gender",
+      "female": "Female",
+      "male": "Male"
+    },
+    "fields": {
+      "lastName": "Last name",
+      "firstName": "First name",
+      "birthDate": "Birth date",
+      "email": "Email address",
+      "password": "Password",
+      "passwordConfirm": "Confirm password",
+      "phone": "Phone number",
+      "trades": "Trades",
+      "services": "Services offered",
+      "address": {
+        "number": "Street number",
+        "street": "Street name",
+        "complement": "Address complement",
+        "zip": "ZIP code",
+        "city": "City"
+      }
+    },
+    "options": {
+      "trades": {
+        "plumbing": "Plumbing",
+        "electricity": "Electricity",
+        "masonry": "Masonry",
+        "gardening": "Gardening",
+        "locksmith": "Locksmith"
+      },
+      "services": {
+        "installation": "Installation",
+        "repair": "Repair",
+        "maintenance": "Maintenance",
+        "consulting": "Consulting"
+      }
+    }
+  },
+  "supplier": {
+    "title": "Supplier sign up",
+    "addLogo": "Add a logo",
+    "addRib": "Add bank account (RIB)",
+    "submit": "Submit",
+    "fields": {
+      "lastName": "Last name",
+      "firstName": "First name",
+      "companyName": "Company name",
+      "openingHours": "Opening hours",
+      "siret": "SIRET number",
+      "services": "Services offered",
+      "phone": "Phone number",
+      "email": "Email address",
+      "password": "Password",
+      "passwordConfirm": "Confirm password",
+      "address": {
+        "number": "Street number",
+        "street": "Street name",
+        "complement": "Address complement",
+        "zip": "ZIP code",
+        "city": "City"
+      }
+    },
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    },
+    "open": "Open",
+    "errors": {
+      "timeRequired": "Start and end time required when open",
+      "timeOrder": "Start time must be before end time"
+    }
+  },
+  "professional": {
+    "title": "Professional sign up",
+    "next": "Next",
+    "back": "Back",
+    "submit": "Submit",
+    "optional": "optional field",
+    "addPhoto": "Add photo",
+    "addIdFront": "Add ID card front",
+    "addIdBack": "Add ID card back",
+    "addInsuranceDoc": "Add insurance document",
+    "addDiplomaDoc": "Add diploma or proof (RGE, Calibat, reduced VAT rate etc)",
+    "addLogo": "Add a logo",
+    "addRib": "Add bank account (RIB)",
+    "onCall": "On-call",
+    "errors": {
+      "emailRequired": "At least one email is required",
+      "required": "Field is required",
+      "passwordMismatch": "Passwords do not match",
+      "siretPattern": "SIRET must contain 14 digits",
+      "captchaRequired": "Please tick this box",
+      "termsRequired": "Please accept the Terms",
+      "descriptionMax": "Maximum 500 characters",
+      "yearsMin": "Must be greater or equal to 0",
+      "openingAtLeastOne": "Please fill at least one day with start and end times",
+      "formSummary": {
+        "title": "The form contains errors:",
+        "photoRequired": "Photo required",
+        "idFrontRequired": "ID card (front) required",
+        "idBackRequired": "ID card (back) required",
+        "insuranceDocRequired": "Insurance document required",
+        "diplomaDocRequired": "Diploma required",
+        "logoRequired": "Logo required",
+        "ribRequired": "Bank details (RIB) required"
+      }
+    },
+    "manager": {
+      "company": "Company",
+      "sole": "Sole trader"
+    },
+    "fields": {
+      "lastName": "Last name",
+      "firstName": "First name",
+      "birthDate": "Birth date",
+      "managerStatus": "Manager status",
+      "managerPhone": "Manager phone number",
+      "personalEmail": "Manager personal email",
+      "professionalEmail": "Manager professional email",
+      "password": "Password",
+      "passwordConfirm": "Confirm password",
+      "address": {
+        "number": "Street number",
+        "street": "Street name",
+        "complement": "Address complement",
+        "zip": "ZIP code",
+        "city": "City"
+      },
+      "insuranceName": "Insurance name",
+      "insuranceNumber": "Insurance number",
+      "insuranceExpiry": "Expiration date",
+      "companyName": "Company name",
+      "rib": "Bank details (RIB)",
+      "workAddress": {
+        "number": "Street number",
+        "street": "Street name",
+        "complement": "Address complement",
+        "zip": "ZIP code",
+        "city": "City"
+      },
+      "siret": "SIRET number",
+      "trades": "Trades",
+      "yearsExperience": "Years of experience",
+      "openingHours": "Opening hours",
+      "description": "Seller pitch (max 500 chars)",
+      "services": "Services offered",
+      "trustName": "Trusted contact name",
+      "trustPhone": "Trusted contact phone",
+      "suppliers": "Supplier list"
+    }
+  }
+  ,
+  "searchPro": {
+    "placeholder": "Search a professional or service",
+    "button": "Search",
+    "addressLabel": "Address or city",
+    "tradeLabel": "Select a trade",
+    "kilometersLabel": "Search radius (km)"
+  }
+}
