@@ -158,7 +158,8 @@
   },
   "common": {
     "delete": "Delete",
-    "home": "Home"
+    "home": "Home",
+    "affiliation": "Affiliation"
   },
   "auth": {
     "register": "Sign up",
@@ -588,5 +589,9 @@
     "addressLabel": "Address or city",
     "tradeLabel": "Select a trade",
     "kilometersLabel": "Search radius (km)"
+  },
+  "affiliation": {
+    "title": "Affiliation program",
+    "subtitle": "Recommend Artisan-Compétent and get rewarded."
   }
 }

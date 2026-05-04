@@ -9,6 +9,11 @@ export const routes: Routes = [
   },
   { path: 'auth', loadChildren: () => import('./pages/auth/auth.routes').then((c) => c.authRoutes) },
   {
+    path: 'affiliation',
+    title: 'affiliation.title',
+    loadComponent: () => import('./pages/affiliation/affiliation').then((p) => p.AffiliationPage),
+  },
+  {
     path: 'jobs',
     title: 'jobs.title',
     loadComponent: () => import('./pages/jobs/jobs').then((p) => p.JobsPage),

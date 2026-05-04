@@ -159,7 +159,8 @@
   "common": {
     "delete": "Supprimer",
     "home": "Accueil",
-    "jobs": "Métiers"
+    "jobs": "Métiers",
+    "affiliation": "Affiliation"
   },
   "auth": {
     "register": "Inscription",
@@ -586,5 +587,9 @@
     "addressLabel": "Adresse ou ville",
     "tradeLabel": "Sélectionner un métier",
     "kilometersLabel": "Rayon de recherche (km)"
+  },
+  "affiliation": {
+    "title": "Programme d'affiliation",
+    "subtitle": "Recommandez Artisan-Compétent et soyez récompensé."
   }
 }
