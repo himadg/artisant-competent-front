@@ -1,4 +1,5 @@
-import { ApplicationConfig, LOCALE_ID, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, inject, LOCALE_ID, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { AppConfigService } from './core/services/app-config.service';
 import { provideRouter, withInMemoryScrolling, TitleStrategy } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import localeFr from '@angular/common/locales/fr';
@@ -12,9 +13,6 @@ import { TranslocoTitleStrategy } from './core/i18n/title.strategy';
 
 // Thème, etc.
 import { ThemeService } from './core/services/theme.service';
-// Icons (ng-icons)
-import { provideIcons } from '@ng-icons/core';
-import { lucideSun, lucideMoon } from '@ng-icons/lucide';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,7 +23,8 @@ export const appConfig: ApplicationConfig = {
     provideTransloco(translocoConfig),
     { provide: TitleStrategy, useClass: TranslocoTitleStrategy },
     { provide: LOCALE_ID, useValue: 'fr' },
-    ThemeService
+    ThemeService,
+    provideAppInitializer(() => inject(AppConfigService).load()),
   ],
 };
 

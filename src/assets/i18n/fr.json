@@ -517,16 +517,18 @@
     "addDiplomaDoc": "Ajouter diplôme ou justificatif",
     "addLogo": "Ajouter un logo",
     "addRib": "Ajouter un RIB",
-      "onCall": "Astreinte",
-      "errors": {
+    "onCall": "Astreinte",
+    "errors": {
       "emailRequired": "Au moins un email est requis",
       "required": "Champ requis",
       "passwordMismatch": "Les mots de passe sont différents",
       "siretPattern": "Le SIRET doit contenir 14 chiffres",
+      "siretMismatch": "Le nom de la société ne correspond pas au SIRET renseigné",
       "captchaRequired": "Veuillez cocher cette case",
       "termsRequired": "Veuillez accepter les CGU",
       "descriptionMax": "500 caractères maximum",
       "yearsMin": "Doit être supérieur ou égal à 0",
+      "openingAtLeastOne": "Veuillez renseigner au moins un jour avec des horaires d'ouverture et de fermeture",
       "formSummary": {
         "title": "Le formulaire contient des erreurs :",
         "photoRequired": "Photo requise",
@@ -537,7 +539,7 @@
         "logoRequired": "Logo requis",
         "ribRequired": "RIB requis"
       }
-      },
+    },
     "manager": {
       "company": "Société",
       "sole": "Auto-entrepreneur"
@@ -546,9 +548,8 @@
       "lastName": "Nom",
       "firstName": "Prénom",
       "birthDate": "Date de naissance",
-      "managerStatus": "Statut du gérant",
       "managerPhone": "Numéro de téléphone du gérant",
-      "personalEmail": "Email personnel du gérant",
+      "email": "Email personnel du gérant",
       "professionalEmail": "Email professionnel du gérant",
       "password": "Mot de passe",
       "passwordConfirm": "Confirmation du mot de passe",
@@ -576,9 +577,13 @@
       "openingHours": "Horaires d'ouverture",
       "description": "Descriptif vendeur (500 caractères max)",
       "services": "Services proposés",
+      "servicesSearch": "Rechercher un service...",
+      "servicesAdd": "Ajouter le service",
       "trustName": "Nom de la personne de confiance",
       "trustPhone": "Téléphone de la personne de confiance",
-      "suppliers": "Liste des fournisseurs"
+      "rib": "RIB (relevé d'identité bancaire)",
+      "suppliers": "Fournisseurs",
+      "suppliersAdd": "Ajouter un fournisseur (appuyer sur entrée pour valider)"
     }
   },
   "searchPro": {

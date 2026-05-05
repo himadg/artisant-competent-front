@@ -4,6 +4,7 @@
     @if (step() === 1) {
         <form [formGroup]="form" class="py-8 mx-auto space-y-4 max-w-[29rem] autofill-fix">
             <div class="grid gap-4 items-stretch md:grid-cols-2">
+                <!-- Photo : pas de formControlName, géré via addFile/removeFile -->
                 <div class="flex justify-center items-stretch h-36">
                     <div class="overflow-hidden relative w-36 h-full rounded-full border group">
                         @if (photoPreview()) {
@@ -45,7 +46,9 @@
                         }
                     </div>
                 </div>
-                <div class="space-y-3">
+
+                <!-- user : gender, lastName, firstName -->
+                <div class="space-y-3" formGroupName="user">
                     <select formControlName="gender" class="appearance-none px-3 py-2 w-full rounded border text-[0.85rem]">
                         <option value="">{{ 'register.gender.select' | transloco }} *</option>
                         <option value="female">{{ 'register.gender.female' | transloco }}</option>
@@ -65,97 +68,98 @@
                     />
                 </div>
             </div>
-            <div class="relative">
-                <input
-                    type="date"
-                    formControlName="birthDate"
-                    class="px-3 py-2 w-full rounded border"
-                />
-                <!-- <span
-                    class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[var(--secondary-beige)] bg-[var(--primary-brown)] text-[0.85rem] peer-focus:hidden"
-                    [class.hidden]="!!form.get('birthDate')?.value"
-                >
-                    {{ 'professional.fields.birthDate' | transloco }} *
-                </span> -->
-            </div>
 
-            <select formControlName="managerStatus" class="appearance-none px-3 py-2 w-full rounded border text-[0.85rem]">
-                <option value="">{{ 'professional.fields.managerStatus' | transloco }} *</option>
-                <option value="company">{{ 'professional.manager.company' | transloco }}</option>
-                <option value="sole">{{ 'professional.manager.sole' | transloco }}</option>
-            </select>
-
-            <input
-                type="tel"
-                formControlName="managerPhone"
-                class="px-3 py-2 w-full rounded border"
-                placeholder="{{ 'professional.fields.managerPhone' | transloco }} *"
-            />
-
-            <div [formGroup]="$any(form.get('emails'))" class="space-y-2">
+            <!-- user : birthDate, email -->
+            <ng-container formGroupName="user">
+                <div class="relative">
+                    <input
+                        type="date"
+                        formControlName="birthDate"
+                        class="px-3 py-2 w-full rounded border"
+                        [max]="today"
+                        (focus)="birthDateFocused.set(true)"
+                        (blur)="birthDateFocused.set(false)"
+                    />
+                    @if (!form.get('user.birthDate')?.value && !birthDateFocused()) {
+                        <span class="flex self-center absolute w-[50%] h-[90%] inset-0 items-center px-3 text-sm text-gray-400 pointer-events-none left-[2px] bg-[var(--background-color)]">
+                            {{ 'professional.fields.birthDate' | transloco }} *
+                        </span>
+                    }
+                </div>
                 <input
                     type="email"
-                    formControlName="personalEmail"
+                    formControlName="email"
                     class="px-3 py-2 w-full rounded border"
-                    placeholder="{{ 'professional.fields.personalEmail' | transloco }}"
+                    placeholder="{{ 'professional.fields.email' | transloco }} *"
                 />
+            </ng-container>
+
+            <!-- professionalProfile : professionalEmail -->
+            <ng-container formGroupName="professionalProfile">
                 <input
                     type="email"
                     formControlName="professionalEmail"
                     class="px-3 py-2 w-full rounded border"
                     placeholder="{{ 'professional.fields.professionalEmail' | transloco }}"
                 />
-                @if (form.get('emails')?.errors?.['emailRequired']) {
-                    <span class="text-xs text-red-600">{{ 'professional.errors.emailRequired' | transloco }}</span>
-                }
-            </div>
+            </ng-container>
 
-            <input
-                type="password"
-                formControlName="password"
-                class="px-3 py-2 w-full rounded border"
-                placeholder="{{ 'professional.fields.password' | transloco }} *"
-            />
-            <input
-                type="password"
-                formControlName="confirmPassword"
-                class="px-3 py-2 w-full rounded border"
-                placeholder="{{ 'professional.fields.passwordConfirm' | transloco }} *"
-            />
+            <!-- user : password, confirmPassword -->
+            <ng-container formGroupName="user">
+                <input
+                    type="password"
+                    formControlName="password"
+                    class="px-3 py-2 w-full rounded border"
+                    placeholder="{{ 'professional.fields.password' | transloco }} *"
+                />
+                <input
+                    type="password"
+                    formControlName="confirmPassword"
+                    class="px-3 py-2 w-full rounded border"
+                    placeholder="{{ 'professional.fields.passwordConfirm' | transloco }} *"
+                />
+            </ng-container>
 
+            <!-- professionalProfile : managerPhone -->
+            <ng-container formGroupName="professionalProfile">
+                <input
+                    type="tel"
+                    formControlName="managerPhone"
+                    class="px-3 py-2 w-full rounded border"
+                    placeholder="{{ 'professional.fields.managerPhone' | transloco }} *"
+                />
+            </ng-container>
+
+            <!-- address : adresse personnelle -->
+            <ng-container formGroupName="user">
             <div formGroupName="address" class="space-y-4">
-                <input
-                    type="text"
-                    formControlName="streetNumber"
-                    class="px-3 py-2 w-full rounded border"
-                    placeholder="{{ 'professional.fields.address.number' | transloco }} *"
-                />
-                <input
-                    type="text"
-                    formControlName="streetName"
-                    class="px-3 py-2 w-full rounded border"
-                    placeholder="{{ 'professional.fields.address.street' | transloco }} *"
-                />
-                <input
-                    type="text"
-                    formControlName="additionalInfo"
-                    class="px-3 py-2 w-full rounded border"
-                    placeholder="{{ 'professional.fields.address.complement' | transloco }}"
-                />
-                <input
-                    type="text"
-                    formControlName="postalCode"
-                    class="px-3 py-2 w-full rounded border"
-                    placeholder="{{ 'professional.fields.address.zip' | transloco }} *"
-                />
-                <input
-                    type="text"
-                    formControlName="city"
-                    class="px-3 py-2 w-full rounded border"
-                    placeholder="{{ 'professional.fields.address.city' | transloco }} *"
-                />
+                <input type="text" formControlName="streetNumber" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.address.number' | transloco }} *" />
+                <div class="relative">
+                    <input
+                        type="text"
+                        formControlName="streetName"
+                        class="px-3 py-2 w-full rounded border"
+                        placeholder="{{ 'professional.fields.address.street' | transloco }} *"
+                        autocomplete="off"
+                        (input)="onPersonalAddressSearch($event)"
+                        (focus)="personalAddressOpen.set(true)"
+                        (blur)="closePersonalAddressSuggestions()"
+                    />
+                    @if (personalAddressOpen() && personalAddressSuggestions().length) {
+                        <ul class="overflow-y-auto absolute z-10 w-full max-h-48 bg-white rounded-b border-b shadow-sm border-x">
+                            @for (s of personalAddressSuggestions(); track s.label) {
+                                <li class="px-3 py-2 text-sm cursor-pointer hover:bg-gray-50" (click)="selectPersonalAddress(s)">{{ s.label }}</li>
+                            }
+                        </ul>
+                    }
+                </div>
+                <input type="text" formControlName="additionalInfo" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.address.complement' | transloco }}" />
+                <input type="text" formControlName="postalCode" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.address.zip' | transloco }} *" (input)="onPersonalPostalCodeInput($event)" />
+                <input type="text" formControlName="city" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.address.city' | transloco }} *" />
             </div>
+            </ng-container>
 
+            <!-- Documents identité -->
             <div class="grid gap-4 md:grid-cols-2">
                 <div class="overflow-hidden relative w-full h-28 rounded-md border group">
                     @if (idFrontPreview()) {
@@ -237,6 +241,7 @@
                 </div>
             </div>
 
+            <!-- Documents diplôme & assurance -->
             <div class="grid gap-4 md:grid-cols-2">
                 <div class="overflow-hidden relative w-full h-28 rounded-md border group">
                     @if (diplomaPreview()) {
@@ -318,31 +323,36 @@
                 </div>
             </div>
 
-            <input
-                type="text"
-                formControlName="insuranceName"
-                class="px-3 py-2 w-full rounded border"
-                placeholder="{{ 'professional.fields.insuranceName' | transloco }} *"
-            />
-            <input
-                type="text"
-                formControlName="insuranceNumber"
-                class="px-3 py-2 w-full rounded border"
-                placeholder="{{ 'professional.fields.insuranceNumber' | transloco }} *"
-            />
-            <div class="relative">
+            <!-- professionalProfile : détails assurance -->
+            <ng-container formGroupName="professionalProfile">
                 <input
-                    type="date"
-                    formControlName="insuranceExpiry"
-                    class="px-3 py-2 w-full rounded border peer"
+                    type="text"
+                    formControlName="insuranceName"
+                    class="px-3 py-2 w-full rounded border"
+                    placeholder="{{ 'professional.fields.insuranceName' | transloco }} *"
                 />
-                <!-- <span
-                    class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[var(--secondary-beige)] bg-[var(--primary-brown)] text-[0.85rem] peer-focus:hidden"
-                    [class.hidden]="!!form.get('insuranceExpiry')?.value"
-                >
-                    {{ 'professional.fields.insuranceExpiry' | transloco }} *
-                </span> -->
-            </div>
+                <input
+                    type="text"
+                    formControlName="insuranceNumber"
+                    class="px-3 py-2 w-full rounded border"
+                    placeholder="{{ 'professional.fields.insuranceNumber' | transloco }} *"
+                />
+                <div class="relative">
+                    <input
+                        type="date"
+                        formControlName="insuranceExpiry"
+                        class="px-3 py-2 w-full rounded border peer"
+                        [min]="today"
+                        (focus)="insuranceExpiryFocused.set(true)"
+                        (blur)="insuranceExpiryFocused.set(false)"
+                    />
+                    @if (!form.get('professionalProfile.insuranceExpiry')?.value && !insuranceExpiryFocused()) {
+                        <span class="flex self-center absolute w-[50%] h-[90%] inset-0 items-center px-3 text-sm text-gray-400 pointer-events-none left-[2px] bg-[var(--background-color)]">
+                            {{ 'professional.fields.insuranceExpiry' | transloco }} *
+                        </span>
+                    }
+                </div>
+            </ng-container>
 
             <div class="flex justify-end">
                 <button
@@ -356,161 +366,184 @@
         </form>
     } @else if (step() === 2) {
         <form [formGroup]="form" class="p-4 mx-auto space-y-4 max-w-xl autofill-fix">
-            <div class="grid gap-6 items-stretch md:grid-cols-2">
-                <div class="flex justify-center items-stretch">
-                    <div class="overflow-hidden relative w-40 h-28 rounded-md border group">
-                        @if (logoPreview()) {
-                            <img
-                                [src]="logoPreview()"
-                                alt="Logo"
-                                class="object-cover w-full h-full cursor-pointer"
-                                (click)="removeFile('logo')"
-                            />
-                            <div
-                                class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                (click)="removeFile('logo')"
-                            >
-                                Supprimer
-                            </div>
-                        } @else if (logoName()) {
-                            <div
-                                class="flex justify-center items-center w-full h-full text-center cursor-pointer"
-                                (click)="removeFile('logo')"
-                            >
-                                <span class="text-[10px]">{{ logoName() }}</span>
-                                <span
+
+            <!-- professionalProfile : toutes les infos entreprise -->
+            <ng-container formGroupName="professionalProfile">
+                <div class="grid gap-6 items-stretch md:grid-cols-2">
+                    <!-- Logo + RIB -->
+                    <div class="flex flex-col gap-3 justify-evenly items-center">
+                        <div class="overflow-hidden relative w-40 h-28 rounded-md border group">
+                            @if (logoPreview()) {
+                                <img
+                                    [src]="logoPreview()"
+                                    alt="Logo"
+                                    class="object-cover w-full h-full cursor-pointer"
+                                    (click)="removeFile('logo')"
+                                />
+                                <div
                                     class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
                                     (click)="removeFile('logo')"
-                                    >Supprimer</span
                                 >
+                                    {{ 'common.delete' | transloco }}
+                                </div>
+                            } @else if (logoName()) {
+                                <div
+                                    class="flex justify-center items-center w-full h-full text-center cursor-pointer"
+                                    (click)="removeFile('logo')"
+                                >
+                                    <span class="text-[10px]">{{ logoName() }}</span>
+                                    <span
+                                        class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                                        (click)="removeFile('logo')"
+                                        >{{ 'common.delete' | transloco }}</span
+                                    >
+                                </div>
+                            } @else {
+                                <div class="flex flex-col justify-center items-center w-full h-full text-center">
+                                    <span class="text-4xl leading-none">+</span>
+                                    <span class="mt-1 text-xs">{{ 'professional.addLogo' | transloco }} *</span>
+                                </div>
+                                <input
+                                    type="file"
+                                    class="absolute inset-0 opacity-0 cursor-pointer"
+                                    accept="image/*,.pdf"
+                                    (change)="addFile('logo', $event)"
+                                />
+                            }
+                        </div>
+
+                        <div class="overflow-hidden relative w-40 h-28 rounded-md border group">
+                            @if (ribPreview()) {
+                                <img
+                                    [src]="ribPreview()"
+                                    alt="RIB"
+                                    class="object-cover w-full h-full cursor-pointer"
+                                    (click)="removeFile('rib')"
+                                />
+                                <div
+                                    class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                                    (click)="removeFile('rib')"
+                                >
+                                    {{ 'common.delete' | transloco }}
+                                </div>
+                            } @else if (ribName()) {
+                                <div
+                                    class="flex justify-center items-center w-full h-full text-center cursor-pointer"
+                                    (click)="removeFile('rib')"
+                                >
+                                    <span class="text-[10px]">{{ ribName() }}</span>
+                                    <span
+                                        class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                                        (click)="removeFile('rib')"
+                                        >{{ 'common.delete' | transloco }}</span
+                                    >
+                                </div>
+                            } @else {
+                                <div class="flex flex-col justify-center items-center w-full h-full text-center">
+                                    <span class="text-4xl leading-none">+</span>
+                                    <span class="mt-1 text-xs">{{ 'professional.addRib' | transloco }} *</span>
+                                </div>
+                                <input
+                                    type="file"
+                                    class="absolute inset-0 opacity-0 cursor-pointer"
+                                    accept="image/*,.pdf"
+                                    (change)="addFile('rib', $event)"
+                                />
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Nom société + adresse de travail -->
+                    <div class="space-y-3">
+                        <input
+                            type="text"
+                            formControlName="companyName"
+                            class="px-3 py-2 w-full rounded border"
+                            placeholder="{{ 'professional.fields.companyName' | transloco }} *"
+                            (blur)="onCompanyNameBlur()"
+                        />
+                        @if (form.get('professionalProfile.companyName')?.errors?.['siretMismatch']) {
+                            <p class="text-xs text-red-500">{{ 'professional.errors.siretMismatch' | transloco }}</p>
+                        }
+                        <div formGroupName="workAddress" class="space-y-2">
+                            <input type="text" formControlName="streetNumber" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.workAddress.number' | transloco }} *" />
+                            <div class="relative">
+                                <input
+                                    type="text"
+                                    formControlName="streetName"
+                                    class="px-3 py-2 w-full rounded border"
+                                    placeholder="{{ 'professional.fields.workAddress.street' | transloco }} *"
+                                    autocomplete="off"
+                                    (input)="onWorkAddressSearch($event)"
+                                    (focus)="workAddressOpen.set(true)"
+                                    (blur)="closeWorkAddressSuggestions()"
+                                />
+                                @if (workAddressOpen() && workAddressSuggestions().length) {
+                                    <ul class="overflow-y-auto absolute z-10 w-full max-h-48 bg-white rounded-b border-b shadow-sm border-x">
+                                        @for (s of workAddressSuggestions(); track s.label) {
+                                            <li class="px-3 py-2 text-sm cursor-pointer hover:bg-gray-50" (click)="selectWorkAddress(s)">{{ s.label }}</li>
+                                        }
+                                    </ul>
+                                }
                             </div>
-                        } @else {
-                            <div class="flex flex-col justify-center items-center w-full h-full text-center">
-                                <span class="text-4xl leading-none">+</span>
-                                <span class="mt-1 text-xs">{{ 'professional.addLogo' | transloco }}</span>
-                            </div>
-                            <input
-                                type="file"
-                                class="absolute inset-0 opacity-0 cursor-pointer"
-                                accept="image/*,.pdf"
-                                (change)="addFile('logo', $event)"
-                            />
+                            <input type="text" formControlName="additionalInfo" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.workAddress.complement' | transloco }}" />
+                            <input type="text" formControlName="postalCode" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.workAddress.zip' | transloco }} *" (input)="onWorkPostalCodeInput($event)" />
+                            <input type="text" formControlName="city" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.workAddress.city' | transloco }} *" />
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <input
+                        type="text"
+                        formControlName="siret"
+                        class="px-3 py-2 w-full rounded border"
+                        placeholder="{{ 'professional.fields.siret' | transloco }} *"
+                        (input)="onSiretChange()"
+                        (blur)="onSiretBlur()"
+                    />
+                    @if (siretStatus() === 'loading') {
+                        <p class="mt-1 text-xs text-gray-400">{{ 'professional.siret.checking' | transloco }}</p>
+                    } @else if (siretStatus() === 'valid') {
+                        <p class="mt-1 text-xs text-green-600">{{ siretCompanyName() ?? ('professional.siret.valid' | transloco) }}</p>
+                    } @else if (siretStatus() === 'closed') {
+                        <p class="mt-1 text-xs text-red-500">{{ 'professional.siret.closed' | transloco }}</p>
+                    } @else if (siretStatus() === 'invalid') {
+                        <p class="mt-1 text-xs text-red-500">{{ 'professional.siret.invalid' | transloco }}</p>
+                    }
+                </div>
+
+                <!-- Métiers -->
+                <div class="flex flex-col gap-2">
+                    <label class="font-medium">{{ 'professional.fields.trades' | transloco }}</label>
+                    <div class="flex flex-wrap gap-2">
+                        @for (trade of trades(); track trade.id) {
+                            <button
+                                type="button"
+                                class="px-3 py-1 text-sm rounded-full border transition-colors"
+                                [class]="isTradeSelected(trade.id)
+                                    ? 'bg-grad-water-green text-[var(--primary-beige)] border-transparent'
+                                    : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400'"
+                                (click)="toggleTrade(trade.id)"
+                            >
+                                {{ `jobs.list.${trade.name}.name` | transloco }}
+                            </button>
                         }
                     </div>
                 </div>
-                <div class="space-y-3">
-                    <input
-                        type="text"
-                        formControlName="companyName"
-                        class="px-3 py-2 w-full rounded border"
-                        placeholder="{{ 'professional.fields.companyName' | transloco }} *"
-                    />
-                    <div formGroupName="workAddress" class="space-y-2">
-                        <input
-                            type="text"
-                            formControlName="streetNumber"
-                            class="px-3 py-2 w-full rounded border"
-                            placeholder="{{ 'professional.fields.workAddress.number' | transloco }} *"
-                        />
-                        <input
-                            type="text"
-                            formControlName="streetName"
-                            class="px-3 py-2 w-full rounded border"
-                            placeholder="{{ 'professional.fields.workAddress.street' | transloco }} *"
-                        />
-                        <input
-                            type="text"
-                            formControlName="additionalInfo"
-                            class="px-3 py-2 w-full rounded border"
-                            placeholder="{{ 'professional.fields.workAddress.complement' | transloco }}"
-                        />
-                        <input
-                            type="text"
-                            formControlName="postalCode"
-                            class="px-3 py-2 w-full rounded border"
-                            placeholder="{{ 'professional.fields.workAddress.zip' | transloco }} *"
-                        />
-                        <input
-                            type="text"
-                            formControlName="city"
-                            class="px-3 py-2 w-full rounded border"
-                            placeholder="{{ 'professional.fields.workAddress.city' | transloco }} *"
-                        />
-                    </div>
-                </div>
-            </div>
 
-            <input
-                type="text"
-                formControlName="siret"
-                class="px-3 py-2 w-full rounded border"
-                placeholder="{{ 'professional.fields.siret' | transloco }} *"
-            />
+                <input
+                    type="number"
+                    formControlName="yearsExperience"
+                    class="px-3 py-2 w-full rounded border"
+                    placeholder="{{ 'professional.fields.yearsExperience' | transloco }} *"
+                />
 
-            <div class="overflow-hidden relative mx-auto w-40 h-28 rounded-md border group">
-                @if (ribPreview()) {
-                    <img
-                        [src]="ribPreview()"
-                        alt="RIB"
-                        class="object-cover w-full h-full cursor-pointer"
-                        (click)="removeFile('rib')"
-                    />
-                    <div
-                        class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                        (click)="removeFile('rib')"
-                    >
-                        {{ 'common.delete' | transloco }}
-                    </div>
-                } @else if (ribName()) {
-                    <div
-                        class="flex justify-center items-center w-full h-full text-center cursor-pointer"
-                        (click)="removeFile('rib')"
-                    >
-                        <span class="text-[10px]">{{ ribName() }}</span>
-                        <span
-                            class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                            (click)="removeFile('rib')"
-                            >{{ 'common.delete' | transloco }}</span
-                        >
-                    </div>
-                } @else {
-                    <div class="flex flex-col justify-center items-center w-full h-full text-center">
-                        <span class="text-4xl leading-none">+</span>
-                        <span class="mt-1 text-xs">{{ 'professional.addRib' | transloco }}</span>
-                    </div>
-                    <input
-                        type="file"
-                        class="absolute inset-0 opacity-0 cursor-pointer"
-                        accept="image/*,.pdf"
-                        (change)="addFile('rib', $event)"
-                    />
-                }
-            </div>
-
-            <div class="flex flex-col">
-                <label class="font-medium">{{ 'professional.fields.trades' | transloco }}</label>
-                <div class="space-y-2">
-                    @for (trade of tradesKeys; track trade) {
-                        <label class="inline-flex gap-2 items-center">
-                            <input type="checkbox" [checked]="isTradeSelected(trade)" (change)="toggleTrade(trade)" />
-                            <span>{{ 'register.options.trades.' + trade | transloco }}</span>
-                        </label>
-                    }
-                </div>
-            </div>
-
-            <input
-                type="number"
-                formControlName="yearsExperience"
-                class="px-3 py-2 w-full rounded border"
-                placeholder="{{ 'professional.fields.yearsExperience' | transloco }} *"
-            />
-
-            @if (isTradeSelected('locksmith') || isTradeSelected('plumbing') || isTradeSelected('electricity')) {
                 <label class="inline-flex gap-2 items-center">
                     <input type="checkbox" formControlName="onCall" />
                     <span>{{ 'professional.onCall' | transloco }}</span>
                 </label>
+
                 <div class="space-y-3">
                     <label class="font-medium">{{ 'professional.fields.openingHours' | transloco }}</label>
                     <div class="space-y-2">
@@ -543,58 +576,130 @@
                         }
                     </div>
                 </div>
-            }
 
-            <textarea
-                formControlName="description"
-                class="px-3 py-2 w-full rounded border"
-                placeholder="{{ 'professional.fields.description' | transloco }} *"
-                maxlength="500"
-            ></textarea>
+                <textarea
+                    formControlName="description"
+                    class="px-3 py-2 w-full rounded border"
+                    placeholder="{{ 'professional.fields.description' | transloco }} *"
+                    maxlength="500"
+                ></textarea>
 
-            <div class="flex flex-col">
-                <label class="font-medium">{{ 'professional.fields.services' | transloco }}</label>
-                <div class="flex flex-wrap gap-2">
-                    @for (service of servicesKeys; track service) {
-                        <button
-                            type="button"
-                            (click)="toggleService(service)"
-                            class="chip"
-                            [class.selected]="isServiceSelected(service)"
-                        >
-                            {{ 'register.options.services.' + service | transloco }}
-                        </button>
+                <!-- Services -->
+                <div class="flex flex-col gap-2">
+                    <label class="font-medium">{{ 'professional.fields.services' | transloco }}</label>
+
+                    <!-- Search input + dropdown -->
+                    <div>
+                        <div class="relative">
+                            <input
+                                type="text"
+                                [value]="searchQuery()"
+                                class="px-3 py-2 w-full bg-white rounded border"
+                                placeholder="{{ 'professional.fields.servicesSearch' | transloco }}"
+                                (input)="onServiceSearch($event)"
+                                (focus)="openDropdown()"
+                                (blur)="closeDropdown()"
+                                autocomplete="off"
+                            />
+                        </div>
+
+                        @if (dropdownOpen() && searchQuery().length >= 3) {
+                            <div class="overflow-hidden bg-white rounded-b border-b shadow-sm border-x">
+                                @if (unselectedResults.length) {
+                                    <ul class="overflow-y-auto max-h-48 divide-y">
+                                        @for (result of unselectedResults; track result.id) {
+                                            <li
+                                                class="px-3 py-2 text-sm cursor-pointer hover:bg-gray-50 active:bg-gray-100"
+                                                (click)="toggleService(result)"
+                                            >
+                                                {{ result.description }}
+                                            </li>
+                                        }
+                                    </ul>
+                                } @else if (searchingService()) {
+                                    <div class="px-3 py-2 text-sm text-gray-400">...</div>
+                                } @else {
+                                    <button
+                                        type="button"
+                                        class="flex gap-2 items-center px-3 py-2 w-full text-sm text-left hover:bg-gray-50"
+                                        (click)="addPendingService()"
+                                    >
+                                        <span class="text-gray-400">+</span>
+                                        <span>{{ 'professional.fields.servicesAdd' | transloco }} <strong>« {{ searchQuery() }} »</strong></span>
+                                    </button>
+                                }
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Tags : services existants + services en attente de création -->
+                    @if (selectedServices().length || pendingServiceDescriptions().length) {
+                        <div class="flex flex-wrap gap-2">
+                            @for (service of selectedServices(); track service.id) {
+                                <span class="inline-flex gap-1 items-center px-3 py-1 text-sm rounded-full bg-grad-water-green text-[var(--primary-beige)]">
+                                    {{ service.description }}
+                                    <button type="button" (click)="removeService(service.id)" class="ml-1 leading-none opacity-70 hover:opacity-100">×</button>
+                                </span>
+                            }
+                            @for (desc of pendingServiceDescriptions(); track desc) {
+                                <span class="inline-flex gap-1 items-center px-3 py-1 text-sm rounded-full bg-grad-water-green text-[var(--primary-beige)] opacity-70">
+                                    {{ desc }}
+                                    <button type="button" (click)="removePendingService(desc)" class="ml-1 leading-none opacity-70 hover:opacity-100">×</button>
+                                </span>
+                            }
+                        </div>
                     }
                 </div>
-            </div>
 
-            <input
-                type="text"
-                formControlName="trustName"
-                class="px-3 py-2 w-full rounded border"
-                placeholder="{{ 'professional.fields.trustName' | transloco }} ({{
-                    'professional.optional' | transloco
-                }})"
+                <input
+                    type="text"
+                    formControlName="trustName"
+                    class="px-3 py-2 w-full rounded border"
+                    placeholder="{{ 'professional.fields.trustName' | transloco }} ({{
+                        'professional.optional' | transloco
+                    }})"
+                />
+                <input
+                    type="tel"
+                    formControlName="trustPhone"
+                    class="px-3 py-2 w-full rounded border"
+                    placeholder="{{ 'professional.fields.trustPhone' | transloco }} ({{
+                        'professional.optional' | transloco
+                    }})"
+                />
+
+                <!-- Fournisseurs -->
+                <div class="flex flex-col gap-2">
+                    <label class="font-medium">{{ 'professional.fields.suppliers' | transloco }}</label>
+                    <input
+                        type="text"
+                        [value]="supplierInput()"
+                        (input)="supplierInput.set($any($event.target).value)"
+                        (keydown)="addSupplier($event)"
+                        class="px-3 py-2 w-full bg-white rounded border"
+                        placeholder="{{ 'professional.fields.suppliersAdd' | transloco }}"
+                        autocomplete="off"
+                    />
+                    @if ($any(form.get('professionalProfile.suppliers'))?.value?.length) {
+                        <div class="flex flex-wrap gap-2">
+                            @for (supplier of $any(form.get('professionalProfile.suppliers'))?.value; track supplier) {
+                                <span class="inline-flex gap-1 items-center px-3 py-1 text-sm rounded-full bg-grad-water-green text-[var(--primary-beige)]">
+                                    {{ supplier }}
+                                    <button type="button" (click)="removeSupplier(supplier)" class="ml-1 leading-none opacity-70 hover:opacity-100">×</button>
+                                </span>
+                            }
+                        </div>
+                    }
+                </div>
+            </ng-container>
+
+            <!-- captcha et CGU au niveau racine -->
+            <app-turnstile
+                [siteKey]="turnstileSiteKey"
+                (resolved)="onCaptchaResolved($event)"
+                (expired)="onCaptchaReset()"
+                (errored)="onCaptchaReset()"
             />
-            <input
-                type="tel"
-                formControlName="trustPhone"
-                class="px-3 py-2 w-full rounded border"
-                placeholder="{{ 'professional.fields.trustPhone' | transloco }} ({{
-                    'professional.optional' | transloco
-                }})"
-            />
-
-            <textarea
-                formControlName="suppliers"
-                class="px-3 py-2 w-full rounded border"
-                placeholder="{{ 'professional.fields.suppliers' | transloco }} *"
-            ></textarea>
-
-            <div class="flex gap-2 items-center">
-                <input type="checkbox" formControlName="captcha" />
-                <span>{{ 'register.captcha' | transloco }} *</span>
-            </div>
             <div class="flex gap-2 items-center">
                 <input type="checkbox" formControlName="terms" />
                 <span>{{ 'register.cgu' | transloco }} *</span>
@@ -611,7 +716,7 @@
                 <button
                     type="submit"
                     class="px-4 py-2 rounded-lg text-[var(--primary-beige)] bg-grad-water-green disabled:bg-gray-400"
-                    [disabled]="form.invalid || form.value.password !== form.value.confirmPassword"
+                    [disabled]="form.invalid || form.value.user?.password !== form.value.user?.confirmPassword"
                     (click)="submit()"
                 >
                     {{ 'professional.submit' | transloco }}

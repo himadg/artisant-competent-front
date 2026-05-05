@@ -159,6 +159,7 @@
   "common": {
     "delete": "Delete",
     "home": "Home",
+    "jobs": "Trades",
     "affiliation": "Membership"
   },
   "auth": {
@@ -522,6 +523,7 @@
       "required": "Field is required",
       "passwordMismatch": "Passwords do not match",
       "siretPattern": "SIRET must contain 14 digits",
+      "siretMismatch": "Company name does not match the provided SIRET",
       "captchaRequired": "Please tick this box",
       "termsRequired": "Please accept the Terms",
       "descriptionMax": "Maximum 500 characters",
@@ -546,9 +548,8 @@
       "lastName": "Last name",
       "firstName": "First name",
       "birthDate": "Birth date",
-      "managerStatus": "Manager status",
       "managerPhone": "Manager phone number",
-      "personalEmail": "Manager personal email",
+      "email": "Manager personal email",
       "professionalEmail": "Manager professional email",
       "password": "Password",
       "passwordConfirm": "Confirm password",
@@ -577,12 +578,14 @@
       "openingHours": "Opening hours",
       "description": "Seller pitch (max 500 chars)",
       "services": "Services offered",
+      "servicesSearch": "Search for a service...",
+      "servicesAdd": "Add service",
       "trustName": "Trusted contact name",
       "trustPhone": "Trusted contact phone",
-      "suppliers": "Supplier list"
+      "suppliers": "Suppliers",
+      "suppliersAdd": "Add a supplier (press enter to confirm)"
     }
-  }
-  ,
+  },
   "searchPro": {
     "placeholder": "Search a professional or service",
     "button": "Search",
