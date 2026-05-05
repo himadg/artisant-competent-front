@@ -1,8 +1,194 @@
-<div class="pt-12 pb-12 mx-auto space-y-6 max-w-screen-lg">
-    <h1 class="text-center font-extrabold text-2xl md:text-3xl lg:text-5xl">
-        {{ 'affiliation.title' | transloco }}
-    </h1>
-    <p class="text-center text-base md:text-xl">
-        {{ 'affiliation.subtitle' | transloco }}
-    </p>
-</div>
+<article class="px-4 py-12 mx-auto max-w-screen-lg space-y-16 affiliation-page">
+    <section id="hero" class="text-center space-y-6">
+        <h1 class="text-3xl font-extrabold md:text-5xl">{{ 'affiliation.hero.h1' | transloco }}</h1>
+        <p class="text-base md:text-xl">{{ 'affiliation.hero.subtitle' | transloco }}</p>
+        <div class="flex flex-wrap gap-4 justify-center">
+            <a
+                [routerLink]="['/auth/register']"
+                [queryParams]="{ t: 'professional' }"
+                class="px-6 py-3 font-semibold rounded-lg no-underline bg-[var(--primary-water-green)] text-[var(--primary-beige)]"
+            >
+                {{ 'affiliation.ctaPro' | transloco }}
+            </a>
+            <a
+                [routerLink]="['/auth/register']"
+                [queryParams]="{ t: 'individual' }"
+                class="px-6 py-3 font-semibold rounded-lg no-underline bg-[var(--primary-water-green)] text-[var(--primary-beige)]"
+            >
+                {{ 'affiliation.ctaIndividual' | transloco }}
+            </a>
+        </div>
+        <div>
+            <button
+                type="button"
+                (click)="scrollTo('comment-ca-marche')"
+                class="underline text-sm bg-transparent border-0 cursor-pointer"
+            >
+                {{ 'affiliation.hero.ctaSecondary' | transloco }}
+            </button>
+        </div>
+    </section>
+
+    <section id="comment-ca-marche" class="space-y-6">
+        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'affiliation.howItWorks.title' | transloco }}</h2>
+        <ol class="space-y-6 list-decimal list-inside">
+            <li>
+                <h3 class="inline text-lg font-semibold md:text-xl">
+                    {{ 'affiliation.howItWorks.step1Title' | transloco }}
+                </h3>
+                <p class="mt-2">{{ 'affiliation.howItWorks.step1Body' | transloco }}</p>
+            </li>
+            <li>
+                <h3 class="inline text-lg font-semibold md:text-xl">
+                    {{ 'affiliation.howItWorks.step2Title' | transloco }}
+                </h3>
+                <p class="mt-2">{{ 'affiliation.howItWorks.step2Body' | transloco }}</p>
+            </li>
+            <li>
+                <h3 class="inline text-lg font-semibold md:text-xl">
+                    {{ 'affiliation.howItWorks.step3Title' | transloco }}
+                </h3>
+                <p class="mt-2">{{ 'affiliation.howItWorks.step3Body' | transloco }}</p>
+            </li>
+        </ol>
+    </section>
+
+    <section id="commissions" class="space-y-6">
+        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'affiliation.commissions.title' | transloco }}</h2>
+
+        <div class="space-y-3">
+            <h3 class="text-lg font-semibold md:text-xl">{{ 'affiliation.commissions.summaryTitle' | transloco }}</h3>
+            <ul class="pl-6 space-y-2 list-disc">
+                <li>{{ 'affiliation.commissions.summaryClient' | transloco }}</li>
+                <li>{{ 'affiliation.commissions.summaryArtisan' | transloco }}</li>
+                <li>{{ 'affiliation.commissions.summaryBoth' | transloco }}</li>
+            </ul>
+        </div>
+
+        <div class="space-y-3">
+            <h3 class="text-lg font-semibold md:text-xl">{{ 'affiliation.commissions.detailsTitle' | transloco }}</h3>
+            <p>{{ 'affiliation.commissions.detailClient' | transloco }}</p>
+            <p>{{ 'affiliation.commissions.detailArtisan' | transloco }}</p>
+            <p>{{ 'affiliation.commissions.detailCumul' | transloco }}</p>
+        </div>
+
+        <div class="space-y-3">
+            <h3 class="text-lg font-semibold md:text-xl">{{ 'affiliation.commissions.conditionsTitle' | transloco }}</h3>
+            <ul class="pl-6 space-y-2 list-disc">
+                <li>{{ 'affiliation.commissions.condition1' | transloco }}</li>
+                <li>{{ 'affiliation.commissions.condition2' | transloco }}</li>
+                <li>{{ 'affiliation.commissions.condition3' | transloco }}</li>
+                <li>{{ 'affiliation.commissions.condition4' | transloco }}</li>
+                <li>{{ 'affiliation.commissions.condition5' | transloco }}</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="pourquoi-recommander" class="space-y-6">
+        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'affiliation.whyRecommend.title' | transloco }}</h2>
+        <p>{{ 'affiliation.whyRecommend.intro' | transloco }}</p>
+        <div class="space-y-3">
+            <h3 class="text-lg font-semibold md:text-xl">
+                {{ 'affiliation.whyRecommend.argumentsTitle' | transloco }}
+            </h3>
+            <ul class="pl-6 space-y-2 list-disc">
+                <li>{{ 'affiliation.whyRecommend.arg1' | transloco }}</li>
+                <li>{{ 'affiliation.whyRecommend.arg2' | transloco }}</li>
+                <li>{{ 'affiliation.whyRecommend.arg3' | transloco }}</li>
+                <li>{{ 'affiliation.whyRecommend.arg4' | transloco }}</li>
+            </ul>
+        </div>
+        <p>{{ 'affiliation.whyRecommend.outro' | transloco }}</p>
+    </section>
+
+    <section id="badge" class="space-y-4 p-6 rounded-lg bg-[var(--primary-water-green)] text-[var(--primary-beige)]">
+        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'affiliation.badge.title' | transloco }}</h2>
+        <p>{{ 'affiliation.badge.body1' | transloco }}</p>
+        <p>{{ 'affiliation.badge.body2' | transloco }}</p>
+        <p class="text-sm italic">{{ 'affiliation.badge.note' | transloco }}</p>
+    </section>
+
+    <section id="attentes" class="space-y-6">
+        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'affiliation.expectations.title' | transloco }}</h2>
+        <ul class="pl-6 space-y-2 list-disc">
+            <li>{{ 'affiliation.expectations.exp1' | transloco }}</li>
+            <li>{{ 'affiliation.expectations.exp2' | transloco }}</li>
+            <li>{{ 'affiliation.expectations.exp3' | transloco }}</li>
+            <li>{{ 'affiliation.expectations.exp4' | transloco }}</li>
+        </ul>
+        <p class="text-sm italic">{{ 'affiliation.expectations.note' | transloco }}</p>
+    </section>
+
+    <section id="faq" class="space-y-4">
+        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'affiliation.faq.title' | transloco }}</h2>
+        <details class="p-4 rounded-lg border">
+            <summary class="font-semibold cursor-pointer">{{ 'affiliation.faq.q1' | transloco }}</summary>
+            <p class="mt-3">{{ 'affiliation.faq.a1' | transloco }}</p>
+        </details>
+        <details class="p-4 rounded-lg border">
+            <summary class="font-semibold cursor-pointer">{{ 'affiliation.faq.q2' | transloco }}</summary>
+            <p class="mt-3">{{ 'affiliation.faq.a2' | transloco }}</p>
+        </details>
+        <details class="p-4 rounded-lg border">
+            <summary class="font-semibold cursor-pointer">{{ 'affiliation.faq.q3' | transloco }}</summary>
+            <p class="mt-3">{{ 'affiliation.faq.a3' | transloco }}</p>
+        </details>
+        <details class="p-4 rounded-lg border">
+            <summary class="font-semibold cursor-pointer">{{ 'affiliation.faq.q4' | transloco }}</summary>
+            <p class="mt-3">{{ 'affiliation.faq.a4' | transloco }}</p>
+        </details>
+        <details class="p-4 rounded-lg border">
+            <summary class="font-semibold cursor-pointer">{{ 'affiliation.faq.q5' | transloco }}</summary>
+            <p class="mt-3">{{ 'affiliation.faq.a5' | transloco }}</p>
+        </details>
+        <details class="p-4 rounded-lg border">
+            <summary class="font-semibold cursor-pointer">{{ 'affiliation.faq.q6' | transloco }}</summary>
+            <p class="mt-3">{{ 'affiliation.faq.a6' | transloco }}</p>
+        </details>
+        <details class="p-4 rounded-lg border">
+            <summary class="font-semibold cursor-pointer">{{ 'affiliation.faq.q7' | transloco }}</summary>
+            <p class="mt-3">{{ 'affiliation.faq.a7' | transloco }}</p>
+        </details>
+        <details class="p-4 rounded-lg border">
+            <summary class="font-semibold cursor-pointer">{{ 'affiliation.faq.q8' | transloco }}</summary>
+            <p class="mt-3">{{ 'affiliation.faq.a8' | transloco }}</p>
+        </details>
+        <details class="p-4 rounded-lg border">
+            <summary class="font-semibold cursor-pointer">{{ 'affiliation.faq.q9' | transloco }}</summary>
+            <p class="mt-3">{{ 'affiliation.faq.a9' | transloco }}</p>
+        </details>
+    </section>
+
+    <section id="cta-final" class="text-center space-y-4 p-8 rounded-lg border">
+        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'affiliation.ctaFinal.title' | transloco }}</h2>
+        <p>{{ 'affiliation.ctaFinal.subtitle' | transloco }}</p>
+        <div class="flex flex-wrap gap-4 justify-center">
+            <a
+                [routerLink]="['/auth/register']"
+                [queryParams]="{ t: 'professional' }"
+                class="inline-block px-6 py-3 font-semibold rounded-lg no-underline bg-[var(--primary-water-green)] text-[var(--primary-beige)]"
+            >
+                {{ 'affiliation.ctaPro' | transloco }}
+            </a>
+            <a
+                [routerLink]="['/auth/register']"
+                [queryParams]="{ t: 'individual' }"
+                class="inline-block px-6 py-3 font-semibold rounded-lg no-underline bg-[var(--primary-water-green)] text-[var(--primary-beige)]"
+            >
+                {{ 'affiliation.ctaIndividual' | transloco }}
+            </a>
+        </div>
+    </section>
+
+    <section id="mentions-legales" class="space-y-4 text-sm">
+        <h2 class="text-xl font-semibold md:text-2xl">{{ 'affiliation.legal.title' | transloco }}</h2>
+        <ol class="pl-6 space-y-2 list-decimal">
+            <li>{{ 'affiliation.legal.item1' | transloco }}</li>
+            <li>{{ 'affiliation.legal.item2' | transloco }}</li>
+            <li>{{ 'affiliation.legal.item3' | transloco }}</li>
+            <li>{{ 'affiliation.legal.item4' | transloco }}</li>
+            <li>{{ 'affiliation.legal.item5' | transloco }}</li>
+            <li>{{ 'affiliation.legal.item6' | transloco }}</li>
+        </ol>
+    </section>
+</article>
