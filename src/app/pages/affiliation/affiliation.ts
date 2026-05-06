@@ -36,11 +36,4 @@ export class AffiliationPage implements OnInit {
         this.metaService.updateTag({ name: 'twitter:description', content: description });
       });
   }
-
-  scrollTo(id: string): void {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
 }

@@ -597,8 +597,7 @@
     "ctaIndividual": "Je suis particulier",
     "hero": {
       "h1": "Devenez partenaire d'Artisan Compétent.",
-      "subtitle": "Recommandez la plateforme qui en finit avec les arnaques BTP. Touchez 20 % de commission la première année. Sans contrat long terme, sans engagement, sans avancer un centime.",
-      "ctaSecondary": "Voir comment ça marche"
+      "subtitle": "Recommandez la plateforme qui en finit avec les arnaques BTP. Touchez 20 % de commission sur les 6 premiers mois. Sans contrat long terme, sans engagement, sans avancer un centime."
     },
     "howItWorks": {
       "title": "Trois étapes, et c'est tout.",
@@ -612,16 +611,16 @@
     "commissions": {
       "title": "C'est simple. Vraiment.",
       "summaryTitle": "En trois lignes",
-      "summaryClient": "Vous ramenez un client : 20 % la première année, 10 % la deuxième.",
-      "summaryArtisan": "Vous ramenez un artisan : 5 % sur ses chantiers.",
+      "summaryClient": "Vous ramenez un client : 20 % les 6 premiers mois, 10 % les 6 suivants.",
+      "summaryArtisan": "Vous ramenez un artisan : 5 % pendant 6 mois.",
       "summaryBoth": "Vous faites les deux : vous cumulez, jusqu'à 25 %.",
       "detailsTitle": "Le détail si besoin",
-      "detailClient": "Client particulier : 20 % de commission sur la marge Artisan Compétent la première année après l'inscription du client, 10 % la deuxième année. Au-delà de 24 mois, la commission s'arrête.",
-      "detailArtisan": "Artisan recommandé : 5 % sur la marge générée par les chantiers signés de cet artisan, tant qu'il reste actif sur la plateforme.",
+      "detailClient": "Client particulier : 20 % de commission sur la marge Artisan Compétent les 6 premiers mois après l'inscription du client, 10 % les 6 mois suivants. Au-delà de 12 mois, la commission s'arrête.",
+      "detailArtisan": "Artisan recommandé : 5 % sur la marge générée par les chantiers signés de cet artisan, pendant 6 mois après son inscription sur la plateforme.",
       "detailCumul": "Cumul : si vous ramenez à la fois un client et un artisan, vous touchez sur les deux. Une même personne peut donc gagner jusqu'à 25 % sur un même chantier (20 % côté client + 5 % côté artisan).",
       "conditionsTitle": "Conditions communes",
-      "condition1": "Cookie d'attribution valable 365 jours après le premier clic sur votre lien. C'est la durée maximale autorisée par la réglementation RGPD.",
-      "condition2": "En complément du cookie, votre filleul est rattaché à votre compte partenaire au moment de son inscription. Cela vous permet de toucher vos commissions au-delà des 365 jours, dans les limites prévues par la grille.",
+      "condition1": "Cookie d'attribution valable 30 jours après le premier clic sur votre lien.",
+      "condition2": "En complément du cookie, votre filleul est rattaché à votre compte partenaire au moment de son inscription. Cela vous permet de toucher vos commissions au-delà des 30 jours, dans les limites prévues par la grille.",
       "condition3": "Vous devez publier au moins un contenu par semaine. Au bout de 14 jours sans publication, vous recevez une alerte. Au bout de 21 jours, votre lien est suspendu. Les conversions enregistrées avant la suspension sont conservées et payées normalement.",
       "condition4": "Les commissions portent uniquement sur la marge d'Artisan Compétent. Jamais sur les matériaux, jamais sur la main d'œuvre brute facturée par l'artisan.",
       "condition5": "Versement trimestriel par virement bancaire, à compter du procès-verbal de réception signé par le client. Pas de versement sur devis signé seul, parce qu'un devis peut encore être annulé en cours de chantier."
@@ -632,7 +631,7 @@
       "argumentsTitle": "Ce qui rend la recommandation simple",
       "arg1": "Le séquestre de fonds : l'argent du client n'est versé à l'artisan qu'après validation des travaux. Ça parle à tout le monde.",
       "arg2": "Les artisans sont vérifiés (SIRET, RC Pro, décennale). Pas de profils douteux.",
-      "arg3": "Le suivi C-MOD encadre les chantiers à distance pour les clients qui ne peuvent pas être présents.",
+      "arg3": "Le suivi CMOD encadre les chantiers à distance pour les clients qui ne peuvent pas être présents.",
       "arg4": "L'inscription est gratuite côté client comme côté artisan. Pas de frein à l'entrée.",
       "outro": "Si votre audience contient des propriétaires, des locataires qui veulent rénover, des copropriétés ou simplement des gens qui ont peur de se faire avoir avec un chantier, vous avez un public naturel pour Artisan Compétent."
     },
@@ -661,7 +660,7 @@
       "q4": "Qu'est-ce qui se passe si j'arrête de publier ?",
       "a4": "Pas de panique. Si vous laissez passer plus de 14 jours sans preuve de contenu, vous recevez une alerte. Au-delà de 21 jours, votre lien d'affiliation est suspendu. Les conversions enregistrées avant la suspension sont conservées et payées normalement. Vous pouvez réactiver votre lien à tout moment en reprenant l'activité.",
       "q5": "Et si la personne que j'ai inscrite met du temps à passer à l'action ?",
-      "a5": "Vous avez 365 jours après le premier clic pour que la conversion soit attribuée à votre lien (limite légale RGPD pour le cookie). Mais en plus du cookie, votre filleul est rattaché à votre compte partenaire au moment de son inscription : on peut donc continuer à vous reverser au-delà des 365 jours.",
+      "a5": "Vous avez 30 jours après le premier clic pour que la conversion soit attribuée à votre lien via le cookie. Mais en plus du cookie, votre filleul est rattaché à votre compte partenaire au moment de son inscription : on peut donc continuer à vous reverser au-delà des 30 jours, dans les limites prévues par la grille (12 mois pour un client, 6 mois pour un artisan recommandé).",
       "q6": "Puis-je cumuler ce programme avec d'autres affiliations ?",
       "a6": "Oui, sans problème. Le seul cas où on coupe le lien, c'est si vous recommandez en même temps un concurrent direct d'Artisan Compétent (autre plateforme avec séquestre).",
       "q7": "Est-ce que je peux parrainer mes propres clients ou amis ?",
@@ -679,7 +678,7 @@
       "title": "Mentions légales et conditions du programme",
       "item1": "Le programme partenaire est ouvert aux personnes physiques majeures et aux personnes morales établies en France ou dans l'Union européenne.",
       "item2": "Les commissions sont calculées sur la marge nette d'Artisan Compétent et versées trimestriellement, sous réserve de la signature du procès-verbal de réception par le filleul.",
-      "item3": "La durée d'attribution du cookie est de 365 jours maximum, conformément aux recommandations CNIL. Le rattachement au compte partenaire permet d'étendre la rémunération au-delà du cookie, dans les limites de la grille en vigueur.",
+      "item3": "La durée d'attribution du cookie est de 30 jours, conformément aux recommandations CNIL. Le rattachement au compte partenaire permet d'étendre la rémunération au-delà du cookie, dans les limites de la grille en vigueur.",
       "item4": "Artisan Compétent se réserve le droit de suspendre ou résilier l'accès au programme en cas de manquement aux règles d'usage (fraude, spam, contenu inapproprié, non-respect de la réglementation).",
       "item5": "Les modifications de la grille de commission s'appliquent uniquement aux nouvelles inscriptions ; les conversions déjà enregistrées restent rémunérées selon les conditions en vigueur au moment du clic d'origine.",
       "item6": "Tout litige relève de la juridiction française."
