@@ -44,23 +44,11 @@
               ],
               "outputHashing": "all",
               "optimization": true,
-              "sourceMap": false,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ]
+              "sourceMap": false
             },
             "staging": {
               "optimization": true,
-              "sourceMap": false,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.staging.ts"
-                }
-              ]
+              "sourceMap": false
             },
             "development": {
               "optimization": false,

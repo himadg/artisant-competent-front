@@ -1,7 +1,8 @@
 import { ApplicationConfig, inject, LOCALE_ID, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { AppConfigService } from './core/services/app-config.service';
 import { provideRouter, withInMemoryScrolling, TitleStrategy } from '@angular/router';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { apiUrlInterceptor } from './core/interceptors/api-url.interceptor';
 import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from '@angular/common';
 import { routes } from './app.routes';
@@ -19,7 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: 'top' })),
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withInterceptors([apiUrlInterceptor])),
     provideTransloco(translocoConfig),
     { provide: TitleStrategy, useClass: TranslocoTitleStrategy },
     { provide: LOCALE_ID, useValue: 'fr' },

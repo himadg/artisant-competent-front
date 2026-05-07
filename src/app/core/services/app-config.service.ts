@@ -13,8 +13,4 @@ export class AppConfigService {
   get(key: string): string {
     return this.config[key];
   }
-
-  get apiUrl(): string {
-    return this.config['apiUrl'];
-  }
 }

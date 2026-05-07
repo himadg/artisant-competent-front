@@ -7,9 +7,9 @@
     "start:staging": "ng serve -c staging",
     "dev": "ng serve --hmr",
     "watch": "ng build --watch --configuration development",
-    "build": "ng build",
-    "build:staging": "ng build -c staging",
-    "build:prod": "ng build -c production",
+    "build": "node scripts/generate-config.js && ng build",
+    "build:staging": "node scripts/generate-config.js && ng build -c staging",
+    "build:prod": "node scripts/generate-config.js && ng build -c production",
     "test": "ng test"
   },
   "prettier": {

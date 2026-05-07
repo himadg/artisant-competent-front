@@ -55,11 +55,10 @@ Thumbs.db
 .angular/
 
 # Environment files — seul environment.ts (clé de test publique) est commité
-/src/environments/environment.staging.ts
-/src/environments/environment.prod.ts
+src/environments/
 
 # Runtime config (contient les vraies valeurs, ne pas committer)
-/src/assets/config/config.json
+src/assets/config/config.json
 
 # Angular CLI and build artefacts
 /.angular-cli.json

@@ -22,7 +22,6 @@ import { UserApiService } from '../../../../core/services/user-api.service';
 import { GeocodingService, AddressSuggestion } from '../../../../core/services/geocoding.service';
 import { SiretService } from '../../../../core/services/siret.service';
 import { UploadService } from '../../../../core/services/upload.service';
-import { environment } from '../../../../../environments/environment';
 import {
   NAME_REGEXP,
   PASSWORD_STRONG_REGEXP,
@@ -31,6 +30,7 @@ import {
   SIRET_REGEXP,
   STREET_NUMBER_REGEXP,
 } from '../../../../core/utils/regexp';
+import { AppConfigService } from '../../../../core/services/app-config.service';
 
 
 type DocTarget = 'photo' | 'idFront' | 'idBack' | 'insuranceDoc' | 'diplomaDoc' | 'logo' | 'rib';
@@ -99,7 +99,7 @@ export class RegisterProfessional implements OnDestroy {
   private readonly personalAddressSearch$ = new Subject<string>();
   private readonly workAddressSearch$ = new Subject<string>();
 
-  readonly turnstileSiteKey = environment.turnstileSiteKey;
+  readonly turnstileSiteKey = inject(AppConfigService).get('turnstileSiteKey');
   @ViewChild(TurnstileComponent) private readonly turnstile!: TurnstileComponent;
 
   constructor() {
