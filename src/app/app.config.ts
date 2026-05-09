@@ -15,6 +15,10 @@ import { TranslocoTitleStrategy } from './core/i18n/title.strategy';
 // Thème, etc.
 import { ThemeService } from './core/services/theme.service';
 
+// Icons (ng-icons)
+import { provideIcons } from '@ng-icons/core';
+import { lucideSun, lucideMoon } from '@ng-icons/lucide';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -26,6 +30,10 @@ export const appConfig: ApplicationConfig = {
     { provide: LOCALE_ID, useValue: 'fr' },
     ThemeService,
     provideAppInitializer(() => inject(AppConfigService).load()),
+    provideIcons({
+      lucideSun,
+      lucideMoon,
+    }),
   ],
 };
 
