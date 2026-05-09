@@ -604,7 +604,7 @@
     "ctaIndividual": "Je suis particulier",
     "hero": {
       "h1": "Devenez partenaire d'Artisan Compétent.",
-      "subtitle": "Recommandez la plateforme qui en finit avec les arnaques BTP. Touchez 20 % de commission sur les 6 premiers mois. Sans contrat long terme, sans engagement, sans avancer un centime."
+      "subtitle": "Recommandez la plateforme qui en finit avec les arnaques BTP. Touchez 1 an de commission sur chaque nouveau client : 20 % les 6 premiers mois, 10 % les 6 suivants. Sans contrat long terme, sans engagement, sans avancer un centime."
     },
     "howItWorks": {
       "title": "Trois étapes, et c'est tout.",
@@ -613,7 +613,7 @@
       "step2Title": "Vous parlez d'Artisan Compétent à votre audience.",
       "step2Body": "À votre famille, vos abonnés, vos clients, votre réseau. Vidéo, post, story, bouche-à-oreille, vous choisissez. La seule règle : un contenu par semaine au minimum, pour qu'on sache que vous êtes actif (et pour vous rappeler à la mémoire de votre audience).",
       "step3Title": "Vous touchez vos commissions.",
-      "step3Body": "Quand la personne que vous avez recommandée passe à l'action et que les travaux sont terminés (procès-verbal signé), votre commission est validée. Versement par virement trimestriel, justificatif PDF disponible dans votre espace partenaire."
+      "step3Body": "Quand la personne que vous avez recommandée passe à l'action et que les travaux sont terminés (procès-verbal signé), votre commission est validée. Versement par virement trimestriel et justificatif PDF dans votre espace partenaire. Et chaque mois, vous recevez un rapport par mail avec le nombre de filleuls inscrits grâce à vous et le statut de chacun."
     },
     "commissions": {
       "title": "C'est simple. Vraiment.",
@@ -626,32 +626,34 @@
       "detailArtisan": "Artisan recommandé : 5 % sur la marge générée par les chantiers signés de cet artisan, pendant 6 mois après son inscription sur la plateforme.",
       "detailCumul": "Cumul : si vous ramenez à la fois un client et un artisan, vous touchez sur les deux. Une même personne peut donc gagner jusqu'à 25 % sur un même chantier (20 % côté client + 5 % côté artisan).",
       "conditionsTitle": "Conditions communes",
-      "condition1": "Cookie d'attribution valable 30 jours après le premier clic sur votre lien.",
-      "condition2": "En complément du cookie, votre filleul est rattaché à votre compte partenaire au moment de son inscription. Cela vous permet de toucher vos commissions au-delà des 30 jours, dans les limites prévues par la grille.",
-      "condition3": "Vous devez publier au moins un contenu par semaine. Au bout de 14 jours sans publication, vous recevez une alerte. Au bout de 21 jours, votre lien est suspendu. Les conversions enregistrées avant la suspension sont conservées et payées normalement.",
+      "condition1": "Cookie d'attribution valable 15 jours après le premier clic sur votre lien. Il se renouvelle à chaque nouveau clic d'un visiteur via votre lien. Donc en pratique, tant que vous publiez régulièrement, le cookie reste actif.",
+      "condition2": "En complément du cookie, votre filleul est rattaché à votre compte partenaire au moment de son inscription. Vous touchez vos commissions pendant les 12 mois qui suivent son inscription (6 mois pour tout artisan amené).",
+      "condition3": "Vous devez publier au moins un contenu par semaine pour rester actif. Au bout de 7 jours sans publication, vous recevez une alerte. Au bout de 14 jours, votre lien est désactivé. Tous les filleuls déjà rattachés à votre compte continuent de générer des commissions normalement.",
       "condition4": "Les commissions portent uniquement sur la marge d'Artisan Compétent. Jamais sur les matériaux, jamais sur la main d'œuvre brute facturée par l'artisan.",
       "condition5": "Versement trimestriel par virement bancaire, à compter du procès-verbal de réception signé par le client. Pas de versement sur devis signé seul, parce qu'un devis peut encore être annulé en cours de chantier."
     },
     "whyRecommend": {
-      "title": "Vous ne vendez pas un produit. Vous vendez une protection.",
-      "intro": "Recommander Artisan Compétent, ce n'est pas pousser une énième offre. C'est dire à votre audience : voici comment on en finit avec les devis qui explosent, les artisans qui disparaissent et les chantiers bâclés qu'il faut payer quand même.",
+      "title": "Vous ne vendez pas un produit. Vous vendez une protection. Et vous renforcez votre image.",
+      "intro": "Recommander Artisan Compétent, ce n'est pas pousser une énième offre. C'est dire à votre audience : voici comment on en finit avec les devis qui explosent, les artisans qui disparaissent et les chantiers bâclés qu'il faut payer quand même. Que ce soit pour un gros chantier de rénovation ou une intervention d'urgence d'un ou deux jours, la plateforme couvre toute la gamme.",
       "argumentsTitle": "Ce qui rend la recommandation simple",
       "arg1": "Le séquestre de fonds : l'argent du client n'est versé à l'artisan qu'après validation des travaux. Ça parle à tout le monde.",
       "arg2": "Les artisans sont vérifiés (SIRET, RC Pro, décennale). Pas de profils douteux.",
-      "arg3": "Le suivi CMOD encadre les chantiers à distance pour les clients qui ne peuvent pas être présents.",
+      "arg3": "Le service CMOD est une option pour mieux encadrer le chantier. Pour les devis entre 2 000 € et 5 000 €, un premier appel de 20 minutes est offert. Pour les devis au-delà de 5 000 €, c'est un appel de 45 minutes.",
       "arg4": "L'inscription est gratuite côté client comme côté artisan. Pas de frein à l'entrée.",
+      "arg5": "La facilité de paiement Klarna est disponible jusqu'à 1 500 € sur les devis, sur les chantiers comme les interventions d'urgence. À condition que l'artisan accepte de prendre en charge les frais (4,9 % du devis total).",
       "outro": "Si votre audience contient des propriétaires, des locataires qui veulent rénover, des copropriétés ou simplement des gens qui ont peur de se faire avoir avec un chantier, vous avez un public naturel pour Artisan Compétent."
     },
-    "badge": {
-      "title": "Pour les artisans inscrits, un signal de confiance qui parle aux clients.",
-      "body1": "Si vous êtes artisan et que vous rejoignez Artisan Compétent, vous recevez un badge officiel « Certifié anti-arnaque » à afficher sur votre site, vos réseaux sociaux et vos devis. Ce badge atteste que vous êtes vérifié, que vos assurances sont à jour, et que vos chantiers sont encadrés par le séquestre.",
-      "body2": "Pour vos clients, ce badge change la donne : ils savent qu'ils sont protégés avant même de signer. Notre objectif est qu'il devienne un standard de confiance dans le BTP français, comme le label RGE ou Qualibat le sont aujourd'hui pour les économies d'énergie.",
-      "note": "Le badge est délivré aux artisans inscrits sur la plateforme et ne peut pas être utilisé pour des chantiers traités hors Artisan Compétent. C'est ce qui garantit sa valeur."
+    "brandFomo": {
+      "title": "Une opportunité à ne pas laisser passer.",
+      "body1": "Recommander Artisan Compétent vous positionne comme un créateur de confiance. Les autres marques le voient comme un signal de fiabilité, ce qui peut vous ouvrir de nouvelles opportunités de partenariat.",
+      "body2": "Et puis il faut être lucide : vous n'êtes pas propriétaire de votre audience. Les personnes qui vous suivent suivent aussi d'autres créateurs. Si vous ne leur recommandez pas Artisan Compétent aujourd'hui, un autre le fera demain. Et c'est lui qui touchera les commissions.",
+      "analogyTitle": "Une analogie pour bien voir l'enjeu",
+      "analogy": "Imaginez un terrain de 100 000 m² qui vous appartient. Vos voisins ont chacun 100 m² collés au vôtre. Une compagnie pétrolière vient vous dire : il y a du pétrole sous votre terrain, on l'extrait et on vous reverse un pourcentage. Vous refusez parce que vous voulez plus. La compagnie va simplement chez vos voisins, installe ses puits, et extrait le même pétrole. Vous, vous avez raté l'occasion. Votre audience, c'est exactement la même chose."
     },
     "expectations": {
       "title": "Pas de magie, pas de promesses. Juste de la régularité.",
       "exp1": "Au moins une publication par semaine qui parle d'Artisan Compétent : vidéo, post, story, podcast, ou article.",
-      "exp2": "Une preuve à uploader chaque semaine dans votre espace partenaire (capture d'écran ou lien). Ça prend 30 secondes.",
+      "exp2": "Une preuve à ajouter chaque semaine dans votre espace partenaire (lien direct vers votre publication). Ça prend 30 secondes : copiez le lien de votre post, collez-le dans le champ dédié, c'est validé.",
       "exp3": "Du respect du cadre légal : on ne ment pas sur ce qu'est la plateforme, on ne survend pas ce qu'elle fait. La transparence est notre marque de fabrique, on attend la même chose de nos partenaires.",
       "exp4": "De l'usage normal de votre lien : pas de spam, pas d'achat de trafic non qualifié, pas de fraude au cookie. Toute manipulation entraîne suspension immédiate sans préavis.",
       "note": "On ne demande pas de chiffres minimum, pas de KPI à atteindre. La seule règle, c'est la régularité. Si vous publiez chaque semaine, vous restez dans le programme, peu importe que vous fassiez 2 inscriptions ou 200."
@@ -665,9 +667,9 @@
       "q3": "Pourquoi pas au moment du devis signé ?",
       "a3": "Parce qu'un devis peut encore être annulé en cours de chantier (problème, accident, désaccord), auquel cas le client est remboursé via le séquestre. Sur procès-verbal signé, c'est carré : les travaux sont faits, l'argent est libéré, votre commission est due.",
       "q4": "Qu'est-ce qui se passe si j'arrête de publier ?",
-      "a4": "Pas de panique. Si vous laissez passer plus de 14 jours sans preuve de contenu, vous recevez une alerte. Au-delà de 21 jours, votre lien d'affiliation est suspendu. Les conversions enregistrées avant la suspension sont conservées et payées normalement. Vous pouvez réactiver votre lien à tout moment en reprenant l'activité.",
+      "a4": "Pas de panique. Si vous laissez passer plus de 7 jours sans preuve de contenu, vous recevez une alerte. Au-delà de 14 jours, votre lien d'affiliation est désactivé. Tous les filleuls déjà rattachés à votre compte continuent de générer des commissions normalement. Vous pouvez réactiver votre lien à tout moment en reprenant l'activité.",
       "q5": "Et si la personne que j'ai inscrite met du temps à passer à l'action ?",
-      "a5": "Vous avez 30 jours après le premier clic pour que la conversion soit attribuée à votre lien via le cookie. Mais en plus du cookie, votre filleul est rattaché à votre compte partenaire au moment de son inscription : on peut donc continuer à vous reverser au-delà des 30 jours, dans les limites prévues par la grille (12 mois pour un client, 6 mois pour un artisan recommandé).",
+      "a5": "Vous avez 15 jours après le premier clic pour que la conversion soit attribuée à votre lien via le cookie. Cette durée est volontairement courte pour vous inciter à publier régulièrement. Le cookie se renouvelle à chaque nouveau clic d'un visiteur via votre lien. Et bonne nouvelle : votre filleul est aussi rattaché à votre compte partenaire au moment de son inscription. On peut donc continuer à vous reverser pendant les 12 mois qui suivent (6 mois pour tout artisan amené).",
       "q6": "Puis-je cumuler ce programme avec d'autres affiliations ?",
       "a6": "Oui, sans problème. Le seul cas où on coupe le lien, c'est si vous recommandez en même temps un concurrent direct d'Artisan Compétent (autre plateforme avec séquestre).",
       "q7": "Est-ce que je peux parrainer mes propres clients ou amis ?",
@@ -685,7 +687,7 @@
       "title": "Mentions légales et conditions du programme",
       "item1": "Le programme partenaire est ouvert aux personnes physiques majeures et aux personnes morales établies en France ou dans l'Union européenne.",
       "item2": "Les commissions sont calculées sur la marge nette d'Artisan Compétent et versées trimestriellement, sous réserve de la signature du procès-verbal de réception par le filleul.",
-      "item3": "La durée d'attribution du cookie est de 30 jours, conformément aux recommandations CNIL. Le rattachement au compte partenaire permet d'étendre la rémunération au-delà du cookie, dans les limites de la grille en vigueur.",
+      "item3": "La durée d'attribution du cookie est de 15 jours, en accord avec les recommandations CNIL. Le rattachement au compte partenaire permet d'étendre la rémunération au-delà du cookie : 12 mois pour un client recommandé, 6 mois pour un artisan recommandé.",
       "item4": "Artisan Compétent se réserve le droit de suspendre ou résilier l'accès au programme en cas de manquement aux règles d'usage (fraude, spam, contenu inapproprié, non-respect de la réglementation).",
       "item5": "Les modifications de la grille de commission s'appliquent uniquement aux nouvelles inscriptions ; les conversions déjà enregistrées restent rémunérées selon les conditions en vigueur au moment du clic d'origine.",
       "item6": "Tout litige relève de la juridiction française."
