@@ -1,1 +1,163 @@
-<p>professional works!</p>
+<div class="flex min-h-screen bg-[var(--primary-beige)]">
+
+  <!-- Sidebar -->
+  <aside class="w-56 shrink-0 flex flex-col justify-between py-8 px-4 bg-[var(--primary-beige)] border-r border-[var(--secondary-beige)]">
+    <nav class="flex flex-col gap-1">
+      @for (item of navItems; track item.id) {
+        <button
+          type="button"
+          (click)="setSection(item.id)"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-left transition-colors"
+          [class.bg-[var(--secondary-beige)]]="activeSection() === item.id"
+          [class.font-semibold]="activeSection() === item.id"
+          [class.hover:bg-[var(--secondary-beige)]]="activeSection() !== item.id"
+        >
+          <ng-icon [name]="item.icon" size="16" />
+          {{ item.label }}
+        </button>
+      }
+
+      <div class="my-3 border-t border-[var(--secondary-beige)]"></div>
+
+      <button type="button" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-left hover:bg-[var(--secondary-beige)] transition-colors text-red-700">
+        <ng-icon name="lucideLogOut" size="16" />
+        Déconnexion
+      </button>
+    </nav>
+
+    <p class="text-xs text-center text-[var(--tertiary-beige)]">CGUV &copy; 2025</p>
+  </aside>
+
+  <!-- Main -->
+  <main class="flex-1 flex flex-col p-8 gap-6 max-w-4xl">
+
+    <!-- Top bar -->
+    <div class="flex justify-end items-center gap-4">
+      <button type="button" aria-label="Rechercher"><ng-icon name="lucideSearch" size="20" /></button>
+      <button type="button" aria-label="Notifications"><ng-icon name="lucideBell" size="20" /></button>
+      <button type="button" aria-label="Messages"><ng-icon name="lucideMail" size="20" /></button>
+      <div class="flex items-center gap-2">
+        @if (photoUrl) {
+          <img [src]="photoUrl" [alt]="fullName" class="size-9 rounded-full object-cover" />
+        } @else {
+          <span class="size-9 rounded-full bg-[var(--secondary-beige)] flex items-center justify-center font-semibold text-sm">
+            {{ user?.firstName?.[0] }}{{ user?.lastName?.[0] }}
+          </span>
+        }
+        <span class="text-sm font-medium">{{ fullName }}</span>
+        <button type="button" aria-label="Paramètres"><ng-icon name="lucideSettings" size="16" /></button>
+      </div>
+    </div>
+
+    <!-- Profile card -->
+    <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+
+      <!-- Header -->
+      <div class="flex items-start gap-6 p-6 pb-0">
+        <!-- Photo + badge -->
+        <div class="relative shrink-0">
+          @if (photoUrl) {
+            <img [src]="photoUrl" [alt]="profile?.companyName" class="size-24 rounded-full object-cover border-4 border-[var(--secondary-beige)]" />
+          } @else {
+            <span class="size-24 rounded-full bg-[var(--secondary-beige)] flex items-center justify-center text-2xl font-bold border-4 border-white">
+              {{ profile?.companyName?.[0] }}
+            </span>
+          }
+          <span class="absolute -bottom-1 -right-1 bg-[var(--primary-water-green)] text-white text-[9px] font-bold leading-tight px-1.5 py-1 rounded-full text-center">
+            Artisan<br>Compétent
+          </span>
+        </div>
+
+        <!-- Info -->
+        <div class="flex flex-col gap-1 pt-1">
+          <h1 class="text-2xl font-bold text-[var(--secondary-water-green)]">{{ profile?.companyName }}</h1>
+          <p class="text-sm text-gray-500">{{ address }}</p>
+          <p class="flex items-center gap-1.5 text-sm text-gray-400">
+            Inscrit depuis {{ user?.createdAt | date:'MMMM yyyy' : '' : 'fr' }}
+            <button type="button" aria-label="Modifier"><ng-icon name="lucidePencil" size="13" /></button>
+          </p>
+          @if (profile?.isCmod) {
+            <span class="inline-flex self-start mt-1 px-4 py-1.5 rounded-full text-sm font-semibold text-white bg-[var(--secondary-water-green)]">
+              CMOD depuis {{ cmodYear }}
+            </span>
+          }
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex gap-6 px-6 mt-5 border-b border-gray-100">
+        @for (tab of tabs; track tab.id) {
+          <button
+            type="button"
+            (click)="setTab(tab.id)"
+            class="pb-3 text-sm font-medium border-b-2 transition-colors"
+            [class.border-[var(--secondary-water-green)]]="activeTab() === tab.id"
+            [class.text-[var(--secondary-water-green)]]="activeTab() === tab.id"
+            [class.border-transparent]="activeTab() !== tab.id"
+            [class.text-gray-400]="activeTab() !== tab.id"
+          >
+            {{ tab.label }}
+          </button>
+        }
+      </div>
+
+      <!-- Tab content -->
+      <div class="p-6">
+
+        @switch (activeTab()) {
+          @case ('presentation') {
+            <div class="flex gap-8">
+              <div class="flex-1">
+                <h2 class="text-base font-semibold mb-2">{{ profile?.companyName }}</h2>
+                <p class="text-sm text-gray-600 leading-relaxed mb-4">{{ profile?.description }}</p>
+                <ul class="flex flex-col gap-2">
+                  @for (service of profile?.services; track service.id; let first = $first) {
+                    <li class="flex items-center gap-2 text-sm">
+                      @if (first) {
+                        <ng-icon name="lucideChevronRight" size="15" class="text-gray-400 shrink-0" />
+                      } @else {
+                        <ng-icon name="lucideCheck" size="15" class="text-[var(--primary-water-green)] shrink-0" />
+                      }
+                      {{ service.description }}
+                    </li>
+                  }
+                </ul>
+              </div>
+
+              @if (profile?.trustedContactName) {
+                <div class="w-56 shrink-0">
+                  <div class="border border-[var(--secondary-beige)] rounded-xl p-4 flex flex-col gap-3">
+                    <p class="text-sm font-semibold">Information personnelle <span class="font-normal text-gray-400">contact</span></p>
+                    <div class="flex items-center gap-2">
+                      <span class="size-9 rounded-full bg-[var(--secondary-beige)] shrink-0"></span>
+                      <p class="text-sm">{{ profile?.trustedContactName }} : {{ profile?.trustedContactPhone }}</p>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+
+          @case ('services') {
+            <ul class="flex flex-wrap gap-2">
+              @for (service of profile?.services; track service.id) {
+                <li class="px-3 py-1.5 rounded-full border border-[var(--secondary-beige)] text-sm">
+                  {{ service.description }}
+                </li>
+              }
+            </ul>
+          }
+
+          @case ('missions') {
+            <p class="text-sm text-gray-400">Aucune mission pour le moment.</p>
+          }
+
+          @case ('reviews') {
+            <p class="text-sm text-gray-400">Aucun avis pour le moment.</p>
+          }
+        }
+
+      </div>
+    </div>
+  </main>
+</div>

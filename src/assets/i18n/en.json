@@ -705,5 +705,69 @@
       "invalid": "Incorrect email or password",
       "required": "This field is required"
     }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "nav": {
+      "requests": "My requests",
+      "quotes": "My quotes",
+      "invoices": "My invoices",
+      "profile": "Personal info",
+      "legal": "Legal information",
+      "bestPractices": "Best practices",
+      "overview": "Overview",
+      "professionals": "Professionals"
+    },
+    "admin": {
+      "title": "Administration"
+    },
+    "errors": {
+      "load": "Unable to load dashboard",
+      "unknownRole": "Unknown user role"
+    },
+    "pro": {
+      "nav": {
+        "requests": "My requests",
+        "quotes": "My quotes",
+        "invoices": "My invoices",
+        "profile": "Personal info",
+        "legal": "Legal information",
+        "practices": "Best practices"
+      },
+      "tabs": {
+        "presentation": "Presentation",
+        "services": "Services offered",
+        "missions": "Missions",
+        "reviews": "Reviews",
+        "documents": "Documents"
+      },
+      "empty": {
+        "missions": "No missions yet",
+        "reviews": "No reviews yet"
+      },
+      "docs": {
+        "idFront": "ID card (front)",
+        "idBack": "ID card (back)",
+        "insurance": "Insurance certificate",
+        "diploma": "Diploma / qualification",
+        "rib": "Bank details (RIB)",
+        "logo": "Company logo",
+        "download": "Download",
+        "missing": "Not provided"
+      },
+      "mobile": {
+        "profile": "Profile",
+        "requests": "Requests",
+        "quotes": "Quotes",
+        "invoices": "Invoices",
+        "more": "More"
+      },
+      "since": "Member since",
+      "amod": "AMOD",
+      "trustedContact": "Trusted contact",
+      "trades": "Trades",
+      "hours": "Opening hours",
+      "closed": "Closed"
+    }
   }
 }

@@ -1,0 +1,14 @@
+@switch (role()) {
+    @case ('PROFESSIONAL') {
+        <dashboard-professional />
+    }
+    @case ('INDIVIDUAL') {
+        <dashboard-individual />
+    }
+    @case ('ADMIN') {
+        <dashboard-admin />
+    }
+    @case ('DIRECTION') {
+        <dashboard-admin />
+    }
+}

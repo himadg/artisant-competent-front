@@ -705,5 +705,69 @@
       "invalid": "Email ou mot de passe incorrect",
       "required": "Ce champ est requis"
     }
+  },
+  "dashboard": {
+    "title": "Mon compte",
+    "nav": {
+      "requests": "Mes demandes",
+      "quotes": "Mes devis",
+      "invoices": "Mes factures",
+      "profile": "Infos personnelles",
+      "legal": "Informations légales",
+      "bestPractices": "Bonnes pratiques",
+      "overview": "Vue d'ensemble",
+      "professionals": "Professionnels"
+    },
+    "admin": {
+      "title": "Administration"
+    },
+    "errors": {
+      "load": "Impossible de charger le dashboard",
+      "unknownRole": "Rôle utilisateur non reconnu"
+    },
+    "pro": {
+      "nav": {
+        "requests": "Mes demandes",
+        "quotes": "Mes devis",
+        "invoices": "Mes factures",
+        "profile": "Infos personnelles",
+        "legal": "Informations légales",
+        "practices": "Bonnes pratiques"
+      },
+      "tabs": {
+        "presentation": "Présentation",
+        "services": "Services proposés",
+        "missions": "Missions",
+        "reviews": "Avis",
+        "documents": "Documents"
+      },
+      "empty": {
+        "missions": "Aucune mission pour le moment.",
+        "reviews": "Aucun avis pour le moment."
+      },
+      "docs": {
+        "idFront": "Pièce d'identité (recto)",
+        "idBack": "Pièce d'identité (verso)",
+        "insurance": "Attestation d'assurance",
+        "diploma": "Diplôme / qualification",
+        "rib": "RIB",
+        "logo": "Logo entreprise",
+        "download": "Télécharger",
+        "missing": "Non fourni"
+      },
+      "mobile": {
+        "profile": "Compte",
+        "requests": "Demandes",
+        "quotes": "Devis",
+        "invoices": "Factures",
+        "more": "Plus"
+      },
+      "since": "Inscrit depuis",
+      "amod": "AMOD",
+      "trustedContact": "Contact de confiance",
+      "trades": "Métiers",
+      "hours": "Horaires d'ouverture",
+      "closed": "Fermé"
+    }
   }
 }

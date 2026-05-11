@@ -17,7 +17,7 @@
 
   --color: var(--secondary-water-green);
   --background-color: var(--primary-beige);
-  --border-color: var(--secondary-brown);
+  --border-color: var(--secondary-beige);
   --hover-color: var(--v-grad-water-green);
   --btn-color: var(--v-grad-water-green);
   --nav-bg-color: var(--secondary-brown);
@@ -64,6 +64,18 @@
   .title {
     border-left: 0.25rem solid var(--tertiary-brown);
     padding-left: 1rem;
+  }
+
+  .pro-main {
+    background: var(--secondary-beige);
+  }
+
+  .pro-header {
+    background: var(--primary-beige);
+  }
+
+  .pro-tab-content {
+    background: var(--primary-beige);
   }
 }
 
