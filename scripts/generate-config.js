@@ -8,4 +8,3 @@ const config = {
 
 const outPath = path.join(__dirname, '../src/assets/config/config.json');
 fs.writeFileSync(outPath, JSON.stringify(config, null, 2));
-console.log('config.json generated:', config);

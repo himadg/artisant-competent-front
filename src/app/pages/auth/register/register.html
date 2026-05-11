@@ -1,14 +1,45 @@
-@switch (userType) {
-    @case ('professional') {
-        <register-professional></register-professional>
-    }
-    @case ('individual') {
-        <register-individual></register-individual>
-    }
-    @case ('supplier') {
-        <register-supplier></register-supplier>
-    }
-    @default {
-        <not-found></not-found>
+@if (userType === null) {
+    <div class="my-12 md:my-24 mx-auto max-w-sm text-center space-y-8">
+        <h1 class="text-4xl font-semibold">{{ 'auth.register' | transloco }}</h1>
+        <p class="opacity-60 text-sm">{{ 'register.chooseType' | transloco }}</p>
+        <div class="flex flex-col gap-3">
+            <a
+                [routerLink]="['/auth/register']"
+                [queryParams]="{ t: 'individual' }"
+                class="px-4 py-3 rounded-lg border border-[var(--secondary-beige)] hover:bg-[var(--secondary-beige)] transition-colors no-underline font-medium"
+            >
+                {{ 'auth.roles.individual' | transloco }}
+            </a>
+            <a
+                [routerLink]="['/auth/register']"
+                [queryParams]="{ t: 'professional' }"
+                class="px-4 py-3 rounded-lg border border-[var(--secondary-beige)] hover:bg-[var(--secondary-beige)] transition-colors no-underline font-medium"
+            >
+                {{ 'auth.roles.professional' | transloco }}
+            </a>
+            <a
+                [routerLink]="['/auth/register']"
+                [queryParams]="{ t: 'supplier' }"
+                class="px-4 py-3 rounded-lg border border-[var(--secondary-beige)] hover:bg-[var(--secondary-beige)] transition-colors no-underline font-medium"
+            >
+                {{ 'auth.roles.supplier' | transloco }}
+            </a>
+        </div>
+        <p class="text-sm opacity-60">
+            {{ 'login.alreadyAccount' | transloco }}
+            <a routerLink="/auth/login" class="underline hover:opacity-100">{{ 'auth.login' | transloco }}</a>
+        </p>
+    </div>
+} @else {
+    @switch (userType) {
+        @case ('professional') {
+            <register-professional></register-professional>
+        }
+        @case ('individual') {
+            <register-individual></register-individual>
+        }
+        @case ('supplier') {
+            <register-supplier></register-supplier>
+        }
     }
 }

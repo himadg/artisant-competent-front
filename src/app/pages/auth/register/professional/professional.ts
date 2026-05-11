@@ -15,9 +15,10 @@ import { hourValidator } from '../../../../core/utils/validators';
 import { normalizeName } from '../../../../core/utils/common-utils';
 import { ServiceApiService } from '../../../../core/services/service-api.service';
 import { TradeApiService } from '../../../../core/services/trade-api.service';
-import { Service } from '../../../../shared/models/service.model';
-import { Trade } from '../../../../shared/models/trade.model';
-import { TurnstileComponent } from '../../../../shared/components/turnstile/turnstile.component';
+import { Service } from '../../../../shared/interfaces/service';
+import { Trade } from '../../../../shared/interfaces/trade';
+import { TurnstileComponent } from '../../../../shared/components/turnstile/turnstile';
+import { Router } from '@angular/router';
 import { UserApiService } from '../../../../core/services/user-api.service';
 import { GeocodingService, AddressSuggestion } from '../../../../core/services/geocoding.service';
 import { SiretService } from '../../../../core/services/siret.service';
@@ -50,6 +51,7 @@ export class RegisterProfessional implements OnDestroy {
   private readonly geocodingService = inject(GeocodingService);
   private readonly siretService = inject(SiretService);
   private readonly uploadService = inject(UploadService);
+  private readonly router = inject(Router);
   private readonly destroy$ = new Subject<void>();
 
   // Navigation entre les pages du formulaire (UX)
@@ -505,32 +507,32 @@ export class RegisterProfessional implements OnDestroy {
         },
       };
 
-      const upload = (file: File | null, token: string) =>
-        file ? this.uploadService.upload(file, token) : of('');
+      const upload = (file: File | null) =>
+        file ? this.uploadService.upload(file) : of('');
 
       this.userApi.registerProfessional(payload as Record<string, unknown>, captchaToken)
         .pipe(
-          switchMap(({ userId, token }) =>
+          switchMap(({ userId }) =>
             forkJoin([
-              upload(photo, token),
-              upload(idFront, token),
-              upload(idBack, token),
-              upload(insuranceDoc, token),
-              upload(diplomaDoc, token),
-              upload(logo, token),
-              upload(rib, token),
+              upload(photo),
+              upload(idFront),
+              upload(idBack),
+              upload(insuranceDoc),
+              upload(diplomaDoc),
+              upload(logo),
+              upload(rib),
             ]).pipe(
               switchMap(([photoKey, idFrontKey, idBackKey, insuranceDocKey, diplomaDocKey, companyLogoKey, ribKey]) =>
                 this.userApi.createProfessionalDocuments(userId, {
                   photoKey, idFrontKey, idBackKey, insuranceDocKey, diplomaDocKey, companyLogoKey, ribKey,
-                }, token),
+                }),
               ),
             ),
           ),
           takeUntil(this.destroy$),
         )
         .subscribe({
-          next: () => console.log('Inscription complète'),
+          next: () => { this.router.navigate(['/auth/login']); },
           error: (err) => {
             console.error('Erreur inscription', err);
             this.turnstile.reset();

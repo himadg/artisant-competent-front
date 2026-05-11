@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ProfessionalProfile } from '../../shared/models/professional-profile.model';
+import { ProfessionalProfile } from '../../shared/interfaces/professional-profile';
 
 const BASE_URL = '/api/professionals';
 

@@ -418,6 +418,7 @@
     "lang": "Basculer la langue"
   },
   "register": {
+    "chooseType": "Quel type de compte souhaitez-vous créer ?",
     "title": "Inscription du particulier",
     "addPhoto": "Ajouter une photo",
     "addId": "Ajouter une carte d'identité",

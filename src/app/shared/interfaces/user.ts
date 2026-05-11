@@ -1,4 +1,4 @@
-import { Address } from './address.model';
+import { Address } from './address';
 
 export type RoleType = 'DIRECTION' | 'ADMIN' | 'INDIVIDUAL' | 'PROFESSIONAL' | 'SUPPLIER';
 

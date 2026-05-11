@@ -6,13 +6,11 @@ import { Observable, map } from 'rxjs';
 export class UploadService {
   private readonly http = inject(HttpClient);
 
-  upload(file: File, token: string): Observable<string> {
+  upload(file: File): Observable<string> {
     const formData = new FormData();
     formData.append('file', file);
     return this.http
-      .post<{ key: string }>('/api/storage/upload', formData, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+      .post<{ key: string }>('/api/storage/upload', formData)
       .pipe(map(r => r.key));
   }
 }

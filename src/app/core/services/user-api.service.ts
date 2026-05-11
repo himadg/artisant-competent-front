@@ -25,9 +25,7 @@ export class UserApiService {
     });
   }
 
-  createProfessionalDocuments(userId: string, documents: DocumentKeys, token: string): Observable<void> {
-    return this.http.patch<void>(`/api/professionals/${userId}/documents`, documents, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+  createProfessionalDocuments(userId: string, documents: DocumentKeys): Observable<void> {
+    return this.http.patch<void>(`/api/professionals/${userId}/documents`, documents);
   }
 }

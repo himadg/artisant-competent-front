@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Service } from '../../shared/models/service.model';
+import { Service } from '../../shared/interfaces/service';
 
 const BASE_URL = '/api/services';
 

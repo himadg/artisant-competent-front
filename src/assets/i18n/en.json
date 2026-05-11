@@ -418,6 +418,7 @@
     "lang": "Toggle language"
   },
   "register": {
+    "chooseType": "What type of account would you like to create?",
     "title": "Sign up as an individual",
     "addPhoto": "Add a photo",
     "addId": "Add an ID card",
