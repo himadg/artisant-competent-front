@@ -1,9 +1,13 @@
 <main>
-    <ac-header></ac-header>
+    @if (!isAuthenticated()) {
+        <ac-header></ac-header>
+    }
 
-    <div class="pt-24 mx-auto w-[20rem] md:pt-20 sm:w-[30rem] md:w-[40rem] lg:w-[55rem]">
+    <div [class]="isAuthenticated() ? '' : 'pt-24 mx-auto w-[20rem] md:pt-20 sm:w-[30rem] md:w-[40rem] lg:w-[55rem]'">
         <router-outlet></router-outlet>
     </div>
 
-    <ac-footer></ac-footer>
+    @if (!isAuthenticated()) {
+        <ac-footer></ac-footer>
+    }
 </main>

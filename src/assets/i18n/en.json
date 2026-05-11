@@ -689,5 +689,21 @@
       "item5": "Changes to the commission grid apply only to new signups; conversions already registered remain compensated according to the conditions in force at the time of the original click.",
       "item6": "Any dispute falls under French jurisdiction."
     }
+  },
+  "login": {
+    "title": "Log in",
+    "submit": "Log in",
+    "forgotPassword": "Forgot your password?",
+    "noAccount": "No account yet?",
+    "alreadyAccount": "Already have an account?",
+    "register": "Sign up",
+    "fields": {
+      "email": "Email address",
+      "password": "Password"
+    },
+    "errors": {
+      "invalid": "Incorrect email or password",
+      "required": "This field is required"
+    }
   }
 }

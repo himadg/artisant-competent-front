@@ -689,5 +689,21 @@
       "item5": "Les modifications de la grille de commission s'appliquent uniquement aux nouvelles inscriptions ; les conversions déjà enregistrées restent rémunérées selon les conditions en vigueur au moment du clic d'origine.",
       "item6": "Tout litige relève de la juridiction française."
     }
+  },
+  "login": {
+    "title": "Connexion",
+    "submit": "Se connecter",
+    "forgotPassword": "Mot de passe oublié ?",
+    "noAccount": "Pas encore de compte ?",
+    "alreadyAccount": "Déjà un compte ?",
+    "register": "S'inscrire",
+    "fields": {
+      "email": "Adresse email",
+      "password": "Mot de passe"
+    },
+    "errors": {
+      "invalid": "Email ou mot de passe incorrect",
+      "required": "Ce champ est requis"
+    }
   }
 }

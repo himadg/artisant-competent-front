@@ -1,1 +1,91 @@
-<p>login works!</p>
+<div class="my-12 md:my-24">
+    <h1 class="my-8 text-4xl font-semibold text-center">{{ 'login.title' | transloco }}</h1>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="py-8 mx-auto space-y-4 max-w-[29rem] autofill-fix">
+
+        <!-- Email -->
+        <div class="space-y-1">
+            <input
+                type="email"
+                formControlName="email"
+                class="px-3 py-2 w-full rounded border"
+                [class.border-red-400]="form.get('email')?.invalid && form.get('email')?.touched"
+                placeholder="{{ 'login.fields.email' | transloco }} *"
+                autocomplete="email"
+            />
+            @if (form.get('email')?.errors?.['required'] && form.get('email')?.touched) {
+                <p class="text-xs text-red-500">{{ 'login.errors.required' | transloco }}</p>
+            } @else if (form.get('email')?.errors?.['email'] && form.get('email')?.touched) {
+                <p class="text-xs text-red-500">{{ 'professional.fields.email' | transloco }}</p>
+            }
+        </div>
+
+        <!-- Mot de passe -->
+        <div class="space-y-1">
+            <div class="relative">
+                <input
+                    [type]="showPassword() ? 'text' : 'password'"
+                    formControlName="password"
+                    class="px-3 py-2 pr-10 w-full rounded border"
+                    [class.border-red-400]="form.get('password')?.invalid && form.get('password')?.touched"
+                    placeholder="{{ 'login.fields.password' | transloco }} *"
+                    autocomplete="current-password"
+                />
+                <button
+                    type="button"
+                    class="flex absolute inset-y-0 right-3 items-center text-gray-400 hover:text-gray-600"
+                    (click)="togglePassword()"
+                    [attr.aria-label]="(showPassword() ? 'Masquer' : 'Afficher') + ' le mot de passe'"
+                >
+                    @if (showPassword()) {
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                        </svg>
+                    } @else {
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    }
+                </button>
+            </div>
+            @if (form.get('password')?.errors?.['required'] && form.get('password')?.touched) {
+                <p class="text-xs text-red-500">{{ 'login.errors.required' | transloco }}</p>
+            }
+        </div>
+
+        <!-- Erreur serveur -->
+        @if (serverError()) {
+            <p class="px-3 py-2 text-sm text-red-600">
+                {{ serverError()! | transloco }}
+            </p>
+        }
+
+        <!-- Mot de passe oublié -->
+        <div class="text-right">
+            <a routerLink="/auth/forgot-password" class="text-sm underline opacity-60 hover:opacity-100">
+                {{ 'login.forgotPassword' | transloco }}
+            </a>
+        </div>
+
+        <!-- Bouton connexion -->
+        <button
+            type="submit"
+            class="px-4 py-2 w-full rounded-lg text-[var(--primary-beige)] bg-grad-water-green disabled:opacity-50 disabled:cursor-not-allowed"
+            [disabled]="loading()"
+        >
+            @if (loading()) {
+                <span class="inline-block w-4 h-4 rounded-full border-2 border-white animate-spin border-t-transparent"></span>
+            } @else {
+                {{ 'login.submit' | transloco }}
+            }
+        </button>
+
+        <!-- Lien inscription -->
+        <p class="text-sm text-center opacity-60">
+            {{ 'login.noAccount' | transloco }}
+            <a routerLink="/auth/register" class="underline hover:opacity-100">{{ 'login.register' | transloco }}</a>
+        </p>
+
+    </form>
+</div>
