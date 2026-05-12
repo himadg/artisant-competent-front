@@ -3,7 +3,6 @@
   display: grid;
   grid-template-columns: 13.5rem 1fr;
   grid-template-rows: auto 1fr;
-  height: 100vh;
   overflow: hidden;
 }
 
@@ -11,7 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 60vh;
+  min-height: 60dvh;
 }
 
 .ind-error {
@@ -468,7 +467,6 @@
   .ind-layout {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    height: 100dvh;
     overflow: hidden;
     padding-bottom: 4rem;
   }
