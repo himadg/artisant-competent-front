@@ -503,7 +503,7 @@ export class RegisterProfessional implements OnDestroy {
           openingHours,
           trustedContactName: trustName || undefined,
           trustedContactPhone: trustPhone || undefined,
-          supplierIds: suppliers,
+          suppliers,
         },
       };
 

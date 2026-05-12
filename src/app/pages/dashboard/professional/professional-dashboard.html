@@ -140,62 +140,281 @@
                         @case ('profile') {
                             @switch (activeTab()) {
                                 @case ('presentation') {
-                                    <div class="presentation-grid">
-                                        <div class="presentation-main">
-                                            <h3>{{ pro.professionalProfile.companyName }}</h3>
-                                            <p class="pro-description">{{ pro.professionalProfile.description }}</p>
-
-                                            <div class="trades-hours">
-                                                @if (pro.professionalProfile.trades.length) {
-                                                    <div>
-                                                        <p class="trades-label">{{ 'dashboard.pro.trades' | transloco }}</p>
-                                                        <ul class="pro-list pro-list--arrow">
-                                                            @for (trade of pro.professionalProfile.trades; track trade.id) {
-                                                                <li>{{ trade.name | transloco }}</li>
-                                                            }
-                                                        </ul>
-                                                    </div>
-                                                }
-
-                                                @if (pro.professionalProfile.openingHours?.days?.length) {
-                                                    <div class="opening-hours">
-                                                        <p class="opening-hours-label">{{ 'dashboard.pro.hours' | transloco }}</p>
-                                                        <ul class="hours-list">
-                                                            @for (day of pro.professionalProfile.openingHours!.days; track day.day) {
-                                                                <li class="hours-item">
-                                                                    <span class="hours-day">{{ 'supplier.days.' + day.day | transloco }}</span>
-                                                                    @if (day.closed) {
-                                                                        <span class="hours-closed">{{ 'dashboard.pro.closed' | transloco }}</span>
-                                                                    } @else {
-                                                                        <span class="hours-value">{{ day.intervals[0]?.start }} – {{ day.intervals[0]?.end }}</span>
-                                                                    }
-                                                                </li>
-                                                            }
-                                                        </ul>
-                                                    </div>
-                                                }
-                                            </div>
+                                    <!-- ── Description ── -->
+                                    <div class="pro-block">
+                                        <div class="pro-group-header">
+                                            <p class="pro-block-company">{{ pro.professionalProfile.companyName }}</p>
+                                            @if (!editDescriptionMode()) {
+                                                <button class="pro-edit-btn" type="button" (click)="enterEditDescription()">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                                </button>
+                                            } @else {
+                                                <div class="pro-edit-actions">
+                                                    <button class="pro-cancel-btn" type="button" (click)="cancelEditDescription()">
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                                    </button>
+                                                    <button class="pro-save-btn" type="button" (click)="saveEditDescription()" [disabled]="savingDescription()">
+                                                        @if (savingDescription()) { <span class="pro-spinner-sm"></span> }
+                                                        @else { <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> }
+                                                    </button>
+                                                </div>
+                                            }
                                         </div>
+                                        @if (editDescriptionMode()) {
+                                            <textarea class="pro-edit-input pro-edit-input--textarea" [(ngModel)]="editDescriptionText" rows="8"></textarea>
+                                        } @else {
+                                            <p class="pro-description">{{ pro.professionalProfile.description }}</p>
+                                        }
+                                    </div>
 
-                                        @if (pro.professionalProfile.trustedContactName) {
-                                            <div class="trusted-contact">
-                                                <p class="trusted-contact-label">{{ 'dashboard.pro.trustedContact' | transloco }}</p>
-                                                <p class="trusted-contact-name">{{ pro.professionalProfile.trustedContactName }}</p>
-                                                @if (pro.professionalProfile.trustedContactPhone) {
-                                                    <p class="trusted-contact-phone">{{ pro.professionalProfile.trustedContactPhone }}</p>
+                                    <!-- ── Métiers ── -->
+                                    <div class="pro-block">
+                                        <div class="pro-group-header">
+                                            <h3>{{ 'dashboard.pro.trades' | transloco }}</h3>
+                                            @if (!editTradesMode()) {
+                                                <button class="pro-edit-btn" type="button" (click)="enterEditTrades()">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                                </button>
+                                            } @else {
+                                                <div class="pro-edit-actions">
+                                                    <button class="pro-cancel-btn" type="button" (click)="cancelEditTrades()">
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                                    </button>
+                                                    <button class="pro-save-btn" type="button" (click)="saveEditTrades()" [disabled]="savingTrades()">
+                                                        @if (savingTrades()) { <span class="pro-spinner-sm"></span> }
+                                                        @else { <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> }
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                        @if (editTradesMode()) {
+                                            @if (loadingTrades()) {
+                                                <span class="pro-spinner-sm"></span>
+                                            } @else {
+                                                <div class="pro-chips">
+                                                    @for (trade of allTrades(); track trade.id) {
+                                                        <button class="pro-chip" type="button"
+                                                            [class.pro-chip--active]="editTradeIds().includes(trade.id)"
+                                                            (click)="toggleTrade(trade.id)">
+                                                            {{ `jobs.list.${trade.name}.name` | transloco }}
+                                                        </button>
+                                                    }
+                                                </div>
+                                            }
+                                        } @else if (pro.professionalProfile.trades.length) {
+                                            <ul class="pro-list pro-list--arrow">
+                                                @for (trade of pro.professionalProfile.trades; track trade.id) {
+                                                    <li>{{ `jobs.list.${trade.name}.name` | transloco }}</li>
+                                                }
+                                            </ul>
+                                        } @else {
+                                            <p class="pro-empty">{{ 'dashboard.pro.noTrades' | transloco }}</p>
+                                        }
+                                    </div>
+
+                                    <!-- ── Horaires ── -->
+                                    <div class="pro-block">
+                                        <div class="pro-group-header">
+                                            <h3>{{ 'dashboard.pro.hours' | transloco }}</h3>
+                                            @if (!editHoursMode()) {
+                                                <button class="pro-edit-btn" type="button" (click)="enterEditHours()">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                                </button>
+                                            } @else {
+                                                <div class="pro-edit-actions">
+                                                    <button class="pro-cancel-btn" type="button" (click)="cancelEditHours()">
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                                    </button>
+                                                    <button class="pro-save-btn" type="button" (click)="saveEditHours()" [disabled]="savingHours()">
+                                                        @if (savingHours()) { <span class="pro-spinner-sm"></span> }
+                                                        @else { <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> }
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                        @if (editHoursMode()) {
+                                            <div class="pro-hours-editor">
+                                                @for (day of editHours(); track day.day; let i = $index) {
+                                                    <div class="pro-hours-row">
+                                                        <span class="hours-day">{{ 'supplier.days.' + day.day | transloco }}</span>
+                                                        <label class="pro-day-toggle">
+                                                            <input type="checkbox" [checked]="!day.closed" (change)="toggleDay(i, $event)" />
+                                                            <span>{{ day.closed ? ('dashboard.pro.closed' | transloco) : ('dashboard.pro.open' | transloco) }}</span>
+                                                        </label>
+                                                        @if (!day.closed) {
+                                                            <input type="time" class="pro-time-input"
+                                                                [value]="day.intervals[0]?.start ?? '08:00'"
+                                                                (change)="setHourStart(i, $event)" />
+                                                            <span class="pro-hours-sep">–</span>
+                                                            <input type="time" class="pro-time-input"
+                                                                [value]="day.intervals[0]?.end ?? '18:00'"
+                                                                (change)="setHourEnd(i, $event)" />
+                                                        }
+                                                    </div>
                                                 }
                                             </div>
+                                        } @else if (pro.professionalProfile.openingHours?.days?.length) {
+                                            <ul class="hours-list">
+                                                @for (day of pro.professionalProfile.openingHours!.days; track day.day) {
+                                                    <li class="hours-item">
+                                                        <span class="hours-day">{{ 'supplier.days.' + day.day | transloco }}</span>
+                                                        @if (day.closed) {
+                                                            <span class="hours-closed">{{ 'dashboard.pro.closed' | transloco }}</span>
+                                                        } @else if (day.intervals[0]) {
+                                                            <span class="hours-value">{{ day.intervals[0].start }} – {{ day.intervals[0].end }}</span>
+                                                        } @else {
+                                                            <span class="hours-closed">{{ 'dashboard.pro.open' | transloco }}</span>
+                                                        }
+                                                    </li>
+                                                }
+                                            </ul>
+                                        } @else {
+                                            <p class="pro-empty">{{ 'dashboard.pro.noHours' | transloco }}</p>
+                                        }
+                                    </div>
+
+                                    <!-- ── Partenaires ── -->
+                                    <div class="pro-block">
+                                        <div class="pro-group-header">
+                                            <h3>{{ 'dashboard.pro.partners' | transloco }}</h3>
+                                            @if (!editPartnersMode()) {
+                                                <button class="pro-edit-btn" type="button" (click)="enterEditPartners()">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                                </button>
+                                            } @else {
+                                                <div class="pro-edit-actions">
+                                                    <button class="pro-cancel-btn" type="button" (click)="cancelEditPartners()">
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                                    </button>
+                                                    <button class="pro-save-btn" type="button" (click)="saveEditPartners()" [disabled]="savingPartners()">
+                                                        @if (savingPartners()) { <span class="pro-spinner-sm"></span> }
+                                                        @else { <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> }
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                        @if (editPartnersMode()) {
+                                            <input class="pro-edit-input" type="text"
+                                                [(ngModel)]="partnerInput"
+                                                (keydown)="addPartnerToEdit($event)"
+                                                [placeholder]="'professional.fields.suppliersAdd' | transloco" />
+                                            @if (editPartnerList().length) {
+                                                <ul class="pro-list">
+                                                    @for (name of editPartnerList(); track name) {
+                                                        <li class="pro-service-edit-item">
+                                                            <span>{{ name }}</span>
+                                                            <button class="pro-service-remove" type="button" (click)="removePartnerFromEdit(name)">
+                                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                                            </button>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            }
+                                        } @else if (pro.professionalProfile.suppliers.length) {
+                                            <ul class="pro-list pro-list--arrow">
+                                                @for (s of pro.professionalProfile.suppliers; track s) {
+                                                    <li>{{ s }}</li>
+                                                }
+                                            </ul>
+                                        } @else {
+                                            <p class="pro-empty">{{ 'dashboard.pro.noPartners' | transloco }}</p>
+                                        }
+                                    </div>
+
+                                    <!-- ── Contact de confiance ── -->
+                                    <div class="pro-block">
+                                        <div class="pro-group-header">
+                                            <h3>{{ 'dashboard.pro.trustedContact' | transloco }}</h3>
+                                            @if (!editTrustedContactMode()) {
+                                                <button class="pro-edit-btn" type="button" (click)="enterEditTrustedContact()">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                                </button>
+                                            } @else {
+                                                <div class="pro-edit-actions">
+                                                    <button class="pro-cancel-btn" type="button" (click)="cancelEditTrustedContact()">
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                                    </button>
+                                                    <button class="pro-save-btn" type="button" (click)="saveEditTrustedContact()" [disabled]="savingTrustedContact()">
+                                                        @if (savingTrustedContact()) { <span class="pro-spinner-sm"></span> }
+                                                        @else { <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> }
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                        @if (editTrustedContactMode()) {
+                                            <div class="pro-trusted-edit">
+                                                <input class="pro-edit-input" type="text"
+                                                    [(ngModel)]="editTrustedContact.name"
+                                                    [placeholder]="'professional.fields.trustName' | transloco" />
+                                                <input class="pro-edit-input" type="tel"
+                                                    [(ngModel)]="editTrustedContact.phone"
+                                                    [placeholder]="'professional.fields.trustPhone' | transloco" />
+                                            </div>
+                                        } @else if (pro.professionalProfile.trustedContactName) {
+                                            <p class="trusted-contact-name">{{ pro.professionalProfile.trustedContactName }}</p>
+                                            @if (pro.professionalProfile.trustedContactPhone) {
+                                                <p class="trusted-contact-phone">{{ pro.professionalProfile.trustedContactPhone }}</p>
+                                            }
+                                        } @else {
+                                            <p class="pro-empty">{{ 'dashboard.pro.trustedContactNone' | transloco }}</p>
                                         }
                                     </div>
                                 }
 
                                 @case ('services') {
-                                    @if (pro.professionalProfile.services.length) {
+                                    <div class="pro-group-header">
+                                        <h3>{{ 'dashboard.pro.servicesTitle' | transloco }}</h3>
+                                        @if (!editServicesMode()) {
+                                            <button class="pro-edit-btn" type="button" (click)="enterEditServices()">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                            </button>
+                                        } @else {
+                                            <div class="pro-edit-actions">
+                                                <button class="pro-cancel-btn" type="button" (click)="cancelEditServices()">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                                </button>
+                                                <button class="pro-save-btn" type="button" (click)="saveEditServices()" [disabled]="savingServices()">
+                                                    @if (savingServices()) { <span class="pro-spinner-sm"></span> }
+                                                    @else { <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> }
+                                                </button>
+                                            </div>
+                                        }
+                                    </div>
+                                    @if (editServicesMode()) {
+                                        <div class="pro-service-search">
+                                            <input class="pro-edit-input" type="text"
+                                                [(ngModel)]="serviceQuery"
+                                                (input)="searchServices()"
+                                                [placeholder]="'dashboard.pro.servicesSearch' | transloco" />
+                                            @if (searchingServices()) {
+                                                <span class="pro-spinner-sm pro-spinner-sm--inline"></span>
+                                            }
+                                            @if (serviceResults().length) {
+                                                <ul class="pro-service-results">
+                                                    @for (s of serviceResults(); track s.id) {
+                                                        <li class="pro-service-result" (click)="addServiceToEdit(s)">{{ s.description }}</li>
+                                                    }
+                                                </ul>
+                                            }
+                                        </div>
+                                        <ul class="pro-list">
+                                            @for (s of editServiceList(); track s.id) {
+                                                <li class="pro-service-edit-item">
+                                                    <span>{{ s.description }}</span>
+                                                    <button class="pro-service-remove" type="button" (click)="removeServiceFromEdit(s.id)">
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                                    </button>
+                                                </li>
+                                            }
+                                        </ul>
+                                    } @else if (pro.professionalProfile.services.length) {
                                         <ul class="pro-list pro-list--check">
                                             @for (service of pro.professionalProfile.services; track service.id) {
                                                 <li>{{ service.description }}</li>
                                             }
                                         </ul>
+                                    } @else {
+                                        <p class="pro-empty">{{ 'dashboard.pro.noServices' | transloco }}</p>
                                     }
                                 }
 

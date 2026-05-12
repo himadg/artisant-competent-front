@@ -585,7 +585,7 @@
       "trustPhone": "Téléphone de la personne de confiance",
       "rib": "RIB (relevé d'identité bancaire)",
       "suppliers": "Fournisseurs",
-      "suppliersAdd": "Ajouter un fournisseur (appuyer sur entrée pour valider)"
+      "suppliersAdd": "Ajouter un fournisseur (entrée pour valider)"
     }
   },
   "searchPro": {
@@ -744,7 +744,7 @@
         "invoices": "Factures",
         "more": "Plus"
       },
-      "since": "Inscrit depuis",
+      "since": "Inscrit(e) depuis",
       "sections": {
         "personalInfo": "Informations personnelles",
         "address": "Adresse"
@@ -768,7 +768,7 @@
       },
       "tabs": {
         "presentation": "Présentation",
-        "services": "Services proposés",
+        "services": "Services",
         "missions": "Missions",
         "reviews": "Avis",
         "documents": "Documents"
@@ -794,19 +794,32 @@
         "invoices": "Factures",
         "more": "Plus"
       },
-      "since": "Inscrit depuis",
+      "since": "Inscrit(e) depuis",
       "amod": "AMOD",
+      "descriptionTitle": "Présentation",
+      "servicesTitle": "Services proposés",
+      "servicesSearch": "Rechercher un service... (3 caractères min.)",
       "trustedContact": "Contact de confiance",
+      "trustedContactNone": "Aucun contact de confiance mentionné",
       "trades": "Métiers",
+      "noTrades": "Aucun métier renseigné",
       "hours": "Horaires d'ouverture",
-      "closed": "Fermé"
+      "noHours": "Aucun horaire renseigné",
+      "open": "Ouvert",
+      "closed": "Fermé",
+      "noServices": "Aucun service renseigné",
+      "partners": "Partenaires fournisseurs",
+      "partnersSearch": "Rechercher un fournisseur... (2 caractères min.)",
+      "noPartners": "Aucun partenaire fournisseur renseigné"
     },
     "empty": {
-      "requests": "Aucune demande pour le moment.",
-      "quotes": "Aucun devis pour le moment.",
-      "invoices": "Aucune facture pour le moment.",
-      "legal": "Aucune information légale disponible.",
-      "practices": "Aucune bonne pratique disponible."
+      "requests": "Aucune demande pour le moment",
+      "quotes": "Aucun devis pour le moment",
+      "invoices": "Aucune facture pour le moment",
+      "legal": "Aucune information légale disponible",
+      "practices": "Aucune bonne pratique disponible",
+      "missions": "Aucune mission pour le moment",
+      "reviews": "Aucun avis pour le moment"
     }
   }
 }

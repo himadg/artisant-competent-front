@@ -585,7 +585,7 @@
       "trustName": "Trusted contact name",
       "trustPhone": "Trusted contact phone",
       "suppliers": "Suppliers",
-      "suppliersAdd": "Add a supplier (press enter to confirm)"
+      "suppliersAdd": "Add a supplier (enter to confirm)"
     }
   },
   "searchPro": {
@@ -768,7 +768,7 @@
       },
       "tabs": {
         "presentation": "Presentation",
-        "services": "Services offered",
+        "services": "Services",
         "missions": "Missions",
         "reviews": "Reviews",
         "documents": "Documents"
@@ -796,17 +796,30 @@
       },
       "since": "Member since",
       "amod": "AMOD",
+      "descriptionTitle": "Presentation",
+      "servicesTitle": "Services offered",
+      "servicesSearch": "Search for a service... (3 characters min.)",
       "trustedContact": "Trusted contact",
+      "trustedContactNone": "No trusted contact mentioned",
       "trades": "Trades",
+      "noTrades": "No trades listed",
       "hours": "Opening hours",
-      "closed": "Closed"
+      "noHours": "No opening hours set",
+      "open": "Open",
+      "closed": "Closed",
+      "noServices": "No services listed",
+      "partners": "Supplier partners",
+      "partnersSearch": "Search for a supplier... (2 characters min.)",
+      "noPartners": "No supplier partners listed"
     },
     "empty": {
-      "requests": "No requests yet.",
-      "quotes": "No quotes yet.",
-      "invoices": "No invoices yet.",
-      "legal": "No legal information available.",
-      "practices": "No best practices available."
+      "requests": "No requests yet",
+      "quotes": "No quotes yet",
+      "invoices": "No invoices yet",
+      "legal": "No legal information available",
+      "practices": "No best practices available",
+      "missions": "No missions yet",
+      "reviews": "No reviews yet"
     }
   }
 }

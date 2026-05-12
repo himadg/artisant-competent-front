@@ -12,6 +12,10 @@ export interface DocumentKeys {
   ribKey: string;
 }
 
+type OpeningHoursUpdate = {
+  days: { day: string; closed: boolean; intervals: { start: string; end: string }[] }[];
+};
+
 @Injectable({ providedIn: 'root' })
 export class UserApiService {
   private readonly http = inject(HttpClient);
@@ -33,6 +37,19 @@ export class UserApiService {
     return this.http.patch<void>(`/api/users/${userId}`, data);
   }
 
+  updateProfessional(userId: string, data: Partial<{
+    companyName: string;
+    description: string;
+    trustedContactName: string | null;
+    trustedContactPhone: string | null;
+    tradeIds: string[];
+    serviceIds: string[];
+    suppliers: string[];
+    openingHours: OpeningHoursUpdate;
+  }>): Observable<void> {
+    return this.http.patch<void>(`/api/professionals/${userId}`, data);
+  }
+
   registerProfessional(
     payload: Record<string, unknown>,
     captchaToken: string,
@@ -45,4 +62,13 @@ export class UserApiService {
   createProfessionalDocuments(userId: string, documents: DocumentKeys): Observable<void> {
     return this.http.patch<void>(`/api/professionals/${userId}/documents`, documents);
   }
+
+  getAllTrades(): Observable<{ id: string; name: string }[]> {
+    return this.http.get<{ id: string; name: string }[]>('/api/trades');
+  }
+
+  searchServices(q: string): Observable<{ id: string; description: string }[]> {
+    return this.http.get<{ id: string; description: string }[]>('/api/services/search', { params: { q } });
+  }
+
 }
