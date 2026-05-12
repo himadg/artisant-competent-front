@@ -23,8 +23,8 @@ export class UserApiService {
   registerIndividual(
     payload: Record<string, unknown>,
     captchaToken: string,
-  ): Observable<{ userId: string }> {
-    return this.http.post<{ userId: string }>('/api/individuals', payload, {
+  ): Observable<{ userId: string; accessToken: string; user: unknown }> {
+    return this.http.post<{ userId: string; accessToken: string; user: unknown }>('/api/individuals', payload, {
       headers: { 'x-turnstile-token': captchaToken },
     });
   }
@@ -53,8 +53,8 @@ export class UserApiService {
   registerProfessional(
     payload: Record<string, unknown>,
     captchaToken: string,
-  ): Observable<{ userId: string; token: string }> {
-    return this.http.post<{ userId: string; token: string }>('/api/professionals', payload, {
+  ): Observable<{ userId: string; accessToken: string; user: unknown }> {
+    return this.http.post<{ userId: string; accessToken: string; user: unknown }>('/api/professionals', payload, {
       headers: { 'x-turnstile-token': captchaToken },
     });
   }

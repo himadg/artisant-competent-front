@@ -12,14 +12,15 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const isAuthEndpoint = req.url.includes('/api/auth/');
 
   const token = authService.accessToken;
-  const outgoing = isAuthEndpoint || !token
-    ? req.clone({ withCredentials: true })
-    : req.clone({ withCredentials: true, setHeaders: { Authorization: `Bearer ${token}` } });
+  const hadBearerToken = !isAuthEndpoint && !!token;
+  const outgoing = hadBearerToken
+    ? req.clone({ withCredentials: true, setHeaders: { Authorization: `Bearer ${token}` } })
+    : req.clone({ withCredentials: true });
 
   return next(outgoing).pipe(
     catchError((error: HttpErrorResponse) => {
-      // 401 sur un endpoint protégé → tente un refresh silencieux puis rejoue la requête
-      if (error.status === 401 && !isAuthEndpoint) {
+      // 401 sur un endpoint JWT protégé → tente un refresh silencieux puis rejoue la requête
+      if (error.status === 401 && hadBearerToken) {
         return from(authService.refreshTokens()).pipe(
           switchMap((newToken) => {
             if (!newToken) return throwError(() => error);

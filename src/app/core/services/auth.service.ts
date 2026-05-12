@@ -67,6 +67,11 @@ export class AuthService {
     }
   }
 
+  setSession(accessToken: string, user: User): void {
+    this._accessToken = accessToken;
+    this._currentUser.set(user);
+  }
+
   setUser(user: User): void {
     this._currentUser.set(user);
   }

@@ -32,6 +32,8 @@ import {
   STREET_NUMBER_REGEXP,
 } from '../../../../core/utils/regexp';
 import { AppConfigService } from '../../../../core/services/app-config.service';
+import { AuthService } from '../../../../core/services/auth.service';
+import { User } from '../../../../shared/interfaces/user';
 
 
 type DocTarget = 'photo' | 'idFront' | 'idBack' | 'insuranceDoc' | 'diplomaDoc' | 'logo' | 'rib';
@@ -51,6 +53,7 @@ export class RegisterProfessional implements OnDestroy {
   private readonly geocodingService = inject(GeocodingService);
   private readonly siretService = inject(SiretService);
   private readonly uploadService = inject(UploadService);
+  private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly destroy$ = new Subject<void>();
 
@@ -512,8 +515,9 @@ export class RegisterProfessional implements OnDestroy {
 
       this.userApi.registerProfessional(payload as Record<string, unknown>, captchaToken)
         .pipe(
-          switchMap(({ userId }) =>
-            forkJoin([
+          switchMap(({ userId, accessToken, user }) => {
+            this.authService.setSession(accessToken, user as User);
+            return forkJoin([
               upload(photo),
               upload(idFront),
               upload(idBack),
@@ -527,8 +531,8 @@ export class RegisterProfessional implements OnDestroy {
                   photoKey, idFrontKey, idBackKey, insuranceDocKey, diplomaDocKey, companyLogoKey, ribKey,
                 }),
               ),
-            ),
-          ),
+            );
+          }),
           takeUntil(this.destroy$),
         )
         .subscribe({
