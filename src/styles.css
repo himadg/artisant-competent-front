@@ -66,15 +66,15 @@
     padding-left: 1rem;
   }
 
-  .pro-main {
+  .pro-main, .ind-main {
     background: var(--secondary-beige);
   }
 
-  .pro-header {
+  .pro-header, .ind-header {
     background: var(--primary-beige);
   }
 
-  .pro-tab-content {
+  .pro-section-content, .ind-section-content {
     background: var(--primary-beige);
   }
 }

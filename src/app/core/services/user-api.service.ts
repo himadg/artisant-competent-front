@@ -29,6 +29,10 @@ export class UserApiService {
     return this.http.patch<void>(`/api/individuals/${userId}/documents`, { photoKey });
   }
 
+  updateUser(userId: string, data: Partial<{ firstName: string; lastName: string; email: string; birthDate: string; gender: string }>): Observable<void> {
+    return this.http.patch<void>(`/api/users/${userId}`, data);
+  }
+
   registerProfessional(
     payload: Record<string, unknown>,
     captchaToken: string,

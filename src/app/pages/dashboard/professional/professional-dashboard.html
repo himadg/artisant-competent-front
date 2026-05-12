@@ -77,7 +77,7 @@
         <!-- ═══════════════ CONTENU PRINCIPAL ═══════════════ -->
         <main class="pro-main">
             <!-- En-tête profil -->
-            <div class="pro-header mb-4 rounded-lg border border-solid border-[var(--border-color)]">
+            <div class="mb-4 rounded-lg border border-solid pro-header">
                 <div class="pro-user">
                     <div class="pro-photo-wrap">
                         @if (pro.professionalProfile.photoUrl) {
@@ -134,109 +134,128 @@
                 </div>
             </div>
 
-                <!-- Contenu des onglets -->
-                <div class="pro-tab-content rounded-lg border border-solid border-[var(--border-color)]">
-                    @switch (activeTab()) {
-                        @case ('presentation') {
-                            <div class="presentation-grid">
-                                <div class="presentation-main">
-                                    <h3>{{ pro.professionalProfile.companyName }}</h3>
-                                    <p class="pro-description">{{ pro.professionalProfile.description }}</p>
+                <!-- Contenu des sections -->
+                <div class="rounded-lg border border-solid pro-section-content">
+                    @switch (activeSection()) {
+                        @case ('profile') {
+                            @switch (activeTab()) {
+                                @case ('presentation') {
+                                    <div class="presentation-grid">
+                                        <div class="presentation-main">
+                                            <h3>{{ pro.professionalProfile.companyName }}</h3>
+                                            <p class="pro-description">{{ pro.professionalProfile.description }}</p>
 
-                                    <div class="trades-hours">
-                                        @if (pro.professionalProfile.trades.length) {
-                                            <div>
-                                                <p class="trades-label">{{ 'dashboard.pro.trades' | transloco }}</p>
-                                                <ul class="pro-list pro-list--arrow">
-                                                    @for (trade of pro.professionalProfile.trades; track trade.id) {
-                                                        <li>{{ trade.name }}</li>
-                                                    }
-                                                </ul>
-                                            </div>
-                                        }
-
-                                        @if (pro.professionalProfile.openingHours?.days?.length) {
-                                            <div class="opening-hours">
-                                                <p class="opening-hours-label">{{ 'dashboard.pro.hours' | transloco }}</p>
-                                                <ul class="hours-list">
-                                                    @for (day of pro.professionalProfile.openingHours!.days; track day.day) {
-                                                        <li class="hours-item">
-                                                            <span class="hours-day">{{ 'supplier.days.' + day.day | transloco }}</span>
-                                                            @if (day.closed) {
-                                                                <span class="hours-closed">{{ 'dashboard.pro.closed' | transloco }}</span>
-                                                            } @else {
-                                                                <span class="hours-value">{{ day.intervals[0]?.start }} – {{ day.intervals[0]?.end }}</span>
+                                            <div class="trades-hours">
+                                                @if (pro.professionalProfile.trades.length) {
+                                                    <div>
+                                                        <p class="trades-label">{{ 'dashboard.pro.trades' | transloco }}</p>
+                                                        <ul class="pro-list pro-list--arrow">
+                                                            @for (trade of pro.professionalProfile.trades; track trade.id) {
+                                                                <li>{{ trade.name | transloco }}</li>
                                                             }
-                                                        </li>
-                                                    }
-                                                </ul>
-                                            </div>
-                                        }
-                                    </div>
-                                </div>
+                                                        </ul>
+                                                    </div>
+                                                }
 
-                                @if (pro.professionalProfile.trustedContactName) {
-                                    <div class="trusted-contact">
-                                        <p class="trusted-contact-label">{{ 'dashboard.pro.trustedContact' | transloco }}</p>
-                                        <p class="trusted-contact-name">{{ pro.professionalProfile.trustedContactName }}</p>
-                                        @if (pro.professionalProfile.trustedContactPhone) {
-                                            <p class="trusted-contact-phone">{{ pro.professionalProfile.trustedContactPhone }}</p>
+                                                @if (pro.professionalProfile.openingHours?.days?.length) {
+                                                    <div class="opening-hours">
+                                                        <p class="opening-hours-label">{{ 'dashboard.pro.hours' | transloco }}</p>
+                                                        <ul class="hours-list">
+                                                            @for (day of pro.professionalProfile.openingHours!.days; track day.day) {
+                                                                <li class="hours-item">
+                                                                    <span class="hours-day">{{ 'supplier.days.' + day.day | transloco }}</span>
+                                                                    @if (day.closed) {
+                                                                        <span class="hours-closed">{{ 'dashboard.pro.closed' | transloco }}</span>
+                                                                    } @else {
+                                                                        <span class="hours-value">{{ day.intervals[0]?.start }} – {{ day.intervals[0]?.end }}</span>
+                                                                    }
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+
+                                        @if (pro.professionalProfile.trustedContactName) {
+                                            <div class="trusted-contact">
+                                                <p class="trusted-contact-label">{{ 'dashboard.pro.trustedContact' | transloco }}</p>
+                                                <p class="trusted-contact-name">{{ pro.professionalProfile.trustedContactName }}</p>
+                                                @if (pro.professionalProfile.trustedContactPhone) {
+                                                    <p class="trusted-contact-phone">{{ pro.professionalProfile.trustedContactPhone }}</p>
+                                                }
+                                            </div>
                                         }
                                     </div>
                                 }
-                            </div>
-                        }
 
-                        @case ('services') {
-                            @if (pro.professionalProfile.services.length) {
-                                <ul class="pro-list pro-list--check">
-                                    @for (service of pro.professionalProfile.services; track service.id) {
-                                        <li>{{ service.description }}</li>
+                                @case ('services') {
+                                    @if (pro.professionalProfile.services.length) {
+                                        <ul class="pro-list pro-list--check">
+                                            @for (service of pro.professionalProfile.services; track service.id) {
+                                                <li>{{ service.description }}</li>
+                                            }
+                                        </ul>
                                     }
-                                </ul>
+                                }
+
+                                @case ('missions') {
+                                    <p class="pro-empty">{{ 'dashboard.empty.missions' | transloco }}</p>
+                                }
+
+                                @case ('reviews') {
+                                    <p class="pro-empty">{{ 'dashboard.empty.reviews' | transloco }}</p>
+                                }
+
+                                @case ('documents') {
+                                    <div class="doc-grid">
+                                        @for (doc of [
+                                            { key: pro.professionalProfile.idFrontKey,     url: pro.professionalProfile.idFrontUrl,     label: 'dashboard.pro.docs.idFront' },
+                                            { key: pro.professionalProfile.idBackKey,      url: pro.professionalProfile.idBackUrl,      label: 'dashboard.pro.docs.idBack' },
+                                            { key: pro.professionalProfile.insuranceDocKey, url: pro.professionalProfile.insuranceDocUrl, label: 'dashboard.pro.docs.insurance' },
+                                            { key: pro.professionalProfile.diplomaDocKey,  url: pro.professionalProfile.diplomaDocUrl,  label: 'dashboard.pro.docs.diploma' },
+                                            { key: pro.professionalProfile.ribKey,         url: pro.professionalProfile.ribUrl,         label: 'dashboard.pro.docs.rib' },
+                                            { key: pro.professionalProfile.companyLogoKey, url: pro.professionalProfile.logoUrl,        label: 'dashboard.pro.docs.logo' }
+                                        ]; track doc.key) {
+                                            <div class="doc-card">
+                                                <div class="doc-card-preview">
+                                                    @if (doc.url && doc.key.endsWith('.webp')) {
+                                                        <img [src]="doc.url" [alt]="doc.label | transloco" class="doc-card-img" />
+                                                    } @else {
+                                                        <svg class="doc-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+                                                    }
+                                                </div>
+                                                <div class="doc-card-body">
+                                                    <p class="doc-card-label">{{ doc.label | transloco }}</p>
+                                                    @if (doc.url) {
+                                                        <a [href]="doc.url" target="_blank" rel="noopener" class="doc-card-btn">
+                                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                                            {{ 'dashboard.pro.docs.download' | transloco }}
+                                                        </a>
+                                                    } @else {
+                                                        <span class="doc-card-missing">{{ 'dashboard.pro.docs.missing' | transloco }}</span>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                }
                             }
                         }
-
-                        @case ('missions') {
-                            <p class="pro-empty">{{ 'dashboard.pro.empty.missions' | transloco }}</p>
+                        @case ('requests') {
+                            <p class="pro-empty">{{ 'dashboard.empty.requests' | transloco }}</p>
                         }
-
-                        @case ('reviews') {
-                            <p class="pro-empty">{{ 'dashboard.pro.empty.reviews' | transloco }}</p>
+                        @case ('quotes') {
+                            <p class="pro-empty">{{ 'dashboard.empty.quotes' | transloco }}</p>
                         }
-
-                        @case ('documents') {
-                            <div class="doc-grid">
-                                @for (doc of [
-                                    { key: pro.professionalProfile.idFrontKey,     url: pro.professionalProfile.idFrontUrl,     label: 'dashboard.pro.docs.idFront' },
-                                    { key: pro.professionalProfile.idBackKey,      url: pro.professionalProfile.idBackUrl,      label: 'dashboard.pro.docs.idBack' },
-                                    { key: pro.professionalProfile.insuranceDocKey, url: pro.professionalProfile.insuranceDocUrl, label: 'dashboard.pro.docs.insurance' },
-                                    { key: pro.professionalProfile.diplomaDocKey,  url: pro.professionalProfile.diplomaDocUrl,  label: 'dashboard.pro.docs.diploma' },
-                                    { key: pro.professionalProfile.ribKey,         url: pro.professionalProfile.ribUrl,         label: 'dashboard.pro.docs.rib' },
-                                    { key: pro.professionalProfile.companyLogoKey, url: pro.professionalProfile.logoUrl,        label: 'dashboard.pro.docs.logo' }
-                                ]; track doc.key) {
-                                    <div class="doc-card">
-                                        <div class="doc-card-preview">
-                                            @if (doc.url && doc.key.endsWith('.webp')) {
-                                                <img [src]="doc.url" [alt]="doc.label | transloco" class="doc-card-img" />
-                                            } @else {
-                                                <svg class="doc-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
-                                            }
-                                        </div>
-                                        <div class="doc-card-body">
-                                            <p class="doc-card-label">{{ doc.label | transloco }}</p>
-                                            @if (doc.url) {
-                                                <a [href]="doc.url" target="_blank" rel="noopener" class="doc-card-btn">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                                    {{ 'dashboard.pro.docs.download' | transloco }}
-                                                </a>
-                                            } @else {
-                                                <span class="doc-card-missing">{{ 'dashboard.pro.docs.missing' | transloco }}</span>
-                                            }
-                                        </div>
-                                    </div>
-                                }
-                            </div>
+                        @case ('invoices') {
+                            <p class="pro-empty">{{ 'dashboard.empty.invoices' | transloco }}</p>
+                        }
+                        @case ('practices') {
+                            <p class="pro-empty">{{ 'dashboard.empty.practices' | transloco }}</p>
+                        }
+                        @case ('legal') {
+                            <p class="pro-empty">{{ 'dashboard.empty.legal' | transloco }}</p>
                         }
                     }
                 </div>

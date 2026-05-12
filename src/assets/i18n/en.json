@@ -755,13 +755,6 @@
         "email": "Email",
         "birthDate": "Date of birth",
         "gender": "Gender"
-      },
-      "empty": {
-        "requests": "No requests yet.",
-        "quotes": "No quotes yet.",
-        "invoices": "No invoices yet.",
-        "legal": "No legal information available.",
-        "practices": "No best practices available."
       }
     },
     "pro": {
@@ -807,6 +800,13 @@
       "trades": "Trades",
       "hours": "Opening hours",
       "closed": "Closed"
+    },
+    "empty": {
+      "requests": "No requests yet.",
+      "quotes": "No quotes yet.",
+      "invoices": "No invoices yet.",
+      "legal": "No legal information available.",
+      "practices": "No best practices available."
     }
   }
 }

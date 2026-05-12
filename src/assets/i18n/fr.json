@@ -755,13 +755,6 @@
         "email": "Email",
         "birthDate": "Date de naissance",
         "gender": "Genre"
-      },
-      "empty": {
-        "requests": "Aucune demande pour le moment.",
-        "quotes": "Aucun devis pour le moment.",
-        "invoices": "Aucune facture pour le moment.",
-        "legal": "Aucune information légale disponible.",
-        "practices": "Aucune bonne pratique disponible."
       }
     },
     "pro": {
@@ -807,6 +800,13 @@
       "trades": "Métiers",
       "hours": "Horaires d'ouverture",
       "closed": "Fermé"
+    },
+    "empty": {
+      "requests": "Aucune demande pour le moment.",
+      "quotes": "Aucun devis pour le moment.",
+      "invoices": "Aucune facture pour le moment.",
+      "legal": "Aucune information légale disponible.",
+      "practices": "Aucune bonne pratique disponible."
     }
   }
 }
