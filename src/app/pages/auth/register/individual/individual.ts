@@ -8,6 +8,8 @@ import { TurnstileComponent } from '../../../../shared/components/turnstile/turn
 import { AppConfigService } from '../../../../core/services/app-config.service';
 import { UploadService } from '../../../../core/services/upload.service';
 import { UserApiService } from '../../../../core/services/user-api.service';
+import { AuthService } from '../../../../core/services/auth.service';
+import { User } from '../../../../shared/interfaces/user';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,6 +24,7 @@ export class RegisterIndividual implements OnDestroy {
   private readonly geocodingService = inject(GeocodingService);
   private readonly uploadService = inject(UploadService);
   private readonly userApi = inject(UserApiService);
+  private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly destroy$ = new Subject<void>();
   private readonly addressSearch$ = new Subject<string>();
@@ -145,13 +148,14 @@ export class RegisterIndividual implements OnDestroy {
 
     this.userApi.registerIndividual(payload as Record<string, unknown>, captchaToken)
       .pipe(
-        switchMap(({ userId }) =>
-          (photo ? this.uploadService.upload(photo) : of('')).pipe(
+        switchMap(({ userId, accessToken, user }) => {
+          this.authService.setSession(accessToken, user as User);
+          return (photo ? this.uploadService.upload(photo) : of('')).pipe(
             switchMap(photoKey =>
               photoKey ? this.userApi.createIndividualDocuments(userId, photoKey) : of(undefined),
             ),
-          ),
-        ),
+          );
+        }),
         takeUntil(this.destroy$),
       )
       .subscribe({
