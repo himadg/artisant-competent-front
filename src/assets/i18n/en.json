@@ -160,7 +160,8 @@
     "delete": "Delete",
     "home": "Home",
     "jobs": "Trades",
-    "affiliation": "Membership"
+    "affiliation": "Membership",
+    "loading": "Loading..."
   },
   "auth": {
     "register": "Sign up",
@@ -425,7 +426,7 @@
     "addRib": "Add bank account (RIB)",
     "offerServices": "I want to offer my services",
     "captcha": "I am not a robot",
-    "cgu": "I accept the Terms",
+    "cguv": "I accept the Terms",
     "submit": "Submit",
     "gender": {
       "select": "Select gender",
@@ -724,6 +725,42 @@
     "errors": {
       "load": "Unable to load dashboard",
       "unknownRole": "Unknown user role"
+    },
+    "individual": {
+      "nav": {
+        "profile": "Personal info",
+        "requests": "My requests",
+        "quotes": "My quotes",
+        "invoices": "My invoices",
+        "legal": "Legal information",
+        "practices": "Best practices"
+      },
+      "mobile": {
+        "profile": "Account",
+        "requests": "Requests",
+        "quotes": "Quotes",
+        "invoices": "Invoices",
+        "more": "More"
+      },
+      "since": "Member since",
+      "sections": {
+        "personalInfo": "Personal information",
+        "address": "Address"
+      },
+      "fields": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "birthDate": "Date of birth",
+        "gender": "Gender"
+      },
+      "empty": {
+        "requests": "No requests yet.",
+        "quotes": "No quotes yet.",
+        "invoices": "No invoices yet.",
+        "legal": "No legal information available.",
+        "practices": "No best practices available."
+      }
     },
     "pro": {
       "nav": {

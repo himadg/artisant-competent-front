@@ -145,6 +145,5 @@ export class RegisterSupplier {
       logoName: this.logoName(),
       ribName: this.ribName(),
     } as any;
-    console.log(payload);
   }
 }

@@ -20,15 +20,25 @@ export class TurnstileComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('widgetEl') private readonly widgetEl!: ElementRef<HTMLDivElement>;
   private widgetId: string | null = null;
+  private pollTimeout = 0;
 
   ngAfterViewInit() {
-    if (typeof turnstile === 'undefined') return;
-    this.widgetId = turnstile.render(this.widgetEl.nativeElement, {
-      sitekey: this.siteKey(),
-      callback: (token: string) => this.resolved.emit(token),
-      'error-callback': () => this.errored.emit(),
-      'expired-callback': () => this.expired.emit(),
-    });
+    this.renderWhenReady();
+  }
+
+  private renderWhenReady(attempts = 0) {
+    if (typeof turnstile !== 'undefined') {
+      this.widgetId = turnstile.render(this.widgetEl.nativeElement, {
+        sitekey: this.siteKey(),
+        callback: (token: string) => this.resolved.emit(token),
+        'error-callback': () => this.errored.emit(),
+        'expired-callback': () => this.expired.emit(),
+      });
+      return;
+    }
+    if (attempts < 50) {
+      this.pollTimeout = window.setTimeout(() => this.renderWhenReady(attempts + 1), 100);
+    }
   }
 
   reset() {
@@ -36,6 +46,7 @@ export class TurnstileComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    clearTimeout(this.pollTimeout);
     if (this.widgetId !== null) turnstile.remove(this.widgetId);
   }
 }

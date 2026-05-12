@@ -16,6 +16,19 @@ export interface DocumentKeys {
 export class UserApiService {
   private readonly http = inject(HttpClient);
 
+  registerIndividual(
+    payload: Record<string, unknown>,
+    captchaToken: string,
+  ): Observable<{ userId: string }> {
+    return this.http.post<{ userId: string }>('/api/individuals', payload, {
+      headers: { 'x-turnstile-token': captchaToken },
+    });
+  }
+
+  createIndividualDocuments(userId: string, photoKey: string): Observable<void> {
+    return this.http.patch<void>(`/api/individuals/${userId}/documents`, { photoKey });
+  }
+
   registerProfessional(
     payload: Record<string, unknown>,
     captchaToken: string,

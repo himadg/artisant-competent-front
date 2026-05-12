@@ -47,8 +47,8 @@ export class ProfessionalDashboard implements OnInit {
   ngOnInit() {
     const userId = this.route.snapshot.paramMap.get('userId');
     const request$ = userId
-      ? this.dashboardApi.getProDashboard(userId)
-      : this.dashboardApi.getOwnDashboard();
+      ? this.dashboardApi.getDashboard<ProfessionalDashboardData>(userId)
+      : this.dashboardApi.getOwnDashboard<ProfessionalDashboardData>();
 
     request$.subscribe({
       next: (data) => { this.data.set(data); this.loading.set(false); },

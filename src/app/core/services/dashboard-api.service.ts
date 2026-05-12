@@ -7,12 +7,12 @@ import { ProfessionalDashboardData } from '../../shared/interfaces/professional-
 export class DashboardApiService {
   private readonly http = inject(HttpClient);
 
-  getOwnDashboard(): Observable<ProfessionalDashboardData> {
-    return this.http.get<ProfessionalDashboardData>('/api/dashboard');
+  getOwnDashboard<T>(): Observable<T> {
+    return this.http.get<T>('/api/dashboard');
   }
 
-  getProDashboard(userId: string): Observable<ProfessionalDashboardData> {
-    return this.http.get<ProfessionalDashboardData>(`/api/dashboard/${userId}`);
+  getDashboard<T>(userId: string): Observable<T> {
+    return this.http.get<T>(`/api/dashboard/${userId}`);
   }
 
   getSignedUrl(key: string): Observable<string> {

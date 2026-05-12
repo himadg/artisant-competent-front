@@ -693,7 +693,7 @@
                 </div>
             </ng-container>
 
-            <!-- captcha et CGU au niveau racine -->
+            <!-- captcha et CGUV au niveau racine -->
             <app-turnstile
                 [siteKey]="turnstileSiteKey"
                 (resolved)="onCaptchaResolved($event)"
@@ -702,7 +702,7 @@
             />
             <div class="flex gap-2 items-center">
                 <input type="checkbox" formControlName="terms" />
-                <span>{{ 'register.cgu' | transloco }} *</span>
+                <span>{{ 'register.cguv' | transloco }} *</span>
             </div>
 
             <div class="flex justify-between">

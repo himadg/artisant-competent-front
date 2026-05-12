@@ -13,4 +13,10 @@ export class UploadService {
       .post<{ key: string }>('/api/storage/upload', formData)
       .pipe(map(r => r.key));
   }
+
+  getSignedUrl(key: string, expiresIn = 900): Observable<string> {
+    return this.http
+      .post<{ url: string }>('/api/storage/signed-url', { key, operation: 'get', expiresIn })
+      .pipe(map(r => r.url));
+  }
 }

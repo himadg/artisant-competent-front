@@ -160,7 +160,8 @@
     "delete": "Supprimer",
     "home": "Accueil",
     "jobs": "Métiers",
-    "affiliation": "Affiliation"
+    "affiliation": "Affiliation",
+    "loading": "Chargement..."
   },
   "auth": {
     "register": "Inscription",
@@ -425,7 +426,7 @@
     "addRib": "Ajouter un RIB",
     "offerServices": "Je souhaite offrir mes services",
     "captcha": "Je ne suis pas un robot",
-    "cgu": "J'accepte les CGU",
+    "cguv": "J'accepte les CGU et CGV",
     "submit": "Valider",
     "gender": {
       "select": "Sélectionner le genre",
@@ -526,7 +527,7 @@
       "siretPattern": "Le SIRET doit contenir 14 chiffres",
       "siretMismatch": "Le nom de la société ne correspond pas au SIRET renseigné",
       "captchaRequired": "Veuillez cocher cette case",
-      "termsRequired": "Veuillez accepter les CGU",
+      "termsRequired": "Veuillez accepter les CGU et CGV",
       "descriptionMax": "500 caractères maximum",
       "yearsMin": "Doit être supérieur ou égal à 0",
       "openingAtLeastOne": "Veuillez renseigner au moins un jour avec des horaires d'ouverture et de fermeture",
@@ -724,6 +725,42 @@
     "errors": {
       "load": "Impossible de charger le dashboard",
       "unknownRole": "Rôle utilisateur non reconnu"
+    },
+    "individual": {
+      "nav": {
+        "profile": "Infos personnelles",
+        "requests": "Mes demandes",
+        "quotes": "Mes devis",
+        "invoices": "Mes factures",
+        "legal": "Informations légales",
+        "practices": "Bonnes pratiques"
+      },
+      "mobile": {
+        "profile": "Compte",
+        "requests": "Demandes",
+        "quotes": "Devis",
+        "invoices": "Factures",
+        "more": "Plus"
+      },
+      "since": "Inscrit depuis",
+      "sections": {
+        "personalInfo": "Informations personnelles",
+        "address": "Adresse"
+      },
+      "fields": {
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "email": "Email",
+        "birthDate": "Date de naissance",
+        "gender": "Genre"
+      },
+      "empty": {
+        "requests": "Aucune demande pour le moment.",
+        "quotes": "Aucun devis pour le moment.",
+        "invoices": "Aucune facture pour le moment.",
+        "legal": "Aucune information légale disponible.",
+        "practices": "Aucune bonne pratique disponible."
+      }
     },
     "pro": {
       "nav": {

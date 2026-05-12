@@ -1,33 +1,50 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
+import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, of, takeUntil } from 'rxjs';
+import { GeocodingService, AddressSuggestion } from '../../../../core/services/geocoding.service';
+import { TurnstileComponent } from '../../../../shared/components/turnstile/turnstile';
+import { AppConfigService } from '../../../../core/services/app-config.service';
+import { UploadService } from '../../../../core/services/upload.service';
+import { UserApiService } from '../../../../core/services/user-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'register-individual',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TranslocoModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslocoModule, TurnstileComponent],
   templateUrl: './individual.html',
   styleUrl: './individual.scss',
 })
-export class RegisterIndividual {
-  readonly fb = new FormBuilder();
+export class RegisterIndividual implements OnDestroy {
+  private readonly fb = inject(FormBuilder);
+  private readonly geocodingService = inject(GeocodingService);
+  private readonly uploadService = inject(UploadService);
+  private readonly userApi = inject(UserApiService);
+  private readonly router = inject(Router);
+  private readonly destroy$ = new Subject<void>();
+  private readonly addressSearch$ = new Subject<string>();
+
+  readonly turnstileSiteKey = inject(AppConfigService).get('turnstileSiteKey');
+  readonly today = new Date().toISOString().split('T')[0];
+
   readonly photoPreview = signal<string | null>(null);
-  readonly idPreview = signal<string | null>(null);
-  readonly idName = signal<string | null>(null);
-  readonly ribPreview = signal<string | null>(null);
-  readonly ribName = signal<string | null>(null);
-  readonly tradesKeys = ['plumbing', 'electricity', 'masonry', 'gardening'];
-  readonly servicesKeys = ['installation', 'repair', 'maintenance', 'consulting'];
+  readonly addressSuggestions = signal<AddressSuggestion[]>([]);
+  readonly addressOpen = signal(false);
+  readonly captchaToken = signal<string | null>(null);
+  readonly showPassword = signal(false);
+  readonly showConfirmPassword = signal(false);
 
   readonly form = this.fb.group({
+    photo: new FormControl<File | null>(null),
     gender: ['', Validators.required],
     lastName: ['', Validators.required],
     firstName: ['', Validators.required],
     birthDate: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
-    confirmPassword: ['', [Validators.required]],
+    confirmPassword: ['', Validators.required],
     phone: ['', Validators.required],
     address: this.fb.group({
       streetNumber: ['', Validators.required],
@@ -36,17 +53,66 @@ export class RegisterIndividual {
       postalCode: ['', Validators.required],
       city: ['', Validators.required],
     }),
-    offerServices: [false],
-    trades: [<string[]>[]],
-    services: [<string[]>[]],
-    idCard: new FormControl<File | null>(null),
-    rib: new FormControl<File | null>(null),
     captcha: [false, Validators.requiredTrue],
     terms: [false, Validators.requiredTrue],
   });
 
-  addPhoto(e: Event) {
-    const file = (e.target as HTMLInputElement).files?.[0] ?? null;
+  constructor() {
+    this.addressSearch$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      filter(query => query.length >= 3),
+      switchMap(query => this.geocodingService.search(query)),
+      takeUntil(this.destroy$),
+    ).subscribe(suggestions => this.addressSuggestions.set(suggestions));
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  // --- Address autocomplete ---
+  onAddressSearch(event: Event) {
+    const query = (event.target as HTMLInputElement).value;
+    if (query.length < 3) { this.addressSuggestions.set([]); return; }
+    this.addressSearch$.next(query);
+  }
+
+  selectAddress(address: AddressSuggestion) {
+    this.addressSuggestions.set([]);
+    this.addressOpen.set(false);
+    const group = this.form.get('address')!;
+    const currentNumber = (group.get('streetNumber')!.value ?? '') as string;
+    if (address.streetNumber && !/^\d/.test(currentNumber)) group.get('streetNumber')!.setValue(address.streetNumber);
+    group.patchValue({ streetName: address.streetName, additionalInfo: null, postalCode: address.postalCode, city: address.city } as any);
+  }
+
+  closeAddressSuggestions() { setTimeout(() => this.addressOpen.set(false), 150); }
+
+  onPostalCodeInput(event: Event) {
+    const code = (event.target as HTMLInputElement).value;
+    if (code.length !== 5) return;
+    this.geocodingService.lookupCity(code).pipe(takeUntil(this.destroy$)).subscribe(city => {
+      if (city) this.form.get('address.city')!.setValue(city);
+    });
+  }
+
+  // --- Captcha ---
+  onCaptchaResolved(token: string) {
+    this.captchaToken.set(token);
+    this.form.get('captcha')!.setValue(true);
+  }
+
+  onCaptchaReset() {
+    this.captchaToken.set(null);
+    this.form.get('captcha')!.setValue(false);
+  }
+
+  // --- Photo ---
+  addPhoto(event: Event) {
+    const file = (event.target as HTMLInputElement).files?.[0] ?? null;
+    this.form.get('photo')!.setValue(file);
     if (file) {
       const reader = new FileReader();
       reader.onload = () => this.photoPreview.set(reader.result as string);
@@ -57,114 +123,40 @@ export class RegisterIndividual {
   }
 
   removePhoto() {
-    const ok = confirm('Supprimer la photo ?');
-    if (ok) this.photoPreview.set(null);
-  }
-
-  addId(e: Event) {
-    const file = (e.target as HTMLInputElement).files?.[0] ?? null;
-    if (!file) {
-      this.idPreview.set(null);
-      this.idName.set(null);
-      this.form.patchValue({ idCard: null });
-      return;
+    if (confirm('Supprimer la photo ?')) {
+      this.photoPreview.set(null);
+      this.form.get('photo')!.setValue(null);
     }
-    if (file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = () => this.idPreview.set(reader.result as string);
-      reader.readAsDataURL(file);
-      this.idName.set(file.name);
-    } else {
-      this.idPreview.set(null);
-      this.idName.set(file.name);
-    }
-    this.form.patchValue({ idCard: file });
-  }
-
-  removeId() {
-    const ok = confirm('Supprimer la carte d\'identité ?');
-    if (ok) {
-      this.idPreview.set(null);
-      this.idName.set(null);
-      this.form.patchValue({ idCard: null });
-    }
-  }
-
-  addRib(e: Event) {
-    const file = (e.target as HTMLInputElement).files?.[0] ?? null;
-    if (!file) {
-      this.ribPreview.set(null);
-      this.ribName.set(null);
-      this.form.patchValue({ rib: null });
-      return;
-    }
-    if (file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = () => this.ribPreview.set(reader.result as string);
-      reader.readAsDataURL(file);
-      this.ribName.set(file.name);
-    } else {
-      this.ribPreview.set(null);
-      this.ribName.set(file.name);
-    }
-    this.form.patchValue({ rib: file });
-  }
-
-  removeRib() {
-    const ok = confirm('Supprimer le RIB ?');
-    if (ok) {
-      this.ribPreview.set(null);
-      this.ribName.set(null);
-      this.form.patchValue({ rib: null });
-    }
-  }
-
-  toggleOfferServices(e: Event) {
-    const checked = (e.target as HTMLInputElement).checked;
-    this.form.patchValue({ offerServices: checked });
-    const idCtrl = this.form.get('idCard') as FormControl<File | null>;
-    const ribCtrl = this.form.get('rib') as FormControl<File | null>;
-    if (checked) {
-      idCtrl.setValidators([Validators.required]);
-      ribCtrl.setValidators([Validators.required]);
-    } else {
-      idCtrl.clearValidators();
-      ribCtrl.clearValidators();
-    }
-    idCtrl.updateValueAndValidity();
-    ribCtrl.updateValueAndValidity();
-  }
-
-  isTradeSelected(key: string) {
-    const v = this.form.value.trades as string[];
-    return Array.isArray(v) && v.includes(key);
-  }
-
-  toggleTrade(key: string) {
-    const v = (this.form.value.trades as string[]) ?? [];
-    const next = v.includes(key) ? v.filter((k) => k !== key) : [...v, key];
-    this.form.patchValue({ trades: next });
-  }
-
-  isServiceSelected(key: string) {
-    const v = this.form.value.services as string[];
-    return Array.isArray(v) && v.includes(key);
-  }
-
-  toggleService(key: string) {
-    const v = (this.form.value.services as string[]) ?? [];
-    const next = v.includes(key) ? v.filter((k) => k !== key) : [...v, key];
-    this.form.patchValue({ services: next });
   }
 
   submit() {
+    console.log("form.value:", this.form.value);
     if (this.form.value.password !== this.form.value.confirmPassword) return;
     if (this.form.invalid) return;
+
+    const { gender, lastName, firstName, birthDate, email, password, phone, address, photo } = this.form.value;
+    const captchaToken = this.captchaToken();
+    if (!captchaToken) return;
+
     const payload = {
-      ...this.form.value,
-      idCardName: this.idName(),
-      ribName: this.ribName(),
-    } as any;
-    console.log(payload);
+      user: { gender, lastName, firstName, birthDate, email, password, address },
+      phone,
+    };
+
+    this.userApi.registerIndividual(payload as Record<string, unknown>, captchaToken)
+      .pipe(
+        switchMap(({ userId }) =>
+          (photo ? this.uploadService.upload(photo) : of('')).pipe(
+            switchMap(photoKey =>
+              photoKey ? this.userApi.createIndividualDocuments(userId, photoKey) : of(undefined),
+            ),
+          ),
+        ),
+        takeUntil(this.destroy$),
+      )
+      .subscribe({
+        next: () => { this.router.navigate(['/auth/login']); },
+        error: (err) => { console.error('Erreur inscription:', err); },
+      });
   }
 }
