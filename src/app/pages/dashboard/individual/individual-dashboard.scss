@@ -658,9 +658,14 @@
     cursor: pointer;
     font-size: 0.75rem;
     font-weight: bolder;
+    
+    /* ---- Les propriétés anti-flash mobile ---- */
     appearance: none;
     -webkit-appearance: none;
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent; /* Supprime le flash bleu/gris natif */
+    outline: none;                            /* Supprime l'anneau de focus (souvent noir/bleu) */
+    user-select: none;                        /* Empêche de sélectionner le texte du bouton en restant appuyé */
+    -webkit-user-select: none;
 
     svg {
       width: 1.25rem;
@@ -669,6 +674,15 @@
 
     &.active {
       color: var(--primary-beige);
+      background-color: var(--primary-water-green);
+    }
+
+    /* Optionnel : Désactiver explicitement le changement de background au hover/active s'il y en a un hérité */
+    &:active, &:focus, &:hover {
+      background-color: transparent;
+    }
+
+    &.active:active, &.active:focus, &.active:hover {
       background-color: var(--primary-water-green);
     }
   }
