@@ -1,6 +1,6 @@
 import { Component, signal, inject, OnDestroy, ViewChild } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { CommonModule } from '@angular/common';
+
 import {
   ReactiveFormsModule,
   FormBuilder,
@@ -41,7 +41,7 @@ type DocTarget = 'photo' | 'idFront' | 'idBack' | 'insuranceDoc' | 'diplomaDoc' 
 @Component({
   selector: 'register-professional',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TranslocoModule, TurnstileComponent],
+  imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent],
   templateUrl: './professional.html',
   styleUrl: './professional.scss',
 })

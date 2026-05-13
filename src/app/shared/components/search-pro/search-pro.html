@@ -1,41 +1,30 @@
 <div class="rounded-3xl bg-[var(--primary-water-green)] text-[#f7c6b7] p-4 shadow mt-10 md:p-6 md:rounded-full">
     <form class="flex flex-col gap-3 md:flex-row md:items-end" (ngSubmit)="submit()">
         <div class="flex-1">
-            <input
-                [(ngModel)]="address"
-                name="address"
-                type="text"
+            <input [(ngModel)]="address" name="address" type="text"
                 class="w-full px-3 py-2 rounded-full border bg-[var(--primary-beige)] text-[var(--secondary-water-green)] placeholder:text-[var(--secondary-water-green)]/70"
-                [placeholder]="'searchPro.addressLabel' | transloco"
-            />
+                [placeholder]="'searchPro.addressLabel' | transloco" />
         </div>
 
         <div class="md:w-50">
-            <select
-                [(ngModel)]="trade"
-                name="trade"
-                class="appearance-none w-full px-3 py-2 rounded-full border bg-[var(--primary-beige)] text-[var(--secondary-water-green)]"
-            >
+            <select [(ngModel)]="trade" name="trade"
+                class="appearance-none w-full px-3 py-2 rounded-full border bg-[var(--primary-beige)] text-[var(--secondary-water-green)]">
                 <option value="" disabled selected>{{ 'searchPro.tradeLabel' | transloco }}</option>
-                <option *ngFor="let trade of trades" [value]="trade">
+                @for (trade of trades; track trade) {
+                <option [value]="trade">
                     {{ 'register.options.trades.' + trade | transloco }}
                 </option>
+                }
             </select>
         </div>
 
         <div class="md:w-42">
             <span class="block mb-1 text-sm">{{ 'searchPro.kilometersLabel' | transloco }}</span>
             <div class="relative mx-auto w-40 range-wrap md:w-42">
-                <input
-                    [(ngModel)]="kilometersIndex"
-                    name="kilometersIndex"
-                    type="range"
-                    min="0"
-                    max="5"
-                    step="1"
-                    class="w-full range"
-                />
-                <div class="-translate-x-1/2 -translate-y-1/2 cursor-pointer thumb-value" [style.left.%]="sliderPercent">
+                <input [(ngModel)]="kilometersIndex" name="kilometersIndex" type="range" min="0" max="5" step="1"
+                    class="w-full range" />
+                <div class="-translate-x-1/2 -translate-y-1/2 cursor-pointer thumb-value"
+                    [style.left.%]="sliderPercent">
                     {{ kilometers }}
                 </div>
             </div>

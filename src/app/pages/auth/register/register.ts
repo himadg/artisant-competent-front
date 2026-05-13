@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { RegisterIndividual } from './individual/individual';
@@ -9,7 +9,7 @@ import { UserType } from '../../../core/utils/common-utils';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterLink, TranslocoModule, RegisterIndividual, RegisterProfessional, RegisterSupplier],
+  imports: [RouterLink, TranslocoModule, RegisterIndividual, RegisterProfessional, RegisterSupplier],
   templateUrl: './register.html',
 })
 export class RegisterPage {

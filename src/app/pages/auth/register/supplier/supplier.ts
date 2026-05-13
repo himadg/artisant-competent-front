@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import {
   ReactiveFormsModule,
   FormBuilder,
@@ -14,7 +14,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 @Component({
   selector: 'register-supplier',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TranslocoModule],
+  imports: [ReactiveFormsModule, TranslocoModule],
   templateUrl: './supplier.html',
   styleUrl: './supplier.scss',
 })

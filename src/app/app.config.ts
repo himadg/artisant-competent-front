@@ -1,7 +1,7 @@
 import { ApplicationConfig, inject, LOCALE_ID, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { AppConfigService } from './core/services/app-config.service';
 import { provideRouter, withInMemoryScrolling, TitleStrategy } from '@angular/router';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { apiUrlInterceptor } from './core/interceptors/api-url.interceptor';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import localeFr from '@angular/common/locales/fr';
@@ -19,13 +19,14 @@ import { ThemeService } from './core/services/theme.service';
 // Icons (ng-icons)
 import { provideIcons } from '@ng-icons/core';
 import { lucideSun, lucideMoon } from '@ng-icons/lucide';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: 'top' })),
-    provideHttpClient(withInterceptors([apiUrlInterceptor, authInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([apiUrlInterceptor, authInterceptor])),
     provideTransloco(translocoConfig),
     { provide: TitleStrategy, useClass: TranslocoTitleStrategy },
     { provide: LOCALE_ID, useValue: 'fr' },
@@ -35,6 +36,7 @@ export const appConfig: ApplicationConfig = {
       lucideSun,
       lucideMoon,
     }),
+    provideClientHydration(withEventReplay()),
   ],
 };
 
