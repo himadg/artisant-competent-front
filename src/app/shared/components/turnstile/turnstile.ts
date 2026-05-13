@@ -20,7 +20,7 @@ export class TurnstileComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('widgetEl') private readonly widgetEl!: ElementRef<HTMLDivElement>;
   private widgetId: string | null = null;
-  private pollTimeout = 0;
+  private pollTimeout: ReturnType<typeof setTimeout> | null = null;
 
   ngAfterViewInit() {
     this.renderWhenReady();
@@ -37,7 +37,7 @@ export class TurnstileComponent implements AfterViewInit, OnDestroy {
       return;
     }
     if (attempts < 50) {
-      this.pollTimeout = window.setTimeout(() => this.renderWhenReady(attempts + 1), 100);
+      this.pollTimeout = setTimeout(() => this.renderWhenReady(attempts + 1), 100);
     }
   }
 
@@ -46,7 +46,7 @@ export class TurnstileComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    clearTimeout(this.pollTimeout);
+    if (this.pollTimeout !== null) clearTimeout(this.pollTimeout);
     if (this.widgetId !== null) turnstile.remove(this.widgetId);
   }
 }

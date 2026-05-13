@@ -1,5 +1,5 @@
 import { Component, signal, inject, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ReactiveFormsModule, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
 import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, of, takeUntil } from 'rxjs';
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'register-individual',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TranslocoModule, TurnstileComponent],
+  imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent],
   templateUrl: './individual.html',
   styleUrl: './individual.scss',
 })

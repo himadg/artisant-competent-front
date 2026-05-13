@@ -1,5 +1,5 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, ElementRef, HostListener, ViewChild, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
@@ -8,11 +8,13 @@ import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggl
 @Component({
   selector: 'ac-navbar',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive, TranslocoModule, LangToggle, ThemeToggle],
+  imports: [RouterLink, RouterLinkActive, TranslocoModule, LangToggle, ThemeToggle],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
 export class Navbar {
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+
   // Opens the sandwich menu on mobiles
   mobileNavOpen = false;
   // Opens the registration dropdown on mobiles
@@ -46,20 +48,20 @@ export class Navbar {
   }
 
   toggleDesktopRegister() {
-    if (window.matchMedia('(min-width: 1024px)').matches) return;
+    if (!this.isBrowser || window.matchMedia('(min-width: 1024px)').matches) return;
     this.tabletNavLoginOpen = false;
     this.tabletNavRegisterOpen = !this.tabletNavRegisterOpen;
   }
 
   toggleDesktopLogin() {
-    if (window.matchMedia('(min-width: 1024px)').matches) return;
+    if (!this.isBrowser || window.matchMedia('(min-width: 1024px)').matches) return;
     this.tabletNavRegisterOpen = false;
     this.tabletNavLoginOpen = !this.tabletNavLoginOpen;
   }
 
   @HostListener('document:pointerdown', ['$event'])
   onDocPointerDown(event: PointerEvent) {
-    if (window.matchMedia('(min-width: 1024px)').matches) return;
+    if (!this.isBrowser || window.matchMedia('(min-width: 1024px)').matches) return;
     const target = event.target as Node;
     if (this.tabletNavRegisterOpen) {
       const element = this.registerDropdown?.nativeElement;
