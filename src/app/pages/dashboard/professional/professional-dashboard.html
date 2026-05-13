@@ -392,19 +392,38 @@
                                             @if (searchingServices()) {
                                                 <span class="pro-spinner-sm pro-spinner-sm--inline"></span>
                                             }
-                                            @if (serviceResults().length) {
+                                            @if (unselectedServiceResults.length) {
                                                 <ul class="pro-service-results">
-                                                    @for (s of serviceResults(); track s.id) {
+                                                    @for (s of unselectedServiceResults; track s.id) {
                                                         <li class="pro-service-result" (click)="addServiceToEdit(s)">{{ s.description }}</li>
                                                     }
+                                                    @if (serviceQuery.trim().length >= 3) {
+                                                        <li class="pro-service-result pro-service-result--new" (click)="addPendingService()">
+                                                            + {{ 'dashboard.pro.addService' | transloco }} "{{ serviceQuery.trim() }}"
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            } @else if (serviceQuery.trim().length >= 3 && !searchingServices()) {
+                                                <ul class="pro-service-results">
+                                                    <li class="pro-service-result pro-service-result--new" (click)="addPendingService()">
+                                                        + {{ 'dashboard.pro.addService' | transloco }} "{{ serviceQuery.trim() }}"
+                                                    </li>
                                                 </ul>
                                             }
                                         </div>
                                         <ul class="pro-list">
-                                            @for (s of editServiceList(); track s.id) {
+                                            @for (service of editServiceList(); track service.id) {
                                                 <li class="pro-service-edit-item">
-                                                    <span>{{ s.description }}</span>
-                                                    <button class="pro-service-remove" type="button" (click)="removeServiceFromEdit(s.id)">
+                                                    <span>{{ service.description }}</span>
+                                                    <button class="pro-service-remove" type="button" (click)="removeServiceFromEdit(service.id)">
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                                    </button>
+                                                </li>
+                                            }
+                                            @for (desc of pendingServiceDescriptions(); track desc) {
+                                                <li class="pro-service-edit-item pro-service-edit-item--pending">
+                                                    <span>{{ desc }}</span>
+                                                    <button class="pro-service-remove" type="button" (click)="removePendingService(desc)">
                                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                                                     </button>
                                                 </li>

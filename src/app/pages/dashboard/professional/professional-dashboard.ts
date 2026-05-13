@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
+import { forkJoin } from 'rxjs';
 import { DashboardApiService } from '../../../core/services/dashboard-api.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { UserApiService } from '../../../core/services/user-api.service';
+import { ServiceApiService } from '../../../core/services/service-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProfessionalDashboardData, OpeningHoursDay, Service } from '../../../shared/interfaces/professional-dashboard';
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
@@ -26,6 +28,7 @@ const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'satu
 export class ProfessionalDashboard implements OnInit {
   private readonly dashboardApi = inject(DashboardApiService);
   private readonly userApi = inject(UserApiService);
+  private readonly serviceApi = inject(ServiceApiService);
   private readonly route = inject(ActivatedRoute);
   readonly authService = inject(AuthService);
 
@@ -354,6 +357,7 @@ export class ProfessionalDashboard implements OnInit {
   readonly editServicesMode = signal(false);
   readonly savingServices = signal(false);
   readonly editServiceList = signal<Service[]>([]);
+  readonly pendingServiceDescriptions = signal<string[]>([]);
   serviceQuery = '';
   readonly serviceResults = signal<Service[]>([]);
   readonly searchingServices = signal(false);
@@ -362,6 +366,7 @@ export class ProfessionalDashboard implements OnInit {
     const services = this.data()?.professionalProfile.services;
     if (!services) return;
     this.editServiceList.set([...services]);
+    this.pendingServiceDescriptions.set([]);
     this.serviceQuery = '';
     this.serviceResults.set([]);
     this.editServicesMode.set(true);
@@ -388,16 +393,36 @@ export class ProfessionalDashboard implements OnInit {
     });
   }
 
+  get unselectedServiceResults(): Service[] {
+    const selected = this.editServiceList();
+    const pending = this.pendingServiceDescriptions();
+    return this.serviceResults().filter(
+      result => !selected.some(s => s.id === result.id) && !pending.includes(result.description),
+    );
+  }
+
   addServiceToEdit(service: Service) {
-    if (!this.editServiceList().some((service => service.id === service.id))) {
-      this.editServiceList.update((list) => [...list, service]);
+    if (!this.editServiceList().some(s => s.id === service.id)) {
+      this.editServiceList.update(list => [...list, service]);
     }
     this.serviceQuery = '';
     this.serviceResults.set([]);
   }
 
+  addPendingService() {
+    const description = this.serviceQuery.trim();
+    if (!description || this.pendingServiceDescriptions().includes(description)) return;
+    this.pendingServiceDescriptions.update(list => [...list, description]);
+    this.serviceQuery = '';
+    this.serviceResults.set([]);
+  }
+
+  removePendingService(description: string) {
+    this.pendingServiceDescriptions.update(list => list.filter(d => d !== description));
+  }
+
   removeServiceFromEdit(id: string) {
-    this.editServiceList.update((list) => list.filter((service) => service.id !== id));
+    this.editServiceList.update(list => list.filter(s => s.id !== id));
   }
 
   saveEditServices() {
@@ -405,19 +430,31 @@ export class ProfessionalDashboard implements OnInit {
     if (!data) return;
 
     this.savingServices.set(true);
-    this.userApi.updateProfessional(data.id, { serviceIds: this.editServiceList().map((service) => service.id) }).subscribe({
-      next: () => {
-        const list = this.editServiceList();
-        this.data.update((prev) =>
-          prev
-            ? {
-                ...prev,
-                professionalProfile: { ...prev.professionalProfile, services: [...list] },
-              }
-            : prev,
-        );
-        this.editServicesMode.set(false);
-        this.savingServices.set(false);
+
+    const persist = (serviceIds: string[]) => {
+      this.userApi.updateProfessional(data.id, { serviceIds }).subscribe({
+        next: () => {
+          const list = this.editServiceList();
+          this.data.update(prev =>
+            prev ? { ...prev, professionalProfile: { ...prev.professionalProfile, services: [...list] } } : prev,
+          );
+          this.editServicesMode.set(false);
+          this.savingServices.set(false);
+        },
+        error: () => this.savingServices.set(false),
+      });
+    };
+
+    const pending = this.pendingServiceDescriptions();
+    if (pending.length === 0) {
+      persist(this.editServiceList().map(s => s.id));
+      return;
+    }
+
+    forkJoin(pending.map(desc => this.serviceApi.create(desc))).subscribe({
+      next: (created: Service[]) => {
+        this.editServiceList.update(list => [...list, ...created]);
+        persist([...this.editServiceList().map(s => s.id)]);
       },
       error: () => this.savingServices.set(false),
     });
