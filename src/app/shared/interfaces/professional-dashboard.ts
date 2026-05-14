@@ -51,6 +51,7 @@ export interface ProfessionalDashboardData {
   gender: string;
   birthDate: string;
   createdAt: string;
+  status: 'PENDING_VALIDATION' | 'ACTIVE' | 'REJECTED';
   role: Role;
   address: Address;
   professionalProfile: ProfessionalProfile;

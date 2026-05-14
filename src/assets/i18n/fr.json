@@ -519,7 +519,7 @@
     "addDiplomaDoc": "Ajouter diplôme ou justificatif",
     "addLogo": "Ajouter un logo",
     "addRib": "Ajouter un RIB",
-    "onCall": "Astreinte",
+    "onCall": "Je suis d'astreinte (24h/24 et 7j/7)",
     "errors": {
       "emailRequired": "Au moins un email est requis",
       "required": "Champ requis",

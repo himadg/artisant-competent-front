@@ -46,6 +46,6 @@ export class LoginPage {
   }
 
   togglePassword() {
-    this.showPassword.update(v => !v);
+    this.showPassword.update(show => !show);
   }
 }

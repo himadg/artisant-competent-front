@@ -1,12 +1,88 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { AdminApiService, PendingUser } from '../../../core/services/admin-api.service';
+
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'dashboard-admin',
   standalone: true,
-  imports: [CommonModule, TranslocoModule],
+  imports: [CommonModule, TranslocoModule, RouterModule],
   templateUrl: './admin-dashboard.html',
   styleUrl: './admin-dashboard.scss',
 })
-export class AdminDashboard {}
+export class AdminDashboard implements OnInit {
+  private readonly adminApi = inject(AdminApiService);
+  private readonly sanitizer = inject(DomSanitizer);
+
+  readonly pendingUsers = signal<PendingUser[]>([]);
+  readonly loading = signal(true);
+  readonly selectedUser = signal<any>(null);
+
+  // Modale pour les documents (Images ou PDF)
+  readonly modalDocUrl = signal<SafeResourceUrl | string | null>(null);
+  readonly modalDocType = signal<'image' | 'pdf' | null>(null);
+
+  ngOnInit() {
+    this.loadPendingUsers();
+  }
+
+  loadPendingUsers() {
+    this.loading.set(true);
+    this.adminApi.getPendingUsers().subscribe({
+      next: (users) => {
+        this.pendingUsers.set(users);
+        this.loading.set(false);
+      },
+      error: () => this.loading.set(false)
+    });
+  }
+
+  viewDetails(id: string) {
+    this.adminApi.getUserDetails(id).subscribe({
+      next: (user) => this.selectedUser.set(user)
+    });
+  }
+
+  closeDetails() {
+    this.selectedUser.set(null);
+  }
+
+  approveUser(id: string) {
+    if (!confirm('Êtes-vous sûr de vouloir valider cet artisan ? Il sera visible publiquement.')) return;
+    this.adminApi.updateUserStatus(id, 'ACTIVE').subscribe({
+      next: () => {
+        this.selectedUser.set(null);
+        this.loadPendingUsers();
+      }
+    });
+  }
+
+  rejectUser(id: string) {
+    if (!confirm('Êtes-vous sûr de vouloir refuser cet artisan ?')) return;
+    this.adminApi.updateUserStatus(id, 'REJECTED').subscribe({
+      next: () => {
+        this.selectedUser.set(null);
+        this.loadPendingUsers();
+      }
+    });
+  }
+
+  openDocumentModal(url: string, isPdf: boolean) {
+    if (isPdf) {
+      // Angular bloque les URL externes dans les iframes par sécurité. Il faut "sanitizer" l'URL.
+      this.modalDocUrl.set(this.sanitizer.bypassSecurityTrustResourceUrl(url));
+      this.modalDocType.set('pdf');
+    } else {
+      this.modalDocUrl.set(url);
+      this.modalDocType.set('image');
+    }
+  }
+
+  closeDocumentModal() {
+    this.modalDocUrl.set(null);
+    this.modalDocType.set(null);
+  }
+}

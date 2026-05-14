@@ -1,7 +1,8 @@
-import { Component, ElementRef, HostListener, ViewChild, inject, PLATFORM_ID } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild, inject, PLATFORM_ID, OnInit } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
+import { filter } from 'rxjs/operators';
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
 
@@ -12,8 +13,9 @@ import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggl
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
-export class Navbar {
+export class Navbar implements OnInit {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly router = inject(Router);
 
   // Opens the sandwich menu on mobiles
   mobileNavOpen = false;
@@ -28,6 +30,17 @@ export class Navbar {
 
   @ViewChild('registerDropdown') registerDropdown?: ElementRef<HTMLElement>;
   @ViewChild('loginDropdown') loginDropdown?: ElementRef<HTMLElement>;
+
+  ngOnInit() {
+    // Ferme le menu mobile automatiquement lors d'un changement de page
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.closeMobileNav();
+      this.tabletNavRegisterOpen = false;
+      this.tabletNavLoginOpen = false;
+    });
+  }
 
   toggleMobileNav() {
     this.mobileNavOpen = !this.mobileNavOpen;

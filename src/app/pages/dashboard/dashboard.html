@@ -5,10 +5,17 @@
     @case ('INDIVIDUAL') {
         <dashboard-individual />
     }
-    <!-- @case ('ADMIN') {
+    @case ('ADMIN') {
         <dashboard-admin />
     }
-    @case ('DIRECTION') {
+    <!-- @case ('DIRECTION') {
         <dashboard-admin />
     } -->
+    @default {
+        <div class="flex justify-center items-center h-screen">
+            <p>Chargement du tableau de bord...</p>
+            <!-- Affiche le rôle pour voir s'il est bien là ou s'il est null -->
+            <p>Rôle actuel : {{ role() }}</p>
+        </div>
+    }
 }
