@@ -25,9 +25,11 @@
         >
             {{ 'common.home' | transloco }}
         </a>
+
         <a routerLink="/jobs" routerLinkActive="active" class="p-2 no-underline rounded-lg hover:bg-grad-water-green">
             {{ 'jobs.title' | transloco }}
         </a>
+
         <a
             routerLink="/affiliation"
             routerLinkActive="active"
@@ -76,42 +78,12 @@
             </a>
         </div>
 
-        <button
-            type="button"
-            class="flex justify-between items-center p-2 no-underline"
-            (click)="toggleMobileNavLogin()"
-            [attr.aria-expanded]="mobileNavLoginOpen"
+        <a
+            [routerLink]="['/auth/login']"
+            class="block p-2 no-underline rounded-lg hover:bg-grad-water-green"
         >
-            <span>{{ 'auth.login' | transloco }}</span>
-            <span class="" [class.rotate-180]="mobileNavLoginOpen">▾</span>
-        </button>
-        <div
-            class="overflow-hidden py-2 transition-all duration-700 ease-in-out"
-            [class.max-h-0]="!mobileNavLoginOpen"
-            [class.max-h-40]="mobileNavLoginOpen"
-            [class.border-t]="mobileNavLoginOpen"
-            [class.border-b]="mobileNavLoginOpen"
-            [class.py-2]="mobileNavLoginOpen"
-        >
-            <a
-                [routerLink]="['/auth/login']"
-                [queryParams]="{ t: 'individual' }"
-                class="block p-2 pl-6 no-underline rounded-lg hover:bg-grad-water-green"
-                >{{ 'auth.roles.individual' | transloco }}</a
-            >
-            <a
-                [routerLink]="['/auth/login']"
-                [queryParams]="{ t: 'professional' }"
-                class="block p-2 pl-6 no-underline rounded-lg hover:bg-grad-water-green"
-                >{{ 'auth.roles.professional' | transloco }}</a
-            >
-            <a
-                [routerLink]="['/auth/login']"
-                [queryParams]="{ t: 'supplier' }"
-                class="block p-2 pl-6 no-underline rounded-lg hover:bg-grad-water-green"
-                >{{ 'auth.roles.supplier' | transloco }}</a
-            >
-        </div>
+            {{ 'auth.login' | transloco }}
+        </a>
 
         <div class="flex gap-3 items-center p-2">
             <lang-toggle></lang-toggle>

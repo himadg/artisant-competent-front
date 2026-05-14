@@ -519,7 +519,7 @@
     "addDiplomaDoc": "Add diploma or proof (RGE, Calibat, reduced VAT rate etc)",
     "addLogo": "Add a logo",
     "addRib": "Add bank account (RIB)",
-    "onCall": "On-call",
+    "onCall": "I am on call 24/7",
     "errors": {
       "emailRequired": "At least one email is required",
       "required": "Field is required",
