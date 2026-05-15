@@ -1,10 +1,10 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslocoModule } from '@jsverse/transloco';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { AdminApiService, PendingUser } from '../../../core/services/admin-api.service';
-
 import { RouterModule } from '@angular/router';
+import { TranslocoModule } from '@jsverse/transloco';
+import { AdminApiService, PendingUser } from '../../../core/services/admin-api.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'dashboard-admin',
@@ -16,6 +16,7 @@ import { RouterModule } from '@angular/router';
 export class AdminDashboard implements OnInit {
   private readonly adminApi = inject(AdminApiService);
   private readonly sanitizer = inject(DomSanitizer);
+  readonly authService = inject(AuthService);
 
   readonly pendingUsers = signal<PendingUser[]>([]);
   readonly loading = signal(true);
