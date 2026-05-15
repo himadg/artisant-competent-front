@@ -1,4 +1,4 @@
-import { Component, signal, inject, OnDestroy, ViewChild } from '@angular/core';
+import { Component, signal, inject, OnDestroy, ViewChild, computed } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 import {
@@ -8,11 +8,12 @@ import {
   Validators,
   FormArray,
   AbstractControlOptions,
+  AbstractControl,
 } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
 import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, forkJoin, of, takeUntil } from 'rxjs';
-import { hourValidator } from '../../../../core/utils/validators';
-import { normalizeName } from '../../../../core/utils/common-utils';
+import { hourValidator, servicesValidator, openingAtLeastOne } from '../../../../core/utils/validators';
+import { capitalize, normalizeName } from '../../../../core/utils/common-utils';
 import { ServiceApiService } from '../../../../core/services/service-api.service';
 import { TradeApiService } from '../../../../core/services/trade-api.service';
 import { Service } from '../../../../shared/interfaces/service';
@@ -89,6 +90,11 @@ export class RegisterProfessional implements OnDestroy {
   readonly birthDateFocused = signal<boolean>(false);
   readonly insuranceExpiryFocused = signal<boolean>(false);
   readonly today = new Date().toLocaleDateString('en-CA');
+
+  readonly showPassword = signal<boolean>(false);
+  readonly showConfirmPassword = signal<boolean>(false);
+  readonly passwordFocused = signal<boolean>(false);
+  readonly showSubmitError = signal<boolean>(false);
 
   readonly personalAddressSuggestions = signal<AddressSuggestion[]>([]);
   readonly personalAddressOpen = signal<boolean>(false);
@@ -184,7 +190,7 @@ export class RegisterProfessional implements OnDestroy {
       }),
       siret: ['', [Validators.required, Validators.pattern(SIRET_REGEXP)]],
       trades: [<string[]>[], [Validators.required]],
-      yearsExperience: [0, [Validators.required, Validators.min(0)]],
+      yearsExperience: ['', [Validators.required, Validators.min(0)]],
       onCall: [false],
       hours: this.fb.array(
         this.days.map((day) =>
@@ -193,12 +199,13 @@ export class RegisterProfessional implements OnDestroy {
             { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(7), hourValidator] } as AbstractControlOptions,
           ),
         ),
+        { validators: [openingAtLeastOne] }
       ),
       description: ['', [Validators.required, Validators.maxLength(500)]],
-      services: [<string[]>[], [Validators.required]],
+      services: [<string[]>[], [servicesValidator(() => this.pendingServiceDescriptions().length)]],
       trustName: [''],
       trustPhone: [''],
-      suppliers: new FormControl<string[]>([], { nonNullable: true }),
+      suppliers: new FormControl<string[]>([], { nonNullable: true, validators: [Validators.required] }),
     }),
     captcha: [false, Validators.requiredTrue],
     terms: [false, Validators.requiredTrue],
@@ -208,6 +215,22 @@ export class RegisterProfessional implements OnDestroy {
     this.form.get('professionalProfile.onCall')!.valueChanges,
     { initialValue: this.form.get('professionalProfile.onCall')!.value },
   );
+
+  readonly passwordValue = toSignal(
+    this.form.get('user.password')!.valueChanges,
+    { initialValue: this.form.get('user.password')!.value }
+  );
+
+  readonly passwordCriteria = computed(() => {
+    const pwd = (this.passwordValue() || '') as string;
+    return {
+      length: pwd.length >= 12,
+      lower: /[a-z]/.test(pwd),
+      upper: /[A-Z]/.test(pwd),
+      number: /[0-9]/.test(pwd),
+      special: /[^a-zA-Z0-9]/.test(pwd),
+    };
+  });
 
   get hours(): FormArray {
     return this.form.get('professionalProfile.hours') as FormArray;
@@ -409,6 +432,7 @@ export class RegisterProfessional implements OnDestroy {
     const description = this.searchQuery().trim();
     if (!description || this.pendingServiceDescriptions().includes(description)) return;
     this.pendingServiceDescriptions.update(list => [...list, description]);
+    this.form.get('professionalProfile.services')?.updateValueAndValidity();
     this.dropdownOpen.set(false);
     this.searchQuery.set('');
     this.serviceResults.set([]);
@@ -416,6 +440,7 @@ export class RegisterProfessional implements OnDestroy {
 
   removePendingService(description: string) {
     this.pendingServiceDescriptions.update(list => list.filter(desc => desc !== description));
+    this.form.get('professionalProfile.services')?.updateValueAndValidity();
   }
 
   isServiceSelected(id: string) {
@@ -459,10 +484,14 @@ export class RegisterProfessional implements OnDestroy {
 
   // --- Submit ---
   submit() {
+    this.showSubmitError.set(false);
+    this.form.markAllAsTouched();
+
     const user = this.form.value.user;
-    if (user?.password !== user?.confirmPassword) return;
-    if (this.form.invalid) {
-      const findInvalid = (group: import('@angular/forms').AbstractControl, path = ''): void => {
+    
+    if (this.form.invalid || user?.password !== user?.confirmPassword) {
+      this.showSubmitError.set(true);
+      const findInvalid = (group: AbstractControl, path = ''): void => {
         if ('controls' in group) {
           Object.entries((group as any).controls).forEach(([k, c]) => findInvalid(c as any, path ? `${path}.${k}` : k));
         } else if (group.invalid) {
@@ -470,6 +499,15 @@ export class RegisterProfessional implements OnDestroy {
         }
       };
       findInvalid(this.form);
+      
+      // Auto-scroll vers le premier élément en erreur
+      setTimeout(() => {
+        const firstError = document.querySelector('.ng-invalid.ng-touched, .force-invalid');
+        if (firstError) {
+          firstError.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+      
       return;
     }
 
@@ -479,6 +517,11 @@ export class RegisterProfessional implements OnDestroy {
     const pending = this.pendingServiceDescriptions();
 
     const register = (serviceIds: string[]) => {
+      // On convertit le nom en majuscules
+      this.form.value.user!.lastName = this.form.value.user!.lastName!.trim().toUpperCase();
+      // On capitalise le prénom, c'est à dire prenom => Prenom
+      this.form.value.user!.firstName = capitalize(this.form.value.user!.firstName!.trim());
+
       const raw = this.form.value;
       const rawHours = ((raw.professionalProfile?.hours ?? []) as { day: string; start: string | null; end: string | null }[]);
       const openingHours = {
