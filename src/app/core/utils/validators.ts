@@ -19,3 +19,12 @@ export const openingAtLeastOne: ValidatorFn = (control: AbstractControl) => {
   });
   return ok ? null : ({ atLeastOneOpen: true } as ValidationErrors);
 };
+
+export const servicesValidator = (getPendingCount: () => number): ValidatorFn => {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const hasExisting = Array.isArray(control.value) && control.value.length > 0;
+    const hasPending = getPendingCount() > 0;
+    // Si on a au moins un service existant OU au moins un service en attente, alors c'est valide (null)
+    return (hasExisting || hasPending) ? null : { required: true };
+  };
+};
