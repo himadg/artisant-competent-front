@@ -1,8 +1,8 @@
 <div class="p-8 min-h-screen bg-gray-50">
     <div class="mx-auto max-w-6xl">
         <div class="flex justify-between items-center mb-8">
-            <h1 class="text-3xl font-bold text-gray-900">Administration</h1>
-            <button routerLink="/" class="text-sm text-gray-500 hover:text-gray-700">Retour au site</button>
+            <h1 class="text-3xl font-bold text-gray-900">{{ 'dashboard.admin.title' | transloco }}</h1>
+            <a routerLink="/" class="text-sm text-gray-500 hover:text-gray-700">{{ 'dashboard.admin.backToSite' | transloco }}</a>
         </div>
 
         @if (loading()) {
@@ -15,7 +15,7 @@
                 <div class="overflow-hidden bg-white rounded-lg border border-gray-200 shadow-sm md:col-span-1">
                     <div class="p-4 bg-gray-50 border-b border-gray-200">
                         <h2 class="font-semibold text-gray-700">
-                            En attente de validation ({{ pendingUsers().length }})
+                            {{ 'dashboard.admin.pendingValidation' | transloco }} ({{ pendingUsers().length }})
                         </h2>
                     </div>
                     <div class="divide-y divide-gray-100 max-h-[600px] overflow-y-auto">
@@ -48,7 +48,7 @@
                             </button>
                         }
                         @if (pendingUsers().length === 0) {
-                            <div class="p-8 text-sm text-center text-gray-500">Aucun profil en attente</div>
+                            <div class="p-8 text-sm text-center text-gray-500">{{ 'dashboard.admin.noPendingProfiles' | transloco }}</div>
                         }
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                                         <span class="text-xs px-2 ml-2 py-0.5 rounded-full bg-grad-water-green text-[var(--primary-beige)]">CMOD</span>
                                     }
                                 </h2>
-                                <p class="text-gray-500">{{ user.email }} • Inscrit le {{ user.createdAt | date }}</p>
+                                <p class="text-gray-500">{{ user.email }} • {{ 'dashboard.admin.registeredOn' | transloco }} {{ user.createdAt | date }}</p>
                             </div>
                             <span
                                 class="px-3 py-1 text-xs font-semibold text-yellow-800 bg-yellow-100 rounded-full"
@@ -77,18 +77,18 @@
                             <div class="space-y-6">
                                 <!-- Info Personnelles & Adresse -->
                                 <section>
-                                    <h3 class="pb-2 mb-3 text-lg font-semibold text-gray-900 border-b">Informations Personnelles</h3>
+                                    <h3 class="pb-2 mb-3 text-lg font-semibold text-gray-900 border-b">{{ 'dashboard.admin.personalInfo' | transloco }}</h3>
                                     <dl class="grid grid-cols-2 gap-4 text-sm">
                                         <div>
-                                            <dt class="text-gray-500">Date de naissance</dt>
+                                            <dt class="text-gray-500">{{ 'dashboard.admin.birthDate' | transloco }}</dt>
                                             <dd class="font-medium text-gray-900">{{ user.birthDate | date }}</dd>
                                         </div>
                                         <div>
-                                            <dt class="text-gray-500">Sexe</dt>
-                                            <dd class="font-medium text-gray-900">{{ user.gender === 'male' ? 'Homme' : 'Femme' }}</dd>
+                                            <dt class="text-gray-500">{{ 'dashboard.admin.gender' | transloco }}</dt>
+                                            <dd class="font-medium text-gray-900">{{ (user.gender === 'male' ? 'dashboard.admin.male' : 'dashboard.admin.female') | transloco }}</dd>
                                         </div>
                                         <div class="col-span-2">
-                                            <dt class="text-gray-500">Adresse personnelle</dt>
+                                            <dt class="text-gray-500">{{ 'dashboard.admin.personalAddress' | transloco }}</dt>
                                             <dd class="font-medium text-gray-900">
                                                 {{ user.address.streetNumber }} {{ user.address.streetName }}<br>
                                                 @if (user.address.additionalInfo) { {{ user.address.additionalInfo }}<br> }
@@ -100,30 +100,30 @@
 
                                 <!-- Info Entreprise -->
                                 <section>
-                                    <h3 class="pb-2 mb-3 text-lg font-semibold text-gray-900 border-b">Entreprise</h3>
+                                    <h3 class="pb-2 mb-3 text-lg font-semibold text-gray-900 border-b">{{ 'dashboard.admin.company' | transloco }}</h3>
                                     <dl class="grid grid-cols-2 gap-4 text-sm">
                                         <div class="col-span-2">
-                                            <dt class="text-gray-500">Description</dt>
+                                            <dt class="text-gray-500">{{ 'dashboard.admin.description' | transloco }}</dt>
                                             <dd class="p-3 mt-1 font-medium text-gray-900 whitespace-pre-wrap bg-gray-50 rounded-lg">{{ pro.description }}</dd>
                                         </div>
                                         <div>
-                                            <dt class="text-gray-500">Raison sociale</dt>
+                                            <dt class="text-gray-500">{{ 'dashboard.admin.companyName' | transloco }}</dt>
                                             <dd class="font-medium text-gray-900">{{ pro.companyName }}</dd>
                                         </div>
                                         <div>
-                                            <dt class="text-gray-500">SIRET</dt>
+                                            <dt class="text-gray-500">{{ 'dashboard.admin.siret' | transloco }}</dt>
                                             <dd class="font-medium text-gray-900">{{ pro.siret }}</dd>
                                         </div>
                                         <div>
-                                            <dt class="text-gray-500">Téléphone gérant</dt>
+                                            <dt class="text-gray-500">{{ 'dashboard.admin.managerPhone' | transloco }}</dt>
                                             <dd class="font-medium text-gray-900">{{ pro.managerPhone }}</dd>
                                         </div>
                                         <div>
-                                            <dt class="text-gray-500">Email professionnel</dt>
-                                            <dd class="font-medium text-gray-900">{{ pro.professionalEmail || 'Non renseigné' }}</dd>
+                                            <dt class="text-gray-500">{{ 'dashboard.admin.professionalEmail' | transloco }}</dt>
+                                            <dd class="font-medium text-gray-900">{{ pro.professionalEmail || ('dashboard.admin.notProvided' | transloco) }}</dd>
                                         </div>
                                         <div>
-                                            <dt class="text-gray-500">Adresse de l'entreprise</dt>
+                                            <dt class="text-gray-500">{{ 'dashboard.admin.companyAddress' | transloco }}</dt>
                                             <dd class="font-medium text-gray-900">
                                                 {{ pro.workAddress.streetNumber }} {{ pro.workAddress.streetName }}<br>
                                                 @if (pro.workAddress.additionalInfo) { {{ pro.workAddress.additionalInfo }}<br> }
@@ -131,18 +131,18 @@
                                             </dd>
                                         </div>
                                         <div>
-                                            <dt class="text-gray-500">Expérience</dt>
-                                            <dd class="font-medium text-gray-900">{{ pro.yearsExperience }} ans</dd>
+                                            <dt class="text-gray-500">{{ 'dashboard.admin.experience' | transloco }}</dt>
+                                            <dd class="font-medium text-gray-900">{{ pro.yearsExperience }} {{ 'dashboard.admin.years' | transloco }}</dd>
                                         </div>
                                     </dl>
                                 </section>
 
                                 <!-- Métiers & Services -->
                                 <section>
-                                    <h3 class="pb-2 mb-3 text-lg font-semibold text-gray-900 border-b">Activités</h3>
+                                    <h3 class="pb-2 mb-3 text-lg font-semibold text-gray-900 border-b">{{ 'dashboard.admin.activities' | transloco }}</h3>
                                     <dl class="grid grid-cols-1 gap-4 text-sm">
                                         <div>
-                                            <dt class="mb-1 text-gray-500">Métiers ({{ pro.trades.length }})</dt>
+                                            <dt class="mb-1 text-gray-500">{{ 'dashboard.admin.trades' | transloco }} ({{ pro.trades.length }})</dt>
                                             <dd class="flex flex-wrap gap-2">
                                                 @for (trade of pro.trades; track trade.id) {
                                                     <span class="px-2 py-1 text-blue-700 bg-blue-50 rounded-md">{{ trade.name }}</span>
@@ -150,7 +150,7 @@
                                             </dd>
                                         </div>
                                         <div>
-                                            <dt class="mb-1 text-gray-500">Services proposés ({{ pro.services.length }})</dt>
+                                            <dt class="mb-1 text-gray-500">{{ 'dashboard.admin.servicesOffered' | transloco }} ({{ pro.services.length }})</dt>
                                             <dd class="flex flex-wrap gap-2">
                                                 @for (service of pro.services; track service.id) {
                                                     <span class="px-2 py-1 text-green-700 bg-green-50 rounded-md">{{ service.description }}</span>
@@ -162,23 +162,23 @@
 
                                 <!-- Organisation & Partenaires -->
                                 <section>
-                                    <h3 class="pb-2 mb-3 text-lg font-semibold text-gray-900 border-b">Organisation</h3>
+                                    <h3 class="pb-2 mb-3 text-lg font-semibold text-gray-900 border-b">{{ 'dashboard.admin.organization' | transloco }}</h3>
                                     <dl class="grid grid-cols-2 gap-4 text-sm">
                                         <div>
-                                            <dt class="text-gray-500">Astreinte (Dépannage d'urgence)</dt>
+                                            <dt class="text-gray-500">{{ 'dashboard.admin.onCall' | transloco }}</dt>
                                             <dd class="font-medium text-gray-900">
                                                 @if (pro.onCall) { <span class="font-bold text-green-600">Oui</span> } @else { Non }
                                             </dd>
                                         </div>
                                         <div>
-                                            <dt class="text-gray-500">Contact de confiance</dt>
+                                            <dt class="text-gray-500">{{ 'dashboard.admin.trustedContact' | transloco }}</dt>
                                             <dd class="font-medium text-gray-900">
-                                                {{ pro.trustedContactName || 'Non renseigné' }}
+                                                {{ pro.trustedContactName || ('dashboard.admin.notProvided' | transloco) }}
                                                 @if (pro.trustedContactPhone) { <br>{{ pro.trustedContactPhone }} }
                                             </dd>
                                         </div>
                                         <div class="col-span-2">
-                                            <dt class="mb-1 text-gray-500">Horaires d'ouverture</dt>
+                                            <dt class="mb-1 text-gray-500">{{ 'dashboard.admin.openingHours' | transloco }}</dt>
                                             <dd class="p-3 font-medium text-gray-900 bg-gray-50 rounded-lg">
                                                 @if (pro.openingHours && pro.openingHours.days) {
                                                     <ul class="space-y-1">
@@ -186,7 +186,7 @@
                                                         <li class="flex justify-between max-w-xs">
                                                             <span class="capitalize">{{ day.day }}</span>
                                                             @if (day.closed) {
-                                                                <span class="italic text-gray-400">Fermé</span>
+                                                                <span class="italic text-gray-400">{{ 'dashboard.admin.closed' | transloco }}</span>
                                                             } @else if (day.intervals[0]) {
                                                                 <span>{{ day.intervals[0].start }} - {{ day.intervals[0].end }}</span>
                                                             }
@@ -194,19 +194,19 @@
                                                     }
                                                     </ul>
                                                 } @else {
-                                                    <span class="italic text-gray-400">Non renseignés</span>
+                                                    <span class="italic text-gray-400">{{ 'dashboard.admin.notProvidedPlural' | transloco }}</span>
                                                 }
                                             </dd>
                                         </div>
                                         <div class="col-span-2">
-                                            <dt class="mb-1 text-gray-500">Partenaires / Fournisseurs</dt>
+                                            <dt class="mb-1 text-gray-500">{{ 'dashboard.admin.suppliers' | transloco }}</dt>
                                             <dd class="flex flex-wrap gap-2">
                                                 @if (pro.suppliers.length > 0) {
                                                     @for (supplier of pro.suppliers; track supplier) {
                                                         <span class="px-2 py-1 text-gray-700 bg-gray-100 rounded-md">{{ supplier }}</span>
                                                     }
                                                 } @else {
-                                                    <span class="italic text-gray-400">Aucun partenaire renseigné</span>
+                                                    <span class="italic text-gray-400">{{ 'dashboard.admin.noSuppliers' | transloco }}</span>
                                                 }
                                             </dd>
                                         </div>
@@ -215,7 +215,7 @@
 
                                 <!-- Documents -->
                                 <section>
-                                    <h3 class="pb-2 mb-3 text-lg font-semibold text-gray-900 border-b">Documents à vérifier</h3>
+                                    <h3 class="pb-2 mb-3 text-lg font-semibold text-gray-900 border-b">{{ 'dashboard.admin.documentsToVerify' | transloco }}</h3>
                                     <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
                                         <!-- ID Recto -->
                                         <div class="flex overflow-hidden flex-col rounded-lg border">
@@ -227,18 +227,18 @@
                                                         <img [src]="pro.idFrontUrl" class="object-contain w-full h-full" alt="ID Recto">
                                                     }
                                                 } @else {
-                                                    <span class="text-sm italic text-gray-400">Manquant</span>
+                                                    <span class="text-sm italic text-gray-400">{{ 'dashboard.admin.missing' | transloco }}</span>
                                                 }
                                             </div>
                                             <div class="flex flex-1 justify-between items-center p-3 bg-white">
-                                                <span class="text-sm font-medium text-gray-700">ID Recto</span>
+                                                <span class="text-sm font-medium text-gray-700">{{ 'dashboard.admin.docIdFront' | transloco }}</span>
                                                 @if (pro.idFrontUrl) {
                                                     @if (pro.idFrontKey.endsWith('.pdf')) {
-                                                        <button type="button" (click)="openDocumentModal(pro.idFrontUrl, true)" class="text-red-600 hover:text-red-800" title="Afficher le PDF">
+                                                        <button type="button" (click)="openDocumentModal(pro.idFrontUrl, true)" class="text-red-600 hover:text-red-800" title="{{ 'dashboard.admin.viewPdf' | transloco }}">
                                                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
                                                         </button>
                                                     } @else {
-                                                        <button type="button" (click)="openDocumentModal(pro.idFrontUrl, false)" class="text-blue-600 hover:text-blue-800" title="Agrandir l'image">
+                                                        <button type="button" (click)="openDocumentModal(pro.idFrontUrl, false)" class="text-blue-600 hover:text-blue-800" title="{{ 'dashboard.admin.enlargeImage' | transloco }}">
                                                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
                                                         </button>
                                                     }
@@ -256,18 +256,18 @@
                                                         <img [src]="pro.idBackUrl" class="object-contain w-full h-full" alt="ID Verso">
                                                     }
                                                 } @else {
-                                                    <span class="text-sm italic text-gray-400">Manquant</span>
+                                                    <span class="text-sm italic text-gray-400">{{ 'dashboard.admin.missing' | transloco }}</span>
                                                 }
                                             </div>
                                             <div class="flex flex-1 justify-between items-center p-3 bg-white">
-                                                <span class="text-sm font-medium text-gray-700">ID Verso</span>
+                                                <span class="text-sm font-medium text-gray-700">{{ 'dashboard.admin.docIdBack' | transloco }}</span>
                                                 @if (pro.idBackUrl) {
                                                     @if (pro.idBackKey.endsWith('.pdf')) {
-                                                        <button type="button" (click)="openDocumentModal(pro.idBackUrl, true)" class="text-red-600 hover:text-red-800" title="Afficher le PDF">
+                                                        <button type="button" (click)="openDocumentModal(pro.idBackUrl, true)" class="text-red-600 hover:text-red-800" title="{{ 'dashboard.admin.viewPdf' | transloco }}">
                                                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
                                                         </button>
                                                     } @else {
-                                                        <button type="button" (click)="openDocumentModal(pro.idBackUrl, false)" class="text-blue-600 hover:text-blue-800" title="Agrandir l'image">
+                                                        <button type="button" (click)="openDocumentModal(pro.idBackUrl, false)" class="text-blue-600 hover:text-blue-800" title="{{ 'dashboard.admin.enlargeImage' | transloco }}">
                                                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
                                                         </button>
                                                     }
@@ -285,21 +285,21 @@
                                                         <img [src]="pro.insuranceDocUrl" class="object-contain w-full h-full" alt="Assurance">
                                                     }
                                                 } @else {
-                                                    <span class="text-sm italic text-gray-400">Manquant</span>
+                                                    <span class="text-sm italic text-gray-400">{{ 'dashboard.admin.missing' | transloco }}</span>
                                                 }
                                             </div>
                                             <div class="flex flex-1 justify-between items-center p-3 bg-white">
                                                 <div class="flex flex-col">
-                                                    <span class="text-sm font-medium text-gray-700 truncate">Assurance</span>
+                                                    <span class="text-sm font-medium text-gray-700 truncate">{{ 'dashboard.admin.docInsurance' | transloco }}</span>
                                                     <span class="text-xs text-gray-500">{{ pro.insuranceName }}</span>
                                                 </div>
                                                 @if (pro.insuranceDocUrl) {
                                                     @if (pro.insuranceDocKey.endsWith('.pdf')) {
-                                                        <button type="button" (click)="openDocumentModal(pro.insuranceDocUrl, true)" class="text-red-600 hover:text-red-800" title="Afficher le PDF">
+                                                        <button type="button" (click)="openDocumentModal(pro.insuranceDocUrl, true)" class="text-red-600 hover:text-red-800" title="{{ 'dashboard.admin.viewPdf' | transloco }}">
                                                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
                                                         </button>
                                                     } @else {
-                                                        <button type="button" (click)="openDocumentModal(pro.insuranceDocUrl, false)" class="text-blue-600 hover:text-blue-800" title="Agrandir l'image">
+                                                        <button type="button" (click)="openDocumentModal(pro.insuranceDocUrl, false)" class="text-blue-600 hover:text-blue-800" title="{{ 'dashboard.admin.enlargeImage' | transloco }}">
                                                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
                                                         </button>
                                                     }
@@ -317,18 +317,18 @@
                                                         <img [src]="pro.ribUrl" class="object-contain w-full h-full" alt="RIB">
                                                     }
                                                 } @else {
-                                                    <span class="text-sm italic text-gray-400">Manquant</span>
+                                                    <span class="text-sm italic text-gray-400">{{ 'dashboard.admin.missing' | transloco }}</span>
                                                 }
                                             </div>
                                             <div class="flex flex-1 justify-between items-center p-3 bg-white">
-                                                <span class="text-sm font-medium text-gray-700">RIB</span>
+                                                <span class="text-sm font-medium text-gray-700">{{ 'dashboard.admin.docRib' | transloco }}</span>
                                                 @if (pro.ribUrl) {
                                                     @if (pro.ribKey.endsWith('.pdf')) {
-                                                        <button type="button" (click)="openDocumentModal(pro.ribUrl, true)" class="text-red-600 hover:text-red-800" title="Afficher le PDF">
+                                                        <button type="button" (click)="openDocumentModal(pro.ribUrl, true)" class="text-red-600 hover:text-red-800" title="{{ 'dashboard.admin.viewPdf' | transloco }}">
                                                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
                                                         </button>
                                                     } @else {
-                                                        <button type="button" (click)="openDocumentModal(pro.ribUrl, false)" class="text-blue-600 hover:text-blue-800" title="Agrandir l'image">
+                                                        <button type="button" (click)="openDocumentModal(pro.ribUrl, false)" class="text-blue-600 hover:text-blue-800" title="{{ 'dashboard.admin.enlargeImage' | transloco }}">
                                                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
                                                         </button>
                                                     }
@@ -346,18 +346,18 @@
                                                         <img [src]="pro.diplomaDocUrl" class="object-contain w-full h-full" alt="Diplôme">
                                                     }
                                                 } @else {
-                                                    <span class="text-sm italic text-gray-400">Manquant</span>
+                                                    <span class="text-sm italic text-gray-400">{{ 'dashboard.admin.missing' | transloco }}</span>
                                                 }
                                             </div>
                                             <div class="flex flex-1 justify-between items-center p-3 bg-white">
-                                                <span class="text-sm font-medium text-gray-700">Diplôme / Certif.</span>
+                                                <span class="text-sm font-medium text-gray-700">{{ 'dashboard.admin.docDiploma' | transloco }}</span>
                                                 @if (pro.diplomaDocUrl) {
                                                     @if (pro.diplomaDocKey.endsWith('.pdf')) {
-                                                        <button type="button" (click)="openDocumentModal(pro.diplomaDocUrl, true)" class="text-red-600 hover:text-red-800" title="Afficher le PDF">
+                                                        <button type="button" (click)="openDocumentModal(pro.diplomaDocUrl, true)" class="text-red-600 hover:text-red-800" title="{{ 'dashboard.admin.viewPdf' | transloco }}">
                                                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
                                                         </button>
                                                     } @else {
-                                                        <button type="button" (click)="openDocumentModal(pro.diplomaDocUrl, false)" class="text-blue-600 hover:text-blue-800" title="Agrandir l'image">
+                                                        <button type="button" (click)="openDocumentModal(pro.diplomaDocUrl, false)" class="text-blue-600 hover:text-blue-800" title="{{ 'dashboard.admin.enlargeImage' | transloco }}">
                                                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
                                                         </button>
                                                     }
@@ -375,13 +375,13 @@
                                 class="flex-1 px-6 py-2 font-medium text-white bg-green-600 rounded-lg transition-colors hover:bg-green-700"
                                 (click)="approveUser(user.id)"
                             >
-                                Approuver ce profil
+                                {{ 'dashboard.admin.approveProfile' | transloco }}
                             </button>
                             <button
                                 class="flex-1 px-6 py-2 font-medium text-red-700 bg-red-100 rounded-lg transition-colors hover:bg-red-200"
                                 (click)="rejectUser(user.id)"
                             >
-                                Refuser
+                                {{ 'dashboard.admin.rejectProfile' | transloco }}
                             </button>
                         </div>
                     } @else {
@@ -398,7 +398,7 @@
                                 <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
                                 <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                             </svg>
-                            <p>Sélectionnez un profil dans la liste pour l'examiner</p>
+                            <p>{{ 'dashboard.admin.selectProfilePrompt' | transloco }}</p>
                         </div>
                     }
                 </div>
@@ -409,21 +409,20 @@
     <!-- Modale de document -->
     @if (modalDocUrl()) {
         <div class="flex fixed inset-0 z-50 justify-center items-center p-4 backdrop-blur-sm bg-black/80" (click)="closeDocumentModal()">
-            <div class="relative max-w-5xl max-h-[90vh] w-full h-full flex flex-col" (click)="$event.stopPropagation()">
+            <div class="relative max-w-5xl max-h-[70vh] w-full flex flex-col" (click)="$event.stopPropagation()">
                 <div class="flex absolute top-0 right-0 z-10 justify-end p-2 bg-transparent">
-                    <button type="button" (click)="closeDocumentModal()" class="p-2 text-white rounded-full transition-colors bg-black/50 hover:bg-black/70" title="Fermer">
+                    <button type="button" (click)="closeDocumentModal()" class="p-2 text-white rounded-full transition-colors bg-black/50 hover:bg-black/70" title="{{ 'common.close' | transloco }}">
                         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                     </button>
                 </div>
-                <div class="flex overflow-hidden flex-1 justify-center items-center p-2">
+                <div class="flex overflow-hidden flex-1 justify-center items-center p-2 h-auto">
                     @if (modalDocType() === 'pdf') {
-                        <iframe [src]="modalDocUrl()" class="w-full h-full bg-white rounded-lg shadow-2xl" frameborder="0"></iframe>
+                        <iframe [src]="modalDocUrl()" class="w-full h-[70lvh] bg-white rounded-lg shadow-2xl" frameborder="0"></iframe>
                     } @else {
-                        <img [src]="modalDocUrl()" class="object-contain max-w-full max-h-full rounded-lg shadow-2xl" alt="Aperçu du document" />
+                        <img [src]="modalDocUrl()" class="object-contain max-w-full max-h-full rounded-lg shadow-2xl" alt="{{ 'dashboard.admin.documentPreview' | transloco }}" />
                     }
                 </div>
             </div>
         </div>
     }
-
 </div>
