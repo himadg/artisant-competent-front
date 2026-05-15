@@ -35,7 +35,7 @@ export class AuthService {
     await firstValueFrom(this.http.post<void>('/api/auth/logout', {})).catch(() => null);
     this._accessToken = null;
     this._currentUser.set(null);
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/']);
   }
 
   async loadCurrentUser(): Promise<void> {
