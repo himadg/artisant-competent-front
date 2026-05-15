@@ -1,4 +1,5 @@
-import { Component, signal, inject, OnDestroy } from '@angular/core';
+import { Component, signal, inject, OnDestroy, computed } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { ReactiveFormsModule, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -11,7 +12,8 @@ import { UserApiService } from '../../../../core/services/user-api.service';
 import { AuthService } from '../../../../core/services/auth.service';
 import { User } from '../../../../shared/interfaces/user';
 import { Router } from '@angular/router';
-import { capitalize } from '../../../../core/utils/common-utils';
+import { capitalize, evaluatePasswordCriteria } from '../../../../core/utils/common-utils';
+import { PASSWORD_STRONG_REGEXP } from '../../../../core/utils/regexp';
 
 @Component({
   selector: 'register-individual',
@@ -39,6 +41,8 @@ export class RegisterIndividual implements OnDestroy {
   readonly captchaToken = signal<string | null>(null);
   readonly showPassword = signal(false);
   readonly showConfirmPassword = signal(false);
+  readonly passwordFocused = signal(false);
+  readonly showSubmitError = signal(false);
 
   readonly form = this.fb.group({
     photo: new FormControl<File | null>(null),
@@ -47,7 +51,7 @@ export class RegisterIndividual implements OnDestroy {
     firstName: ['', Validators.required],
     birthDate: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(8)]],
+    password: ['', [Validators.required, Validators.pattern(PASSWORD_STRONG_REGEXP)]],
     confirmPassword: ['', Validators.required],
     phone: ['', Validators.required],
     address: this.fb.group({
@@ -60,6 +64,13 @@ export class RegisterIndividual implements OnDestroy {
     captcha: [false, Validators.requiredTrue],
     terms: [false, Validators.requiredTrue],
   });
+
+  readonly passwordValue = toSignal(
+    this.form.get('password')!.valueChanges,
+    { initialValue: this.form.get('password')!.value }
+  );
+
+  readonly passwordCriteria = computed(() => evaluatePasswordCriteria(this.passwordValue() as string));
 
   constructor() {
     this.addressSearch$
@@ -149,9 +160,21 @@ export class RegisterIndividual implements OnDestroy {
   }
 
   submit() {
-    console.log('form.value:', this.form.value);
-    if (this.form.value.password !== this.form.value.confirmPassword) return;
-    if (this.form.invalid) return;
+    this.showSubmitError.set(false);
+    this.form.markAllAsTouched();
+
+    if (this.form.invalid || this.form.value.password !== this.form.value.confirmPassword) {
+      this.showSubmitError.set(true);
+      
+      setTimeout(() => {
+        const firstError = document.querySelector('.ng-invalid.ng-touched, .force-invalid');
+        if (firstError) {
+          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100);
+      
+      return;
+    }
 
     const { gender, lastName, firstName, birthDate, email, password, phone, address, photo } = this.form.value;
     const captchaToken = this.captchaToken();

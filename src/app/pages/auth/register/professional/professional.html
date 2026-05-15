@@ -122,6 +122,7 @@
                         (click)="showPassword.set(!showPassword())"
                         (mousedown)="$event.preventDefault()"
                         tabindex="-1"
+                        [attr.aria-label]="showPassword() ? ('login.visibility.hide' | transloco) : ('login.visibility.show' | transloco)"
                     >
                         @if (showPassword()) {
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" /></svg>
@@ -134,19 +135,19 @@
                 @if (passwordFocused()) {
                     <div class="px-2 my-2 space-y-1 text-sm">
                         <p [class]="passwordCriteria().length ? 'text-green-500' : 'text-red-500'">
-                            {{ passwordCriteria().length ? '✓' : '✗' }} Au moins 12 caractères
+                            {{ passwordCriteria().length ? '✓' : '✗' }} {{ 'login.errors.passwordLength' | transloco }}
                         </p>
                         <p [class]="passwordCriteria().lower ? 'text-green-500' : 'text-red-500'">
-                            {{ passwordCriteria().lower ? '✓' : '✗' }} Au moins une minuscule
+                            {{ passwordCriteria().lower ? '✓' : '✗' }} {{ 'login.errors.passwordLower' | transloco }}
                         </p>
                         <p [class]="passwordCriteria().upper ? 'text-green-500' : 'text-red-500'">
-                            {{ passwordCriteria().upper ? '✓' : '✗' }} Au moins une majuscule
+                            {{ passwordCriteria().upper ? '✓' : '✗' }} {{ 'login.errors.passwordUpper' | transloco }}
                         </p>
                         <p [class]="passwordCriteria().number ? 'text-green-500' : 'text-red-500'">
-                            {{ passwordCriteria().number ? '✓' : '✗' }} Au moins un chiffre
+                            {{ passwordCriteria().number ? '✓' : '✗' }} {{ 'login.errors.passwordNumber' | transloco }}
                         </p>
                         <p [class]="passwordCriteria().special ? 'text-green-500' : 'text-red-500'">
-                            {{ passwordCriteria().special ? '✓' : '✗' }} Au moins un caractère spécial
+                            {{ passwordCriteria().special ? '✓' : '✗' }} {{ 'login.errors.passwordSpecial' | transloco }}
                         </p>
                     </div>
                 }
@@ -164,7 +165,9 @@
                             type="button"
                             class="flex absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-gray-700"
                             (click)="showConfirmPassword.set(!showConfirmPassword())"
+                            (mousedown)="$event.preventDefault()"
                             tabindex="-1"
+                            [attr.aria-label]="showConfirmPassword() ? ('login.visibility.hide' | transloco) : ('login.visibility.show' | transloco)"
                         >
                             @if (showConfirmPassword()) {
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" /></svg>
@@ -174,7 +177,7 @@
                         </button>
                     </div>
                     @if (form.get('user.password')?.value !== form.get('user.confirmPassword')?.value && form.get('user.confirmPassword')?.touched) {
-                        <p class="px-2 text-sm text-red-500">Les mots de passe ne sont pas identiques.</p>
+                        <p class="px-2 text-sm text-red-500">{{ 'login.errors.passwordMismatch' | transloco }}</p>
                     }
                 </div>
             </ng-container>
@@ -803,7 +806,7 @@
             </div>
 
             @if (showSubmitError()) {
-                <span class="text-sm font-medium text-red-500">Veuillez remplir correctement tous les champs obligatoires.</span>
+                <span class="text-sm font-medium text-red-500">{{ 'login.errors.fillRequiredFields' | transloco }}</span>
             }
         </form>
     }

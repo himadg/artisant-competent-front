@@ -706,7 +706,18 @@
     },
     "errors": {
       "invalid": "Email ou mot de passe incorrect",
-      "required": "Ce champ est requis"
+      "required": "Ce champ est requis",
+      "passwordMismatch": "Les mots de passe ne sont pas identiques.",
+      "passwordLength": "Au moins 12 caractères",
+      "passwordLower": "Au moins une minuscule",
+      "passwordUpper": "Au moins une majuscule",
+      "passwordNumber": "Au moins un chiffre",
+      "passwordSpecial": "Au moins un caractère spécial",
+      "fillRequiredFields": "Veuillez remplir correctement tous les champs obligatoires."
+    },
+    "visibility": {
+      "show": "Afficher le mot de passe",
+      "hide": "Masquer le mot de passe"
     }
   },
   "dashboard": {

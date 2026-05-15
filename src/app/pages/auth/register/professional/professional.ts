@@ -13,7 +13,7 @@ import {
 import { TranslocoModule } from '@jsverse/transloco';
 import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, forkJoin, of, takeUntil } from 'rxjs';
 import { hourValidator, servicesValidator, openingAtLeastOne } from '../../../../core/utils/validators';
-import { capitalize, normalizeName } from '../../../../core/utils/common-utils';
+import { capitalize, normalizeName, evaluatePasswordCriteria } from '../../../../core/utils/common-utils';
 import { ServiceApiService } from '../../../../core/services/service-api.service';
 import { TradeApiService } from '../../../../core/services/trade-api.service';
 import { Service } from '../../../../shared/interfaces/service';
@@ -221,16 +221,7 @@ export class RegisterProfessional implements OnDestroy {
     { initialValue: this.form.get('user.password')!.value }
   );
 
-  readonly passwordCriteria = computed(() => {
-    const pwd = (this.passwordValue() || '') as string;
-    return {
-      length: pwd.length >= 12,
-      lower: /[a-z]/.test(pwd),
-      upper: /[A-Z]/.test(pwd),
-      number: /[0-9]/.test(pwd),
-      special: /[^a-zA-Z0-9]/.test(pwd),
-    };
-  });
+  readonly passwordCriteria = computed(() => evaluatePasswordCriteria(this.passwordValue() as string));
 
   get hours(): FormArray {
     return this.form.get('professionalProfile.hours') as FormArray;

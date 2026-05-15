@@ -706,7 +706,18 @@
     },
     "errors": {
       "invalid": "Incorrect email or password",
-      "required": "This field is required"
+      "required": "This field is required",
+      "passwordMismatch": "Passwords do not match.",
+      "passwordLength": "At least 12 characters",
+      "passwordLower": "At least one lowercase letter",
+      "passwordUpper": "At least one uppercase letter",
+      "passwordNumber": "At least one number",
+      "passwordSpecial": "At least one special character",
+      "fillRequiredFields": "Please correctly fill out all required fields."
+    },
+    "visibility": {
+      "show": "Show password",
+      "hide": "Hide password"
     }
   },
   "dashboard": {
@@ -722,7 +733,51 @@
       "professionals": "Professionals"
     },
     "admin": {
-      "title": "Administration"
+      "title": "Administration",
+      "backToSite": "Back to site",
+      "pendingValidation": "Pending validation",
+      "noPendingProfiles": "No pending profiles",
+      "registeredOn": "Registered on",
+      "personalInfo": "Personal Information",
+      "birthDate": "Date of birth",
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "personalAddress": "Personal address",
+      "company": "Company",
+      "description": "Description",
+      "companyName": "Company name",
+      "siret": "SIRET",
+      "managerPhone": "Manager phone",
+      "professionalEmail": "Professional email",
+      "notProvided": "Not provided",
+      "companyAddress": "Company address",
+      "experience": "Experience",
+      "years": "years",
+      "activities": "Activities",
+      "trades": "Trades",
+      "servicesOffered": "Services offered",
+      "organization": "Organization",
+      "onCall": "On call (Emergency repair)",
+      "trustedContact": "Trusted contact",
+      "openingHours": "Opening hours",
+      "closed": "Closed",
+      "notProvidedPlural": "Not provided",
+      "suppliers": "Partners / Suppliers",
+      "noSuppliers": "No partners provided",
+      "documentsToVerify": "Documents to verify",
+      "missing": "Missing",
+      "docIdFront": "ID Front",
+      "docIdBack": "ID Back",
+      "docInsurance": "Insurance",
+      "docRib": "RIB",
+      "docDiploma": "Diploma / Certif.",
+      "viewPdf": "View PDF",
+      "enlargeImage": "Enlarge image",
+      "approveProfile": "Approve this profile",
+      "rejectProfile": "Reject",
+      "selectProfilePrompt": "Select a profile from the list to review",
+      "documentPreview": "Document preview"
     },
     "errors": {
       "load": "Unable to load dashboard",

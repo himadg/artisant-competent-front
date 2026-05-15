@@ -4,7 +4,10 @@
     <form [formGroup]="form" (ngSubmit)="submit()" class="py-8 mx-auto space-y-4 max-w-[29rem] autofill-fix">
         <div class="grid gap-4 items-stretch md:grid-cols-2">
             <div class="flex flex-col gap-3 items-center h-36">
-                <div class="overflow-hidden relative w-36 h-full rounded-full border group">
+                <div 
+                    class="overflow-hidden relative w-36 h-full rounded-full border group"
+                    [class.force-invalid]="form.get('photo')?.invalid && form.get('photo')?.touched"
+                >
                     @if (photoPreview()) {
                         <img
                             [src]="photoPreview()"
@@ -80,18 +83,21 @@
 
         <!-- Mot de passe avec toggle visibilité -->
         <div class="grid gap-4 md:grid-cols-2">
-            <div class="relative flex flex-col">
+            <div class="flex relative flex-col">
                 <input
                     [type]="showPassword() ? 'text' : 'password'"
                     formControlName="password"
                     class="px-3 py-2 pr-10 rounded border"
                     placeholder="{{ 'register.fields.password' | transloco }} *"
+                    (focus)="passwordFocused.set(true)"
+                    (blur)="passwordFocused.set(false)"
                 />
                 <button
                     type="button"
-                    class="absolute right-2 top-1/2 -translate-y-1/2 opacity-50 hover:opacity-100 transition-opacity"
+                    class="absolute right-2 top-1/2 opacity-50 transition-opacity -translate-y-1/2 hover:opacity-100"
                     (click)="showPassword.set(!showPassword())"
-                    [attr.aria-label]="showPassword() ? 'Masquer le mot de passe' : 'Afficher le mot de passe'"
+                    (mousedown)="$event.preventDefault()"
+                    [attr.aria-label]="showPassword() ? ('login.visibility.hide' | transloco) : ('login.visibility.show' | transloco)"
                 >
                     @if (showPassword()) {
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
@@ -100,18 +106,20 @@
                     }
                 </button>
             </div>
-            <div class="relative flex flex-col">
+            <div class="flex relative flex-col">
                 <input
                     [type]="showConfirmPassword() ? 'text' : 'password'"
                     formControlName="confirmPassword"
                     class="px-3 py-2 pr-10 rounded border"
+                    [class.force-invalid]="form.get('password')?.value !== form.get('confirmPassword')?.value && form.get('confirmPassword')?.touched"
                     placeholder="{{ 'register.fields.passwordConfirm' | transloco }} *"
                 />
                 <button
                     type="button"
-                    class="absolute right-2 top-1/2 -translate-y-1/2 opacity-50 hover:opacity-100 transition-opacity"
+                    class="absolute right-2 top-1/2 opacity-50 transition-opacity -translate-y-1/2 hover:opacity-100"
                     (click)="showConfirmPassword.set(!showConfirmPassword())"
-                    [attr.aria-label]="showConfirmPassword() ? 'Masquer le mot de passe' : 'Afficher le mot de passe'"
+                    (mousedown)="$event.preventDefault()"
+                    [attr.aria-label]="showConfirmPassword() ? ('login.visibility.hide' | transloco) : ('login.visibility.show' | transloco)"
                 >
                     @if (showConfirmPassword()) {
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
@@ -121,6 +129,30 @@
                 </button>
             </div>
         </div>
+
+        @if (passwordFocused()) {
+            <div class="px-2 my-2 space-y-1 text-sm">
+                <p [class]="passwordCriteria().length ? 'text-green-500' : 'text-red-500'">
+                    {{ passwordCriteria().length ? '✓' : '✗' }} {{ 'login.errors.passwordLength' | transloco }}
+                </p>
+                <p [class]="passwordCriteria().lower ? 'text-green-500' : 'text-red-500'">
+                    {{ passwordCriteria().lower ? '✓' : '✗' }} {{ 'login.errors.passwordLower' | transloco }}
+                </p>
+                <p [class]="passwordCriteria().upper ? 'text-green-500' : 'text-red-500'">
+                    {{ passwordCriteria().upper ? '✓' : '✗' }} {{ 'login.errors.passwordUpper' | transloco }}
+                </p>
+                <p [class]="passwordCriteria().number ? 'text-green-500' : 'text-red-500'">
+                    {{ passwordCriteria().number ? '✓' : '✗' }} {{ 'login.errors.passwordNumber' | transloco }}
+                </p>
+                <p [class]="passwordCriteria().special ? 'text-green-500' : 'text-red-500'">
+                    {{ passwordCriteria().special ? '✓' : '✗' }} {{ 'login.errors.passwordSpecial' | transloco }}
+                </p>
+            </div>
+        }
+        
+        @if (form.get('password')?.value !== form.get('confirmPassword')?.value && form.get('confirmPassword')?.touched) {
+            <p class="px-2 text-sm text-red-500">{{ 'login.errors.passwordMismatch' | transloco }}</p>
+        }
 
         <!-- Adresse avec autocomplete -->
         <div formGroupName="address" class="space-y-3">
@@ -193,12 +225,16 @@
             <span>{{ 'register.cguv' | transloco }} *</span>
         </div>
 
-        <button
-            type="submit"
-            class="px-4 py-2 rounded-lg text-[var(--primary-beige)] bg-grad-water-green disabled:bg-gray-400 block mx-auto"
-            [disabled]="form.invalid || form.value.password !== form.value.confirmPassword"
-        >
-            {{ 'register.submit' | transloco }}
-        </button>
+        <div class="flex flex-col gap-2 items-center mt-4">
+            <button
+                type="submit"
+                class="px-4 py-2 rounded-lg text-[var(--primary-beige)] bg-grad-water-green block mx-auto"
+            >
+                {{ 'register.submit' | transloco }}
+            </button>
+            @if (showSubmitError()) {
+                <span class="text-sm font-medium text-center text-red-500">{{ 'login.errors.fillRequiredFields' | transloco }}</span>
+            }
+        </div>
     </form>
 </div>
