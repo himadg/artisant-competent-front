@@ -12,7 +12,7 @@
                 <option value="" disabled selected>{{ 'searchPro.tradeLabel' | transloco }}</option>
                 @for (trade of trades; track trade) {
                 <option [value]="trade">
-                    {{ 'register.options.trades.' + trade | transloco }}
+                    {{ `register.options.trades.${trade}` | transloco }}
                 </option>
                 }
             </select>

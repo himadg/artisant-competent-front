@@ -70,7 +70,7 @@
                                 </svg>
                             </div>
                         }
-                        <span class="topbar-username">{{ pro.firstName }} {{ pro.lastName | uppercase }}</span>
+                        <span class="topbar-username">{{ pro.firstName }} {{ pro.lastName }}</span>
                     </div>
                 </div>
             </div>
@@ -196,7 +196,7 @@
                         </div>
 
                         <div class="pro-user-info">
-                            <h2 class="pro-company-name">{{ pro.firstName }} {{ pro.lastName | uppercase }}</h2>
+                            <h2 class="pro-company-name">{{ pro.firstName }} {{ pro.lastName }}</h2>
                             <p class="pro-address">
                                 <svg
                                     viewBox="0 0 24 24"
@@ -476,7 +476,7 @@
                                                 @for (day of editHours(); track day.day; let i = $index) {
                                                     <div class="pro-hours-row">
                                                         <span class="hours-day">{{
-                                                            'supplier.days.' + day.day | transloco
+                                                            `supplier.days.${day.day}` | transloco
                                                         }}</span>
                                                         <label class="pro-day-toggle">
                                                             <input
@@ -513,7 +513,7 @@
                                                 @for (day of pro.professionalProfile.openingHours!.days; track day.day) {
                                                     <li class="hours-item">
                                                         <span class="hours-day">{{
-                                                            'supplier.days.' + day.day | transloco
+                                                            `supplier.days.${day.day}` | transloco
                                                         }}</span>
                                                         @if (day.closed) {
                                                             <span class="hours-closed">{{

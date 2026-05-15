@@ -11,6 +11,7 @@ import { UserApiService } from '../../../../core/services/user-api.service';
 import { AuthService } from '../../../../core/services/auth.service';
 import { User } from '../../../../shared/interfaces/user';
 import { Router } from '@angular/router';
+import { capitalize } from '../../../../core/utils/common-utils';
 
 @Component({
   selector: 'register-individual',
@@ -61,13 +62,15 @@ export class RegisterIndividual implements OnDestroy {
   });
 
   constructor() {
-    this.addressSearch$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      filter(query => query.length >= 3),
-      switchMap(query => this.geocodingService.search(query)),
-      takeUntil(this.destroy$),
-    ).subscribe(suggestions => this.addressSuggestions.set(suggestions));
+    this.addressSearch$
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        filter((query) => query.length >= 3),
+        switchMap((query) => this.geocodingService.search(query)),
+        takeUntil(this.destroy$),
+      )
+      .subscribe((suggestions) => this.addressSuggestions.set(suggestions));
   }
 
   ngOnDestroy() {
@@ -78,7 +81,10 @@ export class RegisterIndividual implements OnDestroy {
   // --- Address autocomplete ---
   onAddressSearch(event: Event) {
     const query = (event.target as HTMLInputElement).value;
-    if (query.length < 3) { this.addressSuggestions.set([]); return; }
+    if (query.length < 3) {
+      this.addressSuggestions.set([]);
+      return;
+    }
     this.addressSearch$.next(query);
   }
 
@@ -88,17 +94,27 @@ export class RegisterIndividual implements OnDestroy {
     const group = this.form.get('address')!;
     const currentNumber = (group.get('streetNumber')!.value ?? '') as string;
     if (address.streetNumber && !/^\d/.test(currentNumber)) group.get('streetNumber')!.setValue(address.streetNumber);
-    group.patchValue({ streetName: address.streetName, additionalInfo: null, postalCode: address.postalCode, city: address.city } as any);
+    group.patchValue({
+      streetName: address.streetName,
+      additionalInfo: null,
+      postalCode: address.postalCode,
+      city: address.city,
+    } as any);
   }
 
-  closeAddressSuggestions() { setTimeout(() => this.addressOpen.set(false), 150); }
+  closeAddressSuggestions() {
+    setTimeout(() => this.addressOpen.set(false), 150);
+  }
 
   onPostalCodeInput(event: Event) {
     const code = (event.target as HTMLInputElement).value;
     if (code.length !== 5) return;
-    this.geocodingService.lookupCity(code).pipe(takeUntil(this.destroy$)).subscribe(city => {
-      if (city) this.form.get('address.city')!.setValue(city);
-    });
+    this.geocodingService
+      .lookupCity(code)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((city) => {
+        if (city) this.form.get('address.city')!.setValue(city);
+      });
   }
 
   // --- Captcha ---
@@ -133,7 +149,7 @@ export class RegisterIndividual implements OnDestroy {
   }
 
   submit() {
-    console.log("form.value:", this.form.value);
+    console.log('form.value:', this.form.value);
     if (this.form.value.password !== this.form.value.confirmPassword) return;
     if (this.form.invalid) return;
 
@@ -142,16 +158,25 @@ export class RegisterIndividual implements OnDestroy {
     if (!captchaToken) return;
 
     const payload = {
-      user: { gender, lastName, firstName, birthDate, email, password, address },
+      user: {
+        gender,
+        lastName: lastName!.toUpperCase(),
+        firstName: capitalize(firstName as string),
+        birthDate,
+        email,
+        password,
+        address,
+      },
       phone,
     };
 
-    this.userApi.registerIndividual(payload as Record<string, unknown>, captchaToken)
+    this.userApi
+      .registerIndividual(payload as Record<string, unknown>, captchaToken)
       .pipe(
         switchMap(({ userId, accessToken, user }) => {
           this.authService.setSession(accessToken, user as User);
           return (photo ? this.uploadService.upload(photo) : of('')).pipe(
-            switchMap(photoKey =>
+            switchMap((photoKey) =>
               photoKey ? this.userApi.createIndividualDocuments(userId, photoKey) : of(undefined),
             ),
           );
@@ -159,8 +184,12 @@ export class RegisterIndividual implements OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe({
-        next: () => { this.router.navigate(['/auth/login']); },
-        error: (err) => { console.error('Erreur inscription:', err); },
+        next: () => {
+          this.router.navigate(['/auth/login']);
+        },
+        error: (err) => {
+          console.error('Erreur inscription:', err);
+        },
       });
   }
 }

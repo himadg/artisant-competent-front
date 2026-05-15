@@ -24,7 +24,7 @@
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
                         </div>
                     }
-                    <span class="topbar-username">{{ user.firstName }} {{ user.lastName | uppercase }}</span>
+                    <span class="topbar-username">{{ user.firstName }} {{ user.lastName }}</span>
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@
                         }
                     </div>
                     <div class="ind-user-info">
-                        <h2 class="ind-name">{{ user.firstName }} {{ user.lastName | uppercase }}</h2>
+                        <h2 class="ind-name">{{ user.firstName }} {{ user.lastName }}</h2>
                         <p class="ind-address">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="inline-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                             {{ homeAddress() }}
@@ -143,7 +143,7 @@
                                         @if (editMode()) {
                                             <dd><input class="ind-edit-input" type="text" [(ngModel)]="editFields.lastName" /></dd>
                                         } @else {
-                                            <dd>{{ user.lastName | uppercase }}</dd>
+                                            <dd>{{ user.lastName }}</dd>
                                         }
                                     </div>
                                     <div class="ind-info-row">
@@ -172,7 +172,7 @@
                                                 </select>
                                             </dd>
                                         } @else {
-                                            <dd>{{ 'register.gender.' + user.gender | transloco }}</dd>
+                                            <dd>{{ `register.gender.${user.gender}` | transloco }}</dd>
                                         }
                                     </div>
                                 </dl>
