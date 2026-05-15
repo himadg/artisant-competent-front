@@ -283,7 +283,6 @@
   color: var(--color);
   opacity: 0.6;
   margin-right: 5px;
-  text-transform: uppercase;
   letter-spacing: 0.04em;
   white-space: nowrap;
 }
@@ -658,7 +657,7 @@
     cursor: pointer;
     font-size: 0.75rem;
     font-weight: bolder;
-    
+
     /* ---- Les propriétés anti-flash mobile ---- */
     appearance: none;
     -webkit-appearance: none;

@@ -15,3 +15,4 @@ export function normalizeName(name: string): string {
     .trim();
 }
 
+export const capitalize = (str: string): string => `${str.charAt(0).toUpperCase()}${str.slice(1).toLowerCase()}`;

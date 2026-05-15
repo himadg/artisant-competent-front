@@ -147,7 +147,7 @@
             <div class="space-y-2">
                 @for (ctrl of hours.controls; track $index) {
                     <div class="grid grid-cols-2 gap-3 items-center">
-                        <span class="font-medium">{{ 'supplier.days.' + ctrl.value.day | transloco }}</span>
+                        <span class="font-medium">{{ `supplier.days.${ctrl.value.day}` | transloco }}</span>
                         <div class="flex gap-2 justify-end items-center">
                             <input
                                 type="time"
@@ -225,7 +225,7 @@
                         class="chip"
                         [class.selected]="isServiceSelected(service)"
                     >
-                        {{ 'register.options.services.' + service | transloco }}
+                        {{ `register.options.services.${service}` | transloco }}
                     </button>
                 }
             </div>

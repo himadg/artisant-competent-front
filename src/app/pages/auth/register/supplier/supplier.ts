@@ -1,3 +1,4 @@
+import { capitalize } from './../../../../core/utils/common-utils';
 import { Component, signal } from '@angular/core';
 
 import {
@@ -54,7 +55,9 @@ export class RegisterSupplier {
     password: ['', [Validators.required, Validators.minLength(8)]],
     confirmPassword: ['', [Validators.required]],
     hours: this.fb.array(
-      this.days.map((d) => this.fb.nonNullable.group({ day: d, start: '', end: '' }, { validators: [this.hourValidator] }))
+      this.days.map((d) =>
+        this.fb.nonNullable.group({ day: d, start: '', end: '' }, { validators: [this.hourValidator] }),
+      ),
     ),
     siret: ['', [Validators.required, Validators.pattern(/^\d{14}$/)]],
     services: [<string[]>[]],
@@ -140,10 +143,12 @@ export class RegisterSupplier {
   submit() {
     if (this.form.value.password !== this.form.value.confirmPassword) return;
     if (this.form.invalid) return;
+    this.form.value.lastName = (this.form.value.lastName as string).toUpperCase();
+    this.form.value.firstName = capitalize(this.form.value.firstName as string);
     const payload = {
       ...this.form.value,
       logoName: this.logoName(),
       ribName: this.ribName(),
-    } as any;
+    };
   }
 }
