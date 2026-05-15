@@ -506,8 +506,8 @@ export class RegisterProfessional implements OnDestroy {
     if (!captchaToken) return;
 
     const pending = this.pendingServiceDescriptions();
+    const serviceIds = this.selectedServices().map((service) => service.id);
 
-    const register = (serviceIds: string[]) => {
       // On convertit le nom en majuscules
       this.form.value.user!.lastName = this.form.value.user!.lastName!.trim().toUpperCase();
       // On capitalise le prénom, c'est à dire prenom => Prenom
@@ -537,6 +537,7 @@ export class RegisterProfessional implements OnDestroy {
         professionalProfile: {
           ...profRest,
           services: serviceIds,
+        pendingServices: pending,
           openingHours,
           trustedContactName: trustName || undefined,
           trustedContactPhone: trustPhone || undefined,
@@ -544,8 +545,7 @@ export class RegisterProfessional implements OnDestroy {
         },
       };
 
-      const upload = (file: File | null) =>
-        file ? this.uploadService.upload(file) : of('');
+    const upload = (file: File | null) => file ? this.uploadService.upload(file) : of('');
 
       this.userApi.registerProfessional(payload as Record<string, unknown>, captchaToken)
         .pipe(
@@ -575,21 +575,6 @@ export class RegisterProfessional implements OnDestroy {
             console.error('Erreur inscription', err);
             this.turnstile.reset();
             this.onCaptchaReset();
-          },
-        });
-    };
-
-    if (pending.length === 0) {
-      register(this.selectedServices().map(service => service.id));
-      return;
-    }
-
-    forkJoin(pending.map(desc => this.serviceApi.create(desc))).subscribe({
-      next: (created: Service[]) => {
-        register([
-          ...this.selectedServices().map(service => service.id),
-          ...created.map(service => service.id),
-        ]);
       },
     });
   }
