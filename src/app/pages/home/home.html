@@ -41,14 +41,21 @@
         <li>{{ 'home.hero.arg5' | transloco }}</li>
     </ul>
 
-    <!-- Section 1e : bouton hero -->
+    <!-- Section 1e : boutons hero -->
     <div class="flex flex-wrap gap-4 justify-center">
         <a
             [routerLink]="['/auth/register']"
             [queryParams]="{ t: 'professional' }"
-            class="px-6 py-3 font-semibold rounded-lg no-underline bg-grad-brown text-[var(--primary-beige)]"
+            class="px-6 py-3 font-semibold rounded-lg no-underline bg-[#a97849] text-[var(--primary-beige)]"
         >
-            {{ 'home.hero.ctaSecondary' | transloco }}
+            {{ 'home.hero.ctaPro' | transloco }}
+        </a>
+        <a
+            [routerLink]="['/auth/register']"
+            [queryParams]="{ t: 'individual' }"
+            class="px-6 py-3 font-semibold rounded-lg no-underline bg-[#a97849] text-[var(--primary-beige)]"
+        >
+            {{ 'home.hero.ctaIndividual' | transloco }}
         </a>
     </div>
 

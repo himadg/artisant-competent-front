@@ -12,7 +12,8 @@
       "arg3": "Suivi digital : photos, échanges, preuves. Rien ne s'efface.",
       "arg4": "48h pour valider : en cas d'abus, médiation possible.",
       "arg5": "France et DOM-TOM* : couverture en cours de déploiement partout sur le territoire.",
-      "ctaSecondary": "Je suis un professionnel",
+      "ctaPro": "Je suis un professionnel",
+      "ctaIndividual": "Je suis un particulier",
       "ctaForm": "Décrivez votre projet en 2 minutes"
     },
     "problem": {
