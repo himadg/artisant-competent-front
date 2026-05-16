@@ -79,8 +79,11 @@
         </ul>
     </div>
 
-    <section class="flex flex-col gap-4 items-left">
-        <h2 class="text-base font-semibold shrink-0 md:text-4xl title">{{ 'home.where.title' | transloco }}</h2>
+    <!-- Section 10 : Nos villes d'intervention -->
+    <section id="villes" class="flex flex-col gap-4 items-left">
+        <h2 class="text-base font-semibold shrink-0 md:text-4xl title">{{ 'home.cities.h2' | transloco }}</h2>
+        <p>{{ 'home.cities.intro' | transloco }}</p>
+        <!-- TODO: pastille "Disponible 24/7" (home.cities.badge247) a poser sur les villes couvertes en urgence (liste a fournir) -->
         <div class="overflow-x-auto py-2 w-full h-scroll">
             <div class="flex gap-4">
                 <a routerLink="/city/paris" class="overflow-hidden w-48 rounded-lg border shrink-0">
@@ -133,6 +136,14 @@
                 </a>
             </div>
         </div>
+        <p>{{ 'home.cities.outro' | transloco }}</p>
+        <!-- TODO: rendre chaque ville cliquable vers sa page dediee (ex: /plombier-paris) une fois les routes creees -->
+        <a
+            href="#devis"
+            class="inline-block px-6 py-3 font-semibold rounded-lg no-underline bg-[#a97849] text-[var(--primary-beige)] w-fit"
+        >
+            {{ 'home.cities.cta' | transloco }}
+        </a>
     </section>
 
     <section id="metiers" class="flex flex-col gap-4 items-left">
