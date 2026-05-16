@@ -564,6 +564,22 @@
         </div>
     </section>
 
+    <!-- Section 11 : Je suis un professionnel -->
+    <!-- TODO: valider section pro avec Himad apres visio -->
+    <section id="pro" class="space-y-4">
+        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.pro.h2' | transloco }}</h2>
+        <p>{{ 'home.pro.p1' | transloco }}</p>
+        <p>{{ 'home.pro.p2' | transloco }}</p>
+        <a
+            [routerLink]="['/auth/register']"
+            [queryParams]="{ t: 'professional' }"
+            class="inline-block px-6 py-3 font-semibold rounded-lg no-underline bg-[#a97849] text-[var(--primary-beige)] w-fit"
+        >
+            {{ 'home.pro.cta' | transloco }}
+        </a>
+    </section>
+
+    <section class="mt-12">
     @defer (on viewport) {
         <section class="mt-12">
         <h2 class="text-xl font-semibold title md:text-3xl">{{ 'faq.title' | transloco }}</h2>
