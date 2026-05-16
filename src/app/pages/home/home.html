@@ -3,8 +3,6 @@
     class="flex relative z-20 flex-wrap gap-2 justify-center items-center px-4 py-2 text-sm text-center text-white bg-slate-900"
 >
     <span>{{ 'home.announceBar.text' | transloco }}</span>
-    <!-- TODO: cible du lien "En savoir plus" (page Klarna / FAQ paiement) à confirmer -->
-    <a href="#" class="underline">{{ 'home.announceBar.cta' | transloco }}</a>
 </div>
 
 <div class="overflow-hidden absolute top-0 left-0 z-0 w-full h-[30rem] pictures-fader md:h-[42rem]">
@@ -43,18 +41,12 @@
         <li>{{ 'home.hero.arg5' | transloco }}</li>
     </ul>
 
-    <!-- Section 1e : boutons hero -->
+    <!-- Section 1e : bouton hero -->
     <div class="flex flex-wrap gap-4 justify-center">
-        <a
-            href="#devis"
-            class="px-6 py-3 font-semibold rounded-lg no-underline bg-[var(--primary-brown)] text-[var(--primary-beige)]"
-        >
-            {{ 'home.hero.ctaPrimary' | transloco }}
-        </a>
         <a
             [routerLink]="['/auth/register']"
             [queryParams]="{ t: 'professional' }"
-            class="px-6 py-3 font-semibold rounded-lg border no-underline text-[var(--primary-beige)]"
+            class="px-6 py-3 font-semibold rounded-lg no-underline bg-grad-brown text-[var(--primary-beige)]"
         >
             {{ 'home.hero.ctaSecondary' | transloco }}
         </a>
