@@ -1085,16 +1085,24 @@
     }
 
     &.active {
-      color: var(--primary-beige);
-      background-color: var(--primary-water-green);
+      color: var(--primary-beige) !important;
+      background-color: var(--primary-water-green) !important;
     }
 
     /* Optionnel : Désactiver explicitement le changement de background au hover/active s'il y en a un hérité */
     &:active, &:focus, &:hover {
-      background-color: transparent;
+      color: var(--primary-beige) !important;
+      background-color: var(--primary-water-green) !important;
     }
-    &.active:active, &.active:focus, &.active:hover {
-      background-color: var(--primary-water-green);
+
+    &.plus-menu, &.plus-menu:hover, &.plus-menu:focus, &.plus-menu:active {
+      color: var(--primary-water-green) !important;
+      background-color: var(--primary-beige) !important;
+
+      & *:hover, & *:focus, & *:active {
+        color: var(--primary-water-green) !important;
+        background-color: var(--primary-beige) !important;
+      }
     }
   }
 }

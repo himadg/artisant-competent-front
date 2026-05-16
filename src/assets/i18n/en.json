@@ -744,7 +744,6 @@
     },
     "admin": {
       "title": "Administration",
-      "backToSite": "Back to site",
       "pendingValidation": "Pending validation",
       "noPendingProfiles": "No pending profiles",
       "registeredOn": "Registered on",

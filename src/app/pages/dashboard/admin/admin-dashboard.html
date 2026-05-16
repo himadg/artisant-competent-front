@@ -2,7 +2,7 @@
     <div class="mx-auto max-w-6xl">
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-3xl font-bold text-gray-900">{{ 'dashboard.admin.title' | transloco }}</h1>
-            <button (click)="authService.logout()" class="text-xs text-gray-500 cursor-pointer hover:text-gray-700">{{ 'dashboard.admin.backToSite' | transloco }}</button>
+            <button (click)="authService.logout()" class="text-xs text-gray-500 cursor-pointer hover:text-gray-700">{{ 'auth.logout' | transloco }}</button>
         </div>
 
         @if (loading()) {

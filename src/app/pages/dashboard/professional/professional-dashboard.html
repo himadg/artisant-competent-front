@@ -13,6 +13,7 @@
             >
                 {{ 'auth.logout' | transloco }}
             </button>
+
             <div class="w-[500px] p-4 text-yellow-800 bg-yellow-50 rounded-lg border border-yellow-200">
                 <h4 class="flex gap-2 items-center font-bold">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
@@ -29,6 +30,13 @@
             </div>
         </div>
     } @else if (pro.status === 'REJECTED') {
+        <button 
+            (click)="authService.logout()"
+            class="absolute top-4 right-4 px-4 py-2 rounded-lg text-[var(--primary-beige)] bg-grad-water-green"
+        >
+            {{ 'auth.logout' | transloco }}
+        </button>
+
         <div class="flex justify-center m-16 w-auto">
             <div class="w-[500px] p-4 text-red-800 bg-red-50 rounded-lg border border-red-200">
                 <h4 class="flex gap-2 items-center font-bold">
