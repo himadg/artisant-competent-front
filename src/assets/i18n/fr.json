@@ -118,33 +118,7 @@
       "p1": "Notre promesse ? Que vos travaux ne soient plus une source de stress.",
       "p2": "Assez de nuits blanches à se demander si l'artisan va revenir finir le chantier. Assez de devis qui explosent sans prévenir. Avec Artisan Compétent, chaque étape est encadrée, chaque euro est tracé, chaque validation est entre vos mains."
     },
-    "how": {
-      "title": "COMMENT ÇA MARCHE ?",
-      "forClients": "Pour les clients (particuliers & entreprises)"
-    },
-    "what": {
-      "title": "Qu'est-ce qu'Artisan-Compétent ?",
-      "body": "Artisan-Compétent est une web application de mise en relation sécurisée de professionnel à particulier, mais aussi de particulier à particulier, exclusivement dans le monde du bâtiment."
-    },
-    "specialized": {
-      "title": "La plateforme est 100 % spécialisée bâtiment",
-      "body": "Contrairement aux simples annuaires ou plateformes de mise en relation passives, Artisan-Compétent agit comme tiers de confiance tout au long du projet:",
-      "item1": "de la demande initiale,",
-      "item2": "jusqu'au procès-verbal de fin de chantier,",
-      "item3": "en passant par le paiement sécurisé,",
-      "item4": "le suivi des travaux,",
-      "item5": "et la gestion des litiges si nécessaire."
-    },
-    "process": {
-      "title": "Processus entièrement digitalisé",
-      "body": "De la demande jusqu'au procès-verbal de réception, tout se déroule directement sur le dashboard du client, sans paperasse externe."
-    },
-    "objective": {
-      "title": "Notre objectif",
-      "body": "Permettre aux clients de réaliser leurs travaux sereinement, sans stress, sans arnaque, et avec une visibilité totale sur ce qui se passe."
-    },
     "where": {
-      "title": "Où intervenons-nous ?",
       "cities": {
         "paris": "Paris et Ile-de-France",
         "marseille": "Marseille et environs",
