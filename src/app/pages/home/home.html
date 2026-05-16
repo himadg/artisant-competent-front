@@ -1,3 +1,12 @@
+<!-- Section 1a : bandeau d'annonce Klarna -->
+<div
+    class="flex relative z-20 flex-wrap gap-2 justify-center items-center px-4 py-2 text-sm text-center text-white bg-slate-900"
+>
+    <span>{{ 'home.announceBar.text' | transloco }}</span>
+    <!-- TODO: cible du lien "En savoir plus" (page Klarna / FAQ paiement) à confirmer -->
+    <a href="#" class="underline">{{ 'home.announceBar.cta' | transloco }}</a>
+</div>
+
 <div class="overflow-hidden absolute top-0 left-0 z-0 w-full h-[30rem] pictures-fader md:h-[42rem]">
     <img src="assets/img/image-qui-defile-1.webp" alt="Image qui défile 1"
         class="object-cover w-full h-full pictures-frame" loading="eager" fetchpriority="high" decoding="async" />
@@ -12,11 +21,52 @@
 </div>
 
 <div class="pt-[3rem] pb-12 mx-auto space-y-6 max-w-screen-lg z-10 relative md:pt-[10rem]">
+    <!-- Section 1b : H1 -->
     <h1 class="text-center font-extrabold text-[var(--primary-beige)] text-2xl md:text-3xl lg:text-5xl">
-        {{ 'home.title' | transloco }}
+        {{ 'home.hero.h1' | transloco }}
     </h1>
 
-    <search-pro></search-pro>
+    <!-- Section 1c : sous-titre -->
+    <p class="text-center text-[var(--primary-beige)] text-base md:text-lg">
+        {{ 'home.hero.subtitle' | transloco }}
+    </p>
+
+    <!-- Section 1d : cadre 5 arguments -->
+    <ul
+        class="grid gap-2 p-6 mx-auto text-sm list-disc list-inside rounded-lg w-fit bg-[var(--primary-water-green)] text-[var(--primary-beige)] md:text-base"
+    >
+        <li>{{ 'home.hero.arg1' | transloco }}</li>
+        <li>{{ 'home.hero.arg2' | transloco }}</li>
+        <li>{{ 'home.hero.arg3' | transloco }}</li>
+        <li>{{ 'home.hero.arg4' | transloco }}</li>
+        <!-- TODO: lier l'astérisque de arg5 vers la question FAQ "intervient partout en France" (section 12) -->
+        <li>{{ 'home.hero.arg5' | transloco }}</li>
+    </ul>
+
+    <!-- Section 1e : boutons hero -->
+    <div class="flex flex-wrap gap-4 justify-center">
+        <a
+            href="#devis"
+            class="px-6 py-3 font-semibold rounded-lg no-underline bg-[var(--primary-brown)] text-[var(--primary-beige)]"
+        >
+            {{ 'home.hero.ctaPrimary' | transloco }}
+        </a>
+        <a
+            [routerLink]="['/auth/register']"
+            [queryParams]="{ t: 'professional' }"
+            class="px-6 py-3 font-semibold rounded-lg border no-underline text-[var(--primary-beige)]"
+        >
+            {{ 'home.hero.ctaSecondary' | transloco }}
+        </a>
+    </div>
+
+    <!-- Section 1f : CTA + formulaire de devis -->
+    <div id="devis" class="space-y-4">
+        <p class="text-center font-semibold text-[var(--primary-beige)] text-lg md:text-xl">
+            {{ 'home.hero.ctaForm' | transloco }}
+        </p>
+        <search-pro></search-pro>
+    </div>
 
     <div class="p-6 space-y-2 rounded-lg bg-[var(--primary-water-green)] text-[var(--primary-beige)] w-fit local">
         <h3 class="mb-6 text-base font-semibold text-center md:text-xl">{{ 'home.local.title' | transloco }}</h3>
