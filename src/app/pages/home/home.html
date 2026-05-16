@@ -577,137 +577,93 @@
         </a>
     </section>
 
-    <section class="mt-12">
-        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'faq.title' | transloco }}</h2>
-        <div class="grid gap-6 items-center md:grid-cols-2">
-            <div>
-                <details class="p-4">
-                    <summary class="font-semibold cursor-pointer">{{ 'faq.q1.title' | transloco }}</summary>
-                    <div class="mt-3 space-y-2">
-                        <p>{{ 'faq.q1.p1' | transloco }}</p>
-                        <p>{{ 'faq.q1.intro' | transloco }}</p>
-                        <ul class="pl-6 space-y-1 list-disc">
-                            <li>{{ 'faq.q1.steps.item1' | transloco }}</li>
-                            <li>{{ 'faq.q1.steps.item2' | transloco }}</li>
-                            <li>{{ 'faq.q1.steps.item3' | transloco }}</li>
-                        </ul>
-                        <p>{{ 'faq.q1.p2' | transloco }}</p>
-                    </div>
-                </details>
-                <details class="p-4">
-                    <summary class="font-semibold cursor-pointer">{{ 'faq.q2.title' | transloco }}</summary>
-                    <ul class="pl-6 mt-3 space-y-1 list-disc">
-                        <li>{{ 'faq.q2.items.escrow1' | transloco }}</li>
-                        <li>{{ 'faq.q2.items.escrow2' | transloco }}</li>
-                        <li>{{ 'faq.q2.items.tracking' | transloco }}</li>
-                        <li>{{ 'faq.q2.items.cmod' | transloco }}</li>
-                        <li>{{ 'faq.q2.items.abuse' | transloco }}</li>
-                        <li>{{ 'faq.q2.items.pv' | transloco }}</li>
-                    </ul>
-                </details>
-                <details class="p-4">
-                    <summary class="font-semibold cursor-pointer">{{ 'faq.q3.title' | transloco }}</summary>
-                    <ul class="pl-6 mt-3 space-y-1 list-disc">
-                        <li>{{ 'faq.q3.items.escrow' | transloco }}</li>
-                        <li>{{ 'faq.q3.items.report' | transloco }}</li>
-                        <li>{{ 'faq.q3.items.review' | transloco }}</li>
-                        <li>{{ 'faq.q3.items.refund' | transloco }}</li>
-                    </ul>
-                    <p class="mt-2">{{ 'faq.q3.cta' | transloco }}</p>
-                </details>
-                <details class="p-4">
-                    <summary class="font-semibold cursor-pointer">{{ 'faq.q4.title' | transloco }}</summary>
-                    <ul class="pl-6 mt-3 space-y-1 list-disc">
-                        <li>{{ 'faq.q4.items.id' | transloco }}</li>
-                        <li>{{ 'faq.q4.items.price' | transloco }}</li>
-                        <li>{{ 'faq.q4.items.block' | transloco }}</li>
-                        <li>{{ 'faq.q4.items.neutral' | transloco }}</li>
-                    </ul>
-                    <p class="mt-2">{{ 'faq.q4.p' | transloco }}</p>
-                </details>
-                <details class="p-4">
-                    <summary class="font-semibold cursor-pointer">{{ 'faq.q5.title' | transloco }}</summary>
-                    <ul class="pl-6 mt-3 space-y-1 list-disc">
-                        <li>{{ 'faq.q5.items.rate55' | transloco }}</li>
-                        <li>{{ 'faq.q5.items.rate10' | transloco }}</li>
-                        <li>{{ 'faq.q5.items.rate20' | transloco }}</li>
-                    </ul>
-                    <p class="mt-2">{{ 'faq.q5.note' | transloco }}</p>
-                    <p>{{ 'faq.q5.advice' | transloco }}</p>
-                    <p class="text-sm">{{ 'faq.q5.source' | transloco }}</p>
-                </details>
-                <details class="p-4">
-                    <summary class="font-semibold cursor-pointer">{{ 'faq.q6.title' | transloco }}</summary>
-                    <ul class="pl-6 mt-3 space-y-1 list-disc">
-                        <li>{{ 'faq.q6.items.goals' | transloco }}</li>
-                        <li>{{ 'faq.q6.items.sector' | transloco }}</li>
-                        <li>{{ 'faq.q6.items.commissionPro' | transloco }}</li>
-                        <li>{{ 'faq.q6.items.cmodShare' | transloco }}</li>
-                    </ul>
-                </details>
-                <details class="p-4">
-                    <summary class="font-semibold cursor-pointer">{{ 'faq.q7.title' | transloco }}</summary>
-                    <div class="mt-3 space-y-3">
-                        <p>{{ 'faq.q7.intro' | transloco }}</p>
-                        <h6 class="font-semibold">{{ 'faq.q7.pay.title' | transloco }}</h6>
-                        <p>{{ 'faq.q7.pay.upTo5000' | transloco }}</p>
-                        <p>{{ 'faq.q7.pay.laborOnly' | transloco }}</p>
-                        <p>{{ 'faq.q7.pay.laborOnlyWhy' | transloco }}</p>
-                        <p>{{ 'faq.q7.pay.optionsIntro' | transloco }}</p>
-                        <ul class="pl-6 space-y-1 list-disc">
-                            <li>{{ 'faq.q7.pay.options.li1' | transloco }}</li>
-                            <li>{{ 'faq.q7.pay.options.li2' | transloco }}</li>
-                        </ul>
-                        <p>{{ 'faq.q7.pay.advanceNote' | transloco }}</p>
-                        <p>{{ 'faq.q7.pay.above5000' | transloco }}</p>
-                        <p>{{ 'faq.q7.pay.directSupplier' | transloco }}</p>
-                        <p>{{ 'faq.q7.pay.discourageDirectArtisan' | transloco }}</p>
-                        <h6 class="font-semibold">{{ 'faq.q7.obl.title' | transloco }}</h6>
-                        <ul class="pl-6 space-y-1 list-disc">
-                            <li>{{ 'faq.q7.obl.items.req' | transloco }}</li>
-                            <li>{{ 'faq.q7.obl.items.insurance' | transloco }}</li>
-                        </ul>
-                        <p>{{ 'faq.q7.obl.noteInsurance' | transloco }}</p>
-                        <p>{{ 'faq.q7.obl.also' | transloco }}</p>
-                        <ul class="pl-6 space-y-1 list-disc">
-                            <li>{{ 'faq.q7.obl.items.tracking' | transloco }}</li>
-                            <li>{{ 'faq.q7.obl.items.report' | transloco }}</li>
-                            <li>{{ 'faq.q7.obl.items.noBypass' | transloco }}</li>
-                        </ul>
-                        <h6 class="font-semibold">{{ 'faq.q7.bypass.title' | transloco }}</h6>
-                        <ul class="pl-6 space-y-1 list-disc">
-                            <li>{{ 'faq.q7.bypass.items.cancelGuarantees' | transloco }}</li>
-                            <li>{{ 'faq.q7.bypass.items.disengagement' | transloco }}</li>
-                            <li>{{ 'faq.q7.bypass.items.cmodImpossible' | transloco }}</li>
-                        </ul>
-                        <h6 class="font-semibold">{{ 'faq.q7.pv.title' | transloco }}</h6>
-                        <p>{{ 'faq.q7.pv.text' | transloco }}</p>
-                        <p>{{ 'faq.q7.goal' | transloco }}</p>
-                    </div>
-                </details>
-                <details class="p-4">
-                    <summary class="font-semibold cursor-pointer">{{ 'faq.q8.title' | transloco }}</summary>
-                    <ul class="pl-6 mt-3 space-y-1 list-disc">
-                        <li>{{ 'faq.q8.items.indep' | transloco }}</li>
-                        <li>{{ 'faq.q8.items.remote' | transloco }}</li>
-                        <li>{{ 'faq.q8.items.exp' | transloco }}</li>
-                        <li>{{ 'faq.q8.items.role1' | transloco }}</li>
-                        <li>{{ 'faq.q8.items.role2' | transloco }}</li>
-                        <li>{{ 'faq.q8.items.role3' | transloco }}</li>
-                    </ul>
-                    <p class="mt-2">{{ 'faq.q8.note' | transloco }}</p>
-                </details>
-            </div>
-
-            <div class="rounded-lg border p-6 w-fit h-fit text-[var(--primary-beige)] bg-[var(--primary-water-green)]">
-                <h3 class="text-base font-semibold md:text-xl">{{ 'home.cmod.title' | transloco }}</h3>
-                <p class="mt-2">{{ 'home.cmod.body' | transloco }}</p>
-                <ul class="pl-6 mt-3 space-y-1 list-disc">
-                    <li>{{ 'home.cmod.items.indep' | transloco }}</li>
-                    <li>{{ 'home.cmod.items.expert' | transloco }}</li>
-                    <li>{{ 'home.cmod.items.role' | transloco }}</li>
-                </ul>
-            </div>
+    <!-- Section 12 : FAQ -->
+    <!-- TODO: balisage schema.org/FAQPage a poser lors de la passe SEO -->
+    <section id="faq" class="mt-12 space-y-6 steps-accordion">
+        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.faq.title' | transloco }}</h2>
+        <div class="space-y-6">
+            <details class="p-4 rounded-lg border">
+                <summary class="text-base font-semibold cursor-pointer md:text-xl">
+                    {{ 'home.faq.q1.question' | transloco }}
+                </summary>
+                <div class="mt-3 space-y-2">
+                    <p>{{ 'home.faq.q1.answer' | transloco }}</p>
+                </div>
+            </details>
+            <details class="p-4 rounded-lg border">
+                <summary class="text-base font-semibold cursor-pointer md:text-xl">
+                    {{ 'home.faq.q2.question' | transloco }}
+                </summary>
+                <div class="mt-3 space-y-2">
+                    <p>{{ 'home.faq.q2.answer' | transloco }}</p>
+                </div>
+            </details>
+            <details class="p-4 rounded-lg border">
+                <summary class="text-base font-semibold cursor-pointer md:text-xl">
+                    {{ 'home.faq.q3.question' | transloco }}
+                </summary>
+                <div class="mt-3 space-y-2">
+                    <p>{{ 'home.faq.q3.answer' | transloco }}</p>
+                </div>
+            </details>
+            <details class="p-4 rounded-lg border">
+                <summary class="text-base font-semibold cursor-pointer md:text-xl">
+                    {{ 'home.faq.q4.question' | transloco }}
+                </summary>
+                <div class="mt-3 space-y-2">
+                    <p>{{ 'home.faq.q4.answer' | transloco }}</p>
+                </div>
+            </details>
+            <details class="p-4 rounded-lg border">
+                <summary class="text-base font-semibold cursor-pointer md:text-xl">
+                    {{ 'home.faq.q5.question' | transloco }}
+                </summary>
+                <div class="mt-3 space-y-2">
+                    <p>{{ 'home.faq.q5.answer' | transloco }}</p>
+                </div>
+            </details>
+            <details class="p-4 rounded-lg border">
+                <summary class="text-base font-semibold cursor-pointer md:text-xl">
+                    {{ 'home.faq.q6.question' | transloco }}
+                </summary>
+                <div class="mt-3 space-y-2">
+                    <p>{{ 'home.faq.q6.answer' | transloco }}</p>
+                </div>
+            </details>
+            <details class="p-4 rounded-lg border">
+                <summary class="text-base font-semibold cursor-pointer md:text-xl">
+                    {{ 'home.faq.q7.question' | transloco }}
+                </summary>
+                <div class="mt-3 space-y-2">
+                    <p>{{ 'home.faq.q7.answer1' | transloco }}</p>
+                    <p>{{ 'home.faq.q7.answer2' | transloco }}</p>
+                </div>
+            </details>
+            <details class="p-4 rounded-lg border">
+                <summary class="text-base font-semibold cursor-pointer md:text-xl">
+                    {{ 'home.faq.q8.question' | transloco }}
+                </summary>
+                <div class="mt-3 space-y-2">
+                    <p>{{ 'home.faq.q8.answer' | transloco }}</p>
+                </div>
+            </details>
+            <details class="p-4 rounded-lg border">
+                <summary class="text-base font-semibold cursor-pointer md:text-xl">
+                    {{ 'home.faq.q9.question' | transloco }}
+                </summary>
+                <div class="mt-3 space-y-2">
+                    <p>{{ 'home.faq.q9.answer1' | transloco }}</p>
+                    <p>{{ 'home.faq.q9.answer2' | transloco }}</p>
+                </div>
+            </details>
+            <details class="p-4 rounded-lg border">
+                <summary class="text-base font-semibold cursor-pointer md:text-xl">
+                    {{ 'home.faq.q10.question' | transloco }}
+                </summary>
+                <div class="mt-3 space-y-2">
+                    <p>{{ 'home.faq.q10.answer' | transloco }}</p>
+                </div>
+            </details>
         </div>
     </section>
 </div>
