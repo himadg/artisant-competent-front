@@ -2,8 +2,7 @@
   "home": {
     "title": "Votre tiers de confiance pour faire réaliser vos petits travaux",
     "announceBar": {
-      "text": "Payez vos travaux en 3 fois sans frais avec Klarna. Paiement sécurisé.",
-      "cta": "En savoir plus"
+      "text": "Payez vos travaux en 3 fois sans frais avec Klarna. Paiement sécurisé."
     },
     "hero": {
       "h1": "Vos travaux, encadrés de A à Z. Finis les arnaques !",
@@ -13,7 +12,6 @@
       "arg3": "Suivi digital : photos, échanges, preuves. Rien ne s'efface.",
       "arg4": "48h pour valider : en cas d'abus, médiation possible.",
       "arg5": "France et DOM-TOM* : couverture en cours de déploiement partout sur le territoire.",
-      "ctaPrimary": "Trouver un artisan compétent",
       "ctaSecondary": "Je suis un professionnel",
       "ctaForm": "Décrivez votre projet en 2 minutes"
     },
