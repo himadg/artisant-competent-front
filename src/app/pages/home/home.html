@@ -302,6 +302,41 @@
         </div>
     </section>
 
+    <!-- Section 7 : Preuve sociale (avis) -->
+    <!-- Masquee tant que reviewsEnabled = false (moins de 3 avis reels). Flag dans home.ts -->
+    @if (reviewsEnabled) {
+        <section id="avis" class="space-y-4">
+            <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.reviews.h2' | transloco }}</h2>
+            <p class="text-lg md:text-xl">{{ 'home.reviews.subtitle' | transloco }}</p>
+
+            <!-- TODO: grille/carrousel de 3 a 6 avis reels : prenom, note en etoiles,
+                 extrait du commentaire, mention "Avis verifie Google" / "Avis verifie Trustpilot" -->
+
+            <p>{{ 'home.reviews.note' | transloco }}</p>
+
+            <!-- TODO: miniature cliquable vers la video YouTube de presentation (URL a fournir) -->
+
+            <p class="text-lg font-semibold md:text-xl">{{ 'home.reviews.strong' | transloco }}</p>
+
+            <div class="flex flex-wrap gap-4">
+                <!-- TODO: lien fiche Google Business -->
+                <a
+                    href="#"
+                    class="px-6 py-3 font-semibold rounded-lg no-underline bg-grad-brown text-[var(--primary-beige)]"
+                >
+                    {{ 'home.reviews.ctaGoogle' | transloco }}
+                </a>
+                <!-- TODO: lien page Trustpilot -->
+                <a
+                    href="#"
+                    class="px-6 py-3 font-semibold rounded-lg no-underline bg-grad-brown text-[var(--primary-beige)]"
+                >
+                    {{ 'home.reviews.ctaTrustpilot' | transloco }}
+                </a>
+            </div>
+        </section>
+    }
+
     <section class="mt-12 space-y-6 steps-accordion">
         <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.steps.title' | transloco }}</h2>
         <div class="space-y-6">
