@@ -45,7 +45,7 @@ export class RegisterIndividual implements OnDestroy {
   readonly showSubmitError = signal(false);
 
   readonly form = this.fb.group({
-    photo: new FormControl<File | null>(null),
+    photo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
     gender: ['', Validators.required],
     lastName: ['', Validators.required],
     firstName: ['', Validators.required],

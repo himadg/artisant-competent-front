@@ -85,6 +85,7 @@ export class RegisterProfessional implements OnDestroy {
   readonly searchQuery = signal<string>('');
   readonly pendingServiceDescriptions = signal<string[]>([]);
   readonly supplierInput = signal<string>('');
+  readonly adressError = signal<'addressPersonal' | 'addressWork' | null>(null);
   readonly searchingService = signal<boolean>(false);
   readonly dropdownOpen = signal<boolean>(false);
   readonly birthDateFocused = signal<boolean>(false);
@@ -95,6 +96,7 @@ export class RegisterProfessional implements OnDestroy {
   readonly showConfirmPassword = signal<boolean>(false);
   readonly passwordFocused = signal<boolean>(false);
   readonly showSubmitError = signal<boolean>(false);
+  readonly hasStep1Errors = signal<boolean>(false);
 
   readonly personalAddressSuggestions = signal<AddressSuggestion[]>([]);
   readonly personalAddressOpen = signal<boolean>(false);
@@ -476,12 +478,35 @@ export class RegisterProfessional implements OnDestroy {
   // --- Submit ---
   submit() {
     this.showSubmitError.set(false);
+    this.hasStep1Errors.set(false);
     this.form.markAllAsTouched();
 
     const user = this.form.value.user;
     
     if (this.form.invalid || user?.password !== user?.confirmPassword) {
       this.showSubmitError.set(true);
+
+      const step1Controls = [
+        this.form.get('user'),
+        this.form.get('professionalProfile.professionalEmail'),
+        this.form.get('professionalProfile.managerPhone'),
+        this.form.get('professionalProfile.photo'),
+        this.form.get('professionalProfile.idFront'),
+        this.form.get('professionalProfile.idBack'),
+        this.form.get('professionalProfile.insuranceDoc'),
+        this.form.get('professionalProfile.diplomaDoc'),
+        this.form.get('professionalProfile.insuranceName'),
+        this.form.get('professionalProfile.insuranceNumber'),
+        this.form.get('professionalProfile.insuranceExpiry')
+      ];
+      
+      const isStep1Invalid = step1Controls.some(ctrl => ctrl?.invalid);
+      const passwordMismatch = user?.password !== user?.confirmPassword;
+      
+      if (isStep1Invalid || passwordMismatch) {
+        this.hasStep1Errors.set(true);
+      }
+
       const findInvalid = (group: AbstractControl, path = ''): void => {
         if ('controls' in group) {
           Object.entries((group as any).controls).forEach(([k, c]) => findInvalid(c as any, path ? `${path}.${k}` : k));
@@ -502,80 +527,83 @@ export class RegisterProfessional implements OnDestroy {
       return;
     }
 
+    this.adressError.set(null);
     const captchaToken = this.captchaToken();
     if (!captchaToken) return;
 
     const pending = this.pendingServiceDescriptions();
     const serviceIds = this.selectedServices().map((service) => service.id);
 
-      // On convertit le nom en majuscules
-      this.form.value.user!.lastName = this.form.value.user!.lastName!.trim().toUpperCase();
-      // On capitalise le prénom, c'est à dire prenom => Prenom
-      this.form.value.user!.firstName = capitalize(this.form.value.user!.firstName!.trim());
+    // On convertit le nom en majuscules
+    this.form.value.user!.lastName = this.form.value.user!.lastName!.trim().toUpperCase();
+    // On capitalise le prénom, c'est à dire prenom => Prenom
+    this.form.value.user!.firstName = capitalize(this.form.value.user!.firstName!.trim());
 
-      const raw = this.form.value;
-      const rawHours = ((raw.professionalProfile?.hours ?? []) as { day: string; start: string | null; end: string | null }[]);
-      const openingHours = {
-        days: rawHours.map(h => ({
-          day: h.day,
-          closed: !h.start && !h.end,
-          intervals: h.start && h.end ? [{ start: h.start, end: h.end }] : [],
-        })),
+    const raw = this.form.value;
+    const rawHours = ((raw.professionalProfile?.hours ?? []) as { day: string; start: string | null; end: string | null }[]);
+    const openingHours = {
+      days: rawHours.map(h => ({
+        day: h.day,
+        closed: !h.start && !h.end,
+        intervals: h.start && h.end ? [{ start: h.start, end: h.end }] : [],
+      })),
+    };
+
+    const { hours: _h, trustName, trustPhone, suppliers, photo, idFront, idBack, insuranceDoc, diplomaDoc, logo, rib, ...profRest } =
+      raw.professionalProfile as Record<string, unknown> & {
+        hours: unknown; trustName: string; trustPhone: string; suppliers: string[];
+        photo: File | null; idFront: File | null; idBack: File | null;
+        insuranceDoc: File | null; diplomaDoc: File | null; logo: File | null; rib: File | null;
       };
 
-      const { hours: _h, trustName, trustPhone, suppliers, photo, idFront, idBack, insuranceDoc, diplomaDoc, logo, rib, ...profRest } =
-        raw.professionalProfile as Record<string, unknown> & {
-          hours: unknown; trustName: string; trustPhone: string; suppliers: string[];
-          photo: File | null; idFront: File | null; idBack: File | null;
-          insuranceDoc: File | null; diplomaDoc: File | null; logo: File | null; rib: File | null;
-        };
+    const { confirmPassword: _cp, ...userFields } = raw.user as Record<string, unknown> & { confirmPassword: unknown };
 
-      const { confirmPassword: _cp, ...userFields } = raw.user as Record<string, unknown> & { confirmPassword: unknown };
-
-      const payload = {
-        user: userFields,
-        professionalProfile: {
-          ...profRest,
-          services: serviceIds,
+    const payload = {
+      user: userFields,
+      professionalProfile: {
+        ...profRest,
+        services: serviceIds,
         pendingServices: pending,
-          openingHours,
-          trustedContactName: trustName || undefined,
-          trustedContactPhone: trustPhone || undefined,
-          suppliers,
-        },
-      };
+        openingHours,
+        trustedContactName: trustName || undefined,
+        trustedContactPhone: trustPhone || undefined,
+        suppliers,
+      },
+    };
 
     const upload = (file: File | null) => file ? this.uploadService.upload(file) : of('');
 
-      this.userApi.registerProfessional(payload as Record<string, unknown>, captchaToken)
-        .pipe(
-          switchMap(({ userId, accessToken, user }) => {
-            this.authService.setSession(accessToken, user as User);
-            return forkJoin([
-              upload(photo),
-              upload(idFront),
-              upload(idBack),
-              upload(insuranceDoc),
-              upload(diplomaDoc),
-              upload(logo),
-              upload(rib),
-            ]).pipe(
-              switchMap(([photoKey, idFrontKey, idBackKey, insuranceDocKey, diplomaDocKey, companyLogoKey, ribKey]) =>
-                this.userApi.createProfessionalDocuments(userId, {
-                  photoKey, idFrontKey, idBackKey, insuranceDocKey, diplomaDocKey, companyLogoKey, ribKey,
-                }),
-              ),
-            );
-          }),
-          takeUntil(this.destroy$),
-        )
-        .subscribe({
-          next: () => { this.router.navigate(['/auth/login']); },
-          error: (err) => {
-            console.error('Erreur inscription', err);
-            this.turnstile.reset();
-            this.onCaptchaReset();
-      },
-    });
+    this.userApi.registerProfessional(payload as Record<string, unknown>, captchaToken)
+      .pipe(
+        switchMap(({ userId, accessToken, user }) => {
+          this.authService.setSession(accessToken, user as User);
+          return forkJoin([
+            upload(photo),
+            upload(idFront),
+            upload(idBack),
+            upload(insuranceDoc),
+            upload(diplomaDoc),
+            upload(logo),
+            upload(rib),
+          ]).pipe(
+            switchMap(([photoKey, idFrontKey, idBackKey, insuranceDocKey, diplomaDocKey, companyLogoKey, ribKey]) =>
+              this.userApi.createProfessionalDocuments(userId, {
+                photoKey, idFrontKey, idBackKey, insuranceDocKey, diplomaDocKey, companyLogoKey, ribKey,
+              }),
+            ),
+          );
+        }),
+        takeUntil(this.destroy$),
+      )
+      .subscribe({
+        next: () => { this.router.navigate(['/auth/login']); },
+        error: (err) => {
+          const msg = (err?.error?.message ?? '') as string;
+          if (msg.toLowerCase().includes('personnelle')) this.adressError.set('addressPersonal');
+          else if (msg.toLowerCase().includes('travail')) this.adressError.set('addressWork');
+          this.turnstile.reset();
+          this.onCaptchaReset();
+        },
+      });
   }
 }
