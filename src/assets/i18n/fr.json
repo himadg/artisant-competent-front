@@ -312,6 +312,26 @@
     "affiliation": "Affiliation",
     "loading": "Chargement..."
   },
+  "footer": {
+    "newsletterTitle": "Recevez nos conseils anti-arnaque et nos bons plans travaux directement sur WhatsApp.",
+    "newsletterSubtitle": "Plus simple, plus direct, plus lu que par mail. Un message par mois maximum, zéro spam.",
+    "newsletterPhone": "Votre numéro de téléphone",
+    "newsletterConsent": "J'accepte de recevoir les messages WhatsApp d'Artisan Compétent.",
+    "newsletterButton": "Je m'abonne sur WhatsApp",
+    "navHome": "Accueil",
+    "navTrades": "Nos métiers",
+    "navCities": "Nos villes",
+    "navHowItWorks": "Comment ça marche",
+    "navCmod": "CMOD",
+    "navPro": "Je suis un pro",
+    "navBlog": "Blog",
+    "navContact": "Contact",
+    "address": "66 avenue des Champs-Élysées, 75008 Paris",
+    "legalNotice": "Mentions légales",
+    "cgu": "CGU",
+    "cgv": "CGV",
+    "privacy": "Politique de confidentialité"
+  },
   "auth": {
     "register": "Inscription",
     "login": "Connexion",
