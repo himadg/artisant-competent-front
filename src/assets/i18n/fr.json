@@ -44,6 +44,18 @@
       "strong": "Vous ne validez le paiement qu'une fois l'intervention terminée.",
       "klarna": "Et si besoin, paiement en 3 fois possible via Klarna."
     },
+    "rule48": {
+      "h2": "48h pour valider. 48h pour réagir.",
+      "intro1": "Vos travaux sont terminés. L'artisan vous demande de signer le procès-verbal de fin de chantier. Et là, une règle simple vous protège : vous avez jusqu'à 48 heures pour le valider.",
+      "intro2": "Cette période de 48h s'applique à tous les chantiers, pas seulement aux urgences. Pendant ces 48h, les fonds restent bloqués en séquestre.",
+      "actionsTitle": "Vous constatez un abus ou une malfaçon ? La bonne démarche, dans l'ordre :",
+      "action1": "Parlez-en d'abord à l'artisan. La très grande majorité des situations se règlent à l'amiable. Un artisan sérieux acceptera de discuter du devis ou de revenir corriger une finition. Cette étape est essentielle, prenez le temps de la mener avant tout autre signalement.",
+      "action2": "Si l'artisan refuse d'entendre vos remarques, signalez-le depuis votre tableau de bord. Vous décrivez le problème (devis manifestement excessif, malfaçon visible, etc.). Les fonds restent bloqués pendant l'analyse.",
+      "action3": "Médiation amiable encadrée par la plateforme. Si un abus est avéré après analyse, une médiation est engagée pour réajuster la situation. En cas de refus persistant de l'artisan, la plateforme applique des frais de dossier de suspension (jusqu'à 250 €) qui sont reversés directement au client sur la part séquestrée. Cette procédure est encadrée par les CGU et CGV.",
+      "signedTitle": "Et si vous avez déjà signé le PV ?",
+      "signedBody": "Pas de panique. Les artisans présents sur Artisan Compétent sont tous des professionnels sérieux et, comme tout bon artisan honnête, ils interviennent pour rattraper une éventuelle malfaçon liée à leur travail. Et dans tous les cas, dès la signature du PV, les garanties légales entrent en jeu, à commencer par la garantie de parfait achèvement (1 an), puis la garantie biennale et, selon la nature des travaux, la garantie décennale.",
+      "strong": "Prenez 48h. C'est votre meilleure protection."
+    },
     "how": {
       "title": "COMMENT ÇA MARCHE ?",
       "forClients": "Pour les clients (particuliers & entreprises)"
