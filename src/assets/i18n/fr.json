@@ -76,6 +76,12 @@
       "ctaGoogle": "Voir tous les avis Google",
       "ctaTrustpilot": "Voir tous les avis Trustpilot"
     },
+    "trades": {
+      "h2": "Tous les métiers que vous cherchez, un seul réflexe",
+      "intro": "Que vous ayez besoin d'un plombier, d'un électricien, d'un serrurier ou d'un peintre, Artisan Compétent couvre la majorité des besoins métiers récurrents demandés par les Français. Chaque artisan est vérifié, chaque intervention est encadrée.",
+      "outro": "Vous ne trouvez pas exactement le métier dont vous avez besoin ? La plateforme évolue constamment et d'autres spécialités sont ajoutées au fur et à mesure que de nouveaux artisans rejoignent Artisan Compétent.",
+      "cta": "Découvrir tous nos métiers"
+    },
     "how": {
       "title": "COMMENT ÇA MARCHE ?",
       "forClients": "Pour les clients (particuliers & entreprises)"

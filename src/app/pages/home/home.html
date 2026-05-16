@@ -135,8 +135,9 @@
         </div>
     </section>
 
-    <section class="flex flex-col gap-4 items-left">
-        <h2 class="text-base font-semibold shrink-0 md:text-4xl title">{{ 'jobs.title' | transloco }}</h2>
+    <section id="metiers" class="flex flex-col gap-4 items-left">
+        <h2 class="text-base font-semibold shrink-0 md:text-4xl title">{{ 'home.trades.h2' | transloco }}</h2>
+        <p>{{ 'home.trades.intro' | transloco }}</p>
         <div class="overflow-x-auto py-2 w-full h-scroll">
             <div class="flex gap-6">
                 <a class="block w-48 text-center shrink-0" [routerLink]="['/jobs', 'electrician']">
@@ -229,6 +230,13 @@
                 </a>
             </div>
         </div>
+        <p>{{ 'home.trades.outro' | transloco }}</p>
+        <a
+            routerLink="/jobs"
+            class="inline-block px-6 py-3 font-semibold rounded-lg no-underline bg-grad-brown text-[var(--primary-beige)] w-fit"
+        >
+            {{ 'home.trades.cta' | transloco }}
+        </a>
     </section>
 
     <!-- Section 2 : Le problème -->
