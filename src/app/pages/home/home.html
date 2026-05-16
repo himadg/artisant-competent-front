@@ -281,6 +281,36 @@
         <p class="text-lg font-semibold md:text-xl">{{ 'home.rule48.strong' | transloco }}</p>
     </section>
 
+    <!-- Section 6 : CMOD -->
+    <section id="cmod" class="space-y-4">
+        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.cmodSection.h2' | transloco }}</h2>
+        <p>{{ 'home.cmodSection.p1' | transloco }}</p>
+        <p>{{ 'home.cmodSection.p2' | transloco }}</p>
+
+        <div class="space-y-2">
+            <h3 class="text-lg font-semibold md:text-xl">{{ 'home.cmodSection.changeTitle' | transloco }}</h3>
+            <p>{{ 'home.cmodSection.changeBody' | transloco }}</p>
+        </div>
+
+        <div class="space-y-3">
+            <h3 class="text-lg font-semibold md:text-xl">{{ 'home.cmodSection.conditionsTitle' | transloco }}</h3>
+            <ul class="pl-6 space-y-2 list-disc">
+                <li>{{ 'home.cmodSection.cond1' | transloco }}</li>
+                <li>{{ 'home.cmodSection.cond2' | transloco }}</li>
+                <li>{{ 'home.cmodSection.cond3' | transloco }}</li>
+            </ul>
+        </div>
+
+        <!-- TODO: cible du CTA "En savoir plus sur le CMOD" (page CMOD dediee) a confirmer -->
+        <a
+            href="#"
+            class="inline-block px-6 py-3 font-semibold rounded-lg no-underline bg-grad-brown text-[var(--primary-beige)]"
+        >
+            {{ 'home.cmodSection.cta' | transloco }}
+        </a>
+    </section>
+
+    <section class="mt-12 space-y-6 steps-accordion">
     @defer (on viewport) {
         <section class="mt-12 space-y-6 steps-accordion">
         <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.steps.title' | transloco }}</h2>

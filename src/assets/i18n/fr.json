@@ -57,6 +57,18 @@
       "signedBody": "Pas de panique. Les artisans présents sur Artisan Compétent sont tous des professionnels sérieux et, comme tout bon artisan honnête, ils interviennent pour rattraper une éventuelle malfaçon liée à leur travail. Et dans tous les cas, dès la signature du PV, les garanties légales entrent en jeu, à commencer par la garantie de parfait achèvement (1 an), puis la garantie biennale et, selon la nature des travaux, la garantie décennale.",
       "strong": "Prenez 48h. C'est votre meilleure protection."
     },
+    "cmodSection": {
+      "h2": "CMOD : un conseiller à distance pour vos travaux",
+      "p1": "Vous n'êtes pas du métier et vous avez peur de vous faire avoir ? CMOD, c'est la possibilité de faire appel à un professionnel du bâtiment qui vous conseille à distance, par visioconférence, sur votre chantier.",
+      "p2": "En cas de doute ou de litige avec votre artisan, le rapport CMOD vient renforcer votre dossier avec un avis technique indépendant. Ce n'est pas une garantie juridique, c'est un levier concret pour faire valoir votre point de vue.",
+      "changeTitle": "Ce que ça change",
+      "changeBody": "Sans mécanisme d'encadrement complet, on estime que plus d'un chantier sur deux finit bâclé, repoussé ou non terminé comme prévu. Chez Artisan Compétent, l'écrasante majorité des chantiers suivis sur la plateforme sont menés à leur terme dans les règles, et ce taux monte encore quand le client active un accompagnement CMOD dès le début du chantier.",
+      "conditionsTitle": "Conditions",
+      "cond1": "Devis entre 2 000 € et 5 000 € : un appel de 20 minutes offert.",
+      "cond2": "Devis au-delà de 5 000 € : un appel de 45 minutes offert.",
+      "cond3": "Accompagnement complet du chantier : formules payantes disponibles, tarif sur demande.",
+      "cta": "En savoir plus sur le CMOD"
+    },
     "how": {
       "title": "COMMENT ÇA MARCHE ?",
       "forClients": "Pour les clients (particuliers & entreprises)"
