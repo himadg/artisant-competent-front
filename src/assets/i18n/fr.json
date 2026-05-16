@@ -23,6 +23,17 @@
       "p4": "C'est exactement pour ça qu'Artisan Compétent existe : anticiper les risques, tracer chaque étape, garder l'argent en séquestre tant que tout n'est pas réglé.",
       "strong": "On sait comment les choses dérapent. Et on met en place ce qu'il faut pour les éviter."
     },
+    "howItWorks": {
+      "h2": "3 étapes pour des travaux sans mauvaise surprise",
+      "step1Title": "Décrivez votre besoin",
+      "step1Body": "Remplissez le formulaire en 2 minutes : type de travaux, zone d'intervention, budget estimé. Plus vous êtes précis, meilleurs seront les retours des artisans.",
+      "step2Title": "Échangez avec des artisans vérifiés",
+      "step2Body1": "Chaque artisan sur la plateforme est vérifié : numéro SIRET valide, assurances obligatoires et certifications à jour, avis clients réels.",
+      "step2Body2": "Les artisans vous répondent via le chat interne de la plateforme et vous donnent une première fourchette de prix. Pour fixer le besoin et le prix définitif, l'artisan doit se déplacer chez vous. Votre numéro et votre adresse ne sont jamais communiqués à qui que ce soit tant que vous n'avez pas choisi vous-même de recevoir l'artisan.",
+      "step3Title": "Validez le paiement à la fin",
+      "step3Body": "Dès l'acceptation du devis, votre paiement est placé en séquestre. L'artisan n'est payé qu'une fois que vous avez validé la fin du chantier. Pas satisfait ? Les fonds restent bloqués le temps de résoudre la situation.",
+      "cta": "Lancer ma demande de devis"
+    },
     "how": {
       "title": "COMMENT ÇA MARCHE ?",
       "forClients": "Pour les clients (particuliers & entreprises)"
