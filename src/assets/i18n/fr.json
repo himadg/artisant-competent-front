@@ -68,6 +68,14 @@
       "cond2": "Devis au-delà de 5 000 € : un appel de 45 minutes offert.",
       "cond3": "Accompagnement complet du chantier : formules payantes disponibles, tarif sur demande."
     },
+    "reviews": {
+      "h2": "Ils ont fait confiance à Artisan Compétent",
+      "subtitle": "Des avis réels, de vrais clients et de vrais artisans, après de vrais chantiers.",
+      "note": "Chaque avis vient d'un client ou d'un artisan réel, après un chantier réellement encadré par la plateforme. Pas de faux profils, pas d'avis achetés.",
+      "strong": "La meilleure preuve que ça marche, c'est ceux qui l'ont testé.",
+      "ctaGoogle": "Voir tous les avis Google",
+      "ctaTrustpilot": "Voir tous les avis Trustpilot"
+    },
     "how": {
       "title": "COMMENT ÇA MARCHE ?",
       "forClients": "Pour les clients (particuliers & entreprises)"
