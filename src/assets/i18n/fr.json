@@ -15,6 +15,14 @@
       "ctaSecondary": "Je suis un professionnel",
       "ctaForm": "Décrivez votre projet en 2 minutes"
     },
+    "problem": {
+      "h2": "Pourquoi tant de gens se font avoir sur leurs travaux",
+      "p1": "Un artisan qui disparaît après l'acompte. Un devis qui passe du simple au double sans explication claire. Des travaux bâclés qu'il faut refaire. Des délais non respectés sans aucun recours.",
+      "p2": "Mais tous les imprévus ne sont pas des arnaques. Un artisan honnête peut découvrir un vrai problème en cours de chantier. Un client peut mal décrire son besoin au départ. Et parfois, c'est simplement un accident de la vie, physique ou financier, qui vient tout compliquer.",
+      "p3": "Le problème, ce n'est pas que ces situations existent. Le problème, c'est qu'aujourd'hui, il n'existe aucun mécanisme qui protège réellement le particulier quand les choses dérapent.",
+      "p4": "C'est exactement pour ça qu'Artisan Compétent existe : anticiper les risques, tracer chaque étape, garder l'argent en séquestre tant que tout n'est pas réglé.",
+      "strong": "On sait comment les choses dérapent. Et on met en place ce qu'il faut pour les éviter."
+    },
     "how": {
       "title": "COMMENT ÇA MARCHE ?",
       "forClients": "Pour les clients (particuliers & entreprises)"
