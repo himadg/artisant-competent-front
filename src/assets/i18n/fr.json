@@ -98,6 +98,12 @@
       "outro": "Votre ville n'est pas dans la liste ? La plateforme s'étend chaque mois. Parlez-en à vos artisans locaux : plus ils sont nombreux à rejoindre Artisan Compétent, plus vite votre zone sera couverte. Et un bon artisan qui n'a rien à se reprocher n'a aucune raison de refuser un système aussi encadré.",
       "badge247": "Disponible 24/7"
     },
+    "pro": {
+      "h2": "Vous êtes artisan ? Rejoignez la plateforme gratuitement.",
+      "p1": "Si vous avez vos assurances obligatoires (RC Pro, décennale, et les autres selon votre activité) ainsi que vos certifications à jour (RGE, Qualibat, etc. si vous proposez ce type de service), alors vous avez votre place ici.",
+      "p2": "L'inscription est gratuite. Vous ne payez rien tant que vous n'avez pas signé un devis avec un client. Et la commission d'Artisan Compétent porte uniquement sur la main d'œuvre. Rien sur les matériaux.",
+      "cta": "S'inscrire gratuitement comme artisan"
+    },
     "how": {
       "title": "COMMENT ÇA MARCHE ?",
       "forClients": "Pour les clients (particuliers & entreprises)"
