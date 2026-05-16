@@ -82,6 +82,32 @@
         <p class="text-lg font-semibold md:text-xl">{{ 'home.problem.strong' | transloco }}</p>
     </section>
 
+    <!-- Section 3 : Comment ça marche -->
+    <section id="comment-ca-marche" class="space-y-6">
+        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.howItWorks.h2' | transloco }}</h2>
+        <ol class="space-y-6 list-decimal list-inside">
+            <li>
+                <h3 class="inline text-lg font-semibold md:text-xl">{{ 'home.howItWorks.step1Title' | transloco }}</h3>
+                <p class="mt-2">{{ 'home.howItWorks.step1Body' | transloco }}</p>
+            </li>
+            <li>
+                <h3 class="inline text-lg font-semibold md:text-xl">{{ 'home.howItWorks.step2Title' | transloco }}</h3>
+                <p class="mt-2">{{ 'home.howItWorks.step2Body1' | transloco }}</p>
+                <p class="mt-2">{{ 'home.howItWorks.step2Body2' | transloco }}</p>
+            </li>
+            <li>
+                <h3 class="inline text-lg font-semibold md:text-xl">{{ 'home.howItWorks.step3Title' | transloco }}</h3>
+                <p class="mt-2">{{ 'home.howItWorks.step3Body' | transloco }}</p>
+            </li>
+        </ol>
+        <a
+            href="#devis"
+            class="inline-block px-6 py-3 font-semibold rounded-lg no-underline bg-grad-brown text-[var(--primary-beige)]"
+        >
+            {{ 'home.howItWorks.cta' | transloco }}
+        </a>
+    </section>
+
     <section class="flex flex-col gap-4 items-left">
         <h2 class="text-base font-semibold shrink-0 md:text-4xl title">{{ 'home.where.title' | transloco }}</h2>
         <div class="overflow-x-auto py-2 w-full h-scroll">
