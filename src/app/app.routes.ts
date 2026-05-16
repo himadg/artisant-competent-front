@@ -5,7 +5,7 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    title: 'home.title',
+    title: 'home.meta.title',
     loadComponent: () => import('./pages/home/home').then((p) => p.HomePage),
   },
   { path: 'auth', loadChildren: () => import('./pages/auth/auth.routes').then((c) => c.authRoutes) },
