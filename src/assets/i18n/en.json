@@ -1,32 +1,6 @@
 {
   "home": {
-    "how": {
-      "title": "HOW DOES IT WORK?",
-      "forClients": "For clients (individuals & businesses)"
-    },
-    "what": {
-      "title": "What is Artisan-Compétent?",
-      "body": "Artisan-Compétent is a secure matchmaking web app between professionals and individuals, and also between individuals, exclusively in the construction world."
-    },
-    "specialized": {
-      "title": "The platform is 100% construction-focused",
-      "body": "Unlike passive directories, Artisan-Compétent acts as a trusted third party throughout the project:",
-      "item1": "from the initial request,",
-      "item2": "to the final acceptance report,",
-      "item3": "including secure payment,",
-      "item4": "work progress tracking,",
-      "item5": "and dispute handling when needed."
-    },
-    "process": {
-      "title": "Fully digital process",
-      "body": "From the request to the acceptance report, everything happens on the client's dashboard, without external paperwork."
-    },
-    "objective": {
-      "title": "Our goal",
-      "body": "Enable clients to carry out their work with peace of mind, no scams, and full visibility."
-    },
     "where": {
-      "title": "Where do we operate?",
       "cities": {
         "paris": "Paris and Ile-de-France",
         "marseille": "Marseille and surrounding",
