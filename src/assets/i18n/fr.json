@@ -108,15 +108,6 @@
       "title": "COMMENT ÇA MARCHE ?",
       "forClients": "Pour les clients (particuliers & entreprises)"
     },
-    "cmod": {
-      "title": "CMOD: votre conseiller neutre",
-      "body": "Un Conseiller à Maître d'Ouvrage Digital vous accompagne à distance pour sécuriser votre chantier.",
-      "items": {
-        "indep": "Professionnel indépendant, sans lien avec l'intervenant.",
-        "expert": "Au moins 3 ans d'expérience terrain.",
-        "role": "Conseil en cas de litige."
-      }
-    },
     "what": {
       "title": "Qu'est-ce qu'Artisan-Compétent ?",
       "body": "Artisan-Compétent est une web application de mise en relation sécurisée de professionnel à particulier, mais aussi de particulier à particulier, exclusivement dans le monde du bâtiment."
@@ -257,6 +248,51 @@
         "li3": "utile à la communauté.",
         "note": "Le chantier est officiellement clôturé."
       }
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "q1": {
+        "question": "C'est quoi le séquestre de fonds ?",
+        "answer": "Le séquestre de fonds, c'est un mécanisme où votre argent est placé sur un compte bloqué (géré par Stripe) dès que vous acceptez un devis. L'artisan ne reçoit le paiement qu'une fois que vous avez validé la fin du chantier. C'est la meilleure protection contre les arnaques sur des travaux."
+      },
+      "q2": {
+        "question": "Comment Artisan Compétent vérifie les artisans ?",
+        "answer": "Chaque artisan est contrôlé avant d'intégrer la plateforme : vérification du numéro SIRET, contrôle des assurances obligatoires (RC Pro, décennale, et toute assurance spécifique à son activité), vérification des certifications à jour (RGE, Qualibat, etc. selon les services proposés), et suivi des avis clients réels. Un artisan qui ne respecte pas les règles est retiré de la plateforme."
+      },
+      "q3": {
+        "question": "Combien ça coûte pour un particulier ?",
+        "answer": "La mise en relation est gratuite. Vous payez uniquement le montant du devis accepté, via le séquestre. Artisan Compétent se rémunère par une commission reversée par l'artisan, prélevée uniquement sur la partie main d'œuvre. Jamais sur les matériaux. Cette commission est indépendante du devis qui vous est présenté."
+      },
+      "q4": {
+        "question": "C'est quoi le CMOD ?",
+        "answer": "Le CMOD, c'est un Conseiller Maître d'Ouvrage Digital. Un professionnel du bâtiment qui vous accompagne à distance par visioconférence pour vérifier que vos travaux avancent correctement. Pour les devis entre 2 000 € et 5 000 €, un appel de 20 minutes est offert. Au-delà de 5 000 €, c'est 45 minutes. L'accompagnement complet du chantier est disponible en option payante, tarif sur demande."
+      },
+      "q5": {
+        "question": "Est-ce que je peux payer en plusieurs fois ?",
+        "answer": "Oui. Le paiement en 3 fois est disponible via Klarna directement sur la plateforme."
+      },
+      "q6": {
+        "question": "Artisan Compétent intervient partout en France ?",
+        "answer": "La plateforme est en phase de déploiement progressif. Artisan Compétent couvre déjà les principales villes françaises et s'étend au fil des mois, avec pour objectif à terme de couvrir la France métropolitaine et les DOM-TOM jusqu'aux plus petits villages. Si votre commune n'est pas encore couverte, vous pouvez encourager vos artisans locaux à rejoindre la plateforme : plus ils sont nombreux, plus vite votre zone sera disponible. Un artisan sérieux n'a aucune raison de refuser un système encadré comme le nôtre."
+      },
+      "q7": {
+        "question": "Que faire si je ne suis pas d'accord avec le devis ou le travail rendu ?",
+        "answer1": "La première chose à faire, c'est d'en parler à l'artisan. La grande majorité des situations se règlent à l'amiable : un artisan sérieux acceptera de rediscuter du devis ou de revenir corriger une finition. Prenez le temps de cette discussion avant tout autre signalement.",
+        "answer2": "Si l'artisan refuse d'écouter vos remarques, vous pouvez alors le signaler depuis votre tableau de bord, dans les 48h après la fin des travaux. Pendant ce délai, les fonds restent bloqués en séquestre et la plateforme analyse la situation. Si un abus est avéré, une médiation amiable est engagée, et en cas de refus persistant de l'artisan, des frais de dossier (jusqu'à 250 €) lui sont prélevés au profit du client."
+      },
+      "q8": {
+        "question": "Qu'est-ce qui se passe si je ne valide pas le procès-verbal dans les 48h ?",
+        "answer": "Tant que vous n'avez pas validé le PV, les fonds restent bloqués en séquestre. C'est la fenêtre pour signaler un éventuel problème (après en avoir parlé à l'artisan, voir question précédente). Une fois le PV signé, les fonds sont libérés vers l'artisan et seules les garanties légales restent activables (garantie de parfait achèvement, biennale, décennale selon les travaux)."
+      },
+      "q9": {
+        "question": "Que se passe-t-il si les travaux sont mal faits ?",
+        "answer1": "Première étape : en discuter avec l'artisan. Beaucoup de malfaçons se corrigent dès qu'on en parle. Si l'artisan refuse d'intervenir, ne signez pas le PV dans les 48h et signalez la situation depuis votre tableau de bord. Les fonds restent bloqués et la plateforme analyse la situation sur la base du suivi digital (photos, échanges, rapports CMOD si activé).",
+        "answer2": "Si le PV est déjà signé, les artisans sérieux présents sur la plateforme interviennent spontanément pour corriger une malfaçon. Et dans tous les cas, les garanties légales prennent le relais (parfait achèvement, biennale, décennale)."
+      },
+      "q10": {
+        "question": "Comment éviter les arnaques quand on cherche un artisan ?",
+        "answer": "Le meilleur moyen d'éviter les arnaques, c'est de ne jamais payer un artisan directement avant la fin des travaux. Sur Artisan Compétent, votre argent est encadré par le séquestre de fonds : l'artisan est payé uniquement quand vous validez le chantier. C'est la meilleure protection contre les devis excessifs, les travaux bâclés et les artisans qui disparaissent."
+      }
     }
   },
   "common": {
@@ -391,127 +427,6 @@
           "p3": "Finis les arnaques avec notre système de séquestration de paiement, vous ne prenez plus aucun risque !"
         }
       }
-    }
-  },
-  "faq": {
-    "title": "Artisan compétent : comment ça marche ?",
-    "q1": {
-      "title": "Comment trouver un artisan compétent sur Artisan-Compétent ?",
-      "p1": "Trouver un intervenant sur Artisan-Compétent est simple, rapide et 100 % digitalisé.",
-      "intro": "Après votre inscription, il vous suffit de:",
-      "steps": {
-        "item1": "choisir le métier dont vous avez besoin (plomberie, électricité, maçonnerie...)",
-        "item2": "définir un périmètre géographique",
-        "item3": "expliquer votre besoin, idéalement via une courte vidéo, mais aussi avec des photos ou du texte selon votre préférence"
-      },
-      "p2": "Votre demande est transmise aux professionnels qualifiés et/ou particuliers compétents correspondant à vos critères. Vous recevez plusieurs propositions pour comparer et choisir en toute transparence."
-    },
-    "q2": {
-      "title": "Quelles sont les garanties offertes par Artisan-Compétent ?",
-      "items": {
-        "escrow1": "Paiement séquestré: la totalité du devis jusqu'à 5 000 € est séquestrée.",
-        "escrow2": "Au-delà de 5 000 €, seule la main-d'œuvre est séquestrée (sauf artisans fabricants, selon cas).",
-        "tracking": "Suivi digitalisé du chantier: photos, commentaires et étapes en temps réel.",
-        "cmod": "CMOD: un professionnel indépendant conseille et intervient en cas de doute ou litige.",
-        "abuse": "Protection contre les abus: intervention possible (dans un délai de 12 à 48h) en cas de devis signé de nuit et payé (urgence) manifestement excessif (même après procès verbal validé dans un délai maximum de 48h, à signaler depuis votre tableau de bord).",
-        "pv": "Procès-verbal numérique: aucun paiement libéré sans validation formelle."
-      }
-    },
-    "q3": {
-      "title": "Que se passe-t-il si j'ai payé mais que l'artisan n'est pas intervenu ?",
-      "items": {
-        "escrow": "Les fonds étant séquestrés, l'intervenant ne peut pas être payé.",
-        "report": "Vous signalez la situation depuis votre tableau de bord.",
-        "review": "Le CMOD et les administrateurs analysent le dossier.",
-        "refund": "Remboursement intégral si aucune intervention n'a eu lieu dans le délai prévu dans le devis, les frais de séquestre vous sont offerts par Artisan-Compétent !"
-      },
-      "cta": "Vous ne prenez donc aucun risque financier."
-    },
-    "q4": {
-      "title": "Pourquoi passer uniquement par Artisan-Compétent pour vos petits travaux et urgences ?",
-      "items": {
-        "id": "Intervenants identifiés et encadrés.",
-        "price": "Prix dans les standards du marché.",
-        "block": "Paiement bloqué tant que le travail n'est pas validé.",
-        "neutral": "Interlocuteur neutre en cas de problème (CMOD + plateforme)."
-      },
-      "p": "Artisan-Compétent transforme une situation stressante en processus sécurisé et contrôlé."
-    },
-    "q5": {
-      "title": "Quel est le taux de TVA appliqué en France pour les travaux de rénovation ?",
-      "items": {
-        "rate55": "5,5 %: travaux d'amélioration énergétique (isolation, PAC, etc.).",
-        "rate10": "10 %: la plupart des autres travaux de rénovation.",
-        "rate20": "20 %: taux normal en dehors des cas éligibles."
-      },
-      "note": "Les taux réduits s'appliquent aux logements achevés depuis plus de 2 ans et peuvent couvrir main-d'œuvre et fournitures si fournies par le professionnel.",
-      "advice": "Il est souvent plus avantageux de confier fourniture et pose à l'artisan (sinon le matériel acheté par vous-même est à 20 %).",
-      "source": "Source: Ministère de l'Économie (TVA à taux réduit)."
-    },
-    "q6": {
-      "title": "Quelles sont les consignes / obligations pour les prestataires ?",
-      "items": {
-        "goals": "Artisan-Compétent réduit la prospection, élimine les impayés, sécurise les paiements et professionnalise la relation client.",
-        "sector": "Plateforme exclusivement dédiée au bâtiment.",
-        "commissionPro": "Commission de 20 % uniquement sur la main-d'œuvre.",
-        "cmodShare": "Sur ces 20 %, 5 % reversés au CMOD."
-      }
-    },
-    "q7": {
-      "title": "Quelles sont les consignes / obligations en tant que client ?",
-      "intro": "Afin de garantir la sécurité des paiements, de protéger toutes les parties et d'éviter les litiges, chaque client utilisant la plateforme Artisan Compétent s'engage à respecter un cadre de fonctionnement clair et transparent.",
-      "pay": {
-        "title": "Concernant le paiement et les fournitures",
-        "upTo5000": "Pour les interventions dont le montant total est inférieur ou égal à 5 000 €, la totalité du montant du devis (main-d'œuvre et fournitures) peut être séquestrée sur la plateforme jusqu'à la validation du procès-verbal de fin de chantier.",
-        "laborOnly": "Toutefois, afin de faciliter le travail des artisans et de tenir compte de certaines réalités du terrain, vous avez également la possibilité, jusqu'à 5 000 €, de ne séquestrer que la partie main-d'œuvre sur la plateforme.",
-        "laborOnlyWhy": "Cette option peut être utile lorsque l'artisan ne dispose pas de la trésorerie nécessaire pour avancer les matériaux, notamment si ses fournisseurs habituels ne lui accordent pas de délais de paiement. Elle permet également de limiter les frais liés au séquestre, qui peuvent être répercutés à l'artisan à partir de certains montants.",
-        "optionsIntro": "Dans ce cas, plusieurs solutions sont possibles :",
-        "options": {
-          "li1": "vous pouvez accompagner l'artisan chez le fournisseur et régler directement les matériaux,",
-          "li2": "l'artisan peut également se rendre seul chez le fournisseur, avancer les frais des fournitures, puis être remboursé par vos soins une fois les matériaux livrés et présents sur le chantier."
-        },
-        "advanceNote": "Dans cette configuration, le remboursement des fournitures avancées par l'artisan peut intervenir dès leur livraison, sans attendre la validation du procès-verbal de fin de chantier. La séquestration reste alors limitée à la partie main-d'œuvre, qui sera libérée une fois les travaux validés.",
-        "above5000": "Pour les chantiers supérieurs à 5 000 €, seule la main-d'œuvre est séquestrée sur la plateforme, pour les mêmes raisons évoquées ci-dessus.",
-        "directSupplier": "Les fournitures doivent être réglées directement au fournisseur, idéalement en présence de l'artisan.",
-        "discourageDirectArtisan": "Le paiement direct des matériaux à l'artisan est fortement déconseillé, sauf dans des situations exceptionnelles clairement encadrées et justifiées."
-      },
-      "obl": {
-        "title": "Vos obligations en tant que client",
-        "items": {
-          "req": "formuler une demande claire, précise et honnête concernant vos travaux,",
-          "insurance": "vérifier l'assurance professionnelle de l'artisan (RC professionnelle et/ou assurance décennale) en contactant directement l'assureur afin de confirmer que l'artisan est bien couvert pour les travaux qu'il s'apprête à réaliser chez vous,",
-          "tracking": "suivre l'avancement du chantier, idéalement en présentiel et, si nécessaire, en contradictoire via votre tableau de bord dédié,",
-          "report": "signaler immédiatement tout problème, doute ou désaccord (sollicitation du CMOD uniquement en cas de litige ou de suspicion concrète de fraude),",
-          "noBypass": "ne jamais contourner le système de paiement."
-        },
-        "noteInsurance": "Même si Artisan Compétent effectue déjà ces vérifications en amont, il est possible qu'un artisan perde son assurance entre-temps pour diverses raisons, ou que certains travaux spécifiques ne soient pas couverts par son contrat.",
-        "also": "Vous devez également :"
-      },
-      "bypass": {
-        "title": "Important : respect du paiement sécurisé",
-        "items": {
-          "cancelGuarantees": "l'annulation de toutes les garanties proposées par la plateforme,",
-          "disengagement": "le désengagement total d'Artisan Compétent,",
-          "cmodImpossible": "l'impossibilité d'intervention du CMOD en cas de litige."
-        }
-      },
-      "pv": {
-        "title": "Validation du chantier",
-        "text": "Le procès-verbal de fin de chantier est obligatoire pour permettre la libération des fonds. Sans validation formelle de ce document, aucun paiement ne pourra être effectué."
-      },
-      "goal": "Ces règles ont un objectif simple : vous protéger, prévenir les abus et garantir une expérience de travaux sécurisée, transparente et sereine pour toutes les parties."
-    },
-    "q8": {
-      "title": "Un CMOD, c'est quoi ?",
-      "items": {
-        "indep": "Professionnel du bâtiment indépendant, sans lien avec l'intervenant du chantier.",
-        "remote": "Intervient à distance via la plateforme.",
-        "exp": "Minimum 3 ans d'expérience terrain.",
-        "role1": "Vous accompagne dans la compréhension technique et l'analyse des devis.",
-        "role2": "Intervient en cas de doute, incompréhension ou litige.",
-        "role3": "Confirme objectivement la conformité des travaux."
-      },
-      "note": "Le CMOD n'est pas un chef de chantier et n'intervient pas physiquement. Sa présence est une garantie de sécurité et de neutralité."
     }
   },
   "not-found": {
