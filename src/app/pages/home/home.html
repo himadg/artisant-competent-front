@@ -401,23 +401,35 @@
     </section>
 
     <!-- Section 3 : Comment ça marche -->
-    <section id="comment-ca-marche" class="space-y-6">
+    <section id="comment-ca-marche" class="mt-12 space-y-6 steps-accordion">
         <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.howItWorks.h2' | transloco }}</h2>
-        <ol class="space-y-6 list-decimal list-inside">
-            <li>
-                <h3 class="inline text-lg font-semibold md:text-xl">{{ 'home.howItWorks.step1Title' | transloco }}</h3>
-                <p class="mt-2">{{ 'home.howItWorks.step1Body' | transloco }}</p>
-            </li>
-            <li>
-                <h3 class="inline text-lg font-semibold md:text-xl">{{ 'home.howItWorks.step2Title' | transloco }}</h3>
-                <p class="mt-2">{{ 'home.howItWorks.step2Body1' | transloco }}</p>
-                <p class="mt-2">{{ 'home.howItWorks.step2Body2' | transloco }}</p>
-            </li>
-            <li>
-                <h3 class="inline text-lg font-semibold md:text-xl">{{ 'home.howItWorks.step3Title' | transloco }}</h3>
-                <p class="mt-2">{{ 'home.howItWorks.step3Body' | transloco }}</p>
-            </li>
-        </ol>
+        <div class="space-y-6">
+            <details class="p-4 rounded-lg border">
+                <summary class="text-base font-semibold cursor-pointer md:text-xl">
+                    <em>1. {{ 'home.howItWorks.step1Title' | transloco }}</em>
+                </summary>
+                <div class="mt-3 space-y-2">
+                    <p>{{ 'home.howItWorks.step1Body' | transloco }}</p>
+                </div>
+            </details>
+            <details class="p-4 rounded-lg border">
+                <summary class="text-base font-semibold cursor-pointer md:text-xl">
+                    <em>2. {{ 'home.howItWorks.step2Title' | transloco }}</em>
+                </summary>
+                <div class="mt-3 space-y-2">
+                    <p>{{ 'home.howItWorks.step2Body1' | transloco }}</p>
+                    <p>{{ 'home.howItWorks.step2Body2' | transloco }}</p>
+                </div>
+            </details>
+            <details class="p-4 rounded-lg border">
+                <summary class="text-base font-semibold cursor-pointer md:text-xl">
+                    <em>3. {{ 'home.howItWorks.step3Title' | transloco }}</em>
+                </summary>
+                <div class="mt-3 space-y-2">
+                    <p>{{ 'home.howItWorks.step3Body' | transloco }}</p>
+                </div>
+            </details>
+        </div>
     </section>
 
     @defer (on viewport) {
