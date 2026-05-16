@@ -82,6 +82,17 @@
       "outro": "Vous ne trouvez pas exactement le métier dont vous avez besoin ? La plateforme évolue constamment et d'autres spécialités sont ajoutées au fur et à mesure que de nouveaux artisans rejoignent Artisan Compétent.",
       "cta": "Découvrir tous nos métiers"
     },
+    "emergency": {
+      "h2": "Une urgence ? On gère, même à 3h du matin.",
+      "p1": "Fuite d'eau, panne de chauffage, porte claquée, coupure électrique. Les urgences n'attendent pas. Artisan Compétent met à votre disposition des artisans d'urgence disponibles 24h/24, 7j/7.",
+      "p2": "Et même en urgence, le séquestre de fonds s'applique. Vous ne validez le paiement qu'une fois l'intervention terminée. Et la règle des 48h pour réagir en cas d'abus est encore plus précieuse la nuit, quand les devis gonflés sont les plus fréquents.",
+      "trade1": "Plombier urgence (fuite, dégât des eaux)",
+      "trade2": "Chauffagiste urgence (panne chaudière, plus de chauffage)",
+      "trade3": "Serrurier urgence (porte claquée, serrure cassée)",
+      "trade4": "Électricien urgence (coupure, court-circuit)",
+      "trade5": "Déboucheur urgence (canalisation bouchée, refoulement)",
+      "cta": "J'ai une urgence"
+    },
     "how": {
       "title": "COMMENT ÇA MARCHE ?",
       "forClients": "Pour les clients (particuliers & entreprises)"
