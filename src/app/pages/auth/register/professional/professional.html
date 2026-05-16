@@ -6,8 +6,10 @@
             <div class="grid gap-4 items-stretch md:grid-cols-2">
                 <!-- Photo : pas de formControlName, géré via addFile/removeFile -->
                 <div class="flex justify-center items-stretch h-36">
-                    <div class="overflow-hidden relative w-36 h-full rounded-full border group"
-                         [class.force-invalid]="form.get('professionalProfile.photo')?.invalid && form.get('professionalProfile.photo')?.touched">
+                    <div 
+                        class="overflow-hidden relative w-36 h-full rounded-full border group"
+                        [class.force-invalid]="form.get('professionalProfile.photo')?.invalid && form.get('professionalProfile.photo')?.touched"
+                    >
                         @if (photoPreview()) {
                             <img
                                 [src]="photoPreview()"
@@ -218,13 +220,18 @@
                 <input type="text" formControlName="additionalInfo" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.address.complement' | transloco }}" />
                 <input type="text" formControlName="postalCode" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.address.zip' | transloco }} *" (input)="onPersonalPostalCodeInput($event)" />
                 <input type="text" formControlName="city" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.address.city' | transloco }} *" />
+                @if (adressError() === 'addressPersonal') {
+                    <p class="text-xs text-red-500">{{ 'professional.errors.addressPersonalInvalid' | transloco }}</p>
+                }
             </div>
             </ng-container>
 
             <!-- Documents identité -->
             <div class="grid gap-4 md:grid-cols-2">
-                <div class="overflow-hidden relative w-full h-28 rounded-md border group"
-                     [class.force-invalid]="form.get('professionalProfile.idFront')?.invalid && form.get('professionalProfile.idFront')?.touched">
+                <div 
+                    class="overflow-hidden relative w-full h-28 rounded-md border group" 
+                    [class.force-invalid]="form.get('professionalProfile.idFront')?.invalid && form.get('professionalProfile.idFront')?.touched"
+                >
                     @if (idFrontPreview()) {
                         <img
                             [src]="idFrontPreview()"
@@ -263,8 +270,10 @@
                         />
                     }
                 </div>
-                <div class="overflow-hidden relative w-full h-28 rounded-md border group"
-                     [class.force-invalid]="form.get('professionalProfile.idBack')?.invalid && form.get('professionalProfile.idBack')?.touched">
+                <div 
+                    class="overflow-hidden relative w-full h-28 rounded-md border group"
+                    [class.force-invalid]="form.get('professionalProfile.idBack')?.invalid && form.get('professionalProfile.idBack')?.touched"
+                >
                     @if (idBackPreview()) {
                         <img
                             [src]="idBackPreview()"
@@ -307,8 +316,10 @@
 
             <!-- Documents diplôme & assurance -->
             <div class="grid gap-4 md:grid-cols-2">
-                <div class="overflow-hidden relative w-full h-28 rounded-md border group"
-                     [class.force-invalid]="form.get('professionalProfile.diplomaDoc')?.invalid && form.get('professionalProfile.diplomaDoc')?.touched">
+                <div 
+                    class="overflow-hidden relative w-full h-28 rounded-md border group"
+                    [class.force-invalid]="form.get('professionalProfile.diplomaDoc')?.invalid && form.get('professionalProfile.diplomaDoc')?.touched"
+                >
                     @if (diplomaPreview()) {
                         <img
                             [src]="diplomaPreview()"
@@ -347,8 +358,10 @@
                         />
                     }
                 </div>
-                <div class="overflow-hidden relative w-full h-28 rounded-md border group"
-                     [class.force-invalid]="form.get('professionalProfile.insuranceDoc')?.invalid && form.get('professionalProfile.insuranceDoc')?.touched">
+                <div 
+                    class="overflow-hidden relative w-full h-28 rounded-md border group"
+                    [class.force-invalid]="form.get('professionalProfile.insuranceDoc')?.invalid && form.get('professionalProfile.insuranceDoc')?.touched"
+                >
                     @if (insuranceDocPreview()) {
                         <img
                             [src]="insuranceDocPreview()"
@@ -435,11 +448,34 @@
 
             <!-- professionalProfile : toutes les infos entreprise -->
             <ng-container formGroupName="professionalProfile">
+                <!-- SIRET -->
+                <div>
+                    <input
+                        type="text"
+                        formControlName="siret"
+                        class="px-3 py-2 w-full rounded border"
+                        placeholder="{{ 'professional.fields.siret' | transloco }} *"
+                        (input)="onSiretChange()"
+                        (blur)="onSiretBlur()"
+                    />
+                    @if (siretStatus() === 'loading') {
+                        <p class="mt-1 text-xs text-gray-400">{{ 'professional.siret.checking' | transloco }}</p>
+                    } @else if (siretStatus() === 'valid') {
+                        <p class="mt-1 text-xs text-green-600">{{ siretCompanyName() ?? ('professional.siret.valid' | transloco) }}</p>
+                    } @else if (siretStatus() === 'closed') {
+                        <p class="mt-1 text-xs text-red-500">{{ 'professional.siret.closed' | transloco }}</p>
+                    } @else if (siretStatus() === 'invalid') {
+                        <p class="mt-1 text-xs text-red-500">{{ 'professional.siret.invalid' | transloco }}</p>
+                    }
+                </div>
+
                 <div class="grid gap-6 items-stretch md:grid-cols-2">
                     <!-- Logo + RIB -->
                     <div class="flex flex-col gap-3 justify-evenly items-center">
-                        <div class="overflow-hidden relative w-40 h-28 rounded-md border group"
-                             [class.force-invalid]="form.get('professionalProfile.logo')?.invalid && form.get('professionalProfile.logo')?.touched">
+                        <div 
+                            class="overflow-hidden relative w-40 h-28 rounded-md border group"
+                            [class.force-invalid]="form.get('professionalProfile.logo')?.invalid && form.get('professionalProfile.logo')?.touched"
+                        >
                             @if (logoPreview()) {
                                 <img
                                     [src]="logoPreview()"
@@ -479,8 +515,10 @@
                             }
                         </div>
 
-                        <div class="overflow-hidden relative w-40 h-28 rounded-md border group"
-                             [class.force-invalid]="form.get('professionalProfile.rib')?.invalid && form.get('professionalProfile.rib')?.touched">
+                        <div 
+                            class="overflow-hidden relative w-40 h-28 rounded-md border group"
+                            [class.force-invalid]="form.get('professionalProfile.rib')?.invalid && form.get('professionalProfile.rib')?.touched"
+                        >
                             @if (ribPreview()) {
                                 <img
                                     [src]="ribPreview()"
@@ -558,27 +596,10 @@
                             <input type="text" formControlName="postalCode" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.workAddress.zip' | transloco }} *" (input)="onWorkPostalCodeInput($event)" />
                             <input type="text" formControlName="city" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.workAddress.city' | transloco }} *" />
                         </div>
+                        @if (adressError() === 'addressWork') {
+                            <p class="text-xs text-red-500">{{ 'professional.errors.addressInvalid' | transloco }}</p>
+                        }
                     </div>
-                </div>
-
-                <div>
-                    <input
-                        type="text"
-                        formControlName="siret"
-                        class="px-3 py-2 w-full rounded border"
-                        placeholder="{{ 'professional.fields.siret' | transloco }} *"
-                        (input)="onSiretChange()"
-                        (blur)="onSiretBlur()"
-                    />
-                    @if (siretStatus() === 'loading') {
-                        <p class="mt-1 text-xs text-gray-400">{{ 'professional.siret.checking' | transloco }}</p>
-                    } @else if (siretStatus() === 'valid') {
-                        <p class="mt-1 text-xs text-green-600">{{ siretCompanyName() ?? ('professional.siret.valid' | transloco) }}</p>
-                    } @else if (siretStatus() === 'closed') {
-                        <p class="mt-1 text-xs text-red-500">{{ 'professional.siret.closed' | transloco }}</p>
-                    } @else if (siretStatus() === 'invalid') {
-                        <p class="mt-1 text-xs text-red-500">{{ 'professional.siret.invalid' | transloco }}</p>
-                    }
                 </div>
 
                 <!-- Métiers -->
@@ -805,9 +826,20 @@
                 </div>
             </div>
 
-            @if (showSubmitError()) {
-                <span class="text-sm font-medium text-red-500">{{ 'login.errors.fillRequiredFields' | transloco }}</span>
-            }
+            <div class="mt-4">
+                @if (adressError() === 'addressPersonal') {
+                    <p class="text-xs text-right text-red-500">{{ 'professional.errors.addressPersonalInvalid' | transloco }}</p>
+                }
+                @if (adressError() === 'addressWork') {
+                    <p class="text-xs text-right text-red-500">{{ 'professional.errors.addressWorkInvalid' | transloco }}</p>
+                }
+                @if (showSubmitError()) {
+                    <span class="text-sm font-medium text-red-500">{{ 'login.errors.fillRequiredFields' | transloco }}</span><br>
+                }
+                @if (hasStep1Errors()) {
+                    <span class="text-sm font-medium text-red-500">{{ 'professional.errors.step1Errors' | transloco }}</span>
+                }
+            </div>
         </form>
     }
 </div>

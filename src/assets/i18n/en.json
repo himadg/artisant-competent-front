@@ -520,17 +520,27 @@
     "addLogo": "Add a logo",
     "addRib": "Add bank account (RIB)",
     "onCall": "I am on call 24/7",
+    "siret": {
+      "checking": "Checking SIRET...",
+      "valid": "Valid SIRET",
+      "closed": "This company is closed or deregistered",
+      "invalid": "SIRET not found or invalid"
+    },
     "errors": {
       "emailRequired": "At least one email is required",
       "required": "Field is required",
       "passwordMismatch": "Passwords do not match",
       "siretPattern": "SIRET must contain 14 digits",
       "siretMismatch": "Company name does not match the provided SIRET",
+      "addressPersonalInvalid": "Unable to validate your personal address, please check your entry.",
+      "addressInvalid": "Unable to validate the work address, please check your entry.",
+      "registerGeneric": "An error occurred during registration, please try again.",
       "captchaRequired": "Please tick this box",
       "termsRequired": "Please accept the Terms",
       "descriptionMax": "Maximum 500 characters",
       "yearsMin": "Must be greater or equal to 0",
       "openingAtLeastOne": "Please fill at least one day with start and end times",
+      "step1Errors": "You also have errors on page 1.",
       "formSummary": {
         "title": "The form contains errors:",
         "photoRequired": "Photo required",

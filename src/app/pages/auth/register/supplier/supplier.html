@@ -244,7 +244,6 @@
         <button
             type="submit"
             class="px-4 py-2 rounded-lg text-[var(--primary-beige)] bg-grad-water-green disabled:bg-gray-400 block mx-auto"
-            [disabled]="form.invalid || form.value.password !== form.value.confirmPassword"
             (click)="submit()"
         >
             {{ 'supplier.submit' | transloco }}
