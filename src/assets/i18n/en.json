@@ -728,7 +728,9 @@
     "visibility": {
       "show": "Show password",
       "hide": "Hide password"
-    }
+    },
+    "registeredProNotice": "Your registration has been received and is pending validation. You will receive a confirmation email shortly.",
+    "registeredProMailFailed": "Your registration has been recorded. We were unable to send you a confirmation email. Please contact us at contact@artisan-competent.com to validate your account."
   },
   "dashboard": {
     "title": "Dashboard",

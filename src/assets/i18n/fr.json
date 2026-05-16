@@ -730,7 +730,9 @@
     "visibility": {
       "show": "Afficher le mot de passe",
       "hide": "Masquer le mot de passe"
-    }
+    },
+    "registeredProNotice": "Votre inscription a bien été enregistrée et est en attente de validation. Vous recevrez un email de confirmation prochainement.",
+    "registeredProMailFailed": "Votre inscription a été prise en compte. Nous n'avons pas pu vous envoyer d'email de confirmation. Veuillez nous contacter à contact@artisan-competent.com pour valider votre compte."
   },
   "dashboard": {
     "title": "Mon compte",

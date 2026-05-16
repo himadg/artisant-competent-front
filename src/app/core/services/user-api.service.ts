@@ -53,8 +53,8 @@ export class UserApiService {
   registerProfessional(
     payload: Record<string, unknown>,
     captchaToken: string,
-  ): Observable<{ userId: string; accessToken: string; user: unknown }> {
-    return this.http.post<{ userId: string; accessToken: string; user: unknown }>('/api/professionals', payload, {
+  ): Observable<{ userId: string; accessToken: string; user: unknown; mailSent: boolean }> {
+    return this.http.post<{ userId: string; accessToken: string; user: unknown; mailSent: boolean }>('/api/professionals', payload, {
       headers: { 'x-turnstile-token': captchaToken },
     });
   }

@@ -14,6 +14,7 @@ import { User } from '../../../../shared/interfaces/user';
 import { Router } from '@angular/router';
 import { capitalize, evaluatePasswordCriteria } from '../../../../core/utils/common-utils';
 import { PASSWORD_STRONG_REGEXP } from '../../../../core/utils/regexp';
+import { LangService } from '../../../../core/services/lang.service';
 
 @Component({
   selector: 'register-individual',
@@ -29,6 +30,7 @@ export class RegisterIndividual implements OnDestroy {
   private readonly userApi = inject(UserApiService);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly langService = inject(LangService);
   private readonly destroy$ = new Subject<void>();
   private readonly addressSearch$ = new Subject<string>();
 
@@ -189,6 +191,7 @@ export class RegisterIndividual implements OnDestroy {
         email,
         password,
         address,
+        lang: this.langService.lang(),
       },
       phone,
     };

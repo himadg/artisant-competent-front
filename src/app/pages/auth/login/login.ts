@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { AuthService } from '../../../core/services/auth.service';
 
@@ -14,6 +14,7 @@ export class LoginPage {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
 
   readonly form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -23,6 +24,9 @@ export class LoginPage {
   readonly loading = signal(false);
   readonly serverError = signal<string | null>(null);
   readonly showPassword = signal(false);
+
+  readonly registeredPro = this.route.snapshot.queryParamMap.get('registeredPro') === 'success';
+  readonly registeredProMailFailed = this.route.snapshot.queryParamMap.get('mailFailed') === '1';
 
   async submit() {
     if (this.form.invalid) {

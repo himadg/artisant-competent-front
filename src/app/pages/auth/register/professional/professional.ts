@@ -33,6 +33,7 @@ import {
   STREET_NUMBER_REGEXP,
 } from '../../../../core/utils/regexp';
 import { AppConfigService } from '../../../../core/services/app-config.service';
+import { LangService } from '../../../../core/services/lang.service';
 import { AuthService } from '../../../../core/services/auth.service';
 import { User } from '../../../../shared/interfaces/user';
 
@@ -56,6 +57,7 @@ export class RegisterProfessional implements OnDestroy {
   private readonly uploadService = inject(UploadService);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly langService = inject(LangService);
   private readonly destroy$ = new Subject<void>();
 
   // Navigation entre les pages du formulaire (UX)
@@ -559,7 +561,7 @@ export class RegisterProfessional implements OnDestroy {
     const { confirmPassword: _cp, ...userFields } = raw.user as Record<string, unknown> & { confirmPassword: unknown };
 
     const payload = {
-      user: userFields,
+      user: { ...userFields, lang: this.langService.lang() },
       professionalProfile: {
         ...profRest,
         services: serviceIds,
@@ -573,9 +575,12 @@ export class RegisterProfessional implements OnDestroy {
 
     const upload = (file: File | null) => file ? this.uploadService.upload(file) : of('');
 
+    let mailSent = true;
+
     this.userApi.registerProfessional(payload as Record<string, unknown>, captchaToken)
       .pipe(
-        switchMap(({ userId, accessToken, user }) => {
+        switchMap(({ userId, accessToken, user, mailSent: ms }) => {
+          mailSent = ms;
           this.authService.setSession(accessToken, user as User);
           return forkJoin([
             upload(photo),
@@ -596,7 +601,11 @@ export class RegisterProfessional implements OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe({
-        next: () => { this.router.navigate(['/auth/login']); },
+        next: () => {
+          this.router.navigate(['/auth/login'], {
+            queryParams: { registeredPro: 'success', mailFailed: mailSent ? null : '1' },
+          });
+        },
         error: (err) => {
           const msg = (err?.error?.message ?? '') as string;
           if (msg.toLowerCase().includes('personnelle')) this.adressError.set('addressPersonal');
