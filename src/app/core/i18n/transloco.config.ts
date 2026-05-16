@@ -14,8 +14,12 @@ export const translocoConfig: TranslocoOptions = {
   config: makeTranslocoConfig({
     availableLangs: ['en', 'fr'],
     defaultLang: 'fr',
+    fallbackLang: 'fr',
     reRenderOnLangChange: true,
     prodMode: false,
+    missingHandler: {
+      useFallbackTranslation: true,
+    },
   }),
   loader: AppTranslocoLoader,
 };
