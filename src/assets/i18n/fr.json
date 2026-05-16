@@ -1,6 +1,22 @@
 {
   "home": {
     "title": "Votre tiers de confiance pour faire réaliser vos petits travaux",
+    "announceBar": {
+      "text": "Payez vos travaux en 3 fois sans frais avec Klarna. Paiement sécurisé.",
+      "cta": "En savoir plus"
+    },
+    "hero": {
+      "h1": "Vos travaux, encadrés de A à Z. Finis les arnaques !",
+      "subtitle": "Artisan Compétent, c'est la première plateforme qui encadre réellement vos chantiers de rénovation et d'intervention d'urgence. Vous ne validez le paiement qu'une fois l'intervention terminée.",
+      "arg1": "Artisans vérifiés : SIRET, assurances et certifications à jour.",
+      "arg2": "Paiement encadré : votre argent bloqué en séquestre jusqu'à validation.",
+      "arg3": "Suivi digital : photos, échanges, preuves. Rien ne s'efface.",
+      "arg4": "48h pour valider : en cas d'abus, médiation possible.",
+      "arg5": "France et DOM-TOM* : couverture en cours de déploiement partout sur le territoire.",
+      "ctaPrimary": "Trouver un artisan compétent",
+      "ctaSecondary": "Je suis un professionnel",
+      "ctaForm": "Décrivez votre projet en 2 minutes"
+    },
     "how": {
       "title": "COMMENT ÇA MARCHE ?",
       "forClients": "Pour les clients (particuliers & entreprises)"
