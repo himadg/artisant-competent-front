@@ -1,6 +1,10 @@
 {
   "home": {
-    "title": "Votre tiers de confiance pour faire réaliser vos petits travaux",
+    "meta": {
+      "title": "Artisan Compétent | Vos travaux encadrés de A à Z. Finis les arnaques !",
+      "description": "Ne validez le paiement qu'une fois les travaux terminés. Artisan Compétent encadre vos chantiers avec le séquestre de fonds, des artisans vérifiés et un suivi digital. Devis gratuit.",
+      "ogDescription": "Ne validez le paiement qu'une fois l'intervention terminée. Séquestre de fonds, artisans vérifiés, suivi digital."
+    },
     "announceBar": {
       "text": "Payez vos travaux en 3 fois sans frais avec Klarna. Paiement sécurisé."
     },
