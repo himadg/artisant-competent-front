@@ -9,4 +9,10 @@ import { SearchPro } from '../../shared/components/search-pro/search-pro';
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class HomePage {}
+export class HomePage {
+  /**
+   * Section "Preuve sociale" masquée tant qu'il n'y a pas au moins 3 avis réels.
+   * Passer à true une fois les avis réels disponibles (section 7 du brief V5).
+   */
+  readonly reviewsEnabled = false;
+}
