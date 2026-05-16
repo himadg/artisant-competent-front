@@ -104,6 +104,16 @@
       "p2": "L'inscription est gratuite. Vous ne payez rien tant que vous n'avez pas signé un devis avec un client. Et la commission d'Artisan Compétent porte uniquement sur la main d'œuvre. Rien sur les matériaux.",
       "cta": "S'inscrire gratuitement comme artisan"
     },
+    "trustBar": {
+      "item1": "Paiement encadré par Stripe",
+      "item2": "Paiement en 3x via Klarna",
+      "item3": "Suivi digital inaltérable",
+      "item4": "Artisans vérifiés et certifiés"
+    },
+    "finalCta": {
+      "p1": "Notre promesse ? Que vos travaux ne soient plus une source de stress.",
+      "p2": "Assez de nuits blanches à se demander si l'artisan va revenir finir le chantier. Assez de devis qui explosent sans prévenir. Avec Artisan Compétent, chaque étape est encadrée, chaque euro est tracé, chaque validation est entre vos mains."
+    },
     "how": {
       "title": "COMMENT ÇA MARCHE ?",
       "forClients": "Pour les clients (particuliers & entreprises)"

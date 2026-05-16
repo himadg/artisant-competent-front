@@ -666,4 +666,36 @@
             </details>
         </div>
     </section>
+
+    <!-- Section 13 : Barre de confiance + CTA final -->
+    <!-- TODO: visuel exact de la barre de confiance en attente de la capture client (icones a ajouter) -->
+    <section id="confiance" class="mt-12 space-y-8">
+        <ul class="grid gap-4 text-center sm:grid-cols-2 md:grid-cols-4">
+            <li class="p-4 rounded-lg border">{{ 'home.trustBar.item1' | transloco }}</li>
+            <li class="p-4 rounded-lg border">{{ 'home.trustBar.item2' | transloco }}</li>
+            <li class="p-4 rounded-lg border">{{ 'home.trustBar.item3' | transloco }}</li>
+            <li class="p-4 rounded-lg border">{{ 'home.trustBar.item4' | transloco }}</li>
+        </ul>
+
+        <div class="space-y-4 text-center">
+            <p class="text-lg font-semibold md:text-2xl">{{ 'home.finalCta.p1' | transloco }}</p>
+            <p>{{ 'home.finalCta.p2' | transloco }}</p>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a
+                    [routerLink]="['/auth/register']"
+                    [queryParams]="{ t: 'professional' }"
+                    class="px-6 py-3 font-semibold rounded-lg no-underline bg-[#a97849] text-[var(--primary-beige)]"
+                >
+                    {{ 'home.hero.ctaPro' | transloco }}
+                </a>
+                <a
+                    [routerLink]="['/auth/register']"
+                    [queryParams]="{ t: 'individual' }"
+                    class="px-6 py-3 font-semibold rounded-lg no-underline bg-[#a97849] text-[var(--primary-beige)]"
+                >
+                    {{ 'home.hero.ctaIndividual' | transloco }}
+                </a>
+            </div>
+        </div>
+    </section>
 </div>
