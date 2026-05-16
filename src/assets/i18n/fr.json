@@ -33,6 +33,17 @@
       "step3Title": "Validez le paiement à la fin",
       "step3Body": "Dès l'acceptation du devis, votre paiement est placé en séquestre. L'artisan n'est payé qu'une fois que vous avez validé la fin du chantier. Pas satisfait ? Les fonds restent bloqués le temps de résoudre la situation."
     },
+    "escrow": {
+      "h2": "Le séquestre de fonds : votre garantie contre les mauvaises surprises",
+      "p1": "Sur les autres plateformes, vous payez directement l'artisan avant même de savoir si le travail sera bien fait. Chez Artisan Compétent, ça ne fonctionne pas comme ça.",
+      "p2": "Quand vous acceptez un devis, votre paiement est placé sur un compte séquestre géré par un prestataire de paiement certifié (Stripe). L'argent est bloqué : l'artisan n'y a pas accès tant que vous n'avez pas validé la fin du chantier.",
+      "concretelyTitle": "Concrètement",
+      "concretely1": "Vous acceptez le devis et effectuez le paiement via la plateforme. Les fonds sont immédiatement placés en séquestre.",
+      "concretely2": "L'artisan réalise les travaux pendant que vous suivez l'avancement de deux façons : sur votre tableau de bord digital (photos, échanges, preuves, rapports d'étape) et directement en présentiel sur le chantier. Vous pouvez à tout moment contredire une information ajoutée par l'artisan et photographier vous-même ce qui vous semble important pour que ce soit archivé sur le dashboard commun. Tout est tracé. Rien ne peut être supprimé.",
+      "concretely3": "Une fois le chantier terminé, vous signez un procès-verbal de fin de travaux. Les fonds sont libérés et versés à l'artisan. Si un problème survient, les fonds restent bloqués et la plateforme analyse la situation sur la base des éléments enregistrés dans le suivi digital.",
+      "strong": "Vous ne validez le paiement qu'une fois l'intervention terminée.",
+      "klarna": "Et si besoin, paiement en 3 fois possible via Klarna."
+    },
     "how": {
       "title": "COMMENT ÇA MARCHE ?",
       "forClients": "Pour les clients (particuliers & entreprises)"
