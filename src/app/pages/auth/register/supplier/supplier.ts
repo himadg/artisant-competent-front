@@ -11,11 +11,12 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
+import { LegalModal } from '../../../../shared/components/legal-modal/legal-modal';
 
 @Component({
   selector: 'register-supplier',
   standalone: true,
-  imports: [ReactiveFormsModule, TranslocoModule],
+  imports: [ReactiveFormsModule, TranslocoModule, LegalModal],
   templateUrl: './supplier.html',
   styleUrl: './supplier.scss',
 })
@@ -25,6 +26,7 @@ export class RegisterSupplier {
   readonly logoName = signal<string | null>(null);
   readonly ribPreview = signal<string | null>(null);
   readonly ribName = signal<string | null>(null);
+  readonly legalModalOpen = signal(false);
 
   readonly servicesKeys = ['installation', 'repair', 'maintenance', 'consulting'];
   readonly days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];

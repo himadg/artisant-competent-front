@@ -458,8 +458,19 @@
 }
 
 /* ── Bottom nav (mobile) ── */
-.ind-bottom-nav {
+.ind-bottom-nav, .more-overlay, .more-menu {
   display: none;
+}
+
+/* ── Modal cguv inline ── */
+.legal-overlay {
+  position: inherit !important;
+  inset: inherit !important;
+  display: initial !important;
+  background: transparent !important;
+  -webkit-backdrop-filter: inherit !important;
+  backdrop-filter: inherit !important;
+  padding: inherit !important;
 }
 
 /* ══════════════ RESPONSIVE ══════════════ */
@@ -487,6 +498,7 @@
     flex-direction: column;
     height: 100%;
     overflow: hidden;
+    width: 100lvw;
   }
 
   /* ── Hero mobile ── */

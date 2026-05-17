@@ -222,8 +222,12 @@
 
         <div class="flex gap-2 items-center">
             <input type="checkbox" formControlName="terms" />
-            <span>{{ 'register.cguv' | transloco }} *</span>
+            <span>
+                <button type="button" class="underline cursor-pointer bg-transparent border-none p-0 text-inherit" (click)="legalModalOpen.set(true)">{{ 'register.cguv' | transloco }}</button> *
+            </span>
         </div>
+
+        <legal-modal [modal]="legalModalOpen()" (closed)="legalModalOpen.set(false)" />
 
         <div class="flex flex-col gap-2 items-center mt-4">
             <button

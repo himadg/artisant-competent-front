@@ -6,6 +6,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, of, takeUntil } from 'rxjs';
 import { GeocodingService, AddressSuggestion } from '../../../../core/services/geocoding.service';
 import { TurnstileComponent } from '../../../../shared/components/turnstile/turnstile';
+import { LegalModal } from '../../../../shared/components/legal-modal/legal-modal';
 import { AppConfigService } from '../../../../core/services/app-config.service';
 import { UploadService } from '../../../../core/services/upload.service';
 import { UserApiService } from '../../../../core/services/user-api.service';
@@ -19,7 +20,7 @@ import { LangService } from '../../../../core/services/lang.service';
 @Component({
   selector: 'register-individual',
   standalone: true,
-  imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent],
+  imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent, LegalModal],
   templateUrl: './individual.html',
   styleUrl: './individual.scss',
 })
@@ -45,6 +46,7 @@ export class RegisterIndividual implements OnDestroy {
   readonly showConfirmPassword = signal(false);
   readonly passwordFocused = signal(false);
   readonly showSubmitError = signal(false);
+  readonly legalModalOpen = signal(false);
 
   readonly form = this.fb.group({
     photo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),

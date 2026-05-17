@@ -888,5 +888,15 @@
       "missions": "No missions yet",
       "reviews": "No reviews yet"
     }
+  },
+  "legal": {
+    "cgu": {
+      "tab": "Terms of Use",
+      "title": "Terms and Conditions of Use"
+    },
+    "cgv": {
+      "tab": "Terms of Sale",
+      "title": "Terms and Conditions of Sale"
+    }
   }
 }

@@ -1,0 +1,170 @@
+<!-- ── Contenu réutilisé dans les deux modes ── -->
+
+<ng-template #tabsTpl>
+    <div class="legal-modal__tabs">
+        <button class="legal-tab" [class.legal-tab--active]="activeTab() === 'cgu'" (click)="setTab('cgu')" type="button">
+            {{ 'legal.cgu.tab' | transloco }}
+        </button>
+        <button class="legal-tab" [class.legal-tab--active]="activeTab() === 'cgv'" (click)="setTab('cgv')" type="button">
+            {{ 'legal.cgv.tab' | transloco }}
+        </button>
+    </div>
+</ng-template>
+
+<ng-template #bodyTpl>
+    <div class="legal-modal__body">
+        @if (activeTab() === 'cgu') {
+            <h2>{{ 'legal.cgu.title' | transloco }}</h2>
+
+            <h3>Article 1 – Objet</h3>
+            <p>Les présentes Conditions Générales d'Utilisation (CGU) ont pour objet de définir les modalités et conditions dans lesquelles les utilisateurs accèdent et utilisent la plateforme Artisan Compétent, accessible en ligne, ainsi que les droits et obligations des parties.</p>
+
+            <h3>Article 2 – Définitions</h3>
+            <p><strong>Plateforme :</strong> le site internet et l'application mobile Artisan Compétent.</p>
+            <p><strong>Utilisateur :</strong> toute personne physique ou morale accédant à la Plateforme.</p>
+            <p><strong>Particulier :</strong> utilisateur inscrit en tant que client particulier.</p>
+            <p><strong>Artisan :</strong> professionnel inscrit proposant ses services sur la Plateforme.</p>
+            <p><strong>Compte :</strong> espace personnel créé lors de l'inscription.</p>
+
+            <h3>Article 3 – Acceptation des CGU</h3>
+            <p>L'inscription sur la Plateforme implique l'acceptation pleine et entière des présentes CGU. Toute utilisation des services proposés vaut acceptation sans réserve des présentes conditions.</p>
+
+            <h3>Article 4 – Inscription et accès au compte</h3>
+            <p>L'inscription est réservée aux personnes majeures. L'utilisateur s'engage à fournir des informations exactes, complètes et à jour lors de son inscription. Il est seul responsable de la confidentialité de ses identifiants et de toute activité effectuée depuis son compte.</p>
+
+            <h3>Article 5 – Description des services</h3>
+            <p>La Plateforme met en relation des particuliers avec des artisans qualifiés. Elle permet notamment la demande de devis, la consultation de profils professionnels, la réservation de prestations et le suivi des missions.</p>
+
+            <h3>Article 6 – Obligations de l'utilisateur</h3>
+            <p>L'utilisateur s'engage à utiliser la Plateforme dans le respect des lois en vigueur, à ne pas publier de contenu illicite, trompeur ou portant atteinte aux droits de tiers, et à ne pas tenter de contourner les mesures de sécurité mises en place.</p>
+
+            <h3>Article 7 – Obligations de l'artisan</h3>
+            <p>L'artisan certifie être en règle avec les obligations légales et administratives liées à son activité (assurance décennale, qualification professionnelle, immatriculation). Il s'engage à maintenir ses informations à jour et à réaliser les prestations dans le respect des règles de l'art.</p>
+
+            <h3>Article 8 – Propriété intellectuelle</h3>
+            <p>L'ensemble des contenus présents sur la Plateforme (textes, images, logos, structure) sont protégés par les droits de propriété intellectuelle. Toute reproduction ou utilisation sans autorisation expresse est interdite.</p>
+
+            <h3>Article 9 – Données personnelles</h3>
+            <p>Le traitement des données personnelles est régi par la Politique de Confidentialité de la Plateforme, conforme au Règlement Général sur la Protection des Données (RGPD). Les utilisateurs disposent d'un droit d'accès, de rectification et de suppression de leurs données.</p>
+
+            <h3>Article 10 – Cookies</h3>
+            <p>La Plateforme utilise des cookies nécessaires à son bon fonctionnement. Des cookies analytiques peuvent être utilisés avec le consentement de l'utilisateur conformément à la réglementation en vigueur.</p>
+
+            <h3>Article 11 – Responsabilité</h3>
+            <p>La Plateforme est un intermédiaire technique et ne peut être tenue responsable des manquements des artisans ou des particuliers dans l'exécution de leurs obligations respectives. La Plateforme ne garantit pas la disponibilité continue et sans interruption du service.</p>
+
+            <h3>Article 12 – Suspension et résiliation de compte</h3>
+            <p>La Plateforme se réserve le droit de suspendre ou de résilier tout compte en cas de violation des présentes CGU, de comportement frauduleux ou préjudiciable à la communauté, sans préavis ni indemnité.</p>
+
+            <h3>Article 13 – Signalement et modération</h3>
+            <p>Tout utilisateur peut signaler un contenu ou un comportement inapproprié. L'équipe de modération s'engage à traiter les signalements dans un délai raisonnable et à prendre les mesures appropriées.</p>
+
+            <h3>Article 14 – Avis et évaluations</h3>
+            <p>Les avis déposés par les utilisateurs doivent être sincères et reposer sur une expérience réelle. La Plateforme se réserve le droit de supprimer tout avis ne respectant pas ces critères ou portant atteinte à des tiers.</p>
+
+            <h3>Article 15 – Liens hypertextes</h3>
+            <p>La Plateforme peut contenir des liens vers des sites tiers. Ces liens sont fournis à titre informatif et la Plateforme ne saurait être tenue responsable du contenu de ces sites externes.</p>
+
+            <h3>Article 16 – Disponibilité du service</h3>
+            <p>La Plateforme s'efforce d'assurer la disponibilité du service 24h/24 et 7j/7. Des interruptions pour maintenance peuvent survenir et seront, dans la mesure du possible, annoncées à l'avance. Aucune indemnité ne pourra être réclamée en cas d'indisponibilité.</p>
+
+            <h3>Article 17 – Modification des CGU</h3>
+            <p>La Plateforme se réserve le droit de modifier les présentes CGU à tout moment. Les utilisateurs seront informés des modifications par tout moyen approprié. La poursuite de l'utilisation de la Plateforme après modification vaut acceptation des nouvelles CGU.</p>
+
+            <h3>Article 18 – Droit applicable et juridiction compétente</h3>
+            <p>Les présentes CGU sont soumises au droit français. En cas de litige, les parties s'engagent à rechercher une solution amiable. À défaut, les tribunaux compétents du ressort du siège social de la Plateforme seront saisis.</p>
+
+            <h3>Article 19 – Dispositions diverses</h3>
+            <p>Si l'une des dispositions des présentes CGU est déclarée nulle ou inapplicable, les autres dispositions resteront en vigueur. Le fait de ne pas exercer un droit prévu par les présentes CGU ne constitue pas une renonciation à ce droit.</p>
+
+            <h3>Article 20 – Contact</h3>
+            <p>Pour toute question relative aux présentes CGU, vous pouvez contacter l'équipe Artisan Compétent à l'adresse : <strong>contact&#64;artisan-competent.fr</strong></p>
+        }
+
+        @if (activeTab() === 'cgv') {
+            <h2>{{ 'legal.cgv.title' | transloco }}</h2>
+
+            <h3>Article 1 – Champ d'application</h3>
+            <p>Les présentes Conditions Générales de Vente (CGV) s'appliquent à toutes les transactions réalisées via la plateforme Artisan Compétent entre des particuliers (ci-après « Clients ») et des artisans professionnels (ci-après « Artisans »).</p>
+
+            <h3>Article 2 – Rôle de la Plateforme</h3>
+            <p>Artisan Compétent agit en qualité d'intermédiaire de mise en relation. La Plateforme n'est pas partie au contrat conclu entre le Client et l'Artisan et n'est pas responsable de l'exécution des prestations.</p>
+
+            <h3>Article 3 – Processus de commande</h3>
+            <p>Le Client formule une demande de prestation via la Plateforme. L'Artisan étudie la demande et soumet un devis. La commande est validée à réception de l'acceptation explicite du devis par le Client.</p>
+
+            <h3>Article 4 – Devis et tarification</h3>
+            <p>Les devis établis par les Artisans sont fermes et définitifs pendant la durée de validité précisée. Toute modification de la prestation après acceptation du devis fera l'objet d'un avenant tarifaire.</p>
+
+            <h3>Article 5 – Conditions de paiement</h3>
+            <p>Le paiement est effectué selon les modalités convenues entre le Client et l'Artisan et précisées dans le devis. La Plateforme peut proposer des solutions de paiement sécurisé. Tout retard de paiement entraîne l'application de pénalités légales.</p>
+
+            <h3>Article 6 – Acomptes et arrhes</h3>
+            <p>Un acompte peut être demandé à la commande selon les conditions définies dans le devis. En cas d'annulation du Client après versement d'un acompte, celui-ci peut être retenu par l'Artisan selon les conditions contractuelles.</p>
+
+            <h3>Article 7 – Exécution de la prestation</h3>
+            <p>L'Artisan s'engage à réaliser la prestation dans les délais convenus, avec le soin et le professionnalisme attendus. En cas d'empêchement, il doit en informer le Client au plus tôt et proposer une solution alternative.</p>
+
+            <h3>Article 8 – Réception des travaux</h3>
+            <p>À l'issue de la prestation, une réception contradictoire peut être organisée. Le Client dispose d'un délai raisonnable pour formuler des réserves. L'absence de réserves dans ce délai vaut réception sans réserve.</p>
+
+            <h3>Article 9 – Garanties légales</h3>
+            <p>Les prestations de l'Artisan sont couvertes par les garanties légales applicables, notamment la garantie de parfait achèvement (1 an), la garantie biennale (2 ans) et la garantie décennale (10 ans) pour les travaux de construction.</p>
+
+            <h3>Article 10 – Assurance professionnelle</h3>
+            <p>Chaque Artisan inscrit sur la Plateforme certifie être couvert par une assurance responsabilité civile professionnelle en cours de validité. Les justificatifs sont vérifiés par la Plateforme lors de l'inscription.</p>
+
+            <h3>Article 11 – Droit de rétractation</h3>
+            <p>Conformément aux dispositions légales, le Client particulier dispose d'un droit de rétractation de 14 jours à compter de la conclusion du contrat, sauf si la prestation a déjà été pleinement exécutée avec son accord.</p>
+
+            <h3>Article 12 – Annulation et report</h3>
+            <p>Toute annulation doit être notifiée dans les délais prévus au devis. En cas d'annulation tardive, des frais peuvent être retenus à titre d'indemnisation pour les préparatifs effectués par l'Artisan.</p>
+
+            <h3>Article 13 – Responsabilité de l'Artisan</h3>
+            <p>L'Artisan est responsable des dommages causés dans le cadre de l'exécution de sa prestation, dans la limite de sa couverture d'assurance et des dispositions légales applicables.</p>
+
+            <h3>Article 14 – Limitation de responsabilité de la Plateforme</h3>
+            <p>La responsabilité d'Artisan Compétent est limitée à son rôle d'intermédiaire. La Plateforme ne peut être tenue responsable des litiges survenant entre Clients et Artisans, ni de la qualité des prestations réalisées.</p>
+
+            <h3>Article 15 – Règlement des litiges</h3>
+            <p>En cas de litige entre un Client et un Artisan, les parties sont encouragées à trouver une solution amiable. La Plateforme propose un service de médiation accessible via l'espace utilisateur. À défaut, les parties peuvent saisir le médiateur de la consommation compétent.</p>
+
+            <h3>Article 16 – Protection des données dans le cadre commercial</h3>
+            <p>Les données collectées dans le cadre des transactions sont traitées conformément au RGPD et à la Politique de Confidentialité de la Plateforme. Elles ne sont transmises qu'aux parties impliquées dans la prestation.</p>
+
+            <h3>Article 17 – Force majeure</h3>
+            <p>Ni la Plateforme, ni l'Artisan ne sauront être tenus responsables en cas d'inexécution due à un cas de force majeure tel que défini par le droit français (catastrophe naturelle, grève, pandémie, etc.).</p>
+
+            <h3>Article 18 – Modification des CGV</h3>
+            <p>Les présentes CGV peuvent être modifiées à tout moment. Les CGV applicables à une transaction sont celles en vigueur au moment de la validation de la commande.</p>
+
+            <h3>Article 19 – Droit applicable</h3>
+            <p>Les présentes CGV sont régies par le droit français. Tout litige relatif à leur interprétation ou leur exécution relèvera de la compétence exclusive des tribunaux français, après tentative de médiation obligatoire.</p>
+        }
+    </div>
+</ng-template>
+
+<!-- ── Mode intégré (dashboard) ── -->
+@if (inline()) {
+    <div class="legal-inline">
+        <ng-container *ngTemplateOutlet="tabsTpl" />
+        <ng-container *ngTemplateOutlet="bodyTpl" />
+    </div>
+}
+
+<!-- ── Mode overlay (formulaires d'inscription) ── -->
+@if (modal()) {
+    <div class="legal-overlay" (click)="onOverlayClick($event)">
+        <div class="legal-modal" role="dialog" aria-modal="true">
+            <div class="legal-modal__header">
+                <ng-container *ngTemplateOutlet="tabsTpl" />
+                <button class="legal-modal__close" (click)="close()" type="button" aria-label="Fermer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <ng-container *ngTemplateOutlet="bodyTpl" />
+        </div>
+    </div>
+}

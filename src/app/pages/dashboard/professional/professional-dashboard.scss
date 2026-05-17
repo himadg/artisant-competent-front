@@ -873,7 +873,7 @@
 }
 
 /* ── Bottom nav (mobile) ── */
-.pro-bottom-nav {
+.pro-bottom-nav, .more-overlay, .more-menu {
   display: none;
 }
 
@@ -902,6 +902,7 @@
     flex-direction: column;
     height: 100%;
     overflow: hidden;
+    width: 100lvw;
   }
 
   /* ── Hero mobile ── */

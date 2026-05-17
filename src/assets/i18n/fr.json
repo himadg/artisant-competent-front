@@ -890,5 +890,15 @@
       "missions": "Aucune mission pour le moment",
       "reviews": "Aucun avis pour le moment"
     }
+  },
+  "legal": {
+    "cgu": {
+      "tab": "CGU",
+      "title": "Conditions Générales d'Utilisation"
+    },
+    "cgv": {
+      "tab": "CGV",
+      "title": "Conditions Générales de Vente"
+    }
   }
 }

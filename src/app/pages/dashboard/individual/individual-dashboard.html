@@ -6,22 +6,30 @@
     <p class="ind-error">{{ error()! | transloco }}</p>
 } @else if (data(); as user) {
     <div class="h-dvh ind-layout">
-
         <!-- ═══════════════ TOPBAR ═══════════════ -->
         <div class="ind-topbar">
             <div class="ind-topbar-actions">
                 <button class="topbar-icon-btn" aria-label="Notifications">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                    </svg>
                 </button>
                 <button class="topbar-icon-btn" aria-label="Messages">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
                 </button>
                 <div class="topbar-user">
                     @if (user.individualProfile.photoUrl) {
                         <img [src]="user.individualProfile.photoUrl" [alt]="user.firstName" class="topbar-avatar" />
                     } @else {
                         <div class="topbar-avatar topbar-avatar--placeholder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <circle cx="12" cy="8" r="4" />
+                                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                            </svg>
                         </div>
                     }
                     <span class="topbar-username">{{ user.firstName }} {{ user.lastName }}</span>
@@ -33,27 +41,60 @@
         <aside class="ind-sidebar">
             <nav class="ind-nav">
                 <button class="nav-item" [class.active]="activeSection() === 'profile'" (click)="setSection('profile')">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <circle cx="12" cy="8" r="4" />
+                        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                    </svg>
                     {{ 'dashboard.individual.nav.profile' | transloco }}
                 </button>
-                <button class="nav-item" [class.active]="activeSection() === 'requests'" (click)="setSection('requests')">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                <button
+                    class="nav-item"
+                    [class.active]="activeSection() === 'requests'"
+                    (click)="setSection('requests')"
+                >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
                     {{ 'dashboard.individual.nav.requests' | transloco }}
                 </button>
                 <button class="nav-item" [class.active]="activeSection() === 'quotes'" (click)="setSection('quotes')">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                    </svg>
                     {{ 'dashboard.individual.nav.quotes' | transloco }}
                 </button>
-                <button class="nav-item" [class.active]="activeSection() === 'invoices'" (click)="setSection('invoices')">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                <button
+                    class="nav-item"
+                    [class.active]="activeSection() === 'invoices'"
+                    (click)="setSection('invoices')"
+                >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <rect x="2" y="3" width="20" height="14" rx="2" />
+                        <path d="M8 21h8M12 17v4" />
+                    </svg>
                     {{ 'dashboard.individual.nav.invoices' | transloco }}
                 </button>
-                <button class="nav-item" [class.active]="activeSection() === 'practices'" (click)="setSection('practices')">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <button
+                    class="nav-item"
+                    [class.active]="activeSection() === 'practices'"
+                    (click)="setSection('practices')"
+                >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <line x1="12" y1="16" x2="12.01" y2="16" />
+                    </svg>
                     {{ 'dashboard.individual.nav.practices' | transloco }}
                 </button>
                 <button class="nav-item" [class.active]="activeSection() === 'legal'" (click)="setSection('legal')">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
                     {{ 'dashboard.individual.nav.legal' | transloco }}
                 </button>
             </nav>
@@ -67,7 +108,11 @@
                 </div>
                 <div class="flex justify-center">
                     <button class="nav-item logout" (click)="authService.logout()">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                            <polyline points="16 17 21 12 16 7" />
+                            <line x1="21" y1="12" x2="9" y2="12" />
+                        </svg>
                         {{ 'auth.logout' | transloco }}
                     </button>
                 </div>
@@ -84,18 +129,41 @@
                             <img [src]="user.individualProfile.photoUrl" [alt]="user.firstName" class="ind-photo" />
                         } @else {
                             <div class="ind-photo ind-photo--placeholder">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                                </svg>
                             </div>
                         }
                     </div>
                     <div class="ind-user-info">
                         <h2 class="ind-name">{{ user.firstName }} {{ user.lastName }}</h2>
                         <p class="ind-address">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="inline-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                class="inline-icon"
+                            >
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
                             {{ homeAddress() }}
                         </p>
                         <p class="ind-since">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="inline-icon"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                class="inline-icon"
+                            >
+                                <rect x="3" y="4" width="18" height="18" rx="2" />
+                                <line x1="16" y1="2" x2="16" y2="6" />
+                                <line x1="8" y1="2" x2="8" y2="6" />
+                                <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
                             {{ 'dashboard.individual.since' | transloco }} {{ inscriptionDate() }}
                         </p>
                     </div>
@@ -109,21 +177,51 @@
                         <div class="ind-profile-section">
                             <div class="ind-info-group">
                                 <div class="ind-group-header">
-                                    <h3 class="ind-group-title">{{ 'dashboard.individual.sections.personalInfo' | transloco }}</h3>
+                                    <h3 class="ind-group-title">
+                                        {{ 'dashboard.individual.sections.personalInfo' | transloco }}
+                                    </h3>
                                     @if (!editMode()) {
                                         <button class="ind-edit-btn" type="button" (click)="enterEditMode()">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                            <svg
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="1.8"
+                                            >
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                            </svg>
                                         </button>
                                     } @else {
                                         <div class="ind-edit-actions">
                                             <button class="ind-cancel-btn" type="button" (click)="cancelEdit()">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                                <svg
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                >
+                                                    <line x1="18" y1="6" x2="6" y2="18" />
+                                                    <line x1="6" y1="6" x2="18" y2="18" />
+                                                </svg>
                                             </button>
-                                            <button class="ind-save-btn" type="button" (click)="saveEdit()" [disabled]="saving()">
+                                            <button
+                                                class="ind-save-btn"
+                                                type="button"
+                                                (click)="saveEdit()"
+                                                [disabled]="saving()"
+                                            >
                                                 @if (saving()) {
                                                     <span class="spinner-sm"></span>
                                                 } @else {
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                                    <svg
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="2.5"
+                                                    >
+                                                        <polyline points="20 6 9 17 4 12" />
+                                                    </svg>
                                                 }
                                             </button>
                                         </div>
@@ -133,7 +231,13 @@
                                     <div class="ind-info-row">
                                         <dt>{{ 'dashboard.individual.fields.firstName' | transloco }}</dt>
                                         @if (editMode()) {
-                                            <dd><input class="ind-edit-input" type="text" [(ngModel)]="editFields.firstName" /></dd>
+                                            <dd>
+                                                <input
+                                                    class="ind-edit-input"
+                                                    type="text"
+                                                    [(ngModel)]="editFields.firstName"
+                                                />
+                                            </dd>
                                         } @else {
                                             <dd>{{ user.firstName }}</dd>
                                         }
@@ -141,7 +245,13 @@
                                     <div class="ind-info-row">
                                         <dt>{{ 'dashboard.individual.fields.lastName' | transloco }}</dt>
                                         @if (editMode()) {
-                                            <dd><input class="ind-edit-input" type="text" [(ngModel)]="editFields.lastName" /></dd>
+                                            <dd>
+                                                <input
+                                                    class="ind-edit-input"
+                                                    type="text"
+                                                    [(ngModel)]="editFields.lastName"
+                                                />
+                                            </dd>
                                         } @else {
                                             <dd>{{ user.lastName }}</dd>
                                         }
@@ -149,7 +259,13 @@
                                     <div class="ind-info-row">
                                         <dt>{{ 'dashboard.individual.fields.email' | transloco }}</dt>
                                         @if (editMode()) {
-                                            <dd><input class="ind-edit-input" type="email" [(ngModel)]="editFields.email" /></dd>
+                                            <dd>
+                                                <input
+                                                    class="ind-edit-input"
+                                                    type="email"
+                                                    [(ngModel)]="editFields.email"
+                                                />
+                                            </dd>
                                         } @else {
                                             <dd>{{ user.email }}</dd>
                                         }
@@ -157,7 +273,13 @@
                                     <div class="ind-info-row">
                                         <dt>{{ 'dashboard.individual.fields.birthDate' | transloco }}</dt>
                                         @if (editMode()) {
-                                            <dd><input class="ind-edit-input" type="date" [(ngModel)]="editFields.birthDate" /></dd>
+                                            <dd>
+                                                <input
+                                                    class="ind-edit-input"
+                                                    type="date"
+                                                    [(ngModel)]="editFields.birthDate"
+                                                />
+                                            </dd>
                                         } @else {
                                             <dd>{{ birthDate() }}</dd>
                                         }
@@ -167,8 +289,12 @@
                                         @if (editMode()) {
                                             <dd>
                                                 <select class="ind-edit-input" [(ngModel)]="editFields.gender">
-                                                    <option value="male">{{ 'register.gender.male' | transloco }}</option>
-                                                    <option value="female">{{ 'register.gender.female' | transloco }}</option>
+                                                    <option value="male">
+                                                        {{ 'register.gender.male' | transloco }}
+                                                    </option>
+                                                    <option value="female">
+                                                        {{ 'register.gender.female' | transloco }}
+                                                    </option>
                                                 </select>
                                             </dd>
                                         } @else {
@@ -192,7 +318,7 @@
                         <p class="ind-empty">{{ 'dashboard.empty.practices' | transloco }}</p>
                     }
                     @case ('legal') {
-                        <p class="ind-empty">{{ 'dashboard.empty.legal' | transloco }}</p>
+                        <legal-modal [inline]="true" />
                     }
                 }
             </div>
@@ -200,24 +326,56 @@
 
         <!-- ═══════════════ BOTTOM NAV (mobile) ═══════════════ -->
         <nav class="ind-bottom-nav">
-            <button class="bottom-nav-item" [class.active]="activeSection() === 'profile'" (click)="setSection('profile')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            <button
+                class="bottom-nav-item"
+                [class.active]="activeSection() === 'profile'"
+                (click)="setSection('profile')"
+            >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                </svg>
                 <span>{{ 'dashboard.individual.mobile.profile' | transloco }}</span>
             </button>
-            <button class="bottom-nav-item" [class.active]="activeSection() === 'requests'" (click)="setSection('requests')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <button
+                class="bottom-nav-item"
+                [class.active]="activeSection() === 'requests'"
+                (click)="setSection('requests')"
+            >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35" />
+                </svg>
                 <span>{{ 'dashboard.individual.mobile.requests' | transloco }}</span>
             </button>
-            <button class="bottom-nav-item" [class.active]="activeSection() === 'quotes'" (click)="setSection('quotes')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <button
+                class="bottom-nav-item"
+                [class.active]="activeSection() === 'quotes'"
+                (click)="setSection('quotes')"
+            >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                </svg>
                 <span>{{ 'dashboard.individual.mobile.quotes' | transloco }}</span>
             </button>
-            <button class="bottom-nav-item" [class.active]="activeSection() === 'invoices'" (click)="setSection('invoices')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <button
+                class="bottom-nav-item"
+                [class.active]="activeSection() === 'invoices'"
+                (click)="setSection('invoices')"
+            >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <rect x="2" y="3" width="20" height="14" rx="2" />
+                    <path d="M8 21h8M12 17v4" />
+                </svg>
                 <span>{{ 'dashboard.individual.mobile.invoices' | transloco }}</span>
             </button>
             <button class="bottom-nav-item plus-menu" [class.active]="moreMenuOpen()" (click)="toggleMoreMenu()">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="12" r="1" />
+                    <circle cx="19" cy="12" r="1" />
+                    <circle cx="5" cy="12" r="1" />
+                </svg>
                 <span>{{ 'dashboard.individual.mobile.more' | transloco }}</span>
             </button>
         </nav>
@@ -225,17 +383,42 @@
         @if (moreMenuOpen()) {
             <div class="more-overlay" (click)="closeMoreMenu()"></div>
             <div class="more-menu">
+                <button
+                    class="nav-item"
+                    [class.active]="activeSection() === 'practices'"
+                    (click)="setSection('practices'); toggleMoreMenu()"
+                >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <line x1="12" y1="16" x2="12.01" y2="16" />
+                    </svg>
+                    {{ 'dashboard.individual.nav.practices' | transloco }}
+                </button>
+                <button
+                    class="nav-item"
+                    [class.active]="activeSection() === 'legal'"
+                    (click)="setSection('legal'); toggleMoreMenu()"
+                >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                    {{ 'dashboard.individual.nav.legal' | transloco }}
+                </button>
                 <div class="more-menu-toggles">
                     <lang-toggle></lang-toggle>
                     <theme-toggle></theme-toggle>
                 </div>
                 <hr class="more-menu-divider" />
                 <button class="more-menu-logout" (click)="authService.logout()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                        <polyline points="16 17 21 12 16 7" />
+                        <line x1="21" y1="12" x2="9" y2="12" />
+                    </svg>
                     {{ 'auth.logout' | transloco }}
                 </button>
             </div>
         }
-
     </div>
 }

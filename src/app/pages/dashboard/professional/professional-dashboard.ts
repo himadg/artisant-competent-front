@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProfessionalDashboardData, OpeningHoursDay, Service } from '../../../shared/interfaces/professional-dashboard';
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
+import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
 
 export type ProSection = 'requests' | 'quotes' | 'invoices' | 'profile' | 'legal' | 'practices';
 export type ProTab = 'presentation' | 'services' | 'missions' | 'reviews' | 'documents';
@@ -21,7 +22,7 @@ const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'satu
 @Component({
   selector: 'dashboard-professional',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, TranslocoModule, LangToggle, ThemeToggle],
+  imports: [CommonModule, FormsModule, RouterModule, TranslocoModule, LangToggle, ThemeToggle, LegalModal],
   templateUrl: './professional-dashboard.html',
   styleUrl: './professional-dashboard.scss',
 })
@@ -52,6 +53,9 @@ export class ProfessionalDashboard implements OnInit {
       ${professional.workAddress.streetName}, ${professional.workAddress.postalCode} ${professional.workAddress.city}`;
   });
 
+  readonly moreMenuOpen = signal(false);
+  readonly moreMenuContentDisplayed = signal(false);
+
   ngOnInit() {
     const userId = this.route.snapshot.paramMap.get('userId');
     const request$ = userId
@@ -70,7 +74,6 @@ export class ProfessionalDashboard implements OnInit {
     });
   }
 
-  readonly moreMenuOpen = signal(false);
 
   setSection(section: ProSection) {
     this.activeSection.set(section);
@@ -81,7 +84,11 @@ export class ProfessionalDashboard implements OnInit {
   }
 
   toggleMoreMenu() {
-    this.moreMenuOpen.update((v) => !v);
+    this.moreMenuOpen.update((value) => !value);
+  }
+
+  toggleMoreMenuContent() {
+    this.moreMenuContentDisplayed.update((value) => !value);
   }
 
   closeMoreMenu() {

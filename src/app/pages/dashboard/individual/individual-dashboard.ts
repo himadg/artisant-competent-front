@@ -8,13 +8,14 @@ import { UserApiService } from '../../../core/services/user-api.service';
 import { IndividualDashboardData } from '../../../shared/interfaces/individual-dashboard';
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
+import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
 
 export type IndividualSection = 'profile' | 'requests' | 'quotes' | 'invoices' | 'legal' | 'practices';
 
 @Component({
   selector: 'dashboard-individual',
   standalone: true,
-  imports: [CommonModule, FormsModule, TranslocoModule, LangToggle, ThemeToggle],
+  imports: [CommonModule, FormsModule, TranslocoModule, LangToggle, ThemeToggle, LegalModal],
   templateUrl: './individual-dashboard.html',
   styleUrl: './individual-dashboard.scss',
 })

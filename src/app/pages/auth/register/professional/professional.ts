@@ -19,6 +19,7 @@ import { TradeApiService } from '../../../../core/services/trade-api.service';
 import { Service } from '../../../../shared/interfaces/service';
 import { Trade } from '../../../../shared/interfaces/trade';
 import { TurnstileComponent } from '../../../../shared/components/turnstile/turnstile';
+import { LegalModal } from '../../../../shared/components/legal-modal/legal-modal';
 import { Router } from '@angular/router';
 import { UserApiService } from '../../../../core/services/user-api.service';
 import { GeocodingService, AddressSuggestion } from '../../../../core/services/geocoding.service';
@@ -43,7 +44,7 @@ type DocTarget = 'photo' | 'idFront' | 'idBack' | 'insuranceDoc' | 'diplomaDoc' 
 @Component({
   selector: 'register-professional',
   standalone: true,
-  imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent],
+  imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent, LegalModal],
   templateUrl: './professional.html',
   styleUrl: './professional.scss',
 })
@@ -98,6 +99,7 @@ export class RegisterProfessional implements OnDestroy {
   readonly showConfirmPassword = signal<boolean>(false);
   readonly passwordFocused = signal<boolean>(false);
   readonly showSubmitError = signal<boolean>(false);
+  readonly legalModalOpen = signal(false);
   readonly hasStep1Errors = signal<boolean>(false);
 
   readonly personalAddressSuggestions = signal<AddressSuggestion[]>([]);
