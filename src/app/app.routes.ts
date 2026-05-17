@@ -90,6 +90,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/job/pest-control/pest-control').then((c) => c.PestControlPage),
   },
   {
+    path: 'contact',
+    title: 'contact.title',
+    loadComponent: () => import('./pages/contact/contact').then((p) => p.ContactPage),
+  },
+  {
     path: '**',
     title: 'not-found.title',
     loadComponent: () => import('./shared/components/not-found/not-found').then((c) => c.NotFound),

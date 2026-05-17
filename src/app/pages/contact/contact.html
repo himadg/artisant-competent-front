@@ -1,0 +1,103 @@
+<div class="contact-page">
+    <div class="contact-card">
+        <h1 class="contact-title">{{ 'contact.title' | transloco }}</h1>
+        <p class="contact-subtitle">{{ 'contact.subtitle' | transloco }}</p>
+
+        @if (success()) {
+            <div class="contact-success">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                <p>{{ 'contact.successMessage' | transloco }}</p>
+            </div>
+        }
+
+        @if (error()) {
+            <div class="contact-error">
+                <p>{{ 'contact.errorMessage' | transloco }}</p>
+            </div>
+        }
+
+        <form [formGroup]="form" (ngSubmit)="submit()" class="contact-form" novalidate>
+
+            <!-- Email -->
+            <div class="contact-field">
+                <label class="contact-label">{{ 'contact.fields.email' | transloco }} *</label>
+                <input
+                    type="email"
+                    formControlName="email"
+                    class="contact-input"
+                    [class.contact-input--readonly]="emailReadonly()"
+                    [placeholder]="'contact.fields.emailPlaceholder' | transloco"
+                    [attr.readonly]="emailReadonly() ? true : null"
+                />
+                @if (form.get('email')?.invalid && form.get('email')?.touched) {
+                    <span class="contact-field-error">{{ 'contact.errors.emailRequired' | transloco }}</span>
+                }
+            </div>
+
+            <!-- Motif -->
+            <div class="contact-field">
+                <label class="contact-label">{{ 'contact.fields.motif' | transloco }} *</label>
+                <select formControlName="motif" class="contact-input contact-select">
+                    <option value="">{{ 'contact.fields.motifPlaceholder' | transloco }}</option>
+                    <option value="info">{{ 'contact.motifs.info' | transloco }}</option>
+                    <option value="quote">{{ 'contact.motifs.quote' | transloco }}</option>
+                    <option value="dispute">{{ 'contact.motifs.dispute' | transloco }}</option>
+                    <option value="payment">{{ 'contact.motifs.payment' | transloco }}</option>
+                    <option value="cmod">{{ 'contact.motifs.cmod' | transloco }}</option>
+                    <option value="pro">{{ 'contact.motifs.pro' | transloco }}</option>
+                    <option value="affiliation">{{ 'contact.motifs.affiliation' | transloco }}</option>
+                    <option value="press">{{ 'contact.motifs.press' | transloco }}</option>
+                    <option value="rgpd">{{ 'contact.motifs.rgpd' | transloco }}</option>
+                    <option value="fraud">{{ 'contact.motifs.fraud' | transloco }}</option>
+                    <option value="tech">{{ 'contact.motifs.tech' | transloco }}</option>
+                    <option value="other">{{ 'contact.motifs.other' | transloco }}</option>
+                </select>
+                @if (form.get('motif')?.invalid && form.get('motif')?.touched) {
+                    <span class="contact-field-error">{{ 'contact.errors.motifRequired' | transloco }}</span>
+                }
+            </div>
+
+            <!-- Précision (Autre) -->
+            @if (isOther()) {
+                <div class="contact-field">
+                    <label class="contact-label">{{ 'contact.fields.otherDetail' | transloco }} *</label>
+                    <input
+                        type="text"
+                        formControlName="otherDetail"
+                        class="contact-input"
+                        [placeholder]="'contact.fields.otherDetailPlaceholder' | transloco"
+                        maxlength="200"
+                    />
+                    @if (form.get('otherDetail')?.invalid && form.get('otherDetail')?.touched) {
+                        <span class="contact-field-error">{{ 'contact.errors.otherDetailRequired' | transloco }}</span>
+                    }
+                </div>
+            }
+
+            <!-- Description -->
+            <div class="contact-field">
+                <label class="contact-label">{{ 'contact.fields.description' | transloco }} *</label>
+                <textarea
+                    formControlName="description"
+                    class="contact-input contact-textarea"
+                    [placeholder]="'contact.fields.descriptionPlaceholder' | transloco"
+                    rows="6"
+                    maxlength="3000"
+                ></textarea>
+                <span class="contact-char-count">{{ form.get('description')?.value?.length ?? 0 }} / 3000</span>
+                @if (form.get('description')?.invalid && form.get('description')?.touched) {
+                    <span class="contact-field-error">{{ 'contact.errors.descriptionRequired' | transloco }}</span>
+                }
+            </div>
+
+            <button type="submit" class="contact-submit" [disabled]="submitting()">
+                @if (submitting()) {
+                    <span class="contact-spinner"></span>
+                } @else {
+                    {{ 'contact.submit' | transloco }}
+                }
+            </button>
+
+        </form>
+    </div>
+</div>

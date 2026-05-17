@@ -9,13 +9,14 @@ import { IndividualDashboardData } from '../../../shared/interfaces/individual-d
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
 import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
+import { RouterLink } from "@angular/router";
 
 export type IndividualSection = 'profile' | 'requests' | 'quotes' | 'invoices' | 'legal' | 'practices';
 
 @Component({
   selector: 'dashboard-individual',
   standalone: true,
-  imports: [CommonModule, FormsModule, TranslocoModule, LangToggle, ThemeToggle, LegalModal],
+  imports: [CommonModule, FormsModule, TranslocoModule, LangToggle, ThemeToggle, LegalModal, RouterLink],
   templateUrl: './individual-dashboard.html',
   styleUrl: './individual-dashboard.scss',
 })

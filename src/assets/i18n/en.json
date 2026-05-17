@@ -889,6 +889,44 @@
       "reviews": "No reviews yet"
     }
   },
+  "contact": {
+    "nav": "Contact us",
+    "title": "Contact us",
+    "subtitle": "A question, a problem or a suggestion? We'll get back to you as soon as possible.",
+    "submit": "Send message",
+    "successMessage": "Your message has been sent successfully. We will get back to you shortly.",
+    "errorMessage": "An error occurred while sending your message. Please try again or contact us directly.",
+    "fields": {
+      "email": "Your email address",
+      "emailPlaceholder": "your@email.com",
+      "motif": "Reason for contact",
+      "motifPlaceholder": "Select a reason",
+      "otherDetail": "Specify your request",
+      "otherDetailPlaceholder": "Briefly describe the reason for your contact",
+      "description": "Your message",
+      "descriptionPlaceholder": "Describe your request in detail..."
+    },
+    "motifs": {
+      "info": "General information request",
+      "quote": "Question about a quote or a project",
+      "dispute": "Report a problem or dispute",
+      "payment": "Question about payment or refund",
+      "cmod": "CMOD-related request",
+      "pro": "Become a partner professional",
+      "affiliation": "Partner program / affiliation / influencer",
+      "press": "Press / media / interview",
+      "rgpd": "Data protection – GDPR",
+      "fraud": "Report fraudulent behavior",
+      "tech": "Technical support",
+      "other": "Other request"
+    },
+    "errors": {
+      "emailRequired": "Please enter a valid email address.",
+      "motifRequired": "Please select a reason.",
+      "otherDetailRequired": "Please specify your request.",
+      "descriptionRequired": "Please enter a message of at least 10 characters."
+    }
+  },
   "legal": {
     "cgu": {
       "tab": "Terms of Use",
