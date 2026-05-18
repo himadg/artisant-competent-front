@@ -1,3 +1,75 @@
-<footer>
-    <small>&copy; 2026</small>
+<footer class="mt-16 bg-grad-brown text-[var(--primary-beige)]">
+    <!-- Bloc newsletter WhatsApp -->
+    <div class="px-4 py-10 mx-auto space-y-4 max-w-screen-lg text-center border-b border-[var(--secondary-beige)]">
+        <h2 class="text-lg font-semibold md:text-2xl">{{ 'footer.newsletterTitle' | transloco }}</h2>
+        <p class="text-sm md:text-base">{{ 'footer.newsletterSubtitle' | transloco }}</p>
+        <!-- TODO: brancher la logique d'envoi du formulaire newsletter WhatsApp -->
+        <div class="flex flex-col gap-3 items-center">
+            <input
+                type="tel"
+                [placeholder]="'footer.newsletterPhone' | transloco"
+                class="px-4 py-2 w-full max-w-sm text-black rounded-lg"
+            />
+            <label class="flex gap-2 items-start max-w-sm text-sm text-left">
+                <input type="checkbox" class="mt-1" />
+                <span>{{ 'footer.newsletterConsent' | transloco }}</span>
+            </label>
+            <button type="button" class="px-6 py-3 font-semibold rounded-lg bg-[#a97849] text-[var(--primary-beige)]">
+                {{ 'footer.newsletterButton' | transloco }}
+            </button>
+        </div>
+    </div>
+
+    <!-- Corps du footer -->
+    <div class="grid gap-8 px-4 py-10 mx-auto max-w-screen-lg sm:grid-cols-2 md:grid-cols-3">
+        <div class="space-y-3">
+            <!-- TODO: remplacer par le logo Artisan Competent (asset a fournir) -->
+            <p class="text-xl font-extrabold">Artisan Compétent</p>
+            <address class="text-sm not-italic">{{ 'footer.address' | transloco }}</address>
+            <!-- TODO: numero WhatsApp reel a renseigner dans le lien wa.me -->
+            <a href="https://wa.me/[NUMERO_WHATSAPP_TODO]" class="block text-sm underline">WhatsApp</a>
+        </div>
+
+        <nav class="flex flex-col gap-2 text-sm">
+            <a routerLink="/" class="no-underline hover:underline">{{ 'footer.navHome' | transloco }}</a>
+            <a routerLink="/jobs" class="no-underline hover:underline">{{ 'footer.navTrades' | transloco }}</a>
+            <a routerLink="/" [fragment]="'villes'" class="no-underline hover:underline">
+                {{ 'footer.navCities' | transloco }}
+            </a>
+            <a routerLink="/" [fragment]="'comment-ca-marche'" class="no-underline hover:underline">
+                {{ 'footer.navHowItWorks' | transloco }}
+            </a>
+            <a routerLink="/" [fragment]="'cmod'" class="no-underline hover:underline">
+                {{ 'footer.navCmod' | transloco }}
+            </a>
+            <a routerLink="/" [fragment]="'pro'" class="no-underline hover:underline">
+                {{ 'footer.navPro' | transloco }}
+            </a>
+            <!-- TODO: route Blog a creer -->
+            <a href="#" class="no-underline hover:underline">{{ 'footer.navBlog' | transloco }}</a>
+            <!-- TODO: route Contact a creer -->
+            <a href="#" class="no-underline hover:underline">{{ 'footer.navContact' | transloco }}</a>
+        </nav>
+
+        <div class="space-y-2 text-sm">
+            <!-- TODO: URLs reelles des reseaux sociaux -->
+            <a href="#" class="block no-underline hover:underline">YouTube</a>
+            <a href="#" class="block no-underline hover:underline">Instagram</a>
+            <a href="#" class="block no-underline hover:underline">Facebook</a>
+            <a href="#" class="block no-underline hover:underline">LinkedIn</a>
+            <a href="#" class="block no-underline hover:underline">Snapchat</a>
+        </div>
+    </div>
+
+    <!-- Bas de footer -->
+    <div class="px-4 py-6 mx-auto max-w-screen-lg border-t border-[var(--secondary-beige)]">
+        <div class="flex flex-wrap gap-4 justify-center text-sm">
+            <!-- TODO: routes legales a creer -->
+            <a href="#" class="no-underline hover:underline">{{ 'footer.legalNotice' | transloco }}</a>
+            <a href="#" class="no-underline hover:underline">{{ 'footer.cgu' | transloco }}</a>
+            <a href="#" class="no-underline hover:underline">{{ 'footer.cgv' | transloco }}</a>
+            <a href="#" class="no-underline hover:underline">{{ 'footer.privacy' | transloco }}</a>
+        </div>
+        <small class="block mt-4 text-center">&copy; 2026 Artisan Compétent</small>
+    </div>
 </footer>
