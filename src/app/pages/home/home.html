@@ -242,7 +242,8 @@
     <!-- Section A : Pourquoi tant de gens rencontrent des problèmes -->
     <section id="pourquoi-problemes" class="space-y-4">
         <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.problem.title' | transloco }}</h2>
-        <accordion variant="section" title="Lire la suite">
+        <p>{{ 'home.problem.intro' | transloco }}</p>
+        <accordion variant="section" [title]="'home.problem.accordionTitle' | transloco">
             <div class="protection-body" [innerHTML]="'home.problem.body' | transloco"></div>
         </accordion>
     </section>
@@ -250,7 +251,8 @@
     <!-- Section B : Artisan Compétent, un cadre pensé pour éviter que les situations dégénèrent -->
     <section id="cadre-protecteur" class="space-y-4">
         <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.framework.title' | transloco }}</h2>
-        <accordion variant="section" title="Lire la suite">
+        <p>{{ 'home.framework.intro' | transloco }}</p>
+        <accordion variant="section" [title]="'home.framework.accordionTitle' | transloco">
             <div class="protection-body" [innerHTML]="'home.framework.body' | transloco"></div>
         </accordion>
     </section>
