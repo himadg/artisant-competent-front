@@ -5,9 +5,6 @@
       "description": "Only release payment once the work is done. Artisan Compétent oversees your projects with fund escrow, verified tradespeople and digital tracking. Free quote.",
       "ogDescription": "Only release payment once the job is done. Fund escrow, verified tradespeople, digital tracking."
     },
-    "announceBar": {
-      "text": "Pay for your work in 3 interest-free instalments with Klarna. Secure payment."
-    },
     "hero": {
       "h1": "Your work, overseen from A to Z. No more scams!",
       "subtitle": "Artisan Compétent is the first platform that truly oversees your renovation and emergency projects. You only release payment once the job is done.",
@@ -27,16 +24,6 @@
       "p3": "The problem isn't that these situations exist. The problem is that today, there's no mechanism that truly protects the individual when things go wrong.",
       "p4": "That's exactly why Artisan Compétent exists: anticipate risks, track every step, keep the money in escrow until everything is settled.",
       "strong": "We know how things go wrong. And we put in place what's needed to prevent it."
-    },
-    "howItWorks": {
-      "h2": "3 steps for work with no nasty surprises",
-      "step1Title": "Describe your need",
-      "step1Body": "Fill in the form in 2 minutes: type of work, service area, estimated budget. The more precise you are, the better the responses from tradespeople.",
-      "step2Title": "Talk with verified tradespeople",
-      "step2Body1": "Every tradesperson on the platform is verified: valid business registration, mandatory insurance and up-to-date certifications, real customer reviews.",
-      "step2Body2": "Tradespeople reply to you via the platform's internal chat and give you a first price range. To pin down the need and the final price, the tradesperson has to visit you. Your phone number and address are never shared with anyone until you choose to have the tradesperson over.",
-      "step3Title": "Release the payment at the end",
-      "step3Body": "As soon as the quote is accepted, your payment is placed in escrow. The tradesperson is only paid once you've validated the end of the project. Not satisfied? The funds stay held while the situation is resolved."
     },
     "escrow": {
       "h2": "Fund escrow: your guarantee against nasty surprises",
@@ -60,17 +47,6 @@
       "signedTitle": "And if you've already signed the report?",
       "signedBody": "Don't panic. The tradespeople on Artisan Compétent are all serious professionals and, like any good honest tradesperson, they step in to fix any defect linked to their work. And in any case, as soon as the report is signed, the legal warranties come into play, starting with the one-year defects warranty, then the two-year warranty and, depending on the type of work, the ten-year warranty.",
       "strong": "Take 48h. It's your best protection."
-    },
-    "cmodSection": {
-      "h2": "CMOD: a remote advisor for your work",
-      "p1": "You're not in the trade and you're afraid of getting ripped off? CMOD is the option to call on a construction professional who advises you remotely, by video call, about your project.",
-      "p2": "In case of doubt or dispute with your tradesperson, the CMOD report strengthens your case with an independent technical opinion. It's not a legal guarantee, it's a concrete lever to make your point.",
-      "changeTitle": "What it changes",
-      "changeBody": "Without a full oversight mechanism, it's estimated that more than one project in two ends up botched, delayed or not finished as planned. At Artisan Compétent, the overwhelming majority of projects tracked on the platform are completed properly, and that rate rises further when the client activates CMOD support from the start of the project.",
-      "conditionsTitle": "Conditions",
-      "cond1": "Quotes between €2,000 and €5,000: a free 20-minute call.",
-      "cond2": "Quotes above €5,000: a free 45-minute call.",
-      "cond3": "Full project support: paid plans available, pricing on request."
     },
     "reviews": {
       "h2": "They trusted Artisan Compétent",
@@ -116,7 +92,7 @@
     },
     "finalCta": {
       "p1": "Our promise? That your renovation work is no longer a source of stress.",
-      "p2": "Enough sleepless nights wondering whether the tradesperson will come back to finish the job. Enough quotes that blow up without warning. With Artisan Compétent, every step is overseen, every euro is tracked, every validation is in your hands."
+      "cta": "Sign up"
     },
     "where": {
       "cities": {
@@ -1032,18 +1008,38 @@
     "newsletterPhone": "Your phone number",
     "newsletterConsent": "I agree to receive WhatsApp messages from Artisan Compétent.",
     "newsletterButton": "Subscribe on WhatsApp",
-    "navHome": "Home",
-    "navTrades": "Our trades",
-    "navCities": "Our cities",
-    "navHowItWorks": "How it works",
-    "navCmod": "CMOD",
-    "navPro": "I'm a pro",
-    "navBlog": "Blog",
-    "navContact": "Contact",
-    "address": "66 avenue des Champs-Élysées, 75008 Paris",
-    "legalNotice": "Legal notice",
-    "cgu": "Terms of Use",
-    "cgv": "Terms of Sale",
-    "privacy": "Privacy policy"
+    "nav": {
+      "title": "Navigation",
+      "home": "Home",
+      "trades": "Our trades",
+      "cities": "Our cities",
+      "howItWorks": "How it works"
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "cmod": "CMOD",
+      "payment": "Payment options",
+      "escrow": "Stripe escrow",
+      "defect": "Defect procedure"
+    },
+    "contact": {
+      "title": "Contact",
+      "address": "66 avenue des Champs-Élysées\n75008 Paris",
+      "phone": "+33 7 69 61 97 90",
+      "phoneNote": "We do not take phone calls. To track your requests, please contact us via the form."
+    },
+    "social": {
+      "title": "Follow us",
+      "youtube": "YouTube",
+      "linkedin": "LinkedIn"
+    },
+    "legal": {
+      "notice": "Legal notice",
+      "privacy": "Privacy policy",
+      "cgu": "Terms of Use",
+      "cgv": "Terms of Sale",
+      "contactForm": "Contact form"
+    },
+    "copyright": "© 2026 Artisan Compétent. All rights reserved."
   }
 }

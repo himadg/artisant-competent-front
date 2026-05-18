@@ -1,75 +1,150 @@
 <footer class="mt-16 bg-grad-brown text-[var(--primary-beige)]">
-    <!-- Bloc newsletter WhatsApp -->
-    <div class="px-4 py-10 mx-auto space-y-4 max-w-screen-lg text-center border-b border-[var(--secondary-beige)]">
-        <h2 class="text-lg font-semibold md:text-2xl">{{ 'footer.newsletterTitle' | transloco }}</h2>
-        <p class="text-sm md:text-base">{{ 'footer.newsletterSubtitle' | transloco }}</p>
-        <!-- TODO: brancher la logique d'envoi du formulaire newsletter WhatsApp -->
-        <div class="flex flex-col gap-3 items-center">
-            <input
-                type="tel"
-                [placeholder]="'footer.newsletterPhone' | transloco"
-                class="px-4 py-2 w-full max-w-sm text-black rounded-lg"
-            />
-            <label class="flex gap-2 items-start max-w-sm text-sm text-left">
-                <input type="checkbox" class="mt-1" />
-                <span>{{ 'footer.newsletterConsent' | transloco }}</span>
-            </label>
-            <button type="button" class="px-6 py-3 font-semibold rounded-lg bg-[#a97849] text-[var(--primary-beige)]">
-                {{ 'footer.newsletterButton' | transloco }}
-            </button>
-        </div>
-    </div>
+    <!--
+      Bloc newsletter WhatsApp retiré du rendu lors de la refonte du footer.
+      Markup conservé en commentaire pour pouvoir le réactiver plus tard si besoin.
+      (Aucune logique d'envoi n'était branchée : le formulaire était purement statique.)
 
-    <!-- Corps du footer -->
-    <div class="grid gap-8 px-4 py-10 mx-auto max-w-screen-lg sm:grid-cols-2 md:grid-cols-3">
-        <div class="space-y-3">
-            <!-- TODO: remplacer par le logo Artisan Competent (asset a fournir) -->
-            <p class="text-xl font-extrabold">Artisan Compétent</p>
-            <address class="text-sm not-italic">{{ 'footer.address' | transloco }}</address>
-            <!-- TODO: numero WhatsApp reel a renseigner dans le lien wa.me -->
-            <a href="https://wa.me/[NUMERO_WHATSAPP_TODO]" class="block text-sm underline">WhatsApp</a>
-        </div>
+      <div class="px-4 py-10 mx-auto space-y-4 max-w-screen-lg text-center border-b border-[var(--secondary-beige)]">
+          <h2 class="text-lg font-semibold md:text-2xl">{{ 'footer.newsletterTitle' | transloco }}</h2>
+          <p class="text-sm md:text-base">{{ 'footer.newsletterSubtitle' | transloco }}</p>
+          <div class="flex flex-col gap-3 items-center">
+              <input
+                  type="tel"
+                  [placeholder]="'footer.newsletterPhone' | transloco"
+                  class="px-4 py-2 w-full max-w-sm text-black rounded-lg"
+              />
+              <label class="flex gap-2 items-start max-w-sm text-sm text-left">
+                  <input type="checkbox" class="mt-1" />
+                  <span>{{ 'footer.newsletterConsent' | transloco }}</span>
+              </label>
+              <button type="button" class="px-6 py-3 font-semibold rounded-lg bg-[#a97849] text-[var(--primary-beige)]">
+                  {{ 'footer.newsletterButton' | transloco }}
+              </button>
+          </div>
+      </div>
+    -->
 
-        <nav class="flex flex-col gap-2 text-sm">
-            <a routerLink="/" class="no-underline hover:underline">{{ 'footer.navHome' | transloco }}</a>
-            <a routerLink="/jobs" class="no-underline hover:underline">{{ 'footer.navTrades' | transloco }}</a>
-            <a routerLink="/" [fragment]="'villes'" class="no-underline hover:underline">
-                {{ 'footer.navCities' | transloco }}
-            </a>
-            <a routerLink="/" [fragment]="'comment-ca-marche'" class="no-underline hover:underline">
-                {{ 'footer.navHowItWorks' | transloco }}
-            </a>
-            <a routerLink="/" [fragment]="'cmod'" class="no-underline hover:underline">
-                {{ 'footer.navCmod' | transloco }}
-            </a>
-            <a routerLink="/" [fragment]="'pro'" class="no-underline hover:underline">
-                {{ 'footer.navPro' | transloco }}
-            </a>
-            <!-- TODO: route Blog a creer -->
-            <a href="#" class="no-underline hover:underline">{{ 'footer.navBlog' | transloco }}</a>
-            <!-- TODO: route Contact a creer -->
-            <a href="#" class="no-underline hover:underline">{{ 'footer.navContact' | transloco }}</a>
+    <!-- Corps du footer : 4 colonnes en desktop, 2 en tablette, 1 en mobile -->
+    <div class="grid gap-10 px-6 py-12 mx-auto max-w-screen-lg sm:grid-cols-2 lg:grid-cols-4">
+        <!-- COLONNE 1 · Navigation principale -->
+        <nav class="space-y-3" [attr.aria-label]="'footer.nav.title' | transloco">
+            <h2 class="text-base font-semibold tracking-wide uppercase">{{ 'footer.nav.title' | transloco }}</h2>
+            <ul class="space-y-2 text-sm">
+                <li><a routerLink="/" class="no-underline hover:underline">{{ 'footer.nav.home' | transloco }}</a></li>
+                <li>
+                    <a routerLink="/metiers" class="no-underline hover:underline">
+                        {{ 'footer.nav.trades' | transloco }}
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/villes" class="no-underline hover:underline">
+                        {{ 'footer.nav.cities' | transloco }}
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/comment-ca-marche" class="no-underline hover:underline">
+                        {{ 'footer.nav.howItWorks' | transloco }}
+                    </a>
+                </li>
+            </ul>
         </nav>
 
-        <div class="space-y-2 text-sm">
-            <!-- TODO: URLs reelles des reseaux sociaux -->
-            <a href="#" class="block no-underline hover:underline">YouTube</a>
-            <a href="#" class="block no-underline hover:underline">Instagram</a>
-            <a href="#" class="block no-underline hover:underline">Facebook</a>
-            <a href="#" class="block no-underline hover:underline">LinkedIn</a>
-            <a href="#" class="block no-underline hover:underline">Snapchat</a>
+        <!-- COLONNE 2 · Comment ça marche (sous-menu) -->
+        <nav class="space-y-3" [attr.aria-label]="'footer.howItWorks.title' | transloco">
+            <h2 class="text-base font-semibold tracking-wide uppercase">{{ 'footer.howItWorks.title' | transloco }}</h2>
+            <ul class="space-y-2 text-sm">
+                <li>
+                    <a routerLink="/comment-ca-marche" fragment="cmod" class="no-underline hover:underline">
+                        {{ 'footer.howItWorks.cmod' | transloco }}
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/comment-ca-marche" fragment="klarna" class="no-underline hover:underline">
+                        {{ 'footer.howItWorks.payment' | transloco }}
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/comment-ca-marche" fragment="sequestre" class="no-underline hover:underline">
+                        {{ 'footer.howItWorks.escrow' | transloco }}
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/comment-ca-marche" fragment="malfacon" class="no-underline hover:underline">
+                        {{ 'footer.howItWorks.defect' | transloco }}
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- COLONNE 3 · Contact et infos -->
+        <div class="space-y-3">
+            <h2 class="text-base font-semibold tracking-wide uppercase">{{ 'footer.contact.title' | transloco }}</h2>
+            <!-- TODO_HIMAD: adresse officielle à confirmer -->
+            <address class="text-sm not-italic whitespace-pre-line">{{ 'footer.contact.address' | transloco }}</address>
+            <a
+                href="tel:+33769619790"
+                class="block text-sm font-semibold no-underline hover:underline"
+            >
+                {{ 'footer.contact.phone' | transloco }}
+            </a>
+            <p class="text-xs opacity-70">{{ 'footer.contact.phoneNote' | transloco }}</p>
+        </div>
+
+        <!-- COLONNE 4 · Suivez-nous -->
+        <div class="space-y-3">
+            <h2 class="text-base font-semibold tracking-wide uppercase">{{ 'footer.social.title' | transloco }}</h2>
+            <ul class="space-y-3 text-sm">
+                <li>
+                    <!-- TODO_HIMAD: URL YouTube réelle -->
+                    <a
+                        href="https://www.youtube.com/@artisancompetent"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="flex gap-3 items-center no-underline hover:underline"
+                    >
+                        <ng-icon name="lucideYoutube" size="28" aria-hidden="true" />
+                        <span>{{ 'footer.social.youtube' | transloco }}</span>
+                    </a>
+                </li>
+                <li>
+                    <!-- TODO_HIMAD: URL LinkedIn réelle -->
+                    <a
+                        href="https://www.linkedin.com/company/artisan-competent"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="flex gap-3 items-center no-underline hover:underline"
+                    >
+                        <ng-icon name="lucideLinkedin" size="28" aria-hidden="true" />
+                        <span>{{ 'footer.social.linkedin' | transloco }}</span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 
-    <!-- Bas de footer -->
-    <div class="px-4 py-6 mx-auto max-w-screen-lg border-t border-[var(--secondary-beige)]">
-        <div class="flex flex-wrap gap-4 justify-center text-sm">
-            <!-- TODO: routes legales a creer -->
-            <a href="#" class="no-underline hover:underline">{{ 'footer.legalNotice' | transloco }}</a>
-            <a href="#" class="no-underline hover:underline">{{ 'footer.cgu' | transloco }}</a>
-            <a href="#" class="no-underline hover:underline">{{ 'footer.cgv' | transloco }}</a>
-            <a href="#" class="no-underline hover:underline">{{ 'footer.privacy' | transloco }}</a>
+    <!-- Barre légale -->
+    <div class="px-6 py-8 mx-auto space-y-6 max-w-screen-lg border-t border-[var(--secondary-beige)]">
+        <nav class="flex flex-wrap gap-x-6 gap-y-2 justify-center text-sm" [attr.aria-label]="'footer.legal.notice' | transloco">
+            <a routerLink="/mentions-legales" class="no-underline hover:underline">
+                {{ 'footer.legal.notice' | transloco }}
+            </a>
+            <a routerLink="/politique-confidentialite" class="no-underline hover:underline">
+                {{ 'footer.legal.privacy' | transloco }}
+            </a>
+            <a routerLink="/cgu" class="no-underline hover:underline">{{ 'footer.legal.cgu' | transloco }}</a>
+            <a routerLink="/cgv" class="no-underline hover:underline">{{ 'footer.legal.cgv' | transloco }}</a>
+        </nav>
+
+        <!-- Formulaire de contact : accordéon fermé par défaut, vide pour l'instant. -->
+        <div class="mx-auto max-w-md">
+            <accordion [title]="'footer.legal.contactForm' | transloco" variant="section">
+                <p class="text-sm opacity-70"><!-- TODO: le composant ContactFormComponent sera intégré ici à l'étape 21 --></p>
+            </accordion>
         </div>
-        <small class="block mt-4 text-center">&copy; 2026 Artisan Compétent</small>
+    </div>
+
+    <!-- Copyright -->
+    <div class="px-6 py-6 mx-auto max-w-screen-lg border-t border-[var(--secondary-beige)]">
+        <small class="block text-center">{{ 'footer.copyright' | transloco }}</small>
     </div>
 </footer>
