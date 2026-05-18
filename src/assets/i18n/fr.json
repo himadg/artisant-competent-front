@@ -1,21 +1,34 @@
 {
+  "banner": {
+    "klarna": {
+      "textBefore": "Payez en 3 fois avec",
+      "textAfter": ", sous conditions"
+    }
+  },
   "home": {
     "meta": {
       "title": "Artisan Compétent | Vos travaux encadrés de A à Z. Finis les arnaques !",
       "description": "Ne validez le paiement qu'une fois les travaux terminés. Artisan Compétent encadre vos chantiers avec le séquestre de fonds, des artisans vérifiés et un suivi digital. Devis gratuit.",
       "ogDescription": "Ne validez le paiement qu'une fois l'intervention terminée. Séquestre de fonds, artisans vérifiés, suivi digital."
     },
-    "announceBar": {
-      "text": "Payez vos travaux en 3 fois sans frais avec Klarna. Paiement sécurisé."
-    },
     "hero": {
-      "h1": "Vos travaux, encadrés de A à Z. Finis les arnaques !",
-      "subtitle": "Artisan Compétent, c'est la première plateforme qui encadre réellement vos chantiers de rénovation et d'intervention d'urgence. Vous ne validez le paiement qu'une fois l'intervention terminée.",
-      "arg1": "Artisans vérifiés : SIRET, assurances et certifications à jour.",
-      "arg2": "Paiement encadré : votre argent bloqué en séquestre jusqu'à validation.",
-      "arg3": "Suivi digital : photos, échanges, preuves. Rien ne s'efface.",
-      "arg4": "48h pour valider : en cas d'abus, médiation possible.",
-      "arg5": "France et DOM-TOM* : couverture en cours de déploiement partout sur le territoire.",
+      "h1": "Vos petits travaux encadrés de A à Z, finis les arnaques.",
+      "args": [
+        "Artisans vérifiés : SIRET, assurances et certifications contrôlés avant intégration.",
+        "Paiement sécurisé : vos fonds sont séquestrés jusqu'à validation du chantier.",
+        "Suivi digital complet : photos, échanges, devis et preuves centralisés dans la plateforme.",
+        "Traçabilité totale : chaque étape du chantier peut être documentée et suivie.",
+        "48h de protection après travaux avant libération automatique des fonds.",
+        "Arbitrage possible en cas de litige grâce aux éléments de preuve enregistrés.",
+        "Expert bâtiment indépendant disponible pour vous accompagner si besoin.",
+        "Protection contre les abandons de chantier et les acomptes perdus.",
+        "Interventions d'urgence encadrées 24h/24 et 7j/7 : plomberie, serrurerie, électricité, débouchage.",
+        "Plateforme pensée aussi pour protéger les artisans honnêtes contre les abus et les impayés.",
+        "Aucun paiement direct sans suivi : tout passe par un cadre sécurisé et transparent.",
+        "France, Corse et DOM-TOM : déploiement progressif sur tout le territoire.",
+        "Une plateforme conçue pour rétablir la confiance dans le bâtiment.",
+        "Notre promesse ? Personne ne disparaîtra avec votre argent !"
+      ],
       "ctaPro": "Je suis un professionnel",
       "ctaIndividual": "Je suis un particulier",
       "ctaForm": "Décrivez votre projet en 2 minutes"
@@ -26,17 +39,13 @@
       "p2": "Mais tous les imprévus ne sont pas des arnaques. Un artisan honnête peut découvrir un vrai problème en cours de chantier. Un client peut mal décrire son besoin au départ. Et parfois, c'est simplement un accident de la vie, physique ou financier, qui vient tout compliquer.",
       "p3": "Le problème, ce n'est pas que ces situations existent. Le problème, c'est qu'aujourd'hui, il n'existe aucun mécanisme qui protège réellement le particulier quand les choses dérapent.",
       "p4": "C'est exactement pour ça qu'Artisan Compétent existe : anticiper les risques, tracer chaque étape, garder l'argent en séquestre tant que tout n'est pas réglé.",
-      "strong": "On sait comment les choses dérapent. Et on met en place ce qu'il faut pour les éviter."
+      "strong": "On sait comment les choses dérapent. Et on met en place ce qu'il faut pour les éviter.",
+      "title": "Pourquoi tant de gens rencontrent des problèmes sur leurs travaux ?",
+      "body": "<ul><li>Un artisan qui disparaît après un acompte.</li><li>Un devis qui passe du simple au double sans explication claire.</li><li>Des travaux bâclés qu'il faut refaire.</li><li>Des délais non respectés.</li><li>Des clients laissés seuls face à des situations compliquées.</li></ul><p>Mais tous les imprévus ne sont pas forcément des arnaques.</p><p>Un artisan honnête peut lui aussi rencontrer un problème sérieux :</p><ul><li>une difficulté financière,</li><li>ou un imprévu de chantier plus complexe que prévu.</li></ul><p>Un client peut également mal décrire son besoin au départ.</p><p>Et parfois, c'est simplement une mauvaise communication entre les différentes parties qui complique la situation.</p><p>Le vrai problème aujourd'hui, ce n'est pas qu'il existe des abus.</p><p>Le vrai problème, c'est qu'il n'existe généralement aucun système réellement conçu pour protéger le particulier lorsque les choses se compliquent.</p><p>Dans un fonctionnement classique, une fois l'argent versé directement à l'entreprise, récupérer les fonds peut devenir extrêmement difficile.</p><p>Avec Artisan Compétent, l'argent est sécurisé via Stripe sur un compte séquestre jusqu'à validation du chantier.</p><p>Les fonds ne sont pas envoyés directement à l'artisan.</p><p>Et ils ne transitent pas non plus par le compte bancaire d'Artisan Compétent.</p><p>Même le dirigeant de la plateforme ne peut pas détourner librement les fonds.</p><p>Le système est justement conçu pour empêcher cela.</p><p>Concrètement :</p><ul><li>soit les travaux sont terminés et validés, et les fonds sont libérés ;</li><li>soit un problème survient, et les fonds restent sécurisés le temps d'analyser la situation.</li></ul><p>Tout le suivi du chantier est centralisé : photos, échanges, devis, preuves.</p><p>Chaque étape est horodatée et archivée afin de permettre un suivi clair et transparent.</p>"
     },
-    "howItWorks": {
-      "h2": "3 étapes pour des travaux sans mauvaise surprise",
-      "step1Title": "Décrivez votre besoin",
-      "step1Body": "Remplissez le formulaire en 2 minutes : type de travaux, zone d'intervention, budget estimé. Plus vous êtes précis, meilleurs seront les retours des artisans.",
-      "step2Title": "Échangez avec des artisans vérifiés",
-      "step2Body1": "Chaque artisan sur la plateforme est vérifié : numéro SIRET valide, assurances obligatoires et certifications à jour, avis clients réels.",
-      "step2Body2": "Les artisans vous répondent via le chat interne de la plateforme et vous donnent une première fourchette de prix. Pour fixer le besoin et le prix définitif, l'artisan doit se déplacer chez vous. Votre numéro et votre adresse ne sont jamais communiqués à qui que ce soit tant que vous n'avez pas choisi vous-même de recevoir l'artisan.",
-      "step3Title": "Validez le paiement à la fin",
-      "step3Body": "Dès l'acceptation du devis, votre paiement est placé en séquestre. L'artisan n'est payé qu'une fois que vous avez validé la fin du chantier. Pas satisfait ? Les fonds restent bloqués le temps de résoudre la situation."
+    "framework": {
+      "title": "Artisan Compétent : un cadre pensé pour éviter que les situations dégénèrent",
+      "body": "<p>Artisan Compétent n'est pas un simple annuaire.</p><p>La plateforme a été pensée pour :</p><!-- TODO_HIMAD: liste \"La plateforme a été pensée pour...\" potentiellement incomplète dans le doc WhatsApp source, vérifier qu'il ne manque pas 1 ou 2 éléments avant \"tracer\". --><ul><li>tracer chaque étape du chantier,</li><li>et faciliter la résolution des litiges lorsqu'ils surviennent.</li></ul><p>L'enjeu n'est pas seulement de trouver un artisan.</p><p>L'objectif est de créer un cadre plus rassurant, plus transparent et plus sécurisé pour tout le monde.</p><p>Parce qu'aujourd'hui, trouver un artisan ne suffit plus.</p><p>Encore faut-il savoir qui protège réellement votre argent si les choses tournent mal.</p>"
     },
     "escrow": {
       "h2": "Le séquestre de fonds : votre garantie contre les mauvaises surprises",
@@ -61,16 +70,49 @@
       "signedBody": "Pas de panique. Les artisans présents sur Artisan Compétent sont tous des professionnels sérieux et, comme tout bon artisan honnête, ils interviennent pour rattraper une éventuelle malfaçon liée à leur travail. Et dans tous les cas, dès la signature du PV, les garanties légales entrent en jeu, à commencer par la garantie de parfait achèvement (1 an), puis la garantie biennale et, selon la nature des travaux, la garantie décennale.",
       "strong": "Prenez 48h. C'est votre meilleure protection."
     },
-    "cmodSection": {
-      "h2": "CMOD : un conseiller à distance pour vos travaux",
-      "p1": "Vous n'êtes pas du métier et vous avez peur de vous faire avoir ? CMOD, c'est la possibilité de faire appel à un professionnel du bâtiment qui vous conseille à distance, par visioconférence, sur votre chantier.",
-      "p2": "En cas de doute ou de litige avec votre artisan, le rapport CMOD vient renforcer votre dossier avec un avis technique indépendant. Ce n'est pas une garantie juridique, c'est un levier concret pour faire valoir votre point de vue.",
-      "changeTitle": "Ce que ça change",
-      "changeBody": "Sans mécanisme d'encadrement complet, on estime que plus d'un chantier sur deux finit bâclé, repoussé ou non terminé comme prévu. Chez Artisan Compétent, l'écrasante majorité des chantiers suivis sur la plateforme sont menés à leur terme dans les règles, et ce taux monte encore quand le client active un accompagnement CMOD dès le début du chantier.",
-      "conditionsTitle": "Conditions",
-      "cond1": "Devis entre 2 000 € et 5 000 € : un appel de 20 minutes offert.",
-      "cond2": "Devis au-delà de 5 000 € : un appel de 45 minutes offert.",
-      "cond3": "Accompagnement complet du chantier : formules payantes disponibles, tarif sur demande."
+    "cmod": {
+      "title": "CMOD : un conseiller bâtiment à distance pour vos travaux",
+      "lead": "Vous n'êtes pas du métier et vous souhaitez être davantage rassuré pendant votre chantier ?",
+      "accordionTitle": "En savoir plus sur le CMOD",
+      "fullDescription": "<p>Le CMOD (Conseiller Maître d'Ouvrage Digital) est un professionnel expérimenté du bâtiment qui vous accompagne à distance par visioconférence tout au long de vos travaux.</p><p>Son rôle n'est pas de remplacer l'artisan, ni de se déplacer sur le chantier, mais de vous apporter un regard professionnel indépendant pour vous aider à mieux comprendre les différentes étapes du chantier, les échanges techniques et les décisions importantes.</p><p>Chez Artisan Compétent, les professionnels présents sur la plateforme sont déjà vérifiés et les travaux sont encadrés grâce à notre système de suivi digitalisé, de preuves photo, de traçabilité et de sécurisation des fonds.</p><p>Le CMOD est donc une option complémentaire destinée aux clients qui souhaitent un accompagnement encore plus rassurant, notamment pour les chantiers plus longs ou plus techniques.</p><p>En cas de désaccord ou de litige avec un artisan, et lorsqu'aucune solution amiable n'a pu être trouvée dans un premier temps, un appel CMOD peut également être proposé afin d'aider les différentes parties à mieux comprendre la situation et favoriser une résolution constructive.</p>",
+      "benefitsTitle": "Ce que le CMOD apporte concrètement",
+      "benefitsList": [
+        "Un accompagnement à distance par un professionnel expérimenté du bâtiment.",
+        "Un regard technique indépendant pendant le chantier.",
+        "Moins de stress et plus de clarté sur les travaux réalisés.",
+        "Une meilleure compréhension des devis, étapes et échanges techniques.",
+        "Un suivi complémentaire pour les chantiers plus longs ou plus complexes.",
+        "Une aide à la communication entre le client et l'artisan si nécessaire."
+      ],
+      "pricingTitle": "Formules d'accompagnement CMOD",
+      "pricingList": [
+        "Suivi chantier 1 semaine : 200 €"
+      ],
+      "cta": "Demander une consultation CMOD"
+    },
+    "protection": {
+      "title": "L'encadrement Artisan Compétent en détail",
+      "lead": "Comprendre le fonctionnement complet de notre système de protection.",
+      "escrow": {
+        "title": "Le séquestre de fonds : votre protection contre les mauvaises surprises",
+        "body": "<p>Sur de nombreuses plateformes, le client verse directement un acompte ou la totalité du paiement à l'artisan avant même la fin des travaux.</p><p>Chez Artisan Compétent, le fonctionnement est totalement différent.</p><p>Lorsque vous acceptez un devis et effectuez votre paiement via la plateforme, les fonds sont immédiatement sécurisés sur un compte séquestre géré par Stripe, prestataire de paiement certifié et reconnu internationalement.</p><p>Concrètement, cela signifie que l'argent ne se trouve ni sur le compte de l'artisan, ni sur le compte bancaire d'Artisan Compétent.</p><p>Même le dirigeant d'Artisan Compétent ne peut pas accéder librement aux fonds, les transférer ou les détourner.</p><p>Les sommes restent bloquées dans le protocole sécurisé Stripe jusqu'à validation du chantier ou résolution d'un éventuel litige.</p><p>Ce système protège à la fois :</p><ul><li>le client,</li><li>l'artisan,</li><li>et les fonds liés aux travaux.</li></ul><h4>Concrètement, comment cela fonctionne ?</h4><p>Vous acceptez le devis et effectuez le paiement directement via la plateforme.</p><p>Les fonds sont alors placés en séquestre sécurisé.</p><p>Pendant toute la durée du chantier, vous pouvez suivre l'avancement des travaux depuis votre tableau de bord digital :</p><ul><li>photos,</li><li>échanges,</li><li>documents liés au chantier.</li></ul><p>Le professionnel peut ajouter des éléments de suivi, mais vous pouvez également :</p><ul><li>ajouter vos propres observations,</li><li>signaler un problème si nécessaire.</li></ul><p>Chaque élément est horodaté et archivé afin d'assurer une traçabilité complète du chantier.</p><p>Rien ne peut être supprimé du suivi une fois enregistré.</p>"
+      },
+      "validation": {
+        "title": "Validation des travaux et libération des fonds",
+        "body": "<p>Une fois le chantier terminé, le professionnel vous transmet un procès-verbal digital de fin de chantier.</p><p>Vous disposez alors d'un délai pouvant aller jusqu'à 48 heures pour :</p><ul><li>valider le procès-verbal,</li><li>ou demander une correction si nécessaire.</li></ul><p>Pendant ce délai, les fonds restent sécurisés et ne sont pas versés au professionnel.</p><p>Si aucun problème n'est signalé dans le délai prévu, les fonds sont automatiquement libérés conformément aux conditions prévues dans les CGU et le procès-verbal est considéré comme validé sans réserve.</p><p>En cas de litige, les fonds restent bloqués le temps qu'Artisan Compétent analyse les éléments enregistrés dans le suivi digital afin de faciliter un arbitrage basé sur des preuves concrètes.</p>"
+      },
+      "klarna": {
+        "title": "Paiement en plusieurs fois via Klarna",
+        "body": "<p>Pour certains devis, un paiement en plusieurs fois peut être proposé via Klarna.</p><p>Cette possibilité n'est pas imposée par Artisan Compétent et dépend exclusivement du choix du professionnel.</p><p>En effet, l'utilisation de Klarna entraîne des frais supplémentaires à la charge de l'artisan.</p><p>Le professionnel reste donc libre :</p><ul><li>de proposer le paiement en plusieurs fois,</li><li>ou de refuser cette facilité de paiement selon son organisation et sa trésorerie.</li></ul><p>Artisan Compétent met simplement cette fonctionnalité technique à disposition des artisans qui souhaitent l'activer.</p><p>Par défaut, Artisan Compétent constate que la majorité des clients éligibles disposent généralement d'un plafond de financement pouvant aller jusqu'à 1 500 € via Klarna.</p><p>Cependant, certains clients peuvent bénéficier d'un plafond plus élevé selon leur profil et les conditions définies directement par Klarna.</p><p>Il appartient donc au client de vérifier directement auprès de Klarna le montant exact auquel il est éligible ainsi que les modalités de financement disponibles.</p><p>Les fonds ne sont jamais libérés avant validation finale du procès-verbal de réception de chantier ou résolution du dossier en cas de litige.</p>"
+      },
+      "malfacon": {
+        "title": "Vous constatez un problème ou une malfaçon ? Voici la bonne démarche.",
+        "body": "<h4>1. Discuter avec l'artisan</h4><p>La très grande majorité des situations se règlent simplement par le dialogue.</p><p>Les artisans présents sur Artisan Compétent sont des professionnels vérifiés et sérieux.</p><p>Comme dans tout chantier, une finition, un réglage ou un détail peut parfois nécessiter une correction après intervention.</p><p>Avant tout signalement, prenez le temps d'échanger calmement avec le professionnel afin de rechercher une solution amiable.</p><h4>2. Signalez le problème depuis votre espace client</h4><p>Si malgré les échanges aucun accord n'est trouvé, vous pouvez signaler le problème directement depuis votre tableau de bord.</p><p>À partir de ce moment-là, l'équipe Artisan Compétent peut accéder à l'ensemble du suivi digital déjà présent sur la plateforme :</p><ul><li>photos,</li><li>échanges dans le chat interne,</li><li>éléments ajoutés par le client et le professionnel.</li></ul><p>L'avantage de ce fonctionnement est d'éviter aux différentes parties d'avoir à tout recommencer ou retransmettre.</p><p>Le chantier étant déjà documenté directement dans la plateforme, l'équipe peut analyser la situation à partir des éléments déjà enregistrés et horodatés.</p><p>Dans certains cas uniquement, des informations ou éléments complémentaires pourront être demandés si cela est nécessaire pour approfondir l'analyse.</p><p>Pendant toute cette phase, les fonds restent bloqués sur le séquestre sécurisé.</p><h4>3. Analyse de la situation et médiation encadrée</h4><p>En cas de litige, Artisan Compétent analyse les éléments enregistrés dans le suivi digital afin de favoriser une résolution équilibrée et basée sur des preuves concrètes.</p><p>Il est important de préciser qu'Artisan Compétent n'impose pas de grille tarifaire aux professionnels présents sur la plateforme.</p><p>Les prix restent libres.</p><p>Les artisans définissent eux-mêmes leurs tarifs et devis selon leur expérience, leur structure, leur zone géographique et la nature des travaux réalisés.</p><p>La plateforme fournit simplement des recommandations et bonnes pratiques afin d'encourager des pratiques cohérentes et transparentes.</p><p>Les situations d'abus manifestes concernent principalement certaines interventions d'urgence particulièrement sensibles, notamment de nuit ou dans des contextes de dépannage immédiat.</p><p>Dans les rares cas où une surfacturation manifestement excessive et totalement disproportionnée serait constatée par rapport aux pratiques habituellement observées pour ce type d'intervention, Artisan Compétent peut engager une procédure de médiation renforcée conformément aux CGU et CGV.</p><p>Avant toute mesure, une tentative de résolution amiable est toujours privilégiée avec le professionnel concerné.</p><p>Si aucun accord raisonnable n'est trouvé malgré les échanges et l'analyse des éléments, Artisan Compétent peut :</p><ul><li>suspendre temporairement le compte du professionnel,</li><li>voire supprimer définitivement son accès à la plateforme en cas de manquement grave.</li></ul><p>Dans ce cadre, des frais de dossier pouvant aller jusqu'à <!-- TODO_HIMAD: montant exact des frais de dossier de suspension à préciser, actuellement \"un montant donné\" -->un montant donné peuvent être appliqués conformément aux CGU et CGV.</p><p>Ces frais ne sont pas conservés par Artisan Compétent et sont reversés au client sur la part séquestrée afin de compenser partiellement le préjudice subi.</p><p>Ce type de situation reste toutefois exceptionnel, la très grande majorité des artisans présents sur la plateforme étant des professionnels sérieux et de bonne foi.</p>"
+      },
+      "signed": {
+        "title": "Et si vous avez déjà signé le procès-verbal ?",
+        "body": "<p>Pas de panique.</p><p>Les artisans présents sur Artisan Compétent restent tenus par leurs obligations professionnelles et les garanties légales applicables aux travaux réalisés.</p><p>Comme tout professionnel sérieux, ils interviennent si une correction légitime est nécessaire après réception du chantier.</p><p>Selon la nature des travaux, différentes garanties légales continuent ensuite de s'appliquer :</p><ul><li>garantie de parfait achèvement,</li><li>garantie biennale lorsque les travaux concernés l'exigent,</li><li>garantie décennale lorsque les travaux concernés l'exigent.</li></ul><p>Prenez le temps de vérifier. Votre sécurité passe aussi par ces vérifications.</p>"
+      }
     },
     "reviews": {
       "h2": "Ils ont fait confiance à Artisan Compétent",
@@ -84,39 +126,73 @@
       "h2": "Tous les métiers que vous cherchez, un seul réflexe",
       "intro": "Que vous ayez besoin d'un plombier, d'un électricien, d'un serrurier ou d'un peintre, Artisan Compétent couvre la majorité des besoins métiers récurrents demandés par les Français. Chaque artisan est vérifié, chaque intervention est encadrée.",
       "outro": "Vous ne trouvez pas exactement le métier dont vous avez besoin ? La plateforme évolue constamment et d'autres spécialités sont ajoutées au fur et à mesure que de nouveaux artisans rejoignent Artisan Compétent.",
-      "cta": "Découvrir tous nos métiers"
+      "cta": "Découvrir tous nos métiers",
+      "accordionTitle": "En savoir plus sur nos métiers"
     },
     "emergency": {
       "h2": "Une urgence ? On gère, même à 3h du matin.",
-      "p1": "Fuite d'eau, panne de chauffage, porte claquée, coupure électrique. Les urgences n'attendent pas. Artisan Compétent met à votre disposition des artisans d'urgence disponibles 24h/24, 7j/7.",
-      "p2": "Et même en urgence, le séquestre de fonds s'applique. Vous ne validez le paiement qu'une fois l'intervention terminée. Et la règle des 48h pour réagir en cas d'abus est encore plus précieuse la nuit, quand les devis gonflés sont les plus fréquents.",
-      "trade1": "Plombier urgence (fuite, dégât des eaux)",
-      "trade2": "Chauffagiste urgence (panne chaudière, plus de chauffage)",
-      "trade3": "Serrurier urgence (porte claquée, serrure cassée)",
-      "trade4": "Électricien urgence (coupure, court-circuit)",
-      "trade5": "Déboucheur urgence (canalisation bouchée, refoulement)"
+      "accordionTitle": "En savoir plus sur les interventions d'urgence",
+      "description": {
+        "p1": "Fuite d'eau, panne de chauffage, porte claquée, coupure électrique...",
+        "p2": "Les urgences n'attendent pas.",
+        "p3": "Artisan Compétent met à votre disposition des artisans d'urgence disponibles 24h/24 et 7j/7, dans un cadre encadré et sécurisé pensé pour protéger aussi bien les clients que les professionnels honnêtes.",
+        "p4": "Contrairement à ce qui se pratique souvent dans l'urgence, ici :",
+        "list1": [
+          "les échanges passent par la plateforme,",
+          "les éléments du chantier peuvent être suivis,",
+          "les preuves et commentaires sont archivés,",
+          "et surtout : le séquestre de fonds continue de s'appliquer."
+        ],
+        "p5": "Vous ne validez le paiement qu'une fois l'intervention terminée.",
+        "p6": "Les fonds restent sécurisés jusqu'à validation du procès-verbal de fin d'intervention.",
+        "p7": "Et la règle des 48h pour réagir prend encore plus d'importance dans les situations d'urgence, où les abus manifestement excessifs et les surfacturations nocturnes sont malheureusement les plus fréquents.",
+        "p8": "Les tarifs restent libres et définis par chaque professionnel, mais Artisan Compétent met en place des outils de suivi, de transparence et d'arbitrage pour éviter les dérives les plus abusives.",
+        "p9": "Il est important de préciser que les procédures liées aux abus manifestement excessifs sur les prix concernent principalement les interventions d'urgence immédiates, notamment de nuit ou dans des situations où le client dispose de très peu de temps pour comparer, réfléchir ou négocier sereinement.",
+        "p10": "Pour les devis classiques ou les chantiers avec délai de réflexion normal, les prix restent totalement libres et relèvent de la négociation entre le client et le professionnel.",
+        "p11": "Dans ces situations, Artisan Compétent n'intervient pas sur la notion de \"prix trop élevé\", dès lors que le client a eu le temps nécessaire pour étudier, comparer et accepter le devis en connaissance de cause.",
+        "p12": "Les signalements restent bien entendu possibles pour d'autres motifs :",
+        "list2": [
+          "malfaçon,",
+          "abandon de chantier,",
+          "non-respect du devis,",
+          "comportement abusif,",
+          "ou problème de suivi."
+        ],
+        "p13": "Mais les mécanismes renforcés liés aux abus tarifaires manifestement excessifs restent réservés principalement aux situations d'urgence immédiates, où le risque d'abus est objectivement le plus élevé."
+      },
+      "tradesTitle": "Métiers d'urgence disponibles",
+      "trades": {
+        "plumber": "Plombier urgence (fuite, dégât des eaux)",
+        "heating": "Chauffagiste urgence (panne chaudière, plus de chauffage)",
+        "locksmith": "Serrurier urgence (porte claquée, serrure cassée)",
+        "electrician": "Électricien urgence (coupure, court-circuit)",
+        "drainUnblocker": "Déboucheur urgence (canalisation bouchée, refoulement)"
+      }
     },
     "cities": {
       "h2": "Nos villes d'intervention",
       "intro": "Artisan Compétent intervient dans les principales villes de France et, au fil des mois, s'étend vers les communes plus petites dès que des artisans locaux rejoignent la plateforme. Voici les villes couvertes aujourd'hui.",
       "outro": "Votre ville n'est pas dans la liste ? La plateforme s'étend chaque mois. Parlez-en à vos artisans locaux : plus ils sont nombreux à rejoindre Artisan Compétent, plus vite votre zone sera couverte. Et un bon artisan qui n'a rien à se reprocher n'a aucune raison de refuser un système aussi encadré.",
-      "badge247": "Disponible 24/7"
+      "badge247": "Disponible 24/7",
+      "accordionTitle": "En savoir plus sur notre couverture",
+      "discoverAll": "Découvrir toutes nos villes"
     },
     "pro": {
       "h2": "Vous êtes artisan ? Rejoignez la plateforme gratuitement.",
+      "accordionTitle": "En savoir plus sur la plateforme",
       "p1": "Si vous avez vos assurances obligatoires (RC Pro, décennale, et les autres selon votre activité) ainsi que vos certifications à jour (RGE, Qualibat, etc. si vous proposez ce type de service), alors vous avez votre place ici.",
       "p2": "L'inscription est gratuite. Vous ne payez rien tant que vous n'avez pas signé un devis avec un client. Et la commission d'Artisan Compétent porte uniquement sur la main d'œuvre. Rien sur les matériaux.",
       "cta": "S'inscrire gratuitement comme artisan"
     },
     "trustBar": {
       "item1": "Paiement encadré par Stripe",
-      "item2": "Paiement en 3x via Klarna",
+      "item2": "Paiement en 3 fois via Klarna, sous conditions",
       "item3": "Suivi digital inaltérable",
       "item4": "Artisans vérifiés et certifiés"
     },
     "finalCta": {
       "p1": "Notre promesse ? Que vos travaux ne soient plus une source de stress.",
-      "p2": "Assez de nuits blanches à se demander si l'artisan va revenir finir le chantier. Assez de devis qui explosent sans prévenir. Avec Artisan Compétent, chaque étape est encadrée, chaque euro est tracé, chaque validation est entre vos mains."
+      "cta": "S'inscrire"
     },
     "where": {
       "cities": {
@@ -240,46 +316,69 @@
     "faq": {
       "title": "Questions fréquentes",
       "q1": {
-        "question": "C'est quoi le séquestre de fonds ?",
-        "answer": "Le séquestre de fonds, c'est un mécanisme où votre argent est placé sur un compte bloqué (géré par Stripe) dès que vous acceptez un devis. L'artisan ne reçoit le paiement qu'une fois que vous avez validé la fin du chantier. C'est la meilleure protection contre les arnaques sur des travaux."
+        "question": "Combien ça coûte pour un particulier ?",
+        "summary": "La mise en relation est gratuite pour les particuliers. Vous ne payez que le montant du devis accepté, via paiement sécurisé et séquestré sur la plateforme. Artisan Compétent se rémunère via une commission sur le devis hors taxes du professionnel.",
+        "body": "<p>La mise en relation est gratuite pour les particuliers.</p><p>Vous payez uniquement le montant du devis accepté via le système de paiement sécurisé et séquestré intégré à la plateforme.</p><p>Artisan Compétent se rémunère grâce à une commission prélevée sur le devis hors taxes du professionnel.</p>"
       },
       "q2": {
-        "question": "Comment Artisan Compétent vérifie les artisans ?",
-        "answer": "Chaque artisan est contrôlé avant d'intégrer la plateforme : vérification du numéro SIRET, contrôle des assurances obligatoires (RC Pro, décennale, et toute assurance spécifique à son activité), vérification des certifications à jour (RGE, Qualibat, etc. selon les services proposés), et suivi des avis clients réels. Un artisan qui ne respecte pas les règles est retiré de la plateforme."
+        "question": "C'est quoi le CMOD ?",
+        "summary": "Le CMOD (Conseiller Maître d'Ouvrage Digital) est un professionnel du bâtiment qui accompagne le client à distance par visioconférence pendant le chantier. Il aide à comprendre les situations techniques et facilite le dialogue entre les parties. Des formules de suivi sont disponibles selon la durée du chantier, et un appel CMOD peut aussi être proposé en cas de litige.",
+        "body": "<p>Le CMOD (Conseiller Maître d'Ouvrage Digital) est un professionnel expérimenté du bâtiment qui peut accompagner le client à distance pendant le chantier.</p><p>Son rôle est de :</p><ul><li>aider à mieux comprendre certaines situations techniques,</li><li>et faciliter le dialogue entre les parties si nécessaire.</li></ul><p>L'accompagnement se fait à distance par visioconférence, sans déplacement sur chantier.</p><p>Des formules de suivi sont disponibles selon la durée du chantier.</p><p>En cas de litige et après tentative d'accord amiable, un appel CMOD peut également être proposé afin d'aider à trouver une solution.</p>"
       },
       "q3": {
-        "question": "Combien ça coûte pour un particulier ?",
-        "answer": "La mise en relation est gratuite. Vous payez uniquement le montant du devis accepté, via le séquestre. Artisan Compétent se rémunère par une commission reversée par l'artisan, prélevée uniquement sur la partie main d'œuvre. Jamais sur les matériaux. Cette commission est indépendante du devis qui vous est présenté."
+        "question": "Est-ce que je peux payer en plusieurs fois ?",
+        "summary": "Oui, un paiement en plusieurs fois via Klarna peut être proposé directement sur la plateforme. Cette option dépend de l'acceptation du professionnel et de votre éligibilité Klarna. Le financement est sans frais pour le client lorsque Klarna l'accepte selon les conditions proposées au moment du paiement.",
+        "body": "<p>Oui, une solution de paiement en plusieurs fois via Klarna peut être proposée directement sur la plateforme.</p><p>Cette option reste facultative et dépend :</p><ul><li>de l'acceptation du professionnel,</li><li>et de votre éligibilité définie directement par Klarna.</li></ul><p>Le financement est sans frais pour le client lorsque celui-ci est accepté par Klarna selon les conditions proposées au moment du paiement.</p><p>Chaque client doit vérifier directement auprès de Klarna les montants et modalités de financement auxquels il est éligible.</p>"
       },
       "q4": {
-        "question": "C'est quoi le CMOD ?",
-        "answer": "Le CMOD, c'est un Conseiller Maître d'Ouvrage Digital. Un professionnel du bâtiment qui vous accompagne à distance par visioconférence pour vérifier que vos travaux avancent correctement. Pour les devis entre 2 000 € et 5 000 €, un appel de 20 minutes est offert. Au-delà de 5 000 €, c'est 45 minutes. L'accompagnement complet du chantier est disponible en option payante, tarif sur demande."
+        "question": "Artisan Compétent intervient partout en France ?",
+        "summary": "Artisan Compétent est en déploiement progressif sur toute la France, la Corse et les DOM-TOM. La plateforme couvre déjà plusieurs villes et continue son expansion. Si votre secteur n'est pas encore desservi, vous pouvez encourager des artisans locaux à rejoindre la plateforme ou devenir affilié pour gagner une rémunération sur les devis signés.",
+        "body": "<p>La plateforme est en phase de déploiement progressif.</p><p>Artisan Compétent couvre déjà plusieurs villes françaises et continue son développement partout en France, en Corse et dans les DOM-TOM.</p><p>L'objectif à terme est de proposer un réseau national capable de couvrir aussi bien les grandes villes que les zones plus rurales.</p><p>Si votre secteur n'est pas encore couvert, cela signifie simplement que la plateforme est encore en cours de développement dans votre zone.</p><p>Vous pouvez également encourager les artisans sérieux de votre région à rejoindre la plateforme : plus ils seront nombreux, plus la couverture locale sera rapide et efficace.</p><p>Et si vous souhaitez participer au développement d'Artisan Compétent, vous pouvez également rejoindre notre programme d'affiliation.</p><p>Les affiliés peuvent recommander la plateforme aussi bien à des clients qu'à des artisans et percevoir une rémunération sur les devis signés via leurs recommandations.</p><p>Selon les cas et les campagnes en cours, cette rémunération peut être versée pendant plusieurs mois et aller jusqu'à un an sur certains profils apportés à la plateforme.</p><p>Cela permet :</p><ul><li>de faire grandir une communauté de confiance dans le bâtiment,</li><li>et de permettre aux affiliés de générer un revenu complémentaire en recommandant une solution utile et sécurisée.</li></ul>"
       },
       "q5": {
-        "question": "Est-ce que je peux payer en plusieurs fois ?",
-        "answer": "Oui. Le paiement en 3 fois est disponible via Klarna directement sur la plateforme."
+        "question": "Que faire si je ne suis pas d'accord avec le devis ou le travail rendu ?",
+        "summary": "Privilégiez d'abord le dialogue avec l'artisan : la plupart des situations se règlent à l'amiable. Pour les devis abusifs en urgence ou de nuit, vous pouvez signaler depuis votre dashboard dans les 48h. Pendant l'analyse, les fonds restent en séquestre et une médiation amiable est privilégiée avant toute mesure.",
+        "body": "<p>La première chose à faire est d'en parler directement avec l'artisan.</p><p>La très grande majorité des situations se règlent à l'amiable. Un artisan sérieux acceptera de discuter, d'expliquer un point technique, ou de revenir corriger une finition si nécessaire.</p><p>Il est fortement conseillé de prendre le temps de cet échange avant tout signalement.</p><p>Concernant les devis jugés abusifs, Artisan Compétent intervient uniquement dans certains cas très spécifiques d'urgence immédiates ou de nuit, lorsque le client n'a pas réellement le temps de comparer les prix ou de prendre du recul avant l'acceptation.</p><p>En cas d'abus manifestement excessif constaté sur ce type d'intervention, un signalement peut être effectué depuis le dashboard client dans les 48 heures suivant la fin des travaux.</p><p>Pendant ce délai :</p><ul><li>les fonds restent bloqués en séquestre,</li><li>une analyse du dossier peut être réalisée,</li><li>et une médiation amiable est privilégiée.</li></ul><p>En cas d'abus manifeste confirmé et de refus persistant du professionnel de trouver une solution amiable, Artisan Compétent peut appliquer les mesures prévues dans ses CGU et CGV, pouvant aller jusqu'à :</p><ul><li>la suspension ou suppression du compte du professionnel,</li><li>l'application de frais de dossier de suspension pouvant aller jusqu'à un montant donné.</li></ul><p>Ces frais peuvent être prélevés directement sur la somme séquestrée lorsque l'abus est clairement établi et sont reversés au client concerné conformément au fonctionnement prévu par la plateforme.</p><p>Ce mécanisme reste exceptionnel et concerne principalement les rares situations d'abus très importants sur des interventions d'urgence.</p><p>Pour les chantiers classiques et devis non urgents, les prix restent libres.</p><p>Le client dispose généralement du temps nécessaire pour comparer plusieurs devis, poser ses questions et accepter ou refuser la proposition avant signature.</p>"
       },
       "q6": {
-        "question": "Artisan Compétent intervient partout en France ?",
-        "answer": "La plateforme est en phase de déploiement progressif. Artisan Compétent couvre déjà les principales villes françaises et s'étend au fil des mois, avec pour objectif à terme de couvrir la France métropolitaine et les DOM-TOM jusqu'aux plus petits villages. Si votre commune n'est pas encore couverte, vous pouvez encourager vos artisans locaux à rejoindre la plateforme : plus ils sont nombreux, plus vite votre zone sera disponible. Un artisan sérieux n'a aucune raison de refuser un système encadré comme le nôtre."
+        "question": "Qu'est-ce qui se passe si je ne valide pas le procès-verbal dans les 48h ?",
+        "summary": "Après l'envoi du procès-verbal de fin de chantier, vous disposez de 48 heures pour valider, contester ou signaler un problème. Un email de rappel est envoyé 8 heures avant la fin du délai. Sans action de votre part dans les 48h, le procès-verbal est automatiquement validé et les fonds sont libérés vers le professionnel.",
+        "body": "<p>Une fois le procès-verbal de fin de chantier envoyé par le professionnel, les fonds restent bloqués en séquestre pendant un délai pouvant aller jusqu'à 48 heures.</p><p>Cette période permet au client :</p><ul><li>de vérifier les travaux réalisés,</li><li>ou de demander une correction si nécessaire.</li></ul><p>Huit heures avant la fin du délai, un email automatique de rappel est envoyé au client afin de lui rappeler qu'il doit soit valider le procès-verbal, soit signaler un éventuel problème avant expiration du délai.</p><p>Sans réserve, contestation ou signalement effectué dans les 48 heures, le procès-verbal est automatiquement considéré comme validé conformément aux CGU et CGV de la plateforme.</p><p>Les fonds séquestrés sont alors automatiquement libérés vers le professionnel.</p><p>Une fois le procès-verbal validé, les garanties légales du bâtiment restent bien entendu applicables selon la nature des travaux réalisés :</p><ul><li>garantie de parfait achèvement,</li><li>garantie biennale,</li><li>ou garantie décennale lorsque celle-ci est requise.</li></ul>"
       },
       "q7": {
-        "question": "Que faire si je ne suis pas d'accord avec le devis ou le travail rendu ?",
-        "answer1": "La première chose à faire, c'est d'en parler à l'artisan. La grande majorité des situations se règlent à l'amiable : un artisan sérieux acceptera de rediscuter du devis ou de revenir corriger une finition. Prenez le temps de cette discussion avant tout autre signalement.",
-        "answer2": "Si l'artisan refuse d'écouter vos remarques, vous pouvez alors le signaler depuis votre tableau de bord, dans les 48h après la fin des travaux. Pendant ce délai, les fonds restent bloqués en séquestre et la plateforme analyse la situation. Si un abus est avéré, une médiation amiable est engagée, et en cas de refus persistant de l'artisan, des frais de dossier (jusqu'à 250 €) lui sont prélevés au profit du client."
+        "question": "Que se passe-t-il si les travaux sont mal faits ?",
+        "summary": "D'abord, discutez avec l'artisan : la majorité des malfaçons se règlent rapidement par le dialogue. Si le problème persiste, ne validez pas le procès-verbal et signalez depuis votre tableau de bord dans les 48h, les fonds restent en séquestre. Un échange avec un CMOD peut être organisé, et les garanties légales (parfait achèvement, biennale, décennale) s'appliquent ensuite selon les travaux.",
+        "body": "<p>La première étape est toujours d'en discuter directement avec l'artisan.</p><p>La majorité des malfaçons ou problèmes de finition se règlent rapidement lorsqu'ils sont signalés correctement.</p><p>Si le problème persiste :</p><ul><li>ne validez pas le procès-verbal de fin de chantier,</li><li>signalez la situation depuis votre tableau de bord dans les 48h,</li><li>et expliquez précisément le problème rencontré.</li></ul><p>Pendant ce délai, les fonds restent bloqués en séquestre.</p><p>L'équipe Artisan Compétent peut alors analyser la situation à partir du suivi digital déjà présent dans la plateforme :</p><ul><li>photos,</li><li>échanges,</li><li>et éléments transmis pendant les travaux.</li></ul><p>Si nécessaire, un échange avec un CMOD (Conseiller Maître d'Ouvrage Digital) peut également être organisé afin d'aider à mieux comprendre la situation et favoriser une résolution amiable.</p><p>Si le procès-verbal a déjà été signé, les artisans sérieux présents sur la plateforme restent tenus d'intervenir pour corriger une éventuelle malfaçon relevant de leur responsabilité.</p><p>Et dans tous les cas, les garanties légales continuent ensuite de s'appliquer selon les travaux réalisés :</p><ul><li>garantie de parfait achèvement,</li><li>garantie biennale,</li><li>ou garantie décennale.</li></ul>"
       },
       "q8": {
-        "question": "Qu'est-ce qui se passe si je ne valide pas le procès-verbal dans les 48h ?",
-        "answer": "Tant que vous n'avez pas validé le PV, les fonds restent bloqués en séquestre. C'est la fenêtre pour signaler un éventuel problème (après en avoir parlé à l'artisan, voir question précédente). Une fois le PV signé, les fonds sont libérés vers l'artisan et seules les garanties légales restent activables (garantie de parfait achèvement, biennale, décennale selon les travaux)."
+        "question": "Comment éviter les arnaques quand on cherche un artisan ?",
+        "summary": "Le meilleur moyen d'éviter les arnaques est de ne jamais envoyer directement d'argent à un artisan sans encadrement ni suivi. Sur Artisan Compétent, les professionnels sont vérifiés, les échanges centralisés, les travaux suivis étape par étape et les fonds restent en séquestre via Stripe jusqu'à validation. Le système protège même en cas de difficulté financière ou fermeture d'activité du professionnel.",
+        "body": "<p>Le meilleur moyen d'éviter les arnaques est de ne jamais envoyer directement d'argent à un artisan sans encadrement ni suivi.</p><p>Avec Artisan Compétent :</p><ul><li>les professionnels sont vérifiés avant intégration,</li><li>les échanges sont centralisés,</li><li>les travaux sont suivis étape par étape,</li><li>et les fonds restent sécurisés en séquestre jusqu'à validation du chantier.</li></ul><p>Le système a été pensé pour limiter :</p><ul><li>les abandons de chantier,</li><li>les interventions surfacturées,</li><li>et les situations où un artisan disparaît après paiement.</li></ul><p>Même en cas d'accident de la vie, de difficulté financière ou de fermeture d'activité du professionnel, les fonds séquestrés via Stripe restent protégés dans le protocole sécurisé de paiement tant qu'ils n'ont pas été libérés.</p>"
       },
       "q9": {
-        "question": "Que se passe-t-il si les travaux sont mal faits ?",
-        "answer1": "Première étape : en discuter avec l'artisan. Beaucoup de malfaçons se corrigent dès qu'on en parle. Si l'artisan refuse d'intervenir, ne signez pas le PV dans les 48h et signalez la situation depuis votre tableau de bord. Les fonds restent bloqués et la plateforme analyse la situation sur la base du suivi digital (photos, échanges, rapports CMOD si activé).",
-        "answer2": "Si le PV est déjà signé, les artisans sérieux présents sur la plateforme interviennent spontanément pour corriger une malfaçon. Et dans tous les cas, les garanties légales prennent le relais (parfait achèvement, biennale, décennale)."
+        "question": "Combien coûte un plombier, un électricien ou un serrurier sur Artisan Compétent ?",
+        "summary": "Les prix dépendent du métier, du type d'intervention, des matériaux, de la zone géographique et du moment de la prestation. Chaque artisan définit librement ses tarifs et présente son devis directement via la plateforme. Pour comparer plusieurs propositions et connaître les fourchettes habituelles selon votre besoin, consultez les pages dédiées de chaque métier.",
+        "body": "<p>Sur Artisan Compétent, les prix ne sont pas fixés par la plateforme. Chaque artisan définit librement ses tarifs et présente son devis directement via son espace professionnel.</p><p>Plusieurs facteurs influencent le prix d'une intervention :</p><ul><li>le métier concerné (plombier, électricien, serrurier, chauffagiste, déboucheur, etc.),</li><li>la nature des travaux (dépannage, installation, rénovation),</li><li>les matériaux nécessaires,</li><li>la zone géographique d'intervention,</li><li>le caractère urgent ou non de la demande,</li><li>et le moment d'intervention (jour, nuit, week-end, jours fériés).</li></ul><p>Pour avoir une idée des ordres de grandeur et des fourchettes habituelles selon votre besoin, consultez les pages dédiées à chaque métier sur la plateforme.</p><p>Notre conseil : demandez systématiquement plusieurs devis avant de signer, comparez les prestations détaillées et n'hésitez pas à demander des précisions à l'artisan via le chat interne sécurisé d'Artisan Compétent.</p>"
       },
       "q10": {
-        "question": "Comment éviter les arnaques quand on cherche un artisan ?",
-        "answer": "Le meilleur moyen d'éviter les arnaques, c'est de ne jamais payer un artisan directement avant la fin des travaux. Sur Artisan Compétent, votre argent est encadré par le séquestre de fonds : l'artisan est payé uniquement quand vous validez le chantier. C'est la meilleure protection contre les devis excessifs, les travaux bâclés et les artisans qui disparaissent."
+        "question": "Quelle est la différence entre Artisan Compétent et une plateforme de mise en relation classique ?",
+        "summary": "Contrairement aux plateformes classiques qui se limitent à mettre en relation, Artisan Compétent encadre toute la prestation : artisans vérifiés avant intégration, paiement séquestré via Stripe jusqu'à validation du chantier, suivi digital horodaté, médiation possible en cas de litige. L'argent ne transite jamais directement vers l'artisan ou Artisan Compétent.",
+        "body": "<p>La plupart des plateformes du bâtiment se limitent à mettre en relation un client et un artisan. Une fois la connexion établie, le client est seul face au professionnel pour gérer le paiement, le suivi des travaux et les éventuels litiges.</p><p>Artisan Compétent fonctionne différemment :</p><ul><li>les artisans sont vérifiés avant intégration (SIRET, assurances, certifications),</li><li>les échanges passent par le chat interne sécurisé,</li><li>le paiement est séquestré via Stripe jusqu'à validation du chantier,</li><li>chaque étape est horodatée et archivée dans le suivi digital,</li><li>une médiation est possible en cas de litige sur la base des éléments enregistrés.</li></ul><p>L'argent ne transite jamais directement vers l'artisan, ni même sur le compte bancaire d'Artisan Compétent. Les fonds restent dans le protocole sécurisé Stripe jusqu'à libération vers le professionnel ou restitution au client selon la situation.</p><p>Cet encadrement complet vise à protéger autant les clients honnêtes que les artisans sérieux, et à rétablir la confiance dans le secteur du bâtiment.</p>"
+      },
+      "q11": {
+        "question": "Comment trouver un bon plombier, électricien ou serrurier près de chez moi ?",
+        "summary": "Sur Artisan Compétent, indiquez votre adresse, sélectionnez le métier recherché et définissez un rayon d'intervention. La plateforme affiche les artisans vérifiés disponibles dans votre zone, avec leurs certifications, assurances et avis. Vous choisissez qui contacter, comparez les devis, et le paiement reste encadré jusqu'à validation des travaux.",
+        "body": "<p>Trouver un bon artisan, c'est avant tout trouver un professionnel vérifié, sérieux et adapté à votre besoin spécifique.</p><p>Sur Artisan Compétent, la recherche se déroule en quelques étapes :</p><ul><li>indiquez votre adresse depuis la page d'accueil ou votre tableau de bord,</li><li>sélectionnez le métier recherché (plombier, électricien, serrurier, chauffagiste, etc.),</li><li>définissez le rayon de recherche autour de votre zone,</li><li>consultez la liste des professionnels correspondant à vos critères.</li></ul><p>Pour chaque artisan affiché, vous accédez :</p><ul><li>aux vérifications effectuées (SIRET, assurances, certifications),</li><li>aux avis laissés par d'anciens clients ayant réalisé un chantier via la plateforme,</li><li>et à la possibilité d'engager un échange via le chat interne sécurisé.</li></ul><p>Vous choisissez vous-même les professionnels à contacter, vous comparez les devis reçus, et vous signez en toute connaissance de cause. Le paiement reste encadré jusqu'à validation du procès-verbal de fin de chantier.</p>"
+      },
+      "q12": {
+        "question": "Comment fonctionne le paiement Klarna en plusieurs fois sur Artisan Compétent ?",
+        "summary": "Klarna permet de payer en plusieurs fois sur Artisan Compétent. L'option n'est proposée que si le professionnel l'accepte (les frais Klarna sont à sa charge) et si vous êtes éligible selon les conditions Klarna. Le plafond constaté est généralement de 1 500 €, parfois plus selon le profil. La vérification d'éligibilité se fait au moment du paiement.",
+        "body": "<p>Artisan Compétent met à disposition la solution de paiement Klarna pour permettre aux clients d'étaler le règlement d'un devis sur plusieurs échéances.</p><p>Cette option fonctionne selon trois conditions :</p><ul><li>l'acceptation du professionnel, car les frais Klarna sont entièrement supportés par l'artisan qui active cette possibilité,</li><li>votre éligibilité au financement, définie exclusivement par Klarna selon votre profil,</li><li>les conditions proposées par Klarna au moment du paiement.</li></ul><p>Par défaut, Artisan Compétent constate que la majorité des clients éligibles disposent généralement d'un plafond de financement pouvant aller jusqu'à 1 500 € via Klarna. Certains clients peuvent bénéficier d'un plafond plus élevé selon leur profil et les conditions définies directement par Klarna.</p><p>Il appartient à chaque client de vérifier auprès de Klarna :</p><ul><li>le montant exact auquel il est éligible,</li><li>les modalités de financement disponibles,</li><li>et les éventuels frais ou intérêts applicables selon sa situation.</li></ul><p>Le financement est sans frais pour le client lorsque Klarna accepte le dossier selon les conditions proposées au moment du paiement. Les fonds versés via Klarna restent encadrés dans le séquestre Stripe jusqu'à validation finale du chantier, comme pour tout autre mode de paiement.</p>"
+      },
+      "q13": {
+        "question": "Que faire en cas d'urgence : fuite d'eau, panne de chauffage, porte claquée ?",
+        "summary": "Artisan Compétent met à votre disposition des artisans d'urgence 24h/24 et 7j/7 en plomberie, chauffage, serrurerie, électricité et débouchage. Même en urgence, le séquestre de fonds s'applique : vous ne validez le paiement qu'une fois l'intervention terminée, et la règle des 48 heures pour réagir reste valable. Consultez la page de chaque métier d'urgence pour les détails.",
+        "body": "<p>Les urgences n'attendent pas. Fuite d'eau, panne de chauffage, porte claquée, coupure électrique, canalisation bouchée : Artisan Compétent met à votre disposition des artisans d'urgence disponibles 24 heures sur 24 et 7 jours sur 7.</p><p>Les 5 métiers d'urgence couverts :</p><ul><li>Plombier urgence (fuite, dégât des eaux),</li><li>Chauffagiste urgence (panne chaudière, plus de chauffage),</li><li>Serrurier urgence (porte claquée, serrure cassée),</li><li>Électricien urgence (coupure, court-circuit),</li><li>Déboucheur urgence (canalisation bouchée, refoulement).</li></ul><p>Même en situation d'urgence, l'encadrement de la plateforme s'applique :</p><ul><li>les échanges passent par la plateforme,</li><li>le séquestre de fonds Stripe continue de s'appliquer,</li><li>vous ne validez le paiement qu'une fois l'intervention terminée,</li><li>vous disposez de 48 heures pour réagir, signaler une réserve ou contester le procès-verbal.</li></ul><p>C'est précisément dans les situations d'urgence que les surfacturations nocturnes et abus tarifaires manifestement excessifs sont les plus fréquents. Le système d'arbitrage d'Artisan Compétent est calibré pour traiter en priorité ces situations.</p><p>Pour chaque métier d'urgence, une page dédiée détaille les interventions couvertes, les délais d'intervention et les précautions à connaître avant d'accepter un devis. Consultez la page du métier concerné pour plus de précisions.</p>"
       }
     }
   },
@@ -296,19 +395,39 @@
     "newsletterPhone": "Votre numéro de téléphone",
     "newsletterConsent": "J'accepte de recevoir les messages WhatsApp d'Artisan Compétent.",
     "newsletterButton": "Je m'abonne sur WhatsApp",
-    "navHome": "Accueil",
-    "navTrades": "Nos métiers",
-    "navCities": "Nos villes",
-    "navHowItWorks": "Comment ça marche",
-    "navCmod": "CMOD",
-    "navPro": "Je suis un pro",
-    "navBlog": "Blog",
-    "navContact": "Contact",
-    "address": "66 avenue des Champs-Élysées, 75008 Paris",
-    "legalNotice": "Mentions légales",
-    "cgu": "CGU",
-    "cgv": "CGV",
-    "privacy": "Politique de confidentialité"
+    "nav": {
+      "title": "Navigation",
+      "home": "Accueil",
+      "trades": "Nos métiers",
+      "cities": "Nos villes",
+      "howItWorks": "Comment ça marche"
+    },
+    "howItWorks": {
+      "title": "Comment ça marche",
+      "cmod": "CMOD",
+      "payment": "Facilités de paiement",
+      "escrow": "Séquestre Stripe",
+      "defect": "Procédure si malfaçon"
+    },
+    "contact": {
+      "title": "Contact",
+      "address": "66 avenue des Champs-Élysées\n75008 Paris",
+      "phone": "+33 7 69 61 97 90",
+      "phoneNote": "Nous ne prenons pas d'appels. Pour le suivi de vos demandes, contactez-nous via le formulaire."
+    },
+    "social": {
+      "title": "Suivez-nous",
+      "youtube": "YouTube",
+      "linkedin": "LinkedIn"
+    },
+    "legal": {
+      "notice": "Mentions légales",
+      "privacy": "Politique de confidentialité",
+      "cgu": "CGU",
+      "cgv": "CGV",
+      "contactForm": "Formulaire de contact"
+    },
+    "copyright": "© 2026 Artisan Compétent. Tous droits réservés."
   },
   "auth": {
     "register": "Inscription",

@@ -6,6 +6,9 @@
 :root {
   color-scheme: light;
 
+  /* Hauteur du bandeau d'annonce fixe en haut de page (ac-announcement-banner) */
+  --announcement-banner-h: 2.5rem;
+
   --primary-beige: #f6ede4;
   --secondary-beige: #dac2aa;
   --tertiary-beige: #c5a483;
@@ -226,4 +229,68 @@ select option {
   background: var(--v-grad-water-green);
   color: var(--primary-beige);
   border-color: transparent;
+}
+
+/* FAQ — mise en forme du contenu riche injecté via [innerHTML] (clés i18n home.faq.q*.body).
+   Le reset Tailwind supprime puces et marges ; le contenu innerHTML n'est pas atteint
+   par les styles encapsulés du composant, d'où ces règles globales. */
+.faq-body > :first-child {
+  margin-top: 0;
+}
+
+.faq-body > :last-child {
+  margin-bottom: 0;
+}
+
+.faq-body p {
+  margin: 0 0 0.75rem;
+}
+
+.faq-body ul {
+  margin: 0 0 0.75rem;
+  padding-left: 1.5rem;
+  list-style: disc;
+}
+
+.faq-body li {
+  margin-bottom: 0.25rem;
+}
+
+.faq-body li:last-child {
+  margin-bottom: 0;
+}
+
+/* Section "L'encadrement Artisan Compétent en détail" — contenu riche injecté via
+   [innerHTML] (clés i18n home.protection.*.body). Mêmes contraintes que la FAQ :
+   le reset Tailwind et l'encapsulation du composant n'atteignent pas ce contenu. */
+.protection-body > :first-child {
+  margin-top: 0;
+}
+
+.protection-body > :last-child {
+  margin-bottom: 0;
+}
+
+.protection-body p {
+  margin: 0 0 0.75rem;
+}
+
+.protection-body h4 {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.protection-body ul {
+  margin: 0 0 0.75rem;
+  padding-left: 1.5rem;
+  list-style: disc;
+}
+
+.protection-body li {
+  margin-bottom: 0.25rem;
+}
+
+.protection-body li:last-child {
+  margin-bottom: 0;
 }
