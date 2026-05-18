@@ -1,10 +1,3 @@
-<!-- Section 1a : bandeau d'annonce Klarna -->
-<div
-    class="flex relative z-20 flex-wrap gap-2 justify-center items-center mt-[35px] px-4 py-2 text-sm text-center text-white bg-slate-900"
->
-    <span>{{ 'home.announceBar.text' | transloco }}</span>
-</div>
-
 <div class="overflow-hidden absolute top-0 left-0 z-0 w-full h-[30rem] pictures-fader md:h-[42rem]">
     <img src="assets/img/image-qui-defile-1.webp" alt="Image qui défile 1"
         class="object-cover w-full h-full pictures-frame" loading="eager" fetchpriority="high" decoding="async" />
@@ -24,21 +17,21 @@
         {{ 'home.hero.h1' | transloco }}
     </h1>
 
-    <!-- Section 1c : sous-titre -->
-    <p class="text-center text-[var(--primary-beige)] text-base md:text-lg">
-        {{ 'home.hero.subtitle' | transloco }}
-    </p>
+    <!-- Section 1f : CTA + formulaire de devis -->
+    <div id="devis" class="space-y-4">
+        <p class="text-center font-semibold text-[var(--primary-beige)] text-lg md:text-xl">
+            {{ 'home.hero.ctaForm' | transloco }}
+        </p>
+        <search-pro></search-pro>
+    </div>
 
-    <!-- Section 1d : cadre 5 arguments -->
+    <!-- Section 1d : cadre arguments -->
     <ul
         class="grid gap-2 p-6 mx-auto text-sm list-disc list-inside rounded-lg w-fit bg-[var(--primary-water-green)] text-[var(--primary-beige)] md:text-base"
     >
-        <li>{{ 'home.hero.arg1' | transloco }}</li>
-        <li>{{ 'home.hero.arg2' | transloco }}</li>
-        <li>{{ 'home.hero.arg3' | transloco }}</li>
-        <li>{{ 'home.hero.arg4' | transloco }}</li>
-        <!-- TODO: lier l'astérisque de arg5 vers la question FAQ "intervient partout en France" (section 12) -->
-        <li>{{ 'home.hero.arg5' | transloco }}</li>
+        @for (arg of ('home.hero.args' | transloco); track $index) {
+            <li>{{ arg }}</li>
+        }
     </ul>
 
     <!-- Section 1e : boutons hero -->
@@ -59,14 +52,6 @@
         </a>
     </div>
 
-    <!-- Section 1f : CTA + formulaire de devis -->
-    <div id="devis" class="space-y-4">
-        <p class="text-center font-semibold text-[var(--primary-beige)] text-lg md:text-xl">
-            {{ 'home.hero.ctaForm' | transloco }}
-        </p>
-        <search-pro></search-pro>
-    </div>
-
     <div class="p-6 space-y-2 rounded-lg bg-[var(--primary-water-green)] text-[var(--primary-beige)] w-fit local">
         <h3 class="mb-6 text-base font-semibold text-center md:text-xl">{{ 'home.local.title' | transloco }}</h3>
         <ul class="list-disc list-inside">
@@ -82,7 +67,10 @@
     <!-- Section 10 : Nos villes d'intervention -->
     <section id="villes" class="flex flex-col gap-4 items-left">
         <h2 class="text-base font-semibold shrink-0 md:text-4xl title">{{ 'home.cities.h2' | transloco }}</h2>
-        <p>{{ 'home.cities.intro' | transloco }}</p>
+        <accordion variant="section" [title]="'home.cities.accordionTitle' | transloco">
+            <p>{{ 'home.cities.intro' | transloco }}</p>
+            <p>{{ 'home.cities.outro' | transloco }}</p>
+        </accordion>
         <!-- TODO: pastille "Disponible 24/7" (home.cities.badge247) a poser sur les villes couvertes en urgence (liste a fournir) -->
         <div class="overflow-x-auto py-2 w-full h-scroll">
             <div class="flex gap-4">
@@ -136,13 +124,21 @@
                 </div>
             </div>
         </div>
-        <p>{{ 'home.cities.outro' | transloco }}</p>
+        <a
+            routerLink="/villes"
+            class="px-6 py-3 font-semibold no-underline bg-[#a97849] rounded-lg text-[var(--primary-beige)] w-fit"
+        >
+            {{ 'home.cities.discoverAll' | transloco }}
+        </a>
         <!-- TODO: rendre chaque ville cliquable vers sa page dediee (ex: /plombier-paris) une fois les routes creees -->
     </section>
 
     <section id="metiers" class="flex flex-col gap-4 items-left">
         <h2 class="text-base font-semibold shrink-0 md:text-4xl title">{{ 'home.trades.h2' | transloco }}</h2>
-        <p>{{ 'home.trades.intro' | transloco }}</p>
+        <accordion variant="section" [title]="'home.trades.accordionTitle' | transloco">
+            <p>{{ 'home.trades.intro' | transloco }}</p>
+            <p>{{ 'home.trades.outro' | transloco }}</p>
+        </accordion>
         <div class="overflow-x-auto py-2 w-full h-scroll">
             <div class="flex gap-6">
                 <a class="block w-48 text-center shrink-0" [routerLink]="['/jobs', 'electrician']">
@@ -235,7 +231,6 @@
                 </a>
             </div>
         </div>
-        <p>{{ 'home.trades.outro' | transloco }}</p>
         <a
             routerLink="/jobs"
             class="inline-block px-6 py-3 font-semibold rounded-lg no-underline bg-[#a97849] text-[var(--primary-beige)] w-fit"
@@ -244,18 +239,94 @@
         </a>
     </section>
 
+    <!-- Section A : Pourquoi tant de gens rencontrent des problèmes -->
+    <section id="pourquoi-problemes" class="space-y-4">
+        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.problem.title' | transloco }}</h2>
+        <accordion variant="section" title="Lire la suite">
+            <div class="protection-body" [innerHTML]="'home.problem.body' | transloco"></div>
+        </accordion>
+    </section>
+
+    <!-- Section B : Artisan Compétent, un cadre pensé pour éviter que les situations dégénèrent -->
+    <section id="cadre-protecteur" class="space-y-4">
+        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.framework.title' | transloco }}</h2>
+        <accordion variant="section" title="Lire la suite">
+            <div class="protection-body" [innerHTML]="'home.framework.body' | transloco"></div>
+        </accordion>
+    </section>
+
     <!-- Section 9 : Urgences 24/7 -->
     <section id="urgences" class="!mt-[60px] space-y-4">
         <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.emergency.h2' | transloco }}</h2>
-        <p>{{ 'home.emergency.p1' | transloco }}</p>
-        <p>{{ 'home.emergency.p2' | transloco }}</p>
-
-        <ul class="pl-6 space-y-2 list-disc">
-            <li>{{ 'home.emergency.trade1' | transloco }}</li>
-            <li>{{ 'home.emergency.trade2' | transloco }}</li>
-            <li>{{ 'home.emergency.trade3' | transloco }}</li>
-            <li>{{ 'home.emergency.trade4' | transloco }}</li>
-            <li>{{ 'home.emergency.trade5' | transloco }}</li>
+        <accordion variant="section" [title]="'home.emergency.accordionTitle' | transloco">
+            <div class="space-y-3">
+                <p>{{ 'home.emergency.description.p1' | transloco }}</p>
+                <p>{{ 'home.emergency.description.p2' | transloco }}</p>
+                <p>{{ 'home.emergency.description.p3' | transloco }}</p>
+                <p>{{ 'home.emergency.description.p4' | transloco }}</p>
+                <ul class="pl-6 space-y-1 list-disc">
+                    @for (item of ('home.emergency.description.list1' | transloco); track $index) {
+                        <li>{{ item }}</li>
+                    }
+                </ul>
+                <p>{{ 'home.emergency.description.p5' | transloco }}</p>
+                <p>{{ 'home.emergency.description.p6' | transloco }}</p>
+                <p>{{ 'home.emergency.description.p7' | transloco }}</p>
+                <p>{{ 'home.emergency.description.p8' | transloco }}</p>
+                <p>{{ 'home.emergency.description.p9' | transloco }}</p>
+                <p>{{ 'home.emergency.description.p10' | transloco }}</p>
+                <p>{{ 'home.emergency.description.p11' | transloco }}</p>
+                <p>{{ 'home.emergency.description.p12' | transloco }}</p>
+                <ul class="pl-6 space-y-1 list-disc">
+                    @for (item of ('home.emergency.description.list2' | transloco); track $index) {
+                        <li>{{ item }}</li>
+                    }
+                </ul>
+                <p>{{ 'home.emergency.description.p13' | transloco }}</p>
+            </div>
+        </accordion>
+        <h3 class="text-lg font-semibold md:text-xl">{{ 'home.emergency.tradesTitle' | transloco }}</h3>
+        <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-6">
+            <li class="md:col-span-2">
+                <a
+                    routerLink="/jobs/plumber-sanitary"
+                    class="flex justify-center items-center p-6 h-full font-medium text-center no-underline rounded-lg border transition hover:border-[#a97849] hover:shadow-sm"
+                >
+                    {{ 'home.emergency.trades.plumber' | transloco }}
+                </a>
+            </li>
+            <li class="md:col-span-2">
+                <a
+                    routerLink="/jobs/heating-tech"
+                    class="flex justify-center items-center p-6 h-full font-medium text-center no-underline rounded-lg border transition hover:border-[#a97849] hover:shadow-sm"
+                >
+                    {{ 'home.emergency.trades.heating' | transloco }}
+                </a>
+            </li>
+            <li class="md:col-span-2">
+                <a
+                    routerLink="/jobs/locksmith-metaller"
+                    class="flex justify-center items-center p-6 h-full font-medium text-center no-underline rounded-lg border transition hover:border-[#a97849] hover:shadow-sm"
+                >
+                    {{ 'home.emergency.trades.locksmith' | transloco }}
+                </a>
+            </li>
+            <li class="md:col-span-2 md:col-start-2">
+                <a
+                    routerLink="/jobs/electrician"
+                    class="flex justify-center items-center p-6 h-full font-medium text-center no-underline rounded-lg border transition hover:border-[#a97849] hover:shadow-sm"
+                >
+                    {{ 'home.emergency.trades.electrician' | transloco }}
+                </a>
+            </li>
+            <li class="md:col-span-2">
+                <a
+                    routerLink="/jobs/drain-unblocker"
+                    class="flex justify-center items-center p-6 h-full font-medium text-center no-underline rounded-lg border transition hover:border-[#a97849] hover:shadow-sm"
+                >
+                    {{ 'home.emergency.trades.drainUnblocker' | transloco }}
+                </a>
+            </li>
         </ul>
     </section>
 
@@ -311,22 +382,62 @@
 
     <!-- Section 6 : CMOD -->
     <section id="cmod" class="space-y-4">
-        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.cmodSection.h2' | transloco }}</h2>
-        <p>{{ 'home.cmodSection.p1' | transloco }}</p>
-        <p>{{ 'home.cmodSection.p2' | transloco }}</p>
+        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.cmod.title' | transloco }}</h2>
+        <p class="text-lg font-semibold md:text-xl">{{ 'home.cmod.lead' | transloco }}</p>
 
-        <div class="space-y-2">
-            <h3 class="text-lg font-semibold md:text-xl">{{ 'home.cmodSection.changeTitle' | transloco }}</h3>
-            <p>{{ 'home.cmodSection.changeBody' | transloco }}</p>
+        <accordion variant="section" [title]="'home.cmod.accordionTitle' | transloco">
+            <div [innerHTML]="'home.cmod.fullDescription' | transloco"></div>
+        </accordion>
+
+        <div class="space-y-3">
+            <h3 class="text-lg font-semibold md:text-xl">{{ 'home.cmod.benefitsTitle' | transloco }}</h3>
+            <ul class="pl-6 space-y-2 list-disc">
+                @for (item of ('home.cmod.benefitsList' | transloco); track $index) {
+                    <li>{{ item }}</li>
+                }
+            </ul>
         </div>
 
         <div class="space-y-3">
-            <h3 class="text-lg font-semibold md:text-xl">{{ 'home.cmodSection.conditionsTitle' | transloco }}</h3>
+            <h3 class="text-lg font-semibold md:text-xl">{{ 'home.cmod.pricingTitle' | transloco }}</h3>
             <ul class="pl-6 space-y-2 list-disc">
-                <li>{{ 'home.cmodSection.cond1' | transloco }}</li>
-                <li>{{ 'home.cmodSection.cond2' | transloco }}</li>
-                <li>{{ 'home.cmodSection.cond3' | transloco }}</li>
+                @for (item of ('home.cmod.pricingList' | transloco); track $index) {
+                    <li>{{ item }}</li>
+                }
             </ul>
+            <!-- TODO_HIMAD: tarifs des formules CMOD 2, 3, 4 semaines à compléter quand Himad les communique. Ne pas inventer de prix. -->
+        </div>
+
+        <!-- TODO: route definitive de la consultation CMOD a confirmer avec Ayoub (fallback /contact). -->
+        <a
+            routerLink="/contact"
+            class="inline-block px-6 py-3 font-semibold rounded-lg no-underline bg-[#a97849] text-[var(--primary-beige)] w-fit"
+        >
+            {{ 'home.cmod.cta' | transloco }}
+        </a>
+    </section>
+
+    <!-- Section 6b : L'encadrement Artisan Compétent en détail -->
+    <section id="protection" class="space-y-4">
+        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.protection.title' | transloco }}</h2>
+        <p class="text-lg font-semibold md:text-xl">{{ 'home.protection.lead' | transloco }}</p>
+
+        <div class="space-y-4">
+            <accordion variant="section" [title]="'home.protection.escrow.title' | transloco">
+                <div class="protection-body" [innerHTML]="'home.protection.escrow.body' | transloco"></div>
+            </accordion>
+            <accordion variant="section" [title]="'home.protection.validation.title' | transloco">
+                <div class="protection-body" [innerHTML]="'home.protection.validation.body' | transloco"></div>
+            </accordion>
+            <accordion variant="section" [title]="'home.protection.klarna.title' | transloco">
+                <div class="protection-body" [innerHTML]="'home.protection.klarna.body' | transloco"></div>
+            </accordion>
+            <accordion variant="section" [title]="'home.protection.malfacon.title' | transloco">
+                <div class="protection-body" [innerHTML]="'home.protection.malfacon.body' | transloco"></div>
+            </accordion>
+            <accordion variant="section" [title]="'home.protection.signed.title' | transloco">
+                <div class="protection-body" [innerHTML]="'home.protection.signed.body' | transloco"></div>
+            </accordion>
         </div>
     </section>
 
@@ -365,7 +476,7 @@
         </section>
     }
 
-    <section class="mt-12 space-y-6 steps-accordion">
+    <section id="comment-ca-marche" class="mt-12 space-y-6 steps-accordion">
         <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.steps.title' | transloco }}</h2>
         <div class="space-y-6">
             <details class="p-4 rounded-lg border">
@@ -530,44 +641,14 @@
         </div>
     </section>
 
-    <!-- Section 3 : Comment ça marche -->
-    <section id="comment-ca-marche" class="mt-12 space-y-6 steps-accordion">
-        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.howItWorks.h2' | transloco }}</h2>
-        <div class="space-y-6">
-            <details class="p-4 rounded-lg border">
-                <summary class="text-base font-semibold cursor-pointer md:text-xl">
-                    <em>1. {{ 'home.howItWorks.step1Title' | transloco }}</em>
-                </summary>
-                <div class="mt-3 space-y-2">
-                    <p>{{ 'home.howItWorks.step1Body' | transloco }}</p>
-                </div>
-            </details>
-            <details class="p-4 rounded-lg border">
-                <summary class="text-base font-semibold cursor-pointer md:text-xl">
-                    <em>2. {{ 'home.howItWorks.step2Title' | transloco }}</em>
-                </summary>
-                <div class="mt-3 space-y-2">
-                    <p>{{ 'home.howItWorks.step2Body1' | transloco }}</p>
-                    <p>{{ 'home.howItWorks.step2Body2' | transloco }}</p>
-                </div>
-            </details>
-            <details class="p-4 rounded-lg border">
-                <summary class="text-base font-semibold cursor-pointer md:text-xl">
-                    <em>3. {{ 'home.howItWorks.step3Title' | transloco }}</em>
-                </summary>
-                <div class="mt-3 space-y-2">
-                    <p>{{ 'home.howItWorks.step3Body' | transloco }}</p>
-                </div>
-            </details>
-        </div>
-    </section>
-
     <!-- Section 11 : Je suis un professionnel -->
     <!-- TODO: valider section pro avec Himad apres visio -->
     <section id="pro" class="space-y-4">
         <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.pro.h2' | transloco }}</h2>
-        <p>{{ 'home.pro.p1' | transloco }}</p>
-        <p>{{ 'home.pro.p2' | transloco }}</p>
+        <accordion variant="section" [title]="'home.pro.accordionTitle' | transloco">
+            <p>{{ 'home.pro.p1' | transloco }}</p>
+            <p>{{ 'home.pro.p2' | transloco }}</p>
+        </accordion>
         <a
             [routerLink]="['/auth/register']"
             [queryParams]="{ t: 'professional' }"
@@ -578,92 +659,101 @@
     </section>
 
     <!-- Section 12 : FAQ -->
-    <!-- TODO: balisage schema.org/FAQPage a poser lors de la passe SEO -->
-    <section id="faq" class="mt-12 space-y-6 steps-accordion">
+    <!-- Le balisage Schema.org FAQPage (JSON-LD) est injecte cote serveur via SeoService (cf. home.ts). -->
+    <section id="faq" class="mt-12 space-y-6">
         <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.faq.title' | transloco }}</h2>
-        <div class="space-y-6">
-            <details class="p-4 rounded-lg border">
-                <summary class="text-base font-semibold cursor-pointer md:text-xl">
-                    {{ 'home.faq.q1.question' | transloco }}
-                </summary>
-                <div class="mt-3 space-y-2">
-                    <p>{{ 'home.faq.q1.answer' | transloco }}</p>
-                </div>
-            </details>
-            <details class="p-4 rounded-lg border">
-                <summary class="text-base font-semibold cursor-pointer md:text-xl">
-                    {{ 'home.faq.q2.question' | transloco }}
-                </summary>
-                <div class="mt-3 space-y-2">
-                    <p>{{ 'home.faq.q2.answer' | transloco }}</p>
-                </div>
-            </details>
-            <details class="p-4 rounded-lg border">
-                <summary class="text-base font-semibold cursor-pointer md:text-xl">
-                    {{ 'home.faq.q3.question' | transloco }}
-                </summary>
-                <div class="mt-3 space-y-2">
-                    <p>{{ 'home.faq.q3.answer' | transloco }}</p>
-                </div>
-            </details>
-            <details class="p-4 rounded-lg border">
-                <summary class="text-base font-semibold cursor-pointer md:text-xl">
-                    {{ 'home.faq.q4.question' | transloco }}
-                </summary>
-                <div class="mt-3 space-y-2">
-                    <p>{{ 'home.faq.q4.answer' | transloco }}</p>
-                </div>
-            </details>
-            <details class="p-4 rounded-lg border">
-                <summary class="text-base font-semibold cursor-pointer md:text-xl">
-                    {{ 'home.faq.q5.question' | transloco }}
-                </summary>
-                <div class="mt-3 space-y-2">
-                    <p>{{ 'home.faq.q5.answer' | transloco }}</p>
-                </div>
-            </details>
-            <details class="p-4 rounded-lg border">
-                <summary class="text-base font-semibold cursor-pointer md:text-xl">
-                    {{ 'home.faq.q6.question' | transloco }}
-                </summary>
-                <div class="mt-3 space-y-2">
-                    <p>{{ 'home.faq.q6.answer' | transloco }}</p>
-                </div>
-            </details>
-            <details class="p-4 rounded-lg border">
-                <summary class="text-base font-semibold cursor-pointer md:text-xl">
-                    {{ 'home.faq.q7.question' | transloco }}
-                </summary>
-                <div class="mt-3 space-y-2">
-                    <p>{{ 'home.faq.q7.answer1' | transloco }}</p>
-                    <p>{{ 'home.faq.q7.answer2' | transloco }}</p>
-                </div>
-            </details>
-            <details class="p-4 rounded-lg border">
-                <summary class="text-base font-semibold cursor-pointer md:text-xl">
-                    {{ 'home.faq.q8.question' | transloco }}
-                </summary>
-                <div class="mt-3 space-y-2">
-                    <p>{{ 'home.faq.q8.answer' | transloco }}</p>
-                </div>
-            </details>
-            <details class="p-4 rounded-lg border">
-                <summary class="text-base font-semibold cursor-pointer md:text-xl">
-                    {{ 'home.faq.q9.question' | transloco }}
-                </summary>
-                <div class="mt-3 space-y-2">
-                    <p>{{ 'home.faq.q9.answer1' | transloco }}</p>
-                    <p>{{ 'home.faq.q9.answer2' | transloco }}</p>
-                </div>
-            </details>
-            <details class="p-4 rounded-lg border">
-                <summary class="text-base font-semibold cursor-pointer md:text-xl">
-                    {{ 'home.faq.q10.question' | transloco }}
-                </summary>
-                <div class="mt-3 space-y-2">
-                    <p>{{ 'home.faq.q10.answer' | transloco }}</p>
-                </div>
-            </details>
+        <div class="space-y-4">
+            <accordion
+                variant="faq"
+                [title]="'home.faq.q1.question' | transloco"
+                [summary]="'home.faq.q1.summary' | transloco"
+            >
+                <div class="faq-body" [innerHTML]="'home.faq.q1.body' | transloco"></div>
+            </accordion>
+            <accordion
+                variant="faq"
+                [title]="'home.faq.q2.question' | transloco"
+                [summary]="'home.faq.q2.summary' | transloco"
+            >
+                <div class="faq-body" [innerHTML]="'home.faq.q2.body' | transloco"></div>
+            </accordion>
+            <accordion
+                variant="faq"
+                [title]="'home.faq.q3.question' | transloco"
+                [summary]="'home.faq.q3.summary' | transloco"
+            >
+                <div class="faq-body" [innerHTML]="'home.faq.q3.body' | transloco"></div>
+            </accordion>
+            <accordion
+                variant="faq"
+                [title]="'home.faq.q4.question' | transloco"
+                [summary]="'home.faq.q4.summary' | transloco"
+            >
+                <div class="faq-body" [innerHTML]="'home.faq.q4.body' | transloco"></div>
+            </accordion>
+            <accordion
+                variant="faq"
+                [title]="'home.faq.q5.question' | transloco"
+                [summary]="'home.faq.q5.summary' | transloco"
+            >
+                <div class="faq-body" [innerHTML]="'home.faq.q5.body' | transloco"></div>
+            </accordion>
+            <accordion
+                variant="faq"
+                [title]="'home.faq.q6.question' | transloco"
+                [summary]="'home.faq.q6.summary' | transloco"
+            >
+                <div class="faq-body" [innerHTML]="'home.faq.q6.body' | transloco"></div>
+            </accordion>
+            <accordion
+                variant="faq"
+                [title]="'home.faq.q7.question' | transloco"
+                [summary]="'home.faq.q7.summary' | transloco"
+            >
+                <div class="faq-body" [innerHTML]="'home.faq.q7.body' | transloco"></div>
+            </accordion>
+            <accordion
+                variant="faq"
+                [title]="'home.faq.q8.question' | transloco"
+                [summary]="'home.faq.q8.summary' | transloco"
+            >
+                <div class="faq-body" [innerHTML]="'home.faq.q8.body' | transloco"></div>
+            </accordion>
+            <accordion
+                variant="faq"
+                [title]="'home.faq.q9.question' | transloco"
+                [summary]="'home.faq.q9.summary' | transloco"
+            >
+                <div class="faq-body" [innerHTML]="'home.faq.q9.body' | transloco"></div>
+            </accordion>
+            <accordion
+                variant="faq"
+                [title]="'home.faq.q10.question' | transloco"
+                [summary]="'home.faq.q10.summary' | transloco"
+            >
+                <div class="faq-body" [innerHTML]="'home.faq.q10.body' | transloco"></div>
+            </accordion>
+            <accordion
+                variant="faq"
+                [title]="'home.faq.q11.question' | transloco"
+                [summary]="'home.faq.q11.summary' | transloco"
+            >
+                <div class="faq-body" [innerHTML]="'home.faq.q11.body' | transloco"></div>
+            </accordion>
+            <accordion
+                variant="faq"
+                [title]="'home.faq.q12.question' | transloco"
+                [summary]="'home.faq.q12.summary' | transloco"
+            >
+                <div class="faq-body" [innerHTML]="'home.faq.q12.body' | transloco"></div>
+            </accordion>
+            <accordion
+                variant="faq"
+                [title]="'home.faq.q13.question' | transloco"
+                [summary]="'home.faq.q13.summary' | transloco"
+            >
+                <div class="faq-body" [innerHTML]="'home.faq.q13.body' | transloco"></div>
+            </accordion>
         </div>
     </section>
 
@@ -679,21 +769,12 @@
 
         <div class="space-y-4 text-center">
             <p class="text-lg font-semibold md:text-2xl">{{ 'home.finalCta.p1' | transloco }}</p>
-            <p>{{ 'home.finalCta.p2' | transloco }}</p>
             <div class="flex flex-wrap gap-4 justify-center">
                 <a
                     [routerLink]="['/auth/register']"
-                    [queryParams]="{ t: 'professional' }"
                     class="px-6 py-3 font-semibold rounded-lg no-underline bg-[#a97849] text-[var(--primary-beige)]"
                 >
-                    {{ 'home.hero.ctaPro' | transloco }}
-                </a>
-                <a
-                    [routerLink]="['/auth/register']"
-                    [queryParams]="{ t: 'individual' }"
-                    class="px-6 py-3 font-semibold rounded-lg no-underline bg-[#a97849] text-[var(--primary-beige)]"
-                >
-                    {{ 'home.hero.ctaIndividual' | transloco }}
+                    {{ 'home.finalCta.cta' | transloco }}
                 </a>
             </div>
         </div>

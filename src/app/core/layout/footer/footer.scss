@@ -1,11 +1,13 @@
+:host {
+  display: block;
+}
+
+/* Le <footer> porte son fond (bg-grad-brown), ses marges et ses espacements via Tailwind. */
 footer {
-  width: -webkit-fill-available;
-  width: -moz-available;
-  width: fill-available;
-  border-top: 1px solid var(--border-color);
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: center;
-  z-index: 100;
-  background: var(--v-grad-brown);
+  width: 100%;
+}
+
+/* Les liens du footer héritent de la couleur beige du texte ; le soulignement est géré par Tailwind. */
+footer a {
+  color: inherit;
 }
