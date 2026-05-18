@@ -5,8 +5,8 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'ac-footer',
   standalone: true,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoModule, RouterModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './footer.html',
   styleUrl: './footer.scss',
 })
