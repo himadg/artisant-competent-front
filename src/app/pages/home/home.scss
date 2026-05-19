@@ -39,6 +39,11 @@
   margin: 6rem auto !important;
 }
 
+/* CTA intermédiaire : fond légèrement teinté pour le distinguer du reste de la page. */
+.mid-cta {
+  background: color-mix(in srgb, var(--primary-water-green) 10%, transparent);
+}
+
 :host ::ng-deep .h-scroll {
   scrollbar-width: thin;
   scrollbar-color: var(--primary-brown) transparent;
