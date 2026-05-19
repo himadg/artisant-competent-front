@@ -19,10 +19,7 @@
 
     <!-- Section 1f : CTA + formulaire de devis -->
     <div id="devis" class="space-y-4">
-        <p class="text-center font-semibold text-[var(--primary-beige)] text-lg md:text-xl">
-            {{ 'home.hero.ctaForm' | transloco }}
-        </p>
-        <search-pro></search-pro>
+        <search-pro id="hero-search-form"></search-pro>
     </div>
 
     <!-- Section 1d : cadre arguments -->
@@ -332,54 +329,25 @@
         </ul>
     </section>
 
-    <!-- Section 2 : Le problème -->
-    <section id="le-probleme" class="space-y-4">
-        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.problem.h2' | transloco }}</h2>
-        <p>{{ 'home.problem.p1' | transloco }}</p>
-        <p>{{ 'home.problem.p2' | transloco }}</p>
-        <p>{{ 'home.problem.p3' | transloco }}</p>
-        <p>{{ 'home.problem.p4' | transloco }}</p>
-        <p class="text-lg font-semibold md:text-xl">{{ 'home.problem.strong' | transloco }}</p>
-    </section>
-
-    <!-- Section 4 : Le séquestre de fonds -->
-    <section id="sequestre" class="space-y-4">
-        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.escrow.h2' | transloco }}</h2>
-        <p>{{ 'home.escrow.p1' | transloco }}</p>
-        <p>{{ 'home.escrow.p2' | transloco }}</p>
-
-        <div class="space-y-3">
-            <h3 class="text-lg font-semibold md:text-xl">{{ 'home.escrow.concretelyTitle' | transloco }}</h3>
-            <p>{{ 'home.escrow.concretely1' | transloco }}</p>
-            <p>{{ 'home.escrow.concretely2' | transloco }}</p>
-            <p>{{ 'home.escrow.concretely3' | transloco }}</p>
+    <!-- Section intermédiaire : CTA (entre urgences et CMOD) -->
+    <section id="mid-cta" class="px-6 py-12 space-y-6 text-center rounded-2xl mid-cta md:py-16">
+        <h2 class="text-xl font-semibold md:text-3xl">{{ 'home.midCta.title' | transloco }}</h2>
+        <p class="mx-auto max-w-xl text-base md:text-lg">{{ 'home.midCta.lead' | transloco }}</p>
+        <div class="flex flex-col gap-4 justify-center mx-auto max-w-md sm:flex-row sm:max-w-none">
+            <button
+                type="button"
+                (click)="scrollToSearch()"
+                class="px-6 py-3 font-semibold text-center rounded-lg cursor-pointer bg-[#a97849] text-[var(--primary-beige)]"
+            >
+                {{ 'home.midCta.primaryBtn' | transloco }}
+            </button>
+            <a
+                routerLink="/auth/register"
+                class="px-6 py-3 font-semibold text-center no-underline rounded-lg border-2 border-[#a97849] text-[#a97849]"
+            >
+                {{ 'home.midCta.secondaryBtn' | transloco }}
+            </a>
         </div>
-
-        <p class="text-lg font-semibold md:text-xl">{{ 'home.escrow.strong' | transloco }}</p>
-        <p>{{ 'home.escrow.klarna' | transloco }}</p>
-    </section>
-
-    <!-- Section 5 : La règle des 48h -->
-    <section id="regle-48h" class="space-y-4">
-        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.rule48.h2' | transloco }}</h2>
-        <p>{{ 'home.rule48.intro1' | transloco }}</p>
-        <p>{{ 'home.rule48.intro2' | transloco }}</p>
-
-        <div class="space-y-3">
-            <h3 class="text-lg font-semibold md:text-xl">{{ 'home.rule48.actionsTitle' | transloco }}</h3>
-            <ol class="pl-6 space-y-2 list-decimal">
-                <li>{{ 'home.rule48.action1' | transloco }}</li>
-                <li>{{ 'home.rule48.action2' | transloco }}</li>
-                <li>{{ 'home.rule48.action3' | transloco }}</li>
-            </ol>
-        </div>
-
-        <div class="space-y-2">
-            <h3 class="text-lg font-semibold md:text-xl">{{ 'home.rule48.signedTitle' | transloco }}</h3>
-            <p>{{ 'home.rule48.signedBody' | transloco }}</p>
-        </div>
-
-        <p class="text-lg font-semibold md:text-xl">{{ 'home.rule48.strong' | transloco }}</p>
     </section>
 
     <!-- Section 6 : CMOD -->
@@ -410,13 +378,14 @@
             <!-- TODO_HIMAD: tarifs des formules CMOD 2, 3, 4 semaines à compléter quand Himad les communique. Ne pas inventer de prix. -->
         </div>
 
-        <!-- TODO: route definitive de la consultation CMOD a confirmer avec Ayoub (fallback /contact). -->
-        <a
-            routerLink="/contact"
-            class="inline-block px-6 py-3 font-semibold rounded-lg no-underline bg-[#a97849] text-[var(--primary-beige)] w-fit"
+        <!-- Le bouton « consultation CMOD » déplie et fait défiler vers le formulaire de contact du footer. -->
+        <button
+            type="button"
+            (click)="scrollToContactForm()"
+            class="inline-block px-6 py-3 font-semibold rounded-lg cursor-pointer bg-[#a97849] text-[var(--primary-beige)] w-fit"
         >
             {{ 'home.cmod.cta' | transloco }}
-        </a>
+        </button>
     </section>
 
     <!-- Section 6b : L'encadrement Artisan Compétent en détail -->
@@ -758,6 +727,22 @@
             </accordion>
         </div>
     </section>
+
+    <!--
+      Section 12b : Formulaire de contact — masquée du rendu sur la home (formulaire conservé dans le footer).
+      Markup conservé en commentaire pour pouvoir le réactiver plus tard si besoin.
+      Pour réactiver : décommenter ce bloc ET réimporter ContactFormComponent dans home.ts.
+
+      <section id="contact" class="mt-12 space-y-6">
+          <h2 class="text-base font-semibold md:text-4xl title">{{ 'home.contact.title' | transloco }}</h2>
+          <p class="text-base md:text-lg">{{ 'home.contact.lead' | transloco }}</p>
+          <div
+              class="p-6 mx-auto rounded-lg border shadow-sm max-w-[36rem] bg-[var(--primary-beige)] border-[var(--border-color)]"
+          >
+              <app-contact-form source="home"></app-contact-form>
+          </div>
+      </section>
+    -->
 
     <!-- Section 13 : Barre de confiance + CTA final -->
     <!-- TODO: visuel exact de la barre de confiance en attente de la capture client (icones a ajouter) -->

@@ -15,7 +15,7 @@
       "h1": "Vos petits travaux encadrés de A à Z, finis les arnaques.",
       "args": [
         "Artisans vérifiés : SIRET, assurances et certifications contrôlés avant intégration.",
-        "Paiement sécurisé : vos fonds sont séquestrés jusqu'à validation du chantier.",
+        "Paiement encadré : vos fonds sont séquestrés jusqu'à validation du chantier.",
         "Suivi digital complet : photos, échanges, devis et preuves centralisés dans la plateforme.",
         "Traçabilité totale : chaque étape du chantier peut être documentée et suivie.",
         "48h de protection après travaux avant libération automatique des fonds.",
@@ -24,55 +24,25 @@
         "Protection contre les abandons de chantier et les acomptes perdus.",
         "Interventions d'urgence encadrées 24h/24 et 7j/7 : plomberie, serrurerie, électricité, débouchage.",
         "Plateforme pensée aussi pour protéger les artisans honnêtes contre les abus et les impayés.",
-        "Aucun paiement direct sans suivi : tout passe par un cadre sécurisé et transparent.",
+        "Aucun paiement direct sans suivi : tout passe par un cadre encadré et transparent.",
         "France, Corse et DOM-TOM : déploiement progressif sur tout le territoire.",
         "Une plateforme conçue pour rétablir la confiance dans le bâtiment.",
         "Notre promesse ? Personne ne disparaîtra avec votre argent !"
       ],
       "ctaPro": "Je suis un professionnel",
-      "ctaIndividual": "Je suis un particulier",
-      "ctaForm": "Décrivez votre projet en 2 minutes"
+      "ctaIndividual": "Je suis un particulier"
     },
     "problem": {
-      "h2": "Pourquoi tant de gens se font avoir sur leurs travaux",
-      "p1": "Un artisan qui disparaît après l'acompte. Un devis qui passe du simple au double sans explication claire. Des travaux bâclés qu'il faut refaire. Des délais non respectés sans aucun recours.",
-      "p2": "Mais tous les imprévus ne sont pas des arnaques. Un artisan honnête peut découvrir un vrai problème en cours de chantier. Un client peut mal décrire son besoin au départ. Et parfois, c'est simplement un accident de la vie, physique ou financier, qui vient tout compliquer.",
-      "p3": "Le problème, ce n'est pas que ces situations existent. Le problème, c'est qu'aujourd'hui, il n'existe aucun mécanisme qui protège réellement le particulier quand les choses dérapent.",
-      "p4": "C'est exactement pour ça qu'Artisan Compétent existe : anticiper les risques, tracer chaque étape, garder l'argent en séquestre tant que tout n'est pas réglé.",
-      "strong": "On sait comment les choses dérapent. Et on met en place ce qu'il faut pour les éviter.",
       "title": "Pourquoi tant de gens rencontrent des problèmes sur leurs travaux ?",
       "intro": "Retards à répétition, devis qui s'envole, travaux bâclés ou artisan injoignable : la plupart des mauvaises expériences suivent les mêmes schémas. Comprendre d'où viennent ces dérapages, c'est déjà commencer à s'en protéger.",
       "accordionTitle": "Comprendre comment les chantiers dérapent",
-      "body": "<ul><li>Un artisan qui disparaît après un acompte.</li><li>Un devis qui passe du simple au double sans explication claire.</li><li>Des travaux bâclés qu'il faut refaire.</li><li>Des délais non respectés.</li><li>Des clients laissés seuls face à des situations compliquées.</li></ul><p>Mais tous les imprévus ne sont pas forcément des arnaques.</p><p>Un artisan honnête peut lui aussi rencontrer un problème sérieux :</p><ul><li>une difficulté financière,</li><li>ou un imprévu de chantier plus complexe que prévu.</li></ul><p>Un client peut également mal décrire son besoin au départ.</p><p>Et parfois, c'est simplement une mauvaise communication entre les différentes parties qui complique la situation.</p><p>Le vrai problème aujourd'hui, ce n'est pas qu'il existe des abus.</p><p>Le vrai problème, c'est qu'il n'existe généralement aucun système réellement conçu pour protéger le particulier lorsque les choses se compliquent.</p><p>Dans un fonctionnement classique, une fois l'argent versé directement à l'entreprise, récupérer les fonds peut devenir extrêmement difficile.</p><p>Avec Artisan Compétent, l'argent est sécurisé via Stripe sur un compte séquestre jusqu'à validation du chantier.</p><p>Les fonds ne sont pas envoyés directement à l'artisan.</p><p>Et ils ne transitent pas non plus par le compte bancaire d'Artisan Compétent.</p><p>Même le dirigeant de la plateforme ne peut pas détourner librement les fonds.</p><p>Le système est justement conçu pour empêcher cela.</p><p>Concrètement :</p><ul><li>soit les travaux sont terminés et validés, et les fonds sont libérés ;</li><li>soit un problème survient, et les fonds restent sécurisés le temps d'analyser la situation.</li></ul><p>Tout le suivi du chantier est centralisé : photos, échanges, devis, preuves.</p><p>Chaque étape est horodatée et archivée afin de permettre un suivi clair et transparent.</p>"
+      "body": "<ul><li>Un artisan qui disparaît après un acompte.</li><li>Un devis qui passe du simple au double sans explication claire.</li><li>Des travaux bâclés qu'il faut refaire.</li><li>Des délais non respectés.</li><li>Des clients laissés seuls face à des situations compliquées.</li></ul><p>Mais tous les imprévus ne sont pas forcément des arnaques.</p><p>Un artisan honnête peut lui aussi rencontrer un problème sérieux :</p><ul><li>une difficulté financière,</li><li>ou un imprévu de chantier plus complexe que prévu.</li></ul><p>Un client peut également mal décrire son besoin au départ.</p><p>Et parfois, c'est simplement une mauvaise communication entre les différentes parties qui complique la situation.</p><p>Le vrai problème aujourd'hui, ce n'est pas qu'il existe des abus.</p><p>Le vrai problème, c'est qu'il n'existe généralement aucun système réellement conçu pour protéger le particulier lorsque les choses se compliquent.</p><p>Dans un fonctionnement classique, une fois l'argent versé directement à l'entreprise, récupérer les fonds peut devenir extrêmement difficile.</p><p>Avec Artisan Compétent, l'argent est encadré via Stripe sur un compte séquestre jusqu'à validation du chantier.</p><p>Les fonds ne sont pas envoyés directement à l'artisan.</p><p>Et ils ne transitent pas non plus par le compte bancaire d'Artisan Compétent.</p><p>Même le dirigeant de la plateforme ne peut pas détourner librement les fonds.</p><p>Le système est justement conçu pour empêcher cela.</p><p>Concrètement :</p><ul><li>soit les travaux sont terminés et validés, et les fonds sont libérés ;</li><li>soit un problème survient, et les fonds restent bloqués le temps d'analyser la situation.</li></ul><p>Tout le suivi du chantier est centralisé : photos, échanges, devis, preuves.</p><p>Chaque étape est horodatée et archivée afin de permettre un suivi clair et transparent.</p>"
     },
     "framework": {
       "title": "Artisan Compétent : un cadre pensé pour éviter que les situations dégénèrent",
       "intro": "Artisan Compétent ne se contente pas de vous mettre en relation avec un artisan : la plateforme encadre chaque chantier, du devis à la validation finale. Découvrez comment ce cadre protège concrètement votre argent et vos travaux.",
-      "accordionTitle": "Découvrir le cadre qui sécurise votre chantier",
+      "accordionTitle": "Découvrir le cadre qui encadre votre chantier",
       "body": "<p>Artisan Compétent n'est pas un simple annuaire.</p><p>La plateforme a été pensée pour :</p><!-- TODO_HIMAD: liste \"La plateforme a été pensée pour...\" potentiellement incomplète dans le doc WhatsApp source, vérifier qu'il ne manque pas 1 ou 2 éléments avant \"tracer\". --><ul><li>tracer chaque étape du chantier,</li><li>et faciliter la résolution des litiges lorsqu'ils surviennent.</li></ul><p>L'enjeu n'est pas seulement de trouver un artisan.</p><p>L'objectif est de créer un cadre plus rassurant, plus transparent et plus sécurisé pour tout le monde.</p><p>Parce qu'aujourd'hui, trouver un artisan ne suffit plus.</p><p>Encore faut-il savoir qui protège réellement votre argent si les choses tournent mal.</p>"
-    },
-    "escrow": {
-      "h2": "Le séquestre de fonds : votre garantie contre les mauvaises surprises",
-      "p1": "Sur les autres plateformes, vous payez directement l'artisan avant même de savoir si le travail sera bien fait. Chez Artisan Compétent, ça ne fonctionne pas comme ça.",
-      "p2": "Quand vous acceptez un devis, votre paiement est placé sur un compte séquestre géré par un prestataire de paiement certifié (Stripe). L'argent est bloqué : l'artisan n'y a pas accès tant que vous n'avez pas validé la fin du chantier.",
-      "concretelyTitle": "Concrètement",
-      "concretely1": "Vous acceptez le devis et effectuez le paiement via la plateforme. Les fonds sont immédiatement placés en séquestre.",
-      "concretely2": "L'artisan réalise les travaux pendant que vous suivez l'avancement de deux façons : sur votre tableau de bord digital (photos, échanges, preuves, rapports d'étape) et directement en présentiel sur le chantier. Vous pouvez à tout moment contredire une information ajoutée par l'artisan et photographier vous-même ce qui vous semble important pour que ce soit archivé sur le dashboard commun. Tout est tracé. Rien ne peut être supprimé.",
-      "concretely3": "Une fois le chantier terminé, vous signez un procès-verbal de fin de travaux. Les fonds sont libérés et versés à l'artisan. Si un problème survient, les fonds restent bloqués et la plateforme analyse la situation sur la base des éléments enregistrés dans le suivi digital.",
-      "strong": "Vous ne validez le paiement qu'une fois l'intervention terminée.",
-      "klarna": "Et si besoin, paiement en 3 fois possible via Klarna."
-    },
-    "rule48": {
-      "h2": "48h pour valider. 48h pour réagir.",
-      "intro1": "Vos travaux sont terminés. L'artisan vous demande de signer le procès-verbal de fin de chantier. Et là, une règle simple vous protège : vous avez jusqu'à 48 heures pour le valider.",
-      "intro2": "Cette période de 48h s'applique à tous les chantiers, pas seulement aux urgences. Pendant ces 48h, les fonds restent bloqués en séquestre.",
-      "actionsTitle": "Vous constatez un abus ou une malfaçon ? La bonne démarche, dans l'ordre :",
-      "action1": "Parlez-en d'abord à l'artisan. La très grande majorité des situations se règlent à l'amiable. Un artisan sérieux acceptera de discuter du devis ou de revenir corriger une finition. Cette étape est essentielle, prenez le temps de la mener avant tout autre signalement.",
-      "action2": "Si l'artisan refuse d'entendre vos remarques, signalez-le depuis votre tableau de bord. Vous décrivez le problème (devis manifestement excessif, malfaçon visible, etc.). Les fonds restent bloqués pendant l'analyse.",
-      "action3": "Médiation amiable encadrée par la plateforme. Si un abus est avéré après analyse, une médiation est engagée pour réajuster la situation. En cas de refus persistant de l'artisan, la plateforme applique des frais de dossier de suspension (jusqu'à 250 €) qui sont reversés directement au client sur la part séquestrée. Cette procédure est encadrée par les CGU et CGV.",
-      "signedTitle": "Et si vous avez déjà signé le PV ?",
-      "signedBody": "Pas de panique. Les artisans présents sur Artisan Compétent sont tous des professionnels sérieux et, comme tout bon artisan honnête, ils interviennent pour rattraper une éventuelle malfaçon liée à leur travail. Et dans tous les cas, dès la signature du PV, les garanties légales entrent en jeu, à commencer par la garantie de parfait achèvement (1 an), puis la garantie biennale et, selon la nature des travaux, la garantie décennale.",
-      "strong": "Prenez 48h. C'est votre meilleure protection."
     },
     "cmod": {
       "title": "CMOD : un conseiller bâtiment à distance pour vos travaux",
@@ -173,6 +143,12 @@
         "drainUnblocker": "Déboucheur urgence (canalisation bouchée, refoulement)"
       }
     },
+    "midCta": {
+      "title": "Prêt à lancer votre chantier en toute sérénité ?",
+      "lead": "Trouvez un artisan vérifié près de chez vous ou créez votre compte pour démarrer.",
+      "primaryBtn": "Trouver mon artisan vérifié",
+      "secondaryBtn": "Créer mon compte"
+    },
     "cities": {
       "h2": "Nos villes d'intervention",
       "intro": "Artisan Compétent intervient dans les principales villes de France et, au fil des mois, s'étend vers les communes plus petites dès que des artisans locaux rejoignent la plateforme. Voici les villes couvertes aujourd'hui.",
@@ -194,8 +170,12 @@
       "item3": "Suivi digital inaltérable",
       "item4": "Artisans vérifiés et certifiés"
     },
+    "contact": {
+      "title": "Une question, un projet, une demande spécifique ?",
+      "lead": "Notre équipe vous répond rapidement. Renseignez vos informations ci-dessous, nous vous contactons."
+    },
     "finalCta": {
-      "p1": "Notre promesse ? Que vos travaux ne soient plus une source de stress.",
+      "p1": "Notre promesse : personne ne disparaîtra avec votre argent.",
       "cta": "S'inscrire"
     },
     "where": {
@@ -215,7 +195,7 @@
       }
     },
     "local": {
-      "title": "La première plateforme qui sécurise réellement vos chantiers.",
+      "title": "La première plateforme qui encadre réellement vos chantiers.",
       "body1": "Vous ne payez que lorsque les travaux sont validés, fonds séquestrés et libérés uniquement après réception.",
       "body2": "Un expert bâtiment indépendant vous accompagne gratuitement si besoin.",
       "body3": "Suivez votre chantier en temps réel avec preuve photo étape par étape.",
@@ -230,7 +210,7 @@
         "p1": "Vous découvrez Artisan-Compétent, ses garanties, son fonctionnement et les métiers disponibles, exclusivement dans le domaine du bâtiment."
       },
       "items2": {
-        "title": "Inscription sécurisée",
+        "title": "Inscription encadrée",
         "p1": "Vous créez votre compte en quelques minutes:",
         "li1": "particulier ou entreprise,",
         "li2": "informations de base,",
@@ -272,7 +252,7 @@
         "li3": "le chantier peut être enclenché."
       },
       "items7": {
-        "title": "Paiement sécurisé et séquestré",
+        "title": "Paiement encadré et séquestré",
         "p1": "Vous réglez le montant via Artisan-Compétent:",
         "li1": "jusqu'à 5 000 €: 100 % du montant est séquestré.",
         "li2": "Au-delà de 5 000 €: seule la main-d'œuvre est séquestrée (sauf exception artisans fabricants).",
@@ -432,6 +412,78 @@
       "contactForm": "Formulaire de contact"
     },
     "copyright": "© 2026 Artisan Compétent. Tous droits réservés."
+  },
+  "contactForm": {
+    "intro": "Laissez-nous vos coordonnées : c'est nous qui prenons l'initiative du contact pour répondre à votre demande. Vous recevez également nos informations pratiques via WhatsApp, notre canal principal de communication. Vous restez maître des échanges, nous ne sollicitons jamais nos clients de manière intrusive.",
+    "fields": {
+      "name": {
+        "label": "Nom complet",
+        "placeholder": "Votre nom et prénom",
+        "error": {
+          "required": "Le nom est obligatoire",
+          "minLength": "Le nom doit comporter au moins 2 caractères"
+        }
+      },
+      "email": {
+        "label": "Adresse email",
+        "placeholder": "vous@exemple.fr",
+        "error": {
+          "required": "L'email est obligatoire",
+          "invalid": "L'adresse email n'est pas valide"
+        }
+      },
+      "phone": {
+        "label": "Téléphone (recommandé)",
+        "placeholder": "06 12 34 56 78",
+        "helper": "Optionnel, nous l'utilisons pour vous joindre via WhatsApp si besoin.",
+        "error": {
+          "invalid": "Le numéro de téléphone n'est pas valide"
+        }
+      },
+      "subject": {
+        "label": "Sujet de votre demande",
+        "placeholder": "Choisissez un sujet",
+        "error": {
+          "required": "Veuillez sélectionner un sujet"
+        },
+        "options": {
+          "general": "Question générale",
+          "service": "Information sur un service (CMOD, séquestre, paiement Klarna)",
+          "affiliate": "Devenir affilié",
+          "currentRequest": "Question sur ma demande en cours",
+          "technical": "Problème technique",
+          "press": "Presse / partenariat",
+          "other": "Autre"
+        }
+      },
+      "message": {
+        "label": "Votre message",
+        "placeholder": "Décrivez votre demande en quelques lignes.",
+        "counter": "{{current}} / 1000 caractères",
+        "error": {
+          "required": "Le message est obligatoire",
+          "minLength": "Le message doit comporter au moins 10 caractères"
+        }
+      },
+      "consent": {
+        "label": "J'accepte d'être recontacté par Artisan Compétent par téléphone, email ou WhatsApp concernant ma demande.",
+        "error": {
+          "required": "Vous devez accepter pour envoyer votre demande"
+        }
+      }
+    },
+    "submit": {
+      "idle": "Envoyer ma demande",
+      "sending": "Envoi en cours..."
+    },
+    "success": {
+      "title": "Merci, votre demande a bien été envoyée.",
+      "body": "Nous prenons contact avec vous dans les plus brefs délais. Vous recevrez aussi nos informations pratiques par WhatsApp."
+    },
+    "error": {
+      "title": "Une erreur est survenue.",
+      "body": "Veuillez réessayer dans quelques instants. Si le problème persiste, contactez-nous directement via nos réseaux sociaux."
+    }
   },
   "auth": {
     "register": "Inscription",
