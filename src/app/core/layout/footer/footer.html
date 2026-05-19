@@ -135,10 +135,14 @@
             <a routerLink="/cgv" class="no-underline hover:underline">{{ 'footer.legal.cgv' | transloco }}</a>
         </nav>
 
-        <!-- Formulaire de contact : accordéon fermé par défaut, vide pour l'instant. -->
-        <div class="mx-auto max-w-md">
-            <accordion [title]="'footer.legal.contactForm' | transloco" variant="section">
-                <p class="text-sm opacity-70"><!-- TODO: le composant ContactFormComponent sera intégré ici à l'étape 21 --></p>
+        <!-- Formulaire de contact : accordéon fermé par défaut, déplié à la demande (ex. CTA « consultation CMOD »). -->
+        <div id="footer-contact-form" class="mx-auto max-w-md">
+            <accordion
+                [title]="'footer.legal.contactForm' | transloco"
+                variant="section"
+                [isOpen]="contactForm.openRequested()"
+            >
+                <app-contact-form source="footer"></app-contact-form>
             </accordion>
         </div>
     </div>
