@@ -1,0 +1,208 @@
+<!--
+  TODO_AYOUB: endpoint /api/contact à créer, gérer l'envoi vers email/Slack/Notion.
+  En attendant, le composant fonctionne en mode optimistic : un 404 ou une erreur
+  réseau est traité comme un envoi réussi (voir contact-form.component.ts).
+-->
+<div class="contact-form">
+    @if (status() === 'success') {
+        <!-- Bloc de succès : le formulaire est masqué une fois la demande envoyée. -->
+        <div class="contact-form__success" role="status">
+            <svg class="contact-form__success-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                    d="M20 6 9 17l-5-5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </svg>
+            <div>
+                <h3 class="contact-form__success-title">{{ 'contactForm.success.title' | transloco }}</h3>
+                <p class="contact-form__success-body">{{ 'contactForm.success.body' | transloco }}</p>
+            </div>
+        </div>
+    } @else {
+        <p class="contact-form__intro">{{ 'contactForm.intro' | transloco }}</p>
+
+        @if (status() === 'error') {
+            <!-- Bloc d'erreur : affiché en haut, le formulaire reste pré-rempli en dessous. -->
+            <div class="contact-form__error-banner" role="alert">
+                <strong class="contact-form__error-banner-title">{{ 'contactForm.error.title' | transloco }}</strong>
+                <span>{{ 'contactForm.error.body' | transloco }}</span>
+            </div>
+        }
+
+        <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+            <!-- Nom complet -->
+            <div class="contact-form__field">
+                <label [attr.for]="controlId('name')" class="contact-form__label">
+                    {{ 'contactForm.fields.name.label' | transloco }}
+                </label>
+                <input
+                    [id]="controlId('name')"
+                    type="text"
+                    formControlName="name"
+                    class="contact-form__control"
+                    [class.contact-form__control--invalid]="isInvalid('name')"
+                    [placeholder]="'contactForm.fields.name.placeholder' | transloco"
+                    autocomplete="name"
+                    [attr.aria-invalid]="isInvalid('name')"
+                    [attr.aria-describedby]="describedBy('name')"
+                />
+                @if (hasError('name', 'required')) {
+                    <p [id]="errorId('name')" class="contact-form__error">
+                        {{ 'contactForm.fields.name.error.required' | transloco }}
+                    </p>
+                } @else if (hasError('name', 'minlength')) {
+                    <p [id]="errorId('name')" class="contact-form__error">
+                        {{ 'contactForm.fields.name.error.minLength' | transloco }}
+                    </p>
+                }
+            </div>
+
+            <!-- Adresse email -->
+            <div class="contact-form__field">
+                <label [attr.for]="controlId('email')" class="contact-form__label">
+                    {{ 'contactForm.fields.email.label' | transloco }}
+                </label>
+                <input
+                    [id]="controlId('email')"
+                    type="email"
+                    formControlName="email"
+                    class="contact-form__control"
+                    [class.contact-form__control--invalid]="isInvalid('email')"
+                    [placeholder]="'contactForm.fields.email.placeholder' | transloco"
+                    autocomplete="email"
+                    [attr.aria-invalid]="isInvalid('email')"
+                    [attr.aria-describedby]="describedBy('email')"
+                />
+                @if (hasError('email', 'required')) {
+                    <p [id]="errorId('email')" class="contact-form__error">
+                        {{ 'contactForm.fields.email.error.required' | transloco }}
+                    </p>
+                } @else if (hasError('email', 'email')) {
+                    <p [id]="errorId('email')" class="contact-form__error">
+                        {{ 'contactForm.fields.email.error.invalid' | transloco }}
+                    </p>
+                }
+            </div>
+
+            <!-- Téléphone (optionnel, recommandé) -->
+            <div class="contact-form__field">
+                <label [attr.for]="controlId('phone')" class="contact-form__label">
+                    {{ 'contactForm.fields.phone.label' | transloco }}
+                </label>
+                <input
+                    [id]="controlId('phone')"
+                    type="tel"
+                    formControlName="phone"
+                    class="contact-form__control"
+                    [class.contact-form__control--invalid]="isInvalid('phone')"
+                    [placeholder]="'contactForm.fields.phone.placeholder' | transloco"
+                    autocomplete="tel"
+                    [attr.aria-invalid]="isInvalid('phone')"
+                    [attr.aria-describedby]="describedBy('phone', true)"
+                />
+                <p [id]="helperId('phone')" class="contact-form__helper">
+                    {{ 'contactForm.fields.phone.helper' | transloco }}
+                </p>
+                @if (hasError('phone', 'pattern')) {
+                    <p [id]="errorId('phone')" class="contact-form__error">
+                        {{ 'contactForm.fields.phone.error.invalid' | transloco }}
+                    </p>
+                }
+            </div>
+
+            <!-- Sujet de la demande -->
+            <div class="contact-form__field">
+                <label [attr.for]="controlId('subject')" class="contact-form__label">
+                    {{ 'contactForm.fields.subject.label' | transloco }}
+                </label>
+                <select
+                    [id]="controlId('subject')"
+                    formControlName="subject"
+                    class="contact-form__control"
+                    [class.contact-form__control--invalid]="isInvalid('subject')"
+                    [attr.aria-invalid]="isInvalid('subject')"
+                    [attr.aria-describedby]="describedBy('subject')"
+                >
+                    <option value="" disabled>{{ 'contactForm.fields.subject.placeholder' | transloco }}</option>
+                    @for (key of subjectKeys; track key) {
+                        <option [value]="key">{{ 'contactForm.fields.subject.options.' + key | transloco }}</option>
+                    }
+                </select>
+                @if (hasError('subject', 'required')) {
+                    <p [id]="errorId('subject')" class="contact-form__error">
+                        {{ 'contactForm.fields.subject.error.required' | transloco }}
+                    </p>
+                }
+            </div>
+
+            <!-- Message -->
+            <div class="contact-form__field">
+                <label [attr.for]="controlId('message')" class="contact-form__label">
+                    {{ 'contactForm.fields.message.label' | transloco }}
+                </label>
+                <textarea
+                    [id]="controlId('message')"
+                    formControlName="message"
+                    rows="5"
+                    [attr.maxlength]="messageMaxLength"
+                    class="contact-form__control contact-form__control--textarea"
+                    [class.contact-form__control--invalid]="isInvalid('message')"
+                    [placeholder]="'contactForm.fields.message.placeholder' | transloco"
+                    [attr.aria-invalid]="isInvalid('message')"
+                    [attr.aria-describedby]="describedBy('message', true)"
+                ></textarea>
+                <p [id]="helperId('message')" class="contact-form__counter">
+                    {{ 'contactForm.fields.message.counter' | transloco: { current: messageLength() } }}
+                </p>
+                @if (hasError('message', 'required')) {
+                    <p [id]="errorId('message')" class="contact-form__error">
+                        {{ 'contactForm.fields.message.error.required' | transloco }}
+                    </p>
+                } @else if (hasError('message', 'minlength')) {
+                    <p [id]="errorId('message')" class="contact-form__error">
+                        {{ 'contactForm.fields.message.error.minLength' | transloco }}
+                    </p>
+                }
+            </div>
+
+            <!-- Consentement RGPD -->
+            <div class="contact-form__field">
+                <label class="contact-form__consent">
+                    <input
+                        [id]="controlId('consent')"
+                        type="checkbox"
+                        formControlName="consent"
+                        class="contact-form__checkbox"
+                        [attr.aria-invalid]="isInvalid('consent')"
+                        [attr.aria-describedby]="describedBy('consent')"
+                    />
+                    <span>{{ 'contactForm.fields.consent.label' | transloco }}</span>
+                </label>
+                @if (hasError('consent', 'required')) {
+                    <p [id]="errorId('consent')" class="contact-form__error">
+                        {{ 'contactForm.fields.consent.error.required' | transloco }}
+                    </p>
+                }
+            </div>
+
+            <!-- Bouton d'envoi -->
+            <button
+                type="submit"
+                class="contact-form__submit"
+                [disabled]="status() === 'sending'"
+                [attr.aria-busy]="status() === 'sending'"
+            >
+                @if (status() === 'sending') {
+                    <span class="contact-form__spinner" aria-hidden="true"></span>
+                    {{ 'contactForm.submit.sending' | transloco }}
+                } @else {
+                    {{ 'contactForm.submit.idle' | transloco }}
+                }
+            </button>
+        </form>
+    }
+</div>
