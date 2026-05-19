@@ -1,4 +1,10 @@
 {
+  "banner": {
+    "klarna": {
+      "textBefore": "Pay in 3 instalments with",
+      "textAfter": ", subject to conditions"
+    }
+  },
   "home": {
     "meta": {
       "title": "Artisan Compétent | Your work overseen from A to Z. No more scams!",
@@ -6,47 +12,81 @@
       "ogDescription": "Only release payment once the job is done. Fund escrow, verified tradespeople, digital tracking."
     },
     "hero": {
-      "h1": "Your work, overseen from A to Z. No more scams!",
-      "subtitle": "Artisan Compétent is the first platform that truly oversees your renovation and emergency projects. You only release payment once the job is done.",
-      "arg1": "Verified tradespeople: up-to-date business registration, insurance and certifications.",
-      "arg2": "Overseen payment: your money held in escrow until validation.",
-      "arg3": "Digital tracking: photos, messages, proof. Nothing can be erased.",
-      "arg4": "48h to validate: mediation available in case of abuse.",
-      "arg5": "France and overseas territories*: coverage being rolled out across the country.",
+      "h1": "Your small jobs overseen from A to Z, no more scams.",
+      "args": [
+        "Verified tradespeople: business registration, insurance and certifications checked before joining.",
+        "Overseen payment: your funds are held in escrow until the project is validated.",
+        "Complete digital tracking: photos, messages, quotes and proof centralised in the platform.",
+        "Full traceability: every stage of the project can be documented and tracked.",
+        "48h of protection after the work before funds are released automatically.",
+        "Arbitration available in case of dispute, based on the recorded evidence.",
+        "An independent construction expert available to support you if needed.",
+        "Protection against abandoned projects and lost deposits.",
+        "Overseen emergency call-outs 24/7: plumbing, locksmithing, electricity, drain unblocking.",
+        "A platform also designed to protect honest tradespeople against abuse and unpaid invoices.",
+        "No direct payment without tracking: everything goes through an overseen, transparent framework.",
+        "France, Corsica and overseas territories: a gradual rollout across the country.",
+        "A platform built to restore trust in the construction industry.",
+        "Our promise? No one will disappear with your money!"
+      ],
       "ctaPro": "I'm a professional",
-      "ctaIndividual": "I'm an individual",
-      "ctaForm": "Describe your project in 2 minutes"
+      "ctaIndividual": "I'm an individual"
     },
     "problem": {
-      "h2": "Why so many people get ripped off on their work",
-      "p1": "A tradesperson who disappears after the deposit. A quote that doubles with no clear explanation. Botched work that has to be redone. Deadlines missed with no recourse.",
-      "p2": "But not every setback is a scam. An honest tradesperson can uncover a real problem mid-project. A client can poorly describe their need at the start. And sometimes, it's simply one of life's accidents, physical or financial, that complicates everything.",
-      "p3": "The problem isn't that these situations exist. The problem is that today, there's no mechanism that truly protects the individual when things go wrong.",
-      "p4": "That's exactly why Artisan Compétent exists: anticipate risks, track every step, keep the money in escrow until everything is settled.",
-      "strong": "We know how things go wrong. And we put in place what's needed to prevent it."
+      "title": "Why do so many people run into problems with their work?",
+      "intro": "Repeated delays, quotes that spiral, botched work or an unreachable tradesperson: most bad experiences follow the same patterns. Understanding where things go wrong is already the first step to protecting yourself.",
+      "accordionTitle": "Understand how projects go wrong",
+      "body": "<ul><li>A tradesperson who disappears after a deposit.</li><li>A quote that doubles with no clear explanation.</li><li>Botched work that has to be redone.</li><li>Deadlines that aren't met.</li><li>Clients left alone to deal with complicated situations.</li></ul><p>But not every setback is necessarily a scam.</p><p>An honest tradesperson can also run into a serious problem:</p><ul><li>a financial difficulty,</li><li>or an unexpected issue on site that's more complex than planned.</li></ul><p>A client can also describe their need poorly at the start.</p><p>And sometimes it's simply poor communication between the parties that complicates the situation.</p><p>The real problem today isn't that abuse exists.</p><p>The real problem is that there is usually no system genuinely designed to protect the individual when things get complicated.</p><p>In a traditional setup, once the money has been paid directly to the company, getting the funds back can become extremely difficult.</p><p>With Artisan Compétent, the money is overseen via Stripe in an escrow account until the project is validated.</p><p>The funds are not sent directly to the tradesperson.</p><p>Nor do they pass through Artisan Compétent's bank account.</p><p>Even the platform's director cannot freely divert the funds.</p><p>The system is designed precisely to prevent that.</p><p>In concrete terms:</p><ul><li>either the work is finished and validated, and the funds are released;</li><li>or a problem arises, and the funds stay held while the situation is analysed.</li></ul><p>All project tracking is centralised: photos, messages, quotes, proof.</p><p>Every step is time-stamped and archived to allow clear and transparent tracking.</p>"
     },
-    "escrow": {
-      "h2": "Fund escrow: your guarantee against nasty surprises",
-      "p1": "On other platforms, you pay the tradesperson directly before even knowing whether the work will be done well. At Artisan Compétent, it doesn't work like that.",
-      "p2": "When you accept a quote, your payment is placed in an escrow account managed by a certified payment provider (Stripe). The money is held: the tradesperson has no access to it until you've validated the end of the project.",
-      "concretelyTitle": "In concrete terms",
-      "concretely1": "You accept the quote and make the payment via the platform. The funds are immediately placed in escrow.",
-      "concretely2": "The tradesperson carries out the work while you track progress in two ways: on your digital dashboard (photos, messages, proof, stage reports) and directly on site in person. At any time you can contradict information added by the tradesperson and take your own photos of whatever seems important to you so it is archived on the shared dashboard. Everything is tracked. Nothing can be deleted.",
-      "concretely3": "Once the project is finished, you sign a completion report. The funds are released and paid to the tradesperson. If a problem arises, the funds stay held and the platform analyses the situation based on the records in the digital tracking.",
-      "strong": "You only release the payment once the job is done.",
-      "klarna": "And if needed, payment in 3 instalments is available via Klarna."
+    "framework": {
+      "title": "Artisan Compétent: a framework designed to keep situations from escalating",
+      "intro": "Artisan Compétent doesn't just connect you with a tradesperson: the platform oversees every project, from the quote to final validation. Discover how this framework concretely protects your money and your work.",
+      "accordionTitle": "Discover the framework that oversees your project",
+      "body": "<p>Artisan Compétent is not a simple directory.</p><p>The platform was designed to:</p><!-- TODO_HIMAD: liste \"La plateforme a été pensée pour...\" potentiellement incomplète dans le doc WhatsApp source, vérifier qu'il ne manque pas 1 ou 2 éléments avant \"tracer\". --><ul><li>track every stage of the project,</li><li>and make it easier to resolve disputes when they arise.</li></ul><p>The challenge isn't only to find a tradesperson.</p><p>The goal is to create a framework that is more reassuring, more transparent and safer for everyone.</p><p>Because today, finding a tradesperson is no longer enough.</p><p>You also need to know who truly protects your money if things go wrong.</p>"
     },
-    "rule48": {
-      "h2": "48h to validate. 48h to react.",
-      "intro1": "Your work is finished. The tradesperson asks you to sign the project completion report. And here, a simple rule protects you: you have up to 48 hours to validate it.",
-      "intro2": "This 48h period applies to all projects, not just emergencies. During these 48h, the funds stay held in escrow.",
-      "actionsTitle": "You notice an abuse or a defect? The right steps, in order:",
-      "action1": "First talk to the tradesperson. The vast majority of situations are settled amicably. A serious tradesperson will agree to discuss the quote or come back to fix a finish. This step is essential; take the time to go through it before any other report.",
-      "action2": "If the tradesperson refuses to hear your remarks, report it from your dashboard. You describe the problem (clearly excessive quote, visible defect, etc.). The funds stay held during the analysis.",
-      "action3": "Amicable mediation overseen by the platform. If an abuse is confirmed after analysis, mediation is started to readjust the situation. If the tradesperson keeps refusing, the platform applies a suspension processing fee (up to €250) that is paid directly to the client from the escrowed amount. This procedure is governed by the Terms of Use and Terms of Sale.",
-      "signedTitle": "And if you've already signed the report?",
-      "signedBody": "Don't panic. The tradespeople on Artisan Compétent are all serious professionals and, like any good honest tradesperson, they step in to fix any defect linked to their work. And in any case, as soon as the report is signed, the legal warranties come into play, starting with the one-year defects warranty, then the two-year warranty and, depending on the type of work, the ten-year warranty.",
-      "strong": "Take 48h. It's your best protection."
+    "cmod": {
+      "title": "CMOD: a remote construction advisor for your project",
+      "lead": "Not a building professional yourself, and you'd like extra reassurance during your project?",
+      "accordionTitle": "Learn more about the CMOD",
+      "fullDescription": "<p>The CMOD (Digital Client Project Advisor) is an experienced construction professional who supports you remotely by video call throughout your project.</p><p>Their role isn't to replace the tradesperson or to visit the site, but to give you an independent professional perspective to help you better understand the various stages of the project, the technical discussions and the important decisions.</p><p>At Artisan Compétent, the professionals on the platform are already verified and the work is overseen through our digital tracking system, photo proof, traceability and fund protection.</p><p>The CMOD is therefore an optional add-on for clients who want even more reassuring support, particularly for longer or more technical projects.</p><p>In the event of a disagreement or dispute with a tradesperson, and when no amicable solution could be found at first, a CMOD call can also be offered to help the parties better understand the situation and encourage a constructive resolution.</p>",
+      "benefitsTitle": "What the CMOD brings in practice",
+      "benefitsList": [
+        "Remote support from an experienced construction professional.",
+        "An independent technical perspective during the project.",
+        "Less stress and more clarity about the work being carried out.",
+        "A better understanding of quotes, stages and technical discussions.",
+        "Extra monitoring for longer or more complex projects.",
+        "Help with communication between the client and the tradesperson if needed."
+      ],
+      "pricingTitle": "CMOD support packages",
+      "pricingList": [
+        "1-week project monitoring: €200"
+      ],
+      "cta": "Request a CMOD consultation"
+    },
+    "protection": {
+      "title": "The Artisan Compétent framework in detail",
+      "lead": "Understand exactly how our protection system works.",
+      "escrow": {
+        "title": "Fund escrow: your protection against nasty surprises",
+        "body": "<p>On many platforms, the client pays a deposit or the full amount directly to the tradesperson before the work is even finished.</p><p>At Artisan Compétent, it works in a completely different way.</p><p>When you accept a quote and make your payment via the platform, the funds are immediately secured in an escrow account managed by Stripe, a certified, internationally recognised payment provider.</p><p>In concrete terms, this means the money is neither in the tradesperson's account nor in Artisan Compétent's bank account.</p><p>Even Artisan Compétent's director cannot freely access, transfer or divert the funds.</p><p>The amounts stay held within Stripe's secure protocol until the project is validated or any dispute is resolved.</p><p>This system protects, at the same time:</p><ul><li>the client,</li><li>the tradesperson,</li><li>and the funds tied to the work.</li></ul><h4>How does it work in practice?</h4><p>You accept the quote and make the payment directly via the platform.</p><p>The funds are then placed in secure escrow.</p><p>Throughout the project, you can follow progress from your digital dashboard:</p><ul><li>photos,</li><li>messages,</li><li>documents related to the project.</li></ul><p>The professional can add tracking items, but you can also:</p><ul><li>add your own observations,</li><li>report a problem if necessary.</li></ul><p>Each item is time-stamped and archived to ensure complete traceability of the project.</p><p>Nothing can be deleted from the tracking once it has been recorded.</p>"
+      },
+      "validation": {
+        "title": "Work validation and release of funds",
+        "body": "<p>Once the project is finished, the professional sends you a digital completion report.</p><p>You then have up to 48 hours to:</p><ul><li>validate the report,</li><li>or request a correction if necessary.</li></ul><p>During this period, the funds stay secured and are not paid to the professional.</p><p>If no problem is reported within the set period, the funds are released automatically in line with the conditions set out in the Terms of Use, and the report is deemed validated without reservation.</p><p>In the event of a dispute, the funds stay held while Artisan Compétent analyses the records in the digital tracking, to support arbitration based on concrete evidence.</p>"
+      },
+      "klarna": {
+        "title": "Payment in instalments via Klarna",
+        "body": "<p>For some quotes, payment in instalments can be offered via Klarna.</p><p>This option is not imposed by Artisan Compétent and depends entirely on the professional's choice.</p><p>Using Klarna does indeed involve additional fees, which are borne by the tradesperson.</p><p>The professional therefore remains free:</p><ul><li>to offer payment in instalments,</li><li>or to decline this payment facility depending on their organisation and cash flow.</li></ul><p>Artisan Compétent simply makes this technical feature available to tradespeople who wish to enable it.</p><p>By default, Artisan Compétent observes that most eligible clients generally have a financing limit of up to €1,500 via Klarna.</p><p>However, some clients may qualify for a higher limit depending on their profile and the conditions set directly by Klarna.</p><p>It is therefore up to the client to check directly with Klarna the exact amount they qualify for as well as the financing terms available.</p><p>The funds are never released before final validation of the project handover report, or resolution of the case in the event of a dispute.</p>"
+      },
+      "malfacon": {
+        "title": "Notice a problem or a defect? Here's the right approach.",
+        "body": "<h4>1. Talk to the tradesperson</h4><p>The vast majority of situations are resolved simply through dialogue.</p><p>The tradespeople on Artisan Compétent are verified, serious professionals.</p><p>As on any project, a finish, an adjustment or a detail may sometimes need correcting after the work.</p><p>Before reporting anything, take the time to talk calmly with the professional in order to look for an amicable solution.</p><h4>2. Report the problem from your client area</h4><p>If, despite these discussions, no agreement is reached, you can report the problem directly from your dashboard.</p><p>From that point, the Artisan Compétent team can access all the digital tracking already present on the platform:</p><ul><li>photos,</li><li>messages in the internal chat,</li><li>items added by the client and the professional.</li></ul><p>The advantage of this approach is that it spares the parties from having to start over or resend everything.</p><p>As the project is already documented directly within the platform, the team can analyse the situation from the items already recorded and time-stamped.</p><p>Only in certain cases will additional information or items be requested, if this is needed to deepen the analysis.</p><p>Throughout this phase, the funds stay held in secure escrow.</p><h4>3. Analysis of the situation and overseen mediation</h4><p>In the event of a dispute, Artisan Compétent analyses the records in the digital tracking in order to encourage a balanced resolution based on concrete evidence.</p><p>It is important to point out that Artisan Compétent does not impose a price grid on the professionals on the platform.</p><p>Prices remain free.</p><p>Tradespeople set their own rates and quotes according to their experience, their structure, their geographic area and the nature of the work carried out.</p><p>The platform simply provides recommendations and best practices to encourage consistent and transparent practices.</p><p>Cases of clear abuse mainly concern certain particularly sensitive emergency call-outs, especially at night or in immediate repair situations.</p><p>In the rare cases where clearly excessive and entirely disproportionate overcharging is found compared with the practices usually observed for this type of call-out, Artisan Compétent may launch an enhanced mediation procedure in accordance with the Terms of Use and Terms of Sale.</p><p>Before any measure is taken, an attempt at an amicable resolution is always favoured with the professional concerned.</p><p>If no reasonable agreement is found despite the discussions and the analysis of the evidence, Artisan Compétent may:</p><ul><li>temporarily suspend the professional's account,</li><li>or even permanently remove their access to the platform in the event of a serious breach.</li></ul><p>In this context, a processing fee of up to <!-- TODO_HIMAD: montant exact des frais de dossier de suspension à préciser, actuellement \"un montant donné\" -->a set amount may be applied in accordance with the Terms of Use and Terms of Sale.</p><p>This fee is not kept by Artisan Compétent and is paid back to the client from the escrowed portion, in order to partly compensate for the harm suffered.</p><p>This type of situation nevertheless remains exceptional, as the vast majority of tradespeople on the platform are serious, good-faith professionals.</p>"
+      },
+      "signed": {
+        "title": "And what if you've already signed the report?",
+        "body": "<p>Don't panic.</p><p>The tradespeople on Artisan Compétent remain bound by their professional obligations and by the legal warranties that apply to the work carried out.</p><p>Like any serious professional, they will step in if a legitimate correction is needed after the project has been handed over.</p><p>Depending on the nature of the work, various legal warranties then continue to apply:</p><ul><li>the defects (snagging) warranty,</li><li>the two-year warranty when the work concerned requires it,</li><li>the ten-year warranty when the work concerned requires it.</li></ul><p>Take the time to check. Your safety also depends on those checks.</p>"
+      }
     },
     "reviews": {
       "h2": "They trusted Artisan Compétent",
@@ -60,38 +100,82 @@
       "h2": "Every trade you're looking for, one single reflex",
       "intro": "Whether you need a plumber, an electrician, a locksmith or a painter, Artisan Compétent covers most of the recurring trade needs French households ask for. Every tradesperson is verified, every job is overseen.",
       "outro": "Can't find exactly the trade you need? The platform is constantly evolving and more specialties are added as new tradespeople join Artisan Compétent.",
-      "cta": "Discover all our trades"
+      "cta": "Discover all our trades",
+      "accordionTitle": "Learn more about our trades"
     },
     "emergency": {
       "h2": "An emergency? We handle it, even at 3 a.m.",
-      "p1": "Water leak, heating breakdown, slammed door, power outage. Emergencies don't wait. Artisan Compétent gives you access to emergency tradespeople available 24/7.",
-      "p2": "And even in an emergency, fund escrow applies. You only release the payment once the job is done. And the 48h rule to react in case of abuse is even more valuable at night, when inflated quotes are most common.",
-      "trade1": "Emergency plumber (leak, water damage)",
-      "trade2": "Emergency heating engineer (boiler breakdown, no heating)",
-      "trade3": "Emergency locksmith (slammed door, broken lock)",
-      "trade4": "Emergency electrician (outage, short circuit)",
-      "trade5": "Emergency drain unblocker (blocked pipe, backflow)"
+      "accordionTitle": "Learn more about emergency call-outs",
+      "description": {
+        "p1": "Water leak, heating breakdown, slammed door, power cut...",
+        "p2": "Emergencies don't wait.",
+        "p3": "Artisan Compétent gives you access to emergency tradespeople available 24/7, within an overseen and secure framework designed to protect both clients and honest professionals.",
+        "p4": "Unlike common practice in emergency situations, here:",
+        "list1": [
+          "communication goes through the platform,",
+          "the project items can be tracked,",
+          "proof and comments are archived,",
+          "and above all: fund escrow still applies."
+        ],
+        "p5": "You only release the payment once the call-out is finished.",
+        "p6": "The funds stay secured until validation of the call-out completion report.",
+        "p7": "And the 48h rule to react becomes even more important in emergency situations, where clearly excessive abuse and night-time overcharging are unfortunately the most common.",
+        "p8": "Rates remain free and set by each professional, but Artisan Compétent puts in place tracking, transparency and arbitration tools to prevent the most abusive excesses.",
+        "p9": "It is important to point out that the procedures relating to clearly excessive pricing abuse mainly concern immediate emergency call-outs, particularly at night or in situations where the client has very little time to compare, think things over or negotiate calmly.",
+        "p10": "For standard quotes or projects with a normal period for reflection, prices remain entirely free and are a matter of negotiation between the client and the professional.",
+        "p11": "In these situations, Artisan Compétent does not intervene on the notion of a \"price that is too high\", as long as the client has had the time needed to study, compare and accept the quote with full knowledge of the facts.",
+        "p12": "Reports remain possible, of course, for other reasons:",
+        "list2": [
+          "defective work,",
+          "abandonment of the project,",
+          "failure to comply with the quote,",
+          "abusive behaviour,",
+          "or a tracking issue."
+        ],
+        "p13": "But the reinforced mechanisms relating to clearly excessive pricing abuse remain reserved mainly for immediate emergency situations, where the risk of abuse is objectively the highest."
+      },
+      "tradesTitle": "Emergency trades available",
+      "trades": {
+        "plumber": "Emergency plumber (leak, water damage)",
+        "heating": "Emergency heating engineer (boiler breakdown, no heating)",
+        "locksmith": "Emergency locksmith (slammed door, broken lock)",
+        "electrician": "Emergency electrician (power cut, short circuit)",
+        "drainUnblocker": "Emergency drain unblocker (blocked pipe, backflow)"
+      }
+    },
+    "midCta": {
+      "title": "Ready to start your project with complete peace of mind?",
+      "lead": "Find a verified tradesperson near you, or create your account to get started.",
+      "primaryBtn": "Find my verified tradesperson",
+      "secondaryBtn": "Create my account"
     },
     "cities": {
       "h2": "Our service cities",
       "intro": "Artisan Compétent operates in the main cities of France and, month after month, expands to smaller towns as local tradespeople join the platform. Here are the cities covered today.",
       "outro": "Your city isn't on the list? The platform expands every month. Tell your local tradespeople about it: the more of them join Artisan Compétent, the faster your area will be covered. And a good tradesperson with nothing to hide has no reason to refuse such a well-overseen system.",
-      "badge247": "Available 24/7"
+      "badge247": "Available 24/7",
+      "accordionTitle": "Learn more about our coverage",
+      "discoverAll": "Discover all our cities"
     },
     "pro": {
       "h2": "Are you a tradesperson? Join the platform for free.",
+      "accordionTitle": "Learn more about the platform",
       "p1": "If you have your mandatory insurance (professional liability, ten-year warranty, and the others depending on your activity) as well as up-to-date certifications (RGE, Qualibat, etc. if you offer that type of service), then you have your place here.",
       "p2": "Registration is free. You pay nothing until you've signed a quote with a client. And Artisan Compétent's commission applies only to labour. Nothing on materials.",
       "cta": "Register for free as a tradesperson"
     },
     "trustBar": {
       "item1": "Payment overseen by Stripe",
-      "item2": "Payment in 3 instalments via Klarna",
+      "item2": "Payment in 3 instalments via Klarna, subject to conditions",
       "item3": "Tamper-proof digital tracking",
       "item4": "Verified and certified tradespeople"
     },
+    "contact": {
+      "title": "A question, a project, a specific request?",
+      "lead": "Our team replies quickly. Fill in your details below and we'll get in touch with you."
+    },
     "finalCta": {
-      "p1": "Our promise? That your renovation work is no longer a source of stress.",
+      "p1": "Our promise: no one will disappear with your money.",
       "cta": "Sign up"
     },
     "where": {
@@ -111,7 +195,7 @@
       }
     },
     "local": {
-      "title": "The first platform that truly secures your worksites.",
+      "title": "The first platform that truly oversees your worksites.",
       "body1": "You only pay once the work is validated; funds are held in escrow and released only after acceptance.",
       "body2": "An independent construction expert supports you free of charge if needed.",
       "body3": "Track your worksite in real time with step-by-step photo proof.",
@@ -126,7 +210,7 @@
         "p1": "You discover Artisan-Compétent, its guarantees, how it works and the available trades, exclusively in construction."
       },
       "items2": {
-        "title": "Secure sign-up",
+        "title": "Overseen sign-up",
         "p1": "You create your account in minutes:",
         "li1": "individual or business,",
         "li2": "basic information,",
@@ -168,7 +252,7 @@
         "li3": "the work can start."
       },
       "items7": {
-        "title": "Secure and escrowed payment",
+        "title": "Overseen and escrowed payment",
         "p1": "You pay via Artisan-Compétent:",
         "li1": "Up to €5,000: 100% of the amount is held in escrow.",
         "li2": "Above €5,000: only labor is held (except manufacturer artisans).",
@@ -216,46 +300,69 @@
     "faq": {
       "title": "Frequently asked questions",
       "q1": {
-        "question": "What is fund escrow?",
-        "answer": "Fund escrow is a mechanism where your money is placed in a held account (managed by Stripe) as soon as you accept a quote. The tradesperson only receives payment once you've validated the end of the project. It's the best protection against scams on building work."
+        "question": "How much does it cost for an individual?",
+        "summary": "Matchmaking is free for individuals. You only pay the amount of the accepted quote, through secure escrowed payment on the platform. Artisan Compétent earns its income through a commission on the professional's pre-tax quote.",
+        "body": "<p>Matchmaking is free for individuals.</p><p>You only pay the amount of the accepted quote, through the secure escrowed payment system built into the platform.</p><p>Artisan Compétent earns its income through a commission taken from the professional's pre-tax quote.</p>"
       },
       "q2": {
-        "question": "How does Artisan Compétent verify tradespeople?",
-        "answer": "Every tradesperson is checked before joining the platform: business registration check, verification of mandatory insurance (professional liability, ten-year warranty, and any insurance specific to their activity), verification of up-to-date certifications (RGE, Qualibat, etc. depending on the services offered), and monitoring of real customer reviews. A tradesperson who doesn't follow the rules is removed from the platform."
+        "question": "What is the CMOD?",
+        "summary": "The CMOD (Digital Client Project Advisor) is a construction professional who supports the client remotely by video call during the project. They help with understanding technical situations and make dialogue between the parties easier. Monitoring packages are available depending on the length of the project, and a CMOD call can also be offered in the event of a dispute.",
+        "body": "<p>The CMOD (Digital Client Project Advisor) is an experienced construction professional who can support the client remotely during the project.</p><p>Their role is to:</p><ul><li>help with better understanding certain technical situations,</li><li>and make dialogue between the parties easier when needed.</li></ul><p>The support is provided remotely by video call, without any site visit.</p><p>Monitoring packages are available depending on the length of the project.</p><p>In the event of a dispute, and after an attempt at an amicable agreement, a CMOD call can also be offered to help find a solution.</p>"
       },
       "q3": {
-        "question": "How much does it cost for an individual?",
-        "answer": "Matchmaking is free. You only pay the amount of the accepted quote, via escrow. Artisan Compétent earns its income through a commission paid by the tradesperson, taken only from the labour portion. Never from materials. This commission is independent of the quote presented to you."
+        "question": "Can I pay in instalments?",
+        "summary": "Yes, payment in instalments via Klarna can be offered directly on the platform. This option depends on the professional accepting it and on your Klarna eligibility. The financing is free of charge for the client when Klarna approves it, under the conditions offered at the time of payment.",
+        "body": "<p>Yes, a payment-in-instalments option via Klarna can be offered directly on the platform.</p><p>This option is optional and depends on:</p><ul><li>the professional accepting it,</li><li>and your eligibility, which is determined directly by Klarna.</li></ul><p>The financing is free of charge for the client when it is approved by Klarna, under the conditions offered at the time of payment.</p><p>Each client should check directly with Klarna the amounts and financing terms they qualify for.</p>"
       },
       "q4": {
-        "question": "What is the CMOD?",
-        "answer": "The CMOD is a Digital Client Project Advisor. A construction professional who supports you remotely by video call to check that your work is progressing correctly. For quotes between €2,000 and €5,000, a 20-minute call is free. Above €5,000, it's 45 minutes. Full project support is available as a paid option, pricing on request."
+        "question": "Does Artisan Compétent operate everywhere in France?",
+        "summary": "Artisan Compétent is in a gradual rollout across mainland France, Corsica and the overseas territories. The platform already covers several cities and keeps expanding. If your area isn't served yet, you can encourage local tradespeople to join the platform, or become an affiliate to earn income on signed quotes.",
+        "body": "<p>The platform is in a gradual rollout phase.</p><p>Artisan Compétent already covers several French cities and keeps developing throughout mainland France, Corsica and the overseas territories.</p><p>The long-term goal is to offer a national network able to cover both large cities and more rural areas.</p><p>If your area isn't covered yet, it simply means the platform is still being developed in your zone.</p><p>You can also encourage serious tradespeople in your region to join the platform: the more there are, the faster and more effective the local coverage will be.</p><p>And if you'd like to take part in the development of Artisan Compétent, you can also join our affiliate programme.</p><p>Affiliates can recommend the platform to both clients and tradespeople and earn income on quotes signed through their recommendations.</p><p>Depending on the case and the campaigns running, this income can be paid for several months and up to a year for some profiles brought to the platform.</p><p>This makes it possible to:</p><ul><li>grow a community of trust in the construction industry,</li><li>and let affiliates generate extra income by recommending a useful and secure solution.</li></ul>"
       },
       "q5": {
-        "question": "Can I pay in several instalments?",
-        "answer": "Yes. Payment in 3 instalments is available via Klarna directly on the platform."
+        "question": "What should I do if I disagree with the quote or the work delivered?",
+        "summary": "First, favour talking it through with the tradesperson: most situations are settled amicably. For abusive quotes in emergencies or at night, you can report it from your dashboard within 48h. During the analysis, the funds stay in escrow and amicable mediation is favoured before any measure is taken.",
+        "body": "<p>The first thing to do is talk it through directly with the tradesperson.</p><p>The vast majority of situations are settled amicably. A serious tradesperson will agree to discuss it, explain a technical point, or come back to fix a finish if needed.</p><p>It is strongly advised to take the time for that discussion before reporting anything.</p><p>Regarding quotes considered abusive, Artisan Compétent only steps in in certain very specific cases of immediate or night-time emergencies, when the client doesn't really have time to compare prices or step back before accepting.</p><p>If clearly excessive abuse is found on this type of call-out, a report can be made from the client dashboard within 48 hours after the end of the work.</p><p>During this period:</p><ul><li>the funds stay held in escrow,</li><li>the case can be analysed,</li><li>and amicable mediation is favoured.</li></ul><p>If clear abuse is confirmed and the professional persistently refuses to find an amicable solution, Artisan Compétent may apply the measures set out in its Terms of Use and Terms of Sale, which can go as far as:</p><ul><li>suspending or removing the professional's account,</li><li>applying a suspension processing fee of up to a set amount.</li></ul><p>This fee can be taken directly from the escrowed amount when the abuse is clearly established, and is paid back to the client concerned in line with the way the platform works.</p><p>This mechanism remains exceptional and mainly concerns the rare situations of very significant abuse on emergency call-outs.</p><p>For standard projects and non-urgent quotes, prices remain free.</p><p>The client generally has the time needed to compare several quotes, ask their questions and accept or decline the proposal before signing.</p>"
       },
       "q6": {
-        "question": "Does Artisan Compétent operate everywhere in France?",
-        "answer": "The platform is in a gradual rollout phase. Artisan Compétent already covers the main French cities and expands month after month, with the long-term goal of covering mainland France and the overseas territories down to the smallest villages. If your town isn't covered yet, you can encourage your local tradespeople to join the platform: the more there are, the faster your area will be available. A serious tradesperson has no reason to refuse an overseen system like ours."
+        "question": "What happens if I don't validate the completion report within 48h?",
+        "summary": "After the project completion report is sent, you have 48 hours to validate it, contest it or report a problem. A reminder email is sent 8 hours before the deadline. If you take no action within the 48h, the report is validated automatically and the funds are released to the professional.",
+        "body": "<p>Once the project completion report is sent by the professional, the funds stay held in escrow for a period of up to 48 hours.</p><p>This period allows the client:</p><ul><li>to check the work carried out,</li><li>or to request a correction if necessary.</li></ul><p>Eight hours before the deadline, an automatic reminder email is sent to the client to remind them that they must either validate the report or report any problem before the deadline expires.</p><p>If no reservation, challenge or report is made within the 48 hours, the report is automatically deemed validated in accordance with the platform's Terms of Use and Terms of Sale.</p><p>The escrowed funds are then released automatically to the professional.</p><p>Once the report is validated, the construction industry's legal warranties of course remain applicable depending on the nature of the work carried out:</p><ul><li>the defects (snagging) warranty,</li><li>the two-year warranty,</li><li>or the ten-year warranty when it is required.</li></ul>"
       },
       "q7": {
-        "question": "What should I do if I disagree with the quote or the work delivered?",
-        "answer1": "The first thing to do is talk to the tradesperson. The vast majority of situations are settled amicably: a serious tradesperson will agree to revisit the quote or come back to fix a finish. Take the time for that discussion before any other report.",
-        "answer2": "If the tradesperson refuses to listen to your remarks, you can then report it from your dashboard, within 48h after the end of the work. During this window, the funds stay held in escrow and the platform analyses the situation. If an abuse is confirmed, amicable mediation is started, and if the tradesperson keeps refusing, a processing fee (up to €250) is charged to them for the client's benefit."
+        "question": "What happens if the work is done badly?",
+        "summary": "First, talk to the tradesperson: most defects are settled quickly through dialogue. If the problem persists, don't validate the report and report it from your dashboard within 48h; the funds stay in escrow. A discussion with a CMOD can be arranged, and the legal warranties (defects, two-year, ten-year) then apply depending on the work.",
+        "body": "<p>The first step is always to discuss it directly with the tradesperson.</p><p>Most defects or finishing problems are settled quickly when they're reported properly.</p><p>If the problem persists:</p><ul><li>do not validate the project completion report,</li><li>report the situation from your dashboard within 48h,</li><li>and explain precisely the problem encountered.</li></ul><p>During this period, the funds stay held in escrow.</p><p>The Artisan Compétent team can then analyse the situation from the digital tracking already present on the platform:</p><ul><li>photos,</li><li>messages,</li><li>and items submitted during the work.</li></ul><p>If necessary, a discussion with a CMOD (Digital Client Project Advisor) can also be arranged to help better understand the situation and encourage an amicable resolution.</p><p>If the report has already been signed, the serious tradespeople on the platform are still required to step in to correct any defect that falls under their responsibility.</p><p>And in any case, the legal warranties then continue to apply depending on the work carried out:</p><ul><li>the defects (snagging) warranty,</li><li>the two-year warranty,</li><li>or the ten-year warranty.</li></ul>"
       },
       "q8": {
-        "question": "What happens if I don't validate the completion report within 48h?",
-        "answer": "As long as you haven't validated the report, the funds stay held in escrow. That's the window to report any problem (after talking to the tradesperson, see the previous question). Once the report is signed, the funds are released to the tradesperson and only the legal warranties remain available (defects warranty, two-year and ten-year warranties depending on the work)."
+        "question": "How can I avoid scams when looking for a tradesperson?",
+        "summary": "The best way to avoid scams is to never send money directly to a tradesperson without oversight or tracking. On Artisan Compétent, professionals are verified, communication is centralised, the work is tracked step by step and the funds stay in escrow via Stripe until validation. The system protects you even if the professional runs into financial difficulty or closes their business.",
+        "body": "<p>The best way to avoid scams is to never send money directly to a tradesperson without oversight or tracking.</p><p>With Artisan Compétent:</p><ul><li>professionals are verified before joining,</li><li>communication is centralised,</li><li>the work is tracked step by step,</li><li>and the funds stay secured in escrow until the project is validated.</li></ul><p>The system was designed to limit:</p><ul><li>abandoned projects,</li><li>overcharged call-outs,</li><li>and situations where a tradesperson disappears after payment.</li></ul><p>Even in the event of a life accident, financial difficulty or closure of the professional's business, the funds escrowed via Stripe stay protected within the secure payment protocol as long as they have not been released.</p>"
       },
       "q9": {
-        "question": "What happens if the work is done badly?",
-        "answer1": "First step: discuss it with the tradesperson. Many defects are fixed as soon as they're raised. If the tradesperson refuses to step in, don't sign the report within the 48h and report the situation from your dashboard. The funds stay held and the platform analyses the situation based on the digital tracking (photos, messages, CMOD reports if activated).",
-        "answer2": "If the report is already signed, the serious tradespeople on the platform step in spontaneously to fix a defect. And in any case, the legal warranties take over (defects, two-year and ten-year warranties)."
+        "question": "How much does a plumber, an electrician or a locksmith cost on Artisan Compétent?",
+        "summary": "Prices depend on the trade, the type of call-out, the materials, the geographic area and the time of the service. Each tradesperson sets their own rates freely and presents their quote directly via the platform. To compare several proposals and learn the usual price ranges for your need, see the dedicated page for each trade.",
+        "body": "<p>On Artisan Compétent, prices are not set by the platform. Each tradesperson sets their own rates freely and presents their quote directly via their professional area.</p><p>Several factors influence the price of a call-out:</p><ul><li>the trade involved (plumber, electrician, locksmith, heating engineer, drain unblocker, etc.),</li><li>the nature of the work (repair, installation, renovation),</li><li>the materials needed,</li><li>the geographic area of the call-out,</li><li>whether or not the request is urgent,</li><li>and the time of the call-out (day, night, weekend, public holidays).</li></ul><p>To get an idea of the orders of magnitude and the usual price ranges for your need, see the dedicated page for each trade on the platform.</p><p>Our advice: always ask for several quotes before signing, compare the detailed services and don't hesitate to ask the tradesperson for clarification via Artisan Compétent's secure internal chat.</p>"
       },
       "q10": {
-        "question": "How can I avoid scams when looking for a tradesperson?",
-        "answer": "The best way to avoid scams is to never pay a tradesperson directly before the work is finished. On Artisan Compétent, your money is overseen by fund escrow: the tradesperson is only paid when you validate the project. It's the best protection against excessive quotes, botched work and tradespeople who disappear."
+        "question": "What is the difference between Artisan Compétent and a standard matchmaking platform?",
+        "summary": "Unlike standard platforms that only do matchmaking, Artisan Compétent oversees the whole service: tradespeople verified before joining, payment escrowed via Stripe until the project is validated, time-stamped digital tracking, mediation available in the event of a dispute. The money never passes directly to the tradesperson or to Artisan Compétent.",
+        "body": "<p>Most construction platforms only connect a client with a tradesperson. Once the connection is made, the client is left alone with the professional to handle payment, project tracking and any disputes.</p><p>Artisan Compétent works differently:</p><ul><li>tradespeople are verified before joining (business registration, insurance, certifications),</li><li>communication goes through the secure internal chat,</li><li>payment is escrowed via Stripe until the project is validated,</li><li>every step is time-stamped and archived in the digital tracking,</li><li>mediation is available in the event of a dispute, based on the recorded evidence.</li></ul><p>The money never passes directly to the tradesperson, nor even into Artisan Compétent's bank account. The funds stay within Stripe's secure protocol until they are released to the professional or returned to the client depending on the situation.</p><p>This complete framework aims to protect both honest clients and serious tradespeople, and to restore trust in the construction sector.</p>"
+      },
+      "q11": {
+        "question": "How can I find a good plumber, electrician or locksmith near me?",
+        "summary": "On Artisan Compétent, enter your address, select the trade you're looking for and set a call-out radius. The platform shows the verified tradespeople available in your area, with their certifications, insurance and reviews. You choose who to contact, compare quotes, and payment stays overseen until the work is validated.",
+        "body": "<p>Finding a good tradesperson is, above all, finding a professional who is verified, serious and suited to your specific need.</p><p>On Artisan Compétent, the search takes just a few steps:</p><ul><li>enter your address from the homepage or your dashboard,</li><li>select the trade you're looking for (plumber, electrician, locksmith, heating engineer, etc.),</li><li>set the search radius around your area,</li><li>review the list of professionals matching your criteria.</li></ul><p>For each tradesperson shown, you can access:</p><ul><li>the checks carried out (business registration, insurance, certifications),</li><li>the reviews left by previous clients who completed a project via the platform,</li><li>and the option to start a conversation via the secure internal chat.</li></ul><p>You choose for yourself which professionals to contact, you compare the quotes received, and you sign with full knowledge of the facts. Payment stays overseen until validation of the project completion report.</p>"
+      },
+      "q12": {
+        "question": "How does Klarna instalment payment work on Artisan Compétent?",
+        "summary": "Klarna lets you pay in instalments on Artisan Compétent. The option is only offered if the professional accepts it (the Klarna fees are borne by them) and if you are eligible under Klarna's conditions. The observed limit is generally €1,500, sometimes higher depending on your profile. The eligibility check is carried out at the time of payment.",
+        "body": "<p>Artisan Compétent makes the Klarna payment solution available so that clients can spread the payment of a quote over several instalments.</p><p>This option works under three conditions:</p><ul><li>the professional's acceptance, since the Klarna fees are borne entirely by the tradesperson who enables this option,</li><li>your financing eligibility, determined solely by Klarna based on your profile,</li><li>the conditions offered by Klarna at the time of payment.</li></ul><p>By default, Artisan Compétent observes that most eligible clients generally have a financing limit of up to €1,500 via Klarna. Some clients may qualify for a higher limit depending on their profile and the conditions set directly by Klarna.</p><p>It is up to each client to check with Klarna:</p><ul><li>the exact amount they qualify for,</li><li>the financing terms available,</li><li>and any fees or interest applicable depending on their situation.</li></ul><p>The financing is free of charge for the client when Klarna approves the application under the conditions offered at the time of payment. The funds paid via Klarna stay overseen within Stripe escrow until final validation of the project, just like any other payment method.</p>"
+      },
+      "q13": {
+        "question": "What should I do in an emergency: water leak, heating breakdown, slammed door?",
+        "summary": "Artisan Compétent gives you access to emergency tradespeople 24/7 for plumbing, heating, locksmithing, electricity and drain unblocking. Even in an emergency, fund escrow applies: you only release the payment once the call-out is finished, and the 48-hour rule to react still applies. See the page for each emergency trade for the details.",
+        "body": "<p>Emergencies don't wait. Water leak, heating breakdown, slammed door, power cut, blocked pipe: Artisan Compétent gives you access to emergency tradespeople available 24 hours a day, 7 days a week.</p><p>The 5 emergency trades covered:</p><ul><li>Emergency plumber (leak, water damage),</li><li>Emergency heating engineer (boiler breakdown, no heating),</li><li>Emergency locksmith (slammed door, broken lock),</li><li>Emergency electrician (power cut, short circuit),</li><li>Emergency drain unblocker (blocked pipe, backflow).</li></ul><p>Even in an emergency, the platform's framework applies:</p><ul><li>communication goes through the platform,</li><li>Stripe fund escrow still applies,</li><li>you only release the payment once the call-out is finished,</li><li>you have 48 hours to react, raise a reservation or contest the report.</li></ul><p>It is precisely in emergency situations that night-time overcharging and clearly excessive pricing abuse are most common. Artisan Compétent's arbitration system is calibrated to handle these situations as a priority.</p><p>For each emergency trade, a dedicated page details the call-outs covered, the response times and the precautions to know before accepting a quote. See the page for the relevant trade for more details.</p>"
       }
     }
   },
@@ -265,6 +372,78 @@
     "jobs": "Trades",
     "affiliation": "Membership",
     "loading": "Loading..."
+  },
+  "contactForm": {
+    "intro": "Leave us your details: we'll be the ones to reach out to answer your request. You'll also receive our practical information via WhatsApp, our main communication channel. You stay in control of the exchanges; we never contact our clients in an intrusive way.",
+    "fields": {
+      "name": {
+        "label": "Full name",
+        "placeholder": "Your first and last name",
+        "error": {
+          "required": "Name is required",
+          "minLength": "Name must be at least 2 characters long"
+        }
+      },
+      "email": {
+        "label": "Email address",
+        "placeholder": "you@example.com",
+        "error": {
+          "required": "Email is required",
+          "invalid": "The email address is not valid"
+        }
+      },
+      "phone": {
+        "label": "Phone (recommended)",
+        "placeholder": "06 12 34 56 78",
+        "helper": "Optional; we use it to reach you via WhatsApp if needed.",
+        "error": {
+          "invalid": "The phone number is not valid"
+        }
+      },
+      "subject": {
+        "label": "Subject of your request",
+        "placeholder": "Choose a subject",
+        "error": {
+          "required": "Please select a subject"
+        },
+        "options": {
+          "general": "General question",
+          "service": "Information about a service (CMOD, escrow, Klarna payment)",
+          "affiliate": "Become an affiliate",
+          "currentRequest": "Question about my ongoing request",
+          "technical": "Technical issue",
+          "press": "Press / partnership",
+          "other": "Other"
+        }
+      },
+      "message": {
+        "label": "Your message",
+        "placeholder": "Describe your request in a few lines.",
+        "counter": "{{current}} / 1000 characters",
+        "error": {
+          "required": "Message is required",
+          "minLength": "Message must be at least 10 characters long"
+        }
+      },
+      "consent": {
+        "label": "I agree to be contacted by Artisan Compétent by phone, email or WhatsApp regarding my request.",
+        "error": {
+          "required": "You must agree in order to send your request"
+        }
+      }
+    },
+    "submit": {
+      "idle": "Send my request",
+      "sending": "Sending..."
+    },
+    "success": {
+      "title": "Thank you, your request has been sent.",
+      "body": "We'll get in touch with you as soon as possible. You'll also receive our practical information by WhatsApp."
+    },
+    "error": {
+      "title": "An error occurred.",
+      "body": "Please try again in a few moments. If the problem persists, contact us directly via our social media."
+    }
   },
   "auth": {
     "register": "Sign up",
@@ -521,6 +700,8 @@
       "addressPersonalInvalid": "Unable to validate your personal address, please check your entry.",
       "addressInvalid": "Unable to validate the work address, please check your entry.",
       "registerGeneric": "An error occurred during registration, please try again.",
+      "apiError": "An error occurred during registration. Please try again later.",
+      "addressError": "Unable to validate your address. Please check your entry.",
       "captchaRequired": "Please tick this box",
       "termsRequired": "Please accept the Terms",
       "descriptionMax": "Maximum 500 characters",
