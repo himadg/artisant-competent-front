@@ -508,6 +508,54 @@
   "legalPlaceholder": {
     "body": "Page being written. The official content will be added shortly."
   },
+  "cookies": {
+    "title": "Cookie policy | Artisan Compétent",
+    "meta": {
+      "description": "Artisan Compétent cookie policy: information about the trackers we set, their purposes and how to manage your preferences."
+    },
+    "h1": "Cookie Policy",
+    "intro": "We and our partners use trackers, including cookies, to operate the website or mobile app, personalise your browsing experience, measure audience and offer you tailored content and advertising. The purpose of this policy is to inform you about how we and our partners use the cookies or trackers we set, and how you can express your preferences.",
+    "sections": {
+      "what": {
+        "h2": "What is a cookie or tracker?",
+        "body": "The notion of tracker covers any tool that reads from or writes to the user's device. A cookie is a small text file sent to your web browser (Chrome, Safari, Firefox, etc.) and stored by it when you visit a website or use a mobile app, regardless of the type of device used (computer, smartphone, tablet, etc.). This file keeps a record of your browsing activity and allows us to offer you, among other things, personalised content and advertising. A cookie has a limited period of validity. It is set and stored on your device in accordance with applicable law and subject to the choices you have made, which you can change at any time."
+      },
+      "used": {
+        "h2": "Which cookies or trackers are used during your browsing?",
+        "body": "Cookies or trackers serve different purposes."
+      },
+      "essential": {
+        "h3": "Cookies or trackers essential to the operation of the site",
+        "body": "These cookies are essential to the core functionality of the service and cannot be disabled."
+      },
+      "audience": {
+        "h3": "Audience measurement cookies or trackers",
+        "body": "These cookies are used to produce statistics to measure and analyse the audience of our website and applications (visits, number of pages viewed, average time per visit, etc.) and help us improve the quality of our services. They can only be used with your consent. Refusing these cookies has no impact on the use of the site. You can change your preferences at any time via your browser."
+      },
+      "personalization": {
+        "h3": "Cookies or trackers for personalising content and marketing communications",
+        "body": "These cookies allow you to receive communications or offers tailored to your profile, your browsing and your use of the service. They can only be used with your consent. Refusal has no impact on the use of the site. You can change your preferences at any time via your browser."
+      },
+      "ux": {
+        "h3": "Cookies or trackers for optimising the user experience",
+        "body": "These cookies let you benefit from a better experience on our site. They can only be used with your consent. Refusal has no impact on the use of the site. You can change your preferences at any time via your browser."
+      },
+      "advertising": {
+        "h3": "Advertising cookies or trackers",
+        "body": "Advertising cookies are used to deliver advertising tailored to your profile, your interests and your use of the service. They can only be used with your consent. Refusal has no impact on the use of the site but does not stop advertising: it will simply mean that the ads shown will not take your interests into account. You can change your preferences at any time via your browser."
+      },
+      "affiliation": {
+        "h3": "Affiliation cookies or trackers",
+        "body": "These cookies track user activity when users reach the platform through affiliated sites or partners. When a user clicks on an affiliation link, a unique identifier is recorded in a cookie, allowing us to identify the source of the visit and to associate actions taken on the platform (sign-up, request for matching, order, etc.) with the relevant affiliated partner. They can only be used with your consent. Refusal has no impact on the use of the site. You can change your preferences at any time via your browser."
+      }
+    },
+    "table": {
+      "partner": "Partner",
+      "cookie": "Cookie",
+      "duration": "Validity period",
+      "placeholder": "To be completed"
+    }
+  },
   "toggle": {
     "theme": "Toggle theme",
     "lang": "Toggle language"
