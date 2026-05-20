@@ -61,6 +61,13 @@ export class Accordion {
   /** Variante de style selon le contexte d'utilisation. */
   readonly variant = input<'section' | 'faq'>('section');
 
+  /**
+   * Élément HTML rendu pour le titre de l'accordéon.
+   * Défaut `span` (rétrocompatible). Passer `h3` ou `h4` quand l'accordéon
+   * agit comme sous-section sémantique sous un `h2` parent (SEO/a11y).
+   */
+  readonly titleTag = input<'span' | 'h3' | 'h4'>('span');
+
   /** Émis à chaque changement d'état (`true` = ouvert) — prévu pour le tracking analytics. */
   @Output() readonly toggled = new EventEmitter<boolean>();
 

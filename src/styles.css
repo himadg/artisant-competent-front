@@ -260,10 +260,23 @@ select option {
   margin: 0 0 0.75rem;
 }
 
+.protection-body h3 {
+  margin: 1.75rem 0 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
 .protection-body h4 {
   margin: 1.5rem 0 0.5rem;
   font-size: 1rem;
   font-weight: 600;
+}
+
+.protection-body hr {
+  margin: 1.5rem 0;
+  border: 0;
+  border-top: 1px solid currentColor;
+  opacity: 0.15;
 }
 
 .protection-body ul {

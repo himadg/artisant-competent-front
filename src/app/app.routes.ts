@@ -26,6 +26,38 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/jobs/jobs').then((p) => p.JobsPage),
   },
   {
+    path: 'cmod/formule',
+    title: 'cmodFormule.title',
+    loadComponent: () => import('./pages/cmod-formule/cmod-formule').then((p) => p.CmodFormulePage),
+  },
+  // Pages légales : 5 routes pointent toutes vers le même composant placeholder.
+  // TODO_HIMAD: contenu définitif à fournir pour chaque page.
+  {
+    path: 'cgu',
+    title: 'footer.legal.cgu',
+    loadComponent: () => import('./pages/legal-placeholder/legal-placeholder').then((p) => p.LegalPlaceholderPage),
+  },
+  {
+    path: 'cgv',
+    title: 'footer.legal.cgv',
+    loadComponent: () => import('./pages/legal-placeholder/legal-placeholder').then((p) => p.LegalPlaceholderPage),
+  },
+  {
+    path: 'politique-confidentialite',
+    title: 'footer.legal.privacy',
+    loadComponent: () => import('./pages/legal-placeholder/legal-placeholder').then((p) => p.LegalPlaceholderPage),
+  },
+  {
+    path: 'mentions-legales',
+    title: 'footer.legal.notice',
+    loadComponent: () => import('./pages/legal-placeholder/legal-placeholder').then((p) => p.LegalPlaceholderPage),
+  },
+  {
+    path: 'politique-cookies',
+    title: 'footer.legal.cookies',
+    loadComponent: () => import('./pages/legal-placeholder/legal-placeholder').then((p) => p.LegalPlaceholderPage),
+  },
+  {
     path: 'jobs/electrician',
     title: 'jobs.list.electrician.name',
     loadComponent: () => import('./pages/job/electrician/electrician').then((c) => c.ElectricianPage),

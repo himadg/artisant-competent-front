@@ -36,6 +36,12 @@
 
 .accordion__title {
   flex: 1 1 auto;
+  /* Reset des styles natifs des h3/h4 quand titleTag != 'span'
+     pour garder le rendu visuel identique au span (le trigger porte font + weight). */
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
 }
 
 .accordion__chevron {
