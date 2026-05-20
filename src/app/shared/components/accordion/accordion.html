@@ -11,7 +11,17 @@
         [attr.aria-controls]="panelId"
         (click)="toggle()"
     >
-        <span class="accordion__title">{{ title() }}</span>
+        @switch (titleTag()) {
+            @case ('h3') {
+                <h3 class="accordion__title">{{ title() }}</h3>
+            }
+            @case ('h4') {
+                <h4 class="accordion__title">{{ title() }}</h4>
+            }
+            @default {
+                <span class="accordion__title">{{ title() }}</span>
+            }
+        }
         <svg
             class="accordion__chevron"
             viewBox="0 0 24 24"

@@ -35,8 +35,13 @@
   100% { opacity: 0; }
 }
 
-.local {
-  margin: 6rem auto !important;
+/* Carte du formulaire de recherche du hero.
+   Sur desktop, on ajoute un drop-shadow accentué pour renforcer l'effet
+   "carte qui flotte" entre la zone des photos et la section juste en dessous. */
+.hero-search-card {
+  @media (min-width: 768px) {
+    filter: drop-shadow(0 18px 28px rgb(0 0 0 / 0.22));
+  }
 }
 
 /* CTA intermédiaire : fond légèrement teinté pour le distinguer du reste de la page. */
@@ -62,31 +67,3 @@
   border-radius: 9999px;
 }
 
-/* Étapes accordéon: cacher l'icône flèche par défaut sur summary */
-.steps-accordion summary {
-  list-style: none;
-}
-
-.steps-accordion summary::-webkit-details-marker {
-  display: none;
-}
-
-.steps-accordion summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-}
-
-.steps-accordion summary::after {
-  content: "+";
-  font-weight: 700;
-  color: var(--primary-brown);
-  display: inline-block;
-  width: 1rem;
-  text-align: center;
-}
-
-.steps-accordion details[open] > summary::after {
-  content: "−";
-}
