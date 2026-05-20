@@ -1,10 +1,21 @@
-import { Component } from '@angular/core';
-import { TranslocoModule } from '@jsverse/transloco';
+import { Component, inject } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
+import { JobPageContentComponent } from '../_shared/job-page-content/job-page-content';
+import { plumberSanitaryContent } from './plumber-sanitary.content';
 
 @Component({
   standalone: true,
-  imports: [TranslocoModule],
+  imports: [JobPageContentComponent],
   templateUrl: './plumber-sanitary.html',
   styleUrl: './plumber-sanitary.scss',
 })
-export class PlumberSanitaryPage {}
+export class PlumberSanitaryPage {
+  readonly content = plumberSanitaryContent;
+
+  constructor() {
+    const title = inject(Title);
+    const meta = inject(Meta);
+    title.setTitle(this.content.metaTitle);
+    meta.updateTag({ name: 'description', content: this.content.metaDescription });
+  }
+}
