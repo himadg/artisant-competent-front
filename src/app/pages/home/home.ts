@@ -9,7 +9,6 @@ import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { SearchPro } from '../../shared/components/search-pro/search-pro';
 import { Accordion } from '../../shared/components/accordion';
 import { SeoService } from '../../core/services/seo.service';
-import { ContactFormService } from '../../core/services/contact-form.service';
 
 @Component({
   standalone: true,
@@ -34,7 +33,6 @@ export class HomePage implements OnInit {
   private readonly document = inject(DOCUMENT);
   private readonly platformId = inject(PLATFORM_ID);
   private readonly seo = inject(SeoService);
-  private readonly contactForm = inject(ContactFormService);
 
   ngOnInit(): void {
     const url = 'https://artisan-competent.com/';
@@ -69,17 +67,6 @@ export class HomePage implements OnInit {
   scrollToSearch(): void {
     this.document
       .getElementById('hero-search-form')
-      ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-
-  /**
-   * Déplie le formulaire de contact du footer et y fait défiler la page.
-   * Déclenché par le bouton « Demander une consultation CMOD ».
-   */
-  scrollToContactForm(): void {
-    this.contactForm.requestOpen();
-    this.document
-      .getElementById('footer-contact-form')
       ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 

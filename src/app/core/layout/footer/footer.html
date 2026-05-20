@@ -95,9 +95,9 @@
             <h2 class="text-base font-semibold tracking-wide uppercase">{{ 'footer.social.title' | transloco }}</h2>
             <ul class="space-y-3 text-sm">
                 <li>
-                    <!-- TODO_HIMAD: URL YouTube réelle -->
+                    <!-- TODO_HIMAD: remplacer #youtube-himad par l'URL YouTube réelle de la chaîne Artisan Compétent. -->
                     <a
-                        href="https://www.youtube.com/@artisancompetent"
+                        href="#youtube-himad"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="flex gap-3 items-center no-underline hover:underline"
@@ -107,9 +107,9 @@
                     </a>
                 </li>
                 <li>
-                    <!-- TODO_HIMAD: URL LinkedIn réelle -->
+                    <!-- TODO_HIMAD: remplacer #linkedin-himad par l'URL LinkedIn réelle de la page entreprise. -->
                     <a
-                        href="https://www.linkedin.com/company/artisan-competent"
+                        href="#linkedin-himad"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="flex gap-3 items-center no-underline hover:underline"
@@ -133,9 +133,13 @@
             </a>
             <a routerLink="/cgu" class="no-underline hover:underline">{{ 'footer.legal.cgu' | transloco }}</a>
             <a routerLink="/cgv" class="no-underline hover:underline">{{ 'footer.legal.cgv' | transloco }}</a>
+            <a routerLink="/politique-cookies" class="no-underline hover:underline">
+                {{ 'footer.legal.cookies' | transloco }}
+            </a>
         </nav>
 
-        <!-- Formulaire de contact : accordéon fermé par défaut, déplié à la demande (ex. CTA « consultation CMOD »). -->
+        <!-- Formulaire de contact universel, multi-motifs, indépendant du CMOD.
+             Accordéon fermé par défaut, peut être ouvert à la demande via ContactFormService.requestOpen(). -->
         <div id="footer-contact-form" class="mx-auto max-w-md">
             <accordion
                 [title]="'footer.legal.contactForm' | transloco"
