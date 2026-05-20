@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { LangService } from '../../../core/services/lang.service';
 import { JobPageContentComponent } from '../_shared/job-page-content/job-page-content';
 import { plumberSanitaryContent } from './plumber-sanitary.content';
 
@@ -10,12 +11,16 @@ import { plumberSanitaryContent } from './plumber-sanitary.content';
   styleUrl: './plumber-sanitary.scss',
 })
 export class PlumberSanitaryPage {
-  readonly content = plumberSanitaryContent;
+  private readonly lang = inject(LangService).lang;
+  readonly content = computed(() => plumberSanitaryContent[this.lang()]);
 
   constructor() {
     const title = inject(Title);
     const meta = inject(Meta);
-    title.setTitle(this.content.metaTitle);
-    meta.updateTag({ name: 'description', content: this.content.metaDescription });
+    effect(() => {
+      const c = this.content();
+      title.setTitle(c.metaTitle);
+      meta.updateTag({ name: 'description', content: c.metaDescription });
+    });
   }
 }
