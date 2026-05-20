@@ -1,10 +1,21 @@
-import { Component } from '@angular/core';
-import { TranslocoModule } from '@jsverse/transloco';
+import { Component, inject } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
+import { JobPageContentComponent } from '../_shared/job-page-content/job-page-content';
+import { hvacInstallerContent } from './hvac-installer.content';
 
 @Component({
   standalone: true,
-  imports: [TranslocoModule],
+  imports: [JobPageContentComponent],
   templateUrl: './hvac-installer.html',
   styleUrl: './hvac-installer.scss',
 })
-export class HvacInstallerPage {}
+export class HvacInstallerPage {
+  readonly content = hvacInstallerContent;
+
+  constructor() {
+    const title = inject(Title);
+    const meta = inject(Meta);
+    title.setTitle(this.content.metaTitle);
+    meta.updateTag({ name: 'description', content: this.content.metaDescription });
+  }
+}
