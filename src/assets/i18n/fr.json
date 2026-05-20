@@ -549,6 +549,54 @@
   "legalPlaceholder": {
     "body": "Page en cours de rédaction. Le contenu officiel sera ajouté prochainement."
   },
+  "cookies": {
+    "title": "Politique cookies | Artisan Compétent",
+    "meta": {
+      "description": "Politique cookies d'Artisan Compétent : informations sur les traceurs déposés, leurs finalités et la gestion de vos préférences."
+    },
+    "h1": "Politique Cookies",
+    "intro": "Nous et nos partenaires utilisons des traceurs dont des cookies pour faire fonctionner le site internet ou l'application mobile, personnaliser votre navigation, réaliser des mesures d'audience et vous proposer des contenus et des publicités personnalisés. Cette politique a pour objectif de vous informer sur l'utilisation que nous et nos partenaires faisons des cookies ou traceurs que nous déposons, et sur la manière dont vous pouvez exprimer vos préférences.",
+    "sections": {
+      "what": {
+        "h2": "Qu'est-ce qu'un cookie ou traceur ?",
+        "body": "La notion de traceur englobe les outils permettant la lecture ou l'écriture sur le terminal de l'utilisateur. Le cookie est un petit fichier texte transmis à votre navigateur web (Chrome, Safari, Firefox, etc.) et stocké par celui-ci lorsque vous consultez un site internet ou une application mobile, quel que soit le type de terminal utilisé (ordinateur, smartphone, tablette, etc.). Ce fichier permet de conserver une trace de votre navigation et de vous proposer notamment des contenus et des publicités personnalisés. Un cookie a une durée de validité limitée. Son dépôt et son stockage sur votre terminal se font dans le respect de la législation applicable et sous réserve des choix que vous avez exprimés et que vous pouvez modifier à tout moment."
+      },
+      "used": {
+        "h2": "Quels sont les cookies ou traceurs utilisés lors de votre navigation ?",
+        "body": "Les cookies ou traceurs poursuivent des finalités différentes."
+      },
+      "essential": {
+        "h3": "Cookies ou traceurs essentiels au fonctionnement du site",
+        "body": "Ces cookies sont indispensables aux fonctionnalités essentielles du service et ne peuvent pas être désactivés."
+      },
+      "audience": {
+        "h3": "Cookies ou traceurs de mesure d'audience",
+        "body": "Ces cookies servent à réaliser des statistiques pour mesurer et analyser l'audience de notre site et de nos applications (fréquentation, nombre de pages vues, temps moyen par visite, etc.) et nous aident à améliorer la qualité de nos services. Leur utilisation ne peut se faire qu'avec votre consentement. Le refus de ces cookies n'a pas d'impact sur l'utilisation du site. Vous pouvez à tout moment modifier vos préférences via votre navigateur."
+      },
+      "personalization": {
+        "h3": "Cookies ou traceurs de personnalisation du contenu et des communications marketing",
+        "body": "Ces cookies vous permettent de bénéficier de communications ou d'offres adaptées à votre profil, votre navigation et vos usages du service. Leur utilisation ne peut se faire qu'avec votre consentement. Le refus n'a pas d'impact sur l'utilisation du site. Vous pouvez à tout moment modifier vos préférences via votre navigateur."
+      },
+      "ux": {
+        "h3": "Cookies ou traceurs d'optimisation de l'expérience utilisateur",
+        "body": "Ces cookies vous permettent de bénéficier d'une meilleure expérience sur notre site. Leur utilisation ne peut se faire qu'avec votre consentement. Le refus n'a pas d'impact sur l'utilisation du site. Vous pouvez à tout moment modifier vos préférences via votre navigateur."
+      },
+      "advertising": {
+        "h3": "Cookies ou traceurs publicitaires",
+        "body": "Les cookies publicitaires sont utilisés pour vous proposer des publicités adaptées à votre profil, vos centres d'intérêt et vos usages du service. Leur utilisation ne peut se faire qu'avec votre consentement. Le refus n'a pas d'impact sur l'utilisation du site, mais n'entraîne pas l'arrêt de la publicité : il aura seulement pour effet d'afficher une publicité qui ne tiendra pas compte de vos centres d'intérêt. Vous pouvez à tout moment modifier vos préférences via votre navigateur."
+      },
+      "affiliation": {
+        "h3": "Cookies ou traceurs d'affiliation",
+        "body": "Ces cookies assurent le suivi de l'activité des utilisateurs lorsqu'ils accèdent à la plateforme via des sites ou partenaires affiliés. Lorsqu'un utilisateur clique sur un lien d'affiliation, un identifiant unique est enregistré dans un cookie, permettant d'identifier l'origine de la visite et d'associer les actions réalisées sur la plateforme (inscription, demande de mise en relation, commande, etc.) au partenaire affilié concerné. Leur utilisation ne peut se faire qu'avec votre consentement. Le refus n'a pas d'impact sur l'utilisation du site. Vous pouvez à tout moment modifier vos préférences via votre navigateur."
+      }
+    },
+    "table": {
+      "partner": "Partenaire",
+      "cookie": "Cookie",
+      "duration": "Durée de validité",
+      "placeholder": "À compléter"
+    }
+  },
   "toggle": {
     "theme": "Basculer le thème",
     "lang": "Basculer la langue"

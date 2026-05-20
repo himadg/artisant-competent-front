@@ -54,8 +54,8 @@ export const routes: Routes = [
   },
   {
     path: 'politique-cookies',
-    title: 'footer.legal.cookies',
-    loadComponent: () => import('./pages/legal-placeholder/legal-placeholder').then((p) => p.LegalPlaceholderPage),
+    title: 'cookies.title',
+    loadComponent: () => import('./pages/politique-cookies/politique-cookies').then((p) => p.PolitiqueCookiesPage),
   },
   {
     path: 'jobs/electrician',
