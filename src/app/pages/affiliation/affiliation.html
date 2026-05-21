@@ -2,23 +2,15 @@
     <section id="hero" class="text-center space-y-6">
         <h1 class="text-3xl font-extrabold md:text-5xl">{{ 'affiliation.hero.h1' | transloco }}</h1>
         <p class="text-base md:text-xl">{{ 'affiliation.hero.subtitle' | transloco }}</p>
-        <div class="flex flex-wrap gap-4 justify-center">
-            <a
-                [routerLink]="['/auth/register']"
-                [queryParams]="{ t: 'professional' }"
-                class="px-6 py-3 font-semibold rounded-lg no-underline bg-[var(--primary-water-green)] text-[var(--primary-beige)]"
-            >
-                {{ 'affiliation.ctaPro' | transloco }}
-            </a>
-            <a
-                [routerLink]="['/auth/register']"
-                [queryParams]="{ t: 'individual' }"
-                class="px-6 py-3 font-semibold rounded-lg no-underline bg-[var(--primary-water-green)] text-[var(--primary-beige)]"
-            >
-                {{ 'affiliation.ctaIndividual' | transloco }}
-            </a>
-        </div>
     </section>
+
+    <aside
+        id="fonctionnement"
+        class="space-y-4 p-6 rounded-lg border-l-4 border-[var(--primary-water-green)] bg-[var(--primary-beige)]"
+    >
+        <h2 class="text-xl font-semibold md:text-2xl">{{ 'affiliation.howToGenerate.title' | transloco }}</h2>
+        <p>{{ 'affiliation.howToGenerate.body' | transloco }}</p>
+    </aside>
 
     <section id="comment-ca-marche" class="space-y-6">
         <h2 class="text-2xl font-semibold md:text-3xl">{{ 'affiliation.howItWorks.title' | transloco }}</h2>
@@ -160,22 +152,6 @@
     <section id="cta-final" class="text-center space-y-4 p-8 rounded-lg border">
         <h2 class="text-2xl font-semibold md:text-3xl">{{ 'affiliation.ctaFinal.title' | transloco }}</h2>
         <p>{{ 'affiliation.ctaFinal.subtitle' | transloco }}</p>
-        <div class="flex flex-wrap gap-4 justify-center">
-            <a
-                [routerLink]="['/auth/register']"
-                [queryParams]="{ t: 'professional' }"
-                class="inline-block px-6 py-3 font-semibold rounded-lg no-underline bg-[var(--primary-water-green)] text-[var(--primary-beige)]"
-            >
-                {{ 'affiliation.ctaPro' | transloco }}
-            </a>
-            <a
-                [routerLink]="['/auth/register']"
-                [queryParams]="{ t: 'individual' }"
-                class="inline-block px-6 py-3 font-semibold rounded-lg no-underline bg-[var(--primary-water-green)] text-[var(--primary-beige)]"
-            >
-                {{ 'affiliation.ctaIndividual' | transloco }}
-            </a>
-        </div>
     </section>
 
     <section id="mentions-legales" class="space-y-4 text-sm">
