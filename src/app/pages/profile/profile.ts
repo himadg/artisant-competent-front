@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+﻿import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { IndividualProfile } from './individual/individual';
 import { ProfessionalProfile } from './professional/professional';
 import { SupplierProfile } from './supplier/supplier';
@@ -8,6 +8,7 @@ import { ManagementProfile } from './management/management';
 
 @Component({
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [IndividualProfile, ProfessionalProfile, SupplierProfile, AdminProfile, ManagementProfile, NotFound],
   templateUrl: './profile.html',
 })

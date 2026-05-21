@@ -182,7 +182,8 @@
         </div>
     </section>
 
-    <section class="mt-12 space-y-6 steps-accordion">
+    @defer (on viewport) {
+        <section class="mt-12 space-y-6 steps-accordion">
         <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.steps.title' | transloco }}</h2>
         <div class="space-y-6">
             <details class="p-4 rounded-lg border">
@@ -346,8 +347,12 @@
             </details>
         </div>
     </section>
+    } @placeholder {
+        <div class="mt-12 h-40"></div>
+    }
 
-    <section class="mt-12">
+    @defer (on viewport) {
+        <section class="mt-12">
         <h2 class="text-xl font-semibold title md:text-3xl">{{ 'faq.title' | transloco }}</h2>
         <div class="grid gap-6 items-center md:grid-cols-2">
             <div>
@@ -480,4 +485,7 @@
             </div>
         </div>
     </section>
+    } @placeholder {
+        <div class="mt-12 h-40"></div>
+    }
 </div>

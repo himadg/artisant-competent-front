@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-
+﻿import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'search-pro',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule, TranslocoModule],
   templateUrl: './search-pro.html',
   styleUrl: './search-pro.scss',

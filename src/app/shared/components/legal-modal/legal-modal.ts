@@ -1,4 +1,4 @@
-import { Component, signal, output, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output, signal } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 
@@ -7,6 +7,7 @@ export type LegalTab = 'cgu' | 'cgv';
 @Component({
   selector: 'legal-modal',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoModule, NgTemplateOutlet],
   templateUrl: './legal-modal.html',
   styleUrl: './legal-modal.scss',

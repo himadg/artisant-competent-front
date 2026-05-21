@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+﻿import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
 import { ProfessionalDashboard } from './professional/professional-dashboard';
 import { IndividualDashboard } from './individual/individual-dashboard';
@@ -6,6 +6,7 @@ import { AdminDashboard } from './admin/admin-dashboard';
 
 @Component({
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ProfessionalDashboard, IndividualDashboard, AdminDashboard],
   templateUrl: './dashboard.html',
 })

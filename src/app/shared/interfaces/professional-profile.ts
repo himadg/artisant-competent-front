@@ -18,6 +18,7 @@ export interface ProfessionalProfile {
   workAddressId: string;
   workAddress: Address;
   siret: string;
+  companyStatus: 'COMPANY' | 'INDIVIDUAL';
   ribKey: string;
   trades: string[];
   yearsExperience: number;

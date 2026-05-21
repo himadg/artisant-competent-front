@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
+﻿import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, ChangeDetectionStrategy } from '@angular/core';
 
 import { LangService } from '../../../core/services/lang.service';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -6,6 +6,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 @Component({
   selector: 'lang-toggle',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoModule],
   templateUrl: './lang-toggle.html',
   styleUrl: './lang-toggle.scss',

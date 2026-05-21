@@ -586,6 +586,7 @@
         "city": "Ville"
       },
       "siret": "Numéro SIRET",
+      "companyStatus": "Statut juridique",
       "trades": "Métiers",
       "yearsExperience": "Années d'expérience",
       "openingHours": "Horaires d'ouverture",

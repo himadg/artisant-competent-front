@@ -1,14 +1,14 @@
-import { Component, inject, signal, computed, OnInit } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { AuthService } from '../../core/services/auth.service';
 import { LangService } from '../../core/services/lang.service';
-import { User } from '../../shared/interfaces/user';
 
 @Component({
   selector: 'contact-page',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, TranslocoModule],
   templateUrl: './contact.html',
   styleUrl: './contact.scss',

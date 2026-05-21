@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -9,6 +9,7 @@ import { UserType } from '../../../core/utils/common-utils';
 
 @Component({
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink, TranslocoModule, RegisterIndividual, RegisterProfessional, RegisterSupplier],
   templateUrl: './register.html',
 })

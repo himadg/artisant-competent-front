@@ -1,6 +1,5 @@
-import { Component, signal, inject, OnDestroy, computed } from '@angular/core';
+﻿import { Component, signal, inject, OnDestroy, computed, ChangeDetectionStrategy } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-
 import { ReactiveFormsModule, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
 import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, of, takeUntil } from 'rxjs';
@@ -20,6 +19,7 @@ import { LangService } from '../../../../core/services/lang.service';
 @Component({
   selector: 'register-individual',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent, LegalModal],
   templateUrl: './individual.html',
   styleUrl: './individual.scss',
@@ -169,14 +169,14 @@ export class RegisterIndividual implements OnDestroy {
 
     if (this.form.invalid || this.form.value.password !== this.form.value.confirmPassword) {
       this.showSubmitError.set(true);
-      
+
       setTimeout(() => {
         const firstError = document.querySelector('.ng-invalid.ng-touched, .force-invalid');
         if (firstError) {
           firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       }, 100);
-      
+
       return;
     }
 

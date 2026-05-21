@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal, computed } from '@angular/core';
+﻿import { ChangeDetectionStrategy, Component, inject, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -16,6 +16,7 @@ export type IndividualSection = 'profile' | 'requests' | 'quotes' | 'invoices' |
 @Component({
   selector: 'dashboard-individual',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, FormsModule, TranslocoModule, LangToggle, ThemeToggle, LegalModal, RouterLink],
   templateUrl: './individual-dashboard.html',
   styleUrl: './individual-dashboard.scss',

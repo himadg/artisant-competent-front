@@ -585,6 +585,7 @@
         "city": "City"
       },
       "siret": "SIRET number",
+      "companyStatus": "Legal status",
       "trades": "Trades",
       "yearsExperience": "Years of experience",
       "openingHours": "Opening hours",

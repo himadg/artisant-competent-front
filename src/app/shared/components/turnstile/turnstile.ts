@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnDestroy, Output, EventEmitter, ViewChild, ElementRef, input } from '@angular/core';
+﻿import { Component, AfterViewInit, OnDestroy, Output, EventEmitter, ViewChild, ElementRef, input, ChangeDetectionStrategy } from '@angular/core';
 
 declare const turnstile: {
   render: (element: HTMLElement, options: Record<string, unknown>) => string;
@@ -9,6 +9,7 @@ declare const turnstile: {
 @Component({
   selector: 'app-turnstile',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<div class="mt-4" #widgetEl></div>',
 })
 export class TurnstileComponent implements AfterViewInit, OnDestroy {

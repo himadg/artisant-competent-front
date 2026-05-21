@@ -1,5 +1,5 @@
-import { capitalize } from './../../../../core/utils/common-utils';
-import { Component, signal } from '@angular/core';
+﻿import { capitalize } from './../../../../core/utils/common-utils';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 import {
   ReactiveFormsModule,
@@ -16,6 +16,7 @@ import { LegalModal } from '../../../../shared/components/legal-modal/legal-moda
 @Component({
   selector: 'register-supplier',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, TranslocoModule, LegalModal],
   templateUrl: './supplier.html',
   styleUrl: './supplier.scss',

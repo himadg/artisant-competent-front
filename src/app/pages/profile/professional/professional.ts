@@ -1,4 +1,4 @@
-import { Component, Input, signal, computed, inject } from '@angular/core';
+﻿import { Component, Input, signal, computed, inject, ChangeDetectionStrategy } from '@angular/core';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import {
   lucideSearch,
@@ -23,6 +23,7 @@ type ProfileTab = 'presentation' | 'services' | 'missions' | 'reviews';
 @Component({
   selector: 'professional-profile',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgIconComponent, DatePipe],
   templateUrl: './professional.html',
   styleUrl: './professional.scss',

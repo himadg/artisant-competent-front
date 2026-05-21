@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild, inject, PLATFORM_ID, OnInit } from '@angular/core';
+﻿import { Component, ElementRef, HostListener, ViewChild, inject, PLATFORM_ID, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -9,6 +9,7 @@ import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggl
 @Component({
   selector: 'ac-navbar',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink, RouterLinkActive, TranslocoModule, LangToggle, ThemeToggle],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',

@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
+﻿import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, ChangeDetectionStrategy } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
 import { ThemeService } from '../../../core/services/theme.service';
@@ -6,6 +6,7 @@ import { ThemeService } from '../../../core/services/theme.service';
 @Component({
   selector: 'theme-toggle',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoModule],
   templateUrl: './theme-toggle.html',
   styleUrl: './theme-toggle.scss',

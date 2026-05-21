@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+﻿import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'admin-profile',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
   templateUrl: './admin.html',
   styleUrl: './admin.scss',

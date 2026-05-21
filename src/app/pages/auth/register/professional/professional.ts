@@ -1,6 +1,5 @@
-import { Component, signal, inject, OnDestroy, ViewChild, computed } from '@angular/core';
+﻿import { Component, signal, inject, OnDestroy, ViewChild, computed, ChangeDetectionStrategy } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-
 import {
   ReactiveFormsModule,
   FormBuilder,
@@ -44,6 +43,7 @@ type DocTarget = 'photo' | 'idFront' | 'idBack' | 'insuranceDoc' | 'diplomaDoc' 
 @Component({
   selector: 'register-professional',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent, LegalModal],
   templateUrl: './professional.html',
   styleUrl: './professional.scss',
@@ -195,6 +195,7 @@ export class RegisterProfessional implements OnDestroy {
         city: ['', Validators.required],
       }),
       siret: ['', [Validators.required, Validators.pattern(SIRET_REGEXP)]],
+      companyStatus: ['', Validators.required],
       trades: [<string[]>[], [Validators.required]],
       yearsExperience: ['', [Validators.required, Validators.min(0)]],
       onCall: [false],
@@ -486,7 +487,8 @@ export class RegisterProfessional implements OnDestroy {
     this.form.markAllAsTouched();
 
     const user = this.form.value.user;
-    
+    console.log(this.form.value);
+
     if (this.form.invalid || user?.password !== user?.confirmPassword) {
       this.showSubmitError.set(true);
 
@@ -503,10 +505,10 @@ export class RegisterProfessional implements OnDestroy {
         this.form.get('professionalProfile.insuranceNumber'),
         this.form.get('professionalProfile.insuranceExpiry')
       ];
-      
+
       const isStep1Invalid = step1Controls.some(ctrl => ctrl?.invalid);
       const passwordMismatch = user?.password !== user?.confirmPassword;
-      
+
       if (isStep1Invalid || passwordMismatch) {
         this.hasStep1Errors.set(true);
       }
@@ -519,7 +521,7 @@ export class RegisterProfessional implements OnDestroy {
         }
       };
       findInvalid(this.form);
-      
+
       // Auto-scroll vers le premier élément en erreur
       setTimeout(() => {
         const firstError = document.querySelector('.ng-invalid.ng-touched, .force-invalid');
@@ -527,7 +529,7 @@ export class RegisterProfessional implements OnDestroy {
           firstError.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       }, 100);
-      
+
       return;
     }
 

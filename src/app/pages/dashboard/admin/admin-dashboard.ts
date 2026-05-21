@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -9,6 +9,7 @@ import { AuthService } from '../../../core/services/auth.service';
 @Component({
   selector: 'dashboard-admin',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, TranslocoModule, RouterModule],
   templateUrl: './admin-dashboard.html',
   styleUrl: './admin-dashboard.scss',
@@ -22,7 +23,6 @@ export class AdminDashboard implements OnInit {
   readonly loading = signal(true);
   readonly selectedUser = signal<any>(null);
 
-  // Modale pour les documents (Images ou PDF)
   readonly modalDocUrl = signal<SafeResourceUrl | string | null>(null);
   readonly modalDocType = signal<'image' | 'pdf' | null>(null);
 
@@ -73,7 +73,6 @@ export class AdminDashboard implements OnInit {
 
   openDocumentModal(url: string, isPdf: boolean) {
     if (isPdf) {
-      // Angular bloque les URL externes dans les iframes par sécurité. Il faut "sanitizer" l'URL.
       this.modalDocUrl.set(this.sanitizer.bypassSecurityTrustResourceUrl(url));
       this.modalDocType.set('pdf');
     } else {
