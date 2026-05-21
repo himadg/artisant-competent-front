@@ -5,6 +5,10 @@
 >
     <p class="text-xs leading-tight sm:text-sm">
         {{ 'banner.klarna.textBefore' | transloco }}
-        <span class="font-semibold text-[#FFA8CD]">Klarna</span>{{ 'banner.klarna.textAfter' | transloco }}
+        <a
+            href="/#faq-klarna"
+            (click)="onKlarnaClick($event)"
+            class="font-semibold no-underline cursor-pointer text-[#FFA8CD] hover:underline"
+        >Klarna</a>{{ 'banner.klarna.textAfter' | transloco }}
     </p>
 </div>
