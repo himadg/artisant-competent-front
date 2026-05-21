@@ -706,8 +706,10 @@
       "title": "Artisan Compétent Partner Program | 20% Commission",
       "description": "Recommend Artisan Compétent to your audience and earn 20% commission the first year. Free signup, no commitment, no upfront cost."
     },
-    "ctaPro": "I'm a professional",
-    "ctaIndividual": "I'm an individual",
+    "howToGenerate": {
+      "title": "How to generate your referral link?",
+      "body": "Referrals are managed directly from your personal area. Once logged in, head to your dashboard: a dedicated button lets you generate your referral link. You copy this link and share it with the person of your choice. When they sign up through this link, your referrer status is automatically recognized, as your identifier is embedded in the URL."
+    },
     "hero": {
       "h1": "Become an Artisan Compétent partner.",
       "subtitle": "Recommend the platform that puts an end to construction scams. Earn 1 year of commission on every new client: 20% the first 6 months, 10% the next 6. No long-term contract, no commitment, no upfront cost."
