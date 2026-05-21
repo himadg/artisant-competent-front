@@ -83,4 +83,15 @@ export class Accordion {
     this.expanded.update((open) => !open);
     this.toggled.emit(this.expanded());
   }
+
+  /**
+   * Ouvre l'accordéon de manière impérative (ViewChild) — utilisé quand l'état
+   * d'ouverture est piloté depuis l'extérieur sans passer par le `[isOpen]` initial
+   * (par exemple : ouverture commandée par un service après navigation).
+   */
+  open(): void {
+    if (this.expanded()) return;
+    this.expanded.set(true);
+    this.toggled.emit(true);
+  }
 }
