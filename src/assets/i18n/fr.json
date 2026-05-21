@@ -747,8 +747,10 @@
       "title": "Programme Partenaire Artisan Compétent | 20 % de commission",
       "description": "Recommandez Artisan Compétent à votre audience et touchez 20 % de commission la première année. Inscription gratuite, sans engagement, sans avancer un centime."
     },
-    "ctaPro": "Je suis professionnel",
-    "ctaIndividual": "Je suis particulier",
+    "howToGenerate": {
+      "title": "Comment générer votre lien de parrainage ?",
+      "body": "Le parrainage se gère directement depuis votre espace personnel. Une fois connecté, rendez-vous dans votre tableau de bord : un bouton dédié vous permet de générer votre lien de parrainage. Vous copiez ce lien et le partagez avec la personne de votre choix. Lorsqu'elle s'inscrit via ce lien, votre statut de parrain est automatiquement reconnu, votre identifiant étant intégré à l'URL."
+    },
     "hero": {
       "h1": "Devenez partenaire d'Artisan Compétent.",
       "subtitle": "Recommandez la plateforme qui en finit avec les arnaques BTP. Touchez 1 an de commission sur chaque nouveau client : 20 % les 6 premiers mois, 10 % les 6 suivants. Sans contrat long terme, sans engagement, sans avancer un centime."
