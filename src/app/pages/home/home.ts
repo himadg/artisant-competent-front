@@ -1,14 +1,22 @@
-import { Component, DestroyRef, OnInit, PLATFORM_ID, inject } from '@angular/core';
-import { DOCUMENT, isPlatformServer } from '@angular/common';
-import { Component, ChangeDetectionStrategy, DestroyRef, OnInit, inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import {
+  AfterViewInit,
+  Component,
+  DestroyRef,
+  OnInit,
+  PLATFORM_ID,
+  ViewChild,
+  inject,
+  ChangeDetectionStrategy
+} from '@angular/core';
+import { DOCUMENT, isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Meta } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { SearchPro } from '../../shared/components/search-pro/search-pro';
 import { Accordion } from '../../shared/components/accordion';
 import { SeoService } from '../../core/services/seo.service';
+import { KlarnaFaqService } from '../../core/services/klarna-faq.service';
 
 @Component({
   standalone: true,
@@ -17,7 +25,7 @@ import { SeoService } from '../../core/services/seo.service';
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, AfterViewInit {
   /**
    * Section "Preuve sociale" masquée tant qu'il n'y a pas au moins 3 avis réels.
    * Passer à true une fois les avis réels disponibles (section 7 du brief V5).
@@ -27,12 +35,17 @@ export class HomePage implements OnInit {
   /** Nombre de questions de la FAQ (clés i18n home.faq.q1 → home.faq.q13). */
   private static readonly FAQ_COUNT = 13;
 
+  /** Référence à l'accordéon FAQ Klarna (q12), piloté impérativement depuis le bandeau. */
+  @ViewChild('klarnaAccordion') private klarnaAccordion?: Accordion;
+
   private readonly meta = inject(Meta);
   private readonly transloco = inject(TranslocoService);
   private readonly destroyRef = inject(DestroyRef);
   private readonly document = inject(DOCUMENT);
   private readonly platformId = inject(PLATFORM_ID);
   private readonly seo = inject(SeoService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly klarnaFaq = inject(KlarnaFaqService);
 
   ngOnInit(): void {
     const url = 'https://artisan-competent.com/';
@@ -58,6 +71,36 @@ export class HomePage implements OnInit {
     if (isPlatformServer(this.platformId)) {
       this.injectFaqJsonLd();
     }
+
+    this.klarnaFaq.openRequest$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
+      this.openKlarnaAccordion();
+    });
+  }
+
+  ngAfterViewInit(): void {
+    // Cas d'un accès direct à la home via une URL portant le fragment #faq-klarna
+    // (ex. lien partagé) : on déclenche manuellement l'ouverture + scroll après
+    // l'initialisation de la vue, le `anchorScrolling` du router se chargeant déjà
+    // du positionnement initial.
+    if (!isPlatformBrowser(this.platformId)) return;
+    if (this.route.snapshot.fragment === 'faq-klarna') {
+      this.openKlarnaAccordion();
+    }
+  }
+
+  /**
+   * Ouvre l'accordéon FAQ Klarna puis défile la page jusqu'à celui-ci. Appelé
+   * sur événement (lien Klarna du bandeau) ou sur accès direct via le fragment.
+   */
+  private openKlarnaAccordion(): void {
+    this.klarnaAccordion?.open();
+    // Léger délai pour laisser l'accordéon s'ouvrir (transition CSS grid-rows)
+    // avant de calculer la position de scroll définitive.
+    setTimeout(() => {
+      this.document
+        .getElementById('faq-klarna')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 150);
   }
 
   /**
