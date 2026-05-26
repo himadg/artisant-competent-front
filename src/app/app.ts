@@ -2,6 +2,7 @@
 import { RouterOutlet } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { AnnouncementBanner } from './core/layout/announcement-banner/announcement-banner';
+import { PrelaunchBanner } from './core/layout/prelaunch-banner/prelaunch-banner';
 import { Header } from './core/layout/header/header';
 import { Footer } from './core/layout/footer/footer';
 import { AuthService } from './core/services/auth.service';
@@ -9,7 +10,7 @@ import { AuthService } from './core/services/auth.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, TranslocoModule, AnnouncementBanner, Header, Footer],
+  imports: [RouterOutlet, TranslocoModule, AnnouncementBanner, PrelaunchBanner, Header, Footer],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.html',
   styleUrl: './app.scss',
