@@ -8,6 +8,10 @@
 
   /* Hauteur du bandeau d'annonce fixe en haut de page (ac-announcement-banner) */
   --announcement-banner-h: 2.5rem;
+  /* Hauteur du bandeau de pré-lancement empilé sous le bandeau d'annonce (ac-prelaunch-banner) */
+  --prelaunch-banner-h: 3.75rem;
+  /* Offset total des bandeaux fixes en haut, utilisé pour positionner le header et le contenu */
+  --top-banners-h: calc(var(--announcement-banner-h) + var(--prelaunch-banner-h));
 
   --primary-beige: #f6ede4;
   --secondary-beige: #dac2aa;
@@ -143,6 +147,19 @@
   .title {
     border-left: 0.25rem solid var(--primary-brown);
     padding-left: 1rem;
+  }
+}
+
+/* Le texte du bandeau de pré-lancement passe sur moins de lignes en sm/md, on resserre la hauteur. */
+@media (min-width: 640px) {
+  :root {
+    --prelaunch-banner-h: 2.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --prelaunch-banner-h: 2.25rem;
   }
 }
 

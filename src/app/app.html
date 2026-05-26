@@ -1,10 +1,11 @@
 <main>
     @if (!isAuthenticated()) {
         <ac-announcement-banner></ac-announcement-banner>
+        <ac-prelaunch-banner></ac-prelaunch-banner>
         <ac-header></ac-header>
     }
 
-    <div [class]="isAuthenticated() ? '' : 'pt-[calc(6rem_+_var(--announcement-banner-h))] mx-auto w-[20rem] md:pt-[calc(5rem_+_var(--announcement-banner-h))] sm:w-[30rem] md:w-[40rem] lg:w-[55rem]'">
+    <div [class]="isAuthenticated() ? '' : 'pt-[calc(4rem_+_var(--top-banners-h))] mx-auto w-[20rem] md:pt-[calc(3rem_+_var(--top-banners-h))] sm:w-[30rem] md:w-[40rem] lg:w-[55rem]'">
         <router-outlet></router-outlet>
     </div>
 
