@@ -1,4 +1,4 @@
-﻿import { Component, ElementRef, HostListener, ViewChild, inject, PLATFORM_ID, OnInit, ChangeDetectionStrategy } from '@angular/core';
+﻿import { Component, ElementRef, HostListener, ViewChild, inject, PLATFORM_ID, OnInit, ChangeDetectionStrategy, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -19,15 +19,15 @@ export class Navbar implements OnInit {
   private readonly router = inject(Router);
 
   // Opens the sandwich menu on mobiles
-  mobileNavOpen = false;
+  readonly mobileNavOpen = signal(false);
   // Opens the registration dropdown on mobiles
-  mobileNavRegisterOpen = false;
+  readonly mobileNavRegisterOpen = signal(false);
   // Opens the login dropdown on mobiles
-  mobileNavLoginOpen = false;
+  readonly mobileNavLoginOpen = signal(false);
   // Opens the registration dropdown on tablets
-  tabletNavRegisterOpen = false;
+  readonly tabletNavRegisterOpen = signal(false);
   // Opens the login dropdown on tablets
-  tabletNavLoginOpen = false;
+  readonly tabletNavLoginOpen = signal(false);
 
   @ViewChild('registerDropdown') registerDropdown?: ElementRef<HTMLElement>;
   @ViewChild('loginDropdown') loginDropdown?: ElementRef<HTMLElement>;
@@ -38,52 +38,52 @@ export class Navbar implements OnInit {
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
       this.closeMobileNav();
-      this.tabletNavRegisterOpen = false;
-      this.tabletNavLoginOpen = false;
+      this.tabletNavRegisterOpen.set(false);
+      this.tabletNavLoginOpen.set(false);
     });
   }
 
   toggleMobileNav() {
-    this.mobileNavOpen = !this.mobileNavOpen;
+    this.mobileNavOpen.update(v => !v);
   }
 
   closeMobileNav() {
-    this.mobileNavOpen = false;
+    this.mobileNavOpen.set(false);
   }
 
   toggleMobileNavRegister() {
-    this.mobileNavLoginOpen = false;
-    this.mobileNavRegisterOpen = !this.mobileNavRegisterOpen;
+    this.mobileNavLoginOpen.set(false);
+    this.mobileNavRegisterOpen.update(v => !v);
   }
 
   toggleMobileNavLogin() {
-    this.mobileNavRegisterOpen = false;
-    this.mobileNavLoginOpen = !this.mobileNavLoginOpen;
+    this.mobileNavRegisterOpen.set(false);
+    this.mobileNavLoginOpen.update(v => !v);
   }
 
   toggleDesktopRegister() {
     if (!this.isBrowser || window.matchMedia('(min-width: 1024px)').matches) return;
-    this.tabletNavLoginOpen = false;
-    this.tabletNavRegisterOpen = !this.tabletNavRegisterOpen;
+    this.tabletNavLoginOpen.set(false);
+    this.tabletNavRegisterOpen.update(v => !v);
   }
 
   toggleDesktopLogin() {
     if (!this.isBrowser || window.matchMedia('(min-width: 1024px)').matches) return;
-    this.tabletNavRegisterOpen = false;
-    this.tabletNavLoginOpen = !this.tabletNavLoginOpen;
+    this.tabletNavRegisterOpen.set(false);
+    this.tabletNavLoginOpen.update(v => !v);
   }
 
   @HostListener('document:pointerdown', ['$event'])
   onDocPointerDown(event: PointerEvent) {
     if (!this.isBrowser || window.matchMedia('(min-width: 1024px)').matches) return;
     const target = event.target as Node;
-    if (this.tabletNavRegisterOpen) {
+    if (this.tabletNavRegisterOpen()) {
       const element = this.registerDropdown?.nativeElement;
-      if (element && !element.contains(target)) this.tabletNavRegisterOpen = false;
+      if (element && !element.contains(target)) this.tabletNavRegisterOpen.set(false);
     }
-    if (this.tabletNavLoginOpen) {
+    if (this.tabletNavLoginOpen()) {
       const element = this.loginDropdown?.nativeElement;
-      if (element && !element.contains(target)) this.tabletNavLoginOpen = false;
+      if (element && !element.contains(target)) this.tabletNavLoginOpen.set(false);
     }
   }
 }

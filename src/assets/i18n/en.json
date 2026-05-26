@@ -492,7 +492,8 @@
     "delete": "Delete",
     "home": "Home",
     "jobs": "Trades",
-    "affiliation": "Affiliation",
+    "affiliation": "Membership",
+    "professionals": "Professionals",
     "loading": "Loading..."
   },
   "footer": {
@@ -2789,6 +2790,320 @@
       "item6": "Any dispute falls under French jurisdiction."
     }
   },
+  "pro": {
+    "meta": {
+      "title": "Become a partner professional | Artisan Compétent",
+      "description": "Join Artisan Compétent: you only pay on signed quotes, in a structured environment that also protects professionals. Verified signup (SIRET, insurance)."
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "pro": "Professionals"
+    },
+    "cta": "Create my professional profile",
+    "hero": {
+      "title": "Why join Artisan Compétent?",
+      "subtitleIntro": "Because today, finding clients is expensive, with no guarantee of results. Between:",
+      "subtitleItems": [
+        "platforms that sell leads",
+        "paid quote requests",
+        "Google Ads",
+        "Facebook Ads",
+        "fake prospects",
+        "calls that never lead anywhere",
+        "quotes sent into the void"
+      ],
+      "subtitleOutro": "Many professionals spend huge amounts of money without any real return. At Artisan Compétent, things work differently."
+    },
+    "paySigned": {
+      "title": "You only pay when a quote is actually signed",
+      "intro": "None of:",
+      "items": [
+        "useless visibility packs",
+        "quote credits",
+        "bidding between professionals",
+        "permanent advertising spending without concrete results"
+      ],
+      "outro": "Our goal is simple: bring you real clients, with a real project, in a structured environment, with a system also designed to protect honest professionals."
+    },
+    "protection": {
+      "title": "Artisan Compétent does not only protect clients",
+      "intro": "The platform also protects serious professionals against:",
+      "items": [
+        "abusive non-payment",
+        "false disputes",
+        "malicious clients",
+        "unjustified contestations",
+        "the poor image of the sector"
+      ],
+      "outro": "The system was designed to create a healthy balance between both parties."
+    },
+    "image": {
+      "title": "A more professional image with clients",
+      "suffering": {
+        "intro": "Today, many individuals are afraid to call a professional. Even the best professionals suffer from:",
+        "items": [
+          "scams visible online",
+          "abandoned projects",
+          "fake reviews",
+          "the general lack of trust in the construction sector"
+        ]
+      },
+      "frame": {
+        "intro": "Artisan Compétent provides a reassuring framework:",
+        "items": [
+          "digital tracking",
+          "evidence",
+          "centralised quotes",
+          "escrow of funds",
+          "digital handover certificate",
+          "arbitration",
+          "full traceability of the project"
+        ]
+      },
+      "result": {
+        "intro": "The result:",
+        "items": [
+          "the client is more reassured",
+          "the quote is more easily accepted",
+          "the professional gains credibility"
+        ]
+      }
+    },
+    "valorisation": {
+      "title": "A system that values organised professionals",
+      "intro": "The most transparent and most serious professionals are naturally highlighted, because the system makes it possible to:",
+      "items": [
+        "document the project",
+        "demonstrate the quality of the work",
+        "avoid misunderstandings",
+        "strongly limit disputes"
+      ]
+    },
+    "terrain": {
+      "title": "A platform designed by someone who knows the field",
+      "problems": {
+        "intro": "Artisan Compétent was not imagined by a marketing agency far removed from construction. The platform was designed around the real problems of the field:",
+        "items": [
+          "lost deposits",
+          "distrustful clients",
+          "disputes",
+          "deadlines",
+          "suppliers",
+          "cash flow issues",
+          "emergencies",
+          "the realities of the trade"
+        ]
+      },
+      "goal": {
+        "intro": "The goal is not to complicate your work. The goal is to:",
+        "items": [
+          "help you work in a healthier framework",
+          "reassure your future clients",
+          "allow you to sign more projects"
+        ]
+      }
+    },
+    "clientsLove": {
+      "title": "What clients particularly appreciate",
+      "intro": "Clients especially value:",
+      "items": [
+        "the structured payment via Stripe",
+        "the escrow of funds",
+        "the digital tracking",
+        "the evidence",
+        "the digital handover certificate",
+        "the fact that no final payment is released before validation of the project"
+      ],
+      "outro": "And paradoxically, this also strongly reassures honest professionals: a client who feels confident signs more easily, hesitates less, and generally follows their project more closely."
+    },
+    "steps": {
+      "title": "How does Artisan Compétent work on the professional side?",
+      "s1": {
+        "title": "1. Creating the professional profile",
+        "intro": "Before validating the account, Artisan Compétent notably verifies:",
+        "items": [
+          "your SIRET",
+          "your insurance policies",
+          "your public liability insurance (RC Pro)",
+          "your ten-year warranty (décennale) when necessary",
+          "all the professional certifications you hold, up to date, corresponding to your trade and to the work you offer (RGE, Qualibat, QualiPAC, etc.)"
+        ],
+        "outro": "The goal is to maintain a minimum level of seriousness on the platform."
+      },
+      "s2": {
+        "title": "2. Receiving client requests",
+        "body": "The client selects their trade, chooses their geographic area, then selects the professionals they wish to contact. You then receive the photos, the description, and the relevant information about the request."
+      },
+      "s3": {
+        "title": "3. Structured video call before quote",
+        "body": "If the photos or description are not sufficient, you can immediately start a video call directly through the platform. This avoids unnecessary travel, helps you better understand the project, and lets you draft a more accurate quote. Personal contact details are not communicated at this stage."
+      },
+      "s4": {
+        "title": "4. Drafting the quote",
+        "intro": "The quote must be clear, detailed, realistic, and understandable. You must notably specify:",
+        "items": [
+          "the work to be carried out",
+          "the materials",
+          "the deadlines",
+          "any constraints",
+          "the limits of your intervention"
+        ]
+      },
+      "s5": {
+        "title": "5. How supplies are handled",
+        "under2k": {
+          "title": "Up to €2,000 incl. VAT",
+          "body": "For quotes below €2,000 incl. VAT, materials must be advanced by the professional and integrated directly into the quote. This generally allows for a smoother project, fewer complications, better coordination, and less risk of disputes."
+        },
+        "over2k": {
+          "title": "For larger projects",
+          "intro": "For larger projects, and in order not to weaken the cash flow of professionals, especially self-employed workers, Artisan Compétent has chosen, for the moment, to allow that beyond €2,000 of quote, the client may pay for supplies directly at the supplier. This setup makes it easier to start projects, limits the financial pressure on the professional, and avoids certain difficulties linked to start times that are sometimes far from the signing of the quote. In this case:",
+          "items": [
+            "the client accompanies the professional directly to the supplier, or goes directly to the supplier on behalf of the professional, in particular when the professional can offer the client more favourable professional rates or discounts",
+            "the materials are paid for directly on the spot",
+            "the professional must not directly receive the advance for supplies",
+            "all invoices must be kept and then added to the digital tracking of the project"
+          ],
+          "outro": "This setup also keeps full traceability of purchases, makes orders more reliable, and facilitates project tracking if needed in the future."
+        }
+      },
+      "s6": {
+        "title": "6. Structured payment and escrow",
+        "body": "The client pays the quote via Stripe. The funds are then held in escrow until final validation of the project. Important: the money never transits directly through Artisan Compétent's bank account. Even the platform's management cannot divert the funds held in escrow."
+      },
+      "s7": {
+        "title": "7. Project progress",
+        "body": "Throughout the duration of the work, you must use the digital tracking, add photos, comment on progress, and document the important steps. Photographic tracking before, during, and after is mandatory for standard projects. As soon as the project begins, a photo of the initial state is mandatory, accompanied by a comment stating either that nothing in particular is to be reported, or any possible defects, constraints, or visible elements that could have a future impact on the project or on a potential dispute. This process is mandatory and ensures better follow-up of the file in case of future disagreement. For rapid or emergency interventions, the process remains the same, with a mandatory before and after, accompanied by the necessary comments and a photo of the initial state. The only difference is that, for these short interventions, the photo during the work is not mandatory."
+      },
+      "s8": {
+        "title": "8. End-of-project handover certificate",
+        "body": "When the work is finished, you send a digital handover certificate. The client then has 48 hours to verify the work, report a problem, or request a correction if necessary. Eight hours before the end of the deadline, the client automatically receives a reminder email. In the absence of any reservation, the handover certificate is validated automatically and the funds are released."
+      },
+      "s9": {
+        "title": "9. In case of dispute",
+        "body": "Before any official report, amicable dialogue remains mandatory. The vast majority of situations are settled simply through good communication. If no agreement is reached, the client can request the intervention of a CMOD. The CMOD analyses the file, consults the dashboard items, studies the exchanges, and renders an impartial advisory opinion. The CMOD intervention fees, set at €35, remain entirely the responsibility of the professional and are deducted directly from the funds owed to them. The goal therefore, for each professional, is to maintain good communication with the client, ensure serious follow-up of the project, and avoid as much as possible the opening of an official dispute. The final arbitration remains carried out by Artisan Compétent based on available evidence, exchanges, submitted documents, and the Terms of Use / Terms of Sale accepted by the parties."
+      },
+      "s10": {
+        "title": "10. Installment payment via Klarna",
+        "body": "Artisan Compétent allows professionals who wish to do so to offer installment payment via Klarna. This solution remains entirely optional. However, it can represent a real commercial lever, because a client who can spread out their payment hesitates less, validates their quotes more quickly, and can access work they might otherwise have postponed. In many cases, this payment facility therefore allows a significant increase in the number of signed quotes. The professional remains entirely free to accept or refuse Klarna based on their strategy and constraints. The Klarna fees amount to 5% and remain entirely the responsibility of the professional. It is precisely for this reason that the professional remains free to accept it or not. In many cases, the quotes signed thanks to this facility largely make up for this additional cost. Important: fees related to Klarna cannot be added as a separate visible line on the quote. The professional remains free, however, to intelligently integrate their overall costs into their general pricing policy, in compliance with the Terms of Use / Terms of Sale and the conditions of payment partners."
+      },
+      "s11": {
+        "title": "11. Artisan Compétent commissions",
+        "under2k": {
+          "title": "Up to €2,000 incl. VAT: commission of 15% excl. VAT on the total quote incl. VAT."
+        },
+        "over2k": {
+          "title": "Above €2,000 incl. VAT: commission of 10% excl. VAT on the total quote incl. VAT."
+        }
+      }
+    },
+    "expectations": {
+      "title": "What Artisan Compétent expects from professionals",
+      "items": [
+        "seriousness",
+        "transparency",
+        "responsiveness",
+        "professional communication",
+        "rigorous follow-up",
+        "respectful behaviour towards clients"
+      ]
+    },
+    "goal": {
+      "title": "Our goal",
+      "intro": "To create a platform that is:",
+      "items": [
+        "healthier",
+        "more transparent",
+        "more structured",
+        "more professional for the entire construction sector"
+      ],
+      "outro": "Because today, good professionals deserve better than the current functioning of the market."
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "q1": {
+        "question": "Does Artisan Compétent charge fees?",
+        "intro": "Yes, Artisan Compétent operates with a commission charged only when a quote is actually signed.",
+        "platforms": "Unlike many platforms:",
+        "platformsItems": [
+          "you do not pay to receive requests",
+          "you do not pay quote credits",
+          "you do not pay bidding fees",
+          "you do not need to spend hundreds of euros on advertising with no guarantee of results"
+        ],
+        "how": "How it works is simple:",
+        "howItems": [
+          "Up to €2,000 incl. VAT: a commission of 15% excl. VAT is charged on the total quote incl. VAT.",
+          "Above €2,000 incl. VAT: the commission drops to 10% excl. VAT on the total quote incl. VAT."
+        ],
+        "outro": "This means that Artisan Compétent only earns money when you actually win a project. Our objective is therefore fully aligned with that of professionals: helping you sign more quotes in a structured environment that reassures clients.",
+        "answerLd": "Yes, Artisan Compétent operates with a commission charged only when a quote is actually signed. Unlike many platforms: you do not pay to receive requests, you do not pay quote credits, you do not pay bidding fees, you do not need to spend hundreds of euros on advertising with no guarantee of results. How it works is simple: up to €2,000 incl. VAT, a commission of 15% excl. VAT is charged on the total quote incl. VAT; above €2,000 incl. VAT, the commission drops to 10% excl. VAT on the total quote incl. VAT. This means that Artisan Compétent only earns money when you actually win a project. Our objective is therefore fully aligned with that of professionals: helping you sign more quotes in a structured environment that reassures clients."
+      },
+      "q2": {
+        "question": "How long can a dispute last?",
+        "intro": "Artisan Compétent's goal is to resolve situations as quickly as possible.",
+        "factors": "The duration mainly depends on:",
+        "factorsItems": [
+          "the responsiveness of the parties",
+          "the complexity of the project",
+          "the items available in the digital tracking"
+        ],
+        "prose": "In most cases, a clear exchange, photos, good project tracking, and professional communication make it possible to resolve the situation quickly.",
+        "requirements": "This is precisely why the platform requires:",
+        "requirementsItems": [
+          "digital tracking",
+          "comments",
+          "before, during, and after photos",
+          "centralisation of exchanges"
+        ],
+        "outro": "The better documented the file is, the simpler and faster the resolution. After analysing the file and the CMOD opinion when there has been an intervention, Artisan Compétent will arbitrate and settle the file within a maximum of 30 days.",
+        "answerLd": "Artisan Compétent's goal is to resolve situations as quickly as possible. The duration mainly depends on the responsiveness of the parties, the complexity of the project, and the items available in the digital tracking. In most cases, a clear exchange, photos, good project tracking, and professional communication make it possible to resolve the situation quickly. This is precisely why the platform requires digital tracking, comments, before, during, and after photos, and centralisation of exchanges. The better documented the file is, the simpler and faster the resolution. After analysing the file and the CMOD opinion when there has been an intervention, Artisan Compétent will arbitrate and settle the file within a maximum of 30 days."
+      },
+      "q3": {
+        "question": "What happens if I advance the supplies and there is a dispute?",
+        "body": "If the professional advances supplies as part of the project, the amounts advanced for materials will be reimbursed to them, regardless of the quote amount and regardless of the outcome of the dispute. The escrow system was specifically designed to prevent a serious professional from losing the money invested in a project."
+      },
+      "q4": {
+        "question": "Am I required to accept Klarna?",
+        "intro": "No. Instalment payment via Klarna remains entirely optional.",
+        "choice": "Each professional is free:",
+        "choiceItems": [
+          "to accept it",
+          "or to refuse it"
+        ],
+        "benefits": "However, this solution can represent a real commercial advantage. A client who can pay in instalments:",
+        "benefitsItems": [
+          "hesitates less",
+          "validates their quotes more quickly",
+          "more easily accesses certain works"
+        ],
+        "outro": "In many cases, Klarna therefore makes it possible to significantly increase the number of signed quotes. Klarna fees, set at 5%, remain entirely the responsibility of the professional. This is why each professional remains free to decide whether this solution fits their commercial strategy or not.",
+        "answerLd": "No. Instalment payment via Klarna remains entirely optional. Each professional is free to accept it or to refuse it. However, this solution can represent a real commercial advantage. A client who can pay in instalments hesitates less, validates their quotes more quickly, and more easily accesses certain works. In many cases, Klarna therefore makes it possible to significantly increase the number of signed quotes. Klarna fees, set at 5%, remain entirely the responsibility of the professional. This is why each professional remains free to decide whether this solution fits their commercial strategy or not."
+      },
+      "q5": {
+        "question": "Can I also be a sponsor and affiliate others myself?",
+        "introBefore": "Yes. A professional can also ",
+        "affiliateLink": "become an Artisan Compétent affiliate",
+        "introAfter": " and earn additional income by recommending the platform:",
+        "audienceItems": [
+          "to other professionals",
+          "or directly to clients"
+        ],
+        "national": "The advantage of the system is that it operates at the national level:",
+        "nationalItems": [
+          "Metropolitan France",
+          "Corsica",
+          "French Overseas Territories"
+        ],
+        "outro": "Each affiliate can thus contribute to the development of the Artisan Compétent network while generating additional income thanks to the handover certificates signed via their recommendations.",
+        "answerLd": "Yes. A professional can also become an Artisan Compétent affiliate and earn additional income by recommending the platform to other professionals or directly to clients. The advantage of the system is that it operates at the national level: Metropolitan France, Corsica, French Overseas Territories. Each affiliate can thus contribute to the development of the Artisan Compétent network while generating additional income thanks to the handover certificates signed via their recommendations."
+      }
+    },
+    "ctaFinal": {
+      "title": "Join Artisan Compétent",
+      "body": "Develop your business in a structured, professional environment designed to value honest professionals. Our promise: nobody will disappear with your money."
+    }
+  },
   "login": {
     "title": "Log in",
     "submit": "Log in",
@@ -3164,6 +3479,118 @@
     "cookies": {
       "tab": "Cookies",
       "title": "Cookie Policy"
+    }
+  },
+  "seoBatiment": {
+    "meta": {
+      "title": "Construction SEO: grow your visibility | Artisan Compétent",
+      "description": "Artisan Compétent recommends Webesty and Guillaume Azas, SEO expert specialized in construction: local SEO, Google Business, pro websites, more signed quotes."
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "page": "Construction SEO"
+    },
+    "cta": "Learn more about Webesty",
+    "hero": {
+      "title": "Grow your visibility with SEO designed for construction"
+    },
+    "whyExpert": {
+      "title": "Why does Artisan Compétent recommend an SEO expert specialized in construction?",
+      "intro": "Having expertise is no longer enough today. Even the best tradespeople can miss many projects simply because they are invisible online.",
+      "needs": "At Artisan Compétent, we know that a serious professional must be able to:",
+      "items": [
+        "be visible locally",
+        "reassure clients immediately",
+        "appear properly on Google",
+        "more easily convert visitors into signed quotes"
+      ],
+      "outro": "That is why Artisan Compétent recommends the SEO expert who also supports the platform's development."
+    },
+    "profile": {
+      "name": "Guillaume Azas, Webesty",
+      "role": "SEO expert specialized in construction",
+      "tagline": "SEO expert specialized in local visibility and the building trades.",
+      "jobTitle": "SEO expert specialized in construction",
+      "organization": "Webesty"
+    },
+    "sign": {
+      "title": "SEO designed to sign more quotes",
+      "intro": "The goal is not simply to have a nice website. The goal is to build a system able to:",
+      "systemItems": [
+        "attract qualified clients",
+        "inspire trust",
+        "showcase your expertise",
+        "increase your chances of signing projects"
+      ],
+      "workIntro": "SEO work can notably include:",
+      "workItems": [
+        "professional website creation",
+        "Google Business Profile optimization",
+        "local SEO",
+        "construction-specialized SEO strategy",
+        "sales page optimization",
+        "internal linking",
+        "advanced SEO structure",
+        "mobile optimization",
+        "improved Google visibility",
+        "content strategy",
+        "conversion rate improvement"
+      ]
+    },
+    "recommend": {
+      "title": "Why does Artisan Compétent recommend him?",
+      "intro": "Because good SEO cannot be improvised. And above all because construction is a unique field.",
+      "notNeeded": "Tradespeople do not need:",
+      "notNeededItems": [
+        "complicated marketing pitches",
+        "nor unrealistic promises"
+      ],
+      "needed": "They need:",
+      "neededItems": [
+        "visibility",
+        "real calls",
+        "real quote requests",
+        "real clients"
+      ],
+      "outro": "Guillaume Azas and Webesty work with a clear, structured and results-driven approach. The goal is simple: helping serious professionals grow their business sustainably."
+    },
+    "complement": {
+      "title": "An ideal complement to Artisan Compétent",
+      "intro": "Artisan Compétent oversees your projects. SEO, on the other hand, helps:",
+      "items": [
+        "grow your visibility",
+        "improve your image",
+        "generate more business opportunities"
+      ],
+      "outro": "The two systems are complementary: more visibility, more trust, more enquiries and more signed quotes."
+    },
+    "gbp": {
+      "title": "Google Business: essential today",
+      "intro": "Your Google Business profile has become essential. It is often:",
+      "roleItems": [
+        "the first image the client sees",
+        "the first impression they form",
+        "sometimes the reason they contact you, or not"
+      ],
+      "optimization": "Professional optimization notably helps:",
+      "optimizationItems": [
+        "improve your local visibility",
+        "increase calls",
+        "collect more reviews",
+        "reassure future clients immediately"
+      ]
+    },
+    "develop": {
+      "title": "Want to grow your business?",
+      "intro": "Artisan Compétent recommends Webesty and Guillaume Azas to support professionals seeking to improve their online visibility:",
+      "items": [
+        "construction-specialized SEO",
+        "local SEO",
+        "Google optimization",
+        "professional website",
+        "strategy designed to sign more quotes"
+      ],
+      "outro": "Because today, being good is no longer enough. You also need to be visible."
     }
   }
 }

@@ -493,6 +493,7 @@
     "home": "Accueil",
     "jobs": "Métiers",
     "affiliation": "Affiliation",
+    "professionals": "Professionnels",
     "loading": "Chargement..."
   },
   "footer": {
@@ -2789,6 +2790,320 @@
       "item6": "Tout litige relève de la juridiction française."
     }
   },
+  "pro": {
+    "meta": {
+      "title": "Devenir artisan partenaire | Artisan Compétent",
+      "description": "Rejoignez Artisan Compétent : vous ne payez qu'au devis signé, dans un environnement encadré qui protège aussi les artisans. Inscription vérifiée (SIRET, assurances)."
+    },
+    "breadcrumb": {
+      "home": "Accueil",
+      "pro": "Professionnels"
+    },
+    "cta": "Créer mon profil professionnel",
+    "hero": {
+      "title": "Pourquoi rejoindre Artisan Compétent ?",
+      "subtitleIntro": "Parce qu'aujourd'hui, trouver des clients coûte cher, sans garantie de résultat. Entre :",
+      "subtitleItems": [
+        "les plateformes qui vendent des leads",
+        "les demandes de devis payantes",
+        "Google Ads",
+        "Facebook Ads",
+        "les faux prospects",
+        "les appels qui n'aboutissent jamais",
+        "les devis envoyés dans le vide"
+      ],
+      "subtitleOutro": "Beaucoup d'artisans dépensent énormément d'argent sans réel retour. Chez Artisan Compétent, le fonctionnement est différent."
+    },
+    "paySigned": {
+      "title": "Vous ne payez que lorsqu'un devis est réellement signé",
+      "intro": "Pas de :",
+      "items": [
+        "packs de visibilité inutiles",
+        "crédits de devis",
+        "enchères entre artisans",
+        "dépenses publicitaires permanentes sans résultat concret"
+      ],
+      "outro": "Notre objectif est simple : vous apporter de vrais clients, avec un vrai projet, dans un environnement encadré, et avec un système pensé aussi pour protéger les artisans honnêtes."
+    },
+    "protection": {
+      "title": "Artisan Compétent ne protège pas seulement les clients",
+      "intro": "La plateforme protège également les professionnels sérieux contre :",
+      "items": [
+        "les impayés abusifs",
+        "les faux litiges",
+        "les clients malveillants",
+        "les contestations injustifiées",
+        "la mauvaise image du secteur"
+      ],
+      "outro": "Le système a été pensé pour créer un équilibre sain entre les deux parties."
+    },
+    "image": {
+      "title": "Une image plus professionnelle auprès des clients",
+      "suffering": {
+        "intro": "Aujourd'hui, beaucoup de particuliers ont peur de faire appel à un artisan. Même les bons professionnels souffrent :",
+        "items": [
+          "des arnaques visibles sur internet",
+          "des abandons de chantier",
+          "des faux avis",
+          "du manque de confiance général dans le bâtiment"
+        ]
+      },
+      "frame": {
+        "intro": "Artisan Compétent apporte un cadre rassurant :",
+        "items": [
+          "suivi digital",
+          "preuves",
+          "devis centralisés",
+          "séquestre des fonds",
+          "procès-verbal digital",
+          "arbitrage",
+          "traçabilité complète du chantier"
+        ]
+      },
+      "result": {
+        "intro": "Résultat :",
+        "items": [
+          "le client est plus rassuré",
+          "le devis est plus facilement accepté",
+          "l'artisan gagne en crédibilité"
+        ]
+      }
+    },
+    "valorisation": {
+      "title": "Un système qui valorise les artisans organisés",
+      "intro": "Les professionnels les plus transparents et les plus sérieux sont naturellement mis en valeur, parce que le système permet :",
+      "items": [
+        "de documenter le chantier",
+        "de montrer le sérieux du travail",
+        "d'éviter les incompréhensions",
+        "de limiter fortement les litiges"
+      ]
+    },
+    "terrain": {
+      "title": "Une plateforme pensée par quelqu'un qui connaît le terrain",
+      "problems": {
+        "intro": "Artisan Compétent n'a pas été imaginé par une agence marketing éloignée du bâtiment. La plateforme a été pensée autour des vrais problèmes du terrain :",
+        "items": [
+          "acomptes perdus",
+          "clients méfiants",
+          "litiges",
+          "délais",
+          "fournisseurs",
+          "problèmes de trésorerie",
+          "urgences",
+          "réalités du métier"
+        ]
+      },
+      "goal": {
+        "intro": "L'objectif n'est pas de compliquer votre travail. L'objectif est :",
+        "items": [
+          "de vous aider à travailler dans un cadre plus sain",
+          "de rassurer vos futurs clients",
+          "de vous permettre de signer davantage de chantiers"
+        ]
+      }
+    },
+    "clientsLove": {
+      "title": "Ce que les clients apprécient particulièrement",
+      "intro": "Les clients aiment notamment :",
+      "items": [
+        "le paiement encadré via Stripe",
+        "le séquestre des fonds",
+        "le suivi digital",
+        "les preuves",
+        "le procès-verbal digital",
+        "le fait qu'aucun paiement final ne soit libéré avant validation du chantier"
+      ],
+      "outro": "Et paradoxalement, cela rassure aussi énormément les artisans honnêtes : un client qui se sent en confiance signe plus facilement, hésite moins et suit généralement mieux son chantier."
+    },
+    "steps": {
+      "title": "Comment fonctionne Artisan Compétent côté professionnel ?",
+      "s1": {
+        "title": "1. Création du profil professionnel",
+        "intro": "Avant validation du compte, Artisan Compétent vérifie notamment :",
+        "items": [
+          "votre SIRET",
+          "vos assurances",
+          "votre RC Pro",
+          "votre décennale lorsque nécessaire",
+          "toutes les certifications professionnelles en votre possession, à jour, correspondant à votre métier et aux interventions que vous proposez (RGE, Qualibat, QualiPAC, etc.)"
+        ],
+        "outro": "L'objectif est de maintenir un niveau minimum de sérieux sur la plateforme."
+      },
+      "s2": {
+        "title": "2. Réception des demandes clients",
+        "body": "Le client sélectionne son métier, choisit son secteur géographique, puis sélectionne lui-même les professionnels qu'il souhaite contacter. Vous recevez ensuite les photos, le descriptif et les informations utiles concernant la demande."
+      },
+      "s3": {
+        "title": "3. Appel vidéo encadré avant devis",
+        "body": "Si les photos ou le descriptif ne sont pas suffisants, vous pouvez immédiatement lancer un appel vidéo directement via la plateforme. Cela permet d'éviter des déplacements inutiles, de mieux comprendre le chantier et d'établir un devis plus précis. Les coordonnées personnelles ne sont pas communiquées à ce stade."
+      },
+      "s4": {
+        "title": "4. Établissement du devis",
+        "intro": "Le devis doit être clair, détaillé, réaliste et compréhensible. Vous devez notamment préciser :",
+        "items": [
+          "les travaux réalisés",
+          "les matériaux",
+          "les délais",
+          "les éventuelles contraintes",
+          "les limites de votre intervention"
+        ]
+      },
+      "s5": {
+        "title": "5. Fonctionnement concernant les fournitures",
+        "under2k": {
+          "title": "Jusqu'à 2 000 € TTC",
+          "body": "Pour les devis inférieurs à 2 000 € TTC, les matériaux doivent obligatoirement être avancés par l'artisan et intégrés directement au devis. Cela permet généralement un chantier plus fluide, moins de complications, une meilleure coordination et moins de risques de litiges."
+        },
+        "over2k": {
+          "title": "Pour les chantiers les plus importants",
+          "intro": "Pour les chantiers les plus importants, et afin de ne pas fragiliser la trésorerie des professionnels, notamment des auto-entrepreneurs, Artisan Compétent a fait le choix, pour le moment, de permettre qu'au-delà de 2 000 € de devis, le client puisse régler directement les fournitures chez le fournisseur. Cette organisation permet de faciliter le démarrage des chantiers, de limiter la pression financière sur l'artisan et d'éviter certaines difficultés liées aux délais de démarrage parfois éloignés après signature du devis. Dans ce cas :",
+          "items": [
+            "le client accompagne directement l'artisan chez le fournisseur, ou se rend directement chez le fournisseur au nom de l'artisan, notamment lorsque le professionnel peut faire bénéficier son client de tarifs ou remises professionnelles plus avantageux",
+            "les matériaux sont réglés directement sur place",
+            "l'artisan ne doit pas recevoir directement l'avance des fournitures",
+            "toutes les factures doivent être conservées puis ajoutées dans le suivi digital du chantier"
+          ],
+          "outro": "Ce fonctionnement permet également de conserver une traçabilité complète des achats, de fiabiliser les commandes et de faciliter le suivi du chantier en cas de besoin futur."
+        }
+      },
+      "s6": {
+        "title": "6. Paiement encadré et séquestre",
+        "body": "Le client règle le devis via Stripe. Les fonds sont alors séquestrés jusqu'à validation finale du chantier. Important : l'argent ne transite jamais directement sur le compte bancaire d'Artisan Compétent. Même la direction de la plateforme ne peut pas détourner les fonds séquestrés."
+      },
+      "s7": {
+        "title": "7. Déroulement du chantier",
+        "body": "Pendant toute la durée des travaux, vous devez utiliser le suivi digital, ajouter des photos, commenter l'avancement et documenter les étapes importantes. Un suivi photographique avant, pendant et après est obligatoire pour les chantiers classiques. Dès le commencement du chantier, une photo d'état des lieux est obligatoire, accompagnée d'un commentaire précisant soit qu'aucun élément particulier n'est à signaler, soit les éventuels défauts, contraintes ou éléments visibles pouvant avoir un impact futur sur le chantier ou sur un éventuel litige. Ce process est obligatoire et permet d'assurer un meilleur suivi du dossier en cas de désaccord futur. Pour les interventions rapides ou urgentes, le process reste identique, avec obligation d'effectuer un avant et après, accompagné des commentaires nécessaires ainsi qu'une photo d'état des lieux. La seule différence est que, pour ces interventions courtes, la photo pendant n'est pas obligatoire."
+      },
+      "s8": {
+        "title": "8. Procès-verbal de fin de chantier",
+        "body": "Lorsque les travaux sont terminés, vous envoyez un procès-verbal digital. Le client dispose alors de 48 heures pour vérifier les travaux, signaler un problème ou demander une correction si nécessaire. Huit heures avant la fin du délai, le client reçoit automatiquement un email de rappel. En l'absence de réserve, le procès-verbal est validé automatiquement et les fonds sont libérés."
+      },
+      "s9": {
+        "title": "9. En cas de litige",
+        "body": "Avant tout signalement officiel, le dialogue amiable reste obligatoire. La grande majorité des situations se règlent simplement par une bonne communication. Si aucun accord n'est trouvé, le client peut demander l'intervention d'un CMOD. Le CMOD analyse le dossier, consulte les éléments du dashboard, étudie les échanges et rend un avis consultatif impartial. Les frais d'intervention du CMOD, fixés à 35 €, restent intégralement à la charge de l'artisan et seront directement déduits des fonds lui revenant. L'objectif est donc, pour chaque professionnel, de maintenir une bonne communication avec le client, d'assurer un suivi sérieux du chantier et d'éviter autant que possible l'ouverture d'un litige officiel. L'arbitrage final reste effectué par Artisan Compétent selon les preuves disponibles, les échanges, les documents transmis et les CGU/CGV acceptées par les parties."
+      },
+      "s10": {
+        "title": "10. Paiement en plusieurs fois via Klarna",
+        "body": "Artisan Compétent permet aux professionnels qui le souhaitent de proposer un paiement en plusieurs fois via Klarna. Cette solution reste entièrement facultative. Elle peut cependant représenter un véritable levier commercial, parce qu'un client qui peut échelonner son paiement hésite moins, valide plus rapidement ses devis et peut accéder à des travaux qu'il aurait parfois reportés. Dans de nombreux cas, cette facilité de paiement permet donc d'augmenter significativement le nombre de devis signés. Le professionnel reste totalement libre d'accepter ou de refuser Klarna selon sa stratégie et ses contraintes. Les frais Klarna s'élèvent à 5 % et restent entièrement à la charge de l'artisan. C'est précisément pour cette raison que le professionnel reste libre de l'accepter ou non. Dans de nombreux cas, les devis signés grâce à cette facilité compensent largement ce coût supplémentaire. Important : les frais liés à Klarna ne peuvent pas être ajoutés sous forme de ligne distincte visible sur le devis. Le professionnel reste cependant libre d'intégrer intelligemment ses coûts globaux dans sa politique tarifaire générale, dans le respect des CGU/CGV et des conditions des partenaires de paiement."
+      },
+      "s11": {
+        "title": "11. Commissions Artisan Compétent",
+        "under2k": {
+          "title": "Jusqu'à 2 000 € TTC : commission de 15 % HT sur le devis total TTC."
+        },
+        "over2k": {
+          "title": "Au-delà de 2 000 € TTC : commission de 10 % HT sur le devis total TTC."
+        }
+      }
+    },
+    "expectations": {
+      "title": "Ce qu'Artisan Compétent attend des professionnels",
+      "items": [
+        "du sérieux",
+        "de la transparence",
+        "de la réactivité",
+        "une communication professionnelle",
+        "un suivi rigoureux",
+        "un comportement respectueux des clients"
+      ]
+    },
+    "goal": {
+      "title": "Notre objectif",
+      "intro": "Créer une plateforme :",
+      "items": [
+        "plus saine",
+        "plus transparente",
+        "plus encadrée",
+        "plus professionnelle pour tout le secteur du bâtiment"
+      ],
+      "outro": "Parce qu'aujourd'hui, les bons artisans méritent mieux que le fonctionnement actuel du marché."
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "q1": {
+        "question": "Artisan Compétent est-il payant ?",
+        "intro": "Oui, Artisan Compétent fonctionne avec une commission prélevée uniquement lorsqu'un devis est réellement signé.",
+        "platforms": "Contrairement à de nombreuses plateformes :",
+        "platformsItems": [
+          "vous ne payez pas pour recevoir des demandes",
+          "vous ne payez pas de crédits de devis",
+          "vous ne payez pas d'enchères",
+          "vous n'avez pas besoin de dépenser des centaines d'euros en publicité sans garantie de résultat"
+        ],
+        "how": "Le fonctionnement est simple :",
+        "howItems": [
+          "En dessous de 2 000 € TTC : une commission de 15 % HT est prélevée sur le devis total TTC.",
+          "Au-delà de 2 000 € TTC : la commission passe à 10 % HT sur le devis total TTC."
+        ],
+        "outro": "Cela signifie qu'Artisan Compétent ne gagne de l'argent que lorsque vous gagnez réellement un chantier. L'objectif est donc totalement aligné avec celui des professionnels : vous aider à signer davantage de devis dans un environnement encadré et rassurant pour les clients.",
+        "answerLd": "Oui, Artisan Compétent fonctionne avec une commission prélevée uniquement lorsqu'un devis est réellement signé. Contrairement à de nombreuses plateformes : vous ne payez pas pour recevoir des demandes, vous ne payez pas de crédits de devis, vous ne payez pas d'enchères, vous n'avez pas besoin de dépenser des centaines d'euros en publicité sans garantie de résultat. Le fonctionnement est simple : en dessous de 2 000 € TTC, une commission de 15 % HT est prélevée sur le devis total TTC ; au-delà de 2 000 € TTC, la commission passe à 10 % HT sur le devis total TTC. Cela signifie qu'Artisan Compétent ne gagne de l'argent que lorsque vous gagnez réellement un chantier. L'objectif est donc totalement aligné avec celui des professionnels : vous aider à signer davantage de devis dans un environnement encadré et rassurant pour les clients."
+      },
+      "q2": {
+        "question": "Combien de temps peut durer un litige ?",
+        "intro": "L'objectif d'Artisan Compétent est de résoudre les situations le plus rapidement possible.",
+        "factors": "La durée dépend principalement :",
+        "factorsItems": [
+          "de la réactivité des parties",
+          "de la complexité du chantier",
+          "des éléments disponibles dans le suivi digital"
+        ],
+        "prose": "Dans la majorité des cas, un échange clair, des photos, un bon suivi du chantier et une communication professionnelle permettent de résoudre la situation rapidement.",
+        "requirements": "C'est précisément pour cette raison que la plateforme impose :",
+        "requirementsItems": [
+          "le suivi digital",
+          "les commentaires",
+          "les photos avant, pendant et après",
+          "la centralisation des échanges"
+        ],
+        "outro": "Plus le dossier est documenté, plus la résolution est simple et rapide. Après l'analyse du dossier et l'avis du CMOD lorsqu'il y a eu intervention, Artisan Compétent arbitrera et tranchera le dossier dans un délai maximum de 30 jours.",
+        "answerLd": "L'objectif d'Artisan Compétent est de résoudre les situations le plus rapidement possible. La durée dépend principalement de la réactivité des parties, de la complexité du chantier et des éléments disponibles dans le suivi digital. Dans la majorité des cas, un échange clair, des photos, un bon suivi du chantier et une communication professionnelle permettent de résoudre la situation rapidement. C'est précisément pour cette raison que la plateforme impose le suivi digital, les commentaires, les photos avant, pendant et après, et la centralisation des échanges. Plus le dossier est documenté, plus la résolution est simple et rapide. Après l'analyse du dossier et l'avis du CMOD lorsqu'il y a eu intervention, Artisan Compétent arbitrera et tranchera le dossier dans un délai maximum de 30 jours."
+      },
+      "q3": {
+        "question": "Que se passe-t-il si j'avance les fournitures et qu'il y a litige ?",
+        "body": "Si l'artisan avance les fournitures dans le cadre du chantier, les sommes avancées pour les matériaux lui seront remboursées, quel que soit le montant du devis et quelle que soit l'issue du litige. Le système de séquestre a justement été pensé pour éviter qu'un professionnel sérieux perde l'argent investi dans un chantier."
+      },
+      "q4": {
+        "question": "Suis-je obligé d'accepter Klarna ?",
+        "intro": "Non. Le paiement en plusieurs fois via Klarna reste entièrement facultatif.",
+        "choice": "Chaque artisan est libre :",
+        "choiceItems": [
+          "de l'accepter",
+          "ou de le refuser"
+        ],
+        "benefits": "Cependant, cette solution peut représenter un véritable avantage commercial. Un client qui peut payer en plusieurs fois :",
+        "benefitsItems": [
+          "hésite moins",
+          "valide plus rapidement ses devis",
+          "accède plus facilement à certains travaux"
+        ],
+        "outro": "Dans de nombreux cas, Klarna permet donc d'augmenter significativement le nombre de devis signés. Les frais Klarna, fixés à 5 %, restent entièrement à la charge du professionnel. C'est pourquoi chaque artisan reste libre de décider si cette solution correspond ou non à sa stratégie commerciale.",
+        "answerLd": "Non. Le paiement en plusieurs fois via Klarna reste entièrement facultatif. Chaque artisan est libre de l'accepter ou de le refuser. Cependant, cette solution peut représenter un véritable avantage commercial. Un client qui peut payer en plusieurs fois hésite moins, valide plus rapidement ses devis et accède plus facilement à certains travaux. Dans de nombreux cas, Klarna permet donc d'augmenter significativement le nombre de devis signés. Les frais Klarna, fixés à 5 %, restent entièrement à la charge du professionnel. C'est pourquoi chaque artisan reste libre de décider si cette solution correspond ou non à sa stratégie commerciale."
+      },
+      "q5": {
+        "question": "Puis-je moi-même être parrain et affilier des gens ?",
+        "introBefore": "Oui. Un artisan peut également ",
+        "affiliateLink": "devenir affilié Artisan Compétent",
+        "introAfter": " et percevoir des revenus complémentaires en recommandant la plateforme :",
+        "audienceItems": [
+          "à d'autres artisans",
+          "ou directement à des clients"
+        ],
+        "national": "L'avantage du système est qu'il fonctionne au niveau national :",
+        "nationalItems": [
+          "France métropolitaine",
+          "Corse",
+          "DOM-TOM"
+        ],
+        "outro": "Chaque affilié peut ainsi participer au développement du réseau Artisan Compétent tout en générant des revenus complémentaires grâce aux procès-verbaux signés via ses recommandations.",
+        "answerLd": "Oui. Un artisan peut également devenir affilié Artisan Compétent et percevoir des revenus complémentaires en recommandant la plateforme à d'autres artisans ou directement à des clients. L'avantage du système est qu'il fonctionne au niveau national : France métropolitaine, Corse, DOM-TOM. Chaque affilié peut ainsi participer au développement du réseau Artisan Compétent tout en générant des revenus complémentaires grâce aux procès-verbaux signés via ses recommandations."
+      }
+    },
+    "ctaFinal": {
+      "title": "Rejoignez Artisan Compétent",
+      "body": "Développez votre activité dans un environnement encadré, professionnel et pensé pour valoriser les artisans honnêtes. Notre promesse : personne ne disparaîtra avec votre argent."
+    }
+  },
   "login": {
     "title": "Connexion",
     "submit": "Se connecter",
@@ -3164,6 +3479,118 @@
     "cookies": {
       "tab": "Cookies",
       "title": "Politique des cookies"
+    }
+  },
+  "seoBatiment": {
+    "meta": {
+      "title": "SEO bâtiment : développez votre visibilité | Artisan Compétent",
+      "description": "Artisan Compétent recommande Webesty et Guillaume Azas, expert SEO spécialisé bâtiment : référencement local, Google Business, sites pros, plus de devis signés."
+    },
+    "breadcrumb": {
+      "home": "Accueil",
+      "page": "SEO bâtiment"
+    },
+    "cta": "En savoir plus sur Webesty",
+    "hero": {
+      "title": "Développez votre visibilité avec un SEO pensé pour le bâtiment"
+    },
+    "whyExpert": {
+      "title": "Pourquoi Artisan Compétent recommande un expert SEO spécialisé BTP ?",
+      "intro": "Avoir du savoir-faire ne suffit plus aujourd'hui. Même les meilleurs artisans peuvent passer à côté de nombreux chantiers simplement parce qu'ils sont invisibles sur internet.",
+      "needs": "Chez Artisan Compétent, nous savons qu'un professionnel sérieux doit pouvoir :",
+      "items": [
+        "être visible localement",
+        "rassurer immédiatement les clients",
+        "apparaître correctement sur Google",
+        "transformer plus facilement ses visiteurs en devis signés"
+      ],
+      "outro": "C'est pour cette raison qu'Artisan Compétent recommande l'expert SEO qui accompagne également le développement de la plateforme."
+    },
+    "profile": {
+      "name": "Guillaume Azas, Webesty",
+      "role": "Expert SEO spécialisé bâtiment",
+      "tagline": "Expert SEO spécialisé dans la visibilité locale et les métiers du bâtiment.",
+      "jobTitle": "Expert SEO spécialisé bâtiment",
+      "organization": "Webesty"
+    },
+    "sign": {
+      "title": "Un SEO pensé pour signer plus de devis",
+      "intro": "L'objectif n'est pas simplement d'avoir un joli site. L'objectif est de créer un système capable :",
+      "systemItems": [
+        "d'attirer des clients qualifiés",
+        "d'inspirer confiance",
+        "de valoriser votre savoir-faire",
+        "d'augmenter vos chances de signer des chantiers"
+      ],
+      "workIntro": "Le travail SEO peut notamment inclure :",
+      "workItems": [
+        "création de site internet professionnel",
+        "optimisation Google Business Profile",
+        "référencement local",
+        "stratégie SEO spécialisée BTP",
+        "optimisation des pages de vente",
+        "maillage interne",
+        "structure SEO avancée",
+        "optimisation mobile",
+        "amélioration de la visibilité Google",
+        "stratégie de contenu",
+        "amélioration du taux de conversion"
+      ]
+    },
+    "recommend": {
+      "title": "Pourquoi Artisan Compétent le recommande ?",
+      "intro": "Parce qu'un bon référencement ne s'improvise pas. Et surtout parce que le bâtiment est un domaine particulier.",
+      "notNeeded": "Les artisans n'ont pas besoin :",
+      "notNeededItems": [
+        "d'un discours marketing compliqué",
+        "ni de promesses irréalistes"
+      ],
+      "needed": "Ils ont besoin :",
+      "neededItems": [
+        "de visibilité",
+        "de vrais appels",
+        "de vrais devis",
+        "de vrais clients"
+      ],
+      "outro": "Guillaume Azas et Webesty travaillent avec une approche claire, structurée et orientée résultats. L'objectif est simple : aider les professionnels sérieux à développer leur activité durablement."
+    },
+    "complement": {
+      "title": "Un complément idéal à Artisan Compétent",
+      "intro": "Artisan Compétent encadre vos chantiers. Le SEO permet quant à lui :",
+      "items": [
+        "d'augmenter votre visibilité",
+        "d'améliorer votre image",
+        "de générer davantage d'opportunités commerciales"
+      ],
+      "outro": "Les deux systèmes sont complémentaires : plus de visibilité, plus de confiance, plus de demandes et plus de devis signés."
+    },
+    "gbp": {
+      "title": "Google Business : indispensable aujourd'hui",
+      "intro": "Votre fiche Google Business est devenue essentielle. C'est souvent :",
+      "roleItems": [
+        "la première image que le client voit",
+        "la première impression qu'il se fait",
+        "parfois la raison pour laquelle il vous contacte, ou non"
+      ],
+      "optimization": "Une optimisation professionnelle permet notamment :",
+      "optimizationItems": [
+        "d'améliorer votre visibilité locale",
+        "d'augmenter les appels",
+        "d'obtenir davantage d'avis",
+        "de rassurer immédiatement les futurs clients"
+      ]
+    },
+    "develop": {
+      "title": "Vous souhaitez développer votre activité ?",
+      "intro": "Artisan Compétent recommande Webesty et Guillaume Azas pour accompagner les professionnels souhaitant améliorer leur visibilité sur internet :",
+      "items": [
+        "SEO spécialisé bâtiment",
+        "référencement local",
+        "optimisation Google",
+        "site internet professionnel",
+        "stratégie pensée pour signer plus de devis"
+      ],
+      "outro": "Parce qu'aujourd'hui, être bon ne suffit plus. Il faut aussi être visible."
     }
   }
 }
