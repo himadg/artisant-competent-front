@@ -4,7 +4,7 @@
         class="grid py-4 place-items-center size-16 rounded-full bg-[var(--tertiary-brown)]"
         (click)="toggleMobileNav()"
         aria-label="Menu"
-        [attr.aria-expanded]="mobileNavOpen"
+        [attr.aria-expanded]="mobileNavOpen()"
     >
         <span class="block w-6 h-0.5 bg-[var(--primary-beige)]"></span>
         <span class="block w-6 h-0.5 bg-[var(--primary-beige)]"></span>
@@ -14,16 +14,16 @@
     <!-- Overlay backdrop -->
     <div
         class="fixed inset-0 z-40 transition-opacity duration-700 ease-in-out bg-black/50"
-        [class.opacity-0]="!mobileNavOpen"
-        [class.opacity-100]="mobileNavOpen"
-        [class.pointer-events-none]="!mobileNavOpen"
+        [class.opacity-0]="!mobileNavOpen()"
+        [class.opacity-100]="mobileNavOpen()"
+        [class.pointer-events-none]="!mobileNavOpen()"
         (click)="closeMobileNav()"
     ></div>
 
     <div
         class="fixed top-0 right-0 h-screen w-8/12 max-w-[320px] p-4 flex flex-col gap-2 bg-grad-brown border-l border-[var(--secondary-beige)] transition-transform duration-700 ease-in-out z-50 pt-[calc(1rem_+_var(--top-banners-h))] lg:pt-[calc(var(--top-banners-h))]"
-        [class.translate-x-full]="!mobileNavOpen"
-        [class.translate-x-0]="mobileNavOpen"
+        [class.translate-x-full]="!mobileNavOpen()"
+        [class.translate-x-0]="mobileNavOpen()"
     >
         <button type="button" (click)="closeMobileNav()" class="self-end px-3 text-3xl">×</button>
 
@@ -52,22 +52,30 @@
             {{ 'common.affiliation' | transloco }}
         </a>
 
+        <a
+            routerLink="/espace-professionnel"
+            routerLinkActive="active"
+            class="p-2 no-underline rounded-lg hover:bg-grad-water-green"
+        >
+            {{ 'common.professionals' | transloco }}
+        </a>
+
         <button
             type="button"
             class="flex justify-between items-center p-2 no-underline"
             (click)="toggleMobileNavRegister()"
-            [attr.aria-expanded]="mobileNavRegisterOpen"
+            [attr.aria-expanded]="mobileNavRegisterOpen()"
         >
             <span>{{ 'auth.register' | transloco }}</span>
-            <span class="" [class.rotate-180]="mobileNavRegisterOpen">▾</span>
+            <span class="" [class.rotate-180]="mobileNavRegisterOpen()">▾</span>
         </button>
         <div
             class="overflow-hidden transition-all duration-700 ease-in-out"
-            [class.max-h-0]="!mobileNavRegisterOpen"
-            [class.max-h-40]="mobileNavRegisterOpen"
-            [class.border-t]="mobileNavRegisterOpen"
-            [class.border-b]="mobileNavRegisterOpen"
-            [class.py-2]="mobileNavRegisterOpen"
+            [class.max-h-0]="!mobileNavRegisterOpen()"
+            [class.max-h-40]="mobileNavRegisterOpen()"
+            [class.border-t]="mobileNavRegisterOpen()"
+            [class.border-b]="mobileNavRegisterOpen()"
+            [class.py-2]="mobileNavRegisterOpen()"
         >
             <a
                 [routerLink]="['/auth/register']"

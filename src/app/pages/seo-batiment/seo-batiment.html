@@ -1,0 +1,110 @@
+<article class="px-4 py-12 mx-auto max-w-screen-lg space-y-16 seo-batiment-page">
+    <section id="hero" class="text-center space-y-6">
+        <h1 class="text-3xl font-extrabold md:text-5xl">{{ 'seoBatiment.hero.title' | transloco }}</h1>
+    </section>
+
+    <section id="pourquoi-expert" class="space-y-4">
+        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'seoBatiment.whyExpert.title' | transloco }}</h2>
+        <p>{{ 'seoBatiment.whyExpert.intro' | transloco }}</p>
+        <p>{{ 'seoBatiment.whyExpert.needs' | transloco }}</p>
+        <ul class="pl-5 space-y-2 list-disc">
+            @for (item of $any('seoBatiment.whyExpert.items' | transloco); track $index) {
+                <li>{{ item }}</li>
+            }
+        </ul>
+        <p>{{ 'seoBatiment.whyExpert.outro' | transloco }}</p>
+    </section>
+
+    <section id="profil" class="space-y-4">
+        <div class="p-6 rounded-lg border bg-grad-water-green/10 space-y-2 text-center md:p-8">
+            <h3 class="text-xl font-bold md:text-2xl">{{ 'seoBatiment.profile.name' | transloco }}</h3>
+            <p class="font-semibold">{{ 'seoBatiment.profile.role' | transloco }}</p>
+            <p>{{ 'seoBatiment.profile.tagline' | transloco }}</p>
+        </div>
+    </section>
+
+    <section id="signer-plus-devis" class="space-y-4">
+        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'seoBatiment.sign.title' | transloco }}</h2>
+        <p>{{ 'seoBatiment.sign.intro' | transloco }}</p>
+        <ul class="pl-5 space-y-2 list-disc">
+            @for (item of $any('seoBatiment.sign.systemItems' | transloco); track $index) {
+                <li>{{ item }}</li>
+            }
+        </ul>
+        <p>{{ 'seoBatiment.sign.workIntro' | transloco }}</p>
+        <ul class="pl-5 space-y-2 list-disc">
+            @for (item of $any('seoBatiment.sign.workItems' | transloco); track $index) {
+                <li>{{ item }}</li>
+            }
+        </ul>
+    </section>
+
+    <section id="pourquoi-recommande" class="space-y-4">
+        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'seoBatiment.recommend.title' | transloco }}</h2>
+        <p>{{ 'seoBatiment.recommend.intro' | transloco }}</p>
+        <p>{{ 'seoBatiment.recommend.notNeeded' | transloco }}</p>
+        <ul class="pl-5 space-y-2 list-disc">
+            @for (item of $any('seoBatiment.recommend.notNeededItems' | transloco); track $index) {
+                <li>{{ item }}</li>
+            }
+        </ul>
+        <p>{{ 'seoBatiment.recommend.needed' | transloco }}</p>
+        <ul class="pl-5 space-y-2 list-disc">
+            @for (item of $any('seoBatiment.recommend.neededItems' | transloco); track $index) {
+                <li>{{ item }}</li>
+            }
+        </ul>
+        <p>{{ 'seoBatiment.recommend.outro' | transloco }}</p>
+    </section>
+
+    <section id="complement" class="space-y-4">
+        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'seoBatiment.complement.title' | transloco }}</h2>
+        <p>{{ 'seoBatiment.complement.intro' | transloco }}</p>
+        <ul class="pl-5 space-y-2 list-disc">
+            @for (item of $any('seoBatiment.complement.items' | transloco); track $index) {
+                <li>{{ item }}</li>
+            }
+        </ul>
+        <p>{{ 'seoBatiment.complement.outro' | transloco }}</p>
+    </section>
+
+    <section id="google-business" class="space-y-4">
+        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'seoBatiment.gbp.title' | transloco }}</h2>
+        <p>{{ 'seoBatiment.gbp.intro' | transloco }}</p>
+        <ul class="pl-5 space-y-2 list-disc">
+            @for (item of $any('seoBatiment.gbp.roleItems' | transloco); track $index) {
+                <li>{{ item }}</li>
+            }
+        </ul>
+        <p>{{ 'seoBatiment.gbp.optimization' | transloco }}</p>
+        <ul class="pl-5 space-y-2 list-disc">
+            @for (item of $any('seoBatiment.gbp.optimizationItems' | transloco); track $index) {
+                <li>{{ item }}</li>
+            }
+        </ul>
+    </section>
+
+    <section id="developper" class="space-y-4">
+        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'seoBatiment.develop.title' | transloco }}</h2>
+        <p>{{ 'seoBatiment.develop.intro' | transloco }}</p>
+        <ul class="pl-5 space-y-2 list-disc">
+            @for (item of $any('seoBatiment.develop.items' | transloco); track $index) {
+                <li>{{ item }}</li>
+            }
+        </ul>
+        <p>{{ 'seoBatiment.develop.outro' | transloco }}</p>
+    </section>
+
+    <section id="contact" class="text-center space-y-4 p-8 rounded-lg border">
+        <div class="flex flex-wrap gap-4 justify-center">
+            <a
+                href="https://webesty.fr/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block px-6 py-3 font-semibold rounded-lg no-underline bg-[var(--primary-water-green)] text-[var(--primary-beige)]"
+            >
+                {{ 'seoBatiment.cta' | transloco }}
+            </a>
+        </div>
+    </section>
+</article>

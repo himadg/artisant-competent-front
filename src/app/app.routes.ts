@@ -21,6 +21,16 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/affiliation/affiliation').then((p) => p.AffiliationPage),
   },
   {
+    path: 'espace-professionnel',
+    title: 'pro.meta.title',
+    loadComponent: () => import('./pages/professionnels/professionnels').then((p) => p.ProfessionnelsPageComponent),
+  },
+  {
+    path: 'seo-batiment',
+    title: 'seoBatiment.meta.title',
+    loadComponent: () => import('./pages/seo-batiment/seo-batiment').then((p) => p.SeoBatimentPageComponent),
+  },
+  {
     path: 'jobs',
     title: 'jobs.title',
     loadComponent: () => import('./pages/jobs/jobs').then((p) => p.JobsPage),
