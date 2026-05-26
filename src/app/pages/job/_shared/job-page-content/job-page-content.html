@@ -36,6 +36,9 @@
             @case ('p') {
                 <p [class.font-semibold]="block.emphasis" class="leading-relaxed">{{ block.text }}</p>
             }
+            @case ('p-link') {
+                <p [class.font-semibold]="block.emphasis" class="leading-relaxed">{{ block.before }}<a [routerLink]="block.linkRoute" class="underline text-[#a97849]">{{ block.linkText }}</a>{{ block.after }}</p>
+            }
             @case ('list') {
                 <ul class="list-disc pl-6 space-y-1 leading-relaxed">
                     @for (item of block.items; track $index) {

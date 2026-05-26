@@ -5,22 +5,13 @@ export const electricianContent: JobPageContent = {
     imageAlt: 'Électricien vérifié',
     h1: 'Électricien vérifié, du devis à la mise sous tension encadrée',
     slogan: 'Cette page liste les interventions traitées par les électriciens vérifiés d’Artisan Compétent, y compris la domotique, les bornes de recharge et les mises aux normes NF C 15-100, et le mécanisme qui encadre votre paiement de la signature du devis à la libération des fonds 48h après la fin du chantier.',
-    metaTitle: 'Électricien vérifié, du devis à la mise sous tension encadrée | Artisan Compétent',
-    metaDescription: 'Sur Artisan Compétent, un électricien vérifié a son SIRET, ses assurances et son habilitation électrique NF C 18-510 contrôlés en amont, et tout son…',
+    metaTitle: 'Électricien vérifié, du devis au paiement encadré | Artisan Compétent',
+    metaDescription: 'Électricien vérifié sur Artisan Compétent : SIRET, RC pro, décennale, habilitation NF C 18-510, IRVE. Paiement encadré par séquestre Stripe, 48h pour signaler un abus.',
     body: [
       {
         kind: 'callout',
-        title: 'En une phrase',
-        body: 'Sur Artisan Compétent, un électricien vérifié a son SIRET, ses assurances et son habilitation électrique NF C 18-510 contrôlés en amont, et tout son chantier est encadré par un séquestre de fonds Stripe qui retient le paiement jusqu’à 48h après la mise sous tension. Vous payez seulement si l’installation est conforme au devis et aux normes.',
-      },
-      {
-        kind: 'p',
-        text: 'Un électricien vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, et son habilitation électrique en règle pour les interventions sous tension selon NF C 18-510. Les chantiers de rénovation complète sont conformes à la norme NF C 15-100 et terminés par un visa Consuel lorsque la réglementation l’impose. Tout le process est encadré par un séquestre de fonds Stripe : il reste bloqué jusqu’à 48h après la fin du chantier, fenêtre pendant laquelle vous pouvez signaler un abus, une non-conformité ou un matériel non conforme au devis.',
-      },
-      {
-        kind: 'callout',
         title: 'En bref',
-        body: 'Un électricien vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, son habilitation électrique selon NF C 18-510 pour les interventions sous tension, sa qualification IRVE pour les bornes de recharge et la qualification Qualifelec affichée si déclarée. Process encadré par séquestre Stripe : 48h après la fin du chantier pour signaler un abus. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.',
+        body: 'Un électricien vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, son habilitation électrique selon NF C 18-510 pour les interventions sous tension, sa qualification IRVE pour les bornes de recharge et la qualification Qualifelec affichée si déclarée. Process encadré par séquestre Stripe : 48h après la fin du chantier pour signaler un abus. Artisan Compétent ambitionne de couvrir toute la France, les DOM-TOM et la Corse, soit 38 zones, rayon de 30 km par ville.',
       },
       { kind: 'h2', text: 'Quand faire appel à un électricien vérifié' },
       {
@@ -56,8 +47,7 @@ export const electricianContent: JobPageContent = {
       },
       {
         kind: 'p',
-        emphasis: true,
-        text: 'Chaque électricien référencé sur Artisan Compétent voit son SIRET contrôlé sur les bases publiques (Annuaire des Entreprises, INSEE/SIRENE) et ses assurances vérifiées avant validation.',
+        text: 'Chaque électricien référencé sur Artisan Compétent voit son SIRET contrôlé sur les bases publiques (Annuaire des Entreprises, INSEE/SIRENE) et ses assurances vérifiées avant validation du compte sur la plate-forme.',
       },
       {
         kind: 'p',
@@ -65,16 +55,15 @@ export const electricianContent: JobPageContent = {
       },
       {
         kind: 'p',
-        text: 'Une fois le devis signé, l’artisan dépose obligatoirement ses documents légaux (attestations d’assurance, habilitation NF C 18-510, qualification IRVE le cas échéant) dans son tableau de bord. Ces documents sont consultables par le client dans son espace personnel. Le client est invité à revérifier en amont les pièces sensibles, notamment l’habilitation électrique et l’attestation IRVE pour la pose d’une borne de recharge.',
+        text: 'Une fois le devis signé, l’artisan dépose obligatoirement ses documents légaux (attestations d’assurance, habilitation NF C 18-510, qualification IRVE le cas échéant) dans son tableau de bord. Ces documents sont consultables par le client dans son espace personnel. Le client est invité à revérifier en amont les pièces sensibles, notamment l’habilitation électrique et l’attestation IRVE pour la pose d’une borne de recharge ainsi que les assurances.',
       },
       {
         kind: 'p',
-        emphasis: true,
         text: 'Le séquestre de fonds est un compte tiers géré via Stripe qui encadre tout le process, du devis à la libération des fonds.',
       },
       {
         kind: 'p',
-        text: 'Le paiement quitte votre compte au moment où vous validez le devis de l’électricien, mais reste bloqué sur un compte séquestre Stripe. Les fonds sont libérés à l’artisan 48h après la fin du chantier, sans contestation. Cette mise en attente vous laisse le temps de tester l’installation, de vérifier que les modifications correspondent au devis signé et, le cas échéant, de demander un visa Consuel si la rénovation l’exige. Pour les chantiers en plusieurs phases (dépose, passage de gaines, raccordement, mise sous tension), le paiement peut être découpé par jalons, chacun encadré par le séquestre.',
+        text: 'Le paiement quitte votre compte au moment où vous validez le devis de l’électricien, mais reste bloqué sur un compte séquestre Stripe. Les fonds sont libérés à l’artisan 48h après la fin du chantier, sans contestation.',
       },
       {
         kind: 'p',
@@ -91,19 +80,10 @@ export const electricianContent: JobPageContent = {
         text: 'CMOD est un service payant et optionnel d’accompagnement par un conseiller maître d’ouvrage à distance. Deux appels offerts dans des conditions précises.',
       },
       {
-        kind: 'p',
-        text: 'CMOD (Conseiller Maître Ouvrage Digital) est un service payant et optionnel. Deux dispositifs d’appels offerts existent, activés uniquement en cas de litige signalé après échec d’un règlement amiable avec l’artisan :',
-      },
-      {
-        kind: 'list',
-        items: [
-          'Sur les devis entre 2 000 € et 5 000 €, un appel de 20 minutes est offert.',
-          'Au-delà de 5 000 €, l’appel offert passe à 45 minutes.',
-        ],
-      },
-      {
-        kind: 'p',
-        text: 'Pour les interventions sous 2 000 €, le CMOD gratuit n’est pas automatique. Le client peut écrire à Artisan Compétent, qui traite la demande sous 24 à 48h selon la charge. Le suivi complet en amont du chantier (relecture du devis, points d’étape, contrôle du visa Consuel, vérification NF C 15-100) reste sur option payante. Pour l’électricité, le CMOD payant est précieux sur les rénovations complètes de tableau, l’installation d’une borne de recharge IRVE, ou la rénovation lourde d’un appartement ancien.',
+        kind: 'p-link',
+        linkText: 'CMOD',
+        linkRoute: '/cmod/formule',
+        after: ' (Conseiller Maître Ouvrage Digital) est un service payant et optionnel. Deux dispositifs d’appels offerts existent, activés uniquement en cas de litige signalé après échec d’un règlement amiable avec l’artisan.',
       },
       { kind: 'h2', text: 'Combien coûte un dépannage ou une rénovation électrique' },
       {
@@ -126,9 +106,9 @@ export const electricianContent: JobPageContent = {
       },
       {
         kind: 'p',
-        text: 'Artisan Compétent impose un devis chiffré détaillé et accepté avant toute intervention non-urgence. La fourchette horaire indicative de l’électricien sera précisée dès que les données métier auront été consolidées. Klarna 3 fois sans frais peut être proposé par l’artisan, négociation client · artisan.',
+        text: 'Artisan Compétent impose un devis chiffré détaillé et accepté avant toute intervention. La fourchette horaire indicative de l’électricien sera précisée dès que les données métier auront été consolidées. Klarna 3 fois sans frais peut être proposé par l’artisan, négociation client · artisan.',
       },
-      { kind: 'h2', text: 'Comparatif : Artisan Compétent vs autres plateformes vs Google direct' },
+      { kind: 'h2', text: 'Comparatif Artisan Compétent vs autres plateformes vs Google direct' },
       {
         kind: 'p',
         text: 'Trois manières de trouver un électricien en France. Trois niveaux de protection radicalement différents, particulièrement sur la conformité réglementaire.',
@@ -139,10 +119,10 @@ export const electricianContent: JobPageContent = {
         rows: [
           ['Vérification SIRET artisan', 'Variable', 'Aucune', 'Systématique avant validation'],
           ['Vérification assurances et habilitation NF C 18-510', 'Rare', 'Aucune', 'RC pro, décennale, habilitation, IRVE si applicable'],
-          ['Paiement encadré', 'Non', 'Séquestre de fonds Stripe, libération à 48h', ''],
+          ['Paiement encadré', 'Variable', 'Aucun', 'Séquestre de fonds Stripe, libération à 48h'],
           ['Recours en cas d’abus', 'Limité', 'Aucun', 'Retenue jusqu’à 250 € sur signalement < 48h'],
-          ['Conformité NF C 15-100 et Consuel', 'Variable', 'Aucune', 'Imposée et tracée'],
-          ['Conseiller maître d’ouvrage', 'Non', 'CMOD disponible sur option', ''],
+          ['Conformité NF C 15-100 et Consuel', 'Variable', 'Aucune', 'Imposée'],
+          ['Conseiller maître d’ouvrage', 'Non', 'Aucun', 'CMOD disponible sur option'],
         ],
       },
       { kind: 'h2', text: 'Les 3 pièges à éviter quand on cherche un électricien' },
@@ -158,7 +138,7 @@ export const electricianContent: JobPageContent = {
       { kind: 'h3', text: 'Piège 2 : L’installation non visée Consuel sur une rénovation lourde' },
       {
         kind: 'p',
-        text: 'Une rénovation complète de tableau ou la création d’une nouvelle installation imposent un visa Consuel avant mise sous tension par Enedis. Un électricien qui shunte cette étape, soit en omettant de demander le visa, soit en réutilisant un visa antérieur, expose le client à une installation non couverte par l’assurance habitation et à une régularisation à sa charge. Le devis devrait mentionner explicitement le visa Consuel et son coût.',
+        text: 'Une rénovation complète de tableau ou la création d’une nouvelle installation imposent un visa Consuel avant mise sous tension par Enedis. Un électricien qui ignore cette étape, soit en omettant de demander le visa, soit en réutilisant un visa antérieur, expose le client à une installation non couverte par l’assurance habitation et à une régularisation à sa charge. Le devis devrait mentionner explicitement le visa Consuel et son coût.',
       },
       { kind: 'h3', text: 'Piège 3 : Le matériel substitué entre devis et pose' },
       {
@@ -176,7 +156,7 @@ export const electricianContent: JobPageContent = {
       },
       {
         kind: 'p',
-        text: 'En cas de signalement d’abus dans les 48h suivant la fin du chantier (matériel non conforme, installation dangereuse, devis non respecté), Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU et CGV. Pour une installation présentant un risque sécurité, un contrôle par un électricien tiers ou un visa Consuel peut être exigé avant libération des fonds.',
+        text: 'En cas de signalement d’abus dans les 48h suivant la fin du chantier (matériel non conforme, installation dangereuse, devis non respecté).',
       },
       { kind: 'h2', text: 'Assurance habitation et remboursement' },
       {
@@ -220,7 +200,8 @@ export const electricianContent: JobPageContent = {
       { kind: 'h2', text: 'Trouver un électricien vérifié dans votre ville' },
       {
         kind: 'p',
-        text: 'Artisan Compétent couvre la France métropolitaine, les DOM-TOM et la Corse, soit 38 zones avec un rayon d’intervention de 30 km autour de chaque ville référencée.',
+        emphasis: true,
+        text: 'Artisan Compétent ambitionne de couvrir toute la France, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d’intervention de 30 km autour de chaque ville référencée.',
       },
       {
         kind: 'p',
@@ -241,14 +222,14 @@ export const electricianContent: JobPageContent = {
           'Électricien Lille',
         ],
       },
-      { kind: 'h2', text: 'Klarna : comment ça marche' },
+      { kind: 'h2', text: 'Klarna, comment ça marche' },
       {
         kind: 'p',
         text: 'Klarna est un service de paiement échelonné en 3 fois sans frais. Artisan Compétent met cet outil à disposition dans le parcours de paiement. Son activation se négocie entre le client et l’artisan : ce n’est pas automatique.',
       },
       {
         kind: 'p',
-        text: 'Si l’artisan accepte de proposer Klarna sur votre devis, le mécanisme du séquestre de fonds reste actif et le paiement reste protégé jusqu’à validation du chantier à 48h. Pour les chantiers plus importants (rénovation complète de tableau, pose de borne IRVE avec génie civil), un découpage par jalons négocié avec l’artisan est souvent plus adapté qu’un échelonnement Klarna automatique.',
+        text: 'Si l’artisan accepte de proposer Klarna sur votre devis, le mécanisme du séquestre de fonds reste actif et le paiement reste protégé jusqu’à validation du chantier à 48h. Pour les chantiers plus importants (rénovation complète de tableau, pose de borne IRVE avec génie civil).',
       },
       { kind: 'h2', text: 'Questions fréquentes' },
       {
@@ -285,13 +266,7 @@ export const electricianContent: JobPageContent = {
           {
             question: 'Klarna 3 fois sans frais est-il disponible pour une rénovation électrique ?',
             answers: [
-              'Klarna 3 fois sans frais peut être proposé par l’artisan dans le respect des plafonds Klarna en vigueur. L’activation n’est pas automatique : elle se négocie entre vous et l’artisan. Le séquestre de fonds reste actif : le paiement échelonné est tout de même protégé jusqu’à validation du chantier à 48h. Pour les chantiers plus importants, le découpage par jalons négocié avec l’artisan est généralement plus adapté qu’un paiement Klarna automatique.',
-            ],
-          },
-          {
-            question: 'À quoi sert CMOD pour un chantier électrique ?',
-            answers: [
-              'CMOD est un service payant et optionnel d’accompagnement par un conseiller maître d’ouvrage à distance. Un appel de 20 minutes est offert pour les devis entre 2 000 € et 5 000 € en cas de litige signalé après échec d’un règlement amiable, 45 minutes au-delà de 5 000 € dans les mêmes conditions. Sous 2 000 €, le client peut écrire à Artisan Compétent pour demander une intervention CMOD, traitée sous 24 à 48h. Le suivi complet en amont (relecture du devis, points d’étape, contrôle Consuel, vérification NF C 15-100) reste sur option payante.',
+              'Klarna 3 fois sans frais peut être proposé par l’artisan dans le respect des plafonds Klarna en vigueur. L’activation n’est pas automatique : elle se négocie entre vous et l’artisan. Le séquestre de fonds reste actif : le paiement échelonné est tout de même protégé jusqu’à validation du chantier à 48h.',
             ],
           },
           {
@@ -301,15 +276,9 @@ export const electricianContent: JobPageContent = {
             ],
           },
           {
-            question: 'Que faire si l’électricien ne respecte pas le devis ou laisse une installation dangereuse ?',
-            answers: [
-              'Vous signalez l’abus ou la non-conformité dans les 48h suivant la fin du chantier, via le tableau de bord partagé. Les fonds restent bloqués en séquestre tant que cette fenêtre court. Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation. Pour une installation présentant un risque sécurité, un contrôle par un électricien tiers ou un visa Consuel peut être exigé avant libération des fonds.',
-            ],
-          },
-          {
             question: 'Quelles villes sont couvertes par Artisan Compétent pour l’électricité ?',
             answers: [
-              'Artisan Compétent couvre la France métropolitaine, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d’intervention de 30 km autour de chaque ville référencée. Les grandes métropoles (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) sont couvertes ainsi que de nombreuses villes moyennes.',
+              'Artisan Compétent ambitionne de couvrir toute la France, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d’intervention de 30 km autour de chaque ville référencée. Les grandes métropoles (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) sont couvertes ainsi que de nombreuses villes moyennes.',
             ],
           },
           {
@@ -319,15 +288,6 @@ export const electricianContent: JobPageContent = {
             ],
           },
         ],
-      },
-      { kind: 'h2', text: 'Pour aller plus loin' },
-      {
-        kind: 'p',
-        text: 'Une panne générale qui revient toutes les semaines, un tableau électrique d’un autre âge, une borne de recharge IRVE à installer, une installation domotique à déployer ou une mise en conformité avant vente : dans chaque cas, l’enjeu est de trouver un électricien vérifié et de garder la main sur le devis. Artisan Compétent encadre la vérification de l’artisan et tout votre process par séquestre jusqu’à 48h après la fin du chantier.',
-      },
-      {
-        kind: 'p',
-        text: 'Électricien vérifié SIRET, RC pro et décennale. Habilitation NF C 18-510 contrôlée. Qualification IRVE pour bornes de recharge. Process encadré par séquestre Stripe. Retenue jusqu’à 250 € en cas de signalement d’abus.',
       },
     ],
 };

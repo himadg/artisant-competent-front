@@ -18,6 +18,26 @@ export interface FaqEntry {
  * navigateur (vérifiable via « Afficher le code source de la page »), donc
  * détectable par Google et les crawlers LLM sans exécution de JavaScript.
  */
+/** Une étape d'un fil d'Ariane Schema.org BreadcrumbList. */
+export interface BreadcrumbEntry {
+  /** Libellé affichable de l'étape (ex. « Accueil », « Nos métiers »). */
+  name: string;
+  /** URL absolue de l'étape. Omis pour la dernière étape (page courante). */
+  url?: string;
+}
+
+/** Données nécessaires à un JSON-LD Schema.org `Service`. */
+export interface ServiceJsonLdInput {
+  /** Nom du service (ex. « Électricien vérifié : Artisan Compétent »). */
+  name: string;
+  /** Type de service (ex. « Électricité », « Plomberie »). */
+  serviceType: string;
+  /** Description courte du service. */
+  description?: string;
+  /** URL canonique de la page Service. */
+  url?: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class SeoService {
   private readonly document = inject(DOCUMENT);
@@ -25,6 +45,39 @@ export class SeoService {
 
   /** Identifiant du <script> JSON-LD FAQPage, utilisé pour rester idempotent. */
   private static readonly FAQ_SCRIPT_ID = 'ld-json-faqpage';
+  /** Identifiant du <script> JSON-LD Service. */
+  private static readonly SERVICE_SCRIPT_ID = 'ld-json-service';
+  /** Identifiant du <script> JSON-LD BreadcrumbList. */
+  private static readonly BREADCRUMB_SCRIPT_ID = 'ld-json-breadcrumb';
+
+  /** Provider Artisan Compétent partagé par tous les Service JSON-LD. */
+  private static readonly PROVIDER = {
+    '@type': 'Organization',
+    name: 'Artisan Compétent',
+    url: 'https://artisan-competent.com/',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '66 avenue des Champs-Élysées',
+      postalCode: '75008',
+      addressLocality: 'Paris',
+      addressCountry: 'FR',
+    },
+  } as const;
+
+  /** Zone desservie commune : France, DOM-TOM et Corse. */
+  private static readonly AREA_SERVED = [
+    { '@type': 'Country', name: 'France' },
+    { '@type': 'AdministrativeArea', name: 'Corse' },
+    { '@type': 'AdministrativeArea', name: 'DOM-TOM' },
+  ] as const;
+
+  /** Disponibilité 24h/24, 7j/7. */
+  private static readonly HOURS_AVAILABLE = {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    opens: '00:00',
+    closes: '23:59',
+  } as const;
 
   /**
    * Injecte (ou remplace) le JSON-LD Schema.org `FAQPage` dans le <head>.
@@ -50,6 +103,55 @@ export class SeoService {
     };
 
     this.injectJsonLd(SeoService.FAQ_SCRIPT_ID, faqPage);
+  }
+
+  /**
+   * Injecte (ou remplace) le JSON-LD Schema.org `Service` dans le <head}.
+   * Provider, zone desservie et horaires 24/7 sont mutualisés.
+   */
+  setServiceJsonLd(input: ServiceJsonLdInput): void {
+    const service: Record<string, unknown> = {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: input.name,
+      serviceType: input.serviceType,
+      provider: SeoService.PROVIDER,
+      areaServed: SeoService.AREA_SERVED,
+      hoursAvailable: SeoService.HOURS_AVAILABLE,
+    };
+    if (input.description) {
+      service['description'] = input.description;
+    }
+    if (input.url) {
+      service['url'] = input.url;
+    }
+    this.injectJsonLd(SeoService.SERVICE_SCRIPT_ID, service);
+  }
+
+  /**
+   * Injecte (ou remplace) le JSON-LD Schema.org `BreadcrumbList` dans le <head>.
+   * La dernière étape (page courante) peut omettre `url`.
+   */
+  setBreadcrumbJsonLd(entries: BreadcrumbEntry[]): void {
+    if (!entries.length) {
+      return;
+    }
+    const breadcrumbList = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: entries.map((entry, index) => {
+        const item: Record<string, unknown> = {
+          '@type': 'ListItem',
+          position: index + 1,
+          name: entry.name,
+        };
+        if (entry.url) {
+          item['item'] = entry.url;
+        }
+        return item;
+      }),
+    };
+    this.injectJsonLd(SeoService.BREADCRUMB_SCRIPT_ID, breadcrumbList);
   }
 
   /**

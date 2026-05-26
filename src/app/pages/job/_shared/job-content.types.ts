@@ -3,6 +3,14 @@ export type JobContentBlock =
   | { kind: 'h2'; text: string }
   | { kind: 'h3'; text: string }
   | { kind: 'p'; text: string; emphasis?: boolean }
+  | {
+      kind: 'p-link';
+      before?: string;
+      linkText: string;
+      linkRoute: string;
+      after?: string;
+      emphasis?: boolean;
+    }
   | { kind: 'list'; items: string[] }
   | { kind: 'table'; headers: string[]; rows: string[][] }
   | { kind: 'faq'; items: { question: string; answers: string[] }[] }
