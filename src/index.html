@@ -1,11 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
     <head>
         <meta charset="utf-8" />
         <title>Artisan Competent</title>
         <base href="/" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-        <meta http-equiv="Content-Security-Policy" content="trusted-types angular angular#unsafe-bypass cloudflare-turnstile iconify; require-trusted-types-for 'script'">
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="trusted-types angular angular#unsafe-bypass cloudflare-turnstile iconify; require-trusted-types-for 'script'"
+        />
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
         <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
         <link rel="preload" as="image" href="assets/img/image-qui-defile-1.webp" fetchpriority="high" />
@@ -13,9 +16,27 @@
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5JZ7MS4BT"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+
             gtag('js', new Date());
             gtag('config', 'G-Q5JZ7MS4BT');
+            gtag('consent', 'default', {
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied',
+                analytics_storage: 'denied',
+            });
+
+            function allConsentGranted() {
+                gtag('consent', 'update', {
+                    ad_user_data: 'granted',
+                    ad_personalization: 'granted',
+                    ad_storage: 'granted',
+                    analytics_storage: 'granted',
+                });
+            }
         </script>
     </head>
 
