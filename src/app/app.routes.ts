@@ -83,6 +83,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/contact/contact').then((p) => p.ContactPage),
   },
   {
+    path: 'quote-form',
+    title: 'quote-form.title',
+    loadComponent: () => import('./pages/quote-form/quote-form-page.component').then((c) => c.QuoteFormPageComponent),
+  },
+  {
     path: '**',
     title: 'not-found.title',
     loadComponent: () => import('./shared/components/not-found/not-found').then((c) => c.NotFound),

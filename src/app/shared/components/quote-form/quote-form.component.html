@@ -1,0 +1,355 @@
+<!-- Prévisualisation modale -->
+@if (showPreview) {
+  <app-quote-preview
+    [quoteData]="quoteForm.getRawValue()"
+    (close)="showPreview = false">
+  </app-quote-preview>
+}
+
+<form [formGroup]="quoteForm" (ngSubmit)="onSubmit()" class="quote-form">
+  <h1>Génération de devis</h1>
+
+  <!-- Section Coordonnées -->
+  <fieldset formGroupName="coordinates">
+    <legend>Coordonnées</legend>
+    <div class="coordinates-grid">
+      <div class="client-info" formGroupName="client">
+        <h3>Client</h3>
+
+        <label for="clientName">Identité du client</label>
+        <input id="clientName" formControlName="name" placeholder="Nom complet" [class.is-invalid]="clientControls.name.invalid">
+        @if (clientControls.name.invalid) {
+          <div class="error-feedback">
+            @if (clientControls.name.errors?.['required']) { <span>Le nom du client est requis.</span> }
+          </div>
+        }
+
+        <label for="clientAddress">Adresse du client</label>
+        <textarea id="clientAddress" formControlName="address" placeholder="Adresse complète" [class.is-invalid]="clientControls.address.invalid"></textarea>
+        @if (clientControls.address.invalid) {
+          <div class="error-feedback">
+            @if (clientControls.address.errors?.['required']) { <span>L'adresse du client est requise.</span> }
+          </div>
+        }
+      </div>
+
+      <div class="artisan-info" formGroupName="artisan">
+        <h3>Prestataire</h3>
+
+        <label for="artisanName">Identité du prestataire</label>
+        <input id="artisanName" formControlName="name" placeholder="Nom de l'entreprise ou de l'artisan" [class.is-invalid]="artisanControls.name.invalid">
+        @if (artisanControls.name.invalid) {
+          <div class="error-feedback">
+            @if (artisanControls.name.errors?.['required']) { <span>Le nom du prestataire est requis.</span> }
+          </div>
+        }
+
+        <label for="artisanSiret">Numéro SIRET</label>
+        <input id="artisanSiret" formControlName="siret" placeholder="14 chiffres" [class.is-invalid]="artisanControls.siret.invalid">
+        @if (artisanControls.siret.invalid) {
+          <div class="error-feedback">
+            @if (artisanControls.siret.errors?.['required']) { <span>Le numéro SIRET est requis.</span> }
+            @if (artisanControls.siret.errors?.['pattern']) { <span>Le SIRET doit contenir exactement 14 chiffres.</span> }
+          </div>
+        }
+
+        <label for="artisanAddress">Adresse du prestataire</label>
+        <textarea id="artisanAddress" formControlName="address" placeholder="Adresse complète" [class.is-invalid]="artisanControls.address.invalid"></textarea>
+        @if (artisanControls.address.invalid) {
+          <div class="error-feedback">
+            @if (artisanControls.address.errors?.['required']) { <span>L'adresse du prestataire est requise.</span> }
+          </div>
+        }
+
+        <label for="artisanStatus">Statut</label>
+        <select id="artisanStatus" formControlName="status" [class.is-invalid]="artisanControls.status.invalid">
+          @for (status of artisanStatuses; track status) {
+            <option [value]="status">{{ status }}</option>
+          }
+        </select>
+        <span>({{ artisanStatus() }})</span>
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- Section Mentions Légales -->
+  <fieldset formGroupName="legal">
+    <legend>Mentions Légales</legend>
+
+    <label for="insuranceDocument">Contrat d'assurance (obligatoire)</label>
+    <input id="insuranceDocument" type="file" (change)="onFileChange($event)" accept=".pdf,.jpg,.jpeg,.png" [class.is-invalid]="legalControls.insuranceDocument.invalid">
+    @if (legalControls.insuranceDocument.invalid) {
+      <div class="error-feedback">
+        @if (legalControls.insuranceDocument.errors?.['required']) { <span>Le document d'assurance est obligatoire.</span> }
+      </div>
+    }
+    <p class="legal-mention">Le client est invité à vérifier la validité de l'assurance avant la signature.</p>
+
+    @if (tvaMentions().length > 0) {
+      <div class="legal-mention">
+        <label>
+          <input type="checkbox" formControlName="applyTvaExemption">
+          Appliquer l'exonération de TVA ({{ artisanStatus() }})
+        </label>
+        @for (mention of tvaMentions(); track mention) {
+          <p>{{ mention }}</p>
+        }
+      </div>
+    }
+
+    <!-- Mention facultative RCS pour Auto-entrepreneur -->
+    @if (isAutoEntrepreneur()) {
+      <div class="legal-mention">
+        <label>
+          <input type="checkbox" formControlName="includeRcsDispensation">
+          Ajouter la mention de dispense d'immatriculation au RCS
+        </label>
+        @for (mention of optionalMentions(); track mention) {
+          <p>{{ mention }}</p>
+        }
+      </div>
+    }
+  </fieldset>
+
+  <!-- Section Matériaux -->
+  <fieldset>
+    <legend>Matériaux</legend>
+    <div formArrayName="materials">
+      @for (material of materials.controls; track $index) {
+        <div [formGroupName]="$index" class="form-row">
+          <div class="form-group">
+            <label for="matDesc-{{$index}}">Description</label>
+            <input id="matDesc-{{$index}}" formControlName="description" placeholder="Description détaillée" [class.is-invalid]="material.controls.description.invalid">
+            @if (material.controls.description.invalid) {
+              <div class="error-feedback">
+                @if (material.controls.description.errors?.['required']) { <span>Description requise.</span> }
+              </div>
+            }
+          </div>
+          <div class="form-group">
+            <label for="matAmount-{{$index}}">Montant HT</label>
+            <input id="matAmount-{{$index}}" type="number" min="0" formControlName="amountHT" placeholder="0.00" [class.is-invalid]="material.controls.amountHT.invalid">
+            @if (material.controls.amountHT.invalid) {
+              <div class="error-feedback">
+                @if (material.controls.amountHT.errors?.['required']) { <span>Montant requis.</span> }
+                @if (material.controls.amountHT.errors?.['min']) { <span>Le montant doit être >= 0.</span> }
+              </div>
+            }
+          </div>
+          <div class="form-group">
+            <label for="matTva-{{$index}}">TVA (%)</label>
+            <input id="matTva-{{$index}}" type="number" min="0" formControlName="tva" placeholder="20" [class.is-invalid]="material.controls.tva.invalid">
+            @if (material.controls.tva.invalid) {
+              <div class="error-feedback">
+                @if (material.controls.tva.errors?.['required']) { <span>TVA requise.</span> }
+                @if (material.controls.tva.errors?.['min']) { <span>La TVA doit être >= 0.</span> }
+              </div>
+            }
+          </div>
+          <span class="mt-2">TTC: {{ calculateItemTTC(material.controls.amountHT.value, material.controls.tva.value) | number:'1.2-2' }} €</span>
+          <label class="mt-2"><input type="checkbox" formControlName="providedByClient"> Fourni par le client</label>
+          <label class="mt-2"><input type="checkbox" formControlName="isReconditioned"> Reconditionné</label>
+          <label class="mt-2">Payé par : {{ material.controls.providedByClient.value ? 'Client' : 'Artisan' }}</label>
+          <button type="button" class="mt-2" (click)="removeMaterial($index)">Supprimer</button>
+        </div>
+      }
+    </div>
+    <button type="button" (click)="addMaterial()">Ajouter un matériau</button>
+  </fieldset>
+
+  <!-- Section Prestations -->
+  <fieldset>
+    <legend>Prestations</legend>
+    <div formArrayName="services">
+      @for (service of services.controls; track $index) {
+        <div [formGroupName]="$index" class="form-row">
+          <div class="form-group">
+            <label for="servDesc-{{$index}}">Description</label>
+            <input id="servDesc-{{$index}}" formControlName="description" placeholder="Description de la prestation" [class.is-invalid]="service.controls.description.invalid">
+            @if (service.controls.description.invalid) {
+              <div class="error-feedback">
+                @if (service.controls.description.errors?.['required']) { <span>Description requise.</span> }
+              </div>
+            }
+          </div>
+          <div class="form-group">
+            <label for="servType-{{$index}}">Type</label>
+            <select id="servType-{{$index}}" formControlName="type" [class.is-invalid]="service.controls.type.invalid">
+              <option value="Principale">Principale</option>
+              <option value="Annexe">Annexe</option>
+            </select>
+            @if (service.controls.type.invalid) {
+              <div class="error-feedback">
+                @if (service.controls.type.errors?.['required']) { <span>Type requis.</span> }
+              </div>
+            }
+          </div>
+          <div class="form-group">
+            <label for="servAmount-{{$index}}">Montant HT</label>
+            <input id="servAmount-{{$index}}" type="number" min="0" formControlName="amountHT" placeholder="0.00" [class.is-invalid]="service.controls.amountHT.invalid">
+            @if (service.controls.amountHT.invalid) {
+              <div class="error-feedback">
+                @if (service.controls.amountHT.errors?.['required']) { <span>Montant requis.</span> }
+                @if (service.controls.amountHT.errors?.['min']) { <span>Le montant doit être >= 0.</span> }
+              </div>
+            }
+          </div>
+          <div class="form-group">
+            <label for="servTva-{{$index}}">TVA (%)</label>
+            <input id="servTva-{{$index}}" type="number" min="0" formControlName="tva" placeholder="20" [class.is-invalid]="service.controls.tva.invalid">
+            @if (service.controls.tva.invalid) {
+              <div class="error-feedback">
+                @if (service.controls.tva.errors?.['required']) { <span>TVA requise.</span> }
+                @if (service.controls.tva.errors?.['min']) { <span>La TVA doit être >= 0.</span> }
+              </div>
+            }
+          </div>
+          <span class="mt-2">TTC: {{ calculateItemTTC(service.controls.amountHT.value, service.controls.tva.value) | number:'1.2-2' }} €</span>
+          <button type="button" class="mt-2" (click)="removeService($index)">Supprimer</button>
+        </div>
+      }
+    </div>
+    <button type="button" (click)="addService()">Ajouter une prestation</button>
+  </fieldset>
+
+  <!-- Section Logistique & Frais -->
+  <fieldset formGroupName="logistics">
+    <legend>Logistique & Frais</legend>
+    <div formArrayName="suppliers">
+      <label>Liste des fournisseurs</label>
+      @for (supplier of suppliers.controls; track $index) {
+        <div class="supplier-row">
+          <input [formControlName]="$index" placeholder="Nom du fournisseur" [class.is-invalid]="supplier.invalid">
+          @if (suppliers.length > 1) {
+            <button type="button" (click)="removeSupplier($index)" title="Supprimer ce fournisseur">×</button>
+          }
+        </div>
+        @if (supplier.invalid) {
+          <div class="error-feedback mb-2">
+            @if (supplier.errors?.['required']) { <span>Le nom du fournisseur est requis.</span> }
+          </div>
+        }
+      }
+    </div>
+    <button type="button" (click)="addSupplier()">Ajouter un fournisseur</button>
+
+    <hr>
+
+    <label for="travelCost">Frais de déplacement HT</label>
+    <input id="travelCost" type="number" min="0" formControlName="travelCostHT" placeholder="0.00" [class.is-invalid]="f.logistics.controls.travelCostHT.invalid">
+    @if (f.logistics.controls.travelCostHT.invalid) {
+      <div class="error-feedback">
+        @if (f.logistics.controls.travelCostHT.errors?.['required']) { <span>Frais de déplacement requis.</span> }
+        @if (f.logistics.controls.travelCostHT.errors?.['min']) { <span>Le montant doit être >= 0.</span> }
+      </div>
+    }
+
+    <div formGroupName="wasteManagement" class="mt-2">
+      <label><input type="checkbox" formControlName="hasWaste"> Gestion des déchets à évacuer</label>
+      @if (hasWaste()) {
+        <div class="waste-cerfa-box">
+          <p>Le document CERFA doit être téléchargé, rempli et signé.</p>
+          <label [class.text-danger]="!f.logistics.controls.wasteManagement.controls.cerfaSigned.value">
+            <input type="checkbox" formControlName="cerfaSigned"> Document CERFA retourné et signé
+          </label>
+          @if (!f.logistics.controls.wasteManagement.controls.cerfaSigned.value) {
+            <div class="error-feedback">Vous devez confirmer que le CERFA est signé.</div>
+          }
+        </div>
+      }
+    </div>
+  </fieldset>
+
+  <!-- Section Planification -->
+  <fieldset formGroupName="planning">
+    <legend>Planification</legend>
+    <label for="placeOfWriting">Lieu de rédaction</label>
+    <input id="placeOfWriting" formControlName="placeOfWriting" placeholder="Ville" [class.is-invalid]="planningControls.placeOfWriting.invalid">
+    @if (planningControls.placeOfWriting.invalid) {
+      <div class="error-feedback">
+        @if (planningControls.placeOfWriting.errors?.['required']) { <span>Lieu de rédaction requis.</span> }
+      </div>
+    }
+
+    <label for="dateOfWriting">Date de rédaction</label>
+    <input id="dateOfWriting" type="date" formControlName="dateOfWriting" [class.is-invalid]="planningControls.dateOfWriting.invalid">
+    @if (planningControls.dateOfWriting.invalid) {
+      <div class="error-feedback">
+        @if (planningControls.dateOfWriting.errors?.['required']) { <span>Date de rédaction requise.</span> }
+        @if (planningControls.dateOfWriting.errors?.['minDateToday']) { <span>La date ne peut être antérieure à aujourd'hui.</span> }
+      </div>
+    }
+
+    <label for="validityDate">Date de validité</label>
+    <input id="validityDate" type="date" formControlName="validityDate" [class.is-invalid]="planningControls.validityDate.invalid || planningGroup.hasError('invalidValidityRange')">
+    @if (planningControls.validityDate.invalid) {
+      <div class="error-feedback">
+        @if (planningControls.validityDate.errors?.['required']) { <span>Date de validité requise.</span> }
+        @if (planningControls.validityDate.errors?.['minDateToday']) { <span>La date ne peut être antérieure à aujourd'hui.</span> }
+      </div>
+    }
+    @if (planningGroup.hasError('invalidValidityRange') && !planningControls.validityDate.hasError('minDateToday')) {
+      <div class="error-feedback">La date de validité doit être supérieure ou égale à la date de rédaction.</div>
+    }
+
+    <label for="estimatedStartDate">Date de début estimée</label>
+    <input id="estimatedStartDate" type="date" formControlName="estimatedStartDate" [class.is-invalid]="planningControls.estimatedStartDate.invalid">
+    @if (planningControls.estimatedStartDate.invalid) {
+      <div class="error-feedback">
+        @if (planningControls.estimatedStartDate.errors?.['required']) { <span>Date de début requise.</span> }
+        @if (planningControls.estimatedStartDate.errors?.['minDateToday']) { <span>La date ne peut être antérieure à aujourd'hui.</span> }
+      </div>
+    }
+
+    <label for="estimatedEndDate">Date de fin estimée</label>
+    <input id="estimatedEndDate" type="date" formControlName="estimatedEndDate" [class.is-invalid]="planningControls.estimatedEndDate.invalid || planningGroup.hasError('invalidEstimatedRange')">
+    @if (planningControls.estimatedEndDate.invalid) {
+      <div class="error-feedback">
+        @if (planningControls.estimatedEndDate.errors?.['required']) { <span>Date de fin requise.</span> }
+        @if (planningControls.estimatedEndDate.errors?.['minDateToday']) { <span>La date ne peut être antérieure à aujourd'hui.</span> }
+      </div>
+    }
+    @if (planningGroup.hasError('invalidEstimatedRange') && !planningControls.estimatedEndDate.hasError('minDateToday')) {
+      <div class="error-feedback">La date de fin doit être supérieure ou égale à la date de début.</div>
+    }
+
+    <p class="legal-mention mt-2">"hors retard indépendant de notre volonté"</p>
+  </fieldset>
+
+  <!-- Section Accord et Validation -->
+  <fieldset formGroupName="agreement">
+    <legend>Accord et Validation</legend>
+    <label [class.text-danger]="f.agreement.controls.waiveRetractionRights.invalid">
+      <input type="checkbox" formControlName="waiveRetractionRights">
+      Je reconnais renoncer à mon droit de rétractation de 14 jours.
+    </label>
+    @if (f.agreement.controls.waiveRetractionRights.invalid) {
+      <div class="error-feedback mb-2">Vous devez accepter cette condition.</div>
+    }
+
+    <label [class.text-danger]="f.agreement.controls.arbitrationAgreement.invalid">
+      <input type="checkbox" formControlName="arbitrationAgreement">
+      J'autorise la plateforme à arbitrer et libérer les fonds en cas de nécessité.
+    </label>
+    @if (f.agreement.controls.arbitrationAgreement.invalid) {
+      <div class="error-feedback mb-2">Vous devez accepter cette condition.</div>
+    }
+  </fieldset>
+
+  <!-- Totaux et Soumission -->
+  <div class="summary">
+    <h2>Récapitulatif</h2>
+    <p>Total HT (Matériaux + Prestations + Frais): <strong>{{ totalHT | number:'1.2-2' }} €</strong></p>
+    <p>Frais de service Artisan-Compétent ({{ totalHT < 1500 ? '15%' : '10%' }}): <strong>{{ platformFee | number:'1.2-2' }} €</strong></p>
+    <p><strong>Total à payer par le client : {{ (totalServicesTTC + totalMaterialsTTC + calculateItemTTC(totalTravelCostHT, 20) + calculateItemTTC(platformFee, 20)) | number:'1.2-2' }} €</strong></p>
+  </div>
+
+  @if (quoteForm.invalid) {
+    <div class="alert-danger mb-2 p-2">Le formulaire contient des erreurs. Veuillez vérifier les champs en rouge.</div>
+  }
+
+  <div class="form-actions">
+    <button type="button" class="btn-secondary" (click)="openPreview()">Prévisualiser</button>
+    <button type="submit" class="btn-submit">Valider et générer le devis</button>
+  </div>
+</form>

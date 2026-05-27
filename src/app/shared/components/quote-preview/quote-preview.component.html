@@ -1,0 +1,145 @@
+<div class="modal-overlay" (click)="closePreview()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Prévisualisation du devis</h2>
+      <button class="btn-close" (click)="closePreview()">×</button>
+    </div>
+
+    <div class="document" *ngIf="quoteData">
+      <div class="doc-header">
+        <h1>Devis</h1>
+        <div class="planning-info">
+          <p>Lieu de rédaction : <strong>{{ quoteData.planning?.placeOfWriting || 'Non renseigné' }}</strong></p>
+          <p>Date de rédaction : <strong>{{ (quoteData.planning?.dateOfWriting | date:'dd/MM/yyyy') || 'Non renseignée' }}</strong></p>
+          <p>Valable jusqu'au : <strong>{{ (quoteData.planning?.validityDate | date:'dd/MM/yyyy') || 'Non renseignée' }}</strong></p>
+        </div>
+      </div>
+
+      <div class="coordinates-section">
+        <div class="client-box">
+          <h3>Client</h3>
+          <p><strong>{{ quoteData.coordinates?.client?.name || 'Non renseigné' }}</strong></p>
+          <p class="address">{{ quoteData.coordinates?.client?.address || 'Adresse non renseignée' }}</p>
+        </div>
+        <div class="artisan-box">
+          <h3>Prestataire ({{ quoteData.coordinates?.artisan?.status || 'Non renseigné' }})</h3>
+          <p><strong>{{ quoteData.coordinates?.artisan?.name || 'Non renseigné' }}</strong></p>
+          <p>SIRET : {{ quoteData.coordinates?.artisan?.siret || 'Non renseigné' }}</p>
+          <p class="address">{{ quoteData.coordinates?.artisan?.address || 'Adresse non renseignée' }}</p>
+        </div>
+      </div>
+
+      <div class="details-section">
+        <h3>Détail des Matériaux</h3>
+        <table *ngIf="quoteData.materials && quoteData.materials.length > 0; else noMaterials">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Origine</th>
+              <th>Montant HT</th>
+              <th>TVA</th>
+              <th>Montant TTC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let material of quoteData.materials">
+              <td>
+                {{ material.description || 'Non renseignée' }}
+                <span class="badge badge-reconditioned" *ngIf="material.isReconditioned">Reconditionné</span>
+              </td>
+              <td>{{ material.providedByClient ? 'Fourni par le client' : 'Fourni par l\'artisan' }}</td>
+              <td>{{ material.providedByClient ? '0.00' : (material.amountHT | number:'1.2-2') }} €</td>
+              <td>{{ material.tva }} %</td>
+              <td>{{ calculateItemTTC(material.providedByClient ? 0 : material.amountHT, material.tva) | number:'1.2-2' }} €</td>
+            </tr>
+          </tbody>
+        </table>
+        <ng-template #noMaterials>
+          <p class="text-muted">Aucun matériau renseigné.</p>
+        </ng-template>
+      </div>
+
+      <div class="details-section">
+        <h3>Détail des Prestations</h3>
+        <table *ngIf="quoteData.services && quoteData.services.length > 0; else noServices">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Montant HT</th>
+              <th>TVA</th>
+              <th>Montant TTC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let service of quoteData.services">
+              <td>{{ service.description || 'Non renseignée' }}</td>
+              <td>{{ service.type || 'Non renseigné' }}</td>
+              <td>{{ service.amountHT | number:'1.2-2' }} €</td>
+              <td>{{ service.tva }} %</td>
+              <td>{{ calculateItemTTC(service.amountHT, service.tva) | number:'1.2-2' }} €</td>
+            </tr>
+          </tbody>
+        </table>
+        <ng-template #noServices>
+          <p class="text-muted">Aucune prestation renseignée.</p>
+        </ng-template>
+      </div>
+
+      <div class="details-section logistics-summary">
+        <h3>Logistique et Frais</h3>
+        <p>Frais de déplacement HT : <strong>{{ quoteData.logistics?.travelCostHT | number:'1.2-2' }} €</strong> (TTC: {{ calculateItemTTC(quoteData.logistics?.travelCostHT || 0, 20) | number:'1.2-2' }} €)</p>
+        <p *ngIf="quoteData.logistics?.wasteManagement?.hasWaste">
+          <strong>Gestion des déchets :</strong> Prise en charge avec document CERFA à signer.
+        </p>
+        <p *ngIf="quoteData.logistics?.suppliers && quoteData.logistics?.suppliers.length > 0 && quoteData.logistics?.suppliers[0] !== ''">
+          <strong>Fournisseurs :</strong> {{ quoteData.logistics.suppliers.join(', ') }}
+        </p>
+      </div>
+
+      <div class="totals-section">
+        <div class="totals-box">
+          <div class="total-line">
+            <span>Total HT :</span>
+            <span>{{ totalHT | number:'1.2-2' }} €</span>
+          </div>
+          <div class="total-line">
+            <span>Frais de service plateforme :</span>
+            <span>{{ platformFee | number:'1.2-2' }} €</span>
+          </div>
+          <div class="total-line grand-total">
+            <span>TOTAL À PAYER TTC :</span>
+            <span>{{ (totalServicesTTC + totalMaterialsTTC + calculateItemTTC(totalTravelCostHT, 20) + calculateItemTTC(platformFee, 20)) | number:'1.2-2' }} €</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="legal-section">
+        <h3>Informations Légales & Conditions</h3>
+        <p><strong>Délais estimés :</strong> du {{ (quoteData.planning?.estimatedStartDate | date:'dd/MM/yyyy') || 'Non renseigné' }} au {{ (quoteData.planning?.estimatedEndDate | date:'dd/MM/yyyy') || 'Non renseigné' }} <br><em>(hors retard indépendant de notre volonté)</em></p>
+
+        <div *ngIf="quoteData.legal?.insuranceDocument" class="legal-block">
+          <p><strong>Assurance :</strong> Attestation jointe au devis final.</p>
+        </div>
+
+        <div *ngIf="quoteData.coordinates?.artisan?.status === 'Auto-entrepreneur'" class="legal-block">
+          <p><strong>Mentions obligatoires :</strong> TVA non applicable, article 293 B du CGI.</p>
+          <p *ngIf="quoteData.legal?.includeRcsDispensation">Dispensé d’immatriculation au registre du commerce et des sociétés, en application de l’article L. 12311 du Code de commerce.</p>
+        </div>
+        <div *ngIf="quoteData.coordinates?.artisan?.status === 'Société'" class="legal-block">
+           <p><strong>Mentions obligatoires :</strong> TVA acquittée par l'entreprise principale en application des dispositions de 2 Nonies de L'article 283 du code Général des impôts.</p>
+        </div>
+
+        <div class="agreements">
+          <p *ngIf="quoteData.agreement?.waiveRetractionRights">✓ Le client reconnaît renoncer à son droit de rétractation de 14 jours.</p>
+          <p *ngIf="quoteData.agreement?.arbitrationAgreement">✓ Autorisation d'arbitrage par la plateforme Artisan-Compétent en cas de nécessité accordée.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-primary" (click)="closePreview()">Retour au formulaire</button>
+    </div>
+  </div>
+</div>
