@@ -217,6 +217,9 @@
   border-top: 1px solid #eee;
   text-align: right;
   background-color: #f8f9fa;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
 
   .btn-primary {
     background-color: #007bff;
@@ -230,5 +233,65 @@
     &:hover {
       background-color: #0056b3;
     }
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #5a6268;
+    }
+  }
+}
+
+// --- PRINT STYLES ---
+@media print {
+  :host {
+    position: static;
+    z-index: auto;
+  }
+
+  .modal-overlay {
+    position: static;
+    background: none;
+    display: block;
+  }
+
+  .modal-content {
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    box-shadow: none;
+    border: none;
+    overflow: visible;
+  }
+
+  .modal-header, .modal-footer {
+    display: none !important;
+  }
+
+  .document {
+    padding: 0;
+    overflow: visible;
+  }
+
+  /* Force background colors to print if needed */
+  .details-section table th,
+  .logistics-summary {
+    background-color: #f2f2f2 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .coordinates-section .client-box,
+  .coordinates-section .artisan-box,
+  .totals-section .totals-box {
+    border: 1px solid #000;
   }
 }

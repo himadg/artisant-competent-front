@@ -1,5 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { QuoteService } from '../../services/quote.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-quote-preview',
@@ -11,6 +13,9 @@ import { CommonModule } from '@angular/common';
 export class QuotePreviewComponent {
   @Input() quoteData: any;
   @Output() close = new EventEmitter<void>();
+
+  private quoteService = inject(QuoteService);
+  isGenerating = false;
 
   // Recalcul des totaux pour l'affichage
   get totalMaterialsHT(): number {
@@ -52,5 +57,28 @@ export class QuotePreviewComponent {
 
   closePreview(): void {
     this.close.emit();
+  }
+
+  async generatePdf(): Promise<void> {
+    this.isGenerating = true;
+    try {
+      const pdfBlob = await firstValueFrom(this.quoteService.generatePdf(this.quoteData));
+
+      if (pdfBlob) {
+        const url = window.URL.createObjectURL(pdfBlob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `devis_${this.quoteData.coordinates?.client?.name.replace(/ /g, '_') || 'client'}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      }
+    } catch (err) {
+      console.error('Erreur lors de la génération du PDF', err);
+      alert('Une erreur est survenue lors de la génération du PDF.');
+    } finally {
+      this.isGenerating = false; // Sera TOUJOURS exécuté
+    }
   }
 }

@@ -60,7 +60,6 @@ export class QuoteFormComponent {
 
   artisanStatuses = ['Société', 'Auto-entrepreneur'];
 
-  // Variable pour gérer l'affichage de la prévisualisation
   showPreview = false;
 
   quoteForm = this.fb.nonNullable.group({
@@ -121,7 +120,6 @@ export class QuoteFormComponent {
     })
   });
 
-  // Getters pour un accès facile dans le template
   get f() { return this.quoteForm.controls; }
   get clientControls() { return this.f.coordinates.controls.client.controls; }
   get artisanControls() { return this.f.coordinates.controls.artisan.controls; }
@@ -234,7 +232,6 @@ export class QuoteFormComponent {
   hasWaste(): boolean { return this.f.logistics.controls.wasteManagement.controls.hasWaste.value; }
 
   openPreview(): void {
-    // Si le formulaire est invalide on prévient, sinon on ouvre directement
     if (this.quoteForm.invalid) {
       this.quoteForm.markAllAsTouched();
       alert("Veuillez remplir correctement les champs obligatoires avant de prévisualiser.");

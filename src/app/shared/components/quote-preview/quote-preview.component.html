@@ -139,7 +139,10 @@
     </div>
 
     <div class="modal-footer">
-      <button class="btn-primary" (click)="closePreview()">Retour au formulaire</button>
+      <button class="btn-secondary" (click)="generatePdf()" [disabled]="isGenerating">
+        {{ isGenerating ? 'Génération en cours...' : 'Générer PDF' }}
+      </button>
+      <button class="btn-primary" (click)="closePreview()" [disabled]="isGenerating">Retour au formulaire</button>
     </div>
   </div>
 </div>
