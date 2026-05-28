@@ -120,7 +120,7 @@
         </aside>
 
         <!-- ═══════════════ CONTENU PRINCIPAL ═══════════════ -->
-        <main class="ind-main">
+        <main class="ind-main py-8 px-32 max-md:p-0">
             <!-- En-tête profil -->
             <div class="mb-4 rounded-lg border border-solid ind-header">
                 <div class="ind-user">
@@ -407,7 +407,8 @@
                 </button>
                 <a class="nav-item" routerLink="/contact">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                     </svg>
                     {{ 'contact.nav' | transloco }}
                 </a>

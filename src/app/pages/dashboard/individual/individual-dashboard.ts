@@ -1,5 +1,6 @@
 ﻿import { ChangeDetectionStrategy, Component, inject, OnInit, signal, computed } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { FormsModule } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
 import { DashboardApiService } from '../../../core/services/dashboard-api.service';
@@ -62,7 +63,20 @@ export class IndividualDashboard implements OnInit {
     });
   }
 
-  setSection(section: IndividualSection) { this.activeSection.set(section); }
+  constructor() {
+    inject(BreakpointObserver)
+      .observe('(orientation: landscape)')
+      .pipe(takeUntilDestroyed())
+      .subscribe(({ matches }) => { if (matches) this.moreMenuOpen.set(false); });
+  }
+
+  setSection(section: IndividualSection) {
+    this.activeSection.set(section);
+    if (section === 'affiliation' && !this.affiliationData()) {
+      this.loadAffiliationDashboard();
+    }
+  }
+
   toggleMoreMenu() { this.moreMenuOpen.update(v => !v); }
   closeMoreMenu() { this.moreMenuOpen.set(false); }
 

@@ -1,5 +1,6 @@
 ﻿import { ChangeDetectionStrategy, Component, inject, OnInit, signal, computed } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -8,7 +9,7 @@ import { DashboardApiService } from '../../../core/services/dashboard-api.servic
 import { AuthService } from '../../../core/services/auth.service';
 import { UserApiService } from '../../../core/services/user-api.service';
 import { ServiceApiService } from '../../../core/services/service-api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProfessionalDashboardData, OpeningHoursDay, Service } from '../../../shared/interfaces/professional-dashboard';
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
@@ -23,7 +24,7 @@ const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'satu
   selector: 'dashboard-professional',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FormsModule, RouterModule, TranslocoModule, LangToggle, ThemeToggle, LegalModal],
+  imports: [CommonModule, FormsModule, RouterLink, TranslocoModule, LangToggle, ThemeToggle, LegalModal],
   templateUrl: './professional-dashboard.html',
   styleUrl: './professional-dashboard.scss',
 })
@@ -75,6 +76,18 @@ export class ProfessionalDashboard implements OnInit {
     });
   }
 
+
+  constructor() {
+    inject(BreakpointObserver)
+      .observe('(orientation: landscape)')
+      .pipe(takeUntilDestroyed())
+      .subscribe(({ matches }) => {
+        if (matches) {
+          this.moreMenuOpen.set(false);
+          this.moreMenuContentDisplayed.set(false);
+        }
+      });
+  }
 
   setSection(section: ProSection) {
     this.activeSection.set(section);

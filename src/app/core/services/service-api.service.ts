@@ -16,4 +16,8 @@ export class ServiceApiService {
   create(description: string): Observable<Service> {
     return this.http.post<Service>(BASE_URL, { description });
   }
+
+  getAll(): Observable<Service[]> {
+    return this.http.get<Service[]>(BASE_URL);
+  }
 }

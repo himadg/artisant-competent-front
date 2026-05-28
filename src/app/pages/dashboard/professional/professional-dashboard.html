@@ -184,7 +184,7 @@
             </aside>
 
             <!-- ═══════════════ CONTENU PRINCIPAL ═══════════════ -->
-            <main class="pro-main">
+            <main class="p-0 pro-main md:px-32 md:py-8 lg:px-72">
                 <!-- En-tête profil -->
                 <div class="w-[100%] mb-4 rounded-lg border border-solid pro-header">
                     <div class="pro-user">
@@ -258,8 +258,8 @@
                     </div>
 
                     <!-- Onglets -->
-                    @if (!moreMenuContentDisplayed()) {
-                        <div class="pro-tabs">
+                    @if (activeSection() === 'profile' && !moreMenuContentDisplayed()) {
+                        <div class="justify-between mx-0 pro-tabs sm:justify-normal lg:px-4">
                             <button
                                 class="pro-tab"
                                 [class.active]="activeTab() === 'presentation'"
@@ -1112,7 +1112,7 @@
                     </svg>
                     <span>{{ 'dashboard.pro.mobile.invoices' | transloco }}</span>
                 </button>
-                <button class="bottom-nav-item" (click)="toggleMoreMenu()">
+                <button class="bottom-nav-item plus-menu" (click)="toggleMoreMenu()">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                         <circle cx="12" cy="12" r="1" />
                         <circle cx="19" cy="12" r="1" />
@@ -1149,7 +1149,8 @@
                     </button>
                     <a class="nav-item" routerLink="/contact">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            <rect x="2" y="4" width="20" height="16" rx="2" />
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                         </svg>
                         {{ 'contact.nav' | transloco }}
                     </a>

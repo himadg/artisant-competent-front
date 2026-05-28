@@ -702,25 +702,23 @@
                     </label>
 
                     <!-- Search input + dropdown -->
-                    <div>
-                        <div class="relative">
-                            <input
-                                type="text"
-                                [value]="searchQuery()"
-                                class="px-3 py-2 w-full bg-white rounded border"
-                                [class.force-invalid]="form.get('professionalProfile.services')?.invalid && form.get('professionalProfile.services')?.touched"
-                                placeholder="{{ 'professional.fields.servicesSearch' | transloco }}"
-                                (input)="onServiceSearch($event)"
-                                (focus)="openDropdown()"
-                                (blur)="closeDropdown()"
-                                autocomplete="off"
-                            />
-                        </div>
+                    <div class="relative">
+                        <input
+                            type="text"
+                            [value]="searchQuery()"
+                            class="px-3 py-2 w-full bg-white rounded border"
+                            [class.force-invalid]="form.get('professionalProfile.services')?.invalid && form.get('professionalProfile.services')?.touched"
+                            placeholder="{{ 'professional.fields.servicesSearch' | transloco }}"
+                            (input)="onServiceSearch($event)"
+                            (focus)="openDropdown()"
+                            (blur)="closeDropdown()"
+                            autocomplete="off"
+                        />
 
-                        @if (dropdownOpen() && searchQuery().length >= 3) {
-                            <div class="overflow-hidden bg-white rounded-b border-b shadow-sm border-x">
+                        @if (dropdownOpen()) {
+                            <div class="overflow-y-scroll absolute z-10 w-full bg-white rounded-b border-b shadow-sm border-x max-h-[300px]">
                                 @if (unselectedResults.length) {
-                                    <ul class="overflow-y-auto max-h-48 divide-y">
+                                    <ul class="divide-y">
                                         @for (result of unselectedResults; track result.id) {
                                             <li
                                                 class="px-3 py-2 text-sm cursor-pointer hover:bg-gray-50 active:bg-gray-100"
@@ -730,9 +728,7 @@
                                             </li>
                                         }
                                     </ul>
-                                } @else if (searchingService()) {
-                                    <div class="px-3 py-2 text-sm text-gray-400">...</div>
-                                } @else {
+                                } @else if (!searchingService()) {
                                     <button
                                         type="button"
                                         class="flex gap-2 items-center px-3 py-2 w-full text-sm text-left hover:bg-gray-50"

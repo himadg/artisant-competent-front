@@ -10,7 +10,7 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, forkJoin, of, takeUntil } from 'rxjs';
+import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, forkJoin, of, takeUntil, merge } from 'rxjs';
 import { hourValidator, servicesValidator, openingAtLeastOne } from '../../../../core/utils/validators';
 import { capitalize, normalizeName, evaluatePasswordCriteria } from '../../../../core/utils/common-utils';
 import { ServiceApiService } from '../../../../core/services/service-api.service';
@@ -112,7 +112,8 @@ export class RegisterProfessional implements OnDestroy {
   readonly siretCompanyName = signal<string | null>(null);
   readonly captchaToken = signal<string | null>(null);
 
-  private readonly serviceSearch$ = new Subject<string>();
+  private readonly serviceFocus$ = new Subject<string>();
+  private readonly serviceType$ = new Subject<string>();
   private readonly personalAddressSearch$ = new Subject<string>();
   private readonly workAddressSearch$ = new Subject<string>();
 
@@ -122,16 +123,17 @@ export class RegisterProfessional implements OnDestroy {
   constructor() {
     this.tradeApi.getAll().subscribe(trades => this.trades.set(trades));
 
-    this.serviceSearch$.pipe(
-      distinctUntilChanged(),
-      filter(query => query.length >= 3),
+    merge(
+      this.serviceFocus$,
+      this.serviceType$.pipe(debounceTime(300)),
+    ).pipe(
       switchMap(query => {
         this.searchingService.set(true);
-        return this.serviceApi.search(query).pipe(debounceTime(300));
+        return query.trim() ? this.serviceApi.search(query) : this.serviceApi.getAll();
       }),
       takeUntil(this.destroy$),
     ).subscribe(results => {
-      this.serviceResults.set(results.filter(service => !this.selectedServices().includes(service)));
+      this.serviceResults.set(results.filter(service => !this.selectedServices().some(selectedService => selectedService.id === service.id)));
       this.searchingService.set(false);
     });
 
@@ -403,19 +405,25 @@ export class RegisterProfessional implements OnDestroy {
   }
 
   // --- Services ---
-  openDropdown() { this.dropdownOpen.set(true); }
-  closeDropdown() { setTimeout(() => this.dropdownOpen.set(false), 150); }
+  openDropdown() {
+    this.dropdownOpen.set(true);
+    this.searchingService.set(true);
+    this.serviceFocus$.next(this.searchQuery().trim());
+  }
+
+  closeDropdown() {
+    setTimeout(() => {
+      this.dropdownOpen.set(false);
+      this.searchingService.set(false);
+      this.serviceResults.set([]);
+    }, 150);
+  }
 
   onServiceSearch(event: Event) {
     const query = (event.target as HTMLInputElement).value;
     this.searchQuery.set(query);
-    if (query.length < 3) {
-      this.serviceResults.set([]);
-      this.searchingService.set(false);
-      this.serviceSearch$.next('');
-      return;
-    }
-    this.serviceSearch$.next(query.trim());
+    this.searchingService.set(true);
+    this.serviceType$.next(query.trim());
   }
 
   get unselectedResults(): Service[] {
