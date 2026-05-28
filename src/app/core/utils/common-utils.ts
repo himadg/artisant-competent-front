@@ -27,3 +27,18 @@ export function evaluatePasswordCriteria(pwd: string) {
     special: /[^a-zA-Z0-9]/.test(safePwd),
   };
 }
+
+export function getAffiliateCode(): string | null {
+  if (typeof window === 'undefined') return null;
+  return sessionStorage.getItem('affiliate_ref');
+}
+
+export function setAffiliateCode(code: string): void {
+  if (typeof window === 'undefined') return;
+  sessionStorage.setItem('affiliate_ref', code);
+}
+
+export function clearAffiliateCode(): void {
+  if (typeof window === 'undefined') return;
+  sessionStorage.removeItem('affiliate_ref');
+}

@@ -1,8 +1,10 @@
-﻿import { ChangeDetectionStrategy, Component, DestroyRef, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, PlatformLocation } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Meta, Title } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { setAffiliateCode } from '../../core/utils/common-utils';
 
 @Component({
   standalone: true,
@@ -12,15 +14,26 @@ import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
   styleUrl: './affiliation.scss',
 })
 export class AffiliationPage implements OnInit {
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly platformLocation = inject(PlatformLocation);
+
   constructor(
     private titleService: Title,
     private metaService: Meta,
     private transloco: TranslocoService,
     private destroyRef: DestroyRef,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
-    const url = typeof window !== 'undefined' ? `${window.location.origin}/affiliation` : '/affiliation';
+    const ref = this.route.snapshot.queryParamMap.get('ref');
+    if (ref && isPlatformBrowser(this.platformId)) {
+      setAffiliateCode(ref);
+    }
+
+    const { protocol, hostname, port } = this.platformLocation;
+    const origin = `${protocol}//${hostname}${port ? ':' + port : ''}`;
+    const url = `${origin}/affiliation`;
 
     this.transloco
       .selectTranslate<string[]>(['affiliation.meta.title', 'affiliation.meta.description'])

@@ -465,6 +465,9 @@
         "maintenance": "Maintenance",
         "consulting": "Consulting"
       }
+    },
+    "errors": {
+      "invalidReferralCode": "This referral code is not valid. Please make sure you have copied and pasted the code correctly from the link given by the referral."
     }
   },
   "supplier": {
@@ -607,6 +610,7 @@
     "kilometersLabel": "Search radius (km)"
   },
   "affiliation": {
+    "title": "Partner program",
     "meta": {
       "title": "Artisan Compétent Partner Program | 20% Commission",
       "description": "Recommend Artisan Compétent to your audience and earn 20% commission the first year. Free signup, no commitment, no upfront cost."
@@ -802,7 +806,8 @@
         "quotes": "My quotes",
         "invoices": "My invoices",
         "legal": "Legal information",
-        "practices": "Best practices"
+        "practices": "Best practices",
+        "affiliation": "Referral program"
       },
       "mobile": {
         "profile": "Account",
@@ -831,7 +836,8 @@
         "invoices": "My invoices",
         "profile": "Personal info",
         "legal": "Legal information",
-        "practices": "Best practices"
+        "practices": "Best practices",
+        "affiliation": "Referral program"
       },
       "tabs": {
         "presentation": "Presentation",
@@ -888,6 +894,46 @@
       "practices": "No best practices available",
       "missions": "No missions yet",
       "reviews": "No reviews yet"
+    },
+    "affiliation": {
+      "title": "My referral program",
+      "noCode": "You don't have a referral code yet.",
+      "generateCode": "Generate my code",
+      "myCode": "My referral code",
+      "copyCode": "Copy",
+      "copied": "Copied!",
+      "shareLink": "Share link",
+      "stats": {
+        "totalReferrals": "Total referrals",
+        "activeReferrals": "Active referrals",
+        "totalEarned": "Validated earnings",
+        "pendingEarnings": "Pending earnings"
+      },
+      "referrals": {
+        "title": "My referrals",
+        "empty": "No referrals yet",
+        "role": {
+          "INDIVIDUAL": "Individual",
+          "PROFESSIONAL": "Professional"
+        },
+        "status": {
+          "PENDING": "Pending",
+          "ACTIVE": "Active",
+          "EXPIRED": "Expired"
+        },
+        "columns": {
+          "name": "Name",
+          "role": "Type",
+          "status": "Status",
+          "commissions": "Commissions",
+          "joinedAt": "Joined on"
+        }
+      },
+      "howItWorks": {
+        "title": "How it works?",
+        "individual": "Referred individual → 20% commission for the first 6 months, then 10% for the next 6.",
+        "professional": "Referred professional → 5% commission for 6 months."
+      }
     }
   },
   "contact": {

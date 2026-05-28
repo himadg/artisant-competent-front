@@ -239,6 +239,9 @@
             @if (showSubmitError()) {
                 <span class="text-sm font-medium text-center text-red-500">{{ 'login.errors.fillRequiredFields' | transloco }}</span>
             }
+            @if (referralCodeError()) {
+                <span class="text-sm font-medium text-center text-red-500">{{ 'register.errors.invalidReferralCode' | transloco }}</span>
+            }
         </div>
     </form>
 </div>

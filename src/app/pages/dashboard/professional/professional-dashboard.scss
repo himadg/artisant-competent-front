@@ -1104,3 +1104,362 @@
     }
   }
 }
+
+/* ══════════════ AFFILIATION ══════════════ */
+.aff-loading {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+}
+
+.aff-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.aff-empty-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--primary-water-green) 12%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 1.75rem;
+    height: 1.75rem;
+    color: var(--primary-water-green);
+  }
+}
+
+.aff-empty-text {
+  font-size: 0.9rem;
+  color: var(--color);
+  opacity: 0.6;
+  margin: 0;
+  max-width: 24rem;
+}
+
+.aff-generate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 9999px;
+  background: var(--h-grad-water-green);
+  color: var(--primary-beige);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.aff-code-card {
+  background: color-mix(in srgb, var(--primary-water-green) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary-water-green) 30%, transparent);
+  border-radius: 0.875rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.aff-code-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary-water-green);
+  margin-bottom: 0.6rem;
+}
+
+.aff-code-display {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.aff-code-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  color: var(--color);
+  font-variant-numeric: tabular-nums;
+}
+
+.aff-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid color-mix(in srgb, var(--primary-water-green) 40%, transparent);
+  background: transparent;
+  color: var(--primary-water-green);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+
+  svg {
+    width: 0.85rem;
+    height: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    background: color-mix(in srgb, var(--primary-water-green) 12%, transparent);
+  }
+
+  &--copied {
+    background: color-mix(in srgb, #22c55e 12%, transparent);
+    border-color: color-mix(in srgb, #22c55e 40%, transparent);
+    color: #22c55e;
+  }
+}
+
+.aff-share-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.aff-share-icon {
+  width: 0.85rem;
+  height: 0.85rem;
+  color: var(--color);
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+
+.aff-share-url {
+  font-size: 0.78rem;
+  color: var(--color);
+  opacity: 0.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.aff-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.aff-stat-card {
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+
+  &--accent {
+    background: color-mix(in srgb, var(--primary-water-green) 6%, transparent);
+    border-color: color-mix(in srgb, var(--primary-water-green) 25%, transparent);
+  }
+}
+
+.aff-stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.aff-stat-label {
+  font-size: 0.72rem;
+  color: var(--color);
+  opacity: 0.55;
+  line-height: 1.3;
+}
+
+.aff-block {
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--border-color) 60%, transparent);
+}
+
+.aff-sub-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color);
+  opacity: 0.5;
+  margin: 0 0 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.aff-referrals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.aff-referral-item {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  transition: background 0.1s;
+
+  &:hover {
+    background: color-mix(in srgb, var(--border-color) 30%, transparent);
+  }
+}
+
+.aff-referral-avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--h-grad-water-green);
+  color: var(--primary-beige);
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.aff-referral-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.aff-referral-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.aff-referral-meta {
+  font-size: 0.75rem;
+  color: var(--color);
+  opacity: 0.55;
+}
+
+.aff-referral-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+  flex-shrink: 0;
+}
+
+.aff-referral-earnings {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color);
+  opacity: 0.7;
+}
+
+.aff-status-badge {
+  padding: 0.15rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  &--pending {
+    background: color-mix(in srgb, #f59e0b 15%, transparent);
+    color: #b45309;
+  }
+
+  &--active {
+    background: color-mix(in srgb, #22c55e 15%, transparent);
+    color: #15803d;
+  }
+
+  &--expired {
+    background: color-mix(in srgb, var(--border-color) 60%, transparent);
+    color: var(--color);
+    opacity: 0.55;
+  }
+}
+
+:host-context(.dark) .aff-status-badge--pending {
+  color: #fbbf24;
+}
+
+:host-context(.dark) .aff-status-badge--active {
+  color: #4ade80;
+}
+
+.aff-how-block {
+  padding-top: 0.25rem;
+}
+
+.aff-how-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.aff-how-step {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+
+  p {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color);
+    opacity: 0.7;
+    margin: 0;
+  }
+}
+
+.aff-how-num {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--h-grad-water-green);
+  color: var(--primary-beige);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+@media (max-width: 768px) {
+  .aff-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .aff-how-grid {
+    grid-template-columns: 1fr;
+  }
+}

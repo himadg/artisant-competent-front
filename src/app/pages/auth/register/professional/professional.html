@@ -816,7 +816,7 @@
             <div class="flex gap-2 items-center">
                 <input type="checkbox" formControlName="terms" />
                 <span>
-                    <button type="button" class="underline cursor-pointer bg-transparent border-none p-0 text-inherit" (click)="legalModalOpen.set(true)">{{ 'register.cguv' | transloco }}</button> *
+                    <button type="button" class="p-0 underline bg-transparent border-none cursor-pointer text-inherit" (click)="legalModalOpen.set(true)">{{ 'register.cguv' | transloco }}</button> *
                 </span>
             </div>
 
@@ -851,6 +851,9 @@
                 }
                 @if (showSubmitError()) {
                     <span class="text-sm font-medium text-red-500">{{ 'login.errors.fillRequiredFields' | transloco }}</span><br>
+                }
+                @if (referralCodeError()) {
+                    <span class="text-sm font-medium text-red-500">{{ 'register.errors.invalidReferralCode' | transloco }}</span><br>
                 }
                 @if (hasStep1Errors()) {
                     <span class="text-sm font-medium text-red-500">{{ 'professional.errors.step1Errors' | transloco }}</span>

@@ -12,7 +12,7 @@ import { UserApiService } from '../../../../core/services/user-api.service';
 import { AuthService } from '../../../../core/services/auth.service';
 import { User } from '../../../../shared/interfaces/user';
 import { Router } from '@angular/router';
-import { capitalize, evaluatePasswordCriteria } from '../../../../core/utils/common-utils';
+import { capitalize, evaluatePasswordCriteria, getAffiliateCode, clearAffiliateCode } from '../../../../core/utils/common-utils';
 import { PASSWORD_STRONG_REGEXP } from '../../../../core/utils/regexp';
 import { LangService } from '../../../../core/services/lang.service';
 
@@ -47,6 +47,7 @@ export class RegisterIndividual implements OnDestroy {
   readonly passwordFocused = signal(false);
   readonly showSubmitError = signal(false);
   readonly legalModalOpen = signal(false);
+  readonly referralCodeError = signal(false);
 
   readonly form = this.fb.group({
     photo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
@@ -184,7 +185,8 @@ export class RegisterIndividual implements OnDestroy {
     const captchaToken = this.captchaToken();
     if (!captchaToken) return;
 
-    const payload = {
+    const referralCode = getAffiliateCode();
+    const payload: Record<string, unknown> = {
       user: {
         gender,
         lastName: lastName!.toUpperCase(),
@@ -196,13 +198,15 @@ export class RegisterIndividual implements OnDestroy {
         lang: this.langService.lang(),
       },
       phone,
+      ...(referralCode ? { referralCode } : {}),
     };
 
     this.userApi
-      .registerIndividual(payload as Record<string, unknown>, captchaToken)
+      .registerIndividual(payload, captchaToken)
       .pipe(
         switchMap(({ userId, accessToken, user }) => {
           this.authService.setSession(accessToken, user as User);
+          clearAffiliateCode();
           return (photo ? this.uploadService.upload(photo) : of('')).pipe(
             switchMap((photoKey) =>
               photoKey ? this.userApi.createIndividualDocuments(userId, photoKey) : of(undefined),
@@ -216,6 +220,11 @@ export class RegisterIndividual implements OnDestroy {
           this.router.navigate(['/auth/login']);
         },
         error: (err) => {
+          const msg = (err?.error?.message ?? '') as string;
+          if (msg === 'INVALID_REFERRAL_CODE') {
+            this.referralCodeError.set(true);
+            return;
+          }
           console.error('Erreur inscription:', err);
         },
       });

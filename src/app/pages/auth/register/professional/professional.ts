@@ -12,7 +12,7 @@ import {
 import { TranslocoModule } from '@jsverse/transloco';
 import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, forkJoin, of, takeUntil, merge } from 'rxjs';
 import { hourValidator, servicesValidator, openingAtLeastOne } from '../../../../core/utils/validators';
-import { capitalize, normalizeName, evaluatePasswordCriteria } from '../../../../core/utils/common-utils';
+import { capitalize, normalizeName, evaluatePasswordCriteria, getAffiliateCode, clearAffiliateCode } from '../../../../core/utils/common-utils';
 import { ServiceApiService } from '../../../../core/services/service-api.service';
 import { TradeApiService } from '../../../../core/services/trade-api.service';
 import { Service } from '../../../../shared/interfaces/service';
@@ -99,6 +99,7 @@ export class RegisterProfessional implements OnDestroy {
   readonly showConfirmPassword = signal<boolean>(false);
   readonly passwordFocused = signal<boolean>(false);
   readonly showSubmitError = signal<boolean>(false);
+  readonly referralCodeError = signal(false);
   readonly legalModalOpen = signal(false);
   readonly hasStep1Errors = signal<boolean>(false);
 
@@ -572,7 +573,8 @@ export class RegisterProfessional implements OnDestroy {
 
     const { confirmPassword: _cp, ...userFields } = raw.user as Record<string, unknown> & { confirmPassword: unknown };
 
-    const payload = {
+    const referralCode = getAffiliateCode();
+    const payload: Record<string, unknown> = {
       user: { ...userFields, lang: this.langService.lang() },
       professionalProfile: {
         ...profRest,
@@ -583,17 +585,19 @@ export class RegisterProfessional implements OnDestroy {
         trustedContactPhone: trustPhone || undefined,
         suppliers,
       },
+      ...(referralCode ? { referralCode } : {}),
     };
 
     const upload = (file: File | null) => file ? this.uploadService.upload(file) : of('');
 
     let mailSent = true;
 
-    this.userApi.registerProfessional(payload as Record<string, unknown>, captchaToken)
+    this.userApi.registerProfessional(payload, captchaToken)
       .pipe(
         switchMap(({ userId, accessToken, user, mailSent: ms }) => {
           mailSent = ms;
           this.authService.setSession(accessToken, user as User);
+          clearAffiliateCode();
           return forkJoin([
             upload(photo),
             upload(idFront),
@@ -620,6 +624,12 @@ export class RegisterProfessional implements OnDestroy {
         },
         error: (err) => {
           const msg = (err?.error?.message ?? '') as string;
+          if (msg === 'INVALID_REFERRAL_CODE') {
+            this.referralCodeError.set(true);
+            this.turnstile.reset();
+            this.onCaptchaReset();
+            return;
+          }
           if (msg.toLowerCase().includes('personnelle')) this.adressError.set('addressPersonal');
           else if (msg.toLowerCase().includes('travail')) this.adressError.set('addressWork');
           this.turnstile.reset();

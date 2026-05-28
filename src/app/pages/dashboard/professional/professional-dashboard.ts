@@ -1,21 +1,23 @@
 ﻿import { ChangeDetectionStrategy, Component, inject, OnInit, signal, computed } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { CommonModule, PlatformLocation } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { forkJoin } from 'rxjs';
 import { DashboardApiService } from '../../../core/services/dashboard-api.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { UserApiService } from '../../../core/services/user-api.service';
 import { ServiceApiService } from '../../../core/services/service-api.service';
+import { AffiliationApiService } from '../../../core/services/affiliation-api.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProfessionalDashboardData, OpeningHoursDay, Service } from '../../../shared/interfaces/professional-dashboard';
+import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
 import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
 
-export type ProSection = 'requests' | 'quotes' | 'invoices' | 'profile' | 'legal' | 'practices';
+export type ProSection = 'requests' | 'quotes' | 'invoices' | 'profile' | 'legal' | 'practices' | 'affiliation';
 export type ProTab = 'presentation' | 'services' | 'missions' | 'reviews' | 'documents';
 
 const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as const;
@@ -32,7 +34,9 @@ export class ProfessionalDashboard implements OnInit {
   private readonly dashboardApi = inject(DashboardApiService);
   private readonly userApi = inject(UserApiService);
   private readonly serviceApi = inject(ServiceApiService);
+  private readonly affiliationApi = inject(AffiliationApiService);
   private readonly route = inject(ActivatedRoute);
+  private readonly platformLocation = inject(PlatformLocation);
   readonly authService = inject(AuthService);
 
   readonly data = signal<ProfessionalDashboardData | null>(null);
@@ -41,6 +45,10 @@ export class ProfessionalDashboard implements OnInit {
 
   readonly activeSection = signal<ProSection>('profile');
   readonly activeTab = signal<ProTab>('presentation');
+
+  readonly affiliationData = signal<AffiliationDashboard | null>(null);
+  readonly affiliationLoading = signal(false);
+  readonly codeCopied = signal(false);
 
   readonly inscriptionDate = computed(() => {
     const data = this.data();
@@ -91,6 +99,36 @@ export class ProfessionalDashboard implements OnInit {
 
   setSection(section: ProSection) {
     this.activeSection.set(section);
+    if (section === 'affiliation' && !this.affiliationData()) {
+      this.loadAffiliationDashboard();
+    }
+  }
+
+  loadAffiliationDashboard() {
+    this.affiliationLoading.set(true);
+    this.affiliationApi.getDashboard().subscribe({
+      next: (data) => { this.affiliationData.set(data); this.affiliationLoading.set(false); },
+      error: () => this.affiliationLoading.set(false),
+    });
+  }
+
+  generateAffiliateCode() {
+    this.affiliationApi.generateCode().subscribe({
+      next: () => this.loadAffiliationDashboard(),
+    });
+  }
+
+  copyAffiliateCode(code: string) {
+    navigator.clipboard.writeText(this.affiliateShareUrl(code)).then(() => {
+      this.codeCopied.set(true);
+      setTimeout(() => this.codeCopied.set(false), 2000);
+    });
+  }
+
+  affiliateShareUrl(code: string): string {
+    const { protocol, hostname, port } = this.platformLocation;
+    const origin = `${protocol}//${hostname}${port ? ':' + port : ''}`;
+    return `${origin}/affiliation?ref=${code}`;
   }
 
   setTab(tab: ProTab) {

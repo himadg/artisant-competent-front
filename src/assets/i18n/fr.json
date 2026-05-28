@@ -465,6 +465,9 @@
         "maintenance": "Entretien",
         "consulting": "Conseil"
       }
+    },
+    "errors": {
+      "invalidReferralCode": "Ce code de parrainage n'est pas valide. Assurez-vous d'avoir bien copié et collé le lien donné par le parrain."
     }
   },
   "supplier": {
@@ -609,6 +612,7 @@
     "kilometersLabel": "Rayon de recherche (km)"
   },
   "affiliation": {
+    "title": "Programme partenaire",
     "meta": {
       "title": "Programme Partenaire Artisan Compétent | 20 % de commission",
       "description": "Recommandez Artisan Compétent à votre audience et touchez 20 % de commission la première année. Inscription gratuite, sans engagement, sans avancer un centime."
@@ -804,7 +808,8 @@
         "quotes": "Mes devis",
         "invoices": "Mes factures",
         "legal": "Informations légales",
-        "practices": "Bonnes pratiques"
+        "practices": "Bonnes pratiques",
+        "affiliation": "Affiliation"
       },
       "mobile": {
         "profile": "Compte",
@@ -833,7 +838,8 @@
         "invoices": "Mes factures",
         "profile": "Infos personnelles",
         "legal": "Informations légales",
-        "practices": "Bonnes pratiques"
+        "practices": "Bonnes pratiques",
+        "affiliation": "Affiliation"
       },
       "tabs": {
         "presentation": "Présentation",
@@ -890,6 +896,46 @@
       "practices": "Aucune bonne pratique disponible",
       "missions": "Aucune mission pour le moment",
       "reviews": "Aucun avis pour le moment"
+    },
+    "affiliation": {
+      "title": "Mon programme d'affiliation",
+      "noCode": "Vous n'avez pas encore de code de parrainage.",
+      "generateCode": "Générer mon code",
+      "myCode": "Mon code de parrainage",
+      "copyCode": "Copier",
+      "copied": "Copié !",
+      "shareLink": "Lien de partage",
+      "stats": {
+        "totalReferrals": "Filleuls total",
+        "activeReferrals": "Filleuls actifs",
+        "totalEarned": "Gains validés",
+        "pendingEarnings": "Gains en attente"
+      },
+      "referrals": {
+        "title": "Mes filleuls",
+        "empty": "Aucun filleul pour le moment",
+        "role": {
+          "INDIVIDUAL": "Particulier",
+          "PROFESSIONAL": "Professionnel"
+        },
+        "status": {
+          "PENDING": "En attente",
+          "ACTIVE": "Actif",
+          "EXPIRED": "Expiré"
+        },
+        "columns": {
+          "name": "Nom",
+          "role": "Type",
+          "status": "Statut",
+          "commissions": "Commissions",
+          "joinedAt": "Inscrit le"
+        }
+      },
+      "howItWorks": {
+        "title": "Comment ça marche ?",
+        "individual": "Particulier parrainé → 20% de commission les 6 premiers mois, puis 10% les 6 suivants.",
+        "professional": "Professionnel parrainé → 5% de commission pendant 6 mois."
+      }
     }
   },
   "contact": {
