@@ -1,14 +1,16 @@
+
 .quote-form {
-  max-width: 900px;
+  max-width: 1200px; // On élargit un peu pour la nouvelle colonne
   margin: 2rem auto;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   background: #fff;
   font-family: sans-serif;
+  color: var(--secondary-water-green);
 
-  h1, h2, h3 {
-    color: #333;
+  h1, h2, h3, h4 {
+    color: var(--secondary-water-green);
     margin-bottom: 1rem;
   }
 
@@ -21,7 +23,7 @@
     legend {
       font-size: 1.2rem;
       font-weight: bold;
-      color: #555;
+      color: var(--secondary-water-green);
       padding: 0 0.5rem;
     }
   }
@@ -30,18 +32,18 @@
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: #444;
   }
 
   .coordinates-grid {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); // Grille à 2 colonnes par défaut
     gap: 2rem;
 
-    .client-info, .artisan-info {
-      width: 48%;
-      display: flex;
-      flex-direction: column;
+    .jobsite-info {
+      grid-column: 1 / -1; // Le bloc chantier prend toute la largeur
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
     }
   }
 
@@ -54,6 +56,7 @@
     font-size: 1rem;
     box-sizing: border-box;
     transition: border-color 0.2s;
+    color: #333;
 
     &:focus {
       outline: none;
@@ -187,16 +190,10 @@
     padding: 1rem;
     background: #f8f9fa;
     border-left: 4px solid #007bff;
-
-    p, strong {
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
   }
 
   .legal-mention {
     font-size: 0.9rem;
-    color: #666;
     margin-top: 1rem;
     padding: 1rem;
     background-color: #f1f1f1;

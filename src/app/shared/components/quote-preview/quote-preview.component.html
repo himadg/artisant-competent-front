@@ -8,6 +8,7 @@
     <div class="document" *ngIf="quoteData">
       <div class="doc-header">
         <h1>Devis</h1>
+        <p class="quote-number"><strong>Numéro de devis :</strong> {{ quoteData.quoteNumber }}</p>
         <div class="planning-info">
           <p>Lieu de rédaction : <strong>{{ quoteData.planning?.placeOfWriting || 'Non renseigné' }}</strong></p>
           <p>Date de rédaction : <strong>{{ (quoteData.planning?.dateOfWriting | date:'dd/MM/yyyy') || 'Non renseignée' }}</strong></p>
@@ -17,20 +18,65 @@
 
       <div class="coordinates-section">
         <div class="client-box">
-          <h3>Client</h3>
-          <p><strong>{{ quoteData.coordinates?.client?.name || 'Non renseigné' }}</strong></p>
-          <p class="address">{{ quoteData.coordinates?.client?.address || 'Adresse non renseignée' }}</p>
+          <h3>Client (Facturation)</h3>
+          <p><strong>{{ quoteData.coordinates?.client?.firstName || '' }} {{ quoteData.coordinates?.client?.lastName || '' }}</strong></p>
+          <div class="address">
+            <p>{{ quoteData.coordinates?.client?.streetNumber }} {{ quoteData.coordinates?.client?.streetType }} {{ quoteData.coordinates?.client?.streetName }}</p>
+            <p *ngIf="quoteData.coordinates?.client?.locality">{{ quoteData.coordinates?.client?.locality }}</p>
+            <p>
+              <span *ngIf="quoteData.coordinates?.client?.buildingNumber">Bâtiment {{ quoteData.coordinates?.client?.buildingNumber }}</span>
+              <span *ngIf="quoteData.coordinates?.client?.floor">, Étage {{ quoteData.coordinates?.client?.floor }}</span>
+              <span *ngIf="quoteData.coordinates?.client?.apartmentNumber">, Appt {{ quoteData.coordinates?.client?.apartmentNumber }}</span>
+            </p>
+            <p>{{ quoteData.coordinates?.client?.postalCode }} {{ quoteData.coordinates?.client?.city }}</p>
+            <p>Email : {{ quoteData.coordinates?.client?.email }}</p>
+            <p>Tél : {{ quoteData.coordinates?.client?.phone }}</p>
+          </div>
         </div>
+
+        <div class="jobsite-box" *ngIf="quoteData.coordinates?.client?.streetName !== quoteData.coordinates?.jobsite?.streetName || quoteData.coordinates?.client?.city !== quoteData.coordinates?.jobsite?.city">
+          <h3>Adresse du chantier</h3>
+          <div class="address">
+            <p>{{ quoteData.coordinates?.jobsite?.streetNumber }} {{ quoteData.coordinates?.jobsite?.streetType }} {{ quoteData.coordinates?.jobsite?.streetName }}</p>
+            <p *ngIf="quoteData.coordinates?.jobsite?.locality">{{ quoteData.coordinates?.jobsite?.locality }}</p>
+            <p>
+              <span *ngIf="quoteData.coordinates?.jobsite?.buildingNumber">Bâtiment {{ quoteData.coordinates?.jobsite?.buildingNumber }}</span>
+              <span *ngIf="quoteData.coordinates?.jobsite?.floor">, Étage {{ quoteData.coordinates?.jobsite?.floor }}</span>
+              <span *ngIf="quoteData.coordinates?.jobsite?.apartmentNumber">, Appt {{ quoteData.coordinates?.jobsite?.apartmentNumber }}</span>
+            </p>
+            <p>{{ quoteData.coordinates?.jobsite?.postalCode }} {{ quoteData.coordinates?.jobsite?.city }}</p>
+          </div>
+        </div>
+
         <div class="artisan-box">
           <h3>Prestataire ({{ quoteData.coordinates?.artisan?.status || 'Non renseigné' }})</h3>
-          <p><strong>{{ quoteData.coordinates?.artisan?.name || 'Non renseigné' }}</strong></p>
+          <p>
+            <strong>
+              {{
+                quoteData.coordinates?.artisan?.status === 'Auto-entrepreneur'
+                ? (quoteData.coordinates?.artisan?.firstName + ' ' + quoteData.coordinates?.artisan?.lastName)
+                : quoteData.coordinates?.artisan?.name
+              }}
+            </strong>
+          </p>
           <p>SIRET : {{ quoteData.coordinates?.artisan?.siret || 'Non renseigné' }}</p>
-          <p class="address">{{ quoteData.coordinates?.artisan?.address || 'Adresse non renseignée' }}</p>
+          <div class="address">
+            <p>{{ quoteData.coordinates?.artisan?.streetNumber }} {{ quoteData.coordinates?.artisan?.streetType }} {{ quoteData.coordinates?.artisan?.streetName }}</p>
+            <p *ngIf="quoteData.coordinates?.artisan?.locality">{{ quoteData.coordinates?.artisan?.locality }}</p>
+            <p>
+              <span *ngIf="quoteData.coordinates?.artisan?.buildingNumber">Bâtiment {{ quoteData.coordinates?.artisan?.buildingNumber }}</span>
+              <span *ngIf="quoteData.coordinates?.artisan?.floor">, Étage {{ quoteData.coordinates?.artisan?.floor }}</span>
+              <span *ngIf="quoteData.coordinates?.artisan?.apartmentNumber">, Appt {{ quoteData.coordinates?.artisan?.apartmentNumber }}</span>
+            </p>
+            <p>{{ quoteData.coordinates?.artisan?.postalCode }} {{ quoteData.coordinates?.artisan?.city }}</p>
+            <p>Email : {{ quoteData.coordinates?.artisan?.email }}</p>
+            <p>Tél : {{ quoteData.coordinates?.artisan?.phone }}</p>
+          </div>
         </div>
       </div>
 
       <div class="details-section">
-        <h3>Détail des Matériaux</h3>
+        <h3>Matériaux et fournitures</h3>
         <table *ngIf="quoteData.materials && quoteData.materials.length > 0; else noMaterials">
           <thead>
             <tr>
@@ -49,8 +95,8 @@
               </td>
               <td>{{ material.providedByClient ? 'Fourni par le client' : 'Fourni par l\'artisan' }}</td>
               <td>{{ material.providedByClient ? '0.00' : (material.amountHT | number:'1.2-2') }} €</td>
-              <td>{{ material.tva }} %</td>
-              <td>{{ calculateItemTTC(material.providedByClient ? 0 : material.amountHT, material.tva) | number:'1.2-2' }} €</td>
+              <td>{{ quoteData.legal?.applyTvaExemption ? 0 : material.tva }} %</td>
+              <td>{{ calcService.calculateItemTTC(material.providedByClient ? 0 : material.amountHT, material.tva, quoteData.legal?.applyTvaExemption) | number:'1.2-2' }} €</td>
             </tr>
           </tbody>
         </table>
@@ -60,7 +106,7 @@
       </div>
 
       <div class="details-section">
-        <h3>Détail des Prestations</h3>
+        <h3>Prestation <small>(main-d’œuvre)</small></h3>
         <table *ngIf="quoteData.services && quoteData.services.length > 0; else noServices">
           <thead>
             <tr>
@@ -76,8 +122,8 @@
               <td>{{ service.description || 'Non renseignée' }}</td>
               <td>{{ service.type || 'Non renseigné' }}</td>
               <td>{{ service.amountHT | number:'1.2-2' }} €</td>
-              <td>{{ service.tva }} %</td>
-              <td>{{ calculateItemTTC(service.amountHT, service.tva) | number:'1.2-2' }} €</td>
+              <td>{{ quoteData.legal?.applyTvaExemption ? 0 : service.tva }} %</td>
+              <td>{{ calcService.calculateItemTTC(service.amountHT, service.tva, quoteData.legal?.applyTvaExemption) | number:'1.2-2' }} €</td>
             </tr>
           </tbody>
         </table>
@@ -87,10 +133,11 @@
       </div>
 
       <div class="details-section logistics-summary">
-        <h3>Logistique et Frais</h3>
-        <p>Frais de déplacement HT : <strong>{{ quoteData.logistics?.travelCostHT | number:'1.2-2' }} €</strong> (TTC: {{ calculateItemTTC(quoteData.logistics?.travelCostHT || 0, 20) | number:'1.2-2' }} €)</p>
+        <h3>Logistique et frais annexes <small>(frais de déplacement, location de matériel, livraison, frais de stationnement, etc.)</small></h3>
+        <p>Frais annexes HT : <strong>{{ quoteData.logistics?.travelCostHT | number:'1.2-2' }} €</strong> (TTC: {{ calcService.getTravelCostTTC(quoteData.logistics, quoteData.legal) | number:'1.2-2' }} €)</p>
         <p *ngIf="quoteData.logistics?.wasteManagement?.hasWaste">
           <strong>Gestion des déchets :</strong> Prise en charge avec document CERFA à signer.
+          <br><em>Tout document CERFA obligatoire doit être joint et complété lorsque la réglementation l’impose avant, pendant ou après les travaux.</em>
         </p>
         <p *ngIf="quoteData.logistics?.suppliers && quoteData.logistics?.suppliers.length > 0 && quoteData.logistics?.suppliers[0] !== ''">
           <strong>Fournisseurs :</strong> {{ quoteData.logistics.suppliers.join(', ') }}
@@ -103,13 +150,9 @@
             <span>Total HT :</span>
             <span>{{ totalHT | number:'1.2-2' }} €</span>
           </div>
-          <div class="total-line">
-            <span>Frais de service plateforme :</span>
-            <span>{{ platformFee | number:'1.2-2' }} €</span>
-          </div>
           <div class="total-line grand-total">
             <span>TOTAL À PAYER TTC :</span>
-            <span>{{ (totalServicesTTC + totalMaterialsTTC + calculateItemTTC(totalTravelCostHT, 20) + calculateItemTTC(platformFee, 20)) | number:'1.2-2' }} €</span>
+            <span>{{ grandTotalTTC | number:'1.2-2' }} €</span>
           </div>
         </div>
       </div>
@@ -118,8 +161,14 @@
         <h3>Informations Légales & Conditions</h3>
         <p><strong>Délais estimés :</strong> du {{ (quoteData.planning?.estimatedStartDate | date:'dd/MM/yyyy') || 'Non renseigné' }} au {{ (quoteData.planning?.estimatedEndDate | date:'dd/MM/yyyy') || 'Non renseigné' }} <br><em>(hors retard indépendant de notre volonté)</em></p>
 
-        <div *ngIf="quoteData.legal?.insuranceDocument" class="legal-block">
-          <p><strong>Assurance :</strong> Attestation jointe au devis final.</p>
+        <div *ngIf="quoteData.legal?.rcProDocument" class="legal-block">
+          <p><strong>Assurance RC PRO :</strong> Attestation jointe au devis final.</p>
+        </div>
+        <div *ngIf="quoteData.legal?.decennaleDocument" class="legal-block">
+          <p><strong>Assurance Décennale :</strong> Attestation jointe au devis final.</p>
+        </div>
+        <div *ngIf="quoteData.legal?.otherCertifications && quoteData.legal?.otherCertifications.length > 0" class="legal-block">
+          <p><strong>Autres certifications :</strong> Documents joints au devis final.</p>
         </div>
 
         <div *ngIf="quoteData.coordinates?.artisan?.status === 'Auto-entrepreneur'" class="legal-block">
@@ -131,6 +180,13 @@
         </div>
 
         <div class="agreements">
+          <p><strong>Mentions importantes :</strong></p>
+          <ul>
+            <li>Il est nécessaire d'établir un procès-verbal de fin de chantier pour la validation des travaux.</li>
+            <li>Un délai de 48h est appliqué avant validation automatique et libération des fonds.</li>
+          </ul>
+          <br>
+          <p *ngIf="quoteData.agreement?.insuranceVerified">✓ Le client est prié de vérifier la validité de l'assurance avant la signature.</p>
           <p *ngIf="quoteData.agreement?.waiveRetractionRights">✓ Le client reconnaît renoncer à son droit de rétractation de 14 jours.</p>
           <p *ngIf="quoteData.agreement?.arbitrationAgreement">✓ Autorisation d'arbitrage par la plateforme Artisan-Compétent en cas de nécessité accordée.</p>
         </div>

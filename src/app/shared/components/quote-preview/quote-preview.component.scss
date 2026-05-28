@@ -88,14 +88,38 @@
   .coordinates-section {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin-bottom: 2rem;
     gap: 2rem;
 
     .client-box, .artisan-box {
-      width: 48%;
+      width: calc(50% - 1rem);
       border: 1px solid #eee;
       padding: 1rem;
       border-radius: 4px;
+      box-sizing: border-box;
+
+      h3 {
+        margin-top: 0;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.5rem;
+        font-size: 1.1rem;
+      }
+      p {
+        margin: 0.3rem 0;
+        font-size: 0.95rem;
+      }
+      .address {
+        white-space: pre-wrap;
+      }
+    }
+
+    .jobsite-box {
+      width: 100%;
+      border: 1px solid #eee;
+      padding: 1rem;
+      border-radius: 4px;
+      box-sizing: border-box;
 
       h3 {
         margin-top: 0;
@@ -245,7 +269,7 @@
     transition: background-color 0.2s;
 
     &:hover {
-      background-color: #5a6268;
+      background: #5a6268;
     }
   }
 }
@@ -291,6 +315,7 @@
 
   .coordinates-section .client-box,
   .coordinates-section .artisan-box,
+  .coordinates-section .jobsite-box,
   .totals-section .totals-box {
     border: 1px solid #000;
   }

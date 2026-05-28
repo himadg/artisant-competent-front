@@ -16,74 +16,365 @@
       <div class="client-info" formGroupName="client">
         <h3>Client</h3>
 
-        <label for="clientName">Identité du client</label>
-        <input id="clientName" formControlName="name" placeholder="Nom complet" [class.is-invalid]="clientControls.name.invalid">
-        @if (clientControls.name.invalid) {
-          <div class="error-feedback">
-            @if (clientControls.name.errors?.['required']) { <span>Le nom du client est requis.</span> }
+        <div class="form-row-split">
+          <div class="form-group">
+            <label for="clientFirstName">Prénom</label>
+            <input id="clientFirstName" formControlName="firstName" placeholder="Prénom" [class.is-invalid]="clientControls['firstName'].invalid">
+            @if (clientControls['firstName'].invalid) {
+              <div class="error-feedback">@if (clientControls['firstName'].errors?.['required']) { <span>Prénom requis.</span> }</div>
+            }
           </div>
-        }
+          <div class="form-group">
+            <label for="clientLastName">Nom</label>
+            <input id="clientLastName" formControlName="lastName" placeholder="Nom" [class.is-invalid]="clientControls['lastName'].invalid">
+            @if (clientControls['lastName'].invalid) {
+              <div class="error-feedback">@if (clientControls['lastName'].errors?.['required']) { <span>Nom requis.</span> }</div>
+            }
+          </div>
+        </div>
 
-        <label for="clientAddress">Adresse du client</label>
-        <textarea id="clientAddress" formControlName="address" placeholder="Adresse complète" [class.is-invalid]="clientControls.address.invalid"></textarea>
-        @if (clientControls.address.invalid) {
-          <div class="error-feedback">
-            @if (clientControls.address.errors?.['required']) { <span>L'adresse du client est requise.</span> }
+        <div class="form-row-split">
+          <div class="form-group street-number">
+            <label for="clientStreetNumber">N°</label>
+            <input id="clientStreetNumber" formControlName="streetNumber" placeholder="Ex: 123">
           </div>
-        }
+          <div class="form-group street-type">
+            <label for="clientStreetType">Type de voie</label>
+            <select id="clientStreetType" formControlName="streetType">
+              @for(type of streetTypes; track type) { <option [value]="type">{{type}}</option> }
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="clientStreetName">Nom de la rue</label>
+          <input id="clientStreetName" formControlName="streetName" placeholder="Nom de la rue" [class.is-invalid]="clientControls['streetName'].invalid">
+          @if (clientControls['streetName'].invalid) {
+            <div class="error-feedback">@if (clientControls['streetName'].errors?.['required']) { <span>Nom de rue requis.</span> }</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="clientLocality">Lieu-dit / Résidence</label>
+          <input id="clientLocality" formControlName="locality" placeholder="Lieu-dit, résidence, etc. (optionnel)">
+        </div>
+
+        <div class="form-row-split">
+          <div class="form-group">
+            <label for="clientBuildingNumber">Bâtiment</label>
+            <input id="clientBuildingNumber" formControlName="buildingNumber" placeholder="Bâtiment">
+          </div>
+          <div class="form-group">
+            <label for="clientFloor">Étage</label>
+            <input id="clientFloor" formControlName="floor" placeholder="Étage">
+          </div>
+          <div class="form-group">
+            <label for="clientApartmentNumber">Appartement</label>
+            <input id="clientApartmentNumber" formControlName="apartmentNumber" placeholder="N° Appt">
+          </div>
+        </div>
+
+        <div class="form-row-split">
+          <div class="form-group">
+            <label for="clientPostalCode">Code Postal</label>
+            <input id="clientPostalCode" formControlName="postalCode" placeholder="75001" [class.is-invalid]="clientControls['postalCode'].invalid">
+            @if (clientControls['postalCode'].invalid) {
+              <div class="error-feedback">
+                @if (clientControls['postalCode'].errors?.['required']) { <span>Code postal requis.</span> }
+                @if (clientControls['postalCode'].errors?.['pattern']) { <span>Code postal invalide.</span> }
+              </div>
+            }
+          </div>
+          <div class="form-group">
+            <label for="clientCity">Ville</label>
+            <input id="clientCity" formControlName="city" placeholder="Paris" [class.is-invalid]="clientControls['city'].invalid">
+            @if (clientControls['city'].invalid) {
+              <div class="error-feedback">@if (clientControls['city'].errors?.['required']) { <span>Ville requise.</span> }</div>
+            }
+          </div>
+        </div>
+
+        <div class="form-row-split">
+          <div class="form-group">
+            <label for="clientEmail">Adresse mail</label>
+            <input id="clientEmail" type="email" formControlName="email" placeholder="email@example.com" [class.is-invalid]="clientControls['email'].invalid">
+            @if (clientControls['email'].invalid) {
+              <div class="error-feedback">
+                @if (clientControls['email'].errors?.['required']) { <span>Email requis.</span> }
+                @if (clientControls['email'].errors?.['email']) { <span>Format d'email invalide.</span> }
+              </div>
+            }
+          </div>
+          <div class="form-group">
+            <label for="clientPhone">Téléphone</label>
+            <input id="clientPhone" type="tel" formControlName="phone" placeholder="06 12 34 56 78" [class.is-invalid]="clientControls['phone'].invalid">
+            @if (clientControls['phone'].invalid) {
+              <div class="error-feedback">
+                @if (clientControls['phone'].errors?.['required']) { <span>Téléphone requis.</span> }
+                @if (clientControls['phone'].errors?.['pattern']) { <span>Format invalide.</span> }
+              </div>
+            }
+          </div>
+        </div>
       </div>
 
       <div class="artisan-info" formGroupName="artisan">
         <h3>Prestataire</h3>
 
-        <label for="artisanName">Identité du prestataire</label>
-        <input id="artisanName" formControlName="name" placeholder="Nom de l'entreprise ou de l'artisan" [class.is-invalid]="artisanControls.name.invalid">
-        @if (artisanControls.name.invalid) {
-          <div class="error-feedback">
-            @if (artisanControls.name.errors?.['required']) { <span>Le nom du prestataire est requis.</span> }
-          </div>
-        }
-
-        <label for="artisanSiret">Numéro SIRET</label>
-        <input id="artisanSiret" formControlName="siret" placeholder="14 chiffres" [class.is-invalid]="artisanControls.siret.invalid">
-        @if (artisanControls.siret.invalid) {
-          <div class="error-feedback">
-            @if (artisanControls.siret.errors?.['required']) { <span>Le numéro SIRET est requis.</span> }
-            @if (artisanControls.siret.errors?.['pattern']) { <span>Le SIRET doit contenir exactement 14 chiffres.</span> }
-          </div>
-        }
-
-        <label for="artisanAddress">Adresse du prestataire</label>
-        <textarea id="artisanAddress" formControlName="address" placeholder="Adresse complète" [class.is-invalid]="artisanControls.address.invalid"></textarea>
-        @if (artisanControls.address.invalid) {
-          <div class="error-feedback">
-            @if (artisanControls.address.errors?.['required']) { <span>L'adresse du prestataire est requise.</span> }
-          </div>
-        }
-
         <label for="artisanStatus">Statut</label>
-        <select id="artisanStatus" formControlName="status" [class.is-invalid]="artisanControls.status.invalid">
+        <select id="artisanStatus" formControlName="status" [class.is-invalid]="artisanControls['status'].invalid">
           @for (status of artisanStatuses; track status) {
             <option [value]="status">{{ status }}</option>
           }
         </select>
         <span>({{ artisanStatus() }})</span>
+
+        @if (isAutoEntrepreneur()) {
+          <div class="form-row mt-2" style="margin-bottom: 0; padding: 0; background: none;">
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label for="artisanFirstName">Prénom de l'artisan</label>
+              <input id="artisanFirstName" formControlName="firstName" placeholder="Prénom" [class.is-invalid]="artisanControls['firstName'].invalid">
+              @if (artisanControls['firstName'].invalid) {
+                <div class="error-feedback">
+                  @if (artisanControls['firstName'].errors?.['required']) { <span>Le prénom est requis.</span> }
+                </div>
+              }
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label for="artisanLastName">Nom de l'artisan</label>
+              <input id="artisanLastName" formControlName="lastName" placeholder="Nom" [class.is-invalid]="artisanControls['lastName'].invalid">
+              @if (artisanControls['lastName'].invalid) {
+                <div class="error-feedback">
+                  @if (artisanControls['lastName'].errors?.['required']) { <span>Le nom est requis.</span> }
+                </div>
+              }
+            </div>
+          </div>
+        } @else {
+          <label for="artisanName" class="mt-2">Nom de la société</label>
+          <input id="artisanName" formControlName="name" placeholder="Nom de l'entreprise" [class.is-invalid]="artisanControls['name'].invalid">
+          @if (artisanControls['name'].invalid) {
+            <div class="error-feedback">
+              @if (artisanControls['name'].errors?.['required']) { <span>Le nom de l'entreprise est requis.</span> }
+            </div>
+          }
+        }
+
+        <label for="artisanSiret">Numéro SIRET</label>
+        <input id="artisanSiret" formControlName="siret" placeholder="14 chiffres" [class.is-invalid]="artisanControls['siret'].invalid">
+        @if (artisanControls['siret'].invalid) {
+          <div class="error-feedback">
+            @if (artisanControls['siret'].errors?.['required']) { <span>Le numéro SIRET est requis.</span> }
+            @if (artisanControls['siret'].errors?.['pattern']) { <span>Le SIRET doit contenir exactement 14 chiffres.</span> }
+          </div>
+        }
+
+        <div class="form-row-split">
+          <div class="form-group street-number">
+            <label for="artisanStreetNumber">N°</label>
+            <input id="artisanStreetNumber" formControlName="streetNumber" placeholder="Ex: 123" [class.is-invalid]="artisanControls['streetNumber'].invalid">
+            @if (artisanControls['streetNumber'].invalid) {
+              <div class="error-feedback">@if (artisanControls['streetNumber'].errors?.['required']) { <span>N° requis.</span> }</div>
+            }
+          </div>
+          <div class="form-group street-type">
+            <label for="artisanStreetType">Type de voie</label>
+            <select id="artisanStreetType" formControlName="streetType">
+              @for(type of streetTypes; track type) { <option [value]="type">{{type}}</option> }
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="artisanStreetName">Nom de la rue</label>
+          <input id="artisanStreetName" formControlName="streetName" placeholder="Nom de la rue" [class.is-invalid]="artisanControls['streetName'].invalid">
+          @if (artisanControls['streetName'].invalid) {
+            <div class="error-feedback">@if (artisanControls['streetName'].errors?.['required']) { <span>Nom de rue requis.</span> }</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="artisanLocality">Lieu-dit / Résidence</label>
+          <input id="artisanLocality" formControlName="locality" placeholder="Lieu-dit, résidence, etc. (optionnel)">
+        </div>
+
+        <div class="form-row-split">
+          <div class="form-group">
+            <label for="artisanBuildingNumber">Bâtiment</label>
+            <input id="artisanBuildingNumber" formControlName="buildingNumber" placeholder="Bâtiment">
+          </div>
+          <div class="form-group">
+            <label for="artisanFloor">Étage</label>
+            <input id="artisanFloor" formControlName="floor" placeholder="Étage">
+          </div>
+          <div class="form-group">
+            <label for="artisanApartmentNumber">Appartement</label>
+            <input id="artisanApartmentNumber" formControlName="apartmentNumber" placeholder="N° Appt">
+          </div>
+        </div>
+
+        <div class="form-row-split">
+          <div class="form-group">
+            <label for="artisanPostalCode">Code Postal</label>
+            <input id="artisanPostalCode" formControlName="postalCode" placeholder="75001" [class.is-invalid]="artisanControls['postalCode'].invalid">
+            @if (artisanControls['postalCode'].invalid) {
+              <div class="error-feedback">
+                @if (artisanControls['postalCode'].errors?.['required']) { <span>Code postal requis.</span> }
+                @if (artisanControls['postalCode'].errors?.['pattern']) { <span>Code postal invalide.</span> }
+              </div>
+            }
+          </div>
+          <div class="form-group">
+            <label for="artisanCity">Ville</label>
+            <input id="artisanCity" formControlName="city" placeholder="Paris" [class.is-invalid]="artisanControls['city'].invalid">
+            @if (artisanControls['city'].invalid) {
+              <div class="error-feedback">@if (artisanControls['city'].errors?.['required']) { <span>Ville requise.</span> }</div>
+            }
+          </div>
+        </div>
+
+        <div class="form-row-split">
+          <div class="form-group">
+            <label for="artisanEmail">Adresse mail</label>
+            <input id="artisanEmail" type="email" formControlName="email" placeholder="email@example.com" [class.is-invalid]="artisanControls['email'].invalid">
+            @if (artisanControls['email'].invalid) {
+              <div class="error-feedback">
+                @if (artisanControls['email'].errors?.['required']) { <span>Email requis.</span> }
+                @if (artisanControls['email'].errors?.['email']) { <span>Format d'email invalide.</span> }
+              </div>
+            }
+          </div>
+          <div class="form-group">
+            <label for="artisanPhone">Téléphone</label>
+            <input id="artisanPhone" type="tel" formControlName="phone" placeholder="06 12 34 56 78" [class.is-invalid]="artisanControls['phone'].invalid">
+            @if (artisanControls['phone'].invalid) {
+              <div class="error-feedback">
+                @if (artisanControls['phone'].errors?.['required']) { <span>Téléphone requis.</span> }
+                @if (artisanControls['phone'].errors?.['pattern']) { <span>Format invalide.</span> }
+              </div>
+            }
+          </div>
+        </div>
       </div>
+
+      <div class="jobsite-info" formGroupName="jobsite">
+        <h3>Adresse du chantier</h3>
+        <button type="button" (click)="copyClientAddressToJobsite()" class="btn-copy">Copier l'adresse du client</button>
+
+        <div class="form-row-split">
+          <div class="form-group street-number">
+            <label for="jobsiteStreetNumber">N°</label>
+            <input id="jobsiteStreetNumber" formControlName="streetNumber" placeholder="Ex: 123">
+          </div>
+          <div class="form-group street-type">
+            <label for="jobsiteStreetType">Type de voie</label>
+            <select id="jobsiteStreetType" formControlName="streetType">
+              @for(type of streetTypes; track type) { <option [value]="type">{{type}}</option> }
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="jobsiteStreetName">Nom de la rue</label>
+          <input id="jobsiteStreetName" formControlName="streetName" placeholder="Nom de la rue" [class.is-invalid]="jobsiteControls['streetName'].invalid">
+          @if (jobsiteControls['streetName'].invalid) {
+            <div class="error-feedback">@if (jobsiteControls['streetName'].errors?.['required']) { <span>Nom de rue requis.</span> }</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="jobsiteLocality">Lieu-dit / Résidence</label>
+          <input id="jobsiteLocality" formControlName="locality" placeholder="Lieu-dit, résidence, etc. (optionnel)">
+        </div>
+
+        <div class="form-row-split">
+          <div class="form-group">
+            <label for="jobsiteBuildingNumber">Bâtiment</label>
+            <input id="jobsiteBuildingNumber" formControlName="buildingNumber" placeholder="Bâtiment">
+          </div>
+          <div class="form-group">
+            <label for="jobsiteFloor">Étage</label>
+            <input id="jobsiteFloor" formControlName="floor" placeholder="Étage">
+          </div>
+          <div class="form-group">
+            <label for="jobsiteApartmentNumber">Appartement</label>
+            <input id="jobsiteApartmentNumber" formControlName="apartmentNumber" placeholder="N° Appt">
+          </div>
+        </div>
+
+        <div class="form-row-split">
+          <div class="form-group">
+            <label for="jobsitePostalCode">Code Postal</label>
+            <input id="jobsitePostalCode" formControlName="postalCode" placeholder="75001" [class.is-invalid]="jobsiteControls['postalCode'].invalid">
+            @if (jobsiteControls['postalCode'].invalid) {
+              <div class="error-feedback">
+                @if (jobsiteControls['postalCode'].errors?.['required']) { <span>Code postal requis.</span> }
+                @if (jobsiteControls['postalCode'].errors?.['pattern']) { <span>Code postal invalide.</span> }
+              </div>
+            }
+          </div>
+          <div class="form-group">
+            <label for="jobsiteCity">Ville</label>
+            <input id="jobsiteCity" formControlName="city" placeholder="Paris" [class.is-invalid]="jobsiteControls['city'].invalid">
+            @if (jobsiteControls['city'].invalid) {
+              <div class="error-feedback">@if (jobsiteControls['city'].errors?.['required']) { <span>Ville requise.</span> }</div>
+            }
+          </div>
+        </div>
+      </div>
+
     </div>
   </fieldset>
 
-  <!-- Section Mentions Légales -->
   <fieldset formGroupName="legal">
     <legend>Mentions Légales</legend>
 
-    <label for="insuranceDocument">Contrat d'assurance (obligatoire)</label>
-    <input id="insuranceDocument" type="file" (change)="onFileChange($event)" accept=".pdf,.jpg,.jpeg,.png" [class.is-invalid]="legalControls.insuranceDocument.invalid">
-    @if (legalControls.insuranceDocument.invalid) {
+    <label for="rcProDocument">Assurance RC PRO (obligatoire)</label>
+    <input id="rcProDocument" type="file" (change)="onFileChange($event, 'rcProDocument')" accept=".pdf,.jpg,.jpeg,.png" [class.is-invalid]="legalControls.rcProDocument.invalid">
+    @if (legalControls.rcProDocument.invalid) {
       <div class="error-feedback">
-        @if (legalControls.insuranceDocument.errors?.['required']) { <span>Le document d'assurance est obligatoire.</span> }
+        @if (legalControls.rcProDocument.errors?.['required']) { <span>Le document d'assurance est obligatoire.</span> }
       </div>
     }
-    <p class="legal-mention">Le client est invité à vérifier la validité de l'assurance avant la signature.</p>
+
+    <div class="legal-mention">
+      <label>
+        <input type="checkbox" formControlName="addDecennale">
+        Ajouter une Assurance Décennale (si applicable)
+      </label>
+      @if(legalControls.addDecennale.value) {
+        <div class="sub-input mt-2">
+          <label for="decennaleDocument">Fichier Assurance Décennale</label>
+          <input id="decennaleDocument" type="file" (change)="onFileChange($event, 'decennaleDocument')" accept=".pdf,.jpg,.jpeg,.png" [class.is-invalid]="legalControls.decennaleDocument.invalid">
+          @if (legalControls.decennaleDocument.invalid) {
+            <div class="error-feedback">
+              @if (legalControls.decennaleDocument.errors?.['required']) { <span>Le document est requis.</span> }
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="legal-mention">
+      <label>
+        <input type="checkbox" formControlName="addOtherCertifications">
+        Ajouter d'autres certifications
+      </label>
+      @if(legalControls.addOtherCertifications.value) {
+        <div formArrayName="otherCertifications" class="mt-2">
+          @for(cert of otherCertifications.controls; track $index) {
+            <div class="sub-input form-row-split">
+              <input type="file" (change)="onFileChange($event, 'otherCertifications', $index)" [class.is-invalid]="cert.invalid">
+              <button type="button" (click)="removeCertification($index)" title="Supprimer">×</button>
+              @if (cert.invalid) {
+                <div class="error-feedback">Un fichier est requis.</div>
+              }
+            </div>
+          }
+          <button type="button" (click)="addCertification()">+ Ajouter une certification</button>
+        </div>
+      }
+    </div>
 
     @if (tvaMentions().length > 0) {
       <div class="legal-mention">
@@ -97,7 +388,6 @@
       </div>
     }
 
-    <!-- Mention facultative RCS pour Auto-entrepreneur -->
     @if (isAutoEntrepreneur()) {
       <div class="legal-mention">
         <label>
@@ -111,18 +401,18 @@
     }
   </fieldset>
 
-  <!-- Section Matériaux -->
   <fieldset>
-    <legend>Matériaux</legend>
+    <legend>Matériaux et fournitures</legend>
     <div formArrayName="materials">
       @for (material of materials.controls; track $index) {
         <div [formGroupName]="$index" class="form-row">
-          <div class="form-group">
-            <label for="matDesc-{{$index}}">Description</label>
-            <input id="matDesc-{{$index}}" formControlName="description" placeholder="Description détaillée" [class.is-invalid]="material.controls.description.invalid">
+          <div class="form-group" style="flex: 2;">
+            <label for="matDesc-{{$index}}">Description (max 255 caractères)</label>
+            <textarea id="matDesc-{{$index}}" formControlName="description" placeholder="Description détaillée" rows="2" [class.is-invalid]="material.controls.description.invalid"></textarea>
             @if (material.controls.description.invalid) {
               <div class="error-feedback">
                 @if (material.controls.description.errors?.['required']) { <span>Description requise.</span> }
+                @if (material.controls.description.errors?.['maxlength']) { <span>La description ne peut dépasser 255 caractères.</span> }
               </div>
             }
           </div>
@@ -146,7 +436,7 @@
               </div>
             }
           </div>
-          <span class="mt-2">TTC: {{ calculateItemTTC(material.controls.amountHT.value, material.controls.tva.value) | number:'1.2-2' }} €</span>
+          <span class="mt-2">TTC: {{ calcService.calculateItemTTC(material.controls.amountHT.value, material.controls.tva.value, legalControls.applyTvaExemption.value) | number:'1.2-2' }} €</span>
           <label class="mt-2"><input type="checkbox" formControlName="providedByClient"> Fourni par le client</label>
           <label class="mt-2"><input type="checkbox" formControlName="isReconditioned"> Reconditionné</label>
           <label class="mt-2">Payé par : {{ material.controls.providedByClient.value ? 'Client' : 'Artisan' }}</label>
@@ -157,18 +447,18 @@
     <button type="button" (click)="addMaterial()">Ajouter un matériau</button>
   </fieldset>
 
-  <!-- Section Prestations -->
   <fieldset>
-    <legend>Prestations</legend>
+    <legend>Prestation (main-d’œuvre)</legend>
     <div formArrayName="services">
       @for (service of services.controls; track $index) {
         <div [formGroupName]="$index" class="form-row">
-          <div class="form-group">
-            <label for="servDesc-{{$index}}">Description</label>
-            <input id="servDesc-{{$index}}" formControlName="description" placeholder="Description de la prestation" [class.is-invalid]="service.controls.description.invalid">
+          <div class="form-group" style="flex: 2;">
+            <label for="servDesc-{{$index}}">Description (max 255 caractères)</label>
+            <textarea id="servDesc-{{$index}}" formControlName="description" placeholder="Description de la prestation" rows="2" [class.is-invalid]="service.controls.description.invalid"></textarea>
             @if (service.controls.description.invalid) {
               <div class="error-feedback">
                 @if (service.controls.description.errors?.['required']) { <span>Description requise.</span> }
+                @if (service.controls.description.errors?.['maxlength']) { <span>La description ne peut dépasser 255 caractères.</span> }
               </div>
             }
           </div>
@@ -204,7 +494,7 @@
               </div>
             }
           </div>
-          <span class="mt-2">TTC: {{ calculateItemTTC(service.controls.amountHT.value, service.controls.tva.value) | number:'1.2-2' }} €</span>
+          <span class="mt-2">TTC: {{ calcService.calculateItemTTC(service.controls.amountHT.value, service.controls.tva.value, legalControls.applyTvaExemption.value) | number:'1.2-2' }} €</span>
           <button type="button" class="mt-2" (click)="removeService($index)">Supprimer</button>
         </div>
       }
@@ -212,9 +502,8 @@
     <button type="button" (click)="addService()">Ajouter une prestation</button>
   </fieldset>
 
-  <!-- Section Logistique & Frais -->
   <fieldset formGroupName="logistics">
-    <legend>Logistique & Frais</legend>
+    <legend>Logistique et frais annexes <small>(frais de déplacement, location de matériel, livraison, frais de stationnement, etc.)</small></legend>
     <div formArrayName="suppliers">
       <label>Liste des fournisseurs</label>
       @for (supplier of suppliers.controls; track $index) {
@@ -235,11 +524,11 @@
 
     <hr>
 
-    <label for="travelCost">Frais de déplacement HT</label>
+    <label for="travelCost">Frais annexes HT</label>
     <input id="travelCost" type="number" min="0" formControlName="travelCostHT" placeholder="0.00" [class.is-invalid]="f.logistics.controls.travelCostHT.invalid">
     @if (f.logistics.controls.travelCostHT.invalid) {
       <div class="error-feedback">
-        @if (f.logistics.controls.travelCostHT.errors?.['required']) { <span>Frais de déplacement requis.</span> }
+        @if (f.logistics.controls.travelCostHT.errors?.['required']) { <span>Frais annexes requis.</span> }
         @if (f.logistics.controls.travelCostHT.errors?.['min']) { <span>Le montant doit être >= 0.</span> }
       </div>
     }
@@ -248,7 +537,7 @@
       <label><input type="checkbox" formControlName="hasWaste"> Gestion des déchets à évacuer</label>
       @if (hasWaste()) {
         <div class="waste-cerfa-box">
-          <p>Le document CERFA doit être téléchargé, rempli et signé.</p>
+          <p class="legal-mention">Tout document CERFA obligatoire doit être joint et complété lorsque la réglementation l’impose avant, pendant ou après les travaux.</p>
           <label [class.text-danger]="!f.logistics.controls.wasteManagement.controls.cerfaSigned.value">
             <input type="checkbox" formControlName="cerfaSigned"> Document CERFA retourné et signé
           </label>
@@ -260,7 +549,6 @@
     </div>
   </fieldset>
 
-  <!-- Section Planification -->
   <fieldset formGroupName="planning">
     <legend>Planification</legend>
     <label for="placeOfWriting">Lieu de rédaction</label>
@@ -293,12 +581,15 @@
     }
 
     <label for="estimatedStartDate">Date de début estimée</label>
-    <input id="estimatedStartDate" type="date" formControlName="estimatedStartDate" [class.is-invalid]="planningControls.estimatedStartDate.invalid">
+    <input id="estimatedStartDate" type="date" formControlName="estimatedStartDate" [class.is-invalid]="planningControls.estimatedStartDate.invalid || planningGroup.hasError('invalidStartRange')">
     @if (planningControls.estimatedStartDate.invalid) {
       <div class="error-feedback">
         @if (planningControls.estimatedStartDate.errors?.['required']) { <span>Date de début requise.</span> }
         @if (planningControls.estimatedStartDate.errors?.['minDateToday']) { <span>La date ne peut être antérieure à aujourd'hui.</span> }
       </div>
+    }
+    @if (planningGroup.hasError('invalidStartRange') && !planningControls.estimatedStartDate.hasError('minDateToday')) {
+      <div class="error-feedback">La date de début estimée doit être supérieure ou égale à la date de rédaction.</div>
     }
 
     <label for="estimatedEndDate">Date de fin estimée</label>
@@ -316,9 +607,24 @@
     <p class="legal-mention mt-2">"hors retard indépendant de notre volonté"</p>
   </fieldset>
 
-  <!-- Section Accord et Validation -->
   <fieldset formGroupName="agreement">
     <legend>Accord et Validation</legend>
+    <div class="legal-mention mb-3">
+      <p><strong>Mentions importantes :</strong></p>
+      <ul style="margin-top: 0.5rem; margin-bottom: 0;">
+        <li>Il est nécessaire d'établir un procès-verbal de fin de chantier pour la validation des travaux.</li>
+        <li>Un délai de 48h est appliqué avant validation automatique et libération des fonds.</li>
+      </ul>
+    </div>
+
+    <label [class.text-danger]="f.agreement.controls.insuranceVerified.invalid">
+      <input type="checkbox" formControlName="insuranceVerified">
+      Le client est prié de vérifier la validité de l'assurance avant la signature.
+    </label>
+    @if (f.agreement.controls.insuranceVerified.invalid) {
+      <div class="error-feedback mb-2">Vous devez accepter cette condition.</div>
+    }
+
     <label [class.text-danger]="f.agreement.controls.waiveRetractionRights.invalid">
       <input type="checkbox" formControlName="waiveRetractionRights">
       Je reconnais renoncer à mon droit de rétractation de 14 jours.
@@ -336,12 +642,10 @@
     }
   </fieldset>
 
-  <!-- Totaux et Soumission -->
   <div class="summary">
     <h2>Récapitulatif</h2>
     <p>Total HT (Matériaux + Prestations + Frais): <strong>{{ totalHT | number:'1.2-2' }} €</strong></p>
-    <p>Frais de service Artisan-Compétent ({{ totalHT < 1500 ? '15%' : '10%' }}): <strong>{{ platformFee | number:'1.2-2' }} €</strong></p>
-    <p><strong>Total à payer par le client : {{ (totalServicesTTC + totalMaterialsTTC + calculateItemTTC(totalTravelCostHT, 20) + calculateItemTTC(platformFee, 20)) | number:'1.2-2' }} €</strong></p>
+    <p><strong>Total à payer par le client : {{ grandTotalTTC | number:'1.2-2' }} €</strong></p>
   </div>
 
   @if (quoteForm.invalid) {
