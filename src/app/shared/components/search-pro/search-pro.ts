@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy, inject, signal, DestroyRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, signal, DestroyRef, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -19,6 +20,7 @@ export class SearchPro {
   private readonly tradeApi = inject(TradeApiService);
   private readonly geocodingService = inject(GeocodingService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   readonly trades = signal<Trade[]>([]);
   readonly addressSuggestions = signal<AddressSuggestion[]>([]);
@@ -33,9 +35,11 @@ export class SearchPro {
   private readonly addressSearch$ = new Subject<string>();
 
   constructor() {
-    this.tradeApi.getAll()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(trades => this.trades.set(trades));
+    if (this.isBrowser) {
+      this.tradeApi.getAll()
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe(trades => this.trades.set(trades));
+    }
 
     this.addressSearch$.pipe(
       tap(q => console.log(q)),
