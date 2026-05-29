@@ -25,14 +25,14 @@ export class AuthService {
 
   async login(email: string, password: string): Promise<void> {
     const { accessToken, user } = await firstValueFrom(
-      this.http.post<{ accessToken: string; user: User }>('/api/auth/login', { email, password }),
+      this.http.post<{ accessToken: string; user: User }>('/auth/login', { email, password }),
     );
     this._accessToken = accessToken;
     this._currentUser.set(user);
   }
 
   async logout(): Promise<void> {
-    await firstValueFrom(this.http.post<void>('/api/auth/logout', {})).catch(() => null);
+    await firstValueFrom(this.http.post<void>('/auth/logout', {})).catch(() => null);
     this._accessToken = null;
     this._currentUser.set(null);
     this.router.navigate(['/']);
@@ -41,7 +41,7 @@ export class AuthService {
   async loadCurrentUser(): Promise<void> {
     try {
       const { accessToken, user } = await firstValueFrom(
-        this.http.post<{ accessToken: string; user: User }>('/api/auth/refresh', {}),
+        this.http.post<{ accessToken: string; user: User }>('/auth/refresh', {}),
       );
       this._accessToken = accessToken;
       this._currentUser.set(user);
@@ -54,7 +54,7 @@ export class AuthService {
   async refreshTokens(): Promise<string | null> {
     try {
       const { accessToken, user } = await firstValueFrom(
-        this.http.post<{ accessToken: string; user: User }>('/api/auth/refresh', {}),
+        this.http.post<{ accessToken: string; user: User }>('/auth/refresh', {}),
       );
       this._accessToken = accessToken;
       this._currentUser.set(user);

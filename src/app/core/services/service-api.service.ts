@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Service } from '../../shared/interfaces/service';
 
-const BASE_URL = '/api/services';
+const BASE_URL = '/services';
 
 @Injectable({ providedIn: 'root' })
 export class ServiceApiService {

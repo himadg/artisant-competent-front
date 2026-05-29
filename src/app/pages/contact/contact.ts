@@ -69,7 +69,7 @@ export class ContactPage implements OnInit {
       lang: this.langService.lang(),
     };
 
-    this.http.post('/api/contact', payload).subscribe({
+    this.http.post('/contact', payload).subscribe({
       next: () => {
         this.success.set(true);
         this.submitting.set(false);

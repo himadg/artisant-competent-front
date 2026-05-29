@@ -24,17 +24,17 @@ export class UserApiService {
     payload: Record<string, unknown>,
     captchaToken: string,
   ): Observable<{ userId: string; accessToken: string; user: unknown }> {
-    return this.http.post<{ userId: string; accessToken: string; user: unknown }>('/api/individuals', payload, {
+    return this.http.post<{ userId: string; accessToken: string; user: unknown }>('/individuals', payload, {
       headers: { 'x-turnstile-token': captchaToken },
     });
   }
 
   createIndividualDocuments(userId: string, photoKey: string): Observable<void> {
-    return this.http.patch<void>(`/api/individuals/${userId}/documents`, { photoKey });
+    return this.http.patch<void>(`/individuals/${userId}/documents`, { photoKey });
   }
 
   updateUser(userId: string, data: Partial<{ firstName: string; lastName: string; email: string; birthDate: string; gender: string }>): Observable<void> {
-    return this.http.patch<void>(`/api/users/${userId}`, data);
+    return this.http.patch<void>(`/users/${userId}`, data);
   }
 
   updateProfessional(userId: string, data: Partial<{
@@ -47,28 +47,28 @@ export class UserApiService {
     suppliers: string[];
     openingHours: OpeningHoursUpdate;
   }>): Observable<void> {
-    return this.http.patch<void>(`/api/professionals/${userId}`, data);
+    return this.http.patch<void>(`/professionals/${userId}`, data);
   }
 
   registerProfessional(
     payload: Record<string, unknown>,
     captchaToken: string,
   ): Observable<{ userId: string; accessToken: string; user: unknown; mailSent: boolean }> {
-    return this.http.post<{ userId: string; accessToken: string; user: unknown; mailSent: boolean }>('/api/professionals', payload, {
+    return this.http.post<{ userId: string; accessToken: string; user: unknown; mailSent: boolean }>('/professionals', payload, {
       headers: { 'x-turnstile-token': captchaToken },
     });
   }
 
   createProfessionalDocuments(userId: string, documents: DocumentKeys): Observable<void> {
-    return this.http.patch<void>(`/api/professionals/${userId}/documents`, documents);
+    return this.http.patch<void>(`/professionals/${userId}/documents`, documents);
   }
 
   getAllTrades(): Observable<{ id: string; name: string }[]> {
-    return this.http.get<{ id: string; name: string }[]>('/api/trades');
+    return this.http.get<{ id: string; name: string }[]>('/trades');
   }
 
   searchServices(q: string): Observable<{ id: string; description: string }[]> {
-    return this.http.get<{ id: string; description: string }[]>('/api/services/search', { params: { q } });
+    return this.http.get<{ id: string; description: string }[]>('/services/search', { params: { q } });
   }
 
 }

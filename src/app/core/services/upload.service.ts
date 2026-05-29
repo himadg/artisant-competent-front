@@ -10,13 +10,13 @@ export class UploadService {
     const formData = new FormData();
     formData.append('file', file);
     return this.http
-      .post<{ key: string }>('/api/storage/upload', formData)
+      .post<{ key: string }>('/storage/upload', formData)
       .pipe(map(r => r.key));
   }
 
   getSignedUrl(key: string, expiresIn = 900): Observable<string> {
     return this.http
-      .post<{ url: string }>('/api/storage/signed-url', { key, operation: 'get', expiresIn })
+      .post<{ url: string }>('/storage/signed-url', { key, operation: 'get', expiresIn })
       .pipe(map(r => r.url));
   }
 }

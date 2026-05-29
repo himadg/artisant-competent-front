@@ -8,6 +8,6 @@ export class TradeApiService {
   private readonly http = inject(HttpClient);
 
   getAll(): Observable<Trade[]> {
-    return this.http.get<Trade[]>('/api/trades');
+    return this.http.get<Trade[]>('/trades');
   }
 }

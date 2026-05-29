@@ -8,16 +8,16 @@ export class DashboardApiService {
   private readonly http = inject(HttpClient);
 
   getOwnDashboard<T>(): Observable<T> {
-    return this.http.get<T>('/api/dashboard');
+    return this.http.get<T>('/dashboard');
   }
 
   getDashboard<T>(userId: string): Observable<T> {
-    return this.http.get<T>(`/api/dashboard/${userId}`);
+    return this.http.get<T>(`/dashboard/${userId}`);
   }
 
   getSignedUrl(key: string): Observable<string> {
     return this.http
-      .get<{ url: string }>('/api/dashboard/signed-url', { params: { key } })
+      .get<{ url: string }>('/dashboard/signed-url', { params: { key } })
       .pipe(map((r) => r.url));
   }
 }

@@ -20,14 +20,14 @@ export class AdminApiService {
   private readonly http = inject(HttpClient);
 
   getPendingUsers(): Observable<PendingUser[]> {
-    return this.http.get<PendingUser[]>('/api/admin/users/pending');
+    return this.http.get<PendingUser[]>('/admin/users/pending');
   }
 
   getUserDetails(id: string): Observable<any> {
-    return this.http.get<any>(`/api/admin/users/${id}`);
+    return this.http.get<any>(`/admin/users/${id}`);
   }
 
   updateUserStatus(id: string, status: 'ACTIVE' | 'REJECTED'): Observable<void> {
-    return this.http.patch<void>(`/api/admin/users/${id}/status`, { status });
+    return this.http.patch<void>(`/admin/users/${id}/status`, { status });
   }
 }

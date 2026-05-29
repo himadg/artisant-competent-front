@@ -8,10 +8,10 @@ export class AffiliationApiService {
   private readonly http = inject(HttpClient);
 
   generateCode(): Observable<{ code: string }> {
-    return this.http.post<{ code: string }>('/api/affiliation/code', {});
+    return this.http.post<{ code: string }>('/affiliation/code', {});
   }
 
   getDashboard(): Observable<AffiliationDashboard> {
-    return this.http.get<AffiliationDashboard>('/api/affiliation/dashboard');
+    return this.http.get<AffiliationDashboard>('/affiliation/dashboard');
   }
 }
