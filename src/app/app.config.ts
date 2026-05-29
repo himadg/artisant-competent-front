@@ -26,7 +26,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: 'top' })),
-    provideHttpClient(withFetch(), withInterceptors([apiUrlInterceptor, authInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor, apiUrlInterceptor])),
     provideTransloco(translocoConfig),
     { provide: TitleStrategy, useClass: TranslocoTitleStrategy },
     { provide: LOCALE_ID, useValue: 'fr' },
