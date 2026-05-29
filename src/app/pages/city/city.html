@@ -1,0 +1,45 @@
+@if (city) {
+    <section class="flex items-center pt-20 mx-auto max-w-screen-lg">
+        <div class="space-y-4">
+            <h1 class="text-2xl font-semibold title">
+                {{ 'city.title' | transloco: { city: city.name } }}
+            </h1>
+            <p>{{ 'city.description' | transloco: { city: city.name } }}</p>
+        </div>
+    </section>
+
+    <section class="py-12 mx-auto max-w-screen-lg">
+        <h2 class="mb-6 text-xl font-semibold">{{ 'city.trades' | transloco: { city: city.name } }}</h2>
+        <div class="flex flex-wrap gap-2">
+            @for (trade of trades; track trade.slug) {
+                <a
+                    [routerLink]="getJobCityUrl(trade.slug, city.slug)"
+                    class="pill-link"
+                >
+                    {{ ('jobs.list.' + trade.i18nKey + '.name') | transloco }}
+                </a>
+            }
+        </div>
+    </section>
+
+    @if (nearbyCities.length > 0) {
+        <section class="pb-12 mx-auto max-w-screen-lg">
+            <h2 class="mb-6 text-xl font-semibold">{{ 'city.nearbyCities' | transloco: { city: city.name } }}</h2>
+            <div class="flex flex-wrap gap-2">
+                @for (nearby of nearbyCities; track nearby.slug) {
+                    <a
+                        [routerLink]="'/city/' + nearby.slug"
+                        class="pill-link"
+                    >
+                        {{ nearby.name }}
+                    </a>
+                }
+            </div>
+        </section>
+    }
+} @else {
+    <section class="py-20 text-center">
+        <h1 class="mb-4 text-2xl font-bold">{{ 'not-found.title' | transloco }}</h1>
+        <a routerLink="/jobs" class="px-6 py-3 rounded-lg btn-primary">{{ 'jobs.title' | transloco }}</a>
+    </section>
+}

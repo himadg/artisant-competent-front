@@ -1,0 +1,20 @@
+<section class="px-4 py-10 mx-auto space-y-10 max-w-screen-lg">
+    <h1 class="text-4xl font-semibold text-center">{{ 'cities.title' | transloco }}</h1>
+    <p class="text-center">{{ 'cities.description' | transloco }}</p>
+
+    @for (group of cityGroups; track group.region) {
+        <div>
+            <h2 class="mb-4 text-lg font-semibold">{{ group.region }}</h2>
+            <div class="flex flex-wrap gap-2">
+                @for (city of group.cities; track city.slug) {
+                    <a
+                        [routerLink]="'/city/' + city.slug"
+                        class="pill-link"
+                    >
+                        {{ city.name }}
+                    </a>
+                }
+            </div>
+        </div>
+    }
+</section>

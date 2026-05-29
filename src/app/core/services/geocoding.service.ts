@@ -8,6 +8,8 @@ export interface AddressSuggestion {
   streetName: string;
   postalCode: string;
   city: string;
+  latitude: number;
+  longitude: number;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -34,6 +36,8 @@ export class GeocodingService {
           streetName: ((feature.properties.street ?? feature.properties.name ?? '') as string).replace(/\s+/g, ' ').trim(),
           postalCode: (feature.properties.postcode ?? '') as string,
           city: (feature.properties.city ?? '') as string,
+          latitude: feature.geometry.coordinates[1] as number,
+          longitude: feature.geometry.coordinates[0] as number,
         })),
       ),
       catchError(() => of([])),

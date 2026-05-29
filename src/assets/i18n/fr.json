@@ -178,6 +178,7 @@
   "jobs": {
     "title": "Nos métiers",
     "description": "Découvrez les métiers et compétences disponibles sur la plateforme.",
+    "nearbyCities": "dans les villes proches de {{ city }}",
     "list": {
       "electrician": {
         "title": "Électricien compétent (24/7)",
@@ -937,6 +938,17 @@
         "professional": "Professionnel parrainé → 5% de commission pendant 6 mois."
       }
     }
+  },
+  "cities": {
+    "nav": "Nos villes",
+    "title": "Nos villes",
+    "description": "Trouvez un artisan compétent dans votre ville. Électricien, plombier, serrurier et bien d'autres disponibles partout en France."
+  },
+  "city": {
+    "title": "Artisans à {{ city }}",
+    "description": "Trouvez un artisan compétent à {{ city }} : électricien, plombier, serrurier et bien plus. Devis gratuit, artisans vérifiés, paiement sécurisé.",
+    "trades": "Nos artisans disponibles à {{ city }}",
+    "nearbyCities": "Villes proches de {{ city }}"
   },
   "contact": {
     "nav": "Nous contacter",

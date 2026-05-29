@@ -178,6 +178,7 @@
   "jobs": {
     "title": "Our jobs",
     "description": "Explore the trades and skills available on the platform.",
+    "nearbyCities": "in cities near {{ city }}",
     "list": {
       "electrician": {
         "title": "Electrician (24/7)",
@@ -935,6 +936,17 @@
         "professional": "Referred professional → 5% commission for 6 months."
       }
     }
+  },
+  "cities": {
+    "nav": "Cities",
+    "title": "Our cities",
+    "description": "Find a skilled tradesperson in your city. Electricians, plumbers, locksmiths and more available across France."
+  },
+  "city": {
+    "title": "Tradespeople in {{ city }}",
+    "description": "Find a skilled tradesperson in {{ city }}: electrician, plumber, locksmith and more. Free quote, verified professionals, secure payment.",
+    "trades": "Our tradespeople available in {{ city }}",
+    "nearbyCities": "Cities near {{ city }}"
   },
   "contact": {
     "nav": "Contact us",
