@@ -18,6 +18,7 @@ export class QuotePreviewComponent {
   private quoteService = inject(QuoteService);
   public calcService = inject(QuoteCalculationService);
   isGenerating = false;
+  isGeneratingSignature = false;
 
   get totalHT(): number {
     return this.calcService.getTotalHT(this.quoteData);
@@ -52,6 +53,42 @@ export class QuotePreviewComponent {
       alert('Une erreur est survenue lors de la génération du PDF.');
     } finally {
       this.isGenerating = false;
+    }
+  }
+
+  async generateSignaturePdf(): Promise<void> {
+    this.isGeneratingSignature = true;
+    try {
+      const result = await firstValueFrom(this.quoteService.generateSignaturePage(this.quoteData));
+
+      if (result && result.pdfBase64) {
+        // Affichage des coordonnées dans la console comme demandé
+        console.log('Coordonnées des zones de signature :', result.signatures);
+
+        // Conversion du base64 en Blob pour le téléchargement
+        const byteCharacters = atob(result.pdfBase64);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const pdfBlob = new Blob([byteArray], {type: 'application/pdf'});
+
+        const url = window.URL.createObjectURL(pdfBlob);
+        const a = document.createElement('a');
+        a.href = url;
+        const clientName = `${this.quoteData.coordinates?.client?.firstName || ''}_${this.quoteData.coordinates?.client?.lastName || 'client'}`;
+        a.download = `signature_devis_${clientName.replace(/ /g, '_')}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      }
+    } catch (err) {
+      console.error('Erreur lors de la génération de la page de signature', err);
+      alert('Une erreur est survenue lors de la génération de la page de signature.');
+    } finally {
+      this.isGeneratingSignature = false;
     }
   }
 }

@@ -195,10 +195,13 @@
     </div>
 
     <div class="modal-footer">
-      <button class="btn-secondary" (click)="generatePdf()" [disabled]="isGenerating">
+      <button class="btn-secondary" (click)="generateSignaturePdf()" [disabled]="isGenerating || isGeneratingSignature" style="background-color: #17a2b8;">
+        {{ isGeneratingSignature ? 'Génération...' : 'Générer page signature' }}
+      </button>
+      <button class="btn-secondary" (click)="generatePdf()" [disabled]="isGenerating || isGeneratingSignature">
         {{ isGenerating ? 'Génération en cours...' : 'Générer PDF' }}
       </button>
-      <button class="btn-primary" (click)="closePreview()" [disabled]="isGenerating">Retour au formulaire</button>
+      <button class="btn-primary" (click)="closePreview()" [disabled]="isGenerating || isGeneratingSignature">Retour au formulaire</button>
     </div>
   </div>
 </div>
