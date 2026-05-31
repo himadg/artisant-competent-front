@@ -1,6 +1,5 @@
-
 .quote-form {
-  max-width: 1200px; // On élargit un peu pour la nouvelle colonne
+  max-width: 1200px;
   margin: 2rem auto;
   padding: 2rem;
   border-radius: 8px;
@@ -36,11 +35,11 @@
 
   .coordinates-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); // Grille à 2 colonnes par défaut
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
 
     .jobsite-info {
-      grid-column: 1 / -1; // Le bloc chantier prend toute la largeur
+      grid-column: 1 / -1;
       margin-top: 1rem;
       padding-top: 1rem;
       border-top: 1px solid #eee;
@@ -106,6 +105,56 @@
   .mt-2 { margin-top: 0.5rem; }
   .p-2 { padding: 0.5rem; }
 
+  // --- Boutons Globaux ---
+  .btn-remove {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: #c82333;
+    }
+  }
+
+  .btn-add {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background: #0056b3;
+    }
+  }
+
+  .btn-copy {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+    margin-bottom: 1rem;
+
+    &:hover {
+      background: #5a6268;
+    }
+  }
+  // -------------------------
+
   .form-row {
     display: flex;
     align-items: flex-start;
@@ -124,8 +173,16 @@
         font-size: 0.9rem;
       }
 
-      input, select {
+      input, select, textarea {
         margin-bottom: 0;
+      }
+
+      &.description-group {
+        flex: 2;
+        min-width: 250px;
+        textarea {
+          min-height: 42px;
+        }
       }
 
       .error-feedback {
@@ -137,7 +194,8 @@
     > span {
       min-width: 100px;
       font-weight: bold;
-      align-self: center;
+      align-self: flex-start;
+      margin-top: 2rem;
     }
 
     > label {
@@ -146,7 +204,8 @@
       gap: 0.5rem;
       margin-bottom: 0;
       font-weight: normal;
-      align-self: center;
+      align-self: flex-start;
+      margin-top: 2rem;
 
       input[type="checkbox"] {
         width: auto;
@@ -154,34 +213,9 @@
       }
     }
 
-    button {
-      background: #dc3545;
-      color: white;
-      border: none;
-      padding: 0.75rem 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-      align-self: center;
-      transition: background-color 0.2s;
-
-      &:hover {
-        background: #c82333;
-      }
-    }
-  }
-
-  button[type="button"]:not(.btn-submit):not(.supplier-row button):not(.form-row button) {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 1rem;
-    transition: background-color 0.2s;
-
-    &:hover {
-      background: #0056b3;
+    .btn-remove {
+      align-self: flex-start;
+      margin-top: 1.8rem;
     }
   }
 
@@ -227,6 +261,28 @@
     }
   }
 
+  .certifications-list {
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+
+    .certification-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+
+      .file-input-wrapper {
+        flex: 1;
+        input { margin-bottom: 0; }
+        .error-feedback { margin-top: 0.25rem; }
+      }
+
+      .btn-remove {
+        margin-top: 0;
+      }
+    }
+  }
+
   .supplier-row {
     display: flex;
     align-items: flex-start;
@@ -238,26 +294,8 @@
       margin-bottom: 0;
     }
 
-    button {
-      background: transparent;
-      color: #dc3545;
-      border: 1px solid #dc3545;
-      width: 36px;
-      height: 36px;
-      border-radius: 4px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
+    .btn-remove {
       margin-top: 0;
-      padding: 0;
-      transition: all 0.2s ease-in-out;
-
-      &:hover {
-        background: #dc3545;
-        color: white;
-      }
     }
   }
 
