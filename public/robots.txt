@@ -4,4 +4,4 @@ Allow: /
 Disallow: /dashboard
 Disallow: /auth/
 
-Sitemap: https://www.artisant-competent.com/sitemap.xml
+Sitemap: https://artisan-competent.com/sitemap.xml
