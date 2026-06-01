@@ -62,7 +62,7 @@ type ArtisanForm = FormGroup<{
 }>;
 
 @Component({
-  selector: 'app-quote-form',
+  selector: 'ac-quote-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, QuotePreviewComponent],
   templateUrl: './quote-form.component.html',

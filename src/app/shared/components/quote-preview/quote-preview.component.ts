@@ -5,7 +5,7 @@ import { firstValueFrom } from 'rxjs';
 import { QuoteCalculationService } from '../../services/quote-calculation.service';
 
 @Component({
-  selector: 'app-quote-preview',
+  selector: 'ac-quote-preview',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './quote-preview.component.html',

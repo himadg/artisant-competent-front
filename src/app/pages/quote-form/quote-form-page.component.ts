@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { QuoteFormComponent } from '../../shared/components/quote-form/quote-form.component';
 
 @Component({
-  selector: 'app-quote-form-page',
+  selector: 'ac-quote-form-page',
   standalone: true,
   imports: [CommonModule, QuoteFormComponent],
   templateUrl: './quote-form-page.component.html',

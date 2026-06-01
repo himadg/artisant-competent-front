@@ -1,9 +1,9 @@
 <!-- Prévisualisation modale -->
 @if (showPreview) {
-  <app-quote-preview
+  <ac-quote-preview
     [quoteData]="quoteForm.getRawValue()"
     (close)="showPreview = false">
-  </app-quote-preview>
+  </ac-quote-preview>
 }
 
 <form [formGroup]="quoteForm" (ngSubmit)="onSubmit()" class="quote-form">
