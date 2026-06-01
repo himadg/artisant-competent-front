@@ -603,12 +603,24 @@
       "suppliersAdd": "Add a supplier (enter to confirm)"
     }
   },
+  "proCard": {
+    "details": "See details",
+    "cmodBadge": "CMOD Advisor",
+    "onCallBadge": "Available 24/7",
+    "experience": "{{ years }} year(s) of experience",
+    "tradesTitle": "Trades",
+    "servicesTitle": "Services",
+    "noDescription": "No description available.",
+    "yearsLabel": "yrs exp.",
+    "tradesLabel": "trade(s)",
+    "servicesLabel": "service(s)"
+  },
   "searchPro": {
     "placeholder": "Search a professional or service",
-    "button": "Search",
-    "addressLabel": "Address or city",
+    "addressLabel": "Your address",
     "tradeLabel": "Select a trade",
-    "kilometersLabel": "Search radius (km)"
+    "kilometersLabel": "Radius (km)",
+    "button": "Search"
   },
   "affiliation": {
     "title": "Partner program",
@@ -985,6 +997,18 @@
       "otherDetailRequired": "Please specify your request.",
       "descriptionRequired": "Please enter a message of at least 10 characters."
     }
+  },
+  "search": {
+    "title": "{{ trade }} in {{ address }}",
+    "subtitle": "{{ count }} result(s) within a {{ radius }} km radius",
+    "error": "An error occurred. Please try again.",
+    "empty": "No professional found in this area.",
+    "distance": "{{ km }} km away",
+    "details": "More details",
+    "contact": "Contact",
+    "selected": "{{ count }} selected",
+    "clearSelection": "Clear selection",
+    "contactSelected": "Send request"
   },
   "legal": {
     "cgu": {

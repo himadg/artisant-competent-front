@@ -605,12 +605,24 @@
       "suppliersAdd": "Ajouter un fournisseur (entrée pour valider)"
     }
   },
+  "proCard": {
+    "details": "Voir les détails",
+    "cmodBadge": "Conseiller CMOD",
+    "onCallBadge": "Disponible 24h/24",
+    "experience": "{{ years }} an(s) d'expérience",
+    "tradesTitle": "Métiers",
+    "servicesTitle": "Services",
+    "noDescription": "Aucune description disponible.",
+    "yearsLabel": "ans d'exp.",
+    "tradesLabel": "métier(s)",
+    "servicesLabel": "service(s)"
+  },
   "searchPro": {
     "placeholder": "Rechercher un professionnel ou un service",
-    "button": "Rechercher",
-    "addressLabel": "Adresse ou ville",
-    "tradeLabel": "Sélectionner un métier",
-    "kilometersLabel": "Rayon de recherche (km)"
+    "addressLabel": "Votre adresse",
+    "tradeLabel": "Choisir un métier",
+    "kilometersLabel": "Rayon (km)",
+    "button": "Rechercher"
   },
   "affiliation": {
     "title": "Programme partenaire",
@@ -987,6 +999,18 @@
       "otherDetailRequired": "Veuillez préciser votre demande.",
       "descriptionRequired": "Veuillez saisir un message d'au moins 10 caractères."
     }
+  },
+  "search": {
+    "title": "{{ trade }} à {{ address }}",
+    "subtitle": "{{ count }} résultat(s) dans un rayon de {{ radius }} km",
+    "error": "Une erreur est survenue. Veuillez réessayer.",
+    "empty": "Aucun professionnel trouvé dans ce rayon.",
+    "distance": "À {{ km }} km",
+    "details": "Plus de détails",
+    "contact": "Contacter",
+    "selected": "{{ count }} sélectionné(s)",
+    "clearSelection": "Tout désélectionner",
+    "contactSelected": "Envoyer la demande"
   },
   "legal": {
     "cgu": {

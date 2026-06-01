@@ -132,10 +132,10 @@ export class IndividualDashboard implements OnInit {
   cancelEdit() { this.editMode.set(false); }
 
   saveEdit() {
-    const d = this.data();
-    if (!d) return;
+    const individual = this.data();
+    if (!individual) return;
     this.saving.set(true);
-    this.userApi.updateUser(d.id, { ...this.editFields }).subscribe({
+    this.userApi.updateUser(individual.id, { ...this.editFields }).subscribe({
       next: () => {
         this.data.update(prev => prev ? {
           ...prev,

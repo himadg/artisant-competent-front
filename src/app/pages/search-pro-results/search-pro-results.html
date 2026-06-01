@@ -1,0 +1,47 @@
+<section class="relative mx-auto mt-16 top-0 min-h-[calc(100vh-15rem)] px-4 sm:px-6 lg:px-8">
+    <search-pro class="-top-[200px] w-full"></search-pro>
+
+    @if (loading()) {
+        <p class="text-center">{{ 'common.loading' | transloco }}</p>
+    } @else if (error()) {
+        <p class="text-center">{{ 'search.error' | transloco }}</p>
+    } @else {
+        <h1 class="mt-8 mb-2 text-2xl font-semibold title">
+            {{ 'search.title' | transloco: { trade: `jobs.list.${trade}.name` | transloco, address: address } }}
+        </h1>
+        <p class="mb-8 text-sm">{{ 'search.subtitle' | transloco: { count: results().length, radius: radius } }}</p>
+
+        @if (results().length === 0) {
+            <p class="py-16 text-center">{{ 'search.empty' | transloco }}</p>
+        } @else {
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                @for (proInfo of results(); track proInfo.id) {
+                    @for (i of [1,2,3,4,5,6,7,8,9,10]; track i) {
+                        <pro-card
+                            [proInfo]="proInfo"
+                            [selected]="selectedIds().has(proInfo.id)"
+                            (selectedChange)="toggleSelection(proInfo.id)" />
+                    }
+                }
+            </div>
+        }
+    }
+</section>
+
+<!-- Barre de sélection sticky -->
+@if (selectedIds().size > 0) {
+    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-3 px-5 py-3 rounded-2xl bg-[var(--secondary-water-green)] text-[var(--primary-beige)] shadow-xl">
+        <span class="text-sm font-medium">
+            {{ 'search.selected' | transloco: { count: selectedIds().size } }}
+        </span>
+        <div class="w-px h-4 bg-white/20"></div>
+        <button (click)="clearSelection()"
+            class="text-sm text-white/60 hover:text-white transition-colors">
+            {{ 'search.clearSelection' | transloco }}
+        </button>
+        <a routerLink="/auth/register"
+            class="text-xs text-center font-medium px-4 py-1.5 rounded-full bg-[var(--primary-beige)] text-[var(--secondary-water-green)] hover:bg-white transition-colors">
+            {{ 'search.contactSelected' | transloco }}
+        </a>
+    </div>
+}

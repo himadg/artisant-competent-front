@@ -42,6 +42,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/city/city').then((c) => c.CityPage),
   },
   {
+    path: 'search-pro-results',
+    loadComponent: () => import('./pages/search-pro-results/search-pro-results').then((p) => p.SearchProResultsPage),
+  },
+  {
     path: 'contact',
     title: 'contact.title',
     loadComponent: () => import('./pages/contact/contact').then((p) => p.ContactPage),
