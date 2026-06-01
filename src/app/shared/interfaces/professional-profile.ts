@@ -31,3 +31,8 @@ export interface ProfessionalProfile {
   trustedContactPhone?: string;
   suppliers: string[];
 }
+
+export interface ProfessionalSearchResult extends Omit<ProfessionalProfile, 'trades'> {
+  distance: number;
+  trades: { id: string; name: string }[];
+}

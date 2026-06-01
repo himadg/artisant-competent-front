@@ -6,6 +6,7 @@
     "start": "ng serve",
     "start:staging": "ng serve -c staging",
     "dev": "ng serve --hmr",
+    "dev:clean": "ng cache clean && ng serve --hmr",
     "watch": "ng build --watch --configuration development",
     "build": "ng build",
     "build:staging": "node scripts/generate-config.js && ng build -c staging",

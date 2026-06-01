@@ -1,4 +1,4 @@
-﻿import { ChangeDetectionStrategy, Component, inject, OnInit, signal, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal, computed } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule, PlatformLocation } from '@angular/common';
@@ -83,7 +83,6 @@ export class ProfessionalDashboard implements OnInit {
       },
     });
   }
-
 
   constructor() {
     inject(BreakpointObserver)
@@ -192,14 +191,14 @@ export class ProfessionalDashboard implements OnInit {
   readonly allTrades = signal<{ id: string; name: string }[]>([]);
 
   enterEditTrades() {
-    const p = this.data()?.professionalProfile;
-    if (!p) return;
-    this.editTradeIds.set(p.trades.map((t) => t.id));
+    const professional = this.data()?.professionalProfile;
+    if (!professional) return;
+    this.editTradeIds.set(professional.trades.map((trade) => trade.id));
     if (!this.allTrades().length) {
       this.loadingTrades.set(true);
       this.userApi.getAllTrades().subscribe({
-        next: (t) => {
-          this.allTrades.set(t);
+        next: (trades) => {
+          this.allTrades.set(trades);
           this.loadingTrades.set(false);
         },
         error: () => this.loadingTrades.set(false),
@@ -217,11 +216,11 @@ export class ProfessionalDashboard implements OnInit {
   }
 
   saveEditTrades() {
-    const d = this.data();
-    if (!d) return;
+    const professional = this.data();
+    if (!professional) return;
 
     this.savingTrades.set(true);
-    this.userApi.updateProfessional(d.id, { tradeIds: this.editTradeIds() }).subscribe({
+    this.userApi.updateProfessional(professional.id, { tradeIds: this.editTradeIds() }).subscribe({
       next: () => {
         const selected = this.editTradeIds();
         this.data.update((prev) =>
@@ -230,7 +229,7 @@ export class ProfessionalDashboard implements OnInit {
                 ...prev,
                 professionalProfile: {
                   ...prev.professionalProfile,
-                  trades: this.allTrades().filter((t) => selected.includes(t.id)),
+                  trades: this.allTrades().filter((trade) => selected.includes(trade.id)),
                 },
               }
             : prev,
@@ -290,10 +289,10 @@ export class ProfessionalDashboard implements OnInit {
   }
 
   saveEditHours() {
-    const d = this.data();
-    if (!d) return;
+    const professional = this.data();
+    if (!professional) return;
     this.savingHours.set(true);
-    this.userApi.updateProfessional(d.id, { openingHours: { days: this.editHours() } }).subscribe({
+    this.userApi.updateProfessional(professional.id, { openingHours: { days: this.editHours() } }).subscribe({
       next: () => {
         const days = this.editHours();
         this.data.update((prev) =>

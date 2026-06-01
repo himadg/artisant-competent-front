@@ -2,8 +2,9 @@ import { Component, ChangeDetectionStrategy, inject, signal, DestroyRef, PLATFOR
 import { isPlatformBrowser } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, tap } from 'rxjs';
+import { Subject, switchMap, debounceTime, filter } from 'rxjs';
 import { TradeApiService } from '../../../core/services/trade-api.service';
 import { GeocodingService, AddressSuggestion } from '../../../core/services/geocoding.service';
 import { Trade } from '../../interfaces/trade';
@@ -19,13 +20,14 @@ import { Trade } from '../../interfaces/trade';
 export class SearchPro {
   private readonly tradeApi = inject(TradeApiService);
   private readonly geocodingService = inject(GeocodingService);
+  private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   readonly trades = signal<Trade[]>([]);
   readonly addressSuggestions = signal<AddressSuggestion[]>([]);
   readonly addressOpen = signal(false);
-  readonly ranges = [5, 10, 15, 20, 25, 30];
+  readonly ranges = [5, 10, 15, 20, 25, 50];
 
   address = '';
   selectedAddress: AddressSuggestion | null = null;
@@ -42,14 +44,11 @@ export class SearchPro {
     }
 
     this.addressSearch$.pipe(
-      tap(q => console.log(q)),
-      debounceTime(300),
-      // distinctUntilChanged(),
-      // filter(q => q.length >= 3),
-      switchMap(q => this.geocodingService.search(q)),
+      debounceTime(200),
+      filter(q => q.length >= 3),
+      switchMap(address => this.geocodingService.search(address)),
       takeUntilDestroyed(this.destroyRef),
     ).subscribe(suggestions => {
-      console.log(suggestions);
       this.addressSuggestions.set(suggestions);
       this.addressOpen.set(suggestions.length > 0);
     });
@@ -57,7 +56,7 @@ export class SearchPro {
 
   get sliderPercent(): number {
     const p = (this.kilometersIndex / (this.ranges.length - 1)) * 100;
-    return Math.max(6, Math.min(94, p));
+    return Math.max(0, Math.min(100, p));
   }
 
   get kilometers(): number {
@@ -89,5 +88,14 @@ export class SearchPro {
 
   submit(): void {
     if (!this.selectedAddress || !this.trade) return;
+    this.router.navigate(['/search-pro-results'], {
+      queryParams: {
+        lat: this.selectedAddress.latitude,
+        lng: this.selectedAddress.longitude,
+        radius: this.kilometers,
+        trade: this.trade,
+        address: this.selectedAddress.label,
+      },
+    });
   }
 }

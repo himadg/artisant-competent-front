@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ProfessionalProfile } from '../../shared/interfaces/professional-profile';
+import { ProfessionalProfile, ProfessionalSearchResult } from '../../shared/interfaces/professional-profile';
 
 const BASE_URL = '/professionals';
 
@@ -31,5 +31,11 @@ export class ProfessionalService {
 
   delete(id: string): Observable<ProfessionalProfile> {
     return this.http.delete<ProfessionalProfile>(`${BASE_URL}/${id}`);
+  }
+
+  searchNearby(lat: number, lng: number, radius: number, trade: string): Observable<ProfessionalSearchResult[]> {
+    return this.http.get<ProfessionalSearchResult[]>(`${BASE_URL}/search`, {
+      params: { lat: lat.toString(), lng: lng.toString(), radius: radius.toString(), trade },
+    });
   }
 }
