@@ -19,6 +19,7 @@ export class QuotePreviewComponent {
   public calcService = inject(QuoteCalculationService);
   isGenerating = false;
   isGeneratingSignature = false;
+  isInitiatingYousign = false;
 
   get totalHT(): number {
     return this.calcService.getTotalHT(this.quoteData);
@@ -62,10 +63,8 @@ export class QuotePreviewComponent {
       const result = await firstValueFrom(this.quoteService.generateSignaturePage(this.quoteData));
 
       if (result && result.pdfBase64) {
-        // Affichage des coordonnées dans la console comme demandé
         console.log('Coordonnées des zones de signature :', result.signatures);
 
-        // Conversion du base64 en Blob pour le téléchargement
         const byteCharacters = atob(result.pdfBase64);
         const byteNumbers = new Array(byteCharacters.length);
         for (let i = 0; i < byteCharacters.length; i++) {
@@ -89,6 +88,24 @@ export class QuotePreviewComponent {
       alert('Une erreur est survenue lors de la génération de la page de signature.');
     } finally {
       this.isGeneratingSignature = false;
+    }
+  }
+
+  async startYousignProcedure(): Promise<void> {
+    this.isInitiatingYousign = true;
+    try {
+      const result = await firstValueFrom(this.quoteService.initiateSignature(this.quoteData));
+      if (result && result.signatureUrl) {
+        // Redirige l'utilisateur vers la page de signature Yousign
+        window.open(result.signatureUrl, '_blank');
+      } else {
+        alert('Impossible de récupérer l\'URL de signature.');
+      }
+    } catch (err) {
+      console.error('Erreur lors de l\'initiation de la procédure Yousign', err);
+      alert('Une erreur est survenue lors de l\'initiation de la procédure de signature.');
+    } finally {
+      this.isInitiatingYousign = false;
     }
   }
 }

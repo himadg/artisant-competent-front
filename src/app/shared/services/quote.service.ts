@@ -1,17 +1,23 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { AppConfigService } from '../../core/services/app-config.service';
 
-export interface SignatureResponse {
+export interface SignatureCoordinates {
+  type: 'client' | 'prestataire';
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+export interface SignaturePdfResponse {
   pdfBase64: string;
-  signatures: {
-    type: string;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-  }[];
+  signatures: SignatureCoordinates[];
+}
+
+export interface SignatureUrlResponse {
+  signatureUrl: string;
 }
 
 @Injectable({
@@ -19,7 +25,7 @@ export interface SignatureResponse {
 })
 export class QuoteService {
   private http = inject(HttpClient);
-  private apiUrl = environment.apiUrl;
+  private apiUrl = inject(AppConfigService).get('apiUrl');
 
   generatePdf(quoteData: any): Observable<Blob> {
     return this.http.post(`${this.apiUrl}/pdf/generate-quote`, quoteData, {
@@ -27,8 +33,11 @@ export class QuoteService {
     });
   }
 
-  generateSignaturePage(quoteData: any): Observable<SignatureResponse> {
-    // On attend maintenant un objet JSON en retour
-    return this.http.post<SignatureResponse>(`${this.apiUrl}/pdf/generate-signature-page`, quoteData);
+  generateSignaturePage(quoteData: any): Observable<SignaturePdfResponse> {
+    return this.http.post<SignaturePdfResponse>(`${this.apiUrl}/pdf/generate-signature-page`, quoteData);
+  }
+
+  initiateSignature(quoteData: any): Observable<SignatureUrlResponse> {
+    return this.http.post<SignatureUrlResponse>(`${this.apiUrl}/pdf/initiate-signature`, quoteData);
   }
 }
