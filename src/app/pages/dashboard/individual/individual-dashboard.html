@@ -129,7 +129,7 @@
         </aside>
 
         <!-- ═══════════════ CONTENU PRINCIPAL ═══════════════ -->
-        <main class="ind-main py-8 md:px-64 lg:px-[20rem] 2xl:px-[32rem] max-md:p-0">
+        <main class="ind-main py-8 md:px-28 lg:px-[20rem] 2xl:px-[32rem] max-md:p-0">
             <!-- En-tête profil -->
             <div class="mb-4 rounded-lg border border-solid ind-header">
                 <div class="ind-user">
@@ -324,7 +324,7 @@
                         <p class="ind-empty">{{ 'dashboard.empty.invoices' | transloco }}</p>
                     }
                     @case ('practices') {
-                        <p class="ind-empty">{{ 'dashboard.empty.practices' | transloco }}</p>
+                        <good-practices userType="individual" />
                     }
                     @case ('legal') {
                         <legal-modal [inline]="true" />

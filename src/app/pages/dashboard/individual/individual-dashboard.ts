@@ -14,6 +14,7 @@ import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
 import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
 import { RouterLink } from "@angular/router";
+import { GoodPractices } from '../../../shared/components/good-practices/good-practices';
 
 export type IndividualSection = 'profile' | 'requests' | 'quotes' | 'invoices' | 'legal' | 'practices' | 'affiliation';
 
@@ -21,7 +22,7 @@ export type IndividualSection = 'profile' | 'requests' | 'quotes' | 'invoices' |
   selector: 'dashboard-individual',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FormsModule, TranslocoModule, LangToggle, ThemeToggle, LegalModal, RouterLink],
+  imports: [CommonModule, FormsModule, TranslocoModule, LangToggle, ThemeToggle, LegalModal, RouterLink, GoodPractices],
   templateUrl: './individual-dashboard.html',
   styleUrl: './individual-dashboard.scss',
 })

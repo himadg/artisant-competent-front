@@ -1019,5 +1019,185 @@
       "tab": "Terms of Sale",
       "title": "Terms and Conditions of Sale"
     }
+  },
+  "goodPractices": {
+    "pro": {
+      "intro": {
+        "tagline": "Your professional profile is your showcase on Artisan Compétent.",
+        "p1": "A clear, complete, serious and well-filled profile greatly increases:",
+        "list1": ["your chances of being selected by clients,", "your credibility,", "trust in your business,", "and your chances of signing more quotes."],
+        "p2": "The goal of this guide is to help you create a profile that is:",
+        "list2": ["professional,", "reassuring,", "transparent,", "and consistent with how Artisan Compétent works."]
+      },
+      "s1": {
+        "title": "Carefully verify your documents",
+        "p1": "Before your account is validated, you must provide all requested documents relating to your activity.",
+        "p2": "You commit to providing only documents that are:",
+        "list1": ["valid,", "up to date,", "authentic,", "and genuinely matching the services you offer."],
+        "p3": "This may include:",
+        "list2": ["your SIRET number,", "your insurance,", "your professional liability insurance,", "your ten-year guarantee where required,", "your professional certifications,", "your administrative documents,", "or certain mandatory CERFA forms depending on the work offered."],
+        "p4": "Examples of certifications:",
+        "list3": ["RGE,", "Qualibat,", "Qualifelec,", "QualiPAC,", "or any other certification relevant to your services."],
+        "p5": "You also commit to keeping these documents up to date throughout your presence on the platform.",
+        "p6": "In the event of expiry, suspension or modification of a document:",
+        "callout1": "you must update it as soon as possible.",
+        "p7": "If not updated:",
+        "callout2": "you will no longer be able to issue quotes through the platform until your file is brought up to date."
+      },
+      "s2": {
+        "title": "Describe your activity precisely",
+        "p1": "Your professional profile must allow clients to clearly understand:",
+        "list1": ["your trade,", "your specialities,", "your service areas,", "your types of projects,", "and the services you actually carry out."],
+        "p2": "Take the time to write a clear and professional presentation. Explain in particular:",
+        "list2": ["your experience,", "your way of working,", "your specialities,", "your strengths,", "and the types of projects you prefer."],
+        "p3": "Avoid descriptions that are too short or too vague. A well-completed profile immediately inspires more confidence."
+      },
+      "s3": {
+        "title": "Only select trades you genuinely master",
+        "p1": "Only select trades for which you are:",
+        "list1": ["competent,", "insured,", "and genuinely qualified."],
+        "p2": "The trades displayed on your profile must match:",
+        "list2": ["your insurance policies,", "your certifications,", "and the services you are genuinely capable of delivering properly."],
+        "p3": "This helps:",
+        "list3": ["protect clients,", "protect your business,", "and limit disputes."]
+      },
+      "s4": {
+        "title": "Managing on-call and availability",
+        "p1": "For trades involving emergencies or rapid interventions:",
+        "callout1": "make sure to correctly fill in your availability.",
+        "p2": "If you want to appear as an on-call professional:",
+        "list1": ["you must tick the corresponding boxes,", "update your hours,", "and deactivate periods when you are not available."],
+        "p3": "Poor availability management can lead to:",
+        "list2": ["unnecessary calls,", "cancellations,", "or a poor client experience."],
+        "p4": "So keep your information up to date regularly."
+      },
+      "s5": {
+        "title": "Maintain a professional image",
+        "p1": "Clients also choose a professional based on the trust they inspire. It is therefore strongly recommended to:",
+        "list1": ["add a professional photo,", "fully complete your profile,", "and clearly present your activity."],
+        "p2": "Artisan Compétent will also offer you the possibility to add:",
+        "callout1": "a presentation video (\"story\") of up to two minutes.",
+        "p3": "This video allows you to:",
+        "list2": ["present your company,", "your way of working,", "your experience,", "or your completed projects."],
+        "p4": "This is often much more meaningful for clients than plain text. A well-produced video can significantly improve your selection rate."
+      },
+      "s6": {
+        "title": "How CMOD works",
+        "p1": "By default, professionals registered on Artisan Compétent can also become a CMOD (Digital Project Advisor), provided they have at least three years of experience in their trade.",
+        "p2": "The CMOD's role is simple:",
+        "callout1": "to intervene only in the event of a dispute to provide an impartial technical advisory opinion.",
+        "p3": "The CMOD:",
+        "list1": ["analyses the information available in the dashboard,", "reviews photos, comments and exchanges,", "and can participate in a video call to better understand the situation."],
+        "p4": "Their role is purely advisory. They then submit their opinion to the Artisan Compétent team via the internal dashboard.",
+        "important": "Important:",
+        "list2": ["your personal liability is never engaged,", "you make no final decisions,", "and you do not have to handle the dispute yourself."],
+        "p5": "The final arbitration remains with Artisan Compétent. CMOD interventions are rare, given:",
+        "list3": ["the large number of craftspeople on the platform,", "the expected low rate of disputes,", "and the mandatory digital monitoring system."],
+        "p6": "These interventions:",
+        "list4": ["generally take little time,", "can be done remotely, from home, outside working hours,", "and are paid."],
+        "p7pre": "Each CMOD intervention is paid",
+        "price": "€35",
+        "p7post": "for time spent on the analysis and any video call.",
+        "p8": "Being a CMOD also has several advantages:",
+        "list5": ["it strengthens your credibility on the platform,", "highlights your experience,", "improves your professional profile image,", "and demonstrates your seriousness to clients."],
+        "p9": "There are therefore almost only benefits to accepting this feature."
+      },
+      "s7": {
+        "title": "Transparency and professionalism",
+        "p1": "Artisan Compétent values professionals who are:",
+        "list1": ["serious,", "transparent,", "responsive,", "organised,", "and respectful of platform rules."],
+        "p2": "Your profile is the first impression given to the client. A clear, reassuring and transparent professional naturally increases their chances of:",
+        "list2": ["receiving enquiries,", "being selected,", "and sustainably growing their activity on the platform."]
+      },
+      "s8": {
+        "title": "Important tips before submitting your profile",
+        "p1": "Before submitting your profile:",
+        "checklist": ["check your contact details", "check your documents", "check your selected trades", "check your availability", "check your insurance", "check your certifications", "re-read your presentation", "add professional photos if possible", "and record your presentation video if you can"],
+        "closing": "The more serious and complete your profile, the more confidence it inspires. And in construction, trust is the most important element."
+      }
+    },
+    "individual": {
+      "s0": {
+        "title": "General client responsibilities",
+        "i1b": "Describe your needs precisely",
+        "i1r": ", with photos, videos and explanations to allow a clear analysis by professionals.",
+        "i2b": "Respond promptly",
+        "i2r": " to professionals to maximise service quality.",
+        "i3b": "Never pay money directly to the tradesperson",
+        "i3r": ", except in strictly supervised cases (see details below). All payments must go through:",
+        "i3s1b": "Artisan-Compétent",
+        "i3s1r": " (secure escrow),",
+        "i3s2pre": "or ",
+        "i3s2b": "the supplier",
+        "i3s2r": " for materials, according to the established rules.",
+        "i4b": "Be present or represented",
+        "i4r": " at key stages of the project:",
+        "i4list": ["initial inspection,", "quote approval,", "completion of works / signing of the handover report."],
+        "i4p": "Active involvement ensures clear monitoring and reduces the risk of disputes."
+      },
+      "s1": {
+        "title": "Secure payments — Essential rules",
+        "s1a": "For quotes up to €3,500 incl. VAT (including materials)",
+        "s1a_l1": ["The client pays 100% of the quote to Artisan-Compétent.", "The full amount is held in escrow (labour + materials).", "It is released only after completion of the work, validation of the handover report and any advisory opinion from the AMOD."],
+        "s1a_callout": "In the event of obvious defects or work not carried out, the client may receive a partial refund for the incomplete or non-compliant portion.",
+        "s1b": "For quotes over €3,500 incl. VAT",
+        "s1b_l1": ["Only the labour cost is held in escrow by Artisan-Compétent.", "Materials are paid directly to the supplier, with two options:"],
+        "optA_label": "Option A — strongly recommended",
+        "optA_p": "Direct payment from the client to the supplier, with or without the tradesperson present.",
+        "optB_label": "Option B — accepted but strictly supervised",
+        "optB_p": "Payment in the tradesperson's name, only if:",
+        "optB_list": ["the client goes in person with the tradesperson to the supplier,", "the invoice is issued by the supplier,", "payment is made on the spot."],
+        "callout_warn": "Never pay for materials remotely, in cash on site, or via a private exchange."
+      },
+      "s2": {
+        "title": "Mandatory insurance verification",
+        "p1": "Before signing any quote, the client must:",
+        "list1": ["systematically request a copy of the professional's mandatory insurance;"],
+        "p2": "call the insurance company to verify:",
+        "list2": ["validity,", "the coverage provided,", "that the insurance matches the planned work."],
+        "callout_warn": "Artisan-Compétent accepts no liability if the client signs a quote without completing this verification."
+      },
+      "s3": {
+        "title": "Site monitoring — The client's role (Project Owner)",
+        "p1pre": "The client is the",
+        "p1b": "Project Owner (MO)",
+        "p1mid": ". They are the",
+        "p1b2": "final decision-maker",
+        "p1post": ".",
+        "sub1": "The client must:",
+        "list1": ["monitor progress via the dedicated area of the web application,", "validate photos, videos and comments posted by the contractor,", "provide contradictory photos if an anomaly is noticed,", "verify that the work carried out matches the quote,", "sign the completion report or report anomalies."],
+        "sub2": "The AMOD's role",
+        "p2": "The AMOD is not a site manager. They have no authority over the tradespeople. They are solely a remote technical advisor.",
+        "p3": "They can:",
+        "list2": ["provide a professional opinion,", "help understand a problem,", "guide the client,", "analyse documents, images and information submitted,", "participate in a group call if needed (client + tradesperson + AMOD)."],
+        "p4": "But they:",
+        "list3": ["do not manage the site,", "do not replace a project manager,", "do not visit the site."]
+      },
+      "s4": {
+        "title": "Handling misunderstandings and disputes",
+        "step1_title": "Before any AMOD intervention",
+        "step1_p": "The client should try to resolve the issue directly with the contractor via:",
+        "step1_list": ["the integrated messaging in the web application,", "or a group call with the tradesperson (without the AMOD initially)."],
+        "step2_title": "If the situation remains deadlocked",
+        "step2_p": "The client can request the AMOD as a mediator. Assistance is provided via:",
+        "step2_list": ["the dedicated discussion thread,", "or a group call including the AMOD."],
+        "step3_title": "At the end of the project",
+        "step3_p": "The client approves or contests the handover report, and the escrowed payment is released or adjusted accordingly."
+      },
+      "s5": {
+        "title": "Reports and safety",
+        "p1": "The client must immediately report any suspicious behaviour:",
+        "list1": ["tradesperson absent from the site,", "attempt to make a direct payment outside the procedure,", "refusal to provide mandatory legal documents,", "suspicion of fraud,", "disrespectful or dangerous behaviour."]
+      },
+      "s6": {
+        "title": "Reviews and behaviour",
+        "list1": ["Leave an honest, objective and constructive review after each service. This recognises serious tradespeople and helps improve the platform.", "Never publish or send: insulting, discriminatory, defamatory content or personal attacks."],
+        "callout_warn": "Any breach may result in suspension or exclusion."
+      },
+      "s7": {
+        "title": "Confidentiality",
+        "list1": ["Contact details, documents and files shared through the web application are strictly confidential.", "They must only be used for the current service.", "Their distribution or reuse outside the authorised framework is prohibited."]
+      }
+    }
   }
 }

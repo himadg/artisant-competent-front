@@ -1070,7 +1070,7 @@
                             <p class="pro-empty">{{ 'dashboard.empty.invoices' | transloco }}</p>
                         }
                         @case ('practices') {
-                            <p class="pro-empty">{{ 'dashboard.empty.practices' | transloco }}</p>
+                            <good-practices userType="professional" />
                         }
                         @case ('legal') {
                             <legal-modal [inline]="true" />

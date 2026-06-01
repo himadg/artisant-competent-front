@@ -1,0 +1,160 @@
+<article class="3xl:p-6">
+    @if (goodPractices(); as goodPractices) {
+
+    <!-- Responsabilités générales -->
+    <div class="mb-4">
+        <h2>{{ goodPractices.s0.title }}</h2>
+        <ol class="list-decimal space-y-3">
+            <li><strong>{{ goodPractices.s0.i1b }}</strong>{{ goodPractices.s0.i1r }}</li>
+            <li><strong>{{ goodPractices.s0.i2b }}</strong>{{ goodPractices.s0.i2r }}</li>
+            <li>
+                <strong>{{ goodPractices.s0.i3b }}</strong>{{ goodPractices.s0.i3r }}
+                <ul class="list-disc mt-1">
+                    <li><strong>{{ goodPractices.s0.i3s1b }}</strong>{{ goodPractices.s0.i3s1r }}</li>
+                    <li>{{ goodPractices.s0.i3s2pre }}<strong>{{ goodPractices.s0.i3s2b }}</strong>{{ goodPractices.s0.i3s2r }}</li>
+                </ul>
+            </li>
+            <li>
+                <strong>{{ goodPractices.s0.i4b }}</strong>{{ goodPractices.s0.i4r }}
+                <ul class="list-disc mt-1">
+                    @for (item of goodPractices.s0.i4list; track $index) { <li>{{ item }}</li> }
+                </ul>
+                <p class="mt-1">{{ goodPractices.s0.i4p }}</p>
+            </li>
+        </ol>
+    </div>
+
+    <!-- Paiements sécurisés -->
+    <section class="space-y-4 mb-6">
+        <h2>{{ goodPractices.s1.title }}</h2>
+
+        <div class="space-y-3">
+            <h3>{{ goodPractices.s1.s1a }}</h3>
+            <ul class="list-disc">
+                @for (item of goodPractices.s1.s1a_l1; track $index) { <li>{{ item }}</li> }
+            </ul>
+            <div class="callout">{{ goodPractices.s1.s1a_callout }}</div>
+        </div>
+
+        <div class="space-y-3 mb-6">
+            <h3>{{ goodPractices.s1.s1b }}</h3>
+            <ul class="list-disc">
+                @for (item of goodPractices.s1.s1b_l1; track $index) { <li>{{ item }}</li> }
+            </ul>
+            <div class="option-block">
+                <span class="option-label">{{ goodPractices.s1.optA_label }}</span>
+                <p>{{ goodPractices.s1.optA_p }}</p>
+            </div>
+            <div class="option-block">
+                <span class="option-label">{{ goodPractices.s1.optB_label }}</span>
+                <p>{{ goodPractices.s1.optB_p }}</p>
+                <ul class="list-disc mt-1">
+                    @for (item of goodPractices.s1.optB_list; track $index) { <li>{{ item }}</li> }
+                </ul>
+            </div>
+            <div class="callout callout--warning">{{ goodPractices.s1.callout_warn }}</div>
+        </div>
+    </section>
+
+    <!-- Vérification assurances -->
+    <section class="space-y-3 mb-6">
+        <h2>{{ goodPractices.s2.title }}</h2>
+        <p>{{ goodPractices.s2.p1 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s2.list1; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p>{{ goodPractices.s2.p2 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s2.list2; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <div class="callout callout--warning"><strong>{{ goodPractices.s2.callout_warn }}</strong></div>
+    </section>
+
+    <!-- Suivi du chantier -->
+    <section class="space-y-4 mb-6">
+        <h2>{{ goodPractices.s3.title }}</h2>
+        <p>{{ goodPractices.s3.p1pre }} <strong>{{ goodPractices.s3.p1b }}</strong>{{ goodPractices.s3.p1mid }} <strong>{{ goodPractices.s3.p1b2 }}</strong>{{ goodPractices.s3.p1post }}</p>
+
+        <div class="space-y-2">
+            <h3>{{ goodPractices.s3.sub1 }}</h3>
+            <ul class="list-disc">
+                @for (item of goodPractices.s3.list1; track $index) { <li>{{ item }}</li> }
+            </ul>
+        </div>
+
+        <div class="space-y-2">
+            <h3>{{ goodPractices.s3.sub2 }}</h3>
+            <p>{{ goodPractices.s3.p2 }}</p>
+            <p>{{ goodPractices.s3.p3 }}</p>
+            <ul class="list-disc">
+                @for (item of goodPractices.s3.list2; track $index) { <li>{{ item }}</li> }
+            </ul>
+            <p>{{ goodPractices.s3.p4 }}</p>
+            <ul class="list-disc">
+                @for (item of goodPractices.s3.list3; track $index) { <li>{{ item }}</li> }
+            </ul>
+        </div>
+    </section>
+
+    <!-- Incompréhensions et litiges -->
+    <section class="space-y-4 mb-4">
+        <h2>{{ goodPractices.s4.title }}</h2>
+        <ol class="steps-list">
+            <li>
+                <span class="step-num">1</span>
+                <div>
+                    <h3 class="mb-1">{{ goodPractices.s4.step1_title }}</h3>
+                    <p>{{ goodPractices.s4.step1_p }}</p>
+                    <ul class="list-disc mt-1">
+                        @for (item of goodPractices.s4.step1_list; track $index) { <li>{{ item }}</li> }
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <span class="step-num">2</span>
+                <div>
+                    <h3 class="mb-1">{{ goodPractices.s4.step2_title }}</h3>
+                    <p>{{ goodPractices.s4.step2_p }}</p>
+                    <ul class="list-disc mt-1">
+                        @for (item of goodPractices.s4.step2_list; track $index) { <li>{{ item }}</li> }
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <span class="step-num">3</span>
+                <div>
+                    <h3 class="mb-1">{{ goodPractices.s4.step3_title }}</h3>
+                    <p>{{ goodPractices.s4.step3_p }}</p>
+                </div>
+            </li>
+        </ol>
+    </section>
+
+    <!-- Signalements -->
+    <section class="space-y-3 mb-6">
+        <h2>{{ goodPractices.s5.title }}</h2>
+        <p>{{ goodPractices.s5.p1 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s5.list1; track $index) { <li>{{ item }}</li> }
+        </ul>
+    </section>
+
+    <!-- Avis -->
+    <section class="space-y-3">
+        <h2>{{ goodPractices.s6.title }}</h2>
+        <ul class="list-disc">
+            @for (item of goodPractices.s6.list1; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <div class="callout callout--warning">{{ goodPractices.s6.callout_warn }}</div>
+    </section>
+
+    <!-- Confidentialité -->
+    <section class="space-y-3">
+        <h2>{{ goodPractices.s7.title }}</h2>
+        <ul class="list-disc">
+            @for (item of goodPractices.s7.list1; track $index) { <li>{{ item }}</li> }
+        </ul>
+    </section>
+
+    }
+</article>

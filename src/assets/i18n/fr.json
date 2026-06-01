@@ -1021,5 +1021,185 @@
       "tab": "CGV",
       "title": "Conditions Générales de Vente"
     }
+  },
+  "goodPractices": {
+    "pro": {
+      "intro": {
+        "tagline": "Votre profil professionnel représente votre vitrine sur Artisan Compétent.",
+        "p1": "Un profil clair, complet, sérieux et bien renseigné augmente fortement :",
+        "list1": ["vos chances d'être sélectionné par les clients,", "votre crédibilité,", "la confiance accordée à votre entreprise,", "et vos chances de signer davantage de devis."],
+        "p2": "L'objectif de ce guide est donc de vous aider à créer un profil :",
+        "list2": ["professionnel,", "rassurant,", "transparent,", "et cohérent avec le fonctionnement d'Artisan Compétent."]
+      },
+      "s1": {
+        "title": "Vérifiez soigneusement vos documents",
+        "p1": "Avant validation de votre compte, vous devez fournir l'ensemble des documents demandés correspondant à votre activité.",
+        "p2": "Vous vous engagez à fournir uniquement des documents :",
+        "list1": ["valides,", "à jour,", "authentiques,", "et correspondant réellement aux prestations que vous proposez."],
+        "p3": "Cela peut notamment concerner :",
+        "list2": ["votre SIRET,", "vos assurances,", "votre RC Pro,", "votre garantie décennale lorsque nécessaire,", "vos certifications professionnelles,", "vos documents administratifs,", "ou certains CERFA obligatoires selon les travaux proposés."],
+        "p4": "Exemples de certifications :",
+        "list3": ["RGE,", "Qualibat,", "Qualifelec,", "QualiPAC,", "ou toute autre certification correspondant aux prestations proposées."],
+        "p5": "Vous vous engagez également à maintenir ces documents à jour pendant toute la durée de votre présence sur la plateforme.",
+        "p6": "En cas d'expiration, de suspension ou de modification d'un document :",
+        "callout1": "vous devez le mettre à jour dans les meilleurs délais.",
+        "p7": "À défaut de mise à jour :",
+        "callout2": "vous ne pourrez plus émettre de devis via la plateforme jusqu'à régularisation de votre dossier."
+      },
+      "s2": {
+        "title": "Décrivez précisément votre activité",
+        "p1": "Votre fiche professionnelle doit permettre au client de comprendre clairement :",
+        "list1": ["votre métier,", "vos spécialités,", "vos zones d'intervention,", "vos types de chantiers,", "et les prestations que vous réalisez réellement."],
+        "p2": "Prenez le temps de rédiger une présentation claire et professionnelle. Expliquez notamment :",
+        "list2": ["votre expérience,", "votre manière de travailler,", "vos spécialités,", "vos points forts,", "et les types de chantiers que vous privilégiez."],
+        "p3": "Évitez les descriptions trop courtes ou trop vagues. Une fiche bien remplie inspire immédiatement davantage confiance."
+      },
+      "s3": {
+        "title": "Sélectionnez uniquement les métiers que vous maîtrisez réellement",
+        "p1": "Ne sélectionnez que les métiers :",
+        "list1": ["pour lesquels vous êtes compétent,", "assuré,", "et réellement qualifié."],
+        "p2": "Les métiers affichés sur votre profil doivent correspondre :",
+        "list2": ["à vos assurances,", "à vos certifications,", "et aux prestations que vous êtes réellement capable de réaliser dans de bonnes conditions."],
+        "p3": "Cela permet :",
+        "list3": ["de protéger les clients,", "de protéger votre entreprise,", "et de limiter les litiges."]
+      },
+      "s4": {
+        "title": "Gestion des astreintes et disponibilités",
+        "p1": "Pour les métiers concernés par les urgences ou interventions rapides :",
+        "callout1": "veillez à bien renseigner vos disponibilités.",
+        "p2": "Si vous souhaitez apparaître comme professionnel d'astreinte :",
+        "list1": ["vous devez cocher les cases correspondantes,", "mettre à jour vos horaires,", "et désactiver les périodes durant lesquelles vous n'êtes pas disponible."],
+        "p3": "Une mauvaise gestion des disponibilités peut entraîner :",
+        "list2": ["des appels inutiles,", "des annulations,", "ou une mauvaise expérience client."],
+        "p4": "Gardez donc vos informations à jour régulièrement."
+      },
+      "s5": {
+        "title": "Soignez votre image professionnelle",
+        "p1": "Les clients choisissent aussi un professionnel grâce à la confiance qu'il inspire. Il est donc fortement recommandé :",
+        "list1": ["d'ajouter une photo professionnelle,", "de compléter correctement votre fiche,", "et de présenter clairement votre activité."],
+        "p2": "Artisan Compétent vous proposera également la possibilité d'ajouter :",
+        "callout1": "une vidéo de présentation (\"story\") d'une durée maximale de deux minutes.",
+        "p3": "Cette vidéo permet notamment :",
+        "list2": ["de présenter votre entreprise,", "votre manière de travailler,", "votre expérience,", "ou vos réalisations."],
+        "p4": "C'est souvent beaucoup plus parlant pour les clients qu'un simple texte. Une vidéo bien réalisée peut considérablement améliorer votre taux de sélection."
+      },
+      "s6": {
+        "title": "Fonctionnement des CMOD",
+        "p1": "Par défaut, les professionnels inscrits sur Artisan Compétent peuvent également devenir CMOD (Conseiller Maître d'Ouvrage Digital), sous réserve de disposer d'au moins trois années d'expérience dans leur métier.",
+        "p2": "Le rôle du CMOD est simple :",
+        "callout1": "intervenir uniquement en cas de litige afin d'apporter un avis technique consultatif et impartial.",
+        "p3": "Le CMOD :",
+        "list1": ["analyse les éléments présents dans le dashboard,", "consulte les photos, les commentaires, les échanges,", "et peut participer à un échange visio afin de mieux comprendre la situation."],
+        "p4": "Son rôle est uniquement consultatif. Il transmet ensuite son avis à l'équipe Artisan Compétent via le dashboard interne.",
+        "important": "Important :",
+        "list2": ["votre responsabilité personnelle n'est jamais engagée,", "vous ne prenez aucune décision finale,", "et vous n'avez pas à gérer le litige vous-même."],
+        "p5": "L'arbitrage final reste effectué par Artisan Compétent. Les interventions CMOD restent rares, compte tenu :",
+        "list3": ["du nombre important d'artisans présents sur la plateforme,", "du faible taux de litiges attendu,", "et du système de suivi digital imposé."],
+        "p6": "Ces interventions :",
+        "list4": ["prennent généralement peu de temps,", "peuvent être réalisées à distance, depuis chez vous, en dehors de vos horaires de chantier,", "et sont rémunérées."],
+        "p7pre": "Chaque intervention CMOD est rémunérée",
+        "price": "35 €",
+        "p7post": "pour le temps consacré à l'analyse et à l'échange visio éventuel.",
+        "p8": "Être CMOD présente également plusieurs avantages :",
+        "list5": ["cela renforce votre crédibilité sur la plateforme,", "valorise votre expérience,", "améliore l'image de votre profil professionnel,", "et démontre votre sérieux auprès des clients."],
+        "p9": "Il n'y a donc pratiquement que des avantages à accepter cette fonctionnalité."
+      },
+      "s7": {
+        "title": "Transparence et professionnalisme",
+        "p1": "Artisan Compétent valorise les professionnels :",
+        "list1": ["sérieux,", "transparents,", "réactifs,", "organisés,", "et respectueux des règles de la plateforme."],
+        "p2": "Votre profil constitue la première impression donnée au client. Un professionnel clair, rassurant et transparent augmente naturellement ses chances :",
+        "list2": ["d'obtenir des demandes,", "d'être sélectionné,", "et de développer durablement son activité sur la plateforme."]
+      },
+      "s8": {
+        "title": "Conseils importants avant validation de votre profil",
+        "p1": "Avant d'envoyer votre profil :",
+        "checklist": ["vérifiez vos coordonnées", "vérifiez vos documents", "vérifiez vos métiers sélectionnés", "vérifiez vos disponibilités", "vérifiez vos assurances", "vérifiez vos certifications", "relisez votre présentation", "ajoutez des photos professionnelles si possible", "et réalisez votre vidéo de présentation si vous le pouvez"],
+        "closing": "Plus votre profil est sérieux et complet, plus il inspire confiance. Et dans le bâtiment, la confiance reste l'élément le plus important."
+      }
+    },
+    "individual": {
+      "s0": {
+        "title": "Responsabilités générales du client",
+        "i1b": "Décrire précisément son besoin",
+        "i1r": ", avec photos, vidéos et explications pour permettre une analyse claire par les professionnels.",
+        "i2b": "Répondre rapidement",
+        "i2r": " aux professionnels afin de maximiser la qualité du service.",
+        "i3b": "Ne jamais verser d'argent directement à l'artisan",
+        "i3r": ", sauf cas strictement encadrés (voir détails ci-dessous). Tous les paiements doivent passer par :",
+        "i3s1b": "Artisan-Compétent",
+        "i3s1r": " (séquestre sécurisé),",
+        "i3s2pre": "ou ",
+        "i3s2b": "le fournisseur",
+        "i3s2r": " pour les matériaux, selon les règles établies.",
+        "i4b": "Être présent ou représenté",
+        "i4r": " lors des étapes clés du projet :",
+        "i4list": ["état des lieux,", "validation du devis,", "réception des travaux / signature du procès-verbal."],
+        "i4p": "Une présence active assure un suivi clair et réduit les risques de litiges."
+      },
+      "s1": {
+        "title": "Paiements sécurisés — Règles essentielles",
+        "s1a": "Pour les devis jusqu'à 3 500 € TTC (fournitures comprises)",
+        "s1a_l1": ["Le client règle 100 % du devis à Artisan-Compétent.", "La somme est intégralement séquestrée (main-d'œuvre + matériaux).", "Elle est libérée uniquement après la fin des travaux, la validation du procès-verbal et l'avis consultatif éventuel du AMOD."],
+        "s1a_callout": "En cas de malfaçon flagrante ou de travaux non réalisés, le client peut être remboursé partiellement sur la partie non faite ou jugée non conforme.",
+        "s1b": "Pour les devis supérieurs à 3 500 € TTC",
+        "s1b_l1": ["Seule la main-d'œuvre est séquestrée par Artisan-Compétent.", "Les matériaux sont payés directement au fournisseur, selon deux options :"],
+        "optA_label": "Option A — fortement recommandée",
+        "optA_p": "Paiement direct du client au fournisseur, avec ou sans présence de l'artisan.",
+        "optB_label": "Option B — acceptée mais strictement encadrée",
+        "optB_p": "Paiement au nom de l'artisan, uniquement si :",
+        "optB_list": ["le client se rend physiquement avec l'artisan chez le fournisseur,", "la facture est émise par le fournisseur,", "le paiement est effectué sur place."],
+        "callout_warn": "Jamais de paiement de matériaux à distance, en espèces sur chantier ou via un simple échange privé."
+      },
+      "s2": {
+        "title": "Vérification obligatoire des assurances",
+        "p1": "Avant de signer tout devis, le client doit :",
+        "list1": ["demander systématiquement la copie des assurances obligatoires du professionnel ;"],
+        "p2": "appeler la compagnie d'assurance pour vérifier :",
+        "list2": ["la validité,", "les garanties couvertes,", "l'adéquation entre l'assurance et les travaux prévus."],
+        "callout_warn": "Artisan-Compétent décline toute responsabilité si le client signe un devis sans effectuer cette vérification."
+      },
+      "s3": {
+        "title": "Suivi du chantier — Rôle du client (Maître d'Ouvrage)",
+        "p1pre": "Le client est",
+        "p1b": "Maître d'Ouvrage (MO)",
+        "p1mid": ". Il est le",
+        "p1b2": "décisionnaire final",
+        "p1post": ".",
+        "sub1": "Le client doit :",
+        "list1": ["suivre l'avancement via l'espace dédié de la web-application,", "valider les photos, vidéos et commentaires publiés par l'intervenant,", "transmettre des photos contradictoires si une anomalie est constatée,", "vérifier la conformité entre les travaux réalisés et le devis,", "signer le procès-verbal de fin de chantier ou signaler les anomalies."],
+        "sub2": "Le rôle du AMOD",
+        "p2": "Le AMOD n'est pas un chef de chantier. Il n'a aucun pouvoir de commandement sur les artisans. Il est uniquement un conseiller technique à distance.",
+        "p3": "Il peut :",
+        "list2": ["donner un avis professionnel,", "aider à comprendre un problème,", "éclairer le client,", "analyser les documents, images et informations transmises,", "participer à un appel groupé si besoin (client + artisan + AMOD)."],
+        "p4": "Mais :",
+        "list3": ["il ne dirige pas le chantier,", "il ne remplace pas un conducteur de travaux,", "il ne se déplace pas sur site."]
+      },
+      "s4": {
+        "title": "Gestion des incompréhensions et litiges",
+        "step1_title": "Avant toute intervention du AMOD",
+        "step1_p": "Le client doit essayer de régler le problème directement avec l'intervenant, via :",
+        "step1_list": ["la messagerie intégrée à la web-application,", "ou un appel groupé avec l'artisan (sans AMOD dans un premier temps)."],
+        "step2_title": "Si la situation reste bloquée",
+        "step2_p": "Le client peut demander l'intervention du AMOD comme médiateur. L'assistance se fait via :",
+        "step2_list": ["le fil de discussion dédié,", "ou un appel groupé incluant le AMOD."],
+        "step3_title": "À la fin du chantier",
+        "step3_p": "Le client valide ou conteste le PV, et le paiement séquestré est libéré ou ajusté selon le constat."
+      },
+      "s5": {
+        "title": "Signalements et sécurité",
+        "p1": "Le client doit signaler immédiatement tout comportement suspect :",
+        "list1": ["absence de l'artisan sur le chantier,", "tentative de paiement direct hors procédure,", "refus de fournir les documents légaux obligatoires,", "suspicion de fraude,", "attitude irrespectueuse ou dangereuse."]
+      },
+      "s6": {
+        "title": "Avis et comportement",
+        "list1": ["Laisser un avis honnête, objectif et constructif après chaque prestation. Cela valorise les artisans sérieux et permet d'améliorer la plateforme.", "Ne jamais publier ou envoyer : contenu insultant, discriminatoire, diffamatoire ou attaques personnelles."],
+        "callout_warn": "Tout manquement peut entraîner une suspension ou une exclusion."
+      },
+      "s7": {
+        "title": "Confidentialité",
+        "list1": ["Les coordonnées, documents et fichiers transmis via la web-application sont strictement confidentiels.", "Ils ne doivent être utilisés que pour la prestation en cours.", "Leur diffusion ou réutilisation en dehors du cadre autorisé est interdite."]
+      }
+    }
   }
 }

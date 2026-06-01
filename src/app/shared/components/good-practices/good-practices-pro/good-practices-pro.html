@@ -1,0 +1,158 @@
+<article class="2xl:p-6">
+    @if (goodPractices(); as goodPractices) {
+
+    <!-- Introduction -->
+    <div class="mb-6">
+        <p class="text-base font-medium mb-4">{{ goodPractices.intro.tagline }}</p>
+        <p>{{ goodPractices.intro.p1 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.intro.list1; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p class="mt-3">{{ goodPractices.intro.p2 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.intro.list2; track $index) { <li>{{ item }}</li> }
+        </ul>
+    </div>
+
+    <!-- 1. Documents -->
+    <section class="space-y-3 mb-6">
+        <h2><span class="section-num">1</span> {{ goodPractices.s1.title }}</h2>
+        <p>{{ goodPractices.s1.p1 }}</p>
+        <p>{{ goodPractices.s1.p2 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s1.list1; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p>{{ goodPractices.s1.p3 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s1.list2; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p>{{ goodPractices.s1.p4 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s1.list3; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p>{{ goodPractices.s1.p5 }}</p>
+        <p>{{ goodPractices.s1.p6 }}</p>
+        <div class="callout">{{ goodPractices.s1.callout1 }}</div>
+        <p>{{ goodPractices.s1.p7 }}</p>
+        <div class="callout">{{ goodPractices.s1.callout2 }}</div>
+    </section>
+
+    <!-- 2. Activité -->
+    <section class="space-y-3 mb-6">
+        <h2><span class="section-num">2</span> {{ goodPractices.s2.title }}</h2>
+        <p>{{ goodPractices.s2.p1 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s2.list1; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p>{{ goodPractices.s2.p2 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s2.list2; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p>{{ goodPractices.s2.p3 }}</p>
+    </section>
+
+    <!-- 3. Métiers -->
+    <section class="space-y-3 mb-6">
+        <h2><span class="section-num">3</span> {{ goodPractices.s3.title }}</h2>
+        <p>{{ goodPractices.s3.p1 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s3.list1; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p>{{ goodPractices.s3.p2 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s3.list2; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p>{{ goodPractices.s3.p3 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s3.list3; track $index) { <li>{{ item }}</li> }
+        </ul>
+    </section>
+
+    <!-- 4. Astreintes -->
+    <section class="space-y-3 mb-6">
+        <h2><span class="section-num">4</span> {{ goodPractices.s4.title }}</h2>
+        <p>{{ goodPractices.s4.p1 }}</p>
+        <div class="callout">{{ goodPractices.s4.callout1 }}</div>
+        <p>{{ goodPractices.s4.p2 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s4.list1; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p>{{ goodPractices.s4.p3 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s4.list2; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p>{{ goodPractices.s4.p4 }}</p>
+    </section>
+
+    <!-- 5. Image -->
+    <section class="space-y-3 mb-6">
+        <h2><span class="section-num">5</span> {{ goodPractices.s5.title }}</h2>
+        <p>{{ goodPractices.s5.p1 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s5.list1; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p>{{ goodPractices.s5.p2 }}</p>
+        <div class="callout">{{ goodPractices.s5.callout1 }}</div>
+        <p>{{ goodPractices.s5.p3 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s5.list2; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p>{{ goodPractices.s5.p4 }}</p>
+    </section>
+
+    <!-- 6. CMOD -->
+    <section class="space-y-3 mb-6">
+        <h2><span class="section-num">6</span> {{ goodPractices.s6.title }}</h2>
+        <p>{{ goodPractices.s6.p1 }}</p>
+        <p>{{ goodPractices.s6.p2 }}</p>
+        <div class="callout">{{ goodPractices.s6.callout1 }}</div>
+        <p>{{ goodPractices.s6.p3 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s6.list1; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p>{{ goodPractices.s6.p4 }}</p>
+        <p><strong>{{ goodPractices.s6.important }}</strong></p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s6.list2; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p>{{ goodPractices.s6.p5 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s6.list3; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p>{{ goodPractices.s6.p6 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s6.list4; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p>{{ goodPractices.s6.p7pre }} <strong>{{ goodPractices.s6.price }}</strong> {{ goodPractices.s6.p7post }}</p>
+        <p>{{ goodPractices.s6.p8 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s6.list5; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p>{{ goodPractices.s6.p9 }}</p>
+    </section>
+
+    <!-- 7. Transparence -->
+    <section class="space-y-3 mb-6">
+        <h2><span class="section-num">7</span> {{ goodPractices.s7.title }}</h2>
+        <p>{{ goodPractices.s7.p1 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s7.list1; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p>{{ goodPractices.s7.p2 }}</p>
+        <ul class="list-disc">
+            @for (item of goodPractices.s7.list2; track $index) { <li>{{ item }}</li> }
+        </ul>
+    </section>
+
+    <!-- 8. Checklist -->
+    <section class="space-y-3">
+        <h2><span class="section-num">8</span> {{ goodPractices.s8.title }}</h2>
+        <p>{{ goodPractices.s8.p1 }}</p>
+        <ul class="check-list">
+            @for (item of goodPractices.s8.checklist; track $index) { <li>{{ item }}</li> }
+        </ul>
+        <p class="mt-3">{{ goodPractices.s8.closing }}</p>
+    </section>
+
+    }
+</article>
