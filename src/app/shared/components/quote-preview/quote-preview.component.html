@@ -252,15 +252,6 @@
     }
 
     <div class="modal-footer">
-      <button class="btn-yousign" (click)="startYousignProcedure()" [disabled]="isGenerating || isGeneratingSignature || isInitiatingYousign">
-        {{ isInitiatingYousign ? 'Initiation...' : 'Signer avec Yousign' }}
-      </button>
-      <button class="btn-secondary" (click)="generateSignaturePdf()" [disabled]="isGenerating || isGeneratingSignature || isInitiatingYousign">
-        {{ isGeneratingSignature ? 'Génération...' : 'Générer page signature' }}
-      </button>
-      <button class="btn-secondary" (click)="generatePdf()" [disabled]="isGenerating || isGeneratingSignature || isInitiatingYousign">
-        {{ isGenerating ? 'Génération en cours...' : 'Générer PDF' }}
-      </button>
       <button class="btn-primary" (click)="closePreview()" [disabled]="isGenerating || isGeneratingSignature || isInitiatingYousign">Retour au formulaire</button>
     </div>
   </div>

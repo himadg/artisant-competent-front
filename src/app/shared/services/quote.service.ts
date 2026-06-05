@@ -40,4 +40,13 @@ export class QuoteService {
   initiateSignature(quoteData: any): Observable<SignatureUrlResponse> {
     return this.http.post<SignatureUrlResponse>(`${this.apiUrl}/pdf/initiate-signature`, quoteData);
   }
+
+  // Persist quote to backend
+  createQuote(quoteData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/quotes`, quoteData);
+  }
+
+  updateQuote(quoteId: string, quoteData: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/quotes/${quoteId}`, quoteData);
+  }
 }

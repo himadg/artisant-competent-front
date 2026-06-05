@@ -1463,3 +1463,40 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ══════════════ MODAL QUOTE SCROLL ══════════════ */
+.modal-overlay {
+  .modal-content {
+    /* Enable smooth scrolling on touch devices */
+    -webkit-overflow-scrolling: touch;
+
+    /* Configure scrollbar appearance */
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-water-green) transparent;
+
+    /* Smooth scrolling behavior */
+    scroll-behavior: smooth;
+
+    /* Hide scrollbar in webkit browsers when not scrolling */
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: color-mix(in srgb, var(--primary-water-green) 50%, transparent);
+      border-radius: 4px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+
+      &:hover {
+        background-color: var(--primary-water-green);
+        background-clip: padding-box;
+      }
+    }
+  }
+}
+

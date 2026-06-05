@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
 import { forkJoin } from 'rxjs';
 import { DashboardApiService } from '../../../core/services/dashboard-api.service';
+import { MissionService } from '../../../core/services/mission.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { UserApiService } from '../../../core/services/user-api.service';
 import { ServiceApiService } from '../../../core/services/service-api.service';
@@ -16,6 +17,7 @@ import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
 import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
+import { QuoteFormComponent } from '../../../shared/components/quote-form/quote-form.component';
 
 export type ProSection = 'requests' | 'quotes' | 'invoices' | 'profile' | 'legal' | 'practices' | 'affiliation';
 export type ProTab = 'presentation' | 'services' | 'missions' | 'reviews' | 'documents';
@@ -26,7 +28,7 @@ const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'satu
   selector: 'dashboard-professional',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FormsModule, RouterLink, TranslocoModule, LangToggle, ThemeToggle, LegalModal],
+  imports: [CommonModule, FormsModule, RouterLink, TranslocoModule, LangToggle, ThemeToggle, LegalModal, QuoteFormComponent],
   templateUrl: './professional-dashboard.html',
   styleUrl: './professional-dashboard.scss',
 })
@@ -38,6 +40,7 @@ export class ProfessionalDashboard implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly platformLocation = inject(PlatformLocation);
   readonly authService = inject(AuthService);
+  private readonly missionApi = inject(MissionService);
 
   readonly data = signal<ProfessionalDashboardData | null>(null);
   readonly loading = signal(true);
@@ -49,6 +52,9 @@ export class ProfessionalDashboard implements OnInit {
   readonly affiliationData = signal<AffiliationDashboard | null>(null);
   readonly affiliationLoading = signal(false);
   readonly codeCopied = signal(false);
+  readonly requests = signal<any[]>([]);
+  readonly requestsLoading = signal(false);
+  readonly selectedRequest = signal<any | null>(null);
 
   readonly inscriptionDate = computed(() => {
     const data = this.data();
@@ -101,6 +107,17 @@ export class ProfessionalDashboard implements OnInit {
     if (section === 'affiliation' && !this.affiliationData()) {
       this.loadAffiliationDashboard();
     }
+    if (section === 'requests') {
+      this.loadRequests();
+    }
+  }
+
+  loadRequests() {
+    this.requestsLoading.set(true);
+    this.missionApi.getForProfessional().subscribe({
+      next: (r) => { this.requests.set(r); this.requestsLoading.set(false); },
+      error: () => { this.requests.set([]); this.requestsLoading.set(false); },
+    });
   }
 
   loadAffiliationDashboard() {
@@ -109,6 +126,116 @@ export class ProfessionalDashboard implements OnInit {
       next: (data) => { this.affiliationData.set(data); this.affiliationLoading.set(false); },
       error: () => this.affiliationLoading.set(false),
     });
+  }
+
+  openRequestModal(request: any) {
+    this.selectedRequest.set(request);
+  }
+
+  closeRequestModal() {
+    this.selectedRequest.set(null);
+  }
+
+  // ── Quotes modal (frontend-only UI / local persistence until backend exists) ──
+  readonly quoteModalOpen = signal(false);
+  readonly currentQuoteRequest = signal<any | null>(null);
+  readonly quoteItems = signal<{ description: string; price: number }[]>([]);
+  quoteTitle = '';
+  quoteMessage = '';
+  quoteAmount = 0;
+  readonly quoteSaving = signal(false);
+  readonly quoteStartedIds = signal<string[]>([]);
+
+  openQuoteModal(request: any) {
+    this.currentQuoteRequest.set(request);
+    // load started ids from localStorage
+    try {
+      const stored = localStorage.getItem('startedQuoteIds');
+      if (stored) this.quoteStartedIds.set(JSON.parse(stored));
+    } catch {}
+
+    // load existing draft for this request if present
+    try {
+      const draft = localStorage.getItem(`quote_${request.id}`);
+      if (draft) {
+        const q = JSON.parse(draft);
+        this.quoteTitle = q.title || '';
+        this.quoteItems.set(q.items || []);
+        this.quoteMessage = q.message || '';
+      } else {
+        this.quoteTitle = '';
+        this.quoteItems.set([{ description: '', price: 0 }]);
+        this.quoteMessage = '';
+      }
+    } catch (e) {
+      this.quoteTitle = '';
+      this.quoteItems.set([{ description: '', price: 0 }]);
+      this.quoteMessage = '';
+    }
+
+    this.quoteModalOpen.set(true);
+  }
+
+  closeQuoteModal() {
+    this.quoteModalOpen.set(false);
+    this.currentQuoteRequest.set(null);
+  }
+
+  addQuoteItem() {
+    this.quoteItems.update((items) => [...items, { description: '', price: 0 }]);
+  }
+
+  removeQuoteItem(index: number) {
+    this.quoteItems.update((items) => items.filter((_, i) => i !== index));
+  }
+
+  quoteTotal(): number {
+    return this.quoteItems().reduce((s, it) => s + (Number(it.price) || 0), 0);
+  }
+
+  hasStartedQuote(requestId: string) {
+    return this.quoteStartedIds().includes(requestId) || !!localStorage.getItem(`quote_${requestId}`);
+  }
+
+  // Save (draft) locally and mark as started. Replace with API calls when backend endpoints are available.
+  sendQuote() {
+    const req = this.currentQuoteRequest();
+    if (!req) return;
+    const payload = {
+      title: this.quoteTitle,
+      items: this.quoteItems(),
+      message: this.quoteMessage,
+      total: this.quoteAmount || this.quoteTotal(),
+      createdAt: new Date().toISOString(),
+    };
+
+    try {
+      localStorage.setItem(`quote_${req.id}`, JSON.stringify(payload));
+      const ids = Array.from(new Set([...this.quoteStartedIds(), req.id]));
+      this.quoteStartedIds.set(ids);
+      localStorage.setItem('startedQuoteIds', JSON.stringify(ids));
+    } catch (e) {
+      // ignore storage errors
+    }
+
+    // TODO: call backend API to persist and send the quote to the client when API is available.
+    this.quoteModalOpen.set(false);
+    this.currentQuoteRequest.set(null);
+  }
+
+  onQuoteSaved(savedQuote: any) {
+    // Mark the current request as having a started quote and close modal
+    const req = this.currentQuoteRequest();
+    if (req) {
+      const ids = Array.from(new Set([...this.quoteStartedIds(), req.id]));
+      this.quoteStartedIds.set(ids);
+      try {
+        localStorage.setItem('startedQuoteIds', JSON.stringify(ids));
+      } catch {}
+    }
+    // Optionally we could refresh requests from server here, but keep UX responsive
+    this.quoteModalOpen.set(false);
+    this.currentQuoteRequest.set(null);
   }
 
   generateAffiliateCode() {

@@ -16,6 +16,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/dashboard/dashboard').then((p) => p.DashboardPage),
   },
   {
+    path: 'demande',
+    title: 'demande.title',
+    canActivate: [authGuard],
+    loadComponent: () => import('./pages/demande/demande.component').then((p) => p.DemandePageComponent),
+  },
+  {
     path: 'affiliation',
     title: 'affiliation.title',
     loadComponent: () => import('./pages/affiliation/affiliation').then((p) => p.AffiliationPage),
@@ -81,21 +87,6 @@ export const routes: Routes = [
     path: 'contact',
     title: 'contact.title',
     loadComponent: () => import('./pages/contact/contact').then((p) => p.ContactPage),
-  },
-  {
-    path: 'quote-form',
-    title: 'quote-form.title',
-    loadComponent: () => import('./pages/quote-form/quote-form-page.component').then((c) => c.QuoteFormPageComponent),
-  },
-  {
-    path: 'pdf-upload',
-    title: 'Upload PDF',
-    loadComponent: () => import('./pages/pdf-upload/pdf-upload.component').then((c) => c.PdfUploadComponent),
-  },
-  {
-    path: 'pdf-view/:key',
-    title: 'Visualiser le PDF',
-    loadComponent: () => import('./pages/pdf-view/pdf-view.component').then((c) => c.PdfViewComponent),
   },
   {
     path: '**',

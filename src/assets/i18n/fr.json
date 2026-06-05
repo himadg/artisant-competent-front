@@ -1046,7 +1046,24 @@
       "noServices": "Aucun service renseigné",
       "partners": "Partenaires fournisseurs",
       "partnersSearch": "Rechercher un fournisseur... (2 caractères min.)",
-      "noPartners": "Aucun partenaire fournisseur renseigné"
+      "noPartners": "Aucun partenaire fournisseur renseigné",
+      "actions": {
+        "view": "Voir",
+        "quote": "Proposer un devis",
+        "modify": "Modifier le devis"
+      },
+      "viewModal": {
+        "title": "Voir la demande",
+        "client": "Client",
+        "attachments": "Pièces jointes",
+        "close": "Fermer"
+      },
+      "quote": {
+        "titlePlaceholder": "Titre du devis",
+        "amountPlaceholder": "Montant total (€)",
+        "messagePlaceholder": "Précisions à adresser au client...",
+        "send": "Envoyer le devis"
+      }
     },
     "empty": {
       "requests": "Aucune demande pour le moment",
@@ -1077,6 +1094,16 @@
         "role": {
           "INDIVIDUAL": "Particulier",
           "PROFESSIONAL": "Professionnel"
+        },
+        "actions": {
+          "view": "Voir",
+          "quote": "Proposer un devis"
+        },
+        "viewModal": {
+          "title": "Voir la demande",
+          "client": "Client",
+          "attachments": "Pièces jointes",
+          "close": "Fermer"
         },
         "status": {
           "PENDING": "En attente",

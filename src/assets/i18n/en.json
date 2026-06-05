@@ -1006,7 +1006,24 @@
       "noServices": "No services listed",
       "partners": "Supplier partners",
       "partnersSearch": "Search for a supplier... (2 characters min.)",
-      "noPartners": "No supplier partners listed"
+      "noPartners": "No supplier partners listed",
+      "actions": {
+        "view": "View",
+        "quote": "Send quote",
+        "modify": "Modify quote"
+      },
+      "viewModal": {
+        "title": "View request",
+        "client": "Client",
+        "attachments": "Attachments",
+        "close": "Close"
+      },
+      "quote": {
+        "titlePlaceholder": "Quote title",
+        "amountPlaceholder": "Total amount (€)",
+        "messagePlaceholder": "Add details for the client...",
+        "send": "Send quote"
+      }
     },
     "empty": {
       "requests": "No requests yet",
@@ -1037,6 +1054,16 @@
         "role": {
           "INDIVIDUAL": "Individual",
           "PROFESSIONAL": "Professional"
+        },
+        "actions": {
+          "view": "View",
+          "quote": "Send quote"
+        },
+        "viewModal": {
+          "title": "View request",
+          "client": "Client",
+          "attachments": "Attachments",
+          "close": "Close"
         },
         "status": {
           "PENDING": "Pending",

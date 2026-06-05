@@ -1061,7 +1061,76 @@
                             }
                         }
                         @case ('requests') {
-                            <p class="pro-empty">{{ 'dashboard.empty.requests' | transloco }}</p>
+                            @if (requestsLoading()) {
+                                <div class="pro-loading"><span class="spinner"></span></div>
+                            } @else if (requests().length) {
+                                <div class="pro-requests-list">
+                                    @for (r of requests(); track r.id) {
+                                        <div class="request-card">
+                                            <div class="request-main">
+                                                <div class="request-meta">
+                                                    <strong>{{ r.client.firstName }} {{ r.client.lastName }}</strong>
+                                                    <small class="request-date">{{ r.createdAt | date:'dd/MM/yyyy' }}</small>
+                                                </div>
+                                                <p class="request-desc">{{ r.descriptif }}</p>
+                                                <p class="request-lieu">{{ r.lieu }}</p>
+                                            </div>
+                                            @if (r.medias?.length) {
+                                                <div class="request-photos">
+                                                    @for (m of r.medias; track m.id) {
+                                                        <img [src]="m.url" class="request-photo" [alt]="'Request photo ' + m.id" />
+                                                    }
+                                                </div>
+                                            }
+                                            <div class="request-actions">
+                                                <button class="pro-btn" (click)="openRequestModal(r)">{{ 'dashboard.pro.actions.view' | transloco }}</button>
+                                                <button class="pro-btn pro-btn--primary" (click)="openQuoteModal(r)">{{ (hasStartedQuote(r.id) ? 'dashboard.pro.actions.modify' : 'dashboard.pro.actions.quote') | transloco }}</button>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+
+                                @if (selectedRequest()) {
+                                    <div class="modal-overlay fixed inset-0 z-50 flex items-center justify-center">
+                                        <div class="modal-backdrop absolute inset-0 bg-black opacity-50" (click)="closeRequestModal()"></div>
+                                        <div class="modal-content relative bg-white rounded-lg p-6 max-w-3xl w-[90%] z-10">
+                                            <button class="modal-close absolute top-3 right-3 px-2 py-1 text-sm" (click)="closeRequestModal()">{{ 'dashboard.pro.viewModal.close' | transloco }}</button>
+                                            <h3 class="text-lg font-bold mb-2">{{ 'dashboard.pro.viewModal.title' | transloco }}</h3>
+                                            <p class="text-sm text-gray-600 mb-2"><strong>{{ 'dashboard.pro.viewModal.client' | transloco }}:</strong> {{ selectedRequest().client.firstName }} {{ selectedRequest().client.lastName }}</p>
+                                            <p class="mb-4">{{ selectedRequest().descriptif }}</p>
+                                            @if (selectedRequest().medias?.length) {
+                                                <h4 class="font-semibold mb-2">{{ 'dashboard.pro.viewModal.attachments' | transloco }}</h4>
+                                                <div class="grid grid-cols-3 gap-2">
+                                                    @for (m of selectedRequest().medias; track m.id) {
+                                                        <a [href]="m.url" target="_blank" rel="noopener" class="block">
+                                                            <img [src]="m.url" class="w-full h-28 object-cover rounded" [alt]="'Attachment ' + m.id" />
+                                                        </a>
+                                                    }
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        @if (quoteModalOpen()) {
+                            <div class="modal-overlay fixed inset-0 z-50 flex items-center justify-center">
+                                <div class="modal-backdrop absolute inset-0 bg-black opacity-50" (click)="closeQuoteModal()"></div>
+                                <div class="modal-content relative bg-white rounded-lg p-6 max-w-3xl w-[90%] z-10 max-h-[90vh] overflow-y-auto">
+                                    <button class="modal-close absolute top-3 right-3 px-2 py-1 text-sm" (click)="closeQuoteModal()">{{ 'dashboard.pro.viewModal.close' | transloco }}</button>
+                                    <!-- Use the shared quote form component with pre-filled coordinates -->
+                                    <ac-quote-form
+                                        [missionId]="currentQuoteRequest()?.id"
+                                        [clientUserId]="currentQuoteRequest()?.client?.id"
+                                        [professionalUserId]="data()?.id"
+                                        (saved)="onQuoteSaved($event)"
+                                        (cancelled)="closeQuoteModal()">
+                                    </ac-quote-form>
+                                </div>
+                            </div>
+                        }
+                        @else {
+                                <p class="pro-empty">{{ 'dashboard.empty.requests' | transloco }}</p>
+                            }
                         }
                         @case ('quotes') {
                             <p class="pro-empty">{{ 'dashboard.empty.quotes' | transloco }}</p>

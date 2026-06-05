@@ -39,9 +39,9 @@
             class="text-sm text-white/60 hover:text-white transition-colors">
             {{ 'search.clearSelection' | transloco }}
         </button>
-        <a routerLink="/auth/register"
-            class="text-xs text-center font-medium px-4 py-1.5 rounded-full bg-[var(--primary-beige)] text-[var(--secondary-water-green)] hover:bg-white transition-colors">
+        <button (click)="proceedToRequest()"
+            class="text-xs text-center font-medium px-4 py-1.5 rounded-full bg-[var(--primary-beige)] text-[var(--secondary-water-green)] hover:bg-white transition-colors border-none cursor-pointer">
             {{ 'search.contactSelected' | transloco }}
-        </a>
+        </button>
     </div>
 }

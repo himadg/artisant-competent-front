@@ -45,7 +45,8 @@ export class SearchPro {
 
     this.addressSearch$.pipe(
       debounceTime(200),
-      filter(q => q.length >= 3),
+      // ignore queries that are shorter than 3 characters after trimming (prevents calls for "bd ")
+      filter(q => q.trim().length >= 3),
       switchMap(address => this.geocodingService.search(address)),
       takeUntilDestroyed(this.destroyRef),
     ).subscribe(suggestions => {

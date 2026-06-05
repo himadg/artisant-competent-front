@@ -1,10 +1,13 @@
-import { Component, computed, effect, inject, Signal } from '@angular/core';
+import { Component, computed, effect, inject, Signal, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, Validators, ReactiveFormsModule, FormGroup, FormControl, FormArray, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { startWith } from 'rxjs/operators';
 import { QuotePreviewComponent } from '../quote-preview/quote-preview.component';
 import { QuoteCalculationService } from '../../services/quote-calculation.service';
+import { QuoteService } from '../../services/quote.service';
+import { UserApiService } from '../../../core/services/user-api.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 // Validators
 export function minDateTodayValidator(): ValidatorFn {
@@ -68,9 +71,12 @@ type ArtisanForm = FormGroup<{
   templateUrl: './quote-form.component.html',
   styleUrls: ['./quote-form.component.scss']
 })
-export class QuoteFormComponent {
+export class QuoteFormComponent implements OnInit {
   private fb = inject(FormBuilder);
   public calcService = inject(QuoteCalculationService);
+  private quoteService = inject(QuoteService);
+  private userApi = inject(UserApiService);
+  private authService = inject(AuthService);
 
   artisanStatuses = ['Société', 'Auto-entrepreneur'];
   streetTypes = ['Rue', 'Avenue', 'Boulevard', 'Chemin', 'Place', 'Impasse', 'Allée'];
@@ -91,8 +97,7 @@ export class QuoteFormComponent {
         floor: [''],
         postalCode: ['', [Validators.required, Validators.pattern('^[0-9]{5}$')]],
         city: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
-        phone: ['', [Validators.required, Validators.pattern('^0[1-9]([ .-]?[0-9]{2}){4}$')]]
+        email: ['', [Validators.required, Validators.email]]
       }),
       jobsite: this.fb.nonNullable.group({
         streetNumber: [''],
@@ -153,6 +158,17 @@ export class QuoteFormComponent {
       arbitrationAgreement: [false, Validators.requiredTrue]
     })
   });
+
+  /** If provided, the mission/request id to attach this quote to */
+  @Input() missionId?: string | null = null;
+  /** If provided, existing quote id to update */
+  @Input() quoteId?: string | null = null;
+  /** If provided, client user ID to pre-fill client coordinates */
+  @Input() clientUserId?: string | null = null;
+  /** If provided, professional user ID to pre-fill professional coordinates */
+  @Input() professionalUserId?: string | null = null;
+  @Output() saved = new EventEmitter<any>();
+  @Output() cancelled = new EventEmitter<void>();
 
   get f() { return this.quoteForm.controls; }
   get clientControls() { return this.f.coordinates.controls.client.controls; }
@@ -257,6 +273,71 @@ export class QuoteFormComponent {
         this.otherCertifications.clear();
       }
     });
+  }
+
+  ngOnInit(): void {
+    this.preloadCoordinates();
+  }
+
+  private preloadCoordinates(): void {
+    // Pré-remplir les coordonnées du client si clientUserId est fourni
+    if (this.clientUserId) {
+      this.userApi.getUserProfile(this.clientUserId).subscribe({
+        next: (userData: any) => {
+          const client = userData.address || {};
+          const clientControls = this.f.coordinates.controls.client;
+          clientControls.patchValue({
+            firstName: userData.firstName || '',
+            lastName: userData.lastName || '',
+            email: userData.email || '',
+            streetNumber: client.streetNumber || '',
+            streetType: client.streetType || 'Rue',
+            streetName: client.streetName || '',
+            locality: client.locality || '',
+            apartmentNumber: client.apartmentNumber || '',
+            buildingNumber: client.buildingNumber || '',
+            floor: client.floor || '',
+            postalCode: client.postalCode || '',
+            city: client.city || '',
+          });
+        },
+        error: (err) => console.error('Erreur lors du chargement du profil client', err),
+      });
+    }
+
+    // Pré-remplir les coordonnées du professionnel si professionalUserId est fourni (ou utiliser l'utilisateur actuel)
+    const proUserId = this.professionalUserId || this.authService.getCurrentUserId();
+    if (proUserId) {
+      this.userApi.getProfessionalProfile(proUserId).subscribe({
+        next: (proData: any) => {
+          const proUser = proData.user || {};
+          const proAddress = proData.workAddress || {};
+          const artisanGroup = this.f.coordinates.controls.artisan as FormGroup;
+
+          const status = proData.companyStatus === 'COMPANY' ? 'Société' : 'Auto-entrepreneur';
+          artisanGroup.get('status')?.patchValue(status, { emitEvent: true });
+
+          artisanGroup.patchValue({
+            name: proData.companyName || '',
+            firstName: proUser.firstName || '',
+            lastName: proUser.lastName || '',
+            email: proData.professionalEmail || proUser.email || '',
+            phone: proData.managerPhone || '',
+            siret: proData.siret || '',
+            streetNumber: proAddress.streetNumber || '',
+            streetType: proAddress.streetType || 'Rue',
+            streetName: proAddress.streetName || '',
+            locality: proAddress.locality || '',
+            apartmentNumber: proAddress.apartmentNumber || '',
+            buildingNumber: proAddress.buildingNumber || '',
+            floor: proAddress.floor || '',
+            postalCode: proAddress.postalCode || '',
+            city: proAddress.city || '',
+          });
+        },
+        error: (err) => console.error('Erreur lors du chargement du profil professionnel', err),
+      });
+    }
   }
 
   onFileChange(event: Event, controlName: keyof QuoteFormComponent['legalControls'] | 'otherCertifications', index?: number): void {
@@ -364,6 +445,38 @@ export class QuoteFormComponent {
       alert("Le document CERFA doit être signé pour la gestion des déchets.");
       return;
     }
-    console.log('Devis validé', this.quoteForm.getRawValue());
+    const payload: any = this.quoteForm.getRawValue();
+    if (this.missionId) payload.missionId = this.missionId;
+
+    // Build FormData to allow file uploads
+    const formData = new FormData();
+    formData.append('payload', JSON.stringify(payload));
+    const rcFile = this.legalControls.rcProDocument.value as File | null;
+    if (rcFile) formData.append('rcProDocument', rcFile, rcFile.name);
+    const decFile = this.legalControls.decennaleDocument?.value as File | null;
+    if (decFile) formData.append('decennaleDocument', decFile, decFile.name);
+    this.otherCertifications.controls.forEach((c, i) => {
+      const f = c.value as File | null;
+      if (f) formData.append(`otherCertification_${i}`, f, f.name);
+    });
+
+    // submit to backend (create or update)
+    if (this.quoteId) {
+      this.quoteService.updateQuote(this.quoteId, formData).subscribe({
+        next: (res) => this.saved.emit(res),
+        error: (err) => {
+          console.error('Erreur lors de la mise à jour du devis', err);
+          alert('Une erreur est survenue lors de la sauvegarde du devis.');
+        }
+      });
+    } else {
+      this.quoteService.createQuote(formData).subscribe({
+        next: (res) => this.saved.emit(res),
+        error: (err) => {
+          console.error('Erreur lors de la création du devis', err);
+          alert('Une erreur est survenue lors de la création du devis.');
+        }
+      });
+    }
   }
 }
