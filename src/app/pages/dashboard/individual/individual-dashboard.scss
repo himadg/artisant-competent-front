@@ -542,6 +542,59 @@
     border-color: var(--primary-water-green);
     background: color-mix(in srgb, var(--primary-water-green) 8%, transparent);
   }
+
+  &--danger {
+    border-color: color-mix(in srgb, #ef4444 50%, transparent);
+    color: #dc2626;
+
+    &:hover {
+      border-color: #ef4444;
+      background: color-mix(in srgb, #ef4444 8%, transparent);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.ind-quote-status {
+  margin-left: auto;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  background: color-mix(in srgb, #6b7280 18%, transparent);
+  color: #4b5563;
+
+  &[data-status='SENT'] {
+    background: color-mix(in srgb, #3b82f6 18%, transparent);
+    color: #1d4ed8;
+  }
+  &[data-status='ACCEPTED'] {
+    background: color-mix(in srgb, #22c55e 18%, transparent);
+    color: #15803d;
+  }
+  &[data-status='REJECTED'] {
+    background: color-mix(in srgb, #ef4444 18%, transparent);
+    color: #b91c1c;
+  }
+  &[data-status='CANCELLED'] {
+    background: color-mix(in srgb, #6b7280 18%, transparent);
+    color: #4b5563;
+  }
+}
+
+.ind-quote-reject-note {
+  margin: 0;
+  font-size: 0.82rem;
+  font-style: italic;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, #ef4444 8%, transparent);
+  color: #b91c1c;
 }
 
 .ind-request-pros {
@@ -567,6 +620,12 @@
   border-top-color: var(--primary-water-green);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
+
+  &--sm {
+    width: 1rem;
+    height: 1rem;
+    border-width: 2px;
+  }
 }
 
 @keyframes spin {

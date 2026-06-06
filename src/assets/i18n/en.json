@@ -1052,6 +1052,49 @@
         "attachments": "Attached photos"
       }
     },
+    "quotes": {
+      "number": "Quote #",
+      "yourMessage": "Your message",
+      "clientMessage": "Client message",
+      "status": {
+        "DRAFT": "Draft",
+        "SENT": "Sent",
+        "ACCEPTED": "Accepted",
+        "REJECTED": "Rejected",
+        "CANCELLED": "Cancelled"
+      },
+      "actions": {
+        "details": "Details",
+        "preview": "Preview",
+        "refuse": "Refuse",
+        "modify": "Modify",
+        "cancel": "Cancel"
+      },
+      "modal": {
+        "title": "Quote",
+        "close": "Close",
+        "status": "Status",
+        "date": "Date",
+        "trade": "Trade",
+        "lieu": "Location",
+        "client": "Client",
+        "professional": "Professional"
+      },
+      "reject": {
+        "title": "Refuse the quote",
+        "description": "You can add an optional message for the professional.",
+        "messageLabel": "Message (optional)",
+        "messagePlaceholder": "Explain why you are refusing this quote...",
+        "cancel": "Back",
+        "confirm": "Confirm refusal"
+      },
+      "cancel": {
+        "title": "Cancel the quote",
+        "description": "Are you sure you want to cancel this quote? This action is irreversible.",
+        "back": "Back",
+        "confirm": "Confirm cancellation"
+      }
+    },
     "affiliation": {
       "title": "My referral program",
       "noCode": "You don't have a referral code yet.",

@@ -252,7 +252,12 @@
     }
 
     <div class="modal-footer">
-      <button class="btn-primary" (click)="closePreview()" [disabled]="isGenerating || isGeneratingSignature || isInitiatingYousign">Retour au formulaire</button>
+      @if (showAccept) {
+        <button class="btn-accept" (click)="acceptQuote()" [disabled]="isAccepting || isGenerating || isGeneratingSignature || isInitiatingYousign">
+          @if (isAccepting || isInitiatingYousign) { Traitement… } @else { Accepter et signer }
+        </button>
+      }
+      <button class="btn-primary" (click)="closePreview()" [disabled]="isGenerating || isGeneratingSignature || isInitiatingYousign || isAccepting">Retour</button>
     </div>
   </div>
 </div>

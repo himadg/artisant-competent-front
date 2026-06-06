@@ -1092,6 +1092,49 @@
         "attachments": "Photos jointes"
       }
     },
+    "quotes": {
+      "number": "Devis n°",
+      "yourMessage": "Votre message",
+      "clientMessage": "Message du client",
+      "status": {
+        "DRAFT": "Brouillon",
+        "SENT": "Envoyé",
+        "ACCEPTED": "Accepté",
+        "REJECTED": "Refusé",
+        "CANCELLED": "Annulé"
+      },
+      "actions": {
+        "details": "Détails",
+        "preview": "Prévisualiser",
+        "refuse": "Refuser",
+        "modify": "Modifier",
+        "cancel": "Annuler"
+      },
+      "modal": {
+        "title": "Devis",
+        "close": "Fermer",
+        "status": "Statut",
+        "date": "Date",
+        "trade": "Métier",
+        "lieu": "Lieu",
+        "client": "Client",
+        "professional": "Professionnel"
+      },
+      "reject": {
+        "title": "Refuser le devis",
+        "description": "Vous pouvez ajouter un message optionnel destiné au professionnel.",
+        "messageLabel": "Message (optionnel)",
+        "messagePlaceholder": "Expliquez pourquoi vous refusez ce devis...",
+        "cancel": "Retour",
+        "confirm": "Confirmer le refus"
+      },
+      "cancel": {
+        "title": "Annuler le devis",
+        "description": "Êtes-vous sûr de vouloir annuler ce devis ? Cette action est irréversible.",
+        "back": "Retour",
+        "confirm": "Confirmer l'annulation"
+      }
+    },
     "affiliation": {
       "title": "Mon programme d'affiliation",
       "noCode": "Vous n'avez pas encore de code de parrainage.",

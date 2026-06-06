@@ -1134,7 +1134,111 @@
                             }
                         }
                         @case ('quotes') {
-                            <p class="pro-empty">{{ 'dashboard.empty.quotes' | transloco }}</p>
+                            @if (quotesLoading()) {
+                                <div class="pro-loading"><span class="spinner"></span></div>
+                            } @else if (quotes().length) {
+                                <div class="pro-quotes-list">
+                                    @for (q of quotes(); track q.id) {
+                                        <div class="pro-quote-card">
+                                            <div class="pro-quote-head">
+                                                <div class="pro-quote-meta">
+                                                    <strong>{{ 'dashboard.quotes.number' | transloco }} {{ q.quoteNumber }}</strong>
+                                                    <small class="pro-quote-date">{{ q.updatedAt | date:'dd/MM/yyyy' }}</small>
+                                                </div>
+                                                <span class="pro-quote-status" [attr.data-status]="q.status">{{ 'dashboard.quotes.status.' + q.status | transloco }}</span>
+                                            </div>
+                                            <p class="pro-quote-desc">{{ q.mission.descriptif }}</p>
+                                            @if (q.mission.trade?.name) {
+                                                <p class="pro-quote-trade">{{ q.mission.trade?.name }}</p>
+                                            }
+                                            @if (q.mission.client) {
+                                                <p class="pro-quote-client">{{ q.mission.client.firstName }} {{ q.mission.client.lastName }}</p>
+                                            }
+                                            @if (q.status === 'REJECTED' && q.rejectionMessage) {
+                                                <p class="pro-quote-reject-note">{{ 'dashboard.quotes.clientMessage' | transloco }}: {{ q.rejectionMessage }}</p>
+                                            }
+                                            <div class="pro-quote-actions">
+                                                <button class="pro-btn" (click)="openQuoteDetails(q)">{{ 'dashboard.quotes.actions.details' | transloco }}</button>
+                                                @if (q.status === 'REJECTED') {
+                                                    <button class="pro-btn pro-btn--primary" (click)="editQuote(q)">{{ 'dashboard.quotes.actions.modify' | transloco }}</button>
+                                                }
+                                                @if (q.status === 'SENT' || q.status === 'REJECTED') {
+                                                    <button class="pro-btn pro-btn--danger" (click)="openCancelModal(q)">{{ 'dashboard.quotes.actions.cancel' | transloco }}</button>
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+
+                                @if (selectedQuote(); as q) {
+                                    <div class="modal-overlay fixed inset-0 z-50 flex items-center justify-center">
+                                        <div class="modal-backdrop absolute inset-0 bg-black opacity-50" (click)="closeQuoteDetails()"></div>
+                                        <div class="modal-content relative bg-white rounded-lg p-6 max-w-3xl w-[90%] z-10 max-h-[90vh] overflow-y-auto">
+                                            <button class="modal-close absolute top-3 right-3 px-2 py-1 text-sm" (click)="closeQuoteDetails()">{{ 'dashboard.quotes.modal.close' | transloco }}</button>
+                                            <h3 class="text-lg font-bold mb-2">{{ 'dashboard.quotes.modal.title' | transloco }} {{ q.quoteNumber }}</h3>
+                                            <p class="text-sm text-gray-600 mb-1"><strong>{{ 'dashboard.quotes.modal.status' | transloco }}:</strong> {{ 'dashboard.quotes.status.' + q.status | transloco }}</p>
+                                            <p class="text-sm text-gray-600 mb-1"><strong>{{ 'dashboard.quotes.modal.date' | transloco }}:</strong> {{ q.updatedAt | date:'dd/MM/yyyy' }}</p>
+                                            @if (q.mission.trade?.name) {
+                                                <p class="text-sm text-gray-600 mb-1"><strong>{{ 'dashboard.quotes.modal.trade' | transloco }}:</strong> {{ q.mission.trade?.name }}</p>
+                                            }
+                                            <p class="text-sm text-gray-600 mb-2"><strong>{{ 'dashboard.quotes.modal.lieu' | transloco }}:</strong> {{ q.mission.lieu }}</p>
+                                            @if (q.mission.client) {
+                                                <p class="text-sm text-gray-600 mb-2"><strong>{{ 'dashboard.quotes.modal.client' | transloco }}:</strong> {{ q.mission.client.firstName }} {{ q.mission.client.lastName }}</p>
+                                            }
+                                            <p class="mb-4">{{ q.mission.descriptif }}</p>
+
+                                            @if (q.status === 'REJECTED' && q.rejectionMessage) {
+                                                <p class="pro-quote-reject-note">{{ 'dashboard.quotes.clientMessage' | transloco }}: {{ q.rejectionMessage }}</p>
+                                            }
+
+                                            <div class="pro-quote-actions mt-4">
+                                                @if (q.status === 'REJECTED') {
+                                                    <button class="pro-btn pro-btn--primary" (click)="editQuote(q)">{{ 'dashboard.quotes.actions.modify' | transloco }}</button>
+                                                }
+                                                @if (q.status === 'SENT' || q.status === 'REJECTED') {
+                                                    <button class="pro-btn pro-btn--danger" (click)="closeQuoteDetails(); openCancelModal(q)">{{ 'dashboard.quotes.actions.cancel' | transloco }}</button>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                                @if (cancellingQuote(); as q) {
+                                    <div class="modal-overlay fixed inset-0 z-50 flex items-center justify-center">
+                                        <div class="modal-backdrop absolute inset-0 bg-black opacity-50" (click)="closeCancelModal()"></div>
+                                        <div class="modal-content relative bg-white rounded-lg p-6 max-w-lg w-[90%] z-10">
+                                            <button class="modal-close absolute top-3 right-3 px-2 py-1 text-sm" (click)="closeCancelModal()">{{ 'dashboard.quotes.modal.close' | transloco }}</button>
+                                            <h3 class="text-lg font-bold mb-2">{{ 'dashboard.quotes.cancel.title' | transloco }}</h3>
+                                            <p class="text-sm text-gray-600 mb-4">{{ 'dashboard.quotes.cancel.description' | transloco }}</p>
+                                            <div class="pro-quote-actions">
+                                                <button class="pro-btn" (click)="closeCancelModal()" [disabled]="cancelSubmitting()">{{ 'dashboard.quotes.cancel.back' | transloco }}</button>
+                                                <button class="pro-btn pro-btn--danger" (click)="confirmCancel()" [disabled]="cancelSubmitting()">
+                                                    @if (cancelSubmitting()) { <span class="spinner spinner--sm"></span> } @else { {{ 'dashboard.quotes.cancel.confirm' | transloco }} }
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                                @if (quoteModalOpen()) {
+                                    <div class="modal-overlay fixed inset-0 z-50 flex items-center justify-center">
+                                        <div class="modal-backdrop absolute inset-0 bg-black opacity-50" (click)="closeQuoteModal()"></div>
+                                        <div class="modal-content relative bg-white rounded-lg p-6 max-w-3xl w-[90%] z-10 max-h-[90vh] overflow-y-auto">
+                                            <button class="modal-close absolute top-3 right-3 px-2 py-1 text-sm" (click)="closeQuoteModal()">{{ 'dashboard.pro.viewModal.close' | transloco }}</button>
+                                            <ac-quote-form
+                                                [missionId]="currentQuoteRequest()?.id"
+                                                [quoteId]="currentQuoteRequest()?.quote?.id"
+                                                [clientUserId]="currentQuoteRequest()?.client?.id"
+                                                [professionalUserId]="data()?.id"
+                                                (saved)="onQuoteSaved($event)"
+                                                (cancelled)="closeQuoteModal()">
+                                            </ac-quote-form>
+                                        </div>
+                                    </div>
+                                }
+                            } @else {
+                                <p class="pro-empty">{{ 'dashboard.empty.quotes' | transloco }}</p>
+                            }
                         }
                         @case ('invoices') {
                             <p class="pro-empty">{{ 'dashboard.empty.invoices' | transloco }}</p>

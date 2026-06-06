@@ -13,13 +13,17 @@ import { QuoteCalculationService } from '../../services/quote-calculation.servic
 })
 export class QuotePreviewComponent {
   @Input() quoteData: any;
+  @Input() quoteId?: string;
+  @Input() showAccept = false;
   @Output() close = new EventEmitter<void>();
+  @Output() accepted = new EventEmitter<void>();
 
   private quoteService = inject(QuoteService);
   public calcService = inject(QuoteCalculationService);
   isGenerating = false;
   isGeneratingSignature = false;
   isInitiatingYousign = false;
+  isAccepting = false;
 
   get totalHT(): number {
     return this.calcService.getTotalHT(this.quoteData);
@@ -31,6 +35,22 @@ export class QuotePreviewComponent {
 
   closePreview(): void {
     this.close.emit();
+  }
+
+  async acceptQuote(): Promise<void> {
+    if (!this.quoteId) return;
+    this.isAccepting = true;
+    try {
+      await firstValueFrom(this.quoteService.acceptQuote(this.quoteId));
+      // Le devis est accepté : on bascule en mode signature électronique
+      await this.startYousignProcedure();
+      this.accepted.emit();
+    } catch (err) {
+      console.error('Erreur lors de l\'acceptation du devis', err);
+      alert('Une erreur est survenue lors de l\'acceptation du devis.');
+    } finally {
+      this.isAccepting = false;
+    }
   }
 
   async generatePdf(): Promise<void> {

@@ -398,7 +398,119 @@
                         }
                     }
                     @case ('quotes') {
-                        <p class="ind-empty">{{ 'dashboard.empty.quotes' | transloco }}</p>
+                        @if (quotesLoading()) {
+                            <div class="ind-loading"><span class="spinner"></span></div>
+                        } @else if (quotes().length) {
+                            <div class="ind-requests-list">
+                                @for (q of quotes(); track q.id) {
+                                    <div class="ind-request-card">
+                                        <div class="ind-request-head">
+                                            <div class="ind-request-meta">
+                                                <strong>{{ 'dashboard.quotes.number' | transloco }} {{ q.quoteNumber }}</strong>
+                                                <small class="ind-request-date">{{ q.updatedAt | date:'dd/MM/yyyy' }}</small>
+                                            </div>
+                                            <span class="ind-quote-status" [attr.data-status]="q.status">{{ 'dashboard.quotes.status.' + q.status | transloco }}</span>
+                                        </div>
+                                        <p class="ind-request-desc">{{ q.mission.descriptif }}</p>
+                                        @if (q.mission.trade?.name) {
+                                            <p class="ind-request-trade">{{ q.mission.trade?.name }}</p>
+                                        }
+                                        @if (q.mission.professionals?.length) {
+                                            <p class="ind-request-lieu">
+                                                {{ q.mission.professionals![0].companyName }}
+                                                ({{ q.mission.professionals![0].user.firstName }} {{ q.mission.professionals![0].user.lastName }})
+                                            </p>
+                                        }
+                                        @if (q.status === 'REJECTED' && q.rejectionMessage) {
+                                            <p class="ind-quote-reject-note">{{ 'dashboard.quotes.yourMessage' | transloco }}: {{ q.rejectionMessage }}</p>
+                                        }
+                                        <div class="ind-request-actions">
+                                            <button class="ind-btn" (click)="openQuoteModal(q)">{{ 'dashboard.quotes.actions.details' | transloco }}</button>
+                                            <button class="ind-btn ind-btn--primary" (click)="openQuotePreview(q)" [disabled]="previewLoading()">{{ 'dashboard.quotes.actions.preview' | transloco }}</button>
+                                            @if (q.status === 'SENT') {
+                                                <button class="ind-btn ind-btn--danger" (click)="openRejectModal(q)">{{ 'dashboard.quotes.actions.refuse' | transloco }}</button>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            @if (selectedQuote(); as q) {
+                                <div class="modal-overlay fixed inset-0 z-50 flex items-center justify-center">
+                                    <div class="modal-backdrop absolute inset-0 bg-black opacity-50" (click)="closeQuoteModal()"></div>
+                                    <div class="modal-content relative bg-white rounded-lg p-6 max-w-3xl w-[90%] z-10 max-h-[90vh] overflow-y-auto">
+                                        <button class="modal-close absolute top-3 right-3 px-2 py-1 text-sm" (click)="closeQuoteModal()">{{ 'dashboard.quotes.modal.close' | transloco }}</button>
+                                        <h3 class="text-lg font-bold mb-2">{{ 'dashboard.quotes.modal.title' | transloco }} {{ q.quoteNumber }}</h3>
+                                        <p class="text-sm text-gray-600 mb-1"><strong>{{ 'dashboard.quotes.modal.status' | transloco }}:</strong> {{ 'dashboard.quotes.status.' + q.status | transloco }}</p>
+                                        <p class="text-sm text-gray-600 mb-1"><strong>{{ 'dashboard.quotes.modal.date' | transloco }}:</strong> {{ q.updatedAt | date:'dd/MM/yyyy' }}</p>
+                                        @if (q.mission.trade?.name) {
+                                            <p class="text-sm text-gray-600 mb-1"><strong>{{ 'dashboard.quotes.modal.trade' | transloco }}:</strong> {{ q.mission.trade?.name }}</p>
+                                        }
+                                        <p class="text-sm text-gray-600 mb-2"><strong>{{ 'dashboard.quotes.modal.lieu' | transloco }}:</strong> {{ q.mission.lieu }}</p>
+                                        <p class="mb-4">{{ q.mission.descriptif }}</p>
+
+                                        @if (q.mission.professionals?.length) {
+                                            <h4 class="font-semibold mb-2">{{ 'dashboard.quotes.modal.professional' | transloco }}</h4>
+                                            <div class="ind-request-pros">
+                                                @for (p of q.mission.professionals; track p.id) {
+                                                    <div class="ind-request-pro">
+                                                        <strong>{{ p.user.firstName }} {{ p.user.lastName }}</strong>
+                                                        @if (p.companyName) {
+                                                            <small> - {{ p.companyName }}</small>
+                                                        }
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+
+                                        @if (q.status === 'REJECTED' && q.rejectionMessage) {
+                                            <p class="ind-quote-reject-note mt-4">{{ 'dashboard.quotes.yourMessage' | transloco }}: {{ q.rejectionMessage }}</p>
+                                        }
+
+                                        @if (q.status === 'SENT') {
+                                            <div class="ind-request-actions mt-4">
+                                                <button class="ind-btn ind-btn--danger" (click)="closeQuoteModal(); openRejectModal(q)">{{ 'dashboard.quotes.actions.refuse' | transloco }}</button>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+
+                            @if (rejectingQuote(); as q) {
+                                <div class="modal-overlay fixed inset-0 z-50 flex items-center justify-center">
+                                    <div class="modal-backdrop absolute inset-0 bg-black opacity-50" (click)="closeRejectModal()"></div>
+                                    <div class="modal-content relative bg-white rounded-lg p-6 max-w-lg w-[90%] z-10">
+                                        <button class="modal-close absolute top-3 right-3 px-2 py-1 text-sm" (click)="closeRejectModal()">{{ 'dashboard.quotes.modal.close' | transloco }}</button>
+                                        <h3 class="text-lg font-bold mb-2">{{ 'dashboard.quotes.reject.title' | transloco }}</h3>
+                                        <p class="text-sm text-gray-600 mb-3">{{ 'dashboard.quotes.reject.description' | transloco }}</p>
+                                        <label class="block text-sm font-medium mb-1">{{ 'dashboard.quotes.reject.messageLabel' | transloco }}</label>
+                                        <textarea
+                                            class="w-full border rounded p-2 text-sm mb-4"
+                                            rows="4"
+                                            [ngModel]="rejectMessage()"
+                                            (ngModelChange)="rejectMessage.set($event)"
+                                            [placeholder]="'dashboard.quotes.reject.messagePlaceholder' | transloco"></textarea>
+                                        <div class="ind-request-actions">
+                                            <button class="ind-btn" (click)="closeRejectModal()" [disabled]="rejectSubmitting()">{{ 'dashboard.quotes.reject.cancel' | transloco }}</button>
+                                            <button class="ind-btn ind-btn--danger" (click)="confirmReject()" [disabled]="rejectSubmitting()">
+                                                @if (rejectSubmitting()) { <span class="spinner spinner--sm"></span> } @else { {{ 'dashboard.quotes.reject.confirm' | transloco }} }
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (previewQuoteData(); as pq) {
+                                <ac-quote-preview
+                                    [quoteData]="pq"
+                                    [quoteId]="previewQuote()?.id"
+                                    [showAccept]="previewQuote()?.status === 'SENT'"
+                                    (accepted)="onQuoteAccepted()"
+                                    (close)="closeQuotePreview()"></ac-quote-preview>
+                            }
+                        } @else {
+                            <p class="ind-empty">{{ 'dashboard.empty.quotes' | transloco }}</p>
+                        }
                     }
                     @case ('invoices') {
                         <p class="ind-empty">{{ 'dashboard.empty.invoices' | transloco }}</p>

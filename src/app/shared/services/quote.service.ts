@@ -20,6 +20,29 @@ export interface SignatureUrlResponse {
   signatureUrl: string;
 }
 
+export type QuoteStatus = 'DRAFT' | 'SENT' | 'ACCEPTED' | 'REJECTED' | 'CANCELLED';
+
+export interface QuoteListItem {
+  id: string;
+  quoteNumber: string;
+  status: QuoteStatus;
+  rejectionMessage: string | null;
+  createdAt: string;
+  updatedAt: string;
+  mission: {
+    id: string;
+    descriptif: string;
+    lieu: string;
+    trade: { id: string; name: string } | null;
+    client?: { id: string; firstName: string; lastName: string };
+    professionals?: Array<{
+      id: string;
+      companyName: string;
+      user: { firstName: string; lastName: string };
+    }>;
+  };
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -52,5 +75,25 @@ export class QuoteService {
 
   getQuote(quoteId: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/quotes/${quoteId}`);
+  }
+
+  getQuotesForClient(): Observable<QuoteListItem[]> {
+    return this.http.get<QuoteListItem[]>(`${this.apiUrl}/quotes/client`);
+  }
+
+  getQuotesForProfessional(): Observable<QuoteListItem[]> {
+    return this.http.get<QuoteListItem[]>(`${this.apiUrl}/quotes/professional`);
+  }
+
+  acceptQuote(quoteId: string): Observable<any> {
+    return this.http.patch<any>(`${this.apiUrl}/quotes/${quoteId}/accept`, {});
+  }
+
+  rejectQuote(quoteId: string, message?: string): Observable<any> {
+    return this.http.patch<any>(`${this.apiUrl}/quotes/${quoteId}/reject`, { message });
+  }
+
+  cancelQuote(quoteId: string): Observable<any> {
+    return this.http.patch<any>(`${this.apiUrl}/quotes/${quoteId}/cancel`, {});
   }
 }

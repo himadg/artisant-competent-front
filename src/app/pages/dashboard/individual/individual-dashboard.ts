@@ -9,11 +9,13 @@ import { AuthService } from '../../../core/services/auth.service';
 import { UserApiService } from '../../../core/services/user-api.service';
 import { AffiliationApiService } from '../../../core/services/affiliation-api.service';
 import { MissionService } from '../../../core/services/mission.service';
+import { QuoteService, QuoteListItem } from '../../../shared/services/quote.service';
 import { IndividualDashboardData } from '../../../shared/interfaces/individual-dashboard';
 import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
 import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
+import { QuotePreviewComponent } from '../../../shared/components/quote-preview/quote-preview.component';
 import { RouterLink } from "@angular/router";
 
 export type IndividualSection = 'profile' | 'requests' | 'quotes' | 'invoices' | 'legal' | 'practices' | 'affiliation';
@@ -22,7 +24,7 @@ export type IndividualSection = 'profile' | 'requests' | 'quotes' | 'invoices' |
   selector: 'dashboard-individual',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FormsModule, TranslocoModule, LangToggle, ThemeToggle, LegalModal, RouterLink],
+  imports: [CommonModule, FormsModule, TranslocoModule, LangToggle, ThemeToggle, LegalModal, QuotePreviewComponent, RouterLink],
   templateUrl: './individual-dashboard.html',
   styleUrl: './individual-dashboard.scss',
 })
@@ -31,6 +33,7 @@ export class IndividualDashboard implements OnInit {
   private readonly userApi = inject(UserApiService);
   private readonly affiliationApi = inject(AffiliationApiService);
   private readonly missionApi = inject(MissionService);
+  private readonly quoteApi = inject(QuoteService);
   private readonly platformLocation = inject(PlatformLocation);
   readonly authService = inject(AuthService);
 
@@ -47,6 +50,16 @@ export class IndividualDashboard implements OnInit {
   readonly requests = signal<any[]>([]);
   readonly requestsLoading = signal(false);
   readonly selectedRequest = signal<any | null>(null);
+
+  readonly quotes = signal<QuoteListItem[]>([]);
+  readonly quotesLoading = signal(false);
+  readonly selectedQuote = signal<QuoteListItem | null>(null);
+  readonly previewQuote = signal<QuoteListItem | null>(null);
+  readonly previewQuoteData = signal<any | null>(null);
+  readonly previewLoading = signal(false);
+  readonly rejectingQuote = signal<QuoteListItem | null>(null);
+  readonly rejectMessage = signal('');
+  readonly rejectSubmitting = signal(false);
 
   readonly editMode = signal(false);
   readonly saving = signal(false);
@@ -93,6 +106,9 @@ export class IndividualDashboard implements OnInit {
     if (section === 'requests') {
       this.loadRequests();
     }
+    if (section === 'quotes') {
+      this.loadQuotes();
+    }
   }
 
   loadRequests() {
@@ -109,6 +125,69 @@ export class IndividualDashboard implements OnInit {
 
   closeRequestModal() {
     this.selectedRequest.set(null);
+  }
+
+  loadQuotes() {
+    this.quotesLoading.set(true);
+    this.quoteApi.getQuotesForClient().subscribe({
+      next: (q) => { this.quotes.set(q); this.quotesLoading.set(false); },
+      error: () => { this.quotes.set([]); this.quotesLoading.set(false); },
+    });
+  }
+
+  openQuoteModal(quote: QuoteListItem) {
+    this.selectedQuote.set(quote);
+  }
+
+  closeQuoteModal() {
+    this.selectedQuote.set(null);
+  }
+
+  openQuotePreview(quote: QuoteListItem) {
+    this.previewLoading.set(true);
+    this.previewQuote.set(quote);
+    this.quoteApi.getQuote(quote.id).subscribe({
+      next: (full) => {
+        this.previewQuoteData.set({ ...full.payload, quoteNumber: full.quoteNumber });
+        this.previewLoading.set(false);
+      },
+      error: () => this.previewLoading.set(false),
+    });
+  }
+
+  closeQuotePreview() {
+    this.previewQuoteData.set(null);
+    this.previewQuote.set(null);
+  }
+
+  onQuoteAccepted() {
+    this.closeQuotePreview();
+    this.loadQuotes();
+  }
+
+  openRejectModal(quote: QuoteListItem) {
+    this.rejectingQuote.set(quote);
+    this.rejectMessage.set('');
+  }
+
+  closeRejectModal() {
+    this.rejectingQuote.set(null);
+    this.rejectMessage.set('');
+  }
+
+  confirmReject() {
+    const quote = this.rejectingQuote();
+    if (!quote) return;
+    this.rejectSubmitting.set(true);
+    const message = this.rejectMessage().trim();
+    this.quoteApi.rejectQuote(quote.id, message || undefined).subscribe({
+      next: () => {
+        this.rejectSubmitting.set(false);
+        this.closeRejectModal();
+        this.loadQuotes();
+      },
+      error: () => this.rejectSubmitting.set(false),
+    });
   }
 
   loadAffiliationDashboard() {

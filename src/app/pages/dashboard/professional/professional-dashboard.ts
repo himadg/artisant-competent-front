@@ -18,6 +18,7 @@ import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
 import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
 import { QuoteFormComponent } from '../../../shared/components/quote-form/quote-form.component';
+import { QuoteService, QuoteListItem } from '../../../shared/services/quote.service';
 
 export type ProSection = 'requests' | 'quotes' | 'invoices' | 'profile' | 'legal' | 'practices' | 'affiliation';
 export type ProTab = 'presentation' | 'services' | 'missions' | 'reviews' | 'documents';
@@ -41,6 +42,7 @@ export class ProfessionalDashboard implements OnInit {
   private readonly platformLocation = inject(PlatformLocation);
   readonly authService = inject(AuthService);
   private readonly missionApi = inject(MissionService);
+  private readonly quoteApi = inject(QuoteService);
 
   readonly data = signal<ProfessionalDashboardData | null>(null);
   readonly loading = signal(true);
@@ -55,6 +57,12 @@ export class ProfessionalDashboard implements OnInit {
   readonly requests = signal<any[]>([]);
   readonly requestsLoading = signal(false);
   readonly selectedRequest = signal<any | null>(null);
+
+  readonly quotes = signal<QuoteListItem[]>([]);
+  readonly quotesLoading = signal(false);
+  readonly selectedQuote = signal<QuoteListItem | null>(null);
+  readonly cancellingQuote = signal<QuoteListItem | null>(null);
+  readonly cancelSubmitting = signal(false);
 
   readonly inscriptionDate = computed(() => {
     const data = this.data();
@@ -110,6 +118,9 @@ export class ProfessionalDashboard implements OnInit {
     if (section === 'requests') {
       this.loadRequests();
     }
+    if (section === 'quotes') {
+      this.loadQuotes();
+    }
   }
 
   loadRequests() {
@@ -158,8 +169,61 @@ export class ProfessionalDashboard implements OnInit {
   onQuoteSaved(_savedQuote: any) {
     // Refresh requests so the freshly created/updated quote relation is reflected.
     this.loadRequests();
+    if (this.activeSection() === 'quotes') {
+      this.loadQuotes();
+    }
     this.quoteModalOpen.set(false);
     this.currentQuoteRequest.set(null);
+  }
+
+  // ── Quotes list ───────────────────────────────────────────────────────────
+  loadQuotes() {
+    this.quotesLoading.set(true);
+    this.quoteApi.getQuotesForProfessional().subscribe({
+      next: (q) => { this.quotes.set(q); this.quotesLoading.set(false); },
+      error: () => { this.quotes.set([]); this.quotesLoading.set(false); },
+    });
+  }
+
+  openQuoteDetails(quote: QuoteListItem) {
+    this.selectedQuote.set(quote);
+  }
+
+  closeQuoteDetails() {
+    this.selectedQuote.set(null);
+  }
+
+  /** Re-open the quote form to modify an existing (rejected) quote. */
+  editQuote(quote: QuoteListItem) {
+    this.selectedQuote.set(null);
+    this.currentQuoteRequest.set({
+      id: quote.mission.id,
+      quote: { id: quote.id },
+      client: quote.mission.client ? { id: quote.mission.client.id } : undefined,
+    });
+    this.quoteModalOpen.set(true);
+  }
+
+  openCancelModal(quote: QuoteListItem) {
+    this.cancellingQuote.set(quote);
+  }
+
+  closeCancelModal() {
+    this.cancellingQuote.set(null);
+  }
+
+  confirmCancel() {
+    const quote = this.cancellingQuote();
+    if (!quote) return;
+    this.cancelSubmitting.set(true);
+    this.quoteApi.cancelQuote(quote.id).subscribe({
+      next: () => {
+        this.cancelSubmitting.set(false);
+        this.closeCancelModal();
+        this.loadQuotes();
+      },
+      error: () => this.cancelSubmitting.set(false),
+    });
   }
 
   generateAffiliateCode() {
