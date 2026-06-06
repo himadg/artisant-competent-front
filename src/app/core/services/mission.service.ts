@@ -26,4 +26,8 @@ export class MissionService {
   getForProfessional(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/missions/professional`);
   }
+
+  getForClient(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/missions/client`);
+  }
 }

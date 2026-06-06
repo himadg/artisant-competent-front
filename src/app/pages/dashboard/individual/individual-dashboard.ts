@@ -8,6 +8,7 @@ import { DashboardApiService } from '../../../core/services/dashboard-api.servic
 import { AuthService } from '../../../core/services/auth.service';
 import { UserApiService } from '../../../core/services/user-api.service';
 import { AffiliationApiService } from '../../../core/services/affiliation-api.service';
+import { MissionService } from '../../../core/services/mission.service';
 import { IndividualDashboardData } from '../../../shared/interfaces/individual-dashboard';
 import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
@@ -29,6 +30,7 @@ export class IndividualDashboard implements OnInit {
   private readonly dashboardApi = inject(DashboardApiService);
   private readonly userApi = inject(UserApiService);
   private readonly affiliationApi = inject(AffiliationApiService);
+  private readonly missionApi = inject(MissionService);
   private readonly platformLocation = inject(PlatformLocation);
   readonly authService = inject(AuthService);
 
@@ -41,6 +43,10 @@ export class IndividualDashboard implements OnInit {
   readonly affiliationData = signal<AffiliationDashboard | null>(null);
   readonly affiliationLoading = signal(false);
   readonly codeCopied = signal(false);
+
+  readonly requests = signal<any[]>([]);
+  readonly requestsLoading = signal(false);
+  readonly selectedRequest = signal<any | null>(null);
 
   readonly editMode = signal(false);
   readonly saving = signal(false);
@@ -84,6 +90,25 @@ export class IndividualDashboard implements OnInit {
     if (section === 'affiliation' && !this.affiliationData()) {
       this.loadAffiliationDashboard();
     }
+    if (section === 'requests') {
+      this.loadRequests();
+    }
+  }
+
+  loadRequests() {
+    this.requestsLoading.set(true);
+    this.missionApi.getForClient().subscribe({
+      next: (r) => { this.requests.set(r); this.requestsLoading.set(false); },
+      error: () => { this.requests.set([]); this.requestsLoading.set(false); },
+    });
+  }
+
+  openRequestModal(request: any) {
+    this.selectedRequest.set(request);
+  }
+
+  closeRequestModal() {
+    this.selectedRequest.set(null);
   }
 
   loadAffiliationDashboard() {

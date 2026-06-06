@@ -1074,6 +1074,24 @@
       "missions": "Aucune mission pour le moment",
       "reviews": "Aucun avis pour le moment"
     },
+    "requests": {
+      "status": {
+        "pending": "En attente"
+      },
+      "actions": {
+        "details": "Détails"
+      },
+      "modal": {
+        "title": "Détail de la demande",
+        "close": "Fermer",
+        "date": "Date",
+        "trade": "Métier",
+        "lieu": "Lieu",
+        "professionals": "Professionnels contactés",
+        "noProfessionals": "Aucun professionnel n'a encore répondu",
+        "attachments": "Photos jointes"
+      }
+    },
     "affiliation": {
       "title": "Mon programme d'affiliation",
       "noCode": "Vous n'avez pas encore de code de parrainage.",

@@ -1034,6 +1034,24 @@
       "missions": "No missions yet",
       "reviews": "No reviews yet"
     },
+    "requests": {
+      "status": {
+        "pending": "Pending"
+      },
+      "actions": {
+        "details": "Details"
+      },
+      "modal": {
+        "title": "Request details",
+        "close": "Close",
+        "date": "Date",
+        "trade": "Trade",
+        "lieu": "Location",
+        "professionals": "Contacted professionals",
+        "noProfessionals": "No professional has responded yet",
+        "attachments": "Attached photos"
+      }
+    },
     "affiliation": {
       "title": "My referral program",
       "noCode": "You don't have a referral code yet.",

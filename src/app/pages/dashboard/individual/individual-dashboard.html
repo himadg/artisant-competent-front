@@ -4,7 +4,8 @@
     </div>
 } @else if (error()) {
     <p class="ind-error">{{ error()! | transloco }}</p>
-} @else if (data(); as user) {
+} @else if (data();) {
+
     <div class="h-dvh ind-layout">
         <!-- ═══════════════ TOPBAR ═══════════════ -->
         <div class="ind-topbar">
@@ -22,8 +23,8 @@
                     </svg>
                 </button>
                 <div class="topbar-user">
-                    @if (user.individualProfile.photoUrl) {
-                        <img [src]="user.individualProfile.photoUrl" [alt]="user.firstName" class="topbar-avatar" />
+                    @if (data()?.individualProfile?.photoUrl) {
+                        <img [src]="data()?.individualProfile?.photoUrl" [alt]="data()?.firstName" class="topbar-avatar" />
                     } @else {
                         <div class="topbar-avatar topbar-avatar--placeholder">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -32,7 +33,7 @@
                             </svg>
                         </div>
                     }
-                    <span class="topbar-username">{{ user.firstName }} {{ user.lastName }}</span>
+                    <span class="topbar-username">{{ data()?.firstName }} {{ data()?.lastName }}</span>
                 </div>
             </div>
         </div>
@@ -134,8 +135,8 @@
             <div class="mb-4 rounded-lg border border-solid ind-header">
                 <div class="ind-user">
                     <div class="ind-photo-wrap">
-                        @if (user.individualProfile.photoUrl) {
-                            <img [src]="user.individualProfile.photoUrl" [alt]="user.firstName" class="ind-photo" />
+                        @if (data()?.individualProfile?.photoUrl) {
+                            <img [src]="data()?.individualProfile?.photoUrl" [alt]="data()?.firstName" class="ind-photo" />
                         } @else {
                             <div class="ind-photo ind-photo--placeholder">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -146,7 +147,7 @@
                         }
                     </div>
                     <div class="ind-user-info">
-                        <h2 class="ind-name">{{ user.firstName }} {{ user.lastName }}</h2>
+                        <h2 class="ind-name">{{ data()?.firstName }} {{ data()?.lastName }}</h2>
                         <p class="ind-address">
                             <svg
                                 viewBox="0 0 24 24"
@@ -248,7 +249,7 @@
                                                 />
                                             </dd>
                                         } @else {
-                                            <dd>{{ user.firstName }}</dd>
+                                            <dd>{{ data()?.firstName }}</dd>
                                         }
                                     </div>
                                     <div class="ind-info-row">
@@ -262,7 +263,7 @@
                                                 />
                                             </dd>
                                         } @else {
-                                            <dd>{{ user.lastName }}</dd>
+                                            <dd>{{ data()?.lastName }}</dd>
                                         }
                                     </div>
                                     <div class="ind-info-row">
@@ -276,7 +277,7 @@
                                                 />
                                             </dd>
                                         } @else {
-                                            <dd>{{ user.email }}</dd>
+                                            <dd>{{ data()?.email }}</dd>
                                         }
                                     </div>
                                     <div class="ind-info-row">
@@ -307,7 +308,7 @@
                                                 </select>
                                             </dd>
                                         } @else {
-                                            <dd>{{ `register.gender.${user.gender}` | transloco }}</dd>
+                                            <dd>{{ 'register.gender.`${data()?.gender}`' | transloco }}</dd>
                                         }
                                     </div>
                                 </dl>
@@ -315,7 +316,86 @@
                         </div>
                     }
                     @case ('requests') {
-                        <p class="ind-empty">{{ 'dashboard.empty.requests' | transloco }}</p>
+                        @if (requestsLoading()) {
+                            <div class="ind-loading"><span class="spinner"></span></div>
+                        } @else if (requests().length) {
+                            <div class="ind-requests-list">
+                                @for (r of requests(); track r.id) {
+                                    <div class="ind-request-card">
+                                        <div class="ind-request-head">
+                                            @if (data()?.individualProfile?.photoUrl) {
+                                                <img [src]="data()?.individualProfile?.photoUrl" [alt]="data()?.firstName" class="ind-request-avatar" />
+                                            } @else {
+                                                <div class="ind-request-avatar ind-request-avatar--placeholder">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                                        <circle cx="12" cy="8" r="4" />
+                                                        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                                                    </svg>
+                                                </div>
+                                            }
+                                            <div class="ind-request-meta">
+                                                <strong>{{ data()?.firstName }} {{ data()?.lastName }}</strong>
+                                                <small class="ind-request-date">{{ r.createdAt | date:'dd/MM/yyyy' }}</small>
+                                            </div>
+                                            <span class="ind-request-status">{{ 'dashboard.requests.status.pending' | transloco }}</span>
+                                        </div>
+                                        <p class="ind-request-desc">{{ r.descriptif }}</p>
+                                        @if (r.trade?.name) {
+                                            <p class="ind-request-trade">{{ r.trade.name }}</p>
+                                        }
+                                        <p class="ind-request-lieu">{{ r.lieu }}</p>
+                                        <div class="ind-request-actions">
+                                            <button class="ind-btn" (click)="openRequestModal(r)">{{ 'dashboard.requests.actions.details' | transloco }}</button>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            @if (selectedRequest(); as req) {
+                                <div class="modal-overlay fixed inset-0 z-50 flex items-center justify-center">
+                                    <div class="modal-backdrop absolute inset-0 bg-black opacity-50" (click)="closeRequestModal()"></div>
+                                    <div class="modal-content relative bg-white rounded-lg p-6 max-w-3xl w-[90%] z-10 max-h-[90vh] overflow-y-auto">
+                                        <button class="modal-close absolute top-3 right-3 px-2 py-1 text-sm" (click)="closeRequestModal()">{{ 'dashboard.requests.modal.close' | transloco }}</button>
+                                        <h3 class="text-lg font-bold mb-2">{{ 'dashboard.requests.modal.title' | transloco }}</h3>
+                                        <p class="text-sm text-gray-600 mb-1"><strong>{{ 'dashboard.requests.modal.date' | transloco }}:</strong> {{ req.createdAt | date:'dd/MM/yyyy' }}</p>
+                                        @if (req.trade?.name) {
+                                            <p class="text-sm text-gray-600 mb-1"><strong>{{ 'dashboard.requests.modal.trade' | transloco }}:</strong> {{ req.trade.name }}</p>
+                                        }
+                                        <p class="text-sm text-gray-600 mb-2"><strong>{{ 'dashboard.requests.modal.lieu' | transloco }}:</strong> {{ req.lieu }}</p>
+                                        <p class="mb-4">{{ req.descriptif }}</p>
+
+                                        @if (req.professionals?.length) {
+                                            <h4 class="font-semibold mb-2">{{ 'dashboard.requests.modal.professionals' | transloco }}</h4>
+                                            <div class="ind-request-pros">
+                                                @for (p of req.professionals; track p.id) {
+                                                    <div class="ind-request-pro">
+                                                        <strong>{{ p.user?.firstName }} {{ p.user?.lastName }}</strong>
+                                                        @if (p.companyName) {
+                                                            <small> - {{ p.companyName }}</small>
+                                                        }
+                                                    </div>
+                                                }
+                                            </div>
+                                        } @else {
+                                            <p class="ind-empty">{{ 'dashboard.requests.modal.noProfessionals' | transloco }}</p>
+                                        }
+
+                                        @if (req.medias?.length) {
+                                            <h4 class="font-semibold mb-2 mt-4">{{ 'dashboard.requests.modal.attachments' | transloco }}</h4>
+                                            <div class="grid grid-cols-3 gap-2">
+                                                @for (m of req.medias; track m.id) {
+                                                    <a [href]="m.url" target="_blank" rel="noopener" class="block">
+                                                        <img [src]="m.url" class="w-full h-28 object-cover rounded" [alt]="'Attachment ' + m.id" />
+                                                    </a>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        } @else {
+                            <p class="ind-empty">{{ 'dashboard.empty.requests' | transloco }}</p>
+                        }
                     }
                     @case ('quotes') {
                         <p class="ind-empty">{{ 'dashboard.empty.quotes' | transloco }}</p>
@@ -336,8 +416,8 @@
                                 <div class="aff-loading">
                                     <span class="spinner"></span>
                                 </div>
-                            } @else if (affiliationData(); as aff) {
-                                @if (!aff.affiliateCode) {
+                            } @else if (affiliationData();) {
+                                @if (!affiliationData()?.affiliateCode) {
                                     <div class="aff-empty-state">
                                         <div class="aff-empty-icon">
                                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -361,8 +441,8 @@
                                     <div class="aff-code-card">
                                         <span class="aff-code-label">{{ 'dashboard.affiliation.myCode' | transloco }}</span>
                                         <div class="aff-code-display">
-                                            <span class="aff-code-value">{{ aff.affiliateCode }}</span>
-                                            <button class="aff-copy-btn" [class.aff-copy-btn--copied]="codeCopied()" (click)="copyAffiliateCode(aff.affiliateCode!)">
+                                            <span class="aff-code-value">{{ !affiliationData()?.affiliateCode }}</span>
+                                            <button class="aff-copy-btn" [class.aff-copy-btn--copied]="codeCopied()" (click)="copyAffiliateCode(affiliationData()?.affiliateCode!)">
                                                 @if (codeCopied()) {
                                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                                                 } @else {
@@ -376,36 +456,36 @@
                                                 <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
                                                 <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
                                             </svg>
-                                            <span class="aff-share-url">{{ affiliateShareUrl(aff.affiliateCode!) }}</span>
+                                            <span class="aff-share-url">{{ affiliateShareUrl(affiliationData()?.affiliateCode!) }}</span>
                                         </div>
                                     </div>
 
                                     <div class="aff-stats-grid">
                                         <div class="aff-stat-card">
-                                            <span class="aff-stat-value">{{ aff.totalReferrals }}</span>
+                                            <span class="aff-stat-value">{{ !affiliationData()?.totalReferrals }}</span>
                                             <span class="aff-stat-label">{{ 'dashboard.affiliation.stats.totalReferrals' | transloco }}</span>
                                         </div>
                                         <div class="aff-stat-card aff-stat-card--accent">
-                                            <span class="aff-stat-value">{{ aff.activeReferrals }}</span>
+                                            <span class="aff-stat-value">{{ !affiliationData()?.activeReferrals }}</span>
                                             <span class="aff-stat-label">{{ 'dashboard.affiliation.stats.activeReferrals' | transloco }}</span>
                                         </div>
                                         <div class="aff-stat-card">
-                                            <span class="aff-stat-value">{{ aff.totalEarned | number:'1.2-2' }} €</span>
+                                            <span class="aff-stat-value">{{ affiliationData()?.totalEarned | number:'1.2-2' }} €</span>
                                             <span class="aff-stat-label">{{ 'dashboard.affiliation.stats.totalEarned' | transloco }}</span>
                                         </div>
                                         <div class="aff-stat-card aff-stat-card--accent">
-                                            <span class="aff-stat-value">{{ aff.pendingEarnings | number:'1.2-2' }} €</span>
+                                            <span class="aff-stat-value">{{ affiliationData()?.pendingEarnings | number:'1.2-2' }} €</span>
                                             <span class="aff-stat-label">{{ 'dashboard.affiliation.stats.pendingEarnings' | transloco }}</span>
                                         </div>
                                     </div>
 
                                     <div class="aff-block">
                                         <h4 class="aff-sub-title">{{ 'dashboard.affiliation.referrals.title' | transloco }}</h4>
-                                        @if (aff.referrals.length === 0) {
+                                        @if (affiliationData()?.referrals?.length === 0) {
                                             <p class="ind-empty">{{ 'dashboard.affiliation.referrals.empty' | transloco }}</p>
                                         } @else {
                                             <div class="aff-referrals-list">
-                                                @for (r of aff.referrals; track r.id) {
+                                                @for (r of affiliationData()?.referrals; track r.id) {
                                                     <div class="aff-referral-item">
                                                         <div class="aff-referral-avatar">{{ r.affiliateFirstName[0] }}{{ r.affiliateLastName[0] }}</div>
                                                         <div class="aff-referral-info">
