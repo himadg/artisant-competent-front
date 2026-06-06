@@ -136,43 +136,12 @@ export class ProfessionalDashboard implements OnInit {
     this.selectedRequest.set(null);
   }
 
-  // ── Quotes modal (frontend-only UI / local persistence until backend exists) ──
+  // ── Quotes modal ──────────────────────────────────────────────────────────
   readonly quoteModalOpen = signal(false);
   readonly currentQuoteRequest = signal<any | null>(null);
-  readonly quoteItems = signal<{ description: string; price: number }[]>([]);
-  quoteTitle = '';
-  quoteMessage = '';
-  quoteAmount = 0;
-  readonly quoteSaving = signal(false);
-  readonly quoteStartedIds = signal<string[]>([]);
 
   openQuoteModal(request: any) {
     this.currentQuoteRequest.set(request);
-    // load started ids from localStorage
-    try {
-      const stored = localStorage.getItem('startedQuoteIds');
-      if (stored) this.quoteStartedIds.set(JSON.parse(stored));
-    } catch {}
-
-    // load existing draft for this request if present
-    try {
-      const draft = localStorage.getItem(`quote_${request.id}`);
-      if (draft) {
-        const q = JSON.parse(draft);
-        this.quoteTitle = q.title || '';
-        this.quoteItems.set(q.items || []);
-        this.quoteMessage = q.message || '';
-      } else {
-        this.quoteTitle = '';
-        this.quoteItems.set([{ description: '', price: 0 }]);
-        this.quoteMessage = '';
-      }
-    } catch (e) {
-      this.quoteTitle = '';
-      this.quoteItems.set([{ description: '', price: 0 }]);
-      this.quoteMessage = '';
-    }
-
     this.quoteModalOpen.set(true);
   }
 
@@ -181,59 +150,14 @@ export class ProfessionalDashboard implements OnInit {
     this.currentQuoteRequest.set(null);
   }
 
-  addQuoteItem() {
-    this.quoteItems.update((items) => [...items, { description: '', price: 0 }]);
+  /** A quote was started for this request if the backend returned a quote relation. */
+  hasStartedQuote(requestId: string): boolean {
+    return this.requests().some((r) => r.id === requestId && !!r.quote?.id);
   }
 
-  removeQuoteItem(index: number) {
-    this.quoteItems.update((items) => items.filter((_, i) => i !== index));
-  }
-
-  quoteTotal(): number {
-    return this.quoteItems().reduce((s, it) => s + (Number(it.price) || 0), 0);
-  }
-
-  hasStartedQuote(requestId: string) {
-    return this.quoteStartedIds().includes(requestId) || !!localStorage.getItem(`quote_${requestId}`);
-  }
-
-  // Save (draft) locally and mark as started. Replace with API calls when backend endpoints are available.
-  sendQuote() {
-    const req = this.currentQuoteRequest();
-    if (!req) return;
-    const payload = {
-      title: this.quoteTitle,
-      items: this.quoteItems(),
-      message: this.quoteMessage,
-      total: this.quoteAmount || this.quoteTotal(),
-      createdAt: new Date().toISOString(),
-    };
-
-    try {
-      localStorage.setItem(`quote_${req.id}`, JSON.stringify(payload));
-      const ids = Array.from(new Set([...this.quoteStartedIds(), req.id]));
-      this.quoteStartedIds.set(ids);
-      localStorage.setItem('startedQuoteIds', JSON.stringify(ids));
-    } catch (e) {
-      // ignore storage errors
-    }
-
-    // TODO: call backend API to persist and send the quote to the client when API is available.
-    this.quoteModalOpen.set(false);
-    this.currentQuoteRequest.set(null);
-  }
-
-  onQuoteSaved(savedQuote: any) {
-    // Mark the current request as having a started quote and close modal
-    const req = this.currentQuoteRequest();
-    if (req) {
-      const ids = Array.from(new Set([...this.quoteStartedIds(), req.id]));
-      this.quoteStartedIds.set(ids);
-      try {
-        localStorage.setItem('startedQuoteIds', JSON.stringify(ids));
-      } catch {}
-    }
-    // Optionally we could refresh requests from server here, but keep UX responsive
+  onQuoteSaved(_savedQuote: any) {
+    // Refresh requests so the freshly created/updated quote relation is reflected.
+    this.loadRequests();
     this.quoteModalOpen.set(false);
     this.currentQuoteRequest.set(null);
   }

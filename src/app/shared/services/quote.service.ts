@@ -49,4 +49,8 @@ export class QuoteService {
   updateQuote(quoteId: string, quoteData: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/quotes/${quoteId}`, quoteData);
   }
+
+  getQuote(quoteId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/quotes/${quoteId}`);
+  }
 }

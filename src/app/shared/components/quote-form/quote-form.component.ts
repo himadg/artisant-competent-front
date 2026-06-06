@@ -8,6 +8,7 @@ import { QuoteCalculationService } from '../../services/quote-calculation.servic
 import { QuoteService } from '../../services/quote.service';
 import { UserApiService } from '../../../core/services/user-api.service';
 import { AuthService } from '../../../core/services/auth.service';
+import { QuotePayload } from '../../interfaces/quote';
 
 // Validators
 export function minDateTodayValidator(): ValidatorFn {
@@ -276,7 +277,87 @@ export class QuoteFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.preloadCoordinates();
+    if (this.quoteId) {
+      // En édition : on charge le devis existant et on ne pré-remplit pas
+      // les coordonnées depuis les profils (cela écraserait les données du devis).
+      this.loadQuote();
+    } else {
+      this.preloadCoordinates();
+    }
+  }
+
+  private loadQuote(): void {
+    if (!this.quoteId) return;
+    this.quoteService.getQuote(this.quoteId).subscribe({
+      next: (quote: { quoteNumber?: string; payload: QuotePayload }) => {
+        const payload = quote.payload;
+        if (!payload) return;
+
+        // Reconstruire les FormArray dynamiques avant le patchValue,
+        // car patchValue ne crée pas les contrôles manquants.
+        this.rebuildMaterials(payload.materials ?? []);
+        this.rebuildServices(payload.services ?? []);
+        this.rebuildSuppliers(payload.logistics?.suppliers ?? []);
+
+        // Les certifications "autres" sont des fichiers : on recrée les contrôles
+        // vides correspondants pour refléter le nombre de documents joints.
+        this.rebuildOtherCertifications(payload.legal?.otherCertifications ?? []);
+
+        // Le statut de l'artisan pilote les validateurs conditionnels :
+        // on le pousse en premier pour que les validators soient corrects.
+        const status = payload.coordinates?.artisan?.status;
+        if (status) {
+          this.artisanControls['status'].patchValue(status, { emitEvent: true });
+        }
+
+        this.quoteForm.patchValue({
+          ...payload,
+          quoteNumber: quote.quoteNumber ?? this.f.quoteNumber.value,
+        });
+      },
+      error: (err) => console.error('Erreur lors du chargement du devis', err),
+    });
+  }
+
+  private rebuildMaterials(materials: QuotePayload['materials']): void {
+    this.materials.clear();
+    materials.forEach((m) => {
+      this.materials.push(this.fb.nonNullable.group({
+        description: [m.description ?? '', [Validators.required, Validators.maxLength(255)]],
+        amountHT: [m.amountHT ?? 0, [Validators.required, Validators.min(0)]],
+        tva: [m.tva ?? 20, [Validators.required, Validators.min(0)]],
+        providedByClient: [m.providedByClient ?? false],
+        isReconditioned: [m.isReconditioned ?? false],
+        paidByArtisan: [m.paidByArtisan ?? true],
+      }));
+    });
+  }
+
+  private rebuildServices(services: QuotePayload['services']): void {
+    this.services.clear();
+    services.forEach((s) => {
+      this.services.push(this.fb.nonNullable.group({
+        description: [s.description ?? '', [Validators.required, Validators.maxLength(255)]],
+        type: [s.type ?? 'Principale', Validators.required],
+        amountHT: [s.amountHT ?? 0, [Validators.required, Validators.min(0)]],
+        tva: [s.tva ?? 20, [Validators.required, Validators.min(0)]],
+      }));
+    });
+  }
+
+  private rebuildSuppliers(suppliers: string[]): void {
+    this.suppliers.clear();
+    const list = suppliers.length ? suppliers : [''];
+    list.forEach((name) => {
+      this.suppliers.push(this.fb.nonNullable.control(name ?? '', Validators.required));
+    });
+  }
+
+  private rebuildOtherCertifications(certifications: (File | null)[]): void {
+    this.otherCertifications.clear();
+    certifications.forEach(() => {
+      this.otherCertifications.push(this.fb.control(null as File | null, Validators.required));
+    });
   }
 
   private preloadCoordinates(): void {
@@ -445,8 +526,12 @@ export class QuoteFormComponent implements OnInit {
       alert("Le document CERFA doit être signé pour la gestion des déchets.");
       return;
     }
-    const payload: any = this.quoteForm.getRawValue();
-    if (this.missionId) payload.missionId = this.missionId;
+
+    const formValue = this.quoteForm.getRawValue();
+    const payload: QuotePayload = {
+      ...formValue,
+      missionId: this.missionId || '',
+    };
 
     // Build FormData to allow file uploads
     const formData = new FormData();

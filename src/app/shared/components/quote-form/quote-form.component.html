@@ -317,7 +317,7 @@
     <legend>Mentions Légales</legend>
 
     <label for="rcProDocument">Assurance RC PRO (obligatoire)</label>
-    <input id="rcProDocument" type="file" (change)="onFileChange($event, 'rcProDocument')" accept=".pdf,.jpg,.jpeg,.png" [class.is-invalid]="legalControls.rcProDocument.invalid">
+    <input id="rcProDocument" type="file" (change)="onFileChange($event, 'rcProDocument')" accept=".pdf" [class.is-invalid]="legalControls.rcProDocument.invalid">
     @if (legalControls.rcProDocument.invalid) {
       <div class="error-feedback">
         @if (legalControls.rcProDocument.errors?.['required']) { <span>Le document RC PRO est obligatoire.</span> }
@@ -332,7 +332,7 @@
       @if(legalControls.addDecennale.value) {
         <div class="sub-input mt-2">
           <label for="decennaleDocument">Fichier Assurance Décennale</label>
-          <input id="decennaleDocument" type="file" (change)="onFileChange($event, 'decennaleDocument')" accept=".pdf,.jpg,.jpeg,.png" [class.is-invalid]="legalControls.decennaleDocument.invalid">
+          <input id="decennaleDocument" type="file" (change)="onFileChange($event, 'decennaleDocument')" accept=".pdf" [class.is-invalid]="legalControls.decennaleDocument.invalid">
           @if (legalControls.decennaleDocument.invalid) {
             <div class="error-feedback">
               @if (legalControls.decennaleDocument.errors?.['required']) { <span>Le document est requis.</span> }
@@ -352,7 +352,7 @@
           @for(cert of otherCertifications.controls; track $index) {
             <div class="certification-item">
               <div class="file-input-wrapper">
-                <input type="file" (change)="onFileChange($event, 'otherCertifications', $index)" [class.is-invalid]="cert.invalid">
+                <input type="file" accept=".pdf" (change)="onFileChange($event, 'otherCertifications', $index)" [class.is-invalid]="cert.invalid">
                 @if (cert.invalid) {
                   <div class="error-feedback">Un fichier est requis.</div>
                 }
