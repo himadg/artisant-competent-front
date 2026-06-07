@@ -1,8 +1,6 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, ChangeDetectionStrategy } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
 import { RouterModule } from '@angular/router';
-import { NgIconComponent, provideIcons } from '@ng-icons/core';
-import { lucideYoutube, lucideLinkedin } from '@ng-icons/lucide';
 import { Accordion } from '../../../shared/components/accordion';
 import { ContactFormComponent } from '../../../shared/components/contact-form';
 import { ContactFormService } from '../../services/contact-form.service';
@@ -11,10 +9,10 @@ import { ContactFormService } from '../../services/contact-form.service';
   selector: 'ac-footer',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TranslocoModule, RouterModule, NgIconComponent, Accordion, ContactFormComponent],
+  imports: [TranslocoModule, RouterModule, Accordion, ContactFormComponent],
   templateUrl: './footer.html',
   styleUrl: './footer.scss',
-  viewProviders: [provideIcons({ lucideYoutube, lucideLinkedin })],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class Footer {
   /**

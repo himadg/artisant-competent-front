@@ -7,6 +7,7 @@ export interface DocumentKeys {
   idFrontKey: string;
   idBackKey: string;
   insuranceDocKey: string;
+  decennialInsuranceDocKey: string;
   diplomaDocKey: string;
   companyLogoKey: string;
   ribKey: string;
