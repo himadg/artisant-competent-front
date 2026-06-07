@@ -12,7 +12,7 @@
     </button>
 
     <!-- Overlay backdrop -->
-    <div 
+    <div
         class="fixed inset-0 z-40 transition-opacity duration-700 ease-in-out bg-black/50"
         [class.opacity-0]="!mobileNavOpen"
         [class.opacity-100]="mobileNavOpen"
@@ -21,7 +21,7 @@
     ></div>
 
     <div
-        class="fixed top-0 right-0 h-screen w-8/12 max-w-[320px] p-4 flex flex-col gap-2 bg-grad-brown border-l border-[var(--secondary-beige)] transition-transform duration-700 ease-in-out z-50"
+        class="fixed top-0 right-0 h-screen w-8/12 max-w-[320px] p-4 flex flex-col gap-2 bg-grad-brown border-l border-[var(--secondary-beige)] transition-transform duration-700 ease-in-out z-50 pt-[calc(1rem_+_var(--top-banners-h))] lg:pt-[calc(var(--top-banners-h))]"
         [class.translate-x-full]="!mobileNavOpen"
         [class.translate-x-0]="mobileNavOpen"
     >

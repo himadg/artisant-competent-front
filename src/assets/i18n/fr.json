@@ -656,7 +656,8 @@
     "addPhoto": "Ajouter photo",
     "addIdFront": "Ajouter carte d'identité recto",
     "addIdBack": "Ajouter carte d'identité verso",
-    "addInsuranceDoc": "Ajouter document d'assurance",
+    "addInsuranceDoc": "RC Pro",
+    "addDecennialInsuranceDoc": "Assurance décennale",
     "addDiplomaDoc": "Ajouter diplôme ou justificatif",
     "addLogo": "Ajouter un logo",
     "addRib": "Ajouter un RIB",
@@ -682,6 +683,9 @@
       "yearsMin": "Doit être supérieur ou égal à 0",
       "openingAtLeastOne": "Veuillez renseigner au moins un jour avec des horaires d'ouverture et de fermeture",
       "step1Errors": "Vous avez également des erreurs dans la page 1.",
+      "emailInvalid": "L'adresse email professionnelle n'est pas valide.",
+      "decennialInsuranceIncomplete": "Si vous renseignez l'assurance décennale, tous les champs (document, nom, numéro, date d'expiration) sont obligatoires.",
+      "trustedContactIncomplete": "Veuillez renseigner à la fois le nom et le téléphone de la personne de confiance.",
       "apiError": "Une erreur est survenue lors de l'inscription. Veuillez réessayer ultérieurement.",
       "addressError": "Impossible de valider votre adresse. Veuillez vérifier votre saisie.",
       "formSummary": {
@@ -715,9 +719,13 @@
         "zip": "Code postal",
         "city": "Ville"
       },
-      "insuranceName": "Nom de l'assurance",
-      "insuranceNumber": "Numéro d'assurance",
-      "insuranceExpiry": "Date d'expiration",
+      "insuranceSection": "Assurance RC Pro",
+      "insuranceName": "Nom RC Pro",
+      "insuranceNumber": "Numéro RC Pro",
+      "insuranceExpiry": "Expiration RC Pro",
+      "decennialInsuranceName": "Nom décennale",
+      "decennialInsuranceNumber": "Numéro décennale",
+      "decennialInsuranceExpiry": "Expiration décennale",
       "companyName": "Nom de la société",
       "workAddress": {
         "number": "Numéro de voie",
@@ -739,7 +747,7 @@
       "trustPhone": "Téléphone de la personne de confiance",
       "rib": "RIB (relevé d'identité bancaire)",
       "suppliers": "Fournisseurs",
-      "suppliersAdd": "Ajouter un fournisseur (entrée pour valider)"
+      "suppliersAdd": "Ajouter le fournisseur"
     }
   },
   "proCard": {

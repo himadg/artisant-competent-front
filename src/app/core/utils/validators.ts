@@ -1,4 +1,4 @@
-import { AbstractControl, FormArray, FormGroup, ValidatorFn, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormArray, FormGroup, ValidatorFn, ValidationErrors, Validators } from '@angular/forms';
 
 export const hourValidator: ValidatorFn = (group: AbstractControl) => {
   const form = group as FormGroup;
@@ -24,7 +24,33 @@ export const servicesValidator = (getPendingCount: () => number): ValidatorFn =>
   return (control: AbstractControl): ValidationErrors | null => {
     const hasExisting = Array.isArray(control.value) && control.value.length > 0;
     const hasPending = getPendingCount() > 0;
-    // Si on a au moins un service existant OU au moins un service en attente, alors c'est valide (null)
     return (hasExisting || hasPending) ? null : { required: true };
   };
+};
+
+export const optionalEmailValidator: ValidatorFn = (control: AbstractControl) => {
+  const value = (control.value as string)?.trim();
+  if (!value) return null;
+  return Validators.email(control);
+};
+
+export const decennialInsuranceValidator: ValidatorFn = (group: AbstractControl) => {
+  const form = group as FormGroup;
+  const name = (form.get('decennialInsuranceName')?.value as string)?.trim();
+  const number = (form.get('decennialInsuranceNumber')?.value as string)?.trim();
+  const expiry = form.get('decennialInsuranceExpiry')?.value as string;
+  const doc = form.get('decennialInsuranceDoc')?.value;
+
+  const filled = [name, number, expiry, doc].filter(v => v !== null && v !== '' && v !== undefined).length;
+  if (filled !== 4) return { decennialInsuranceIncomplete: true };
+  return null;
+};
+
+export const trustedContactValidator: ValidatorFn = (group: AbstractControl) => {
+  const form = group as FormGroup;
+  const name = (form.get('trustName')?.value as string)?.trim();
+  const phone = (form.get('trustPhone')?.value as string)?.trim();
+
+  if (!!name !== !!phone) return { trustedContactIncomplete: true };
+  return null;
 };

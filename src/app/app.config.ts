@@ -16,9 +16,6 @@ import { TranslocoTitleStrategy } from './core/i18n/title.strategy';
 // Thème, etc.
 import { ThemeService } from './core/services/theme.service';
 
-// Icons (ng-icons)
-import { provideIcons } from '@ng-icons/core';
-import { lucideSun, lucideMoon } from '@ng-icons/lucide';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
@@ -26,16 +23,12 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: 'top', anchorScrolling: 'enabled' })),
-    provideHttpClient(withFetch(), withInterceptors([apiUrlInterceptor, authInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor, apiUrlInterceptor])),
     provideTransloco(translocoConfig),
     { provide: TitleStrategy, useClass: TranslocoTitleStrategy },
     { provide: LOCALE_ID, useValue: 'fr' },
     ThemeService,
     provideAppInitializer(() => inject(AppConfigService).load()),
-    provideIcons({
-      lucideSun,
-      lucideMoon,
-    }),
     provideClientHydration(withEventReplay()),
   ],
 };

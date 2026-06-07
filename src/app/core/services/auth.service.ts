@@ -75,4 +75,8 @@ export class AuthService {
   setUser(user: User): void {
     this._currentUser.set(user);
   }
+
+  setTempToken(token: string): void {
+    this._accessToken = token;
+  }
 }

@@ -32,7 +32,7 @@
   },
   "private": true,
   "engines": {
-    "node": ">=18.18 <21"
+    "node": "^22.22.0 || ^24.13.1"
   },
   "dependencies": {
     "@angular/cdk": "^21.2.12",

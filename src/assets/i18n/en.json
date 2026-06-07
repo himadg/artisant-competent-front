@@ -616,7 +616,8 @@
     "addPhoto": "Add photo",
     "addIdFront": "Add ID card front",
     "addIdBack": "Add ID card back",
-    "addInsuranceDoc": "Add insurance document",
+    "addInsuranceDoc": "RC Pro",
+    "addDecennialInsuranceDoc": "Decennial insurance",
     "addDiplomaDoc": "Add diploma or proof (RGE, Calibat, reduced VAT rate etc)",
     "addLogo": "Add a logo",
     "addRib": "Add bank account (RIB)",
@@ -644,6 +645,9 @@
       "yearsMin": "Must be greater or equal to 0",
       "openingAtLeastOne": "Please fill at least one day with start and end times",
       "step1Errors": "You also have errors on page 1.",
+      "emailInvalid": "The professional email address is not valid.",
+      "decennialInsuranceIncomplete": "If you fill in the decennial insurance, all fields (document, name, number, expiry date) are required.",
+      "trustedContactIncomplete": "Please fill in both the name and phone number of the trusted contact.",
       "formSummary": {
         "title": "The form contains errors:",
         "photoRequired": "Photo required",
@@ -675,9 +679,13 @@
         "zip": "ZIP code",
         "city": "City"
       },
-      "insuranceName": "Insurance name",
-      "insuranceNumber": "Insurance number",
-      "insuranceExpiry": "Expiration date",
+      "insuranceSection": "RC Pro insurance",
+      "insuranceName": "RC Pro name",
+      "insuranceNumber": "RC Pro number",
+      "insuranceExpiry": "RC Pro expiry",
+      "decennialInsuranceName": "Decennial name",
+      "decennialInsuranceNumber": "Decennial number",
+      "decennialInsuranceExpiry": "Decennial expiry",
       "companyName": "Company name",
       "rib": "Bank details (RIB)",
       "workAddress": {
@@ -699,7 +707,7 @@
       "trustName": "Trusted contact name",
       "trustPhone": "Trusted contact phone",
       "suppliers": "Suppliers",
-      "suppliersAdd": "Add a supplier (enter to confirm)"
+      "suppliersAdd": "Add the supplier"
     }
   },
   "proCard": {

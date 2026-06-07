@@ -10,7 +10,6 @@ import { AppConfigService } from '../../../../core/services/app-config.service';
 import { UploadService } from '../../../../core/services/upload.service';
 import { UserApiService } from '../../../../core/services/user-api.service';
 import { AuthService } from '../../../../core/services/auth.service';
-import { User } from '../../../../shared/interfaces/user';
 import { Router } from '@angular/router';
 import { capitalize, evaluatePasswordCriteria, getAffiliateCode, clearAffiliateCode } from '../../../../core/utils/common-utils';
 import { PASSWORD_STRONG_REGEXP } from '../../../../core/utils/regexp';
@@ -204,8 +203,8 @@ export class RegisterIndividual implements OnDestroy {
     this.userApi
       .registerIndividual(payload, captchaToken)
       .pipe(
-        switchMap(({ userId, accessToken, user }) => {
-          this.authService.setSession(accessToken, user as User);
+        switchMap(({ userId, accessToken, user: _user }) => {
+          this.authService.setTempToken(accessToken);
           clearAffiliateCode();
           return (photo ? this.uploadService.upload(photo) : of('')).pipe(
             switchMap((photoKey) =>

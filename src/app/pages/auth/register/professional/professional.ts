@@ -1,4 +1,4 @@
-﻿import { Component, signal, inject, OnDestroy, ViewChild, computed, ChangeDetectionStrategy } from '@angular/core';
+import { Component, signal, inject, OnDestroy, ViewChild, computed, ChangeDetectionStrategy } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
   ReactiveFormsModule,
@@ -11,7 +11,7 @@ import {
 } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
 import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, forkJoin, of, takeUntil, merge } from 'rxjs';
-import { hourValidator, servicesValidator, openingAtLeastOne } from '../../../../core/utils/validators';
+import { hourValidator, servicesValidator, openingAtLeastOne, decennialInsuranceValidator, trustedContactValidator, optionalEmailValidator } from '../../../../core/utils/validators';
 import { capitalize, normalizeName, evaluatePasswordCriteria, getAffiliateCode, clearAffiliateCode } from '../../../../core/utils/common-utils';
 import { ServiceApiService } from '../../../../core/services/service-api.service';
 import { TradeApiService } from '../../../../core/services/trade-api.service';
@@ -35,10 +35,9 @@ import {
 import { AppConfigService } from '../../../../core/services/app-config.service';
 import { LangService } from '../../../../core/services/lang.service';
 import { AuthService } from '../../../../core/services/auth.service';
-import { User } from '../../../../shared/interfaces/user';
 
 
-type DocTarget = 'photo' | 'idFront' | 'idBack' | 'insuranceDoc' | 'diplomaDoc' | 'logo' | 'rib';
+type DocTarget = 'photo' | 'idFront' | 'idBack' | 'insuranceDoc' | 'decennialInsuranceDoc' | 'diplomaDoc' | 'logo' | 'rib';
 
 @Component({
   selector: 'register-professional',
@@ -73,6 +72,8 @@ export class RegisterProfessional implements OnDestroy {
   readonly idBackName = signal<string | null>(null);
   readonly insuranceDocPreview = signal<string | null>(null);
   readonly insuranceDocName = signal<string | null>(null);
+  readonly decennialInsuranceDocPreview = signal<string | null>(null);
+  readonly decennialInsuranceDocName = signal<string | null>(null);
   readonly diplomaPreview = signal<string | null>(null);
   readonly diplomaName = signal<string | null>(null);
   readonly logoPreview = signal<string | null>(null);
@@ -85,9 +86,10 @@ export class RegisterProfessional implements OnDestroy {
 
   readonly serviceResults = signal<Service[]>([]);
   readonly selectedServices = signal<Service[]>([]);
-  readonly searchQuery = signal<string>('');
+  readonly serviceQuery = signal<string>('');
   readonly pendingServiceDescriptions = signal<string[]>([]);
-  readonly supplierInput = signal<string>('');
+  readonly supplierQuery = signal<string>('');
+  readonly supplierDropdownOpen = signal<boolean>(false);
   readonly adressError = signal<'addressPersonal' | 'addressWork' | null>(null);
   readonly searchingService = signal<boolean>(false);
   readonly dropdownOpen = signal<boolean>(false);
@@ -102,6 +104,7 @@ export class RegisterProfessional implements OnDestroy {
   readonly referralCodeError = signal(false);
   readonly legalModalOpen = signal(false);
   readonly hasStep1Errors = signal<boolean>(false);
+  readonly decennialInsuranceExpiryFocused = signal<boolean>(false);
 
   readonly personalAddressSuggestions = signal<AddressSuggestion[]>([]);
   readonly personalAddressOpen = signal<boolean>(false);
@@ -178,17 +181,21 @@ export class RegisterProfessional implements OnDestroy {
     }),
     professionalProfile: this.fb.group({
       managerPhone: ['', [Validators.required, Validators.pattern(PHONE_FR_REGEXP)]],
-      professionalEmail: [''],
+      professionalEmail: ['', optionalEmailValidator],
       photo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
       idFront: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
       idBack: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
       insuranceDoc: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
+      decennialInsuranceDoc: new FormControl<File | null>(null, { nonNullable: false }),
       diplomaDoc: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
       logo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
       rib: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
       insuranceName: ['', [Validators.required, Validators.pattern(NAME_REGEXP)]],
       insuranceNumber: ['', Validators.required],
       insuranceExpiry: ['', Validators.required],
+      decennialInsuranceName: [''],
+      decennialInsuranceNumber: [''],
+      decennialInsuranceExpiry: [''],
       companyName: ['', Validators.required],
       workAddress: this.fb.group({
         streetNumber: ['', [Validators.required, Validators.pattern(STREET_NUMBER_REGEXP)]],
@@ -216,7 +223,7 @@ export class RegisterProfessional implements OnDestroy {
       trustName: [''],
       trustPhone: [''],
       suppliers: new FormControl<string[]>([], { nonNullable: true, validators: [Validators.required] }),
-    }),
+    }, { validators: [decennialInsuranceValidator, trustedContactValidator] }),
     captcha: [false, Validators.requiredTrue],
     terms: [false, Validators.requiredTrue],
   });
@@ -326,7 +333,7 @@ export class RegisterProfessional implements OnDestroy {
         this.siretStatus.set('valid');
         this.siretCompanyName.set(result.companyName ?? null);
         const companyCtrl = this.form.get('professionalProfile.companyName');
-        if (!companyCtrl?.value && result.companyName) companyCtrl?.setValue(result.companyName);
+        if (result.companyName) companyCtrl?.setValue(result.companyName);
         this.validateCompanyNameMatch();
       } else if (result.closed) {
         this.siretStatus.set('closed');
@@ -346,6 +353,7 @@ export class RegisterProfessional implements OnDestroy {
     else if (target === 'idFront') this.idFrontPreview.set(val);
     else if (target === 'idBack') this.idBackPreview.set(val);
     else if (target === 'insuranceDoc') this.insuranceDocPreview.set(val);
+    else if (target === 'decennialInsuranceDoc') this.decennialInsuranceDocPreview.set(val);
     else if (target === 'diplomaDoc') this.diplomaPreview.set(val);
     else if (target === 'logo') this.logoPreview.set(val);
     else if (target === 'rib') this.ribPreview.set(val);
@@ -356,6 +364,7 @@ export class RegisterProfessional implements OnDestroy {
     else if (target === 'idFront') this.idFrontName.set(name);
     else if (target === 'idBack') this.idBackName.set(name);
     else if (target === 'insuranceDoc') this.insuranceDocName.set(name);
+    else if (target === 'decennialInsuranceDoc') this.decennialInsuranceDocName.set(name);
     else if (target === 'diplomaDoc') this.diplomaName.set(name);
     else if (target === 'logo') this.logoName.set(name);
     else if (target === 'rib') this.ribName.set(name);
@@ -409,7 +418,7 @@ export class RegisterProfessional implements OnDestroy {
   openDropdown() {
     this.dropdownOpen.set(true);
     this.searchingService.set(true);
-    this.serviceFocus$.next(this.searchQuery().trim());
+    this.serviceFocus$.next(this.serviceQuery().trim());
   }
 
   closeDropdown() {
@@ -421,10 +430,10 @@ export class RegisterProfessional implements OnDestroy {
   }
 
   onServiceSearch(event: Event) {
-    const query = (event.target as HTMLInputElement).value;
-    this.searchQuery.set(query);
+    const query = (event.target as HTMLInputElement).value.trim();
+    this.serviceQuery.set(query);
     this.searchingService.set(true);
-    this.serviceType$.next(query.trim());
+    this.serviceType$.next(query);
   }
 
   get unselectedResults(): Service[] {
@@ -436,12 +445,12 @@ export class RegisterProfessional implements OnDestroy {
   }
 
   addPendingService() {
-    const description = this.searchQuery().trim();
+    const description = this.serviceQuery().trim();
     if (!description || this.pendingServiceDescriptions().includes(description)) return;
     this.pendingServiceDescriptions.update(list => [...list, description]);
     this.form.get('professionalProfile.services')?.updateValueAndValidity();
     this.dropdownOpen.set(false);
-    this.searchQuery.set('');
+    this.serviceQuery.set('');
     this.serviceResults.set([]);
   }
 
@@ -462,7 +471,7 @@ export class RegisterProfessional implements OnDestroy {
     this.selectedServices.set(next);
     this.form.get('professionalProfile')!.patchValue({ services: next.map(service => service.id) } as any);
     this.dropdownOpen.set(false);
-    this.searchQuery.set('');
+    this.serviceQuery.set('');
     this.serviceResults.set([]);
   }
 
@@ -473,15 +482,23 @@ export class RegisterProfessional implements OnDestroy {
   }
 
   // --- Suppliers ---
-  addSupplier(event: KeyboardEvent) {
-    if (event.key !== 'Enter') return;
-    event.preventDefault();
-    const value = this.supplierInput().trim();
+  onSupplierInput(event: Event) {
+    this.supplierQuery.set((event.target as HTMLInputElement).value);
+    this.supplierDropdownOpen.set(true);
+  }
+
+  addSupplierFromInput() {
+    const value = this.supplierQuery().trim();
     if (!value) return;
     const ctrl = this.form.get('professionalProfile.suppliers')!;
     const current = ctrl.value as string[];
     if (!current.includes(value)) ctrl.setValue([...current, value]);
-    this.supplierInput.set('');
+    this.supplierQuery.set('');
+    this.supplierDropdownOpen.set(false);
+  }
+
+  closeSupplierDropdown() {
+    setTimeout(() => this.supplierDropdownOpen.set(false), 150);
   }
 
   removeSupplier(supplier: string) {
@@ -496,7 +513,6 @@ export class RegisterProfessional implements OnDestroy {
     this.form.markAllAsTouched();
 
     const user = this.form.value.user;
-    console.log(this.form.value);
 
     if (this.form.invalid || user?.password !== user?.confirmPassword) {
       this.showSubmitError.set(true);
@@ -515,7 +531,8 @@ export class RegisterProfessional implements OnDestroy {
         this.form.get('professionalProfile.insuranceExpiry')
       ];
 
-      const isStep1Invalid = step1Controls.some(ctrl => ctrl?.invalid);
+      const isStep1Invalid = step1Controls.some(ctrl => ctrl?.invalid)
+        || !!this.form.get('professionalProfile')?.errors?.['decennialInsuranceIncomplete'];
       const passwordMismatch = user?.password !== user?.confirmPassword;
 
       if (isStep1Invalid || passwordMismatch) {
@@ -564,11 +581,11 @@ export class RegisterProfessional implements OnDestroy {
       })),
     };
 
-    const { hours: _h, trustName, trustPhone, suppliers, photo, idFront, idBack, insuranceDoc, diplomaDoc, logo, rib, ...profRest } =
+    const { hours: _h, trustName, trustPhone, suppliers, photo, idFront, idBack, insuranceDoc, decennialInsuranceDoc, diplomaDoc, logo, rib, ...profRest } =
       raw.professionalProfile as Record<string, unknown> & {
         hours: unknown; trustName: string; trustPhone: string; suppliers: string[];
         photo: File | null; idFront: File | null; idBack: File | null;
-        insuranceDoc: File | null; diplomaDoc: File | null; logo: File | null; rib: File | null;
+        insuranceDoc: File | null; decennialInsuranceDoc: File | null; diplomaDoc: File | null; logo: File | null; rib: File | null;
       };
 
     const { confirmPassword: _cp, ...userFields } = raw.user as Record<string, unknown> & { confirmPassword: unknown };
@@ -594,22 +611,23 @@ export class RegisterProfessional implements OnDestroy {
 
     this.userApi.registerProfessional(payload, captchaToken)
       .pipe(
-        switchMap(({ userId, accessToken, user, mailSent: ms }) => {
+        switchMap(({ userId, accessToken, mailSent: ms }) => {
           mailSent = ms;
-          this.authService.setSession(accessToken, user as User);
+          this.authService.setTempToken(accessToken);
           clearAffiliateCode();
           return forkJoin([
             upload(photo),
             upload(idFront),
             upload(idBack),
             upload(insuranceDoc),
+            upload(decennialInsuranceDoc),
             upload(diplomaDoc),
             upload(logo),
             upload(rib),
           ]).pipe(
-            switchMap(([photoKey, idFrontKey, idBackKey, insuranceDocKey, diplomaDocKey, companyLogoKey, ribKey]) =>
+            switchMap(([photoKey, idFrontKey, idBackKey, insuranceDocKey, decennialInsuranceDocKey, diplomaDocKey, companyLogoKey, ribKey]) =>
               this.userApi.createProfessionalDocuments(userId, {
-                photoKey, idFrontKey, idBackKey, insuranceDocKey, diplomaDocKey, companyLogoKey, ribKey,
+                photoKey, idFrontKey, idBackKey, insuranceDocKey, decennialInsuranceDocKey, diplomaDocKey, companyLogoKey, ribKey,
               }),
             ),
           );

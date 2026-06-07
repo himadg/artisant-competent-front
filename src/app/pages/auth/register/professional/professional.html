@@ -84,7 +84,7 @@
                         (blur)="birthDateFocused.set(false)"
                     />
                     @if (!form.get('user.birthDate')?.value && !birthDateFocused()) {
-                        <span class="flex self-center absolute w-[50%] h-[90%] inset-0 items-center px-3 text-sm text-gray-400 pointer-events-none left-[2px] bg-[var(--background-color)]">
+                        <span class="flex self-center absolute w-[50%] h-[90%] inset-0 items-center px-3 text-sm text-gray-500 pointer-events-none left-[2px] bg-[var(--background-color)]">
                             {{ 'professional.fields.birthDate' | transloco }} *
                         </span>
                     }
@@ -105,6 +105,9 @@
                     class="px-3 py-2 w-full rounded border"
                     placeholder="{{ 'professional.fields.professionalEmail' | transloco }}"
                 />
+                @if (form.get('professionalProfile.professionalEmail')?.errors?.['email'] && form.get('professionalProfile.professionalEmail')?.touched) {
+                    <p class="text-xs text-red-500">{{ 'professional.errors.emailInvalid' | transloco }}</p>
+                }
             </ng-container>
 
             <!-- user : password, confirmPassword -->
@@ -314,123 +317,207 @@
                 </div>
             </div>
 
-            <!-- Documents diplôme & assurance -->
-            <div class="grid gap-4 md:grid-cols-2">
-                <div
-                    class="overflow-hidden relative w-full h-28 rounded-md border group"
-                    [class.force-invalid]="form.get('professionalProfile.diplomaDoc')?.invalid && form.get('professionalProfile.diplomaDoc')?.touched"
-                >
-                    @if (diplomaPreview()) {
-                        <img
-                            [src]="diplomaPreview()"
-                            alt="Diplôme"
-                            class="object-cover w-full h-full cursor-pointer"
-                            (click)="removeFile('diplomaDoc')"
-                        />
-                        <div
+            <!-- Diplôme -->
+            <div
+                class="overflow-hidden relative w-full h-28 rounded-md border group"
+                [class.force-invalid]="form.get('professionalProfile.diplomaDoc')?.invalid && form.get('professionalProfile.diplomaDoc')?.touched"
+            >
+                @if (diplomaPreview()) {
+                    <img
+                        [src]="diplomaPreview()"
+                        alt="Diplôme"
+                        class="object-cover w-full h-full cursor-pointer"
+                        (click)="removeFile('diplomaDoc')"
+                    />
+                    <div
+                        class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                        (click)="removeFile('diplomaDoc')"
+                    >
+                        {{ 'common.delete' | transloco }}
+                    </div>
+                } @else if (diplomaName()) {
+                    <div
+                        class="flex justify-center items-center w-full h-full text-center cursor-pointer"
+                        (click)="removeFile('diplomaDoc')"
+                    >
+                        <span class="text-[10px]">{{ diplomaName() }}</span>
+                        <span
                             class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
                             (click)="removeFile('diplomaDoc')"
+                            >{{ 'common.delete' | transloco }}</span
                         >
-                            {{ 'common.delete' | transloco }}
-                        </div>
-                    } @else if (diplomaName()) {
-                        <div
-                            class="flex justify-center items-center w-full h-full text-center cursor-pointer"
-                            (click)="removeFile('diplomaDoc')"
-                        >
-                            <span class="text-[10px]">{{ diplomaName() }}</span>
-                            <span
-                                class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                (click)="removeFile('diplomaDoc')"
-                                >{{ 'common.delete' | transloco }}</span
-                            >
-                        </div>
-                    } @else {
-                        <div class="flex flex-col justify-center items-center w-full h-full text-center">
-                            <span class="text-4xl leading-none">+</span>
-                            <span class="mt-1 text-xs">{{ 'professional.addDiplomaDoc' | transloco }} *</span>
-                        </div>
-                        <input
-                            type="file"
-                            class="absolute inset-0 opacity-0 cursor-pointer"
-                            accept="image/*,.pdf"
-                            (change)="addFile('diplomaDoc', $event)"
-                        />
-                    }
-                </div>
-                <div
-                    class="overflow-hidden relative w-full h-28 rounded-md border group"
-                    [class.force-invalid]="form.get('professionalProfile.insuranceDoc')?.invalid && form.get('professionalProfile.insuranceDoc')?.touched"
-                >
-                    @if (insuranceDocPreview()) {
-                        <img
-                            [src]="insuranceDocPreview()"
-                            alt="Assurance"
-                            class="object-cover w-full h-full cursor-pointer"
-                            (click)="removeFile('insuranceDoc')"
-                        />
-                        <div
-                            class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                            (click)="removeFile('insuranceDoc')"
-                        >
-                            {{ 'common.delete' | transloco }}
-                        </div>
-                    } @else if (insuranceDocName()) {
-                        <div
-                            class="flex justify-center items-center w-full h-full text-center cursor-pointer"
-                            (click)="removeFile('insuranceDoc')"
-                        >
-                            <span class="text-[10px]">{{ insuranceDocName() }}</span>
-                            <span
-                                class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                (click)="removeFile('insuranceDoc')"
-                                >{{ 'common.delete' | transloco }}</span
-                            >
-                        </div>
-                    } @else {
-                        <div class="flex flex-col justify-center items-center w-full h-full text-center">
-                            <span class="text-4xl leading-none">+</span>
-                            <span class="mt-1 text-xs">{{ 'professional.addInsuranceDoc' | transloco }} *</span>
-                        </div>
-                        <input
-                            type="file"
-                            class="absolute inset-0 opacity-0 cursor-pointer"
-                            accept="image/*,.pdf"
-                            (change)="addFile('insuranceDoc', $event)"
-                        />
-                    }
-                </div>
+                    </div>
+                } @else {
+                    <div class="flex flex-col justify-center items-center w-full h-full text-center">
+                        <span class="text-4xl leading-none">+</span>
+                        <span class="mt-1 text-xs">{{ 'professional.addDiplomaDoc' | transloco }} *</span>
+                    </div>
+                    <input
+                        type="file"
+                        class="absolute inset-0 opacity-0 cursor-pointer"
+                        accept="image/*,.pdf"
+                        (change)="addFile('diplomaDoc', $event)"
+                    />
+                }
             </div>
 
-            <!-- professionalProfile : détails assurance -->
+            <!-- Assurances RC Pro + Décennale côte à côte -->
             <ng-container formGroupName="professionalProfile">
-                <input
-                    type="text"
-                    formControlName="insuranceName"
-                    class="px-3 py-2 w-full rounded border"
-                    placeholder="{{ 'professional.fields.insuranceName' | transloco }} *"
-                />
-                <input
-                    type="text"
-                    formControlName="insuranceNumber"
-                    class="px-3 py-2 w-full rounded border"
-                    placeholder="{{ 'professional.fields.insuranceNumber' | transloco }} *"
-                />
-                <div class="relative">
-                    <input
-                        type="date"
-                        formControlName="insuranceExpiry"
-                        class="px-3 py-2 w-full rounded border peer"
-                        [min]="today"
-                        (focus)="insuranceExpiryFocused.set(true)"
-                        (blur)="insuranceExpiryFocused.set(false)"
-                    />
-                    @if (!form.get('professionalProfile.insuranceExpiry')?.value && !insuranceExpiryFocused()) {
-                        <span class="flex self-center absolute w-[50%] h-[90%] inset-0 items-center px-3 text-sm text-gray-400 pointer-events-none left-[2px] bg-[var(--background-color)]">
-                            {{ 'professional.fields.insuranceExpiry' | transloco }} *
-                        </span>
-                    }
+                <div class="grid grid-cols-2 gap-3">
+
+                    <!-- Colonne RC Pro -->
+                    <div class="flex flex-col gap-2">
+                        <!-- Document RC Pro -->
+                        <div
+                            class="overflow-hidden relative w-full h-24 rounded-md border group"
+                            [class.force-invalid]="form.get('professionalProfile.insuranceDoc')?.invalid && form.get('professionalProfile.insuranceDoc')?.touched"
+                        >
+                            @if (insuranceDocPreview()) {
+                                <img
+                                    [src]="insuranceDocPreview()"
+                                    alt="Assurance RC Pro"
+                                    class="object-cover w-full h-full cursor-pointer"
+                                    (click)="removeFile('insuranceDoc')"
+                                />
+                                <div
+                                    class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                                    (click)="removeFile('insuranceDoc')"
+                                >
+                                    {{ 'common.delete' | transloco }}
+                                </div>
+                            } @else if (insuranceDocName()) {
+                                <div
+                                    class="flex justify-center items-center w-full h-full text-center cursor-pointer"
+                                    (click)="removeFile('insuranceDoc')"
+                                >
+                                    <span class="text-[9px]">{{ insuranceDocName() }}</span>
+                                    <span
+                                        class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                                        (click)="removeFile('insuranceDoc')"
+                                        >{{ 'common.delete' | transloco }}</span
+                                    >
+                                </div>
+                            } @else {
+                                <div class="flex flex-col justify-center items-center w-full h-full text-center">
+                                    <span class="text-3xl leading-none">+</span>
+                                    <span class="mt-1 text-[0.6rem]">{{ 'professional.addInsuranceDoc' | transloco }} *</span>
+                                </div>
+                                <input
+                                    type="file"
+                                    class="absolute inset-0 opacity-0 cursor-pointer"
+                                    accept="image/*,.pdf"
+                                    (change)="addFile('insuranceDoc', $event)"
+                                />
+                            }
+                        </div>
+                        <!-- Champs RC Pro -->
+                        <input
+                            type="text"
+                            formControlName="insuranceName"
+                            class="px-2 py-2 w-full text-sm rounded border"
+                            placeholder="{{ 'professional.fields.insuranceName' | transloco }} *"
+                        />
+                        <input
+                            type="text"
+                            formControlName="insuranceNumber"
+                            class="px-2 py-2 w-full text-sm rounded border"
+                            placeholder="{{ 'professional.fields.insuranceNumber' | transloco }} *"
+                        />
+                        <div class="relative">
+                            <input
+                                type="date"
+                                formControlName="insuranceExpiry"
+                                class="px-2 py-2 w-full text-sm rounded border"
+                                [min]="today"
+                                (focus)="insuranceExpiryFocused.set(true)"
+                                (blur)="insuranceExpiryFocused.set(false)"
+                            />
+                            @if (!form.get('professionalProfile.insuranceExpiry')?.value && !insuranceExpiryFocused()) {
+                                <span class="flex self-center absolute w-[calc(100%-2rem)] h-[90%] inset-0 items-center px-2 text-sm text-gray-500 pointer-events-none left-[2px] bg-[var(--background-color)]">
+                                    {{ 'professional.fields.insuranceExpiry' | transloco }} *
+                                </span>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Colonne Décennale -->
+                    <div class="flex flex-col gap-2">
+                        <!-- Document Décennale -->
+                        <div
+                            class="overflow-hidden relative w-full h-24 rounded-md border group"
+                        >
+                            @if (decennialInsuranceDocPreview()) {
+                                <img
+                                    [src]="decennialInsuranceDocPreview()"
+                                    alt="Assurance décennale"
+                                    class="object-cover w-full h-full cursor-pointer"
+                                    (click)="removeFile('decennialInsuranceDoc')"
+                                />
+                                <div
+                                    class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                                    (click)="removeFile('decennialInsuranceDoc')"
+                                >
+                                    {{ 'common.delete' | transloco }}
+                                </div>
+                            } @else if (decennialInsuranceDocName()) {
+                                <div
+                                    class="flex justify-center items-center w-full h-full text-center cursor-pointer"
+                                    (click)="removeFile('decennialInsuranceDoc')"
+                                >
+                                    <span class="text-[9px]">{{ decennialInsuranceDocName() }}</span>
+                                    <span
+                                        class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
+                                        (click)="removeFile('decennialInsuranceDoc')"
+                                        >{{ 'common.delete' | transloco }}</span
+                                    >
+                                </div>
+                            } @else {
+                                <div class="flex flex-col justify-center items-center w-full h-full text-center">
+                                    <span class="text-3xl leading-none">+</span>
+                                    <span class="mt-1 text-[0.6rem]">{{ 'professional.addDecennialInsuranceDoc' | transloco }}</span>
+                                </div>
+                                <input
+                                    type="file"
+                                    class="absolute inset-0 opacity-0 cursor-pointer"
+                                    accept="image/*,.pdf"
+                                    (change)="addFile('decennialInsuranceDoc', $event)"
+                                />
+                            }
+                        </div>
+                        <!-- Champs Décennale -->
+                        <input
+                            type="text"
+                            formControlName="decennialInsuranceName"
+                            class="px-2 py-2 w-full text-sm rounded border"
+                            placeholder="{{ 'professional.fields.decennialInsuranceName' | transloco }}"
+                        />
+                        <input
+                            type="text"
+                            formControlName="decennialInsuranceNumber"
+                            class="px-2 py-2 w-full text-sm rounded border"
+                            placeholder="{{ 'professional.fields.decennialInsuranceNumber' | transloco }}"
+                        />
+                        <div class="relative">
+                            <input
+                                type="date"
+                                formControlName="decennialInsuranceExpiry"
+                                class="px-2 py-2 w-full text-sm rounded border"
+                                [min]="today"
+                                (focus)="decennialInsuranceExpiryFocused.set(true)"
+                                (blur)="decennialInsuranceExpiryFocused.set(false)"
+                            />
+                            @if (!form.get('professionalProfile.decennialInsuranceExpiry')?.value && !decennialInsuranceExpiryFocused()) {
+                                <span class="flex self-center absolute w-[calc(100%-2rem)] h-[90%] inset-0 items-center px-2 text-sm text-gray-500 pointer-events-none left-[2px] bg-[var(--background-color)]">
+                                    {{ 'professional.fields.decennialInsuranceExpiry' | transloco }}
+                                </span>
+                            }
+                        </div>
+                    </div>
+
                 </div>
+                @if (form.get('professionalProfile')?.errors?.['decennialInsuranceIncomplete'] && form.get('professionalProfile')?.touched) {
+                    <p class="text-xs text-red-500">{{ 'professional.errors.decennialInsuranceIncomplete' | transloco }}</p>
+                }
             </ng-container>
 
             <div class="flex justify-end">
@@ -449,7 +536,7 @@
             <!-- professionalProfile : toutes les infos entreprise -->
             <ng-container formGroupName="professionalProfile">
                 <!-- SIRET + statut juridique -->
-                <div class="flex gap-2">
+                <div class="flex flex-col md:flex-row gap-2">
                     <div class="flex-1">
                         <input
                             type="text"
@@ -461,8 +548,6 @@
                         />
                         @if (siretStatus() === 'loading') {
                             <p class="mt-1 text-xs text-gray-400">{{ 'professional.siret.checking' | transloco }}</p>
-                        } @else if (siretStatus() === 'valid') {
-                            <p class="mt-1 text-xs text-green-600">{{ siretCompanyName() ?? ('professional.siret.valid' | transloco) }}</p>
                         } @else if (siretStatus() === 'closed') {
                             <p class="mt-1 text-xs text-red-500">{{ 'professional.siret.closed' | transloco }}</p>
                         } @else if (siretStatus() === 'invalid') {
@@ -693,6 +778,7 @@
                     class="px-3 py-2 w-full rounded border"
                     placeholder="{{ 'professional.fields.description' | transloco }} *"
                     maxlength="500"
+                    rows="5"
                 ></textarea>
 
                 <!-- Services -->
@@ -705,7 +791,7 @@
                     <div class="relative">
                         <input
                             type="text"
-                            [value]="searchQuery()"
+                            [value]="serviceQuery()"
                             class="px-3 py-2 w-full bg-white rounded border"
                             [class.force-invalid]="form.get('professionalProfile.services')?.invalid && form.get('professionalProfile.services')?.touched"
                             placeholder="{{ 'professional.fields.servicesSearch' | transloco }}"
@@ -715,7 +801,7 @@
                             autocomplete="off"
                         />
 
-                        @if (dropdownOpen()) {
+                        @if (dropdownOpen() && (serviceQuery().trim() !== '' || serviceResults().length > 0 || searchingService())) {
                             <div class="overflow-y-scroll absolute z-10 w-full bg-white rounded-b border-b shadow-sm border-x max-h-[300px]">
                                 @if (unselectedResults.length) {
                                     <ul class="divide-y">
@@ -735,7 +821,7 @@
                                         (click)="addPendingService()"
                                     >
                                         <span class="text-gray-400">+</span>
-                                        <span>{{ 'professional.fields.servicesAdd' | transloco }} <strong>« {{ searchQuery() }} »</strong></span>
+                                        <span>{{ 'professional.fields.servicesAdd' | transloco }} <strong>« {{ serviceQuery() }} »</strong></span>
                                     </button>
                                 }
                             </div>
@@ -748,13 +834,13 @@
                             @for (service of selectedServices(); track service.id) {
                                 <span class="inline-flex gap-1 items-center px-3 py-1 text-sm rounded-full bg-grad-water-green text-[var(--primary-beige)]">
                                     {{ service.description }}
-                                    <button type="button" (click)="removeService(service.id)" class="ml-1 leading-none opacity-70 hover:opacity-100">×</button>
+                                    <button type="button" (click)="removeService(service.id)" class="ml-1 leading-none">×</button>
                                 </span>
                             }
                             @for (desc of pendingServiceDescriptions(); track desc) {
-                                <span class="inline-flex gap-1 items-center px-3 py-1 text-sm rounded-full bg-grad-water-green text-[var(--primary-beige)] opacity-70">
+                                <span class="inline-flex gap-1 items-center px-3 py-1 text-sm rounded-full bg-grad-water-green text-[var(--primary-beige)]">
                                     {{ desc }}
-                                    <button type="button" (click)="removePendingService(desc)" class="ml-1 leading-none opacity-70 hover:opacity-100">×</button>
+                                    <button type="button" (click)="removePendingService(desc)" class="ml-1 leading-none">×</button>
                                 </span>
                             }
                         </div>
@@ -777,22 +863,39 @@
                         'professional.optional' | transloco
                     }})"
                 />
+                @if (form.get('professionalProfile')?.errors?.['trustedContactIncomplete'] && form.get('professionalProfile')?.touched) {
+                    <p class="text-xs text-red-500">{{ 'professional.errors.trustedContactIncomplete' | transloco }}</p>
+                }
 
                 <!-- Fournisseurs -->
                 <div class="flex flex-col gap-2">
                     <label class="font-medium" [class.text-red-500]="form.get('professionalProfile.suppliers')?.invalid && form.get('professionalProfile.suppliers')?.touched">
                         {{ 'professional.fields.suppliers' | transloco }} *
                     </label>
-                    <input
-                        type="text"
-                        [value]="supplierInput()"
-                        (input)="supplierInput.set($any($event.target).value)"
-                        (keydown)="addSupplier($event)"
-                        class="px-3 py-2 w-full bg-white rounded border"
-                        [class.force-invalid]="form.get('professionalProfile.suppliers')?.invalid && form.get('professionalProfile.suppliers')?.touched"
-                        placeholder="{{ 'professional.fields.suppliersAdd' | transloco }}"
-                        autocomplete="off"
-                    />
+                    <div class="relative">
+                        <input
+                            type="text"
+                            [value]="supplierQuery()"
+                            class="px-3 py-2 w-full bg-white rounded border"
+                            [class.force-invalid]="form.get('professionalProfile.suppliers')?.invalid && form.get('professionalProfile.suppliers')?.touched"
+                            placeholder="{{ 'professional.fields.suppliersAdd' | transloco }}"
+                            (input)="onSupplierInput($event)"
+                            (blur)="closeSupplierDropdown()"
+                            autocomplete="off"
+                        />
+                        @if (supplierDropdownOpen() && supplierQuery().trim()) {
+                            <div class="overflow-y-scroll absolute z-10 w-full bg-white rounded-b border-b shadow-sm border-x">
+                                <button
+                                    type="button"
+                                    class="flex gap-2 items-center px-3 py-2 w-full text-sm text-left hover:bg-gray-50"
+                                    (click)="addSupplierFromInput()"
+                                >
+                                    <span class="text-gray-400">+</span>
+                                    <span>{{ 'professional.fields.suppliersAdd' | transloco }} <strong>« {{ supplierQuery() }} »</strong></span>
+                                </button>
+                            </div>
+                        }
+                    </div>
                     @if ($any(form.get('professionalProfile.suppliers'))?.value?.length) {
                         <div class="flex flex-wrap gap-2">
                             @for (supplier of $any(form.get('professionalProfile.suppliers'))?.value; track supplier) {
