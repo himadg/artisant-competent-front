@@ -4,7 +4,8 @@
     </div>
 } @else if (error()) {
     <p class="pro-error">{{ error()! | transloco }}</p>
-} @else if (data(); as pro) {
+} @else {
+    @if (data(); as pro) {
     @if (pro.status === 'PENDING_VALIDATION') {
         <div class="flex justify-center m-16 w-auto">
             <button
@@ -459,7 +460,7 @@
                                                             [class.pro-chip--active]="editTradeIds().includes(trade.id)"
                                                             (click)="toggleTrade(trade.id)"
                                                         >
-                                                            {{ `jobs.list.${trade.name}.name` | transloco }}
+                                                            {{ ('jobs.list.' + trade.name + '.name') | transloco }}
                                                         </button>
                                                     }
                                                 </div>
@@ -467,7 +468,7 @@
                                         } @else if (pro.professionalProfile.trades.length) {
                                             <ul class="pro-list pro-list--arrow">
                                                 @for (trade of pro.professionalProfile.trades; track trade.id) {
-                                                    <li>{{ `jobs.list.${trade.name}.name` | transloco }}</li>
+                                                    <li>{{ ('jobs.list.' + trade.name + '.name') | transloco }}</li>
                                                 }
                                             </ul>
                                         } @else {
@@ -539,7 +540,7 @@
                                                 @for (day of editHours(); track day.day; let i = $index) {
                                                     <div class="pro-hours-row">
                                                         <span class="hours-day">{{
-                                                            `supplier.days.${day.day}` | transloco
+                                                            ('supplier.days.' + day.day) | transloco
                                                         }}</span>
                                                         <label class="pro-day-toggle">
                                                             <input
@@ -579,7 +580,7 @@
                                                 ) {
                                                     <li class="hours-item">
                                                         <span class="hours-day">{{
-                                                            `supplier.days.${day.day}` | transloco
+                                                            ('supplier.days.' + day.day) | transloco
                                                         }}</span>
                                                         @if (day.closed) {
                                                             <span class="hours-closed">{{
@@ -1119,9 +1120,8 @@
                                     <button class="modal-close absolute top-3 right-3 px-2 py-1 text-sm" (click)="closeQuoteModal()">{{ 'dashboard.pro.viewModal.close' | transloco }}</button>
                                     <!-- Use the shared quote form component with pre-filled coordinates -->
                                     <ac-quote-form
-                                        [missionId]="currentQuoteRequest()?.id"
+                                        [mission]="currentQuoteRequest()"
                                         [quoteId]="currentQuoteRequest()?.quote?.id"
-                                        [clientUserId]="currentQuoteRequest()?.client?.id"
                                         [professionalUserId]="data()?.id"
                                         (saved)="onQuoteSaved($event)"
                                         (cancelled)="closeQuoteModal()">
@@ -1226,9 +1226,8 @@
                                         <div class="modal-content relative bg-white rounded-lg p-6 max-w-3xl w-[90%] z-10 max-h-[90vh] overflow-y-auto">
                                             <button class="modal-close absolute top-3 right-3 px-2 py-1 text-sm" (click)="closeQuoteModal()">{{ 'dashboard.pro.viewModal.close' | transloco }}</button>
                                             <ac-quote-form
-                                                [missionId]="currentQuoteRequest()?.id"
+                                                [mission]="currentQuoteRequest()"
                                                 [quoteId]="currentQuoteRequest()?.quote?.id"
-                                                [clientUserId]="currentQuoteRequest()?.client?.id"
                                                 [professionalUserId]="data()?.id"
                                                 (saved)="onQuoteSaved($event)"
                                                 (cancelled)="closeQuoteModal()">
@@ -1256,7 +1255,8 @@
                                     <div class="aff-loading">
                                         <span class="spinner"></span>
                                     </div>
-                                } @else if (affiliationData(); as aff) {
+                                } @else {
+                                    @if (affiliationData(); as aff) {
                                     @if (!aff.affiliateCode) {
                                         <div class="aff-empty-state">
                                             <div class="aff-empty-icon">
@@ -1348,6 +1348,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    }
                                     }
                                 }
                             </div>
@@ -1473,5 +1474,6 @@
                 </div>
             }
         </div>
+    }
     }
 }

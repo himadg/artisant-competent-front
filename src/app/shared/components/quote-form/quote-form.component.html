@@ -94,15 +94,27 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="clientEmail">Adresse mail</label>
-          <input id="clientEmail" type="email" formControlName="email" placeholder="email@example.com" [class.is-invalid]="clientControls['email'].invalid">
-          @if (clientControls['email'].invalid) {
-            <div class="error-feedback">
-              @if (clientControls['email'].errors?.['required']) { <span>Email requis.</span> }
-              @if (clientControls['email'].errors?.['email']) { <span>Format d'email invalide.</span> }
-            </div>
-          }
+        <div class="form-row-split">
+          <div class="form-group">
+            <label for="clientEmail">Adresse mail</label>
+            <input id="clientEmail" type="email" formControlName="email" placeholder="email@example.com" [class.is-invalid]="clientControls['email'].invalid">
+            @if (clientControls['email'].invalid) {
+              <div class="error-feedback">
+                @if (clientControls['email'].errors?.['required']) { <span>Email requis.</span> }
+                @if (clientControls['email'].errors?.['email']) { <span>Format d'email invalide.</span> }
+              </div>
+            }
+          </div>
+          <div class="form-group">
+            <label for="clientPhone">Téléphone</label>
+            <input id="clientPhone" type="tel" formControlName="phone" placeholder="06 12 34 56 78" [class.is-invalid]="clientControls['phone'].invalid">
+            @if (clientControls['phone'].invalid) {
+              <div class="error-feedback">
+                @if (clientControls['phone'].errors?.['required']) { <span>Téléphone requis.</span> }
+                @if (clientControls['phone'].errors?.['pattern']) { <span>Format invalide.</span> }
+              </div>
+            }
+          </div>
         </div>
       </div>
 

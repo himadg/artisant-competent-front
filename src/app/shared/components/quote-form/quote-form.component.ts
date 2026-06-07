@@ -98,7 +98,8 @@ export class QuoteFormComponent implements OnInit {
         floor: [''],
         postalCode: ['', [Validators.required, Validators.pattern('^[0-9]{5}$')]],
         city: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]]
+        email: ['', [Validators.required, Validators.email]],
+        phone: ['', [Validators.required, Validators.pattern('^0[1-9]([ .-]?[0-9]{2}){4}$')]]
       }),
       jobsite: this.fb.nonNullable.group({
         streetNumber: [''],
@@ -160,12 +161,10 @@ export class QuoteFormComponent implements OnInit {
     })
   });
 
-  /** If provided, the mission/request id to attach this quote to */
-  @Input() missionId?: string | null = null;
+  /** If provided, the mission object containing all necessary data */
+  @Input() mission?: any | null = null;
   /** If provided, existing quote id to update */
   @Input() quoteId?: string | null = null;
-  /** If provided, client user ID to pre-fill client coordinates */
-  @Input() clientUserId?: string | null = null;
   /** If provided, professional user ID to pre-fill professional coordinates */
   @Input() professionalUserId?: string | null = null;
   @Output() saved = new EventEmitter<any>();
@@ -278,8 +277,7 @@ export class QuoteFormComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.quoteId) {
-      // En édition : on charge le devis existant et on ne pré-remplit pas
-      // les coordonnées depuis les profils (cela écraserait les données du devis).
+      // En édition : on charge le devis existant, mais si la mission est dispo, on pré-remplit les coordonnées du client manquantes
       this.loadQuote();
     } else {
       this.preloadCoordinates();
@@ -308,6 +306,19 @@ export class QuoteFormComponent implements OnInit {
         const status = payload.coordinates?.artisan?.status;
         if (status) {
           this.artisanControls['status'].patchValue(status, { emitEvent: true });
+        }
+
+        // Si c'est une modification et que le payload n'a pas le téléphone,
+        // on essaie de le récupérer depuis la mission (qui a été passée par le dashboard)
+        if (this.mission?.client && (!payload.coordinates?.client?.phone || !payload.coordinates?.client?.email)) {
+             if (!payload.coordinates) {
+                 payload.coordinates = {} as any;
+             }
+             if (!payload.coordinates.client) {
+                  payload.coordinates.client = {} as any;
+             }
+             payload.coordinates.client.phone = payload.coordinates.client.phone || this.mission.client.phone;
+             payload.coordinates.client.email = payload.coordinates.client.email || this.mission.client.email;
         }
 
         this.quoteForm.patchValue({
@@ -361,28 +372,25 @@ export class QuoteFormComponent implements OnInit {
   }
 
   private preloadCoordinates(): void {
-    // Pré-remplir les coordonnées du client si clientUserId est fourni
-    if (this.clientUserId) {
-      this.userApi.getUserProfile(this.clientUserId).subscribe({
-        next: (userData: any) => {
-          const client = userData.address || {};
-          const clientControls = this.f.coordinates.controls.client;
-          clientControls.patchValue({
-            firstName: userData.firstName || '',
-            lastName: userData.lastName || '',
-            email: userData.email || '',
-            streetNumber: client.streetNumber || '',
-            streetType: client.streetType || 'Rue',
-            streetName: client.streetName || '',
-            locality: client.locality || '',
-            apartmentNumber: client.apartmentNumber || '',
-            buildingNumber: client.buildingNumber || '',
-            floor: client.floor || '',
-            postalCode: client.postalCode || '',
-            city: client.city || '',
-          });
-        },
-        error: (err) => console.error('Erreur lors du chargement du profil client', err),
+    // Pré-remplir les coordonnées du client si la mission est fournie
+    if (this.mission?.client) {
+      const clientData = this.mission.client;
+      const clientAddress = clientData.address || {};
+      const clientControls = this.f.coordinates.controls.client;
+      clientControls.patchValue({
+        firstName: clientData.firstName || '',
+        lastName: clientData.lastName || '',
+        email: clientData.email || '',
+        phone: clientData.phone || '',
+        streetNumber: clientAddress.streetNumber || '',
+        streetType: clientAddress.streetType || 'Rue',
+        streetName: clientAddress.streetName || '',
+        locality: clientAddress.locality || '',
+        apartmentNumber: clientAddress.apartmentNumber || '',
+        buildingNumber: clientAddress.buildingNumber || '',
+        floor: clientAddress.floor || '',
+        postalCode: clientAddress.postalCode || '',
+        city: clientAddress.city || '',
       });
     }
 
@@ -530,7 +538,7 @@ export class QuoteFormComponent implements OnInit {
     const formValue = this.quoteForm.getRawValue();
     const payload: QuotePayload = {
       ...formValue,
-      missionId: this.missionId || '',
+      missionId: this.mission?.id || '',
     };
 
     // Build FormData to allow file uploads

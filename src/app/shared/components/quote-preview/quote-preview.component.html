@@ -39,7 +39,9 @@
               </p>
               <p>{{ quoteData.coordinates?.client?.postalCode }} {{ quoteData.coordinates?.client?.city }}</p>
               <p>Email : {{ quoteData.coordinates?.client?.email }}</p>
-              <p>Tél : {{ quoteData.coordinates?.client?.phone }}</p>
+              @if (quoteData.coordinates?.client?.phone) {
+                <p>Tél : {{ quoteData.coordinates?.client?.phone }}</p>
+              }
             </div>
           </div>
 

@@ -57,7 +57,7 @@ export class RegisterIndividual implements OnDestroy {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.pattern(PASSWORD_STRONG_REGEXP)]],
     confirmPassword: ['', Validators.required],
-    phone: ['', Validators.required],
+    phone: ['', [Validators.required, Validators.pattern('^0[1-9]([ .-]?[0-9]{2}){4}$')]],
     address: this.fb.group({
       streetNumber: ['', Validators.required],
       streetName: ['', Validators.required],

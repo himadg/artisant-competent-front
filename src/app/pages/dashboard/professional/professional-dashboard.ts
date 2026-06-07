@@ -199,7 +199,7 @@ export class ProfessionalDashboard implements OnInit {
     this.currentQuoteRequest.set({
       id: quote.mission.id,
       quote: { id: quote.id },
-      client: quote.mission.client ? { id: quote.mission.client.id } : undefined,
+      client: quote.mission.client,
     });
     this.quoteModalOpen.set(true);
   }

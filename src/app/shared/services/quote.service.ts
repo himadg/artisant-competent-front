@@ -34,7 +34,7 @@ export interface QuoteListItem {
     descriptif: string;
     lieu: string;
     trade: { id: string; name: string } | null;
-    client?: { id: string; firstName: string; lastName: string };
+    client?: { id: string; firstName: string; lastName: string; phone?: string; email?: string };
     professionals?: Array<{
       id: string;
       companyName: string;

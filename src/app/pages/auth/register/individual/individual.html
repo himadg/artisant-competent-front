@@ -4,7 +4,7 @@
     <form [formGroup]="form" (ngSubmit)="submit()" class="py-8 mx-auto space-y-4 max-w-[29rem] autofill-fix">
         <div class="grid gap-4 items-stretch md:grid-cols-2">
             <div class="flex flex-col gap-3 items-center h-36">
-                <div 
+                <div
                     class="overflow-hidden relative w-36 h-full rounded-full border group"
                     [class.force-invalid]="form.get('photo')?.invalid && form.get('photo')?.touched"
                 >
@@ -149,7 +149,7 @@
                 </p>
             </div>
         }
-        
+
         @if (form.get('password')?.value !== form.get('confirmPassword')?.value && form.get('confirmPassword')?.touched) {
             <p class="px-2 text-sm text-red-500">{{ 'login.errors.passwordMismatch' | transloco }}</p>
         }
@@ -211,6 +211,12 @@
                 class="px-3 py-2 rounded border"
                 placeholder="{{ 'register.fields.phone' | transloco }} *"
             />
+            @if (form.get('phone')?.invalid && form.get('phone')?.touched) {
+                <div class="px-2 text-sm text-red-500">
+                    @if (form.get('phone')?.errors?.['required']) { <span>{{ 'register.errors.phoneRequired' | transloco }}</span> }
+                    @if (form.get('phone')?.errors?.['pattern']) { <span>{{ 'register.errors.phoneInvalid' | transloco }}</span> }
+                </div>
+            }
         </div>
 
         <app-turnstile

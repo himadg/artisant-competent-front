@@ -15,6 +15,7 @@ export interface QuotePayload {
       postalCode: string;
       city: string;
       email: string;
+      phone?: string;
     };
     jobsite: {
       streetNumber: string;

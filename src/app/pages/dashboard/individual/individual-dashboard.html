@@ -281,6 +281,20 @@
                                         }
                                     </div>
                                     <div class="ind-info-row">
+                                        <dt>{{ 'dashboard.individual.fields.phone' | transloco }}</dt>
+                                        @if (editMode()) {
+                                            <dd>
+                                                <input
+                                                    class="ind-edit-input"
+                                                    type="tel"
+                                                    [(ngModel)]="editFields.phone"
+                                                />
+                                            </dd>
+                                        } @else {
+                                            <dd>{{ data()?.phone }}</dd>
+                                        }
+                                    </div>
+                                    <div class="ind-info-row">
                                         <dt>{{ 'dashboard.individual.fields.birthDate' | transloco }}</dt>
                                         @if (editMode()) {
                                             <dd>
@@ -308,7 +322,7 @@
                                                 </select>
                                             </dd>
                                         } @else {
-                                            <dd>{{ 'register.gender.`${data()?.gender}`' | transloco }}</dd>
+                                            <dd>{{ 'register.gender.' + data()?.gender | transloco }}</dd>
                                         }
                                     </div>
                                 </dl>

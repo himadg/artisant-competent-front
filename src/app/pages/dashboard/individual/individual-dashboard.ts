@@ -2,7 +2,7 @@
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule, PlatformLocation } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, Validators } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
 import { DashboardApiService } from '../../../core/services/dashboard-api.service';
 import { AuthService } from '../../../core/services/auth.service';
@@ -63,7 +63,7 @@ export class IndividualDashboard implements OnInit {
 
   readonly editMode = signal(false);
   readonly saving = signal(false);
-  editFields = { firstName: '', lastName: '', email: '', birthDate: '', gender: '' };
+  editFields = { firstName: '', lastName: '', email: '', phone: '', birthDate: '', gender: '' };
 
   readonly inscriptionDate = computed(() => {
     const data = this.data();
@@ -148,7 +148,13 @@ export class IndividualDashboard implements OnInit {
     this.previewQuote.set(quote);
     this.quoteApi.getQuote(quote.id).subscribe({
       next: (full) => {
-        this.previewQuoteData.set({ ...full.payload, quoteNumber: full.quoteNumber });
+        const payload = full.payload;
+        // If the quote payload doesn't have the client's phone, add it from the mission data.
+        if (quote.mission.client && !payload.coordinates.client.phone) {
+            if (!payload.coordinates.client) payload.coordinates.client = {};
+            payload.coordinates.client.phone = quote.mission.client.phone;
+        }
+        this.previewQuoteData.set({ ...payload, quoteNumber: full.quoteNumber });
         this.previewLoading.set(false);
       },
       error: () => this.previewLoading.set(false),
@@ -227,6 +233,7 @@ export class IndividualDashboard implements OnInit {
       firstName: d.firstName,
       lastName: d.lastName,
       email: d.email,
+      phone: d.phone || '',
       birthDate: d.birthDate.slice(0, 10),
       gender: d.gender,
     };
@@ -236,6 +243,12 @@ export class IndividualDashboard implements OnInit {
   cancelEdit() { this.editMode.set(false); }
 
   saveEdit() {
+    const phonePattern = new RegExp('^0[1-9]([ .-]?[0-9]{2}){4}$');
+    if (!phonePattern.test(this.editFields.phone)) {
+      alert('Le format du numéro de téléphone est invalide.');
+      return;
+    }
+
     const individual = this.data();
     if (!individual) return;
     this.saving.set(true);
@@ -246,6 +259,7 @@ export class IndividualDashboard implements OnInit {
           firstName: this.editFields.firstName,
           lastName: this.editFields.lastName,
           email: this.editFields.email,
+          phone: this.editFields.phone,
           birthDate: new Date(this.editFields.birthDate).toISOString(),
           gender: this.editFields.gender,
         } : prev);
