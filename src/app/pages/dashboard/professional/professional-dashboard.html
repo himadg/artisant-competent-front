@@ -1159,6 +1159,11 @@
                                             }
                                             <div class="pro-quote-actions">
                                                 <button class="pro-btn" (click)="openQuoteDetails(q)">{{ 'dashboard.quotes.actions.details' | transloco }}</button>
+
+                                                @if (q.status === 'ACCEPTED' && q.prestataireSignatureUrl) {
+                                                    <a [href]="q.prestataireSignatureUrl" target="_blank" class="pro-btn pro-btn--primary">Lien de signature</a>
+                                                }
+
                                                 @if (q.status === 'REJECTED') {
                                                     <button class="pro-btn pro-btn--primary" (click)="editQuote(q)">{{ 'dashboard.quotes.actions.modify' | transloco }}</button>
                                                 }
@@ -1290,6 +1295,13 @@
                                                     }
                                                     {{ (codeCopied() ? 'dashboard.affiliation.copied' : 'dashboard.affiliation.copyCode') | transloco }}
                                                 </button>
+                                            </div>
+                                            <div class="aff-share-row">
+                                                <svg class="aff-share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                                                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                                                </svg>
+                                                <span class="aff-share-url">{{ affiliateShareUrl(aff.affiliateCode!) }}</span>
                                             </div>
                                         </div>
 

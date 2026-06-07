@@ -115,9 +115,11 @@ export class QuotePreviewComponent {
     this.isInitiatingYousign = true;
     try {
       const result = await firstValueFrom(this.quoteService.initiateSignature(this.quoteData));
-      if (result && result.signatureUrl) {
+      if (result) {
         // Redirige l'utilisateur vers la page de signature Yousign
-        window.open(result.signatureUrl, '_blank');
+        // TODO client
+        console.log("client signature url: " + result.clientSignatureUrl)
+        console.log("pro signature url: " + result.prestataireSignatureUrl)
       } else {
         alert('Impossible de récupérer l\'URL de signature.');
       }

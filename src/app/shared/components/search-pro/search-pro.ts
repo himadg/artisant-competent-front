@@ -8,6 +8,7 @@ import { Subject, switchMap, debounceTime, filter } from 'rxjs';
 import { TradeApiService } from '../../../core/services/trade-api.service';
 import { GeocodingService, AddressSuggestion } from '../../../core/services/geocoding.service';
 import { Trade } from '../../interfaces/trade';
+import { AppConfigService } from '../../../core/services/app-config.service';
 
 @Component({
   selector: 'search-pro',
@@ -23,6 +24,7 @@ export class SearchPro {
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  public readonly disableSearch: string = inject(AppConfigService).get('disable_research');
 
   readonly trades = signal<Trade[]>([]);
   readonly addressSuggestions = signal<AddressSuggestion[]>([]);
@@ -88,15 +90,17 @@ export class SearchPro {
   }
 
   submit(): void {
-    if (!this.selectedAddress || !this.trade) return;
-    this.router.navigate(['/search-pro-results'], {
-      queryParams: {
-        lat: this.selectedAddress.latitude,
-        lng: this.selectedAddress.longitude,
-        radius: this.kilometers,
-        trade: this.trade,
-        address: this.selectedAddress.label,
-      },
-    });
+    if (this.disableSearch !== 'true') {
+      if (!this.selectedAddress || !this.trade) return;
+      this.router.navigate(['/search-pro-results'], {
+        queryParams: {
+          lat: this.selectedAddress.latitude,
+          lng: this.selectedAddress.longitude,
+          radius: this.kilometers,
+          trade: this.trade,
+          address: this.selectedAddress.label,
+        },
+      });
+    }
   }
 }

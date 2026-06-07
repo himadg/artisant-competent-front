@@ -17,7 +17,8 @@ export interface SignaturePdfResponse {
 }
 
 export interface SignatureUrlResponse {
-  signatureUrl: string;
+  clientSignatureUrl: string;
+  prestataireSignatureUrl: string;
 }
 
 export type QuoteStatus = 'DRAFT' | 'SENT' | 'ACCEPTED' | 'REJECTED' | 'CANCELLED';
@@ -27,6 +28,8 @@ export interface QuoteListItem {
   quoteNumber: string;
   status: QuoteStatus;
   rejectionMessage: string | null;
+  clientSignatureUrl?: string | null;
+  prestataireSignatureUrl?: string | null;
   createdAt: string;
   updatedAt: string;
   mission: {

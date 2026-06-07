@@ -24,7 +24,7 @@
                     class="appearance-none w-full px-3 py-2 rounded-full border bg-[var(--primary-beige)] text-[var(--secondary-water-green)]">
                     <option value="" disabled selected>{{ 'searchPro.tradeLabel' | transloco }}</option>
                     @for (t of trades(); track t.id) {
-                        <option [value]="t.name">{{ `jobs.list.${t.name}.name` | transloco }}</option>
+                        <option [value]="t.name">{{ 'jobs.list.' + t.name + '.name' | transloco }}</option>
                     }
                 </select>
             </div>
@@ -44,7 +44,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="flex-1 px-4 py-2 rounded-full bg-grad-beige text-[var(--primary-water-green)]">
+            <button [disabled]="disableSearch" type="submit" class="flex-1 px-4 py-2 rounded-full bg-grad-beige text-[var(--primary-water-green)]">
                 {{ 'searchPro.button' | transloco }}
             </button>
         </div>
