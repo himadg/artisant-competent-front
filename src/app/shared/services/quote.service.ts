@@ -63,8 +63,8 @@ export class QuoteService {
     return this.http.post<SignaturePdfResponse>(`${this.apiUrl}/pdf/generate-signature-page`, quoteData);
   }
 
-  initiateSignature(quoteData: any): Observable<SignatureUrlResponse> {
-    return this.http.post<SignatureUrlResponse>(`${this.apiUrl}/pdf/initiate-signature`, quoteData);
+  initiateSignature(quoteData: any, quoteId?: string): Observable<SignatureUrlResponse> {
+    return this.http.post<SignatureUrlResponse>(`${this.apiUrl}/pdf/initiate-signature`, { ...quoteData, quoteId });
   }
 
   // Persist quote to backend

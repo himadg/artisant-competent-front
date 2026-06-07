@@ -114,7 +114,7 @@ export class QuotePreviewComponent {
   async startYousignProcedure(): Promise<void> {
     this.isInitiatingYousign = true;
     try {
-      const result = await firstValueFrom(this.quoteService.initiateSignature(this.quoteData));
+      const result = await firstValueFrom(this.quoteService.initiateSignature(this.quoteData, this.quoteId));
       if (result) {
         // Redirige l'utilisateur vers la page de signature Yousign
         // TODO client
