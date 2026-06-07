@@ -1,25 +1,25 @@
 <div class="container mx-auto p-4 max-w-2xl">
-  <h1 class="text-2xl font-bold mb-4">Détailler votre demande</h1>
+  <h1 class="text-2xl font-bold mb-4">{{ 'demande.title' | transloco }}</h1>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-4">
-      <label for="descriptif" class="block text-sm font-medium text-gray-700">Descriptif du besoin</label>
+      <label for="descriptif" class="block text-sm font-medium text-gray-700">{{ 'demande.descriptifLabel' | transloco }}</label>
       <textarea id="descriptif" formControlName="descriptif" rows="6" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-        placeholder="Décrivez précisément votre besoin (20 caractères minimum)"></textarea>
+        [placeholder]="'demande.descriptifPlaceholder' | transloco"></textarea>
       @if (form.get('descriptif')?.invalid && form.get('descriptif')?.touched) {
         <div class="text-red-600 text-sm mt-1">
           @if (form.get('descriptif')?.errors?.['required']) {
-            <span>Le descriptif est requis.</span>
+            <span>{{ 'demande.errors.required' | transloco }}</span>
           }
           @if (form.get('descriptif')?.errors?.['minlength']) {
-            <span>Le descriptif doit contenir au moins 20 caractères.</span>
+            <span>{{ 'demande.errors.minlength' | transloco }}</span>
           }
         </div>
       }
     </div>
 
     <div class="mb-4">
-      <label class="block text-sm font-medium text-gray-700">Photos détaillées (3 maximum)</label>
+      <label class="block text-sm font-medium text-gray-700">{{ 'demande.photosLabel' | transloco }}</label>
       <div class="mt-1">
         <input type="file" (change)="onFileChange($event)" accept="image/png, image/jpeg, image/webp" [disabled]="photos.length >= 3">
       </div>
@@ -37,10 +37,10 @@
 
     <div class="flex justify-end gap-4 mt-8">
       <a routerLink="/search-pro-results" class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-        Retour
+        {{ 'demande.back' | transloco }}
       </a>
       <button type="submit" [disabled]="form.invalid" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50">
-        Envoyer ma demande
+        {{ 'demande.submit' | transloco }}
       </button>
     </div>
   </form>

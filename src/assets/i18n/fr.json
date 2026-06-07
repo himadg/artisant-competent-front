@@ -292,6 +292,9 @@
         "body": "<p>Inscrivez-vous gratuitement en 2 minutes, sans condition de taille d'audience, et recevez un lien d'affiliation unique rattaché à votre compte partenaire pour tracer vos recommandations.</p><p>Vous touchez jusqu'à 25 % de commission sur la marge Artisan Compétent : 20 % les 3 premiers mois après l'inscription d'un client (puis 10 % les 3 suivants) et 5 % par artisan amené pendant 3 mois.</p><p>Les commissions sont validées une fois le procès-verbal de fin de chantier signé, puis versées par virement trimestriel avec justificatif PDF dans votre espace partenaire.</p><p>Seule règle pour rester actif : publier au moins un contenu par semaine. Sans publication pendant 14 jours, votre lien est désactivé, mais les filleuls déjà rattachés continuent de générer des commissions.</p>",
         "linkLabel": "Découvrir le programme d'affiliation"
       }
+    },
+    "carousel": {
+      "alt": "Image qui défile"
     }
   },
   "common": {
@@ -988,7 +991,8 @@
         "lastName": "Nom",
         "email": "Email",
         "birthDate": "Date de naissance",
-        "gender": "Genre"
+        "gender": "Genre",
+        "phone": "Téléphone"
       }
     },
     "pro": {
@@ -1063,6 +1067,16 @@
         "amountPlaceholder": "Montant total (€)",
         "messagePlaceholder": "Précisions à adresser au client...",
         "send": "Envoyer le devis"
+      },
+      "status": {
+        "pending": {
+          "title": "Compte en attente de validation",
+          "message": "Votre compte est en cours de vérification. Vous serez notifié dès qu'il sera validé."
+        },
+        "rejected": {
+          "title": "Compte refusé",
+          "message": "Votre compte n'a pas été validé. Veuillez contacter le support pour plus d'informations."
+        }
       }
     },
     "empty": {
@@ -1108,7 +1122,8 @@
         "preview": "Prévisualiser",
         "refuse": "Refuser",
         "modify": "Modifier",
-        "cancel": "Annuler"
+        "cancel": "Annuler",
+        "signatureLink": "Lien de signature"
       },
       "modal": {
         "title": "Devis",
@@ -1184,6 +1199,10 @@
         "individual": "Particulier parrainé → 20% de commission les 6 premiers mois, puis 10% les 6 suivants.",
         "professional": "Professionnel parrainé → 5% de commission pendant 6 mois."
       }
+    },
+    "topbar": {
+      "notifications": "Notifications",
+      "messages": "Messages"
     }
   },
   "cities": {
@@ -1255,6 +1274,230 @@
     "cgv": {
       "tab": "CGV",
       "title": "Conditions Générales de Vente"
+    }
+  },
+  "navbar": {
+    "menu": "Menu",
+    "close": "Fermer",
+    "greeting": "Bonjour,",
+    "dashboard": "Tableau de bord",
+    "logout": "Déconnexion"
+  },
+  "demande": {
+    "title": "Décrivez votre besoin",
+    "descriptifLabel": "Description de votre besoin",
+    "descriptifPlaceholder": "Décrivez en détail les travaux que vous souhaitez réaliser…",
+    "photosLabel": "Photos (3 maximum)",
+    "back": "Retour",
+    "submit": "Envoyer la demande",
+    "errors": {
+      "required": "La description est requise.",
+      "minlength": "La description est trop courte."
+    }
+  },
+  "quotePreview": {
+    "title": "Prévisualisation du devis",
+    "docTitle": "Devis",
+    "quoteNumber": "Numéro de devis :",
+    "placeOfWriting": "Lieu de rédaction :",
+    "dateOfWriting": "Date de rédaction :",
+    "validityDate": "Valable jusqu'au :",
+    "notProvided": "Non renseigné",
+    "notProvidedF": "Non renseignée",
+    "clientBilling": "Client (Facturation)",
+    "jobsiteAddress": "Adresse du chantier",
+    "provider": "Prestataire",
+    "building": "Bâtiment",
+    "floor": "Étage",
+    "apartment": "Appt",
+    "email": "Email :",
+    "phone": "Tél :",
+    "siret": "SIRET :",
+    "materials": "Matériaux et fournitures",
+    "service": "Prestation",
+    "serviceSub": "(main-d’œuvre)",
+    "reconditioned": "Reconditionné",
+    "providedByClient": "Fourni par le client",
+    "providedByArtisan": "Fourni par l'artisan",
+    "noMaterials": "Aucun matériau renseigné.",
+    "noServices": "Aucune prestation renseignée.",
+    "logistics": "Logistique et frais annexes",
+    "logisticsSub": "(frais de déplacement, location de matériel, livraison, frais de stationnement, etc.)",
+    "travelCostHT": "Frais annexes HT :",
+    "wasteManagement": "Gestion des déchets :",
+    "wasteManagementValue": "Prise en charge avec document CERFA à signer.",
+    "cerfaNote": "Tout document CERFA obligatoire doit être joint et complété lorsque la réglementation l’impose avant, pendant ou après les travaux.",
+    "suppliers": "Fournisseurs :",
+    "totalHT": "Total HT :",
+    "totalToPay": "TOTAL À PAYER TTC :",
+    "legalInfo": "Informations Légales & Conditions",
+    "estimatedDelays": "Délais estimés :",
+    "from": "du",
+    "to": "au",
+    "delayNote": "(hors retard indépendant de notre volonté)",
+    "rcPro": "Assurance RC PRO :",
+    "rcProValue": "Attestation jointe au devis final.",
+    "decennale": "Assurance Décennale :",
+    "otherCertifications": "Autres certifications :",
+    "otherCertificationsValue": "Documents joints au devis final.",
+    "mandatoryMentions": "Mentions obligatoires :",
+    "tvaNotApplicable": "TVA non applicable, article 293 B du CGI.",
+    "rcsDispensation": "Dispensé d’immatriculation au registre du commerce et des sociétés, en application de l’article L. 12311 du Code de commerce.",
+    "tvaCompany": "TVA acquittée par l'entreprise principale en application des dispositions de 2 Nonies de L'article 283 du code Général des impôts.",
+    "importantMentions": "Mentions importantes :",
+    "mention1": "Il est nécessaire d'établir un procès-verbal de fin de chantier pour la validation des travaux.",
+    "mention2": "Un délai de 48h est appliqué avant validation automatique et libération des fonds.",
+    "insuranceVerified": "✓ Le client est prié de vérifier la validité de l'assurance avant la signature.",
+    "waiveRetraction": "✓ Le client reconnaît renoncer à son droit de rétractation de 14 jours.",
+    "arbitration": "✓ Autorisation d'arbitrage par la plateforme Artisan-Compétent en cas de nécessité accordée.",
+    "table": {
+      "description": "Description",
+      "origin": "Origine",
+      "type": "Type",
+      "amountHT": "Montant HT",
+      "tva": "TVA",
+      "amountTTC": "Montant TTC"
+    },
+    "processing": "Traitement…",
+    "acceptAndSign": "Accepter et signer",
+    "back": "Retour"
+  },
+  "quoteForm": {
+    "title": "Génération de devis",
+    "client": "Client",
+    "provider": "Prestataire",
+    "artisan": "Artisan",
+    "jobsiteAddress": "Adresse du chantier",
+    "copyClientAddress": "Copier l'adresse du client",
+    "providedByClient": "Fourni par le client",
+    "reconditioned": "Reconditionné",
+    "paidBy": "Payé par :",
+    "removeMaterial": "Supprimer ce matériau",
+    "addMaterial": "Ajouter un matériau",
+    "removeService": "Supprimer cette prestation",
+    "addService": "Ajouter une prestation",
+    "suppliersList": "Liste des fournisseurs",
+    "removeSupplier": "Supprimer ce fournisseur",
+    "addSupplier": "Ajouter un fournisseur",
+    "logisticsSub": "(frais de déplacement, location de matériel, livraison, frais de stationnement, etc.)",
+    "travelCostHT": "Frais annexes HT",
+    "wasteManagement": "Gestion des déchets à évacuer",
+    "cerfaNote": "Tout document CERFA obligatoire doit être joint et complété lorsque la réglementation l’impose avant, pendant ou après les travaux.",
+    "cerfaSigned": "Document CERFA retourné et signé",
+    "delayNote": "\"hors retard indépendant de notre volonté\"",
+    "importantMentions": "Mentions importantes :",
+    "mention1": "Il est nécessaire d'établir un procès-verbal de fin de chantier pour la validation des travaux.",
+    "mention2": "Un délai de 48h est appliqué avant validation automatique et libération des fonds.",
+    "insuranceVerified": "Le client est prié de vérifier la validité de l'assurance avant la signature.",
+    "waiveRetraction": "Je reconnais renoncer à mon droit de rétractation de 14 jours.",
+    "arbitration": "J'autorise la plateforme à arbitrer et libérer les fonds en cas de nécessité.",
+    "summary": "Récapitulatif",
+    "totalHTLabel": "Total HT (Matériaux + Prestations + Frais):",
+    "totalToPay": "Total à payer par le client :",
+    "formHasErrors": "Le formulaire contient des erreurs. Veuillez vérifier les champs en rouge.",
+    "preview": "Prévisualiser",
+    "submit": "Valider et générer le devis",
+    "sections": {
+      "coordinates": "Coordonnées",
+      "legal": "Mentions Légales",
+      "materials": "Matériaux et fournitures",
+      "services": "Prestation (main-d’œuvre)",
+      "logistics": "Logistique et frais annexes",
+      "planning": "Planification",
+      "agreement": "Accord et Validation"
+    },
+    "serviceType": {
+      "main": "Principale",
+      "annex": "Annexe"
+    },
+    "fields": {
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "artisanFirstName": "Prénom de l'artisan",
+      "artisanLastName": "Nom de l'artisan",
+      "companyName": "Nom de la société",
+      "streetNumber": "N°",
+      "streetType": "Type de voie",
+      "streetName": "Nom de la rue",
+      "locality": "Lieu-dit / Résidence",
+      "building": "Bâtiment",
+      "floor": "Étage",
+      "apartment": "Appartement",
+      "postalCode": "Code Postal",
+      "city": "Ville",
+      "email": "Adresse mail",
+      "phone": "Téléphone",
+      "status": "Statut",
+      "siret": "Numéro SIRET",
+      "descriptionMax": "Description (max 255 caractères)",
+      "amountHT": "Montant HT",
+      "tva": "TVA (%)",
+      "type": "Type",
+      "placeOfWriting": "Lieu de rédaction",
+      "dateOfWriting": "Date de rédaction",
+      "validityDate": "Date de validité",
+      "estimatedStartDate": "Date de début estimée",
+      "estimatedEndDate": "Date de fin estimée"
+    },
+    "placeholders": {
+      "streetNumber": "Ex: 123",
+      "locality": "Lieu-dit, résidence, etc. (optionnel)",
+      "apartment": "N° Appt",
+      "companyName": "Nom de l'entreprise",
+      "siret": "14 chiffres",
+      "materialDescription": "Description détaillée",
+      "serviceDescription": "Description de la prestation",
+      "supplierName": "Nom du fournisseur",
+      "city": "Ville"
+    },
+    "legal": {
+      "rcPro": "Assurance RC PRO (obligatoire)",
+      "rcProRequired": "Le document RC PRO est obligatoire.",
+      "addDecennale": "Ajouter une Assurance Décennale (si applicable)",
+      "decennaleFile": "Fichier Assurance Décennale",
+      "documentRequired": "Le document est requis.",
+      "addOtherCertifications": "Ajouter d'autres certifications",
+      "fileRequired": "Un fichier est requis.",
+      "removeCertification": "Supprimer la certification",
+      "addCertification": "+ Ajouter une certification",
+      "applyTvaExemption": "Appliquer l'exonération de TVA",
+      "includeRcsDispensation": "Ajouter la mention de dispense d'immatriculation au RCS"
+    },
+    "errors": {
+      "firstNameRequired": "Prénom requis.",
+      "lastNameRequired": "Nom requis.",
+      "streetNameRequired": "Nom de rue requis.",
+      "streetNumberRequired": "N° requis.",
+      "postalCodeRequired": "Code postal requis.",
+      "postalCodeInvalid": "Code postal invalide.",
+      "cityRequired": "Ville requise.",
+      "emailRequired": "Email requis.",
+      "emailInvalid": "Format d'email invalide.",
+      "phoneRequired": "Téléphone requis.",
+      "formatInvalid": "Format invalide.",
+      "companyNameRequired": "Le nom de l'entreprise est requis.",
+      "siretRequired": "Le numéro SIRET est requis.",
+      "siretPattern": "Le SIRET doit contenir exactement 14 chiffres.",
+      "descriptionRequired": "Description requise.",
+      "descriptionMaxlength": "La description ne peut dépasser 255 caractères.",
+      "amountRequired": "Montant requis.",
+      "amountMin": "Le montant doit être >= 0.",
+      "tvaRequired": "TVA requise.",
+      "tvaMin": "La TVA doit être >= 0.",
+      "typeRequired": "Type requis.",
+      "supplierNameRequired": "Le nom du fournisseur est requis.",
+      "travelCostRequired": "Frais annexes requis.",
+      "cerfaConfirm": "Vous devez confirmer que le CERFA est signé.",
+      "placeOfWritingRequired": "Lieu de rédaction requis.",
+      "dateOfWritingRequired": "Date de rédaction requise.",
+      "dateMinToday": "La date ne peut être antérieure à aujourd'hui.",
+      "validityDateRequired": "Date de validité requise.",
+      "validityRange": "La date de validité doit être supérieure ou égale à la date de rédaction.",
+      "startDateRequired": "Date de début requise.",
+      "startRange": "La date de début estimée doit être supérieure ou égale à la date de rédaction.",
+      "endDateRequired": "Date de fin requise.",
+      "endRange": "La date de fin doit être supérieure ou égale à la date de début.",
+      "mustAccept": "Vous devez accepter cette condition."
     }
   }
 }

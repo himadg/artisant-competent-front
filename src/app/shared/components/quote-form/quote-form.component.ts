@@ -2,6 +2,7 @@ import { Component, computed, effect, inject, Signal, Input, Output, EventEmitte
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, Validators, ReactiveFormsModule, FormGroup, FormControl, FormArray, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { TranslocoModule } from '@jsverse/transloco';
 import { startWith } from 'rxjs/operators';
 import { QuotePreviewComponent } from '../quote-preview/quote-preview.component';
 import { QuoteCalculationService } from '../../services/quote-calculation.service';
@@ -68,7 +69,7 @@ type ArtisanForm = FormGroup<{
 @Component({
   selector: 'ac-quote-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, QuotePreviewComponent],
+  imports: [CommonModule, ReactiveFormsModule, QuotePreviewComponent, TranslocoModule],
   templateUrl: './quote-form.component.html',
   styleUrls: ['./quote-form.component.scss']
 })

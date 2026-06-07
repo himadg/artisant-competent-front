@@ -3,7 +3,7 @@
         type="button"
         class="grid py-4 place-items-center size-16 rounded-full bg-[var(--tertiary-brown)]"
         (click)="toggleMobileNav()"
-        aria-label="Menu"
+        [attr.aria-label]="'navbar.menu' | transloco"
         [attr.aria-expanded]="mobileNavOpen"
     >
         <span class="block w-6 h-0.5 bg-[var(--primary-beige)]"></span>
@@ -25,7 +25,7 @@
         [class.translate-x-full]="!mobileNavOpen"
         [class.translate-x-0]="mobileNavOpen"
     >
-        <button type="button" (click)="closeMobileNav()" class="self-end px-3 text-3xl">×</button>
+        <button type="button" (click)="closeMobileNav()" class="self-end px-3 text-3xl" [attr.aria-label]="'navbar.close' | transloco">×</button>
 
         <a
             routerLink="/"
@@ -54,13 +54,13 @@
 
         @if (currentUser()) {
             <div class="p-2">
-                <span class="font-bold">Bonjour, {{ currentUser()?.firstName }} {{ currentUser()?.lastName }}</span>
+                <span class="font-bold">{{ 'navbar.greeting' | transloco }} {{ currentUser()?.firstName }} {{ currentUser()?.lastName }}</span>
             </div>
             <a routerLink="/dashboard" routerLinkActive="active" class="p-2 no-underline rounded-lg hover:bg-grad-water-green">
-                Tableau de bord
+                {{ 'navbar.dashboard' | transloco }}
             </a>
             <button type="button" (click)="logout()" class="p-2 text-left no-underline rounded-lg hover:bg-grad-water-green">
-                Déconnexion
+                {{ 'navbar.logout' | transloco }}
             </button>
         } @else {
             <button

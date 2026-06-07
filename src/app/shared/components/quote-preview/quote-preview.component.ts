@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslocoModule } from '@jsverse/transloco';
 import { QuoteService } from '../../services/quote.service';
 import { firstValueFrom } from 'rxjs';
 import { QuoteCalculationService } from '../../services/quote-calculation.service';
@@ -7,7 +8,7 @@ import { QuoteCalculationService } from '../../services/quote-calculation.servic
 @Component({
   selector: 'ac-quote-preview',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslocoModule],
   templateUrl: './quote-preview.component.html',
   styleUrls: ['./quote-preview.component.scss']
 })
