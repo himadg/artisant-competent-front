@@ -25,13 +25,7 @@ export const routes: Routes = [
     title: 'jobs.title',
     loadComponent: () => import('./pages/jobs/jobs').then((p) => p.JobsPage),
   },
-  {
-    path: 'job',
-    children: [
-      { path: ':trade', loadComponent: () => import('./pages/job/job').then((c) => c.JobPage) },
-      { path: ':trade/:city', loadComponent: () => import('./pages/job-city/job-city').then((c) => c.JobCityPage) },
-    ],
-  },
+  { path: 'job', loadChildren: () => import('./pages/job/job.routes').then((r) => r.jobRoutes) },
   {
     path: 'cmod/formule',
     title: 'cmodFormule.title',

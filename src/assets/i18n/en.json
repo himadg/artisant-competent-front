@@ -15,7 +15,7 @@
       "ogDescription": "Only release payment once the job is done. Fund escrow, verified tradespeople, digital tracking."
     },
     "hero": {
-      "h1": "Your small jobs overseen from A to Z, no more scams.",
+      "h1": "Your small jobs and emergency call-outs 24/7 overseen from A to Z, no more scams!",
       "args": [
         "Verified tradespeople: business registration, insurance and certifications checked before joining.",
         "Overseen payment: your funds are held in escrow until the project is validated.",
@@ -91,18 +91,14 @@
       "ctaRegister": "Sign up",
       "accordionTitle": "Learn more about our trades",
       "cards": {
-        "electrician": "Electrician (24/7)",
-        "locksmithMetaller": "Locksmith & Metalworker (24/7)",
+        "electrician": "Electricity & Connected Devices (24/7)",
+        "locksmith": "Locksmith (24/7)",
         "plumberSanitary": "Plumber Sanitary (24/7)",
-        "heatingTech": "Heating Technician",
+        "heating": "Heating & VMC & Heat Pump",
         "drainUnblocker": "Drain Unblocker (24/7)",
-        "hvacInstaller": "HVAC installer/repairer technician",
-        "carpenterGlazier": "Glazier",
-        "insulationInOut": "Drywall & jointing & insulation",
-        "painterInteriorFacade": "Interior Painter & Facade Worker",
-        "floorCoverings": "Floor Covering Specialist (tiles, parquet, etc.)",
-        "pestControl": "Pest Control (rodents, bedbugs, etc.)",
-        "alarmVideoSurveillance": "Alarm & CCTV installer"
+        "hvac": "HVAC Technician & Refrigeration Engineer",
+        "glazier": "Glazing & Mirror Work",
+        "pestControl": "Pest Control (rodents, bedbugs, etc.)"
       }
     },
     "emergency": {
@@ -391,111 +387,1204 @@
     "nearbyCities": "in cities near {{ city }}",
     "list": {
       "electrician": {
-        "title": "Electrician (24/7)",
-        "name": "Electrician (24/7)",
+        "title": "Verified electrician, from quote to supervised live work",
+        "name": "Electricity & Connected Devices (24/7)",
+        "tagline": "This page lists the interventions handled by verified electricians on Artisan Compétent, including home automation, EV charging stations and NF C 15-100 compliance upgrades, as well as the escrow mechanism that governs your payment from quote signing to fund release 48h after completion.",
+        "verifiedBadge": "In brief, a verified electrician on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, NF C 18-510 electrical certification for live work, IRVE qualification for EV charging stations, and Qualifelec certification displayed when held. Escrow process via Stripe: 48h after job completion to report an issue. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 30 km radius per city.",
         "description": {
-          "p1": "With Artisan-Compétent, finding a competent electrician has never been easier. In seconds, describe your issue via audio, video or photo, and our solution connects you directly with qualified electricians near you.",
-          "p2": "No more complex forms or waiting for callbacks: compare proposals, choose the professional you trust, and get fast, secure service.",
-          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+          "p1": "With Artisan-Compétent, finding a skilled electrician has never been simpler. In a few seconds, you describe your problem via audio, video or photo, and our solution connects you directly with qualified electricians near you — whether for a standard installation or smart home devices and home automation.",
+          "p2": "No more complex forms or waiting for callbacks: you compare the proposals received, choose the professional you trust and benefit from fast and secure intervention.",
+          "p3": "No more scams with our escrow payment system, you take absolutely no risk!"
+        },
+        "whenToCall": {
+          "title": "When to call a verified electrician",
+          "lead": "A verified electrician handles breakdowns, electrical panels, NF C 15-100 compliance upgrades, NF C 18-510 electrical certification, home automation and IRVE EV charging stations. Emergencies cover general power outages and recurring short circuits.",
+          "body": "Electricians listed on Artisan Compétent handle rapid troubleshooting, compliance upgrades and full renovations. Typical cases that justify calling a verified professional rather than a DIYer:",
+          "items": [
+            "General or partial power outage, main circuit breaker that won't reset",
+            "Recurring short circuit, overheating outlet, burning smell near a lighting point",
+            "Replacement or full renovation of the electrical panel with 30 mA RCDs",
+            "NF C 15-100 compliance upgrade on an older installation (earth bonding, isolation, differential devices)",
+            "NF C 18-510 electrical certification for any live work: legally mandatory",
+            "Additional outlets, lighting points, switches, two-way switches",
+            "Home automation installation: centralised control of lighting, blinds, heating, scenes, voice integration",
+            "IRVE EV charging station installation with specific qualification required (Qualifelec IRVE) and Consuel declaration",
+            "Full electrical diagnostic before sale, rental or home insurance subscription"
+          ],
+          "footer": "All these interventions engage the electrician's ten-year liability on durable installations. NF C 18-510 certification is mandatory for any live work. IRVE qualification is mandatory for charging stations above 3.7 kW. This is why verifying the professional before signing the quote is essential."
+        },
+        "whyUs": {
+          "title": "Why use Artisan Compétent for your electrical work",
+          "lead": "Artisan Compétent verifies the electrician upfront, manages your payment via Stripe escrow and gives you 48h to validate the job before any funds are released.",
+          "blocks": [
+            {
+              "title": "Every electrician listed on Artisan Compétent has their SIRET checked against public databases (Business Directory, INSEE/SIRENE) and their insurance verified before account validation on the platform.",
+              "body": "Verification covers three elements: active SIRET, RC pro insurance certificate covering electrical work, mandatory decennial insurance on durable electrical installations. NF C 18-510 certification is required for live work. Qualifelec certification, when held, is highlighted on the professional's profile. IRVE qualification is required for EV charging stations. An electrician with missing or expired documents is not validated on Artisan Compétent. Once the quote is signed, the professional must upload their legal documents (insurance certificates, NF C 18-510 certification, IRVE qualification if applicable) to their dashboard. These documents are viewable by the client in their personal space. The client is invited to re-check sensitive documents beforehand, notably the electrical certification and IRVE certificate for EV charger installation as well as insurance."
+            },
+            {
+              "title": "The escrow account is a third-party account managed via Stripe that governs the entire process, from quote to fund release.",
+              "body": "Payment leaves your account when you approve the electrician's quote, but remains held in a Stripe escrow account. Funds are released to the professional 48h after job completion, without dispute."
+            },
+            {
+              "title": "The 48h countdown is structured: reception report, defect window, end-of-deadline notification.",
+              "body": "In practice, the 48h period doesn't run in a vacuum. At the end of the job, a reception report is issued on the platform. This report opens the 48h window during which you can raise defects: identified fault, non-conformity with the quote, missing finish, promised document not provided. 8h before the deadline, an email notification (acting as a formal notice to inspect the work) is sent to you to prevent a release simply due to oversight. Without defects raised within 48h, funds are automatically released to the professional. With defects, the escrow remains active until the dispute is resolved."
+            },
+            {
+              "title": "CMOD is a paid optional service providing remote project management support. Two complimentary calls offered under specific conditions.",
+              "body": "CMOD (Digital Project Management Advisor) is a paid optional service. Two complimentary call options exist, activated only in the event of a reported dispute after a failed amicable resolution with the professional."
+            }
+          ]
+        },
+        "pricing": {
+          "title": "How much does electrical repair or renovation cost",
+          "lead": "No reliable fixed price exists in electrical work: only a detailed quote from a verified electrician commits the professional to the real cost of an intervention. An indicative hourly range remains to be confirmed by Artisan Compétent and will be added in a future update.",
+          "body": "The cost of electrical work depends on five cumulative variables. The elements that affect the quote:",
+          "items": [
+            "The nature of the job (simple repair, adding electrical points, panel renovation, full compliance upgrade, EV charging station)",
+            "Urgency: standard hours, night, weekend or public holiday",
+            "Travel and accessibility (dense urban area, upper floor without lift, access to the electrical duct)",
+            "Equipment installed: entry-level or industrial panel, brand and rating of RCDs, quality of outlets and fittings, wired or Mode 3 charging station",
+            "Regulatory requirements: NF C 15-100 compliance, Consuel approval on new installations or full renovations, Enedis declaration for IRVE stations > 3.7 kW"
+          ],
+          "footer": "Artisan Compétent requires a detailed, accepted quote before any work begins. The indicative hourly range of the electrician will be specified once the business data has been consolidated. Klarna 3x interest-free payment can be offered by the professional, negotiated between client and professional."
+        },
+        "comparatif": {
+          "title": "Comparison: Artisan Compétent vs other platforms vs Google search",
+          "lead": "Three ways to find an electrician in France. Three radically different levels of protection, particularly around regulatory compliance.",
+          "headers": ["Criterion", "Other platforms", "Google search", "Artisan Compétent"],
+          "rows": [
+            ["SIRET verification", "Variable", "None", "Systematic before validation"],
+            ["Insurance & NF C 18-510 certification check", "Rare", "None", "RC pro, decennial, certification, IRVE if applicable"],
+            ["Managed payment", "Variable", "None", "Stripe escrow, released at 48h"],
+            ["Recourse in case of dispute", "Limited", "None", "Hold up to €250 on report < 48h"],
+            ["NF C 15-100 & Consuel compliance", "Variable", "None", "Enforced"],
+            ["Project management advisor", "No", "None", "CMOD available as option"]
+          ]
+        },
+        "traps": {
+          "title": "3 traps to avoid when hiring an electrician",
+          "lead": "Electrical work carries high safety risks and significant renovation costs. Three traps come up repeatedly.",
+          "items": [
+            {
+              "title": "Trap 1: Over-scoped compliance upgrade",
+              "body": "An electrician diagnoses an older installation and recommends a full compliance upgrade when only a partial safety remediation is legally required. The quote shoots up by several thousand euros for work with a low return on investment. A serious diagnostic distinguishes what's mandatory (safety remediation under the Borloo law), recommended (full NF C 15-100 upgrade) and comfort upgrades. The quote should always present these levels separately."
+            },
+            {
+              "title": "Trap 2: No Consuel approval on a major renovation",
+              "body": "A full panel renovation or new installation requires a Consuel approval before Enedis connects the power. An electrician who skips this step, either by omitting to request the approval or reusing a prior one, exposes the client to an installation not covered by home insurance and a regularisation at their own expense. The quote should explicitly mention the Consuel approval and its cost."
+            },
+            {
+              "title": "Trap 3: Equipment substituted between quote and installation",
+              "body": "A quote specifies a precise RCD brand, panel or IRVE charging station. During installation, the professional installs a generic reference at the price of a premium brand. The difference becomes apparent in usage (nuisance tripping, reduced durability, shorter manufacturer warranty). The quote must indicate the exact brand, reference and rating. The escrow allows blocking fund release if the delivered equipment doesn't match."
+            }
+          ]
+        },
+        "followUp": {
+          "title": "Your role in monitoring the job",
+          "lead": "Escrow protection relies on written evidence. Your active participation determines the quality of your recourse in the event of a dispute: no written record, no leverage.",
+          "body": "For jobs lasting more than one day (panel renovation, full compliance upgrade, IRVE installation), the professional uploads daily progress photos to the shared client-professional dashboard. You comment, approve or flag in the same space, which establishes written evidence for any future dispute. Also document on your end: photos of the panel before work, photos of equipment delivered on site (labels, references), photos at the end of each day.",
+          "footer": "In case of a reported dispute within 48h of job completion (non-conforming equipment, dangerous installation, quote not respected)."
+        },
+        "insurance": {
+          "title": "Home insurance and reimbursement",
+          "lead": "In the event of a claim linked to the electrical installation (fire, damage, identified wear), your home insurance may reimburse all or part of the intervention. The process is your responsibility with your insurer. Artisan Compétent does not intervene in the compensation process.",
+          "body": "Several common situations qualify for home insurance reimbursement: short circuit causing damage, electrical fire, damage from an installation fault, emergency safety intervention after a claim. It is up to you to contact your insurer directly after receiving the quote to verify eligibility (deductible, limit, possible expert assessment). The Consuel certificate and job photos in the dashboard generally facilitate claims processing.",
+          "footer": "Artisan Compétent does not advance funds, does not substitute for your insurer and does not suspend the escrow to await reimbursement. The intervention is launched according to the usual process, you then handle things with your insurance in parallel."
+        },
+        "howItWorks": {
+          "title": "How it works in 3 steps",
+          "lead": "The process on Artisan Compétent consists of three steps: describing the need, validating the quote with escrow payment, intervention and fund release after 48h.",
+          "steps": [
+            "You describe your need (repair, compliance upgrade, renovation, IRVE installation, home automation) on Artisan Compétent and receive a detailed quote from a verified electrician in your area.",
+            "You approve the quote, payment goes into Stripe escrow, the job is scheduled.",
+            "The electrician carries out the work. At the end of the job, a reception report is issued on the platform: it opens a 48h window to raise defects regarding compliance, safety or non-respect of the quote. A notification email is sent 8h before the deadline. Without defects, funds are automatically released to the professional."
+          ]
+        },
+        "emergency": {
+          "title": "Emergency electrician 24/7",
+          "lead": "Artisan Compétent covers electrical emergencies 24/7 across all service areas. The 48h rule for reporting a dispute applies even for night call-outs.",
+          "body": "Electricians are one of five trades covered on permanent emergency on Artisan Compétent, alongside plumbers, locksmiths, heating engineers and drain unblockers. A general outage that won't restore, a circuit breaker that won't reset, a burning smell at the panel: these situations require immediate action. The protocol remains the same for night-time call-outs: detailed quote, payment in Stripe escrow, intervention, 48h window to report an abuse."
+        },
+        "klarna": {
+          "title": "Klarna: how it works",
+          "p1": "Klarna is an interest-free 3-instalment payment service. Artisan Compétent makes this tool available in the payment flow. Activation is negotiated between client and professional: it is not automatic.",
+          "p2": "If the professional offers Klarna on your quote, the escrow mechanism remains active and payment remains protected until job validation at 48h. For larger projects (complete panel renovation, IRVE charger installation with civil works)."
+        },
+        "faq": {
+          "title": "Frequently asked questions",
+          "lead": "This FAQ covers the most common questions from individuals looking for a verified electrician on Artisan Compétent.",
+          "items": [
+            {
+              "q": "What is the difference between a safety remediation and a full compliance upgrade?",
+              "a": "Safety remediation covers the strictly necessary points to avoid immediate danger (30 mA differential protection on sensitive circuits, earth bonding, isolation). Full NF C 15-100 compliance goes further: number of outlets per room, cable sections, equipotentiality, dedicated circuits. Safety remediation is generally required at point of sale or rental; full compliance is a renovation choice."
+            },
+            {
+              "q": "Is Consuel approval always required after electrical work?",
+              "a": "Consuel approval is mandatory for any new installation or major renovation involving a new connection or significant panel overhaul. For a simple repair or limited additions, it is not required. The verified electrician knows the exact scope and indicates it on the quote. A missing Consuel approval on an installation that requires it can block Enedis connection and weaken insurance coverage."
+            },
+            {
+              "q": "What exactly is NF C 18-510 electrical certification?",
+              "a": "NF C 18-510 is the French standard governing operations on electrical systems. It defines certification levels (B0, B1V, B2V, BR, BC, etc.) by intervention type (dead work, live work, low voltage, high voltage, isolation). Any electrician working live must hold the corresponding certification level. On Artisan Compétent, certification is verified upfront and stored in the professional's dashboard."
+            },
+            {
+              "q": "How much does an EV charging station installation cost?",
+              "a": "Cost depends on the charger power (3.7 kW, 7.4 kW, 11 kW, 22 kW), communication mode (mode 2 or mode 3), distance from panel to location, civil works and Enedis declaration. No reliable national flat rate exists and Artisan Compétent does not provide fabricated estimates. IRVE qualification is mandatory for stations above 3.7 kW. Tax credits and Advenir grants may cover part of the installation."
+            },
+            {
+              "q": "Is Klarna 3x interest-free available for electrical renovation?",
+              "a": "Klarna 3x interest-free can be offered by the professional within applicable Klarna limits. Activation is not automatic: it is negotiated between you and the professional. Escrow remains active: instalment payment is protected until job validation at 48h."
+            },
+            {
+              "q": "Can my home insurance reimburse emergency electrical work?",
+              "a": "In the event of a claim linked to the electrical installation (short circuit causing damage, electrical fire), your home insurance may cover all or part of the safety intervention. Contact your insurer directly after receiving the quote. The Consuel certificate and photos of the panel before and after the intervention generally facilitate claims processing."
+            },
+            {
+              "q": "Which cities are covered by Artisan Compétent for electricity?",
+              "a": "Artisan Compétent aims to cover metropolitan France, the overseas territories and Corsica, meaning 38 zones, with a 30 km intervention radius around each listed city. Major cities (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) are covered as well as many mid-sized cities."
+            },
+            {
+              "q": "Is Qualifelec certification required for a simple electrical repair?",
+              "a": "No, Qualifelec certification is not mandatory to practise as an electrician. It remains a strong competence indicator recognised by the industry (insurers, managing agents, clients). However, NF C 18-510 certification is legally required for any live work. On Artisan Compétent, insurance and SIRET are verified, and Qualifelec when held is highlighted on the profile."
+            }
+          ]
         }
       },
-      "locksmithMetaller": {
-        "title": "Locksmith & Metalworker (24/7)",
-        "name": "Locksmith & Metalworker (24/7)",
+      "locksmith": {
+        "title": "Verified locksmith, without suffering the night quote",
+        "name": "Locksmith (24/7)",
+        "tagline": "This page lists the interventions handled by verified locksmiths and metalworkers on Artisan Compétent and the anti-scam mechanism that governs your payment, from the signed quote to fund release 48h after the intervention.",
+        "verifiedBadge": "In short, a verified locksmith on Artisan Compétent has their SIRET checked, their RC pro insurance up to date, and provides a prior itemized quote as required by the Consumer Code for any intervention over €150. Process governed by Stripe escrow, 48h to report an abuse. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 30 km radius per city.",
         "description": {
-          "p1": "With Artisan-Competent.com, simply describe your issue: door slammed, forced lock, lost key or installing a new lock. Your request is instantly sent to competent locksmiths near you.",
-          "p2": "You quickly receive clear proposals with fair prices and no surprises. Our matchmaking system saves time, lets you compare transparently, and choose the competent locksmith that best fits your needs. Security, speed and reliability — find a trusted locksmith in a few clicks.",
-          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+          "p1": "In one sentence, on Artisan Compétent, a verified locksmith provides a written itemized quote before intervention (mandatory above €150 at a home address), and the entire job is governed by a Stripe fund escrow that holds the payment for up to 48h after completion. This is the operational response to the primary source of fraud in the building trades: nighttime call-outs with a verbal quote and cash payment on the spot.",
+          "p2": "Emergency locksmithing is the sector most exposed to abusive practices. A verified locksmith on Artisan Compétent has their SIRET checked, their RC pro insurance up to date, and agrees to the prior itemized quote required under Article L. 111-1 of the French Consumer Code for any home visit above €150. The entire process is governed by a Stripe fund escrow: funds remain blocked for up to 48h after the intervention, a window during which you can report a quote that was not respected."
+        },
+        "whenToCall": {
+          "title": "When to call a verified locksmith",
+          "lead": "A verified locksmith handles openings, lock replacements, armouring, and metalwork. Emergencies involve slammed doors, jammed locks, and securing properties after a break-in.",
+          "body": "The locksmiths and metalworkers listed on Artisan Compétent handle both emergency and scheduled work. Typical cases include:",
+          "items": [
+            "Opening slammed doors, single or multi-point, without damage",
+            "Opening after key loss or breakage, without damaging the cylinder when technically possible",
+            "Replacing standard or A2P cylinders after theft, loss of keys, or tenant change",
+            "Installing or replacing an A2P multi-point lock on a front door",
+            "Installing an armoured door with a certified lock and reinforced frame",
+            "Installing and opening domestic A2P safes",
+            "Metalwork: guardrails, security grilles, window bars, stairs, ironwork",
+            "Repairing or replacing keeps, hinges, door closers after an attempted break-in"
+          ],
+          "footer": "Each of these interventions has a direct impact on home security and home insurance coverage, particularly for A2P lock installation. A detailed quote, signed before the intervention, and a verified professional are the two basic protections."
+        },
+        "whyUs": {
+          "title": "Why use Artisan Compétent for your locksmith and metalwork needs",
+          "lead": "Artisan Compétent verifies the locksmith beforehand, requires the mandatory prior quote, and secures your payment via Stripe escrow with a 48h window to report abuse.",
+          "blocks": [
+            {
+              "title": "Every locksmith listed on Artisan Compétent has their SIRET checked against public databases (Business Directory, INSEE/SIRENE, trades directory) and their professional liability (RC pro) insurance verified before approval.",
+              "body": "Locksmithing is governed by the mandatory registration in the trades directory and up-to-date RC pro insurance. For door installations or armouring interventions, decennial insurance may apply depending on the nature of the project. The Artisan Compétent filter focuses on three elements: an active SIRET, verified insurance, and the company's track record. Once the quote is signed, the tradesperson must upload their legal documents (insurance certificates, manufacturer A2P certifications if applicable) to their Artisan Compétent dashboard. These documents are accessible to the client. The client is encouraged to verify the RC pro insurance beforehand, and on major jobs, the A2P certificate for the installed equipment."
+            },
+            {
+              "title": "The escrow account is a third-party account managed via Stripe that governs the entire process, from the quote to fund release.",
+              "body": "It is in locksmithing that the escrow account plays its most visible anti-scam role. When you approve the locksmith's quote, the payment leaves your account but doesn't go to the tradesperson: it remains held in a Stripe escrow account. The funds are released 48h after the intervention, assuming no dispute. This holding period neutralizes the practice of demanding upfront cash payment after an overcharged night-time call-out. If the locksmith drilled a cylinder when a non-destructive opening was possible, or charged for a standard cylinder at the price of an A2P one, you have 48h to report it."
+            },
+            {
+              "title": "The 48h period is triggered in a structured way: completion report, reservation window, end-of-period notification.",
+              "body": "In practice, the 48h timeframe does not run in a vacuum. At the end of the job, a completion report is issued on the platform. This report opens the 48h window during which you can express reservations: observed defects, non-compliance with the quote, missing finishing touches, promised documents not provided. 8 hours before the end of the timeframe, an email notification (acting as a formal notice to inspect the work) is sent to prevent a release simply due to oversight. With no reservations raised at the end of the 48 hours, the funds are automatically released to the tradesperson. If there are reservations, the escrow remains active until the dispute undergoes an adversarial process."
+            },
+            {
+              "title": "The CMOD can be triggered when no amicable solution can be found between the client and the tradesperson concerning a dispute related to an intervention carried out via the Artisan Compétent platform.",
+              "body": "This procedure can be initiated either by the client or by the Artisan Compétent team when a disagreement persists despite discussions between the parties. The intervention of the CMOD incurs a flat fee of €35, borne by the tradesperson involved. This amount will be directly deducted from the sum owed to them on the escrowed funds related to the file in question. Therefore, it is in the tradesperson's best interest to favor an amicable and quick settlement with the client before the CMOD is involved, to avoid this extra charge and extended processing time."
+            }
+          ]
+        },
+        "pricing": {
+          "title": "How much does a locksmith intervention cost?",
+          "lead": "Door opening prices vary greatly depending on urgency, time, and lock type: there is an order of magnitude for standard interventions, but only a detailed quote from a verified locksmith commits the tradesperson. A prior quote is legally mandatory over €150 at home.",
+          "body": "The cost of an intervention depends on five cumulative factors. Elements that can change a quote:",
+          "items": [
+            "The nature of the intervention (non-destructive opening, drilling if strictly necessary, cylinder replacement, complete armoured door installation, metalwork)",
+            "Urgency: intervention during working hours, at night, on a weekend or public holiday, with surcharge rates governed by the Consumer Code",
+            "Travel (dense urban area, suburban, complex access, upper floor)",
+            "Installed equipment: standard cylinder, A2P cylinder with one, two, or three stars, multi-point lock, certified armoured door, A2P safe",
+            "Regulatory obligations: prior quote signed above €150, A2P standardisation required by some home insurance policies"
+          ],
+          "footer": "Artisan Compétent requires a prior detailed quote before triggering the escrow payment. The indicative hourly range remains to be confirmed by Artisan Compétent and will be added in a future update."
+        },
+        "comparatif": {
+          "title": "Comparison: Artisan Compétent vs other platforms vs Direct Google search",
+          "lead": "Three ways to find a locksmith in France. Three radically different levels of protection, particularly for night-time call-outs.",
+          "headers": ["Criterion", "Other platforms", "Direct Google", "Artisan Compétent"],
+          "rows": [
+            ["Tradesperson SIRET verification", "Variable", "None", "Systematic before validation"],
+            ["RC pro insurance verification", "Rare", "None", "Verified before validation, uploaded to dashboard"],
+            ["Night-time emergency scam risk", "Variable", "Very high", "Neutralised by prior quote and escrow"],
+            ["Escrowed payment", "Variable", "No", "Stripe escrow, released at 48h"],
+            ["Recourse in case of abuse", "Limited", "None", "Withholding up to €250 upon report < 48h"],
+            ["Prior detailed quote", "Variable", "No", "Required before intervention"],
+            ["Project management advisor", "No", "No", "CMOD available as an option"]
+          ]
+        },
+        "traps": {
+          "title": "3 traps to avoid when looking for a locksmith",
+          "lead": "Emergency locksmithing is statistically the home improvement trade where abuses are most frequent. Three practices repeatedly occur, particularly during night or weekend call-outs.",
+          "items": [
+            {
+              "title": "Trap 1: Quote not provided before intervention",
+              "body": "A locksmith arrives after being called from a Google ad, immediately starts working on the door without a prior written agreement, and then presents a verbal invoice once it's opened. The client pays on the spot under pressure. However, the Consumer Code requires a detailed prior quote for any home intervention over €150, including at night. On Artisan Compétent, an estimated detailed quote is provided before the professional travels, triggering the escrow payment."
+            },
+            {
+              "title": "Trap 2: Abusive drilling of a lock that could be picked",
+              "body": "The locksmith claims the lock can only be opened by drilling, meaning a complete replacement of the cylinder with new keys. In the vast majority of cases, a non-destructive opening using picking techniques or specific cards is sufficient. Drilling is more expensive (requires new equipment to install) and benefits the tradesperson. The quote should always mention the intended opening method and explain why drilling is necessary if required."
+            },
+            {
+              "title": "Trap 3: Overcharging for a standard cylinder presented as A2P",
+              "body": "The locksmith installs an entry-level cylinder while charging the price of an A2P certified cylinder (one, two, or three stars depending on what is claimed). The client cannot verify this immediately without seeing the certification mark on the installed cylinder. This is one of the hardest abuses to detect and one of the most profitable. The quote should always specify the brand, model, and A2P rating of the cylinder."
+            }
+          ]
+        },
+        "followUp": {
+          "title": "Your role in monitoring the job",
+          "lead": "Escrow protection relies on a written contradictory process. Your active participation determines the strength of your recourse in a dispute: no written trail, no leverage.",
+          "body": "For structural jobs (installing an armoured door, fitting a safe, metalwork), the tradesperson uploads progress photos to the shared client-tradesperson dashboard. You can comment, approve, or flag issues in that same space. For short emergency interventions (opening, cylinder replacement), systematically ask for a photo of the installed equipment (A2P mark, manufacturer label, cylinder reference) before validating the completion of the job.",
+          "footer": "In case of reporting abuse within 48 hours of the intervention (standard cylinder charged as A2P, unjustified drilling, quote not respected), Artisan Compétent can withhold up to €250 from the professional's invoice before validating the payment, as per the T&Cs and Terms of Sale. For proven abuses during night call-outs, this withholding serves as concrete protection and a deterrent precedent for the tradesperson."
+        },
+        "insurance": {
+          "title": "Home insurance and reimbursement",
+          "lead": "Locksmithing is the trade where insurance reimbursement is most frequent: break-ins, lost or stolen keys, and emergency security interventions often qualify for full or partial coverage by home insurance or premium credit card guarantees. This process is your responsibility; Artisan Compétent does not handle claims.",
+          "body": "Several common locksmithing scenarios are eligible for compensation: break-in with prior police report, lost or stolen keys (with or without a police report depending on policies), attempted break-ins requiring cylinder or lock replacement, and emergency security interventions after a burglary. Most comprehensive home insurance policies include \"theft and attempted theft\" coverage, which covers part or all of the locksmith's intervention. Some premium bank cards (Visa Premier, Mastercard World Elite, American Express) also include assistance covering or refunding interventions within defined limits. Best practice: before paying or right after the intervention, open a claim file with your home insurance and bank card if applicable. Keep the signed quote, detailed invoice, police report (if any), and photos of the damage. Reimbursement is conditional upon these documents and meeting declaration deadlines (typically 5 working days).",
+          "footer": "Artisan Compétent does not advance funds, does not take the place of your insurer, and does not suspend the escrow while waiting for compensation. The intervention follows the usual process, and you handle the insurance claim simultaneously."
+        },
+        "howItWorks": {
+          "title": "How it works in 3 steps",
+          "lead": "The process on Artisan Compétent consists of three steps: describing the need, validating the quote with escrowed payment, and the intervention followed by fund release after 48h.",
+          "steps": [
+            "You describe your need (door opening, lock replacement, armoured door, metalwork) on Artisan Compétent and receive a detailed quote from a verified local locksmith.",
+            "You approve the quote, the payment is held in escrow via Stripe, and the intervention is scheduled.",
+            "The locksmith intervenes. At the end of the job, a completion report is issued on the platform: this opens a 48-hour window for you to express any reservations (poorly installed door, cylinder not matching the quote, billed equipment not provided). A reminder email is sent 8 hours before the deadline. Without reservations, funds are automatically released to the professional."
+          ]
+        },
+        "emergency": {
+          "title": "Emergency locksmith 24/7",
+          "lead": "Artisan Compétent covers emergency locksmithing 24/7 in serviced areas. This is the trade where escrowed payment offers the most protection, as it is where abuses are most frequent.",
+          "body": "The locksmith is one of the five trades covered for permanent emergencies on Artisan Compétent, alongside the plumber, electrician, heating engineer, and drain unblocker. A slammed door at 2 a.m., a jammed lock after an attempted break-in, losing your keys on a Sunday: these are situations where pressure forces people to accept any price. The protocol remains the same for night-time call-outs: a detailed quote is sent before action, payment is escrowed via Stripe, the intervention takes place, and you have a 48h window to report abuse."
+        },
+        "klarna": {
+          "title": "Klarna: how it works",
+          "p1": "Klarna is an interest-free payment service allowing you to pay in 3 instalments. Artisan Compétent makes this tool available during the payment process. Its activation is negotiated between the client and the tradesperson: it is not automatic.",
+          "p2": "If the tradesperson agrees to offer Klarna (mainly for scheduled jobs but also emergencies like installing an armoured door or metalwork), the escrow mechanism remains active, and the payment is protected until the job is validated at 48 hours."
         }
       },
       "plumberSanitary": {
-        "title": "Plumber Sanitary (24/7)",
+        "title": "Verified Sanitary Plumber, from quote to overseen fund release",
         "name": "Plumber Sanitary (24/7)",
+        "tagline": "This page lists the interventions handled by verified plumbers on Artisan Compétent and the mechanism that oversees your payment from start to finish, from the detailed quote to fund release 48h after job completion.",
+        "verifiedBadge": "In short, a verified plumber on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, PG qualification for gas interventions, and, if applicable, RGE qualification for heat pumps and air conditioning eligible for public grants. The entire process is overseen by a Stripe escrow: quote, intervention, fund release 48h after the job is completed. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 30 km radius per city.",
         "description": {
-          "p1": "With Artisan-Competent.com, your request is immediately sent to competent plumbers near you who reply quickly with their proposals and quotes.",
-          "p2": "Compare transparently, choose the most suitable professional and enjoy reliable service at a fair price. With our innovative solution, finding a competent plumber has never been simpler, faster or more secure.",
-          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+          "p1": "A verified plumber on Artisan Compétent has their SIRET checked, their RC pro and decennial insurances up to date, and the PG qualification if their work involves gas. The Stripe fund escrow oversees the entire process: the payment leaves your account when the quote is validated, remains held during the intervention, and for an additional 48h after the end of the work. This 48-hour period gives you time to report a defect, an abuse, or non-compliance with the quote before the funds are released to the plumber."
         }
       },
       "drainUnblocker": {
-        "title": "Drain Unblocker (24/7)",
+        "title": "Verified drain unblocker, from quote to overseen release",
         "name": "Drain Unblocker (24/7)",
+        "tagline": "This page lists the drain unblocking and sanitation interventions handled by verified tradespeople on Artisan Compétent and the mechanism that oversees your payment, from the detailed quote to fund release 48h after the intervention.",
+        "verifiedBadge": "In short, a verified drain unblocker on Artisan Compétent has their SIRET checked, RC pro insurance up to date, prefectural approval for the evacuation of sewage if their activity involves septic tanks, and their equipment (inspection camera, hydro-jetting machine) tracked on the dashboard. Process overseen by Stripe escrow, 48h to report an issue. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 30 km radius per city.",
         "description": {
-          "p1": "When a pipe is clogged, it's essential to call a competent unblocker who can quickly identify the cause and propose an appropriate solution.",
-          "p2": "With know-how and professional tools, a competent unblocker ensures effective results while preserving your installations. Whether it's a blocked sink, clogged toilets or an overloaded pipe, you get reliable and lasting intervention.",
-          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+          "p1": "In one sentence, on Artisan Compétent, a verified drain unblocker has their SIRET, RC pro insurance, and prefectural approval (for septic tanks) checked beforehand, and their equipment (inspection camera, hydro-jetting machine) is tracked on the dashboard. The entire job is overseen by a Stripe fund escrow that holds the payment for up to 48h after the intervention, a window during which you can report a drain that immediately clogs again or an inflated flat rate without detailing the means used.",
+          "p2": "A verified drain unblocker on Artisan Compétent has their SIRET checked, their RC pro insurance up to date, and the required prefectural approval for the evacuation of sewage when their activity includes septic tanks. Emergency drain unblocking is one of the sectors where the practice of inflated flat rates without detailing the means used is most frequent: the Stripe fund escrow and the 48h window are the operational response to these abuses."
+        },
+        "whenToCall": {
+          "title": "When to call a verified drain unblocker",
+          "lead": "A verified drain unblocker handles clogged pipes, saturated toilets, full septic tanks and drainage networks. Emergencies involve backups and active overflows.",
+          "body": "The drain unblockers listed on Artisan Compétent cover both emergency unblocking and off-grid sanitation. Typical cases:",
+          "items": [
+            "Clogged pipe resistant to chemical unblockers or plungers, on a sink, washbasin, shower or bathtub",
+            "Clogged toilet, active overflow, saturation of the drainage network on the housing side",
+            "High-pressure hydro-jetting of a main pipe or underground network",
+            "Camera inspection of the network to identify the nature of the blockage (grease, roots, backfall, breakage)",
+            "Emptying of a septic tank with tracking slip and evacuation by a professional with prefectural approval",
+            "Compliance upgrade of a non-mains drainage installation after a SPANC inspection",
+            "Unblocking a lifting station, pumping station or courtyard gully",
+            "Finding a breakage or backfall on a drainage network by camera inspection"
+          ],
+          "footer": "Each of these interventions is governed by the public health code and, for non-mains drainage, by the amended decree of 7 September 2009. The evacuation of sewage requires a professional approved by the prefect: this is a point that Artisan Compétent checks when the trade requires it."
+        },
+        "whyUs": {
+          "title": "Why use Artisan Compétent for your unblocking and sanitation work",
+          "lead": "Artisan Compétent verifies the drain unblocker beforehand, oversees your payment via Stripe escrow and leaves you 48h to validate the intervention before any funds are released.",
+          "blocks": [
+            {
+              "title": "Every drain unblocker listed on Artisan Compétent has their SIRET checked against public databases (Business Directory, INSEE/SIRENE) and their RC pro insurance verified before validation.",
+              "body": "The check covers an active SIRET, RC pro insurance covering the unblocking activity, and prefectural approval for the evacuation of sewage if the professional works on septic tanks. A drain unblocker missing any of these documents or with an expired one is not validated on the platform. Once the quote is signed, the professional must upload their legal documents to their Artisan Compétent dashboard: RC pro insurance certificate, prefectural approval for emptying, and proof of the equipment used (inspection camera, hydro-jetting machine, motorised snake). These documents are viewable by the client in their personal space. For unblocking, the equipment proof is a particularly important point: a professional advertising hydro-jetting without the appropriate equipment is a red flag."
+            },
+            {
+              "title": "The escrow account is a third-party account managed via Stripe that oversees the entire process, from the quote to the release of funds.",
+              "body": "Payment leaves your account when you validate the drain unblocker's quote, but remains blocked in a Stripe escrow account. The funds are released to the professional 48h after the end of the intervention, without contestation. It is this window that changes everything in drain unblocking: if the pipe clogs up again within two days, you can report an incomplete job before the funds are released. The escrow also neutralises the practice of demanding a verbal flat rate on the spot after a night-time intervention."
+            },
+            {
+              "title": "The 48h period is triggered in a structured way: completion report, reservation window, end-of-period notification.",
+              "body": "In practice, the 48h timeframe does not run in a vacuum. At the end of the job, a completion report is issued on the platform. This report opens the 48h window during which you can express reservations: observed defect, non-compliance with the quote, promised document not provided. 8h before the end of the timeframe, a notification email (acting as formal notice to examine the job) is sent to you to prevent a release simply due to oversight. With no reservations raised at the end of the 48h, the funds are automatically released to the professional. With a reservation, the escrow remains active until the dispute is resolved."
+            }
+          ]
+        },
+        "pricing": {
+          "title": "How much does a drain unblocking or sanitation job cost?",
+          "lead": "The cost depends on the method actually needed, which is only known after diagnosis. Orders of magnitude exist for standard interventions (to be completed by Himad based on the Compagnie des Déboucheurs grid, the market reference), but only a detailed quote from a verified drain unblocker commits the professional.",
+          "body": "The rate depends on five cumulative variables. The elements that affect a quote:",
+          "items": [
+            "The method used (manual or motorised snake, high-pressure hydro-jetting, camera inspection, emptying)",
+            "Urgency: intervention during working hours, at night, weekend or public holiday",
+            "Accessibility (open manhole, inspection hatch, buried pipe, septic tank in a basement or outdoors)",
+            "The volume treated (pipe length, tank volume, hydro-jetting duration)",
+            "Regulatory requirements: prefectural approval for emptying, tracking slip, SPANC compliance, traceability of evacuated matter"
+          ],
+          "footer": "Artisan Compétent requires a detailed and accepted quote before intervention, compliant with the legal obligation for a prior quote above €150. The indicative price range by intervention type will be added in the next iteration, based on the Compagnie des Déboucheurs grid validated by Himad. The professionals listed on Artisan Compétent are framed by this grid to remain competitive and transparent."
+        },
+        "comparatif": {
+          "title": "Comparison: Artisan Compétent vs other platforms vs Direct Google search",
+          "lead": "Three ways to find a drain unblocker in France. Three radically different levels of protection.",
+          "headers": [
+            "Criterion",
+            "Other platforms",
+            "Direct Google",
+            "Artisan Compétent"
+          ],
+          "rows": [
+            ["Professional SIRET verification", "Variable", "None", "Systematic before validation"],
+            ["RC pro insurance & prefectural approval verification", "Rare", "None", "RC pro, emptying approval, equipment proof"],
+            ["Escrowed payment", "No", "No", "Stripe escrow, released at 48h"],
+            ["Recourse if pipe clogs within 48h", "Limited", "None", "Funds blocked until effective validation"],
+            ["Recourse in case of abuse", "Limited", "None", "Withholding up to €250 upon report < 48h"],
+            ["Pricing framed on market reference", "No", "None", "Compagnie des Déboucheurs grid being integrated"],
+            ["Project management advisor", "No", "No", "CMOD available as an option"]
+          ]
+        },
+        "traps": {
+          "title": "3 traps to avoid when looking for a drain unblocker",
+          "lead": "Emergency drain unblocking is one of the sectors where the practice of verbal flat rates and oversized methods is the most profitable for unscrupulous professionals. Three traps occur particularly often.",
+          "items": [
+            {
+              "title": "Trap 1: The inflated flat rate without detailing the means used",
+              "body": "A drain unblocker arrives following a call to a number found online, works for a few minutes, announces a global flat rate of several hundred euros without specifying the method used (snake? hydro-jetting? camera inspection?), with no travel details, no duration. A serious quote details: travel, hourly labour, intervention method, consumable materials, possible urgency. Artisan Compétent imposes this breakdown before triggering the escrow payment."
+            },
+            {
+              "title": "Trap 2: Hydro-jetting billed where a simple snake was enough",
+              "body": "A blockage located at the base of a sanitary fixture or on a short drain is treated with a motorised snake in a few minutes. An unscrupulous unblocker systematically announces a high-pressure hydro-jetting, billed much more, without prior visual diagnosis or camera inspection. The quote should always start with a diagnosis and propose the minimum necessary method, with a hydro-jetting option only if the snake is insufficient. Material traceability on the dashboard (hydro-jetting proof) protects against the opposite."
+            },
+            {
+              "title": "Trap 3: The use of harsh chemicals instead of mechanical intervention",
+              "body": "Some professionals pour a highly acidic or alkaline chemical into the pipe, collect the flat rate, and leave. The product often does not clear the real blockage (hardened grease, roots, backfall) but degrades lead seals, old PVC and stoneware drains. The blockage returns in a few weeks with a weakened pipe. The verified drain unblocker's quote must specify the mechanical method chosen (snake, hydro-jetting, inspection) and exclude unidentified harsh chemicals."
+            }
+          ]
+        },
+        "followUp": {
+          "title": "Your role in monitoring the job",
+          "lead": "Escrow protection relies on a written contradictory process via your dashboard. Your active participation determines the quality of the recourse in the event of a dispute: no written trace, no leverage.",
+          "body": "For unblocking interventions, systematically ask the professional for a photo of the device used (motorised snake, hydro-jetting machine, inspection camera) and, where applicable, the camera inspection report with an image of the blockage or obstruction. For longer jobs (septic tank rehabilitation, SPANC compliance, complete camera inspection), the professional uploads progress photos to the shared dashboard daily. Document the nature of the issue before intervention on your side as well (backflow, water level, marks) to facilitate any dispute resolution.",
+          "footer": "In the event of an abuse reported within 48h (pipe immediately clogging again, billed hydro-jetting not performed, missing emptying approval), Artisan Compétent can withhold up to €250 from the professional's invoice before payment validation, in accordance with the T&Cs and Terms of Sale."
+        },
+        "insurance": {
+          "title": "Home insurance and reimbursement",
+          "lead": "This is one of the trades where reimbursement by home insurance is most frequent: almost all policies include a water damage guarantee that covers all or part of an unblocking after a backflow, leak or damage. The process is your responsibility with your insurer. Artisan Compétent does not intervene in the compensation process.",
+          "body": "Several common drain unblocking situations are eligible for compensation: toilet backflow with water damage, pipe rupture or backfall causing an infiltration, water damage following a leak on a drain, emergency intervention on a full overflowing septic tank. Most comprehensive home insurance policies include a \"water damage\" guarantee that covers unblocking and restoring the home, within the limits provided by the policy (deductible, limit, possible expert assessment).\n\nThe reflex to have: before or immediately after the intervention, open a claim file with your home insurance. Keep the signed quote, the detailed invoice, the camera inspection report if applicable, and photos of the damage. Coverage is conditional on these documents and compliance with the declaration deadlines set in the contract (generally 5 working days).",
+          "footer": "Artisan Compétent does not advance funds, does not substitute for your insurer and does not suspend the escrow to await compensation. The intervention is launched according to the usual process, and you deal with your insurance in parallel."
+        },
+        "howItWorks": {
+          "title": "How it works in 3 steps",
+          "lead": "The process on Artisan Compétent consists of three steps: description of the need, validation of the quote with payment in escrow, intervention and release of funds after 48h.",
+          "steps": [
+            "Step 1. You describe your need (clogged pipe, backflow, emptying, camera inspection) on Artisan Compétent and receive a detailed quote from a verified drain unblocker in your area.",
+            "Step 2. You validate the quote, payment goes into Stripe escrow, the intervention is scheduled.",
+            "Step 3. The drain unblocker intervenes. At the end of the intervention, a completion report is issued on the platform: it opens a 48h window during which you can express reservations (blockage not cleared, pipe degradation, method different from quote). A notification email is sent to you 8h before the deadline. Without a reservation, the funds are automatically released to the professional."
+          ]
+        },
+        "emergency": {
+          "title": "Emergency drain unblocker 24/7",
+          "lead": "Artisan Compétent covers emergency drain unblocking 24/7 in covered areas. The 48h rule for reporting an abuse remains applicable even for night call-outs.",
+          "body": "The drain unblocker is one of the five trades covered in permanent emergency on Artisan Compétent, alongside the plumber, electrician, locksmith and heating engineer. A toilet that overflows, a sink saturated on a Sunday evening, a full septic tank the day before an event: all situations that require immediate action. The protocol remains the same for night-time call-outs: detailed quote, payment in Stripe escrow, intervention, 48h window to report an abuse."
+        },
+        "klarna": {
+          "title": "Klarna: how it works",
+          "p1": "Klarna is an interest-free payment service in 3 instalments. Artisan Compétent provides this tool in the payment process. Its activation is negotiated between the client and the professional: it is not automatic.",
+          "p2": "For scheduled projects (septic tank rehabilitation, SPANC compliance, complete camera inspection), Klarna 3 interest-free instalments can be offered by the professional in compliance with current Klarna limits. The escrow fund mechanism remains active in all cases."
+        },
+        "faq": {
+          "title": "Frequently asked questions",
+          "lead": "This FAQ brings together the questions most frequently asked by individuals looking for a verified drain unblocker on Artisan Compétent.",
+          "items": [
+            {
+              "q": "When do you really need to call a professional drain unblocker?",
+              "a": "As soon as a domestic intervention (plunger, mild chemical unblocker, dismantling the trap) has no effect, and in all cases of active backflow or a saturated toilet. Stubborn blockages often reflect an accumulation of grease, roots, a backfall or a broken pipe: only an equipped professional (motorised snake, hydro-jetting machine, inspection camera) can diagnose and resolve this. On Artisan Compétent, the verified professional arrives with a detailed quote and suitable equipment tracked on the dashboard."
+            },
+            {
+              "q": "Does my home insurance reimburse drain unblocking after a backflow?",
+              "a": "In most cases, yes. Most comprehensive home insurance policies include a \"water damage\" guarantee that covers all or part of the unblocking and restoring the home after a backflow, leak or damage. You must open a claim with your insurer within the deadlines provided by the contract (generally 5 working days), with the quote, the invoice and photos of the damage. It is up to you to take the steps, Artisan Compétent does not intervene in the compensation process."
+            },
+            {
+              "q": "What is the difference between a drain snake and hydro-jetting?",
+              "a": "The drain snake (manual or motorised) is a flexible mechanical cable, ending in a suitable head, which breaks up or pushes back a localised blockage on a short drain. Hydro-jetting uses a high-pressure water jet sprayed by a lance into the pipe to loosen grease, deposits and obstructions over longer distances. Hydro-jetting is more powerful but also more expensive. The choice depends on the diagnosis, which ideally involves a prior camera inspection."
+            },
+            {
+              "q": "Do you need special approval to empty a septic tank?",
+              "a": "Yes. The evacuation of sewage requires a professional approved by the prefect, with the issuance of a tracking slip for each emptying. This is an obligation under the public health code and the amended decree of September 7, 2009. On Artisan Compétent, prefectural approval is verified beforehand for professionals working on septic tanks, and uploaded to the dashboard."
+            },
+            {
+              "q": "How much does a drain unblocking or emptying cost?",
+              "a": "The cost depends on the method used, accessibility, urgency and the volume treated. An indicative price range by intervention type will be added soon, based on the Compagnie des Déboucheurs grid (the market reference). No reliable national flat rate exists and only a detailed quote from the verified drain unblocker commits the professional. On Artisan Compétent, the breakdown (travel, labour, method, equipment) is required before payment is triggered."
+            },
+            {
+              "q": "How does the fund escrow work when you call a drain unblocker?",
+              "a": "The fund escrow is a third-party account managed via Stripe. When you validate the quote, the payment leaves your account but remains blocked in the escrow. The funds are released 48h after the intervention, without contestation. This window is particularly useful in drain unblocking: if the pipe clogs up again within two days, you can report an incomplete job before release. In the event of reported abuse, Artisan Compétent can withhold up to €250 on the professional's invoice before validation."
+            },
+            {
+              "q": "Does Klarna 3 interest-free instalments apply to drain unblocking?",
+              "a": "For scheduled projects (septic tank rehabilitation, SPANC compliance, complete camera inspection), Klarna 3 interest-free instalments can be offered by the professional in compliance with current Klarna limits. Activation is not automatic: it is negotiated between you and the professional."
+            },
+            {
+              "q": "What is CMOD used for in a drain unblocking or sanitation job?",
+              "a": "The CMOD can be triggered when no amicable solution could be found between the client and the professional regarding a dispute related to an intervention carried out via the Artisan Compétent platform. This procedure can be initiated either by the client or by the Artisan Compétent team when a disagreement persists despite discussions between the parties. The CMOD intervention results in a flat fee of €35, borne by the professional involved. This amount will be directly deducted from the sum due to them on the escrowed funds related to the case concerned. It is therefore in the professional's best interest to favour an amicable and quick settlement with the client before the CMOD is triggered, to avoid this additional billing and extended processing time."
+            },
+            {
+              "q": "What happens if the pipe clogs up again in the following days?",
+              "a": "You report the defect within 48h following the intervention, via the shared dashboard. As long as this period runs, the funds remain in escrow and are not released to the unblocker. Artisan Compétent can request a new intervention without additional billing or withhold up to €250 from the professional's invoice before validation. The camera inspection report provided during the first intervention is a key element in distinguishing an incomplete job from a new independent problem."
+            },
+            {
+              "q": "Which cities are covered by Artisan Compétent for drain unblocking?",
+              "a": "Artisan Compétent aims to cover metropolitan France, the overseas territories and Corsica, i.e. 38 zones, with an intervention radius of 30 km around each listed city. All major cities are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) with 24/7 availability in emergencies in dense urban areas."
+            }
+          ]
+        },
+        "conclusion": {
+          "title": "To go further",
+          "body": "An overflowing toilet, a clogged pipe resistant to chemical unblockers, a septic tank to empty with a tracking slip, a camera inspection to schedule on an old network: Artisan Compétent oversees the verification of the drain unblocker (SIRET, RC pro, prefectural approval, equipment proof) and your entire process by escrow until 48h after the intervention.",
+          "footer": "Verified drain unblocker with SIRET, RC pro and prefectural approval for emptying. Equipment tracked on dashboard (inspection camera, hydro-jetting machine). Process overseen by Stripe escrow. Withholding of up to €250 in case of reported abuse. Systematic home insurance recourse after water damage."
         }
       },
-      "heatingTech": {
-        "title": "Heating Technician",
-        "name": "Heating Technician",
+      "heating": {
+        "title": "Verified heating engineer, from quote to overseen start-up",
+        "name": "Heating & VMC & Heat Pump",
+        "tagline": "This page lists the interventions handled by verified heating engineers on Artisan Compétent, including single and double flow VMC, heat pumps, RGE installations eligible for state aid, and the mechanism that oversees your payment from quote signing to fund release 48h after start-up.",
+        "verifiedBadge": "In short, a verified heating engineer on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, PG qualification for gas, and RGE qualification (QualiPAC, Qualibois, QualiSol depending on the equipment) displayed for public aid. Covered scope: gas, oil, condensing, and wood boilers, air-to-water and air-to-air heat pumps, hydraulic underfloor heating, single and double flow VMC, mandatory annual maintenance. Process overseen by Stripe escrow, 48h to report an issue. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 30 km radius per city.",
         "description": {
-          "p1": "Calling on a competent heating technician is essential to ensure proper operation and durability of your heating installations.",
-          "p2": "Whether installing a boiler, regular maintenance or urgent repair, a competent technician provides fast, efficient, standards-compliant service. With their expertise, you enjoy optimal comfort and long-term energy savings.",
-          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+          "p1": "In one sentence, on Artisan Compétent, a verified heating engineer has their SIRET, insurances, PG qualification for gas, and RGE qualification for public aid checked beforehand. The entire job is overseen by a Stripe escrow that holds the payment for up to 48h after start-up, a window during which the compliance certificate, the provision of manuals, and eligibility for aid can be verified.",
+          "p2": "A verified heating engineer on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, PG qualification for any intervention on the gas network, and RGE qualification when their activity qualifies for MaPrimeRénov' and CEE public aid. The entire process is overseen by a Stripe fund escrow: it remains blocked until 48h after start-up, a window during which you can report an abuse, a start-up defect, or equipment non-compliant with the quote."
+        },
+        "whenToCall": {
+          "title": "When to call a verified heating engineer",
+          "lead": "A verified heating engineer works on gas, oil and wood boilers, heat pumps, hydraulic underfloor heating, single and double flow VMCs, and mandatory annual maintenance. Depending on their RGE qualifications, they work on jobs eligible for MaPrimeRénov' and CEE. Emergencies mainly involve critical breakdowns in the middle of winter.",
+          "body": "Heating engineers listed on Artisan Compétent handle all heating and domestic hot water jobs in individual and collective housing. Typical cases:",
+          "items": [
+            "Breakdown of a gas, oil, condensing, pellet, or wood boiler in the middle of the heating season",
+            "Complete boiler replacement, including removal, connection, start-up, and compliance certificate (Qualigaz for gas)",
+            "Installation of an air-to-water, air-to-air, or geothermal heat pump, with RGE QualiPAC qualification to access public grants",
+            "Installation and connection of hydraulic underfloor heating in renovation or new construction",
+            "Installation, maintenance, and repair of a single or double flow VMC, with RGE qualification when the job is eligible for grants",
+            "Mandatory annual boiler maintenance (Decree 2009-649 of June 9, 2009, articles R. 224-41-4 to R. 224-41-9 of the Environmental Code)",
+            "Compliance upgrade of a domestic gas installation, with PG (Professionnel Gaz) qualification",
+            "Thermal diagnosis and energy renovation advice, particularly useful for MaPrimeRénov' and CEE files"
+          ],
+          "footer": "RGE qualification is not exclusive to heating engineers: depending on the equipment, an RGE plumber or RGE air conditioning technician can intervene. The exact scope (PG gas, RGE QualiPAC heat pump, RGE Qualibois, RGE QualiSol) is verified upon the professional's registration on the platform. Each of these interventions engages the heating engineer's decennial liability for durable installations and the two-year warranty for equipment. This responsibility makes verifying insurance, SIRET, PG qualification, and RGE qualification essential before signing the quote."
+        },
+        "whyUs": {
+          "title": "Why use Artisan Compétent for your heating work",
+          "lead": "Artisan Compétent verifies the heating engineer beforehand, oversees your payment via Stripe escrow, and gives you 48h to validate the start-up before any funds are released.",
+          "blocks": [
+            {
+              "title": "Every heating engineer listed on Artisan Compétent has their SIRET checked against public databases (Business Directory, INSEE/SIRENE) and their insurance verified before approval.",
+              "body": "The verification covers five elements: active SIRET, RC pro insurance covering heating activities, mandatory decennial insurance on durable heating installations, PG (Professionnel Gaz) qualification for interventions on natural gas or propane networks, and RGE qualification backed by a specific standard (QualiPAC for heat pumps, Qualibois for wood, QualiSol for solar, Qualigaz for gas compliance). A heating engineer missing any of these or with an expired document is not approved on the platform. Once the quote is signed, the professional must upload their legal documents (insurance certificates, PG qualification, valid RGE certificate) to their Artisan Compétent dashboard. These are viewable by the client in their personal space. The client is encouraged to re-check sensitive documents beforehand, especially the RGE certificate if the job is eligible for public grants: an expired RGE certificate blocks access to MaPrimeRénov' and CEE."
+            },
+            {
+              "title": "The escrow account is a third-party account managed via Stripe that oversees the entire process, from quote to fund release.",
+              "body": "Payment leaves your account when you approve the heating engineer's quote, but remains held in a Stripe escrow account. Funds are released to the tradesperson 48h after job completion, provided there are no disputes. For a boiler replacement or heat pump installation, the 48h window allows for verifying the actual start-up, gas compliance (Qualigaz certificate if applicable), provision of manuals, and registration of the manufacturer's warranty. For multi-phase projects (removal, connection, start-up), payment can be split by milestones."
+            },
+            {
+              "title": "The 48h period is triggered in a structured way: completion report, reservation window, end-of-period notification.",
+              "body": "In practice, the 48h timeframe does not run in a vacuum. At the end of the job, a completion report is issued on the platform. This report opens the 48h window during which you can express reservations: observed defects, non-compliance with the quote, missing finishing touches, promised documents not provided. 8 hours before the end of the timeframe, an email notification (acting as a formal notice to inspect the work) is sent to prevent a release simply due to oversight. With no reservations raised at the end of the 48 hours, the funds are automatically released to the tradesperson. If there are reservations, the escrow remains active until the dispute undergoes an adversarial process."
+            },
+            {
+              "title": "The CMOD can be triggered when no amicable solution can be found between the client and the tradesperson regarding a dispute linked to an intervention via the Artisan Compétent platform.",
+              "body": "This procedure can be initiated either by the client or by the Artisan Compétent team when a disagreement persists despite discussions. The CMOD intervention incurs a flat fee of €35, borne by the concerned professional. This amount will be directly deducted from the escrowed funds related to the file. Therefore, it is in the tradesperson's best interest to favor an amicable and quick settlement before the CMOD is involved, to avoid this extra charge and extended processing time."
+            }
+          ]
+        },
+        "pricing": {
+          "title": "How much does a heating repair or installation cost?",
+          "lead": "There is no reliable flat rate in heating: only a detailed quote from a verified heating engineer commits the professional to the actual cost. The cost varies greatly depending on the equipment type, age of the installation, etc.",
+          "body": "The cost of a heating job depends on five cumulative variables. The elements that affect the quote:",
+          "items": [
+            "The nature of the intervention (repair, annual maintenance, boiler replacement, heat pump installation, underfloor heating, VMC)",
+            "The type of equipment (gas condensing, oil, pellet boiler, air-water, air-air, geothermal heat pump, single or double flow VMC)",
+            "Eligibility for public grants (MaPrimeRénov', CEE, Eco-PTZ), which reduces the out-of-pocket cost provided the professional is RGE qualified",
+            "Accessibility of the installation (basement boiler room, wall-mounted boiler in an apartment, outdoor unit for a heat pump)",
+            "Regulatory obligations (PG qualification for gas, Qualigaz certificate at start-up, ADEME declaration for heat pump refrigerants)"
+          ],
+          "footer": "Artisan Compétent requires a detailed, accepted quote before intervention. The indicative hourly range for a heating engineer remains to be confirmed and will be added in a future update."
+        },
+        "comparatif": {
+          "title": "Comparison: Artisan Compétent vs other platforms vs Direct Google search",
+          "lead": "Three ways to find a heating engineer in France. Three radically different levels of protection, particularly concerning PG and RGE qualifications and the mobilisation of public grants.",
+          "headers": ["Criterion", "Other platforms", "Direct Google", "Artisan Compétent"],
+          "rows": [
+            ["Tradesperson SIRET verification", "Variable", "None", "Systematic before validation"],
+            ["Insurance and PG qualification verification", "Rare", "None", "RC pro, decennial, PG, RGE uploaded to dashboard"],
+            ["RGE qualification and public grants", "Variable", "None", "Checked upon registration"],
+            ["Escrowed payment", "No", "No", "Stripe escrow, released at 48h"],
+            ["Recourse in case of abuse", "Limited", "None", "Withholding up to €250 upon report < 48h"],
+            ["Qualigaz certificate at start-up", "Variable", "None", "Checked upon registration"],
+            ["Project management advisor", "No", "No", "CMOD available as an option"]
+          ]
+        },
+        "traps": {
+          "title": "3 traps to avoid when looking for a heating engineer",
+          "lead": "Heating combines technical complexity, high prices, and urgency in the middle of winter, making it favorable ground for abusive practices. Three traps frequently occur.",
+          "items": [
+            {
+              "title": "Trap 1: Annual maintenance billed without providing a certificate",
+              "body": "Mandatory annual boiler maintenance (decree 2009-649) requires a certificate to be provided within 15 days of the visit. This certificate is required by home insurance companies in the event of a boiler-related claim. A heating engineer who bills for maintenance without providing the certificate, or who merely wipes it down without real checks (combustion analysis, leak test, safety checks), leaves the client uncovered in case of a claim. The quote must always mention the operations planned and the provision of the certificate."
+            },
+            {
+              "title": "Trap 2: Complete replacement when a spare part is enough",
+              "body": "On a relatively new boiler, the heating engineer claims it is beyond repair and that a complete replacement is the only option, quoting thousands of euros. A serious diagnosis tests, measures, identifies the faulty part, and proposes a repair first. Complete replacement is only justified for equipment at the end of its life, with poor efficiency, or not eligible for current grants. The quote should always present both options with costs."
+            },
+            {
+              "title": "Trap 3: RGE equipment advertised without tradesperson qualification",
+              "body": "To benefit from MaPrimeRénov' or CEE, the work must be carried out by an RGE-qualified professional holding the correct certification (QualiPAC for heat pumps, Qualibois for wood, QualiSol for solar). A tradesperson who claims the client can get grants without holding the appropriate RGE qualification themselves leaves the client facing a rejected application. The quote must indicate the professional's exact RGE qualification and standard, and you are required to contact insurances and certification bodies for verification."
+            }
+          ]
+        },
+        "followUp": {
+          "title": "Your role in monitoring the job",
+          "lead": "Escrow protection relies on a written contradictory process. Your active participation determines the strength of your recourse in a dispute: no written trail, no leverage.",
+          "body": "For jobs lasting more than one day (boiler replacement, heat pump installation, double flow VMC), the professional uploads progress photos to the shared client-tradesperson dashboard daily. You comment, approve, or flag issues in that same space. At start-up, systematically request the documents: Qualigaz certificate for gas, RGE certificate for grants, manufacturer's manual, warranty certificate registered in the client's name, signed start-up report, and verify each of these provided documents.",
+          "footer": "In case of reporting abuse within 48 hours of the job's completion (equipment non-compliant with the quote, missing certificate, start-up failure), Artisan Compétent can withhold up to €250 from the professional's invoice before validating payment, according to the T&Cs and Terms of Sale. This withholding covers proven defects or failure to comply with the signed quote."
+        },
+        "insurance": {
+          "title": "Home insurance and reimbursement",
+          "lead": "In the event of a heating-related claim (gas leak, boiler fire, water damage on the hydraulic circuit), your home insurance may cover all or part of the intervention. This process is your responsibility; Artisan Compétent does not handle claims.",
+          "body": "Several common heating situations are eligible for compensation: gas leak requiring emergency intervention and securing, boiler fire, water damage on a hydraulic heating circuit, boiler breakdown in the middle of winter causing a claim on the property (frost, damage). The mandatory annual maintenance certificate is generally required by the insurer to apply the coverage: lack of maintenance can result in a denial of coverage.",
+          "footer": "It is up to you to contact your insurer directly after receiving the quote to check eligibility (deductible, limit, possible expert assessment). Artisan Compétent does not advance funds, does not replace your insurer, and does not suspend the escrow while waiting for compensation. The intervention follows the usual process, and you handle the insurance simultaneously."
+        },
+        "howItWorks": {
+          "title": "How it works in 3 steps",
+          "lead": "The process on Artisan Compétent consists of three steps: describing the need, validating the quote with escrowed payment, and the intervention followed by fund release after 48h.",
+          "steps": [
+            "Step 1. You describe your need (breakdown, maintenance, replacement, heat pump, VMC) on Artisan Compétent and receive a detailed quote from a verified local heating engineer.",
+            "Step 2. You validate the quote, payment is held in escrow via Stripe, and the intervention is scheduled.",
+            "Step 3. The heating engineer intervenes. Upon start-up, a completion report is issued on the platform: this opens a 48h window during which you can express reservations (poorly adjusted boiler, missing Qualigaz certificate, manual or manufacturer's warranty not provided). A reminder email is sent 8 hours before the deadline. Without reservations, funds are automatically released to the tradesperson."
+          ]
+        },
+        "emergency": {
+          "title": "Emergency heating engineer 24/7",
+          "lead": "Artisan Compétent covers emergency heating 24/7 in serviced areas. The 48h rule for reporting abuse applies even for night-time call-outs in the middle of winter.",
+          "body": "The heating engineer is one of the five trades covered for permanent emergencies on Artisan Compétent, alongside the plumber, electrician, locksmith, and drain unblocker. A boiler breaking down on a Sunday night in January, a leak in the heating circuit, a suspicious smell of gas, a combined water heater out of service: these are situations that cannot wait for normal working hours. The protocol remains the same for night-time call-outs: a detailed quote, payment in escrow via Stripe, intervention, and a 48h window to report abuse."
+        },
+        "klarna": {
+          "title": "Klarna: how it works",
+          "p1": "Klarna is an interest-free payment service allowing you to pay in 3 instalments. Artisan Compétent makes this tool available during the payment process. Its activation is negotiated between the client and the tradesperson: it is not automatic.",
+          "p2": "If the tradesperson agrees to offer Klarna, the escrow mechanism remains active, and the payment is protected until the job is validated at 48 hours."
+        },
+        "faq": {
+          "title": "Frequently asked questions",
+          "lead": "This FAQ groups the most frequently asked questions by individuals looking for a verified heating engineer on Artisan Compétent.",
+          "items": [
+            {
+              "q": "Can my heating engineer come out in the middle of the night in winter?",
+              "a": "Yes. The heating engineer is one of the five trades covered 24/7 on Artisan Compétent. A broken boiler in winter, a heating circuit leak, or a gas leak justify immediate action. The 48h rule for reporting abuse still applies at night, and the escrow protects against inflated night quotes."
+            },
+            {
+              "q": "Is annual boiler maintenance really mandatory?",
+              "a": "Yes. Decree No. 2009-649 of June 9, 2009 (articles R. 224-41-4 to R. 224-41-9 of the Environmental Code) mandates annual maintenance for boilers with an output between 4 and 400 kW. The heating engineer must issue a maintenance certificate within 15 days of the visit. This certificate is required by home insurance companies in case of a boiler-related claim. A verified heating engineer on Artisan Compétent systematically provides this certificate."
+            },
+            {
+              "q": "Is a special qualification required to work on gas?",
+              "a": "Yes. The PG (Professionnel Gaz) qualification is mandatory for any intervention on a natural gas or propane installation: boiler connection, shut-off valve, supply line. The RGE (Reconnu Garant de l'Environnement) qualification is additionally required to benefit from public grants (MaPrimeRénov', CEE) for energy-saving works. On Artisan Compétent, these qualifications are verified beforehand when the job requires them."
+            },
+            {
+              "q": "Can a heating engineer install a VMC or a heat pump?",
+              "a": "Yes. The heating plumber's trade generally covers the installation of single and double flow VMCs, the installation and maintenance of air-water and air-air heat pumps, as well as hydraulic underfloor heating. The RGE QualiPAC qualification is highlighted on the profiles of professionals qualified for heat pumps. For pure air conditioning (single wall split), it's typically the air conditioning technician who steps in, but a heating engineer can do it too. For heat pumps, an RGE plumber can also intervene: RGE qualification is not exclusive to heating engineers."
+            },
+            {
+              "q": "How much does annual boiler maintenance cost?",
+              "a": "The cost depends on the type of boiler (gas, oil, condensing, wood, pellet), the age of the installation, possible sweeping involved, and the intervention area. There is no reliable national flat rate, and Artisan Compétent does not provide fabricated estimates. A detailed quote is always provided before the intervention. Many home insurance policies offer or require a fixed-rate annual maintenance contract."
+            },
+            {
+              "q": "How does fund escrow work for replacing a boiler?",
+              "a": "The escrow is a third-party account managed via Stripe. When you validate the quote, the payment leaves your account but remains held in escrow. The funds are released to the heating engineer 48h after the end of the intervention. For a boiler replacement, the 48h window allows verifying the start-up, the gas compliance certificate if applicable (Qualigaz), the provision of manuals, and registering the manufacturer's warranty. In case of reported abuse, Artisan Compétent can withhold up to €250 from the professional's invoice before validation."
+            },
+            {
+              "q": "What is the CMOD for a heating project?",
+              "a": "The CMOD can be triggered when no amicable solution can be found between the client and the tradesperson regarding a dispute over a job done via Artisan Compétent. This can be initiated by either party or Artisan Compétent. The CMOD intervention incurs a €35 flat fee, charged to the tradesperson and deducted from their escrowed funds. Thus, it's in the professional's interest to resolve issues amicably and quickly to avoid this fee and delays."
+            },
+            {
+              "q": "Does Klarna's 3 interest-free instalments work for a boiler replacement?",
+              "a": "Klarna's 3 interest-free instalments can be offered by the professional, subject to Klarna's current limits. Activation is not automatic: it is negotiated between you and the tradesperson."
+            },
+            {
+              "q": "Does my home insurance cover emergency heating engineer call-outs?",
+              "a": "Depending on the claim (gas leak, boiler fire, hydraulic leak), your home insurance may cover all or part of the intervention. The mandatory annual maintenance certificate is generally required. It's up to you to contact your insurer directly after receiving the quote. Artisan Compétent does not handle claims."
+            },
+            {
+              "q": "What if the boiler breaks down right after an intervention?",
+              "a": "You report the issue within 48h of the intervention ending via the shared dashboard. While this period is active, funds stay in escrow. If abuse is reported, Artisan Compétent can withhold up to €250. Beyond 48h, the legal warranty of good operation (Article 1792-3 of the Civil Code) covers equipment for two years, and the decennial warranty covers durable installations for ten years."
+            }
+          ]
+        },
+        "conclusion": {
+          "title": "To go further",
+          "body": "A boiler that breaks down in the middle of a cold snap, an annual maintenance to schedule to remain covered by insurance, a heat pump to install with MaPrimeRénov', a double flow VMC to fit for energy renovation: Artisan Compétent oversees the verification of the heating engineer (PG, RGE, decennial) and your entire process via escrow until 48h after the end of the job.",
+          "footer": "Verified heating engineer with SIRET, PG and decennial. RGE qualification checked for public grants (QualiPAC, Qualibois, QualiSol). Process overseen by Stripe escrow. Up to €250 withheld in case of reported abuse."
         }
       },
-      "hvacInstaller": {
-        "title": "HVAC installer/repairer technician",
-        "name": "HVAC installer/repairer technician",
+      "hvac": {
+        "title": "Verified HVAC technician, from quote to overseen fund release",
+        "name": "HVAC Technician & Refrigeration Engineer",
+        "tagline": "This page lists the interventions handled by verified HVAC technicians on Artisan Compétent and the mechanism that oversees your payment from start to finish, from the detailed quote to fund release 48h after job completion.",
+        "verifiedBadge": "In short, a verified HVAC technician on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, refrigerant handling certificate (categories I to IV) and QualiPAC qualification if applicable. The entire process is overseen by a Stripe escrow: quote, intervention, fund release 48h after job completion. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 30 km radius per city.",
         "description": {
-          "p1": "Installing and maintaining air-conditioning systems requires the expertise of a competent cooling technician. This professional masters safety standards and guarantees precise interventions, whether commissioning, preventive maintenance or urgent repair.",
-          "p2": "By choosing a competent cooling technician, you ensure your equipment's performance and durability, while benefiting from optimal thermal comfort and energy savings.",
-          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+          "p1": "In one sentence, on Artisan Compétent, a verified HVAC technician has their SIRET, insurances, and refrigerant handling certificate checked beforehand, and their entire intervention (installation, maintenance, repair of air conditioning or heat pumps) is overseen by a Stripe fund escrow that holds the payment for up to 48h after the end of the job. You only pay if the work complies with the signed quote.",
+          "p2": "A verified HVAC technician on Artisan Compétent has their SIRET checked, their RC pro and decennial insurances up to date, their refrigerant handling certificate (categories I to IV depending on the scope of work) and, if applicable, their QualiPAC qualification for heat pumps. The Stripe fund escrow oversees the entire process: the payment leaves your account when the quote is validated, remains held during the intervention, and for an additional 48h after the end of the work. This 48-hour period gives you time to report a defect, a start-up failure, or non-compliance with the quote before the funds are released to the professional."
+        },
+        "nuance": {
+          "title": "HVAC technician or refrigeration engineer: the nuance that changes the scope",
+          "p1": "A refrigeration engineer is a senior technician who holds all refrigerant handling certificates: they can do what an HVAC technician does, and more. A standard HVAC technician cannot necessarily work as a refrigeration engineer.",
+          "p2": "Confusion is common. Here is the concrete distinction, as verified during professional registration on Artisan Compétent:",
+          "items": [
+            "An HVAC technician works on residential and tertiary air conditioning (wall-mounted splits, multi-splits, ducted systems, consoles) and, depending on their certifications, on air-to-air and air-to-water heat pumps. They hold at least a refrigerant handling certificate adapted to the equipment they handle (often category I for fluids with a charge over 2 kg). Their scope strictly depends on their certifications.",
+            "A refrigeration engineer is a senior technician in air conditioning and refrigeration. They normally hold all refrigerant handling certificates (full category I), which allows them to work on domestic and tertiary air conditioning, on heat pumps (air-to-air, air-to-water, geothermal), and on commercial or industrial refrigeration (cold rooms, refrigerated display cases, industrial processes). A refrigeration engineer can therefore do everything an HVAC technician does, plus commercial and industrial refrigeration.",
+            "The reverse is not true. A standard HVAC technician cannot present themselves as a refrigeration engineer: they must hold the category I capacity certificate in its broadest version, plus specific authorizations for industrial refrigeration."
+          ],
+          "p3": "On Artisan Compétent, the exact scope of each professional (AC only, AC plus heat pumps, or full refrigeration engineer) is verified at registration and reflected on their profile. This allows you, as a client, to filter upfront based on the nature of the planned project (domestic AC, heat pump, or commercial refrigeration equipment)."
+        },
+        "whenToCall": {
+          "title": "When to call a verified HVAC technician",
+          "lead": "A verified HVAC technician handles the installation, maintenance, and repair of air conditioning equipment and, depending on their certifications, heat pumps. The refrigerant handling certificate is the core element that conditions the legal scope of intervention.",
+          "body": "Typical cases handled by HVAC technicians listed on Artisan Compétent cover new installations, periodic maintenance, and repairs. Some concrete examples that justify calling a verified professional rather than an uncertified installer:",
+          "items": [
+            "Installation of a reversible wall-mounted split air conditioner (mono-split or multi-split) in residential settings",
+            "Installation of a ducted, console, or ceiling-mounted air conditioning system in collective or tertiary housing",
+            "Installation of an air-to-air, air-to-water, or geothermal heat pump (depending on RGE and QualiPAC certifications)",
+            "Mandatory annual maintenance for equipment with a fluid charge over 2 kg (possible recovery, leak testing, updating the tracking slip)",
+            "Repairing a broken air conditioning system (fluid leak, compressor problem, electronic board fault)",
+            "Refrigerant replacement (recovering old fluid, recharging, certification of the operation)",
+            "Commissioning and connection of newly delivered equipment",
+            "De-installation and fluid recovery at the end of the equipment's life (regulatory recovery obligation)"
+          ],
+          "footer": "Each of these interventions engages the HVAC technician's decennial liability for durable installations integrated into the building (wall connections, drilling, built-in ducting) and the two-year warranty for the installed equipment. This liability makes verifying insurance, SIRET, and the refrigerant handling certificate essential before any installation."
+        },
+        "whyUs": {
+          "title": "Why use Artisan Compétent for your air conditioning or heat pump",
+          "lead": "Artisan Compétent verifies the HVAC technician beforehand, oversees your payment via Stripe escrow, and gives you 48h to validate the job before any funds are released.",
+          "blocks": [
+            {
+              "title": "Every HVAC technician listed on Artisan Compétent has their SIRET checked against public databases (Business Directory, INSEE/SIRENE), their insurances verified, and their refrigerant handling certificate checked before validation.",
+              "body": "Verification covers four concrete points: active and up-to-date SIRET, RC pro insurance covering HVAC activities, mandatory decennial insurance for installations built into the property, and a refrigerant handling certificate adapted to the declared scope (category I, II, III, or IV depending on fluids and charges handled). The RGE QualiPAC qualification is additionally required for professionals installing heat pumps eligible for public grants (MaPrimeRénov’, CEE). A technician missing any of these documents or with an expired one is simply not validated on the platform.\n\nOnce the quote is signed, the professional must upload their legal documents (insurance certificates, refrigerant handling certificate, QualiPAC qualification if applicable) to their Artisan Compétent dashboard. These documents are viewable by the client in their personal space. The client is nevertheless encouraged to re-check sensitive documents beforehand: valid decennial insurance, refrigerant certificate corresponding to the exact nature of the equipment to be handled, and QualiPAC qualification if the planned heat pump is eligible for state aid. This double verification protects against marginal cases where a certificate might expire between initial validation and the start of the job."
+            },
+            {
+              "title": "The escrow account is a third-party account managed via Stripe that oversees the entire process, from the quote to the release of funds.",
+              "body": "When you validate the HVAC technician's quote, the payment leaves your account but doesn't reach the professional's account: it remains held in a Stripe escrow account. This holding period lasts until the end of the intervention, plus a 48h window during which you can report an abuse, a quality defect, or non-compliance with the quote. Without dispute, funds are released to the technician at the end of these 48h. During the 48h window, the escrow acts as leverage: it is the most effective motivation for a professional to properly finish the start-up and provide all documents (fluid tracking slip, maintenance certificate, manufacturer warranties)."
+            },
+            {
+              "title": "The 48h period is triggered in a structured way: completion report, reservation window, end-of-period notification.",
+              "body": "In practice, the 48h timeframe does not run in a vacuum. At the end of the job, a completion report is issued on the platform. This report opens the 48h window during which you can express reservations: observed defect, non-compliance with the quote, missing finish, promised document not provided. 8 hours before the end of the deadline, a notification email (acting as a formal notice to examine the job) is sent to you to prevent a release simply due to oversight. With no reservations raised at the end of the 48h, the funds are automatically released to the professional. With a reservation, the escrow remains active until the dispute is resolved."
+            },
+            {
+              "title": "The CMOD can be triggered when no amicable solution can be found between the client and the professional regarding a dispute related to an intervention via the Artisan Compétent platform.",
+              "body": "This procedure can be initiated either by the client or by the Artisan Compétent team when a disagreement persists despite discussions between the parties.\n\nThe CMOD intervention incurs a flat fee of €35, borne by the concerned professional. This amount will be directly deducted from the escrowed funds related to the file.\n\nTherefore, it is in the professional's best interest to favor an amicable and quick settlement before the CMOD is involved, to avoid this extra charge and extended processing time."
+            }
+          ]
+        },
+        "pricing": {
+          "title": "How much does an HVAC intervention cost?",
+          "lead": "The cost of an intervention depends on the nature of the equipment, the number of indoor units, the complexity of the connection, and eligibility for public grants. No reliable national flat rate exists: only a detailed quote from a verified technician commits the professional.",
+          "body": "The structural variables of an HVAC technician's rate:",
+          "items": [
+            "The nature of the intervention: new installation, periodic maintenance, repair, de-installation. The gap between a simple mono-split installation and a built-in ducted installation is significant.",
+            "The number of indoor units: a mono-split (one indoor unit) doesn't require the same time as a multi-split (several indoor units on a single outdoor unit) or a ducted system.",
+            "The distance between the indoor unit and the outdoor unit: the length of the refrigerant line impacts the materials and installation time.",
+            "The equipment installed: brand, series, energy class, features (reversible, connected, dehumidification). Material cost is generally detailed separately in the quote.",
+            "The nature of the property: detached house, apartment, co-ownership (with possible agreements and aesthetic constraints), tertiary. Installing on a co-ownership facade often requires prior authorization from the general assembly.",
+            "Eligibility for grants: if the heat pump qualifies for MaPrimeRénov' and CEE, the quote must show the estimated out-of-pocket cost and grant details. This conditions the professional's RGE QualiPAC qualification.",
+            "Urgency: a repair during a heatwave drives up demand and sometimes the hourly rate."
+          ],
+          "footer": "Indicative hourly range: to be completed by Himad. On Artisan Compétent, the breakdown (travel, labor, fluid recharged if applicable, installed material) is required before payment is triggered, securing the readability of the quote."
+        },
+        "comparatif": {
+          "title": "Comparison: Artisan Compétent vs other platforms vs Direct Google search",
+          "lead": "Synthetic comparison table of the three most used channels to find an HVAC technician. Criteria are based on the real risk points of the trade.",
+          "headers": [
+            "Criterion",
+            "Other platforms",
+            "Direct Google",
+            "Artisan Compétent"
+          ],
+          "rows": [
+            ["Professional SIRET verification", "Variable depending on platform", "None by default", "Systematic before profile validation"],
+            ["Refrigerant handling certificate checked", "Rare", "None", "Category I to IV verified based on declared scope"],
+            ["Insurance verification (RC pro, decennial)", "Rare or declarative", "None", "RC pro and decennial required and verified"],
+            ["RGE QualiPAC qualification for heat pumps", "Variable", "None", "Verified for grant-eligible projects"],
+            ["Escrowed payment", "No", "No", "Stripe fund escrow, release at 48h"],
+            ["Recourse in case of defect", "Limited", "None", "Withhold up to €250 if reported < 48h"],
+            ["Project management advisor", "No", "No", "CMOD available as an option"]
+          ]
+        },
+        "traps": {
+          "title": "The 3 traps to avoid when looking for an HVAC technician",
+          "lead": "Three concrete traps encountered by individuals, and how Artisan Compétent neutralizes them.",
+          "items": [
+            {
+              "title": "Trap 1. The professional without a valid refrigerant handling certificate.",
+              "body": "Anyone handling refrigerants must hold a personal capacity certificate, and the company must additionally have a firm authorization. Without this document, the intervention is illegal and the equipment's manufacturer warranty may be voided. On Artisan Compétent, the certificate is verified at registration and uploaded to the dashboard after the quote is signed. The client can consult it in their personal space."
+            },
+            {
+              "title": "Trap 2. Guesswork sizing.",
+              "body": "An under-sized or over-sized air conditioning system or heat pump works poorly, consumes too much, ages prematurely, and can lead to the loss of MaPrimeRénov' grants in the event of an inspection. On Artisan Compétent, the quote must detail the thermal calculation (output power, COP, heated surface) before validation."
+            },
+            {
+              "title": "Trap 3. Installing without providing the fluid tracking slip.",
+              "body": "For every intervention involving a significant refrigerant charge, a fluid tracking slip must be provided to the client. This is a regulatory obligation (Article R543-82 and following of the environmental code). Without this document, you are at fault in the event of a leak or resale. On Artisan Compétent, the tracking slip is required as an end-of-job document before funds are released."
+            }
+          ]
+        },
+        "followUp": {
+          "title": "Your role in monitoring the job",
+          "lead": "On air conditioning and heat pump projects, your active monitoring is essential to document the conformity of the installation and enable quick recourse in case of a defect. Here is what you concretely do, in the shared dashboard with the professional.",
+          "body": "For jobs lasting more than one day (multi-splits, ducted systems, heat pumps), the professional uploads daily progress photos to the shared client-professional dashboard: installation of indoor units, refrigerant connection, electrical connection, start-up, leak testing. You comment, validate, or report in the same space, which establishes written evidence for any subsequent dispute. You also document: photos of the area before intervention (planned location, wall condition, electrical outlet), photos at the end of the day, photos of the nameplates of the installed equipment (brand, series, power, energy class).",
+          "footer": "This active participation determines the quality of the recourse in the event of a dispute: no written trace, no leverage. In the event of a reported abuse within 48h following the end of the job, Artisan Compétent can withhold up to €250 from the professional's invoice before payment validation, according to the T&Cs/Terms of Sale. This withholding covers proven defects, non-compliance with the quote, or failure to provide mandatory documents (fluid tracking slip, maintenance certificate, manufacturer warranties)."
+        },
+        "insurance": {
+          "title": "Home insurance and reimbursement",
+          "lead": "Depending on the claim, your home insurance may cover all or part of the HVAC intervention. It is up to you to contact your insurer directly: Artisan Compétent does not intervene in the compensation process.",
+          "body": "For claims involving an air conditioning system or heat pump (fluid leak damaging a wall, short circuit, water damage caused by poorly drained condensation, theft of an outdoor unit), comprehensive home insurance may cover all or part of the repair, or even replacement of the equipment. The process is your responsibility: you contact your insurer after receiving the quote to verify eligibility and open a claim file within the deadlines provided by the contract (generally 5 working days). Artisan Compétent does not intervene in this procedure: the intervention can be launched in parallel if it is urgent, and any reimbursement is handled directly between you and your insurer after invoicing."
+        },
+        "howItWorks": {
+          "title": "How it works in 3 steps",
+          "lead": "From submitting your request to the release of funds, three steps structure the intervention. The Stripe fund escrow covers the entire process.",
+          "steps": [
+            "You describe your need on Artisan Compétent. Type of equipment desired (mono-split AC, multi-split, ducted, heat pump), surface area to cool or heat, constraints (co-ownership, upper floor, outdoor unit access), urgency if applicable. The platform connects you with one or more verified technicians in your area.",
+            "The professional sends a detailed quote. You validate. The payment goes into escrow. The quote details the service, installed equipment, refrigerant line, labor cost, cost of potential fluids, total inclusive of tax, and, if eligible for grants, the estimated out-of-pocket cost. When you validate, the payment leaves your account but remains blocked in the Stripe escrow.",
+            "The professional intervenes, you receive the documents, the funds are released 48h later. Fluid tracking slip provided, maintenance certificate if applicable, manufacturer warranties transferred. At the end of the job, a completion report is issued on the platform: it opens a 48h window during which you can express reservations (abuse, defect, non-compliance with the quote). A notification email is sent to you 8h before the deadline. Without reservations, funds are automatically released to the professional."
+          ]
+        },
+        "klarna": {
+          "title": "Klarna: how it works",
+          "p1": "Klarna is an interest-free payment service in 3 instalments. Artisan Compétent provides this tool in the payment process. Its activation is negotiated between the client and the professional: it is not automatic.",
+          "p2": "For new installations (multi-split, ducted, heat pump), Klarna 3 interest-free instalments can be offered by the professional in compliance with current Klarna limits. If the professional accepts, you benefit from payment spread over three monthly instalments without extra fees. The fund escrow mechanism remains active: the instalment payment is protected until job validation at 48h."
+        },
+        "faq": {
+          "title": "Frequently asked questions",
+          "lead": "This FAQ groups the most frequently asked questions by individuals looking for a verified HVAC technician on Artisan Compétent.",
+          "items": [
+            {
+              "q": "What is the difference between an HVAC technician and a refrigeration engineer?",
+              "a": "A refrigeration engineer is a senior technician who holds all refrigerant handling certificates (category I in its broadest version). They can work on domestic and tertiary air conditioning, on heat pumps, and on commercial or industrial refrigeration. A standard HVAC technician, however, works on air conditioning and, depending on certifications, on heat pumps, but not necessarily on commercial refrigeration. On Artisan Compétent, the exact scope is verified at registration and reflected in the profile."
+            },
+            {
+              "q": "Do I need a certified technician to install air conditioning?",
+              "a": "Yes. Anyone handling refrigerants (charging, discharging, leak testing) must hold a personal capacity certificate, and the company must have a firm authorization. This obligation is enshrined in the environmental code. An installation without certification exposes the client to the voiding of the manufacturer's warranty and regulatory compliance risks. On Artisan Compétent, the fluid certificate is verified and uploaded to the dashboard."
+            },
+            {
+              "q": "Can my home insurance reimburse an AC repair?",
+              "a": "Depending on the cause of the claim, yes. A fluid leak damaging a wall, water damage due to poor condensation drainage, a short circuit, or theft of an outdoor unit may fall under comprehensive home insurance coverage. You must contact your insurer within the contractual deadlines with the quote and photos. Artisan Compétent does not intervene in the process: you manage the compensation claim."
+            },
+            {
+              "q": "How much does a reversible air conditioning installation cost?",
+              "a": "The cost depends on the number of indoor units, the brand, the energy class, the distance between units, and the complexity of the installation (built-in, ducted, co-ownership, etc.). No reliable national flat rate exists: only a detailed quote from the verified technician commits the professional. On Artisan Compétent, the quote details the service, equipment, and refrigerant line before payment is triggered."
+            },
+            {
+              "q": "Am I eligible for MaPrimeRénov' for a heat pump?",
+              "a": "Eligibility depends on your situation (primary residence, age of housing, income level, type of heat pump). To benefit from MaPrimeRénov' and CEE, the installer must be RGE QualiPAC qualified for heat pumps. On Artisan Compétent, the qualification is verified at registration for professionals working on this equipment and uploaded to the dashboard after the quote is signed. You are the one putting together the application with the Anah."
+            },
+            {
+              "q": "Does the fund escrow also cover annual maintenance?",
+              "a": "Yes. Every service processed through Artisan Compétent (installation, periodic maintenance, repair) is overseen by the Stripe fund escrow: detailed quote, payment blocked until 48h after the end of the intervention, release after this window. For annual maintenance contracts, each visit is treated as a distinct service, with its own escrow cycle."
+            },
+            {
+              "q": "What happens if the AC breaks down right after installation?",
+              "a": "You report the defect within the 48h following the end of the job, via the shared dashboard. As long as this period runs, the funds remain in escrow and are not released to the professional. Artisan Compétent can request a corrective intervention without extra billing or withhold up to €250 from the professional's invoice before validation. Beyond this timeframe, the two-year warranty on the equipment and the manufacturer warranty take over."
+            },
+            {
+              "q": "What is CMOD used for in an air conditioning or heat pump job?",
+              "a": "The CMOD can be triggered when no amicable solution could be found between the client and the professional regarding a dispute related to an intervention carried out via the Artisan Compétent platform.\n\nThis procedure can be initiated either by the client or by the Artisan Compétent team when a disagreement persists despite discussions between the parties.\n\nThe CMOD intervention incurs a flat fee of €35, borne by the concerned professional. This amount will be directly deducted from the sum due to them on the escrowed funds related to the file.\n\nTherefore, it is in the professional's best interest to favor an amicable and quick settlement before the CMOD is involved, to avoid this extra charge and extended processing time."
+            },
+            {
+              "q": "Which cities are covered by Artisan Compétent for air conditioning?",
+              "a": "Artisan Compétent aims to cover metropolitan France, the overseas territories, and Corsica, i.e., 38 zones, with an intervention radius of 30 km around each listed city. All major cities are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille)."
+            }
+          ]
+        },
+        "conclusion": {
+          "title": "To go further",
+          "body": "A new air conditioning installation, a heat pump eligible for MaPrimeRénov', mandatory annual maintenance, a repair during a heatwave: Artisan Compétent oversees the verification of the HVAC technician (SIRET, RC pro, decennial, refrigerant handling certificate, QualiPAC) and your entire process via escrow until 48h after the intervention.",
+          "footer": "Verified HVAC technician with SIRET, RC pro, decennial, and category I to IV refrigerant handling certificate. QualiPAC verified for grant-eligible heat pumps. Process overseen by Stripe escrow. Withholding of up to €250 in case of reported abuse. Fluid tracking slip provided at end of job."
         }
       },
-      "carpenterGlazier": {
-        "title": "Carpenter & Glazier (blinds, windows, doors, etc.)",
-        "name": "Carpenter & Glazier (blinds, windows, doors, etc.)",
+      "glazier": {
+        "title": "Verified glazier, from quote to overseen fund release",
+        "name": "Glazing & Mirror Work",
+        "tagline": "This page lists the glazing interventions handled by verified glaziers on Artisan Compétent and the mechanism that oversees your payment from start to finish, from the detailed quote to fund release 48h after job completion.",
+        "verifiedBadge": "In short, a verified glazier on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, and the certification corresponding to the technical glazing installed. The entire process is overseen by a Stripe escrow: quote, intervention, fund release 48h after job completion. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 30 km radius per city. Scope: glazing and mirror work. Carpentry (frames, fixed frames) is not covered in V1.",
         "description": {
-          "p1": "Carpentry and glazing require precision, technical skills and craftsmanship. Calling on a competent carpenter-glazier means quality support, whether installing windows, repairing broken glass, building custom doors or interior fittings.",
-          "p2": "Thanks to their expertise, a competent carpenter-glazier delivers flawless finishes, optimal insulation and long-lasting results. Whether you're an individual or a business, you gain safety, comfort and aesthetics.",
-          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
-        }
-      },
-      "painterInteriorFacade": {
-        "title": "Interior Painter & Facade Worker",
-        "name": "Interior Painter & Facade Worker",
-        "description": {
-          "p1": "Calling on a competent facade painter ensures careful, durable work for your interior walls and exterior facades. This professional masters techniques for each substrate and uses quality materials to guarantee aesthetics and optimal protection.",
-          "p2": "Whether for facade refurbishment, renovation or enhancing your home, a competent painter guarantees results that combine durability, aesthetics and meeting deadlines.",
-          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
-        }
-      },
-      "floorCoverings": {
-        "title": "Floor Covering Specialist (tiles, parquet, etc.)",
-        "name": "Floor Covering Specialist (tiles, parquet, etc.)",
-        "description": {
-          "p1": "A floor covering is a finishing layer (tile, parquet, coating) protecting floors from wear, impacts and external aggressions.",
-          "p2": "It also adds texture and color, particularly for construction or renovation projects.",
-          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
-        }
-      },
-      "alarmVideoSurveillance": {
-        "title": "Alarm & CCTV installer",
-        "name": "Alarm & CCTV installer",
-        "description": {
-          "p1": "Installing an alarm or CCTV system requires a clean setup adapted to your home or business premises.",
-          "p2": "A competent installer helps you choose the right equipment, places sensors/cameras properly, secures access and ensures reliable commissioning.",
-          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
-        }
-      },
-      "insulationInOut": {
-        "title": "Drywall & jointing & insulation",
-        "name": "Drywall & jointing & insulation",
-        "description": {
-          "p1": "Interior and exterior insulation improves comfort, reduces heat loss and protects your building.",
-          "p2": "The same professional can also handle drywall and jointing: partitions, linings, false ceilings and finishing preparation before painting.",
-          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+          "p1": "In one sentence, on Artisan Compétent, a verified glazier has their SIRET and insurances checked beforehand, and their entire intervention (glazing installation, double glazing replacement, broken glass repair, mirrors, storefronts, glass guardrails) is overseen by a Stripe escrow that holds the payment for up to 48h after job completion. You only pay if the work complies with the signed quote.",
+          "p2": "A verified glazier on Artisan Compétent has their SIRET checked, their RC pro and decennial insurances up to date and, if applicable, specific certifications for technical works (laminated safety glass, glass guardrails subject to the NF P01-013 standard). The Stripe fund escrow oversees the entire process: the payment leaves your account when the quote is validated, remains held during the intervention, and for an additional 48h after the end of the work. This 48-hour period gives you time to report a defect (scratched glass, poorly installed seal, fogged double glazing) or non-compliance with the quote before the funds are released to the glazier."
+        },
+        "nuance": {
+          "title": "Why Artisan Compétent does not cover carpentry in V1",
+          "p1": "Custom carpentry involves long cycles, incompatible with the current calibration of the escrow. The Artisan Compétent V1 scope remains focused on glazing and mirror work. Specific partnerships are being studied for future versions.",
+          "p2": "Several practical reasons justify this choice of scope, which is important to state clearly before any quote:",
+          "items": [
+            "Custom carpentry involves long lead times. Between taking measurements, factory ordering, manufacturing, and installation, several months can pass. For technical windows (solid wood, mixed, non-standard custom), manufacturer lead times often exceed six to eight weeks.",
+            "The fund escrow is designed for short intervention cycles. Artisan Compétent's current mechanism holds funds up to 48h after job completion, logically suited for interventions measured in days or weeks. This mechanism is not adapted to an order spanning several months, with a manufacturer deposit and industrial risk.",
+            "Carpentry lead times are incompatible with the escrow as it is currently calibrated. Holding funds in escrow for several months would entail operational and legal constraints (client cash flow, blocked supplier payment, cancellation management) that Artisan Compétent does not cover in V1.",
+            "Case-by-case specific partnerships are being studied for future versions. The goal is to identify carpentry manufacturers or installers whose reliability of deadlines and quality of commitments allow for the integration of a suitable escrow."
+          ],
+          "p3": "Overlap case to know: when a glazing / mirror intervention also requires the replacement of a frame or carpentry elements, only the part strictly relating to glazing / mirror work can be included in the quote made via the Artisan Compétent platform and benefit from the escrow.",
+          "p4": "The quote sent via the platform must therefore only include supplies, materials, and services directly linked to the glazier / mirror maker trade, notably glass, mirrors, glass products as well as the labor associated with their installation or replacement.",
+          "p5": "Any service relating to carpentry, framing, or the manufacture of annex elements must be subject to a separate quote, off-platform, directly between the client and the tradesperson concerned if they are a manufacturer, or with their supplier.",
+          "p6": "This out-of-scope part remains at the client's discretion and benefits from no escrow, tracking, support, mediation, coverage, or recourse via the Artisan Compétent platform."
+        },
+        "whenToCall": {
+          "title": "When to call a verified glazier",
+          "lead": "A verified glazier works on the installation and replacement of glazing (single, double, laminated safety glass), mirrors and storefronts, glass guardrails, and emergency repair after glass breakage.",
+          "body": "Typical cases handled by glaziers listed on Artisan Compétent cover both rapid repair and scheduled projects. A few concrete examples that justify the intervention of a verified professional rather than an improvised installer:",
+          "items": [
+            "Emergency glass breakage (break-in, impact, accidental breakage) with rapid securing and window replacement",
+            "Defective double glazing replacement (fogged glass between the two panes, failing weather seal)",
+            "Laminated safety glass installation (stairs, balustrade, anti-burglary glazing)",
+            "Installation or replacement of PVC or aluminum windows excluding the frame (the existing fixed frame is kept, only the glazed sash is replaced)",
+            "Custom installation of interior mirrors (bathroom, dressing room, hall)",
+            "Installation of storefronts for businesses (single glass, double laminated safety glass, anti-burglary storefront)",
+            "Glass guardrail installation (stairs, mezzanine, balcony) in compliance with the NF P01-013 standard",
+            "Glazing replacement for verandas or glass roofs (excluding carpentry structure)"
+          ],
+          "footer": "Excluded from support in the event of a dispute: full installation or replacement of windows with their framing (fixed frame to be removed then refitted), custom manufacturing of wood or aluminum carpentry, insulation work using carpentry which implies an intervention on the building's structural work. These interventions will be studied for future versions of the platform via specific partnerships.\nEvery glazing intervention engages the decennial liability of the glazier on durable structures integrated into the building (laminated safety glazing, glass guardrails) and the two-year warranty on the installed equipment. It is this responsibility that makes verifying insurance and SIRET essential before any installation."
+        },
+        "whyUs": {
+          "title": "Why use Artisan Compétent for your glazing work",
+          "lead": "Artisan Compétent verifies the glazier beforehand, oversees your payment via Stripe escrow, and gives you 48h to validate the job before any funds are released.",
+          "blocks": [
+            {
+              "title": "Every glazier listed on Artisan Compétent has their SIRET checked against public databases (Business Directory, INSEE/SIRENE) and their insurances verified before validation.",
+              "body": "Verification covers three concrete points: active and up-to-date SIRET, RC pro insurance certificate covering glazing and mirror activities, mandatory decennial insurance on durable structures (laminated safety glass, glass guardrails, technical storefronts). Specific certifications are additionally required for technical structures: compliance with the NF P01-013 standard for glass guardrails, certification for class P anti-burglary glazing. A glazier missing any of these documents or with an expired one is simply not validated on the platform. Once the quote is signed, the tradesperson must upload their legal documents (insurance certificates, specific certifications for technical structures) to their Artisan Compétent dashboard. These documents are viewable by the client in their personal space. The client is nevertheless encouraged to re-check sensitive documents beforehand: valid decennial insurance, product certification for the technical glazing installed. This double verification protects against marginal cases where a certificate might expire between initial validation and the start of the job."
+            },
+            {
+              "title": "The escrow account is a third-party account managed via Stripe that oversees the entire process, from the quote to the release of funds.",
+              "body": "When you validate the glazier's quote, the payment leaves your account but doesn't reach the tradesperson's account: it remains held in a Stripe escrow account. This holding period lasts until the end of the intervention, plus a 48h window during which you can report an abuse, a quality defect (scratched glass, poorly installed seal), or non-compliance with the quote. Without dispute, funds are released to the glazier at the end of these 48h. During the 48h window, the escrow acts as leverage: it is the most effective motivation for a professional to correct a defect visible upon delivery."
+            },
+            {
+              "title": "The 48h period is triggered in a structured way: completion report, reservation window, end-of-period notification.",
+              "body": "In practice, the 48h timeframe does not run in a vacuum. At the end of the job, a completion report is issued on the platform. This report opens the 48h window during which you can express reservations: observed defect, non-compliance with the quote, missing finish, promised document not provided. 8 hours before the end of the deadline, a notification email (acting as a formal notice to examine the job) is sent to you to prevent a release simply due to oversight. With no reservations raised at the end of the 48h, the funds are automatically released to the professional. With a reservation, the escrow remains active until the dispute undergoes an adversarial process."
+            },
+            {
+              "title": "The CMOD can be triggered when no amicable solution can be found between the client and the professional regarding a dispute related to an intervention via the Artisan Compétent platform.",
+              "body": "This procedure can be initiated either by the client or by the Artisan Compétent team when a disagreement persists despite discussions between the parties. The CMOD intervention incurs a flat fee of €35, borne by the concerned professional. This amount will be directly deducted from the escrowed funds related to the file. Therefore, it is in the professional's best interest to favor an amicable and quick settlement before the CMOD is involved, to avoid this extra charge and extended processing time."
+            }
+          ]
+        },
+        "pricing": {
+          "title": "How much does a glazing intervention cost?",
+          "lead": "The cost of an intervention depends on the type of glass, dimensions, installation complexity, and urgency. No reliable national flat rate exists: only a detailed quote from a verified glazier commits the professional.",
+          "body": "The structural variables of a glazier's rate:",
+          "items": [
+            "Nature of the glazing: single glass, standard double glazing, reinforced insulation double glazing, laminated safety glass, anti-burglary glazing (classes P1A to P8B). The price difference between standard double glazing and laminated anti-burglary glazing can be significant.",
+            "Dimensions and shape: a standard rectangular glazing is less expensive than a large-sized glazing, a curved glazing, or custom-shaped glazing.",
+            "Installation complexity: a replacement at the same dimensions in an existing frame is faster than a new installation requiring adjustments or caulking rework.",
+            "Accessibility: a ground-floor facade glazing installs faster than upper-floor glazing without easy access, or a commercial storefront requiring night-time intervention.",
+            "Urgency: an emergency intervention (glass breakage at night or on weekends) increases the intervention rate.",
+            "Prior securing: in cases of glass breakage, rapid securing (board, protective film, temporary glazing) can be billed separately from the final replacement."
+          ],
+          "footer": "Indicative hourly range: to be completed by Himad. On Artisan Compétent, the breakdown (travel, labor, glass supply, potential securing, removal and disposal) is required before payment is triggered, securing the readability of the quote."
+        },
+        "comparatif": {
+          "title": "Comparison: Artisan Compétent vs other platforms vs Direct Google search",
+          "lead": "Synthetic comparison table of the three most used channels to find a glazier. Criteria are based on the real risk points of the trade.",
+          "headers": [
+            "Criterion",
+            "Other platforms",
+            "Direct Google",
+            "Artisan Compétent"
+          ],
+          "rows": [
+            [
+              "Professional SIRET verification",
+              "Variable depending on platform",
+              "None by default",
+              "Systematic before profile validation"
+            ],
+            [
+              "Insurance verification (RC pro, decennial)",
+              "Rare or declarative",
+              "None",
+              "RC pro and decennial required and verified"
+            ],
+            [
+              "Technical structures certifications (NF P01-013, anti-burglary glazing)",
+              "Rare",
+              "None",
+              "Verified and uploaded to dashboard"
+            ],
+            [
+              "Escrowed payment",
+              "No",
+              "No",
+              "Stripe fund escrow, release at 48h"
+            ],
+            [
+              "Recourse in case of defect (scratched glass, failing seal)",
+              "Limited",
+              "None",
+              "Withhold up to €250 if reported < 48h"
+            ],
+            [
+              "Prior detailed quote required",
+              "No",
+              "Variable",
+              "Supply / installation / urgency breakdown"
+            ],
+            [
+              "Project management advisor",
+              "No",
+              "No",
+              "CMOD available as an option"
+            ]
+          ]
+        },
+        "traps": {
+          "title": "The 3 traps to avoid when looking for a glazier",
+          "lead": "Three concrete traps encountered by individuals, and how Artisan Compétent neutralizes them.",
+          "items": [
+            {
+              "title": "Trap 1. Safety glazing installed without certification.",
+              "body": "On glass guardrails, stairs, and mezzanine balustrades, the glazing must be laminated safety glass, and the installation must comply with the NF P01-013 standard. Substandard installation poses a real risk of falling and engages the installer's liability in the event of an accident. On Artisan Compétent, product certifications and standard compliance are verified upon registration for professionals working on these structures, and then uploaded to the dashboard after the quote is signed."
+            },
+            {
+              "title": "Trap 2. Double glazing that fogs up six months after installation.",
+              "body": "Double glazing that condenses between the two panes signals a peripheral seal failure: it is a product or installation defect, not a usage fault. On Artisan Compétent, this defect can be reported during the 48h window post-installation (if visible), and subsequently falls under the two-year warranty and manufacturer warranty (often 10 years on branded double glazing). The dashboard keeps the documents (quote, brand, series, installation certificate) to trigger the warranty."
+            },
+            {
+              "title": "Trap 3. Opportunistic emergency billing on glass breakage.",
+              "body": "Similar to locksmithing, emergency glass breakage (night, weekend, public holiday) is favorable ground for pricing abuse. On Artisan Compétent, the rate is announced before travel, the quote is signed on-site before intervention, and the breakdown (securing, supply, installation, urgency) is required. The fund escrow remains active even in an emergency: payment is only released after 48h."
+            }
+          ]
+        },
+        "followUp": {
+          "title": "Your role in monitoring the job",
+          "lead": "On glazing projects, your active monitoring is essential to document the conformity of the installation and enable quick recourse in case of a defect. Here is what you concretely do, in the shared dashboard with the professional.",
+          "body": "For single-day jobs (standard glass replacement, emergency glass breakage repair), the professional uploads photos of the installed work, the delivery note, and product references (brand, dimensions, glass type) at the end of the intervention. You validate or report in the shared dashboard. For longer projects (installing multiple storefronts, full glass stair guardrail, custom mirror work for businesses), the tradesperson uploads daily progress photos: fixing installations, glazing placement, caulking, leak tests. You comment, validate, or report in the same space, establishing a written record for any subsequent dispute. You also document: photos of the area before intervention (condition of existing frame, seals in place), photos after installation (caulking, seal, cleanliness of finish), photos of the installed glazing's nameplate.",
+          "footer": "This active participation determines the quality of the recourse in the event of a dispute: no written trace, no leverage. In the event of a reported abuse within 48h following the end of the job, Artisan Compétent can withhold up to €250 from the professional's invoice before payment validation, according to the T&Cs/Terms of Sale. This withholding covers proven defects (scratched glass, poorly installed seal, dimensions non-compliant with the quote) or failure to comply with the signed quote."
+        },
+        "insurance": {
+          "title": "Home insurance and reimbursement (enhanced section for glass breakage)",
+          "lead": "Glass breakage is one of the best-covered claims by home insurance policies. Depending on your contract, window replacement may be fully or partially covered.",
+          "body": "For claims involving glass breakage (break-in, impact, accidental breakage), almost all comprehensive home insurance policies include \"glass breakage\" coverage which covers all or part of the replacement. Some premium credit cards also reimburse breakage resulting from a burglary or act of vandalism. The process is your responsibility: you contact your insurer as soon as possible (and within the contractual deadlines, often 5 working days, and 48h in case of theft or vandalism with a prior police report). You submit the verified glazier's quote, photos of the damage, and the police report if applicable. Artisan Compétent does not intervene in the compensation process: the intervention can be launched in parallel if urgent (immediate securing then replacement), and any potential reimbursement is handled directly between you and your insurer after invoicing."
+        },
+        "howItWorks": {
+          "title": "How it works in 3 steps",
+          "lead": "From submitting your request to the release of funds, three steps structure the intervention. The Stripe fund escrow covers the entire process.",
+          "steps": [
+            "You describe your need on Artisan Compétent. Type of intervention (glazing replacement, mirror, glass guardrail, storefront, emergency glass breakage repair), approximate dimensions, urgency if applicable. The platform connects you with one or more verified glaziers in your area.",
+            "The professional sends a detailed quote. You validate. The payment goes into escrow. The quote details the service, the type of glazing, the supply, the labor cost, any urgency surcharge, and the total inclusive of tax. When you validate, the payment leaves your account but remains blocked in the Stripe escrow.",
+            "The professional intervenes, you receive the product references, the funds are released 48h later. Photos of the installed work, product references (brand, dimensions, glass type), delivery note. At the end of the job, a completion report is issued on the platform: it opens a 48h window during which you can express reservations (abuse, defect, non-compliance with the quote). A notification email is sent to you 8h before the deadline. Without reservations, funds are automatically released to the professional."
+          ]
+        },
+        "klarna": {
+          "title": "Klarna: how it works",
+          "p1": "Klarna is an interest-free payment service in 3 instalments. Artisan Compétent provides this tool in the payment process. Its activation is negotiated between the client and the professional: it is not automatic.",
+          "p2": "For scheduled projects as well as emergencies (installing multiple storefronts, full glass guardrails, custom mirror work), Klarna 3 interest-free instalments can be offered by the professional in compliance with current Klarna limits."
+        },
+        "faq": {
+          "title": "Frequently asked questions",
+          "lead": "This FAQ groups the most frequently asked questions by individuals looking for a verified glazier on Artisan Compétent.",
+          "items": [
+            {
+              "q": "Why does Artisan Compétent not cover carpentry in V1?",
+              "a": "Custom carpentry (full window with frame, removing and refitting the fixed frame) involves long ordering and manufacturing cycles, often taking several months between taking measurements and installation. The Stripe fund escrow is calibrated for interventions spanning a few days to a few weeks, which is incompatible with these lead times. Specific partnerships are being explored for future versions. In the meantime, only the glazing and mirror portion is tracked by the platform."
+            },
+            {
+              "q": "What happens if my glazier quote includes frame replacement?",
+              "a": "When a glazing / mirror intervention also requires replacing a frame or carpentry elements, only the part strictly related to glazing / mirror work can be included in the quote made via the Artisan Compétent platform and benefit from the escrow. The quote sent via the platform must therefore exclusively cover supplies, materials, and services directly tied to the glazier / mirror trade, namely glass, mirrors, glass products, and the associated labor for their installation or replacement. Any service relating to carpentry, framing, or manufacturing accessory elements must be quoted separately, off-platform, directly between the client and the tradesperson (if they are a manufacturer) or with their supplier. This out-of-scope portion remains at the client's discretion and receives no escrow, tracking, support, mediation, coverage, or recourse via the Artisan Compétent platform."
+            },
+            {
+              "q": "Does my home insurance cover glass breakage?",
+              "a": "In almost all cases, yes. Most comprehensive home insurance policies include \"glass breakage\" coverage which pays for all or part of the window replacement, whether due to a break-in, an accidental impact, or vandalism. Some premium bank cards also cover breakage following a burglary. You must contact your insurer within the contractual deadlines with the quote and photos. Artisan Compétent does not intervene in the process: you are the one driving the compensation request."
+            },
+            {
+              "q": "The double glazing fogs up after a few months, is this normal?",
+              "a": "No. Double glazing that condenses between the two panes signals a peripheral seal failure. It is a product or installation defect, not a usage fault. If condensation appears within 48h after installation, you report it in the dashboard and the professional must intervene. Beyond that, the two-year warranty or manufacturer warranty (often 10 years on branded double glazing) takes over. The Artisan Compétent dashboard retains the necessary documents to activate the warranty."
+            },
+            {
+              "q": "How much does an emergency glass breakage repair cost?",
+              "a": "The cost depends on the type of glass, dimensions, time of intervention (night, weekend, public holiday), and the necessary prior securing. No reliable national flat rate exists: only a detailed quote from a verified glazier commits the professional. On Artisan Compétent, the rate is announced before travel, the quote is signed on-site before intervention, and the breakdown (securing, supply, installation, urgency) is required."
+            },
+            {
+              "q": "Does the fund escrow also cover emergency interventions on glass breakage?",
+              "a": "Yes. Every service processed through Artisan Compétent, whether a scheduled project or an emergency repair, is overseen by the Stripe fund escrow: quote priced and signed before intervention, payment blocked until 48h after the intervention's end, and release after this window. It is precisely on emergency interventions that the escrow provides the most guarantees against pricing abuse."
+            },
+            {
+              "q": "Is a certification required to install a glass guardrail?",
+              "a": "Installing a glass guardrail must comply with the NF P01-013 standard (minimum height, impact resistance, type of laminated glass). The installer must master the technical requirements and use certified glazing. On Artisan Compétent, glaziers who work on this type of structure upload product certifications and their installation method's compliance to the dashboard."
+            },
+            {
+              "q": "What happens if the installed glass is scratched upon delivery?",
+              "a": "You report the defect within 48h following the end of the job via the shared dashboard, with photos as proof. As long as this period runs, the funds remain in escrow and are not released to the glazier. Artisan Compétent may request a replacement without extra billing or withhold up to €250 from the professional's invoice before validation. The handover photo is the key element."
+            },
+            {
+              "q": "What is CMOD used for in a glazing project?",
+              "a": "The CMOD can be triggered when no amicable solution could be found between the client and the professional regarding a dispute related to an intervention carried out via the Artisan Compétent platform. This procedure can be initiated either by the client or by the Artisan Compétent team when a disagreement persists despite discussions between the parties. The CMOD intervention incurs a flat fee of €35, borne by the concerned professional. This amount will be directly deducted from the sum due to them on the escrowed funds related to the file. Therefore, it is in the professional's best interest to favor an amicable and quick settlement before the CMOD is involved, to avoid this extra charge and extended processing time."
+            },
+            {
+              "q": "Which cities are covered by Artisan Compétent for glazing?",
+              "a": "Artisan Compétent aims to cover metropolitan France, the overseas territories, and Corsica, i.e., 38 zones, with an intervention radius of 30 km around each listed city. All major cities are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) with 24/7 availability in emergencies in dense urban areas."
+            }
+          ]
+        },
+        "conclusion": {
+          "title": "To go further",
+          "body": "A glass breakage after a break-in, fogged double glazing to replace, a damaged commercial storefront, a glass guardrail to install on stairs, a custom mirror for a bathroom: Artisan Compétent oversees the verification of the glazier (SIRET, RC pro, decennial, technical structure certifications) and your entire process via escrow until 48h after the intervention.",
+          "footer": "Verified glazier with SIRET, RC pro, and decennial. Certifications uploaded to the dashboard (NF P01-013 for glass guardrails, laminated safety glass). Process overseen by Stripe escrow. Withholding of up to €250 in case of reported abuse. Scope: glazing and mirror work. Carpentry out of scope in V1."
         }
       },
       "pestControl": {
-        "title": "Pest Control (rodents, bedbugs, etc.)",
+        "title": "Verified pest control specialist, from quote to overseen fund release",
         "name": "Pest Control (rodents, bedbugs, etc.)",
+        "tagline": "This page lists the interventions handled by verified pest control specialists on Artisan Compétent and the mechanism that oversees your payment from start to finish, from the detailed quote to fund release 48h after job completion.",
+        "verifiedBadge": "In short, a verified pest control specialist on Artisan Compétent has their SIRET checked, their RC pro insurance up to date, and a valid Certibiocide certificate. The entire process is overseen by a Stripe escrow: quote, intervention, follow-up visits, fund release 48h after job completion. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 30 km radius per city.",
         "description": {
-          "p1": "Calling on a competent pest control technician guarantees fast, effective and lasting intervention. Rodents, bedbugs, cockroaches, ants or wasps: each infestation requires an adapted method and specific products. Thanks to their expertise, the technician identifies the source, applies the safest solutions and prevents recurrence.",
-          "p2": "Whether protecting your home, offices or commercial premises, this professional brings peace of mind and everyday safety.",
-          "p3": "No more scams — with our escrow payment system, you take no financial risk!"
+          "p1": "In one sentence, on Artisan Compétent, a verified pest control specialist has their SIRET, insurance, and Certibiocide certification checked beforehand, and their entire intervention (rat control, insect control, disinfection, bedbug or hornet treatment) is overseen by a Stripe escrow that holds the payment for up to 48h after job completion. You only pay if the treatment complies with the signed quote.",
+          "p2": "A verified pest control specialist on Artisan Compétent has their SIRET checked, their RC pro insurance up to date, and a valid Certibiocide certificate (a regulatory requirement for handling professional-use biocidal products). The Stripe fund escrow oversees the entire process: the payment leaves your account when the quote is validated, remains held during the intervention, and for an additional 48h after the end of the work. This 48-hour period gives you time to report insufficient effectiveness, an absence of a follow-up visit, or non-compliance with the quote before the funds are released to the professional."
+        },
+        "whenToCall": {
+          "title": "When to call a verified pest control specialist",
+          "lead": "A verified pest control specialist handles rat control, insect control, and disinfection of premises, the treatment of bedbugs, hornets (European and Asian), and the implementation of sustainable prevention protocols.",
+          "body": "Typical cases handled by pest control specialists listed on Artisan Compétent cover common domestic pests as well as more complex infestations. A few concrete examples that justify the intervention of a verified professional rather than an improvised DIY treatment:",
+          "items": [
+            "Rodents: rat and mice control (secured baiting stations complying with biocide regulations, identification of entry points and sealing)",
+            "Crawling insects: treatment against cockroaches, ants, fleas, ticks, weevils, and other crawling insects. Often by targeted spraying and gel baits.",
+            "Flying insects: treatment against flies, food or clothes moths, flour moths, tiger mosquitoes in utility rooms.",
+            "Bedbugs: specific treatment, often in several passes, with a precise protocol (housing preparation, thermal or chemical treatment, inspection at 15 and 30 days). It is the hardest pest to eradicate in France today.",
+            "Hornets: destruction of European or Asian hornet nests (secured intervention at height, often with a cherry picker or full protective gear). Asian hornets must be reported in certain municipalities.",
+            "Disinfection: cleaning and treating premises after a health incident, water damage, death, past infestation. Often requested by landlords or property managers.",
+            "Preventive insect control: prevention contracts for shops, restaurants, offices subject to HACCP regulations or health inspections.",
+            "Preventive rat control: monitoring contracts with regular visits (monthly or quarterly) for condominiums, buildings, shops."
+          ],
+          "footer": "Each of these interventions involves the use of regulated biocidal products. Holding the Certibiocide certificate is mandatory for the purchase and professional use of these products. This obligation makes verifying the certificate essential before any treatment."
+        },
+        "whyUs": {
+          "title": "Why use Artisan Compétent for your pest control needs",
+          "lead": "Artisan Compétent verifies the pest control specialist beforehand, oversees your payment via Stripe escrow, and gives you 48h to validate the treatment before any funds are released.",
+          "blocks": [
+            {
+              "title": "Every pest control specialist listed on Artisan Compétent has their SIRET checked against public databases (Business Directory, INSEE/SIRENE), their insurance verified, and their Certibiocide certificate checked before validation.",
+              "body": "Verification covers several concrete points: an active and up-to-date SIRET, an RC pro insurance certificate covering pest control activities, and a valid Certibiocide certificate. CEPA (Confederation of European Pest Management Associations) certification or the Certibiocide-Pro label are pluses, highlighted on the profile. A specialist missing any of these documents or with an expired one is simply not validated on the platform.\nOnce the quote is signed, the tradesperson must upload their legal documents (insurance certificates, Certibiocide certificate, safety data sheets of the products used) to their Artisan Compétent dashboard. These documents are viewable by the client in their personal space. The client is nevertheless encouraged to re-check sensitive documents beforehand: valid Certibiocide, safety data sheets of planned products if toddlers or animals are present. This double verification protects against marginal cases where a certificate might expire between initial validation and the start of the job."
+            },
+            {
+              "title": "The escrow account is a third-party account managed via Stripe that oversees the entire process, from the quote to the release of funds.",
+              "body": "When you validate the pest control specialist's quote, the payment leaves your account but doesn't reach the professional's account: it remains held in a Stripe escrow account. This holding period lasts until the end of the intervention (and the last follow-up visit for multi-pass treatments), plus a 48h window during which you can report an abuse, a quality defect, or non-compliance with the quote. Without dispute, funds are released to the specialist at the end of these 48h. During the 48h window, the escrow acts as leverage: it is the most effective motivation for a professional to return and check the effectiveness of the treatment."
+            },
+            {
+              "title": "The 48h period is triggered in a structured way: completion report, reservation window, end-of-period notification.",
+              "body": "In practice, the 48h timeframe does not run in a vacuum. At the end of the job, a completion report is issued on the platform. This report opens the 48h window during which you can express reservations: observed defect, non-compliance with the quote, missing finish, promised document not provided. 8 hours before the end of the deadline, a notification email (acting as a formal notice to examine the job) is sent to you to prevent a release simply due to oversight. With no reservations raised at the end of the 48h, the funds are automatically released to the professional. With a reservation, the escrow remains active until the dispute is resolved."
+            },
+            {
+              "title": "The CMOD can be triggered when no amicable solution can be found between the client and the professional regarding a dispute related to an intervention via the Artisan Compétent platform.",
+              "body": "This procedure can be initiated either by the client or by the Artisan Compétent team when a disagreement persists despite discussions between the parties.\nThe CMOD intervention incurs a flat fee of €35, borne by the concerned professional. This amount will be directly deducted from the escrowed funds related to the file.\nTherefore, it is in the professional's best interest to favor an amicable and quick settlement before the CMOD is involved, to avoid this extra charge and extended processing time."
+            }
+          ]
+        },
+        "pricing": {
+          "title": "How much does a pest control intervention cost?",
+          "lead": "The cost of an intervention depends on the pest, surface area, level of infestation, number of planned visits, and method used. No reliable national flat rate exists: only a detailed quote from a verified specialist commits the professional.",
+          "body": "The structural variables of a pest control specialist's rate:",
+          "items": [
+            "The target pest: costs vary greatly between simple rat control, a cockroach treatment, a bedbug protocol, and the destruction of an Asian hornet nest at height.",
+            "The surface area to treat: a studio, an apartment, a house, an attic, or a complete condominium do not cost the same.",
+            "The level of infestation: an early outbreak is treated faster than an infestation established for months.",
+            "The number of visits: certain treatments (bedbugs in particular) require several interventions spaced 15 to 30 days apart to break the reproductive cycle.",
+            "The method: chemical spraying, thermal treatment (dry steam at high temperature, particularly used for bedbugs), localized freezing, trap setting, gel baits, fumigation. Thermal treatment is generally more expensive but more effective on certain pests.",
+            "Accessibility: a hornet nest at 15 m high requires a cherry picker or a rope access technician, which affects the quote.",
+            "The nature of the premises: simple housing, restaurant subject to HACCP, co-ownership with common areas, professional utility room.",
+            "Additional actions: sealing entry points, installing anti-rodent grilles, prevention protocol, follow-up contract."
+          ],
+          "footer": "Indicative hourly range: to be completed by Himad. On Artisan Compétent, the breakdown (travel, method, products, number of visits, follow-up visits) is required before payment is triggered, securing the readability of the quote."
+        },
+        "comparatif": {
+          "title": "Comparison: Artisan Compétent vs other platforms vs Direct Google search",
+          "lead": "Synthetic comparison table of the three most used channels to find a pest control specialist. Criteria are based on the real risk points of the trade.",
+          "headers": [
+            "Criterion",
+            "Other platforms",
+            "Direct Google",
+            "Artisan Compétent"
+          ],
+          "rows": [
+            ["Professional SIRET verification", "Variable depending on platform", "None by default", "Systematic before profile validation"],
+            ["Certibiocide certificate checked", "Rare", "None", "Verified and uploaded to dashboard"],
+            ["Insurance verification (RC pro)", "Rare or declarative", "None", "RC pro required and verified"],
+            ["Escrowed payment", "No", "No", "Stripe fund escrow, release at 48h"],
+            ["Recourse in case of ineffective treatment", "Limited", "None", "Withhold up to €250 if reported < 48h"],
+            ["Documented follow-up visits", "Variable", "None", "Photos and report on the dashboard"],
+            ["Project management advisor", "No", "No", "CMOD available as an option"]
+          ]
+        },
+        "traps": {
+          "title": "The 3 traps to avoid when looking for a pest control specialist",
+          "lead": "Three concrete traps encountered by individuals, and how Artisan Compétent neutralizes them.",
+          "items": [
+            {
+              "title": "Trap 1. The 'professional' without Certibiocide.",
+              "body": "The use of professional biocidal products requires the Certibiocide certificate for the operator and an approval for the company. An operator who cannot present these documents is breaking the law. On Artisan Compétent, the Certibiocide is verified at registration and uploaded to the dashboard after the quote is signed."
+            },
+            {
+              "title": "Trap 2. The '100% guaranteed' treatment without a follow-up plan.",
+              "body": "No serious professional guarantees total eradication without a follow-up visit. For bedbugs, cockroaches, and rodents, two to three visits are often necessary. On Artisan Compétent, the quote details the planned number of visits, the schedule, and the conditions for checking effectiveness. The escrow remains active until the last visit is validated."
+            },
+            {
+              "title": "Trap 3. The quote without details on the products used.",
+              "body": "The client must know which products will be applied in their home, especially if there are toddlers, pets, or allergic people. On Artisan Compétent, the safety data sheets of the planned products are uploaded to the dashboard after the quote is signed. CMOD, as an option, can review them if you have any doubts."
+            }
+          ]
+        },
+        "followUp": {
+          "title": "Your role in monitoring the job",
+          "lead": "On pest control projects, your active monitoring is essential to document the effectiveness of the treatment and enable quick recourse in case the infestation returns. Here is what you concretely do, in the shared dashboard with the professional.",
+          "body": "For treatments in multiple passes (bedbugs, recurring cockroaches, heavy rat infestation), the professional uploads photos and a report to the shared client/professional dashboard at each visit: treated areas, products used, fixing points of baits, set traps. You document in parallel: photos of observed pests before the intervention, observations between visits (presence or absence of returning infestation), photos of any traces (droppings, damage, molts), request for an early follow-up visit if needed.",
+          "footer": "This active participation determines the quality of the recourse in the event of a dispute: no written trace, no leverage. For bedbugs in particular, a time-stamped photograph of discoveries (on sheets, under mattresses, on bed frames) is the most effective evidence to show that a treatment did not have the expected effect. In the event of a reported abuse within 48h following the end of the job (or the end of the last follow-up visit), Artisan Compétent can withhold up to €250 from the professional's invoice before payment validation, according to the T&Cs/Terms of Sale. This withholding covers cases of proven ineffectiveness, failure to follow the planned protocol, or non-compliance with the signed quote."
+        },
+        "insurance": {
+          "title": "Home insurance and reimbursement",
+          "lead": "Depending on the cause of the infestation and your contract, your home insurance may cover part of the treatment. It is up to you to contact your insurer directly.",
+          "body": "Some comprehensive home insurance guarantees include an option for 'coverage of rat control costs' or 'coverage of insect control costs'. Some insurances cover the cost of replacing mattresses and bedding after bedbug treatments. Guarantees vary widely from one contract to another. The process is your responsibility: you contact your insurer after receiving the quote to verify eligibility and open a claim file within the deadlines provided by the contract. Artisan Compétent does not intervene in the process: the intervention can be launched in parallel if urgency requires it (hornets on the facade, active rodent infestation), and any reimbursement is handled directly between you and your insurer."
+        },
+        "howItWorks": {
+          "title": "How it works in 3 steps",
+          "lead": "From submitting your request to the release of funds, three steps structure the intervention. The Stripe fund escrow covers the entire process, including planned follow-up visits.",
+          "steps": [
+            "You describe your need on Artisan Compétent. Type of pest (rodent, bedbug, cockroach, hornet, etc.), surface area of the home, perceived level of infestation, presence of children or animals, possible urgency. The platform connects you with one or more verified specialists in your area.",
+            "The professional sends a detailed quote. You validate. The payment goes into escrow. The quote details the targeted pest, the method, the products used, the planned number of visits, the schedule, the labor cost, and the total inclusive of tax. When you validate, the payment leaves your account but remains blocked in the Stripe escrow.",
+            "The professional intervenes (in one or several visits), you validate the effectiveness, the funds are released 48h later. Report and photos at each visit in the dashboard. At the final follow-up visit, a completion report is issued on the platform: it opens a 48h window during which you can express reservations (abuse, ineffective treatment, non-compliance with the quote). A notification email is sent to you 8h before the deadline. Without reservations, funds are automatically released to the professional."
+          ]
+        },
+        "klarna": {
+          "title": "Klarna: how it works",
+          "p1": "Klarna is an interest-free payment service in 3 instalments. Artisan Compétent provides this tool in the payment process. Its activation is negotiated between the client and the professional: it is not automatic."
+        },
+        "faq": {
+          "title": "Frequently asked questions",
+          "lead": "This FAQ groups the most frequently asked questions by individuals looking for a verified pest control specialist on Artisan Compétent.",
+          "items": [
+            { "q": "What is Certibiocide and why is it mandatory?", "a": "Certibiocide is a mandatory individual certificate for anyone purchasing, distributing, or using professional-use biocidal products under categories TP14 (rodenticides), TP18 (professional-use insecticides), and TP21 (antifouling products). It certifies that the operator knows the risks, best practices, and regulations. On Artisan Compétent, it is verified upon registration and uploaded to the dashboard after the quote is signed." },
+            { "q": "How many visits are needed to treat bedbugs?", "a": "The professional standard is two to three visits spaced 15 to 30 days apart, to break the reproductive cycle (unhatched eggs during the first visit, emerging adults treated during the second). Some thermal protocols (very high-temperature dry steam) can reduce this to one visit plus an inspection. On Artisan Compétent, the schedule is fixed in the quote and each visit is documented." },
+            { "q": "Can my insurance reimburse a pest control treatment?", "a": "This depends on your comprehensive home insurance contract and any optional guarantees subscribed. Some policies include coverage for rat or insect control costs, and sometimes even mattress replacement after bedbugs. To be checked directly with your insurer, quote in hand. Artisan Compétent does not intervene in the compensation process." },
+            { "q": "Is chemical treatment dangerous for children and animals?", "a": "Professional-use biocidal products are regulated and their application follows precise protocols (wait times before returning to the home, ventilation, protection of food and animals). The verified professional will give you the safety data sheets for the products used and post-application instructions. If you have toddlers, pets, or allergic individuals, mention it for the quote: the professional will adapt the protocol (gel baits instead of sprays, chemical-free thermal treatment, etc.)." },
+            { "q": "How much does rat control cost?", "a": "The cost depends on the surface area, the level of infestation, the number of visits, and the possible placement of traps or sealing. No reliable national flat rate exists: only a detailed quote from the verified specialist commits the professional. On Artisan Compétent, the breakdown (travel, method, products, visits) is required before payment is triggered." },
+            { "q": "What happens if the infestation returns after the treatment?", "a": "If the infestation returns during the window covered by the quote (planned visits, announced post-treatment warranty period), the professional is required to intervene again without additional billing. You report the return in the dashboard with photos. As long as the escrow is active, funds are not released. If the infestation returns after the funds are released, the post-treatment warranty announced in the quote applies." },
+            { "q": "Does the escrow cover all planned follow-up visits?", "a": "Yes. The Stripe escrow holds the full amount inclusive of tax of the signed quote, including treatment visits and planned follow-up visits. The escrow is only released after the final visit and the 48h window." },
+            { "q": "What is CMOD used for in a pest control job?", "a": "The CMOD can be triggered when no amicable solution could be found between the client and the professional regarding a dispute related to an intervention carried out via the Artisan Compétent platform.\nThis procedure can be initiated either by the client or by the Artisan Compétent team when a disagreement persists despite discussions between the parties.\nThe CMOD intervention incurs a flat fee of €35, borne by the concerned professional. This amount will be directly deducted from the sum due to them on the escrowed funds related to the file.\nTherefore, it is in the professional's best interest to favor an amicable and quick settlement before the CMOD is involved, to avoid this extra charge and extended processing time." },
+            { "q": "Do I have to report an Asian hornet nest?", "a": "In several French regions and municipalities, the Asian hornet is subject to surveillance plans and mandatory reporting. Inquire with your town hall or the departmental hunters' federation. The destruction of the nest must be done by an equipped professional. On Artisan Compétent, the verified professional intervenes with suitable equipment (suit, cherry picker if needed, authorized products)." },
+            { "q": "Which cities are covered by Artisan Compétent for pest control?", "a": "Artisan Compétent aims to cover metropolitan France, the overseas territories, and Corsica, i.e., 38 zones, with an intervention radius of 30 km around each listed city. All major cities are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille)." }
+          ]
+        },
+        "conclusion": {
+          "title": "To go further",
+          "body": "A bedbug infestation to eradicate in several visits, recurring rodents in a basement or attic, an Asian hornet nest on a facade, a complete disinfection after an incident: Artisan Compétent oversees the verification of the pest control specialist (SIRET, RC pro, decennial, Certibiocide) and your entire process via escrow until 48h after the last intervention.",
+          "footer": "Verified pest control specialist with SIRET, RC pro, decennial, and Certibiocide. Process overseen by Stripe escrow, follow-up visits included. Report and photos at each visit. Withholding of up to €250 in case of reported abuse. Scope: rodents, crawling insects, flying insects, bedbugs, hornets, disinfection, insect control, rat control."
         }
       }
     }

@@ -2,7 +2,7 @@
     <h1 class="text-4xl font-semibold text-center">{{ 'jobs.title' | transloco }}</h1>
     <p class="text-center">{{ 'jobs.description' | transloco }}</p>
 
-    <div class="grid gap-4 justify-center items-start sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+    <div class="grid gap-4 justify-center items-start sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
         <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'electrician']">
             <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
                 <img
@@ -14,16 +14,16 @@
             </div>
             <div class="mt-2">{{ 'jobs.list.electrician.name' | transloco }}</div>
         </a>
-        <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'locksmith-metaller']">
+        <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'locksmith']">
             <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
                 <img
-                    src="assets/img/serrurier-metallier.jpg"
-                    alt="{{ 'jobs.list.locksmithMetaller.name' | transloco }}"
+                    src="assets/img/serrurier.jpg"
+                    alt="{{ 'jobs.list.locksmith.name' | transloco }}"
                     class="object-cover w-full h-full"
                     loading="lazy"
                 />
             </div>
-            <div class="mt-2">{{ 'jobs.list.locksmithMetaller.name' | transloco }}</div>
+            <div class="mt-2">{{ 'jobs.list.locksmith.name' | transloco }}</div>
         </a>
         <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'plumber-sanitary']">
             <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
@@ -36,16 +36,16 @@
             </div>
             <div class="mt-2">{{ 'jobs.list.plumberSanitary.name' | transloco }}</div>
         </a>
-        <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'heating-tech']">
+        <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'heating']">
             <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
                 <img
                     src="assets/img/chauffagiste.jpg"
-                    alt="{{ 'jobs.list.heatingTech.name' | transloco }}"
+                    alt="{{ 'jobs.list.heating.name' | transloco }}"
                     class="object-cover w-full h-full"
                     loading="lazy"
                 />
             </div>
-            <div class="mt-2">{{ 'jobs.list.heatingTech.name' | transloco }}</div>
+            <div class="mt-2">{{ 'jobs.list.heating.name' | transloco }}</div>
         </a>
         <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'drain-unblocker']">
             <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
@@ -58,60 +58,27 @@
             </div>
             <div class="mt-2">{{ 'jobs.list.drainUnblocker.name' | transloco }}</div>
         </a>
-        <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'hvac-installer']">
+        <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'hvac']">
             <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
                 <img
-                    src="assets/img/installateur-clim.jpg"
-                    alt="{{ 'jobs.list.hvacInstaller.name' | transloco }}"
+                    src="assets/img/installeur-clim.jpg"
+                    alt="{{ 'jobs.list.hvac.name' | transloco }}"
                     class="object-cover w-full h-full"
                     loading="lazy"
                 />
             </div>
-            <div class="mt-2">{{ 'jobs.list.hvacInstaller.name' | transloco }}</div>
+            <div class="mt-2">{{ 'jobs.list.hvac.name' | transloco }}</div>
         </a>
-        <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'carpenter-glazier']">
+        <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'glazier']">
             <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
                 <img
                     src="assets/img/vitrier.jpg"
-                    alt="{{ 'jobs.list.carpenterGlazier.name' | transloco }}"
+                    alt="{{ 'jobs.list.glazier.name' | transloco }}"
                     class="object-cover w-full h-full"
                     loading="lazy"
                 />
             </div>
-            <div class="mt-2">{{ 'jobs.list.carpenterGlazier.name' | transloco }}</div>
-        </a>
-        <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'insulation-in-out']">
-            <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                <img
-                    src="assets/img/isolation.jpg"
-                    alt="{{ 'jobs.list.insulationInOut.name' | transloco }}"
-                    class="object-cover w-full h-full"
-                    loading="lazy"
-                />
-            </div>
-            <div class="mt-2">{{ 'jobs.list.insulationInOut.name' | transloco }}</div>
-        </a>
-        <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'painter-interior-facade']">
-            <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                <img
-                    src="assets/img/peintre.jpg"
-                    alt="{{ 'jobs.list.painterInteriorFacade.name' | transloco }}"
-                    class="object-cover w-full h-full"
-                    loading="lazy"
-                />
-            </div>
-            <div class="mt-2">{{ 'jobs.list.painterInteriorFacade.name' | transloco }}</div>
-        </a>
-        <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'floor-coverings']">
-            <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                <img
-                    src="assets/img/revetement-sol.webp"
-                    alt="{{ 'jobs.list.floorCoverings.name' | transloco }}"
-                    class="object-cover w-full h-full"
-                    loading="lazy"
-                />
-            </div>
-            <div class="mt-2">{{ 'jobs.list.floorCoverings.name' | transloco }}</div>
+            <div class="mt-2">{{ 'jobs.list.glazier.name' | transloco }}</div>
         </a>
         <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'pest-control']">
             <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
@@ -123,17 +90,6 @@
                 />
             </div>
             <div class="mt-2">{{ 'jobs.list.pestControl.name' | transloco }}</div>
-        </a>
-        <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'alarm-video-surveillance']">
-            <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                <img
-                    src="assets/img/alarme-video-surveillance.webp"
-                    alt="{{ 'jobs.list.alarmVideoSurveillance.name' | transloco }}"
-                    class="object-cover w-full h-full"
-                    loading="lazy"
-                />
-            </div>
-            <div class="mt-2">{{ 'jobs.list.alarmVideoSurveillance.name' | transloco }}</div>
         </a>
     </div>
 </section>

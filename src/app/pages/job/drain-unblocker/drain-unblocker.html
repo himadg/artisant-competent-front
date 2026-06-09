@@ -1,0 +1,214 @@
+@if (tradeContent) {
+    <article class="mx-auto max-w-screen-lg px-4 pt-8 space-y-12">
+        <!-- Hero -->
+        <section class="space-y-4">
+            <h1 class="text-2xl font-semibold title">{{ tradeContent.title }}</h1>
+            <div class="grid gap-8 items-center md:grid-cols-2">
+                <div class="overflow-hidden rounded-lg border">
+                    <img [src]="trade.image" [alt]="tradeContent.title" class="object-cover w-full h-64 md:h-full" />
+                </div>
+                <div class="space-y-3">
+                    @if (tradeContent.verifiedBadge) {
+                        <p class="text-sm p-3 rounded-lg bg-[var(--primary-water-green)] text-[var(--primary-beige)]">
+                            {{ tradeContent.verifiedBadge }}
+                        </p>
+                    }
+                </div>
+            </div>
+            @if (tradeContent.tagline) {
+                <p class="text-sm italic text-[var(--text-muted)]">{{ tradeContent.tagline }}</p>
+            }
+            @if (tradeContent.description?.p1) {
+                <p>{{ tradeContent.description.p1 }}</p>
+            }
+            @if (tradeContent.description?.p2) {
+                <p>{{ tradeContent.description.p2 }}</p>
+            }
+        </section>
+
+        <!-- Quand faire appel -->
+        @if (tradeContent.whenToCall) {
+            <section class="space-y-3 border-t pt-8">
+                <h2 class="text-xl font-semibold title">{{ tradeContent.whenToCall.title }}</h2>
+                <p class="font-medium">{{ tradeContent.whenToCall.lead }}</p>
+                <p>{{ tradeContent.whenToCall.body }}</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    @for (item of tradeContent.whenToCall.items; track $index) {
+                        <li>{{ item }}</li>
+                    }
+                </ul>
+                @if (tradeContent.whenToCall.footer) {
+                    <p class="text-sm italic">{{ tradeContent.whenToCall.footer }}</p>
+                }
+            </section>
+        }
+
+        <!-- Pourquoi passer par Artisan Compétent -->
+        @if (tradeContent.whyUs) {
+            <section class="space-y-4 border-t pt-8">
+                <h2 class="text-xl font-semibold title">{{ tradeContent.whyUs.title }}</h2>
+                <p>{{ tradeContent.whyUs.lead }}</p>
+                @for (block of tradeContent.whyUs.blocks; track $index) {
+                    <div class="space-y-1 pl-4 border-l-2 border-[var(--primary-water-green)]">
+                        <p class="font-semibold">{{ block.title }}</p>
+                        <p>{{ block.body }}</p>
+                    </div>
+                }
+            </section>
+        }
+
+        <!-- Combien ça coûte -->
+        @if (tradeContent.pricing) {
+            <section class="space-y-3 border-t pt-8">
+                <h2 class="text-xl font-semibold title">{{ tradeContent.pricing.title }}</h2>
+                <p>{{ tradeContent.pricing.lead }}</p>
+                <p>{{ tradeContent.pricing.body }}</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    @for (item of tradeContent.pricing.items; track $index) {
+                        <li>{{ item }}</li>
+                    }
+                </ul>
+                @if (tradeContent.pricing.footer) {
+                    <p class="text-sm italic">{{ tradeContent.pricing.footer }}</p>
+                }
+            </section>
+        }
+
+        <!-- Comparatif -->
+        @if (tradeContent.comparatif) {
+            <section class="space-y-3 border-t pt-8">
+                <h2 class="text-xl font-semibold title">{{ tradeContent.comparatif.title }}</h2>
+                <p>{{ tradeContent.comparatif.lead }}</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-[var(--primary-water-green)] text-[var(--primary-beige)]">
+                                @for (header of tradeContent.comparatif.headers; track $index) {
+                                    <th class="p-3 text-left font-semibold">{{ header }}</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (row of tradeContent.comparatif.rows; track $index) {
+                                <tr class="border-b odd:bg-[var(--surface-alt)]">
+                                    @for (cell of row; track $index) {
+                                        <td class="p-3" [class.font-medium]="$index === 0">{{ cell }}</td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        }
+
+        <!-- Les pièges à éviter -->
+        @if (tradeContent.traps) {
+            <section class="space-y-4 border-t pt-8">
+                <h2 class="text-xl font-semibold title">{{ tradeContent.traps.title }}</h2>
+                <p>{{ tradeContent.traps.lead }}</p>
+                @for (trap of tradeContent.traps.items; track $index) {
+                    <div class="space-y-1">
+                        <h3 class="font-semibold">{{ trap.title }}</h3>
+                        <p>{{ trap.body }}</p>
+                    </div>
+                }
+            </section>
+        }
+
+        <!-- Suivi du chantier -->
+        @if (tradeContent.followUp) {
+            <section class="space-y-3 border-t pt-8">
+                <h2 class="text-xl font-semibold title">{{ tradeContent.followUp.title }}</h2>
+                <p class="font-medium">{{ tradeContent.followUp.lead }}</p>
+                <p>{{ tradeContent.followUp.body }}</p>
+                @if (tradeContent.followUp.footer) {
+                    <p class="text-sm italic">{{ tradeContent.followUp.footer }}</p>
+                }
+            </section>
+        }
+
+        <!-- Assurance habitation -->
+        @if (tradeContent.insurance) {
+            <section class="space-y-3 border-t pt-8">
+                <h2 class="text-xl font-semibold title">{{ tradeContent.insurance.title }}</h2>
+                <p>{{ tradeContent.insurance.lead }}</p>
+                <p>{{ tradeContent.insurance.body }}</p>
+                @if (tradeContent.insurance.footer) {
+                    <p class="text-sm italic">{{ tradeContent.insurance.footer }}</p>
+                }
+            </section>
+        }
+
+        <!-- Comment ça marche -->
+        @if (tradeContent.howItWorks) {
+            <section class="space-y-4 border-t pt-8">
+                <h2 class="text-xl font-semibold title">{{ tradeContent.howItWorks.title }}</h2>
+                <p>{{ tradeContent.howItWorks.lead }}</p>
+                <ol class="space-y-3">
+                    @for (step of tradeContent.howItWorks.steps; track $index) {
+                        <li class="flex gap-3">
+                            <span
+                                class="flex items-center justify-center w-7 h-7 min-w-7 rounded-full bg-[var(--primary-water-green)] text-[var(--primary-beige)] text-sm font-bold"
+                                >{{ $index + 1 }}</span
+                            >
+                            <p>{{ step }}</p>
+                        </li>
+                    }
+                </ol>
+            </section>
+        }
+
+        <!-- Urgence -->
+        @if (tradeContent.emergency) {
+            <section class="space-y-3 border-t pt-8">
+                <h2 class="text-xl font-semibold title">{{ tradeContent.emergency.title }}</h2>
+                <p class="font-medium">{{ tradeContent.emergency.lead }}</p>
+                <p>{{ tradeContent.emergency.body }}</p>
+            </section>
+        }
+
+        <!-- Klarna -->
+        @if (tradeContent.klarna) {
+            <section class="space-y-3 border-t pt-8">
+                <h2 class="text-xl font-semibold title">{{ tradeContent.klarna.title }}</h2>
+                <p>{{ tradeContent.klarna.p1 }}</p>
+                <p>{{ tradeContent.klarna.p2 }}</p>
+            </section>
+        }
+
+        <!-- FAQ -->
+        @if (tradeContent.faq) {
+            <section class="space-y-4 border-t pt-8">
+                <h2 class="text-xl font-semibold title">{{ tradeContent.faq.title }}</h2>
+                @if (tradeContent.faq.lead) {
+                    <p>{{ tradeContent.faq.lead }}</p>
+                }
+                <dl class="space-y-4">
+                    @for (item of tradeContent.faq.items; track $index) {
+                        <div class="space-y-1">
+                            <dt class="font-semibold">{{ item.q }}</dt>
+                            <dd class="text-[var(--text-secondary)]">{{ item.a }}</dd>
+                        </div>
+                    }
+                </dl>
+            </section>
+        }
+
+        <!-- Conclusion -->
+        @if (tradeContent.conclusion) {
+            <section class="space-y-3 border-t pt-8">
+                <h2 class="text-xl font-semibold title">{{ tradeContent.conclusion.title }}</h2>
+                <p>{{ tradeContent.conclusion.body }}</p>
+                @if (tradeContent.conclusion.footer) {
+                    <p class="text-sm italic font-medium">{{ tradeContent.conclusion.footer }}</p>
+                }
+            </section>
+        }
+
+        <!-- Villes -->
+        <section class="border-t pt-8">
+            <job-cities-section [tradeSlug]="trade.slug" />
+        </section>
+    </article>
+}
