@@ -5,6 +5,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 import { filter } from 'rxjs/operators';
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'ac-navbar',
@@ -17,6 +18,9 @@ import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggl
 export class Navbar implements OnInit {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly router = inject(Router);
+  private readonly authService = inject(AuthService);
+
+  readonly currentUser = this.authService.currentUser;
 
   // Opens the sandwich menu on mobiles
   mobileNavOpen = false;
@@ -41,6 +45,10 @@ export class Navbar implements OnInit {
       this.tabletNavRegisterOpen = false;
       this.tabletNavLoginOpen = false;
     });
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
   toggleMobileNav() {

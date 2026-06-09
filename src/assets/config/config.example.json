@@ -1,4 +1,5 @@
 {
   "apiUrl": "http://localhost:3000",
-  "turnstileSiteKey": "turnstile-site-key"
+  "turnstileSiteKey": "turnstile-site-key",
+  "disable_research": true
 }

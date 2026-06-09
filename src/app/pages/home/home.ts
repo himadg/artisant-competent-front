@@ -14,14 +14,15 @@ import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { SearchPro } from '../../shared/components/search-pro/search-pro';
-import { Accordion } from '../../shared/components/accordion';
+import { Accordion } from '../../shared/components/accordion/accordion';
 import { SeoService } from '../../core/services/seo.service';
 import { KlarnaFaqService } from '../../core/services/klarna-faq.service';
+import { SafeHtmlPipe } from '../../shared/pipes/safe-html.pipe';
 
 @Component({
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TranslocoModule, RouterModule, SearchPro, Accordion],
+  imports: [TranslocoModule, RouterModule, SearchPro, Accordion, SafeHtmlPipe],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

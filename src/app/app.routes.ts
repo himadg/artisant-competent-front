@@ -16,6 +16,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/dashboard/dashboard').then((p) => p.DashboardPage),
   },
   {
+    path: 'demande',
+    title: 'demande.title',
+    canActivate: [authGuard],
+    loadComponent: () => import('./pages/demande/demande.component').then((p) => p.DemandePageComponent),
+  },
+  {
     path: 'affiliation',
     title: 'affiliation.title',
     loadComponent: () => import('./pages/affiliation/affiliation').then((p) => p.AffiliationPage),

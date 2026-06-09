@@ -143,7 +143,8 @@ export class RegisterProfessional implements OnDestroy {
 
     this.personalAddressSearch$.pipe(
       distinctUntilChanged(),
-      filter(query => query.length >= 3),
+      // only search when user typed at least 3 non-space characters
+      filter(query => query.trim().length >= 3),
       switchMap(query => this.geocodingService.search(query)),
       takeUntil(this.destroy$),
     ).subscribe(suggestions => this.personalAddressSuggestions.set(suggestions));
@@ -151,7 +152,8 @@ export class RegisterProfessional implements OnDestroy {
     this.workAddressSearch$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      filter(query => query.length >= 3),
+      // ignore whitespace-only padding
+      filter(query => query.trim().length >= 3),
       switchMap(query => this.geocodingService.search(query)),
       takeUntil(this.destroy$),
     ).subscribe(suggestions => this.workAddressSuggestions.set(suggestions));

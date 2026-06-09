@@ -42,7 +42,20 @@ export class LoginPage {
 
     try {
       await this.authService.login(email!, password!);
-      this.router.navigate(['/dashboard']);
+      const user = this.authService.currentUser();
+
+      const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+      if (returnUrl) {
+        this.router.navigateByUrl(returnUrl);
+        return;
+      }
+
+      if (user?.role?.code === 'INDIVIDUAL') {
+        alert(`Bienvenue ${user.firstName} ${user.lastName}`);
+        this.router.navigate(['/']);
+      } else {
+        this.router.navigate(['/dashboard']);
+      }
     } catch {
       this.serverError.set('login.errors.invalid');
     } finally {

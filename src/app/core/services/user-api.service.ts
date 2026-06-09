@@ -72,4 +72,12 @@ export class UserApiService {
     return this.http.get<{ id: string; description: string }[]>('/services/search', { params: { q } });
   }
 
+  getUserProfile(userId: string): Observable<any> {
+    return this.http.get<any>(`/users/${userId}`);
+  }
+
+  getProfessionalProfile(userId: string): Observable<any> {
+    return this.http.get<any>(`/professionals/${userId}`);
+  }
+
 }

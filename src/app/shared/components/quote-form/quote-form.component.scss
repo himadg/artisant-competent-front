@@ -1,0 +1,345 @@
+.quote-form {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  font-family: sans-serif;
+  color: var(--secondary-water-green);
+
+  h1, h2, h3, h4 {
+    color: var(--secondary-water-green);
+    margin-bottom: 1rem;
+  }
+
+  fieldset {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+
+    legend {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--secondary-water-green);
+      padding: 0 0.5rem;
+    }
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .coordinates-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+
+    .jobsite-info {
+      grid-column: 1 / -1;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+    }
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+    color: #333;
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+
+    &.is-invalid {
+      border-color: #dc3545;
+      background-color: #fff8f8;
+
+      &:focus {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+      }
+    }
+  }
+
+  textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+
+  .error-feedback {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: -0.75rem;
+    margin-bottom: 1rem;
+    display: block;
+
+    span {
+      display: block;
+    }
+  }
+
+  .text-danger {
+    color: #dc3545 !important;
+  }
+
+  .alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+  }
+
+  .mb-2 { margin-bottom: 0.5rem; }
+  .mt-2 { margin-top: 0.5rem; }
+  .p-2 { padding: 0.5rem; }
+
+  // --- Boutons Globaux ---
+  .btn-remove {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: #c82333;
+    }
+  }
+
+  .btn-add {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background: #0056b3;
+    }
+  }
+
+  .btn-copy {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+    margin-bottom: 1rem;
+
+    &:hover {
+      background: #5a6268;
+    }
+  }
+  // -------------------------
+
+  .form-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 4px;
+
+    .form-group {
+      flex: 1;
+      min-width: 150px;
+
+      label {
+        font-size: 0.9rem;
+      }
+
+      input, select, textarea {
+        margin-bottom: 0;
+      }
+
+      &.description-group {
+        flex: 2;
+        min-width: 250px;
+        textarea {
+          min-height: 42px;
+        }
+      }
+
+      .error-feedback {
+        margin-top: 0.25rem;
+        margin-bottom: 0;
+      }
+    }
+
+    > span {
+      min-width: 100px;
+      font-weight: bold;
+      align-self: flex-start;
+      margin-top: 2rem;
+    }
+
+    > label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0;
+      font-weight: normal;
+      align-self: flex-start;
+      margin-top: 2rem;
+
+      input[type="checkbox"] {
+        width: auto;
+        margin-bottom: 0;
+      }
+    }
+
+    .btn-remove {
+      align-self: flex-start;
+      margin-top: 1.8rem;
+    }
+  }
+
+  .totals, .summary {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-left: 4px solid #007bff;
+  }
+
+  .legal-mention {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f1f1f1;
+    border-radius: 4px;
+
+    label {
+      font-weight: bold;
+    }
+  }
+
+  fieldset label:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: normal;
+
+    input[type="checkbox"] {
+      width: auto;
+      margin-bottom: 0;
+    }
+  }
+
+  .waste-cerfa-box {
+    padding-left: 1.5rem;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    border-left: 2px solid #eee;
+
+    .error-feedback {
+      margin-top: 0.25rem;
+    }
+  }
+
+  .certifications-list {
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+
+    .certification-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+
+      .file-input-wrapper {
+        flex: 1;
+        input { margin-bottom: 0; }
+        .error-feedback { margin-top: 0.25rem; }
+      }
+
+      .btn-remove {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .supplier-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+
+    input {
+      flex: 1;
+      margin-bottom: 0;
+    }
+
+    .btn-remove {
+      margin-top: 0;
+    }
+  }
+
+  hr {
+    margin: 1.5rem 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+
+    .btn-secondary {
+      background-color: #6c757d;
+      color: white;
+      border: none;
+      padding: 1rem;
+      font-size: 1.2rem;
+      border-radius: 4px;
+      cursor: pointer;
+      flex: 1;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #5a6268;
+      }
+    }
+
+    .btn-submit {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 1rem;
+      font-size: 1.2rem;
+      border-radius: 4px;
+      cursor: pointer;
+      flex: 2;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background: #218838;
+      }
+    }
+  }
+}

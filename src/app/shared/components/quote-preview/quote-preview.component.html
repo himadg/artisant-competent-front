@@ -1,0 +1,265 @@
+<div class="modal-overlay" (click)="closePreview()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>{{ 'quotePreview.title' | transloco }}</h2>
+      <button class="btn-close" (click)="closePreview()">×</button>
+    </div>
+
+    @if (quoteData) {
+      <div class="document">
+        <div class="doc-header">
+          <h1>{{ 'quotePreview.docTitle' | transloco }}</h1>
+          <p class="quote-number"><strong>{{ 'quotePreview.quoteNumber' | transloco }}</strong> {{ quoteData.quoteNumber }}</p>
+          <div class="planning-info">
+            <p>{{ 'quotePreview.placeOfWriting' | transloco }} <strong>{{ quoteData.planning?.placeOfWriting || ('quotePreview.notProvided' | transloco) }}</strong></p>
+            <p>{{ 'quotePreview.dateOfWriting' | transloco }} <strong>{{ (quoteData.planning?.dateOfWriting | date:'dd/MM/yyyy') || ('quotePreview.notProvidedF' | transloco) }}</strong></p>
+            <p>{{ 'quotePreview.validityDate' | transloco }} <strong>{{ (quoteData.planning?.validityDate | date:'dd/MM/yyyy') || ('quotePreview.notProvidedF' | transloco) }}</strong></p>
+          </div>
+        </div>
+
+        <div class="coordinates-section">
+          <div class="client-box">
+            <h3>{{ 'quotePreview.clientBilling' | transloco }}</h3>
+            <p><strong>{{ quoteData.coordinates?.client?.firstName || '' }} {{ quoteData.coordinates?.client?.lastName || '' }}</strong></p>
+            <div class="address">
+              <p>{{ quoteData.coordinates?.client?.streetNumber }} {{ quoteData.coordinates?.client?.streetType }} {{ quoteData.coordinates?.client?.streetName }}</p>
+              @if (quoteData.coordinates?.client?.locality) {
+                <p>{{ quoteData.coordinates?.client?.locality }}</p>
+              }
+              <p>
+                @if (quoteData.coordinates?.client?.buildingNumber) {
+                  <span>{{ 'quotePreview.building' | transloco }} {{ quoteData.coordinates?.client?.buildingNumber }}</span>
+                }
+                @if (quoteData.coordinates?.client?.floor) {
+                  <span>, {{ 'quotePreview.floor' | transloco }} {{ quoteData.coordinates?.client?.floor }}</span>
+                }
+                @if (quoteData.coordinates?.client?.apartmentNumber) {
+                  <span>, {{ 'quotePreview.apartment' | transloco }} {{ quoteData.coordinates?.client?.apartmentNumber }}</span>
+                }
+              </p>
+              <p>{{ quoteData.coordinates?.client?.postalCode }} {{ quoteData.coordinates?.client?.city }}</p>
+              <p>{{ 'quotePreview.email' | transloco }} {{ quoteData.coordinates?.client?.email }}</p>
+              @if (quoteData.coordinates?.client?.phone) {
+                <p>{{ 'quotePreview.phone' | transloco }} {{ quoteData.coordinates?.client?.phone }}</p>
+              }
+            </div>
+          </div>
+
+          @if (quoteData.coordinates?.client?.streetName !== quoteData.coordinates?.jobsite?.streetName || quoteData.coordinates?.client?.city !== quoteData.coordinates?.jobsite?.city) {
+            <div class="jobsite-box">
+              <h3>{{ 'quotePreview.jobsiteAddress' | transloco }}</h3>
+              <div class="address">
+                <p>{{ quoteData.coordinates?.jobsite?.streetNumber }} {{ quoteData.coordinates?.jobsite?.streetType }} {{ quoteData.coordinates?.jobsite?.streetName }}</p>
+                @if (quoteData.coordinates?.jobsite?.locality) {
+                  <p>{{ quoteData.coordinates?.jobsite?.locality }}</p>
+                }
+                <p>
+                  @if (quoteData.coordinates?.jobsite?.buildingNumber) {
+                    <span>{{ 'quotePreview.building' | transloco }} {{ quoteData.coordinates?.jobsite?.buildingNumber }}</span>
+                  }
+                  @if (quoteData.coordinates?.jobsite?.floor) {
+                    <span>, {{ 'quotePreview.floor' | transloco }} {{ quoteData.coordinates?.jobsite?.floor }}</span>
+                  }
+                  @if (quoteData.coordinates?.jobsite?.apartmentNumber) {
+                    <span>, {{ 'quotePreview.apartment' | transloco }} {{ quoteData.coordinates?.jobsite?.apartmentNumber }}</span>
+                  }
+                </p>
+                <p>{{ quoteData.coordinates?.jobsite?.postalCode }} {{ quoteData.coordinates?.jobsite?.city }}</p>
+              </div>
+            </div>
+          }
+
+          <div class="artisan-box">
+            <h3>{{ 'quotePreview.provider' | transloco }} ({{ quoteData.coordinates?.artisan?.status || ('quotePreview.notProvided' | transloco) }})</h3>
+            <p>
+              <strong>
+                {{
+                  quoteData.coordinates?.artisan?.status === 'Auto-entrepreneur'
+                  ? (quoteData.coordinates?.artisan?.firstName + ' ' + quoteData.coordinates?.artisan?.lastName)
+                  : quoteData.coordinates?.artisan?.name
+                }}
+              </strong>
+            </p>
+            <p>{{ 'quotePreview.siret' | transloco }} {{ quoteData.coordinates?.artisan?.siret || ('quotePreview.notProvided' | transloco) }}</p>
+            <div class="address">
+              <p>{{ quoteData.coordinates?.artisan?.streetNumber }} {{ quoteData.coordinates?.artisan?.streetType }} {{ quoteData.coordinates?.artisan?.streetName }}</p>
+              @if (quoteData.coordinates?.artisan?.locality) {
+                <p>{{ quoteData.coordinates?.artisan?.locality }}</p>
+              }
+              <p>
+                @if (quoteData.coordinates?.artisan?.buildingNumber) {
+                  <span>{{ 'quotePreview.building' | transloco }} {{ quoteData.coordinates?.artisan?.buildingNumber }}</span>
+                }
+                @if (quoteData.coordinates?.artisan?.floor) {
+                  <span>, {{ 'quotePreview.floor' | transloco }} {{ quoteData.coordinates?.artisan?.floor }}</span>
+                }
+                @if (quoteData.coordinates?.artisan?.apartmentNumber) {
+                  <span>, {{ 'quotePreview.apartment' | transloco }} {{ quoteData.coordinates?.artisan?.apartmentNumber }}</span>
+                }
+              </p>
+              <p>{{ quoteData.coordinates?.artisan?.postalCode }} {{ quoteData.coordinates?.artisan?.city }}</p>
+              <p>{{ 'quotePreview.email' | transloco }} {{ quoteData.coordinates?.artisan?.email }}</p>
+              <p>{{ 'quotePreview.phone' | transloco }} {{ quoteData.coordinates?.artisan?.phone }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-section">
+          <h3>{{ 'quotePreview.materials' | transloco }}</h3>
+          @if (quoteData.materials && quoteData.materials.length > 0) {
+            <table>
+              <thead>
+                <tr>
+                  <th>{{ 'quotePreview.table.description' | transloco }}</th>
+                  <th>{{ 'quotePreview.table.origin' | transloco }}</th>
+                  <th>{{ 'quotePreview.table.amountHT' | transloco }}</th>
+                  <th>{{ 'quotePreview.table.tva' | transloco }}</th>
+                  <th>{{ 'quotePreview.table.amountTTC' | transloco }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (material of quoteData.materials; track material) {
+                  <tr>
+                    <td>
+                      {{ material.description || ('quotePreview.notProvidedF' | transloco) }}
+                      @if (material.isReconditioned) {
+                        <span class="badge badge-reconditioned">{{ 'quotePreview.reconditioned' | transloco }}</span>
+                      }
+                    </td>
+                    <td>{{ material.providedByClient ? ('quotePreview.providedByClient' | transloco) : ('quotePreview.providedByArtisan' | transloco) }}</td>
+                    <td>{{ material.providedByClient ? '0.00' : (material.amountHT | number:'1.2-2') }} €</td>
+                    <td>{{ quoteData.legal?.applyTvaExemption ? 0 : material.tva }} %</td>
+                    <td>{{ calcService.calculateItemTTC(material.providedByClient ? 0 : material.amountHT, material.tva, quoteData.legal?.applyTvaExemption) | number:'1.2-2' }} €</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          } @else {
+            <p class="text-muted">{{ 'quotePreview.noMaterials' | transloco }}</p>
+          }
+        </div>
+
+        <div class="details-section">
+          <h3>{{ 'quotePreview.service' | transloco }} <small>{{ 'quotePreview.serviceSub' | transloco }}</small></h3>
+          @if (quoteData.services && quoteData.services.length > 0) {
+            <table>
+              <thead>
+                <tr>
+                  <th>{{ 'quotePreview.table.description' | transloco }}</th>
+                  <th>{{ 'quotePreview.table.type' | transloco }}</th>
+                  <th>{{ 'quotePreview.table.amountHT' | transloco }}</th>
+                  <th>{{ 'quotePreview.table.tva' | transloco }}</th>
+                  <th>{{ 'quotePreview.table.amountTTC' | transloco }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (service of quoteData.services; track service) {
+                  <tr>
+                    <td>{{ service.description || ('quotePreview.notProvidedF' | transloco) }}</td>
+                    <td>{{ service.type || ('quotePreview.notProvided' | transloco) }}</td>
+                    <td>{{ service.amountHT | number:'1.2-2' }} €</td>
+                    <td>{{ quoteData.legal?.applyTvaExemption ? 0 : service.tva }} %</td>
+                    <td>{{ calcService.calculateItemTTC(service.amountHT, service.tva, quoteData.legal?.applyTvaExemption) | number:'1.2-2' }} €</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          } @else {
+            <p class="text-muted">{{ 'quotePreview.noServices' | transloco }}</p>
+          }
+        </div>
+
+        <div class="details-section logistics-summary">
+          <h3>{{ 'quotePreview.logistics' | transloco }} <small>{{ 'quotePreview.logisticsSub' | transloco }}</small></h3>
+          <p>{{ 'quotePreview.travelCostHT' | transloco }} <strong>{{ quoteData.logistics?.travelCostHT | number:'1.2-2' }} €</strong> (TTC: {{ calcService.getTravelCostTTC(quoteData.logistics, quoteData.legal) | number:'1.2-2' }} €)</p>
+          @if (quoteData.logistics?.wasteManagement?.hasWaste) {
+            <p>
+              <strong>{{ 'quotePreview.wasteManagement' | transloco }}</strong> {{ 'quotePreview.wasteManagementValue' | transloco }}
+              <br><em>{{ 'quotePreview.cerfaNote' | transloco }}</em>
+            </p>
+          }
+          @if (quoteData.logistics?.suppliers && quoteData.logistics?.suppliers.length > 0 && quoteData.logistics?.suppliers[0] !== '') {
+            <p>
+              <strong>{{ 'quotePreview.suppliers' | transloco }}</strong> {{ quoteData.logistics.suppliers.join(', ') }}
+            </p>
+          }
+        </div>
+
+        <div class="totals-section">
+          <div class="totals-box">
+            <div class="total-line">
+              <span>{{ 'quotePreview.totalHT' | transloco }}</span>
+              <span>{{ totalHT | number:'1.2-2' }} €</span>
+            </div>
+            <div class="total-line grand-total">
+              <span>{{ 'quotePreview.totalToPay' | transloco }}</span>
+              <span>{{ grandTotalTTC | number:'1.2-2' }} €</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="legal-section">
+          <h3>{{ 'quotePreview.legalInfo' | transloco }}</h3>
+          <p><strong>{{ 'quotePreview.estimatedDelays' | transloco }}</strong> {{ 'quotePreview.from' | transloco }} {{ (quoteData.planning?.estimatedStartDate | date:'dd/MM/yyyy') || ('quotePreview.notProvided' | transloco) }} {{ 'quotePreview.to' | transloco }} {{ (quoteData.planning?.estimatedEndDate | date:'dd/MM/yyyy') || ('quotePreview.notProvided' | transloco) }} <br><em>{{ 'quotePreview.delayNote' | transloco }}</em></p>
+
+          @if (quoteData.legal?.rcProDocument) {
+            <div class="legal-block">
+              <p><strong>{{ 'quotePreview.rcPro' | transloco }}</strong> {{ 'quotePreview.rcProValue' | transloco }}</p>
+            </div>
+          }
+          @if (quoteData.legal?.decennaleDocument) {
+            <div class="legal-block">
+              <p><strong>{{ 'quotePreview.decennale' | transloco }}</strong> {{ 'quotePreview.rcProValue' | transloco }}</p>
+            </div>
+          }
+          @if (quoteData.legal?.otherCertifications && quoteData.legal?.otherCertifications.length > 0) {
+            <div class="legal-block">
+              <p><strong>{{ 'quotePreview.otherCertifications' | transloco }}</strong> {{ 'quotePreview.otherCertificationsValue' | transloco }}</p>
+            </div>
+          }
+
+          @if (quoteData.coordinates?.artisan?.status === 'Auto-entrepreneur') {
+            <div class="legal-block">
+              <p><strong>{{ 'quotePreview.mandatoryMentions' | transloco }}</strong> {{ 'quotePreview.tvaNotApplicable' | transloco }}</p>
+              @if (quoteData.legal?.includeRcsDispensation) {
+                <p>{{ 'quotePreview.rcsDispensation' | transloco }}</p>
+              }
+            </div>
+          } @else if (quoteData.coordinates?.artisan?.status === 'Société' && quoteData.legal?.applyTvaExemption) {
+            <div class="legal-block">
+              <p><strong>{{ 'quotePreview.mandatoryMentions' | transloco }}</strong> {{ 'quotePreview.tvaCompany' | transloco }}</p>
+            </div>
+          }
+
+          <div class="agreements">
+            <p><strong>{{ 'quotePreview.importantMentions' | transloco }}</strong></p>
+            <ul>
+              <li>{{ 'quotePreview.mention1' | transloco }}</li>
+              <li>{{ 'quotePreview.mention2' | transloco }}</li>
+            </ul>
+            <br>
+            @if (quoteData.agreement?.insuranceVerified) {
+              <p>{{ 'quotePreview.insuranceVerified' | transloco }}</p>
+            }
+            @if (quoteData.agreement?.waiveRetractionRights) {
+              <p>{{ 'quotePreview.waiveRetraction' | transloco }}</p>
+            }
+            @if (quoteData.agreement?.arbitrationAgreement) {
+              <p>{{ 'quotePreview.arbitration' | transloco }}</p>
+            }
+          </div>
+        </div>
+
+      </div>
+    }
+
+    <div class="modal-footer">
+      @if (showAccept) {
+        <button class="btn-accept" (click)="acceptQuote()" [disabled]="isAccepting || isGenerating || isGeneratingSignature || isInitiatingYousign">
+          @if (isAccepting || isInitiatingYousign) { {{ 'quotePreview.processing' | transloco }} } @else { {{ 'quotePreview.acceptAndSign' | transloco }} }
+        </button>
+      }
+      <button class="btn-primary" (click)="closePreview()" [disabled]="isGenerating || isGeneratingSignature || isInitiatingYousign || isAccepting">{{ 'quotePreview.back' | transloco }}</button>
+    </div>
+  </div>
+</div>

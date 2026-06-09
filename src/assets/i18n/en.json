@@ -292,6 +292,9 @@
         "body": "<p>Sign up for free in 2 minutes, with no audience size requirement, and receive a unique affiliate link tied to your partner account to track your referrals.</p><p>You earn up to 25% commission on the Artisan Compétent margin: 20% in the first 6 months after a client signs up (then 10% for the next 6 months) and 5% per tradesperson referred for 6 months.</p><p>Commissions are validated once the project handover report is signed, then paid by quarterly bank transfer with a PDF receipt available in your partner area.</p><p>One rule only to stay active: publish at least one piece of content per week. Without publishing for 14 days, your link is deactivated, but referrals already tied to your account continue to generate commissions.</p>",
         "linkLabel": "Discover the affiliate program"
       }
+    },
+    "carousel": {
+      "alt": "Scrolling image"
     }
   },
   "common": {
@@ -948,7 +951,8 @@
         "lastName": "Last name",
         "email": "Email",
         "birthDate": "Date of birth",
-        "gender": "Gender"
+        "gender": "Gender",
+        "phone": "Phone"
       }
     },
     "pro": {
@@ -1006,7 +1010,34 @@
       "noServices": "No services listed",
       "partners": "Supplier partners",
       "partnersSearch": "Search for a supplier... (2 characters min.)",
-      "noPartners": "No supplier partners listed"
+      "noPartners": "No supplier partners listed",
+      "actions": {
+        "view": "View",
+        "quote": "Send quote",
+        "modify": "Modify quote"
+      },
+      "viewModal": {
+        "title": "View request",
+        "client": "Client",
+        "attachments": "Attachments",
+        "close": "Close"
+      },
+      "quote": {
+        "titlePlaceholder": "Quote title",
+        "amountPlaceholder": "Total amount (€)",
+        "messagePlaceholder": "Add details for the client...",
+        "send": "Send quote"
+      },
+      "status": {
+        "pending": {
+          "title": "Account pending validation",
+          "message": "Your account is being verified. You will be notified as soon as it is validated."
+        },
+        "rejected": {
+          "title": "Account rejected",
+          "message": "Your account has not been validated. Please contact support for more information."
+        }
+      }
     },
     "empty": {
       "requests": "No requests yet",
@@ -1016,6 +1047,68 @@
       "practices": "No best practices available",
       "missions": "No missions yet",
       "reviews": "No reviews yet"
+    },
+    "requests": {
+      "status": {
+        "pending": "Pending"
+      },
+      "actions": {
+        "details": "Details"
+      },
+      "modal": {
+        "title": "Request details",
+        "close": "Close",
+        "date": "Date",
+        "trade": "Trade",
+        "lieu": "Location",
+        "professionals": "Contacted professionals",
+        "noProfessionals": "No professional has responded yet",
+        "attachments": "Attached photos"
+      }
+    },
+    "quotes": {
+      "number": "Quote #",
+      "yourMessage": "Your message",
+      "clientMessage": "Client message",
+      "status": {
+        "DRAFT": "Draft",
+        "SENT": "Sent",
+        "ACCEPTED": "Accepted",
+        "REJECTED": "Rejected",
+        "CANCELLED": "Cancelled"
+      },
+      "actions": {
+        "details": "Details",
+        "preview": "Preview",
+        "refuse": "Refuse",
+        "modify": "Modify",
+        "cancel": "Cancel",
+        "signatureLink": "Signature link"
+      },
+      "modal": {
+        "title": "Quote",
+        "close": "Close",
+        "status": "Status",
+        "date": "Date",
+        "trade": "Trade",
+        "lieu": "Location",
+        "client": "Client",
+        "professional": "Professional"
+      },
+      "reject": {
+        "title": "Refuse the quote",
+        "description": "You can add an optional message for the professional.",
+        "messageLabel": "Message (optional)",
+        "messagePlaceholder": "Explain why you are refusing this quote...",
+        "cancel": "Back",
+        "confirm": "Confirm refusal"
+      },
+      "cancel": {
+        "title": "Cancel the quote",
+        "description": "Are you sure you want to cancel this quote? This action is irreversible.",
+        "back": "Back",
+        "confirm": "Confirm cancellation"
+      }
     },
     "affiliation": {
       "title": "My referral program",
@@ -1038,6 +1131,16 @@
           "INDIVIDUAL": "Individual",
           "PROFESSIONAL": "Professional"
         },
+        "actions": {
+          "view": "View",
+          "quote": "Send quote"
+        },
+        "viewModal": {
+          "title": "View request",
+          "client": "Client",
+          "attachments": "Attachments",
+          "close": "Close"
+        },
         "status": {
           "PENDING": "Pending",
           "ACTIVE": "Active",
@@ -1056,6 +1159,10 @@
         "individual": "Referred individual → 20% commission for the first 6 months, then 10% for the next 6.",
         "professional": "Referred professional → 5% commission for 6 months."
       }
+    },
+    "topbar": {
+      "notifications": "Notifications",
+      "messages": "Messages"
     }
   },
   "cities": {
@@ -1168,5 +1275,229 @@
       "contactForm": "Contact form"
     },
     "copyright": "© 2026 Artisan Compétent. All rights reserved."
+  },
+  "navbar": {
+    "menu": "Menu",
+    "close": "Close",
+    "greeting": "Hello,",
+    "dashboard": "Dashboard",
+    "logout": "Log out"
+  },
+  "demande": {
+    "title": "Describe your need",
+    "descriptifLabel": "Description of your need",
+    "descriptifPlaceholder": "Describe in detail the work you would like to carry out…",
+    "photosLabel": "Photos (3 maximum)",
+    "back": "Back",
+    "submit": "Send request",
+    "errors": {
+      "required": "Description is required.",
+      "minlength": "Description is too short."
+    }
+  },
+  "quotePreview": {
+    "title": "Quote preview",
+    "docTitle": "Quote",
+    "quoteNumber": "Quote number:",
+    "placeOfWriting": "Place of writing:",
+    "dateOfWriting": "Date of writing:",
+    "validityDate": "Valid until:",
+    "notProvided": "Not provided",
+    "notProvidedF": "Not provided",
+    "clientBilling": "Client (Billing)",
+    "jobsiteAddress": "Jobsite address",
+    "provider": "Provider",
+    "building": "Building",
+    "floor": "Floor",
+    "apartment": "Apt",
+    "email": "Email:",
+    "phone": "Phone:",
+    "siret": "SIRET:",
+    "materials": "Materials and supplies",
+    "service": "Service",
+    "serviceSub": "(labor)",
+    "reconditioned": "Reconditioned",
+    "providedByClient": "Provided by the client",
+    "providedByArtisan": "Provided by the artisan",
+    "noMaterials": "No materials provided.",
+    "noServices": "No services provided.",
+    "logistics": "Logistics and additional costs",
+    "logisticsSub": "(travel costs, equipment rental, delivery, parking fees, etc.)",
+    "travelCostHT": "Additional costs excl. VAT:",
+    "wasteManagement": "Waste management:",
+    "wasteManagementValue": "Handled with CERFA document to be signed.",
+    "cerfaNote": "Any mandatory CERFA document must be attached and completed when regulations require it before, during or after the works.",
+    "suppliers": "Suppliers:",
+    "totalHT": "Total excl. VAT:",
+    "totalToPay": "TOTAL TO PAY incl. VAT:",
+    "legalInfo": "Legal Information & Terms",
+    "estimatedDelays": "Estimated timeframe:",
+    "from": "from",
+    "to": "to",
+    "delayNote": "(excluding delays beyond our control)",
+    "rcPro": "Professional liability insurance:",
+    "rcProValue": "Certificate attached to the final quote.",
+    "decennale": "Ten-year warranty insurance:",
+    "otherCertifications": "Other certifications:",
+    "otherCertificationsValue": "Documents attached to the final quote.",
+    "mandatoryMentions": "Mandatory mentions:",
+    "tvaNotApplicable": "VAT not applicable, article 293 B of the CGI.",
+    "rcsDispensation": "Exempt from registration in the trade and companies register, pursuant to article L. 12311 of the Commercial Code.",
+    "tvaCompany": "VAT paid by the main company pursuant to the provisions of 2 Nonies of article 283 of the General Tax Code.",
+    "importantMentions": "Important mentions:",
+    "mention1": "A site completion report must be drawn up to validate the works.",
+    "mention2": "A 48-hour period applies before automatic validation and release of funds.",
+    "insuranceVerified": "✓ The client is asked to verify the validity of the insurance before signing.",
+    "waiveRetraction": "✓ The client acknowledges waiving their 14-day right of withdrawal.",
+    "arbitration": "✓ Authorization for arbitration by the Artisan-Compétent platform granted if needed.",
+    "table": {
+      "description": "Description",
+      "origin": "Origin",
+      "type": "Type",
+      "amountHT": "Amount excl. VAT",
+      "tva": "VAT",
+      "amountTTC": "Amount incl. VAT"
+    },
+    "processing": "Processing…",
+    "acceptAndSign": "Accept and sign",
+    "back": "Back"
+  },
+  "quoteForm": {
+    "title": "Quote generation",
+    "client": "Client",
+    "provider": "Provider",
+    "artisan": "Artisan",
+    "jobsiteAddress": "Jobsite address",
+    "copyClientAddress": "Copy client address",
+    "providedByClient": "Provided by the client",
+    "reconditioned": "Reconditioned",
+    "paidBy": "Paid by:",
+    "removeMaterial": "Remove this material",
+    "addMaterial": "Add a material",
+    "removeService": "Remove this service",
+    "addService": "Add a service",
+    "suppliersList": "List of suppliers",
+    "removeSupplier": "Remove this supplier",
+    "addSupplier": "Add a supplier",
+    "logisticsSub": "(travel costs, equipment rental, delivery, parking fees, etc.)",
+    "travelCostHT": "Additional costs excl. VAT",
+    "wasteManagement": "Waste to be removed",
+    "cerfaNote": "Any mandatory CERFA document must be attached and completed when regulations require it before, during or after the works.",
+    "cerfaSigned": "CERFA document returned and signed",
+    "delayNote": "\"excluding delays beyond our control\"",
+    "importantMentions": "Important mentions:",
+    "mention1": "A site completion report must be drawn up to validate the works.",
+    "mention2": "A 48-hour period applies before automatic validation and release of funds.",
+    "insuranceVerified": "The client is asked to verify the validity of the insurance before signing.",
+    "waiveRetraction": "I acknowledge waiving my 14-day right of withdrawal.",
+    "arbitration": "I authorize the platform to arbitrate and release the funds if needed.",
+    "summary": "Summary",
+    "totalHTLabel": "Total excl. VAT (Materials + Services + Costs):",
+    "totalToPay": "Total to be paid by the client:",
+    "formHasErrors": "The form contains errors. Please check the fields in red.",
+    "preview": "Preview",
+    "submit": "Validate and generate the quote",
+    "sections": {
+      "coordinates": "Contact details",
+      "legal": "Legal Mentions",
+      "materials": "Materials and supplies",
+      "services": "Service (labor)",
+      "logistics": "Logistics and additional costs",
+      "planning": "Planning",
+      "agreement": "Agreement and Validation"
+    },
+    "serviceType": {
+      "main": "Main",
+      "annex": "Additional"
+    },
+    "fields": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "artisanFirstName": "Artisan first name",
+      "artisanLastName": "Artisan last name",
+      "companyName": "Company name",
+      "streetNumber": "No.",
+      "streetType": "Street type",
+      "streetName": "Street name",
+      "locality": "Locality / Residence",
+      "building": "Building",
+      "floor": "Floor",
+      "apartment": "Apartment",
+      "postalCode": "Postal code",
+      "city": "City",
+      "email": "Email address",
+      "phone": "Phone",
+      "status": "Status",
+      "siret": "SIRET number",
+      "descriptionMax": "Description (max 255 characters)",
+      "amountHT": "Amount excl. VAT",
+      "tva": "VAT (%)",
+      "type": "Type",
+      "placeOfWriting": "Place of writing",
+      "dateOfWriting": "Date of writing",
+      "validityDate": "Validity date",
+      "estimatedStartDate": "Estimated start date",
+      "estimatedEndDate": "Estimated end date"
+    },
+    "placeholders": {
+      "streetNumber": "E.g. 123",
+      "locality": "Locality, residence, etc. (optional)",
+      "apartment": "Apt no.",
+      "companyName": "Company name",
+      "siret": "14 digits",
+      "materialDescription": "Detailed description",
+      "serviceDescription": "Service description",
+      "supplierName": "Supplier name",
+      "city": "City"
+    },
+    "legal": {
+      "rcPro": "Professional liability insurance (mandatory)",
+      "rcProRequired": "The professional liability document is mandatory.",
+      "addDecennale": "Add ten-year warranty insurance (if applicable)",
+      "decennaleFile": "Ten-year warranty insurance file",
+      "documentRequired": "The document is required.",
+      "addOtherCertifications": "Add other certifications",
+      "fileRequired": "A file is required.",
+      "removeCertification": "Remove certification",
+      "addCertification": "+ Add a certification",
+      "applyTvaExemption": "Apply VAT exemption",
+      "includeRcsDispensation": "Add the RCS registration exemption mention"
+    },
+    "errors": {
+      "firstNameRequired": "First name required.",
+      "lastNameRequired": "Last name required.",
+      "streetNameRequired": "Street name required.",
+      "streetNumberRequired": "No. required.",
+      "postalCodeRequired": "Postal code required.",
+      "postalCodeInvalid": "Invalid postal code.",
+      "cityRequired": "City required.",
+      "emailRequired": "Email required.",
+      "emailInvalid": "Invalid email format.",
+      "phoneRequired": "Phone required.",
+      "formatInvalid": "Invalid format.",
+      "companyNameRequired": "The company name is required.",
+      "siretRequired": "The SIRET number is required.",
+      "siretPattern": "The SIRET must contain exactly 14 digits.",
+      "descriptionRequired": "Description required.",
+      "descriptionMaxlength": "The description cannot exceed 255 characters.",
+      "amountRequired": "Amount required.",
+      "amountMin": "The amount must be >= 0.",
+      "tvaRequired": "VAT required.",
+      "tvaMin": "VAT must be >= 0.",
+      "typeRequired": "Type required.",
+      "supplierNameRequired": "The supplier name is required.",
+      "travelCostRequired": "Additional costs required.",
+      "cerfaConfirm": "You must confirm that the CERFA is signed.",
+      "placeOfWritingRequired": "Place of writing required.",
+      "dateOfWritingRequired": "Date of writing required.",
+      "dateMinToday": "The date cannot be earlier than today.",
+      "validityDateRequired": "Validity date required.",
+      "validityRange": "The validity date must be greater than or equal to the date of writing.",
+      "startDateRequired": "Start date required.",
+      "startRange": "The estimated start date must be greater than or equal to the date of writing.",
+      "endDateRequired": "End date required.",
+      "endRange": "The end date must be greater than or equal to the start date.",
+      "mustAccept": "You must accept this condition."
+    }
   }
 }

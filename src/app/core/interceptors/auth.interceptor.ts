@@ -2,9 +2,14 @@ import { HttpInterceptorFn, HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { catchError, from, switchMap, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { AppConfigService } from '../services/app-config.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  if (!req.url.startsWith('/')) return next(req);
+  const config = inject(AppConfigService);
+  const apiUrl = config.get('apiUrl') ?? '';
+
+  // Intercept relative requests (starting with '/') and requests aimed at configured API base URL
+  if (!req.url.startsWith('/') && !(apiUrl && req.url.startsWith(apiUrl))) return next(req);
 
   const authService = inject(AuthService);
 

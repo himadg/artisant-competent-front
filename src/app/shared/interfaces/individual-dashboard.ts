@@ -21,6 +21,7 @@ export interface IndividualDashboardData {
   email: string;
   firstName: string;
   lastName: string;
+  phone?: string | null;
   gender: string;
   birthDate: string;
   createdAt: string;

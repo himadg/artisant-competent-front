@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
 import { forkJoin } from 'rxjs';
 import { DashboardApiService } from '../../../core/services/dashboard-api.service';
+import { MissionService } from '../../../core/services/mission.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { UserApiService } from '../../../core/services/user-api.service';
 import { ServiceApiService } from '../../../core/services/service-api.service';
@@ -16,6 +17,8 @@ import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
 import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
+import { QuoteFormComponent } from '../../../shared/components/quote-form/quote-form.component';
+import { QuoteService, QuoteListItem } from '../../../shared/services/quote.service';
 
 export type ProSection = 'requests' | 'quotes' | 'invoices' | 'profile' | 'legal' | 'practices' | 'affiliation';
 export type ProTab = 'presentation' | 'services' | 'missions' | 'reviews' | 'documents';
@@ -26,7 +29,7 @@ const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'satu
   selector: 'dashboard-professional',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FormsModule, RouterLink, TranslocoModule, LangToggle, ThemeToggle, LegalModal],
+  imports: [CommonModule, FormsModule, RouterLink, TranslocoModule, LangToggle, ThemeToggle, LegalModal, QuoteFormComponent],
   templateUrl: './professional-dashboard.html',
   styleUrl: './professional-dashboard.scss',
 })
@@ -38,6 +41,8 @@ export class ProfessionalDashboard implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly platformLocation = inject(PlatformLocation);
   readonly authService = inject(AuthService);
+  private readonly missionApi = inject(MissionService);
+  private readonly quoteApi = inject(QuoteService);
 
   readonly data = signal<ProfessionalDashboardData | null>(null);
   readonly loading = signal(true);
@@ -49,6 +54,15 @@ export class ProfessionalDashboard implements OnInit {
   readonly affiliationData = signal<AffiliationDashboard | null>(null);
   readonly affiliationLoading = signal(false);
   readonly codeCopied = signal(false);
+  readonly requests = signal<any[]>([]);
+  readonly requestsLoading = signal(false);
+  readonly selectedRequest = signal<any | null>(null);
+
+  readonly quotes = signal<QuoteListItem[]>([]);
+  readonly quotesLoading = signal(false);
+  readonly selectedQuote = signal<QuoteListItem | null>(null);
+  readonly cancellingQuote = signal<QuoteListItem | null>(null);
+  readonly cancelSubmitting = signal(false);
 
   readonly inscriptionDate = computed(() => {
     const data = this.data();
@@ -101,6 +115,20 @@ export class ProfessionalDashboard implements OnInit {
     if (section === 'affiliation' && !this.affiliationData()) {
       this.loadAffiliationDashboard();
     }
+    if (section === 'requests') {
+      this.loadRequests();
+    }
+    if (section === 'quotes') {
+      this.loadQuotes();
+    }
+  }
+
+  loadRequests() {
+    this.requestsLoading.set(true);
+    this.missionApi.getForProfessional().subscribe({
+      next: (r) => { this.requests.set(r); this.requestsLoading.set(false); },
+      error: () => { this.requests.set([]); this.requestsLoading.set(false); },
+    });
   }
 
   loadAffiliationDashboard() {
@@ -108,6 +136,93 @@ export class ProfessionalDashboard implements OnInit {
     this.affiliationApi.getDashboard().subscribe({
       next: (data) => { this.affiliationData.set(data); this.affiliationLoading.set(false); },
       error: () => this.affiliationLoading.set(false),
+    });
+  }
+
+  openRequestModal(request: any) {
+    this.selectedRequest.set(request);
+  }
+
+  closeRequestModal() {
+    this.selectedRequest.set(null);
+  }
+
+  // ── Quotes modal ──────────────────────────────────────────────────────────
+  readonly quoteModalOpen = signal(false);
+  readonly currentQuoteRequest = signal<any | null>(null);
+
+  openQuoteModal(request: any) {
+    this.currentQuoteRequest.set(request);
+    this.quoteModalOpen.set(true);
+  }
+
+  closeQuoteModal() {
+    this.quoteModalOpen.set(false);
+    this.currentQuoteRequest.set(null);
+  }
+
+  /** A quote was started for this request if the backend returned a quote relation. */
+  hasStartedQuote(requestId: string): boolean {
+    return this.requests().some((r) => r.id === requestId && !!r.quote?.id);
+  }
+
+  onQuoteSaved(_savedQuote: any) {
+    // Refresh requests so the freshly created/updated quote relation is reflected.
+    this.loadRequests();
+    if (this.activeSection() === 'quotes') {
+      this.loadQuotes();
+    }
+    this.quoteModalOpen.set(false);
+    this.currentQuoteRequest.set(null);
+  }
+
+  // ── Quotes list ───────────────────────────────────────────────────────────
+  loadQuotes() {
+    this.quotesLoading.set(true);
+    this.quoteApi.getQuotesForProfessional().subscribe({
+      next: (q) => { this.quotes.set(q); this.quotesLoading.set(false); },
+      error: () => { this.quotes.set([]); this.quotesLoading.set(false); },
+    });
+  }
+
+  openQuoteDetails(quote: QuoteListItem) {
+    this.selectedQuote.set(quote);
+  }
+
+  closeQuoteDetails() {
+    this.selectedQuote.set(null);
+  }
+
+  /** Re-open the quote form to modify an existing (rejected) quote. */
+  editQuote(quote: QuoteListItem) {
+    this.selectedQuote.set(null);
+    this.currentQuoteRequest.set({
+      id: quote.mission.id,
+      quote: { id: quote.id },
+      client: quote.mission.client,
+    });
+    this.quoteModalOpen.set(true);
+  }
+
+  openCancelModal(quote: QuoteListItem) {
+    this.cancellingQuote.set(quote);
+  }
+
+  closeCancelModal() {
+    this.cancellingQuote.set(null);
+  }
+
+  confirmCancel() {
+    const quote = this.cancellingQuote();
+    if (!quote) return;
+    this.cancelSubmitting.set(true);
+    this.quoteApi.cancelQuote(quote.id).subscribe({
+      next: () => {
+        this.cancelSubmitting.set(false);
+        this.closeCancelModal();
+        this.loadQuotes();
+      },
+      error: () => this.cancelSubmitting.set(false),
     });
   }
 

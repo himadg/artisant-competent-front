@@ -4,26 +4,28 @@
     </div>
 } @else if (error()) {
     <p class="ind-error">{{ error()! | transloco }}</p>
-} @else if (data(); as user) {
+} @else {
+    @if (data(); as client) {
+
     <div class="h-dvh ind-layout">
         <!-- ═══════════════ TOPBAR ═══════════════ -->
         <div class="ind-topbar">
             <div class="ind-topbar-actions">
-                <button class="topbar-icon-btn" aria-label="Notifications">
+                <button class="topbar-icon-btn" [attr.aria-label]="'dashboard.topbar.notifications' | transloco">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
                         <path d="M13.73 21a2 2 0 0 1-3.46 0" />
                     </svg>
                 </button>
-                <button class="topbar-icon-btn" aria-label="Messages">
+                <button class="topbar-icon-btn" [attr.aria-label]="'dashboard.topbar.messages' | transloco">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                         <rect x="2" y="4" width="20" height="16" rx="2" />
                         <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                     </svg>
                 </button>
                 <div class="topbar-user">
-                    @if (user.individualProfile.photoUrl) {
-                        <img [src]="user.individualProfile.photoUrl" [alt]="user.firstName" class="topbar-avatar" />
+                    @if (data()?.individualProfile?.photoUrl) {
+                        <img [src]="data()?.individualProfile?.photoUrl" [alt]="data()?.firstName" class="topbar-avatar" />
                     } @else {
                         <div class="topbar-avatar topbar-avatar--placeholder">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -32,7 +34,7 @@
                             </svg>
                         </div>
                     }
-                    <span class="topbar-username">{{ user.firstName }} {{ user.lastName }}</span>
+                    <span class="topbar-username">{{ data()?.firstName }} {{ data()?.lastName }}</span>
                 </div>
             </div>
         </div>
@@ -134,8 +136,8 @@
             <div class="mb-4 rounded-lg border border-solid ind-header">
                 <div class="ind-user">
                     <div class="ind-photo-wrap">
-                        @if (user.individualProfile.photoUrl) {
-                            <img [src]="user.individualProfile.photoUrl" [alt]="user.firstName" class="ind-photo" />
+                        @if (data()?.individualProfile?.photoUrl) {
+                            <img [src]="data()?.individualProfile?.photoUrl" [alt]="data()?.firstName" class="ind-photo" />
                         } @else {
                             <div class="ind-photo ind-photo--placeholder">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -146,7 +148,7 @@
                         }
                     </div>
                     <div class="ind-user-info">
-                        <h2 class="ind-name">{{ user.firstName }} {{ user.lastName }}</h2>
+                        <h2 class="ind-name">{{ data()?.firstName }} {{ data()?.lastName }}</h2>
                         <p class="ind-address">
                             <svg
                                 viewBox="0 0 24 24"
@@ -248,7 +250,7 @@
                                                 />
                                             </dd>
                                         } @else {
-                                            <dd>{{ user.firstName }}</dd>
+                                            <dd>{{ data()?.firstName }}</dd>
                                         }
                                     </div>
                                     <div class="ind-info-row">
@@ -262,7 +264,7 @@
                                                 />
                                             </dd>
                                         } @else {
-                                            <dd>{{ user.lastName }}</dd>
+                                            <dd>{{ data()?.lastName }}</dd>
                                         }
                                     </div>
                                     <div class="ind-info-row">
@@ -276,7 +278,21 @@
                                                 />
                                             </dd>
                                         } @else {
-                                            <dd>{{ user.email }}</dd>
+                                            <dd>{{ data()?.email }}</dd>
+                                        }
+                                    </div>
+                                    <div class="ind-info-row">
+                                        <dt>{{ 'dashboard.individual.fields.phone' | transloco }}</dt>
+                                        @if (editMode()) {
+                                            <dd>
+                                                <input
+                                                    class="ind-edit-input"
+                                                    type="tel"
+                                                    [(ngModel)]="editFields.phone"
+                                                />
+                                            </dd>
+                                        } @else {
+                                            <dd>{{ data()?.phone }}</dd>
                                         }
                                     </div>
                                     <div class="ind-info-row">
@@ -307,7 +323,7 @@
                                                 </select>
                                             </dd>
                                         } @else {
-                                            <dd>{{ `register.gender.${user.gender}` | transloco }}</dd>
+                                            <dd>{{ ('register.gender.' + data()?.gender) | transloco }}</dd>
                                         }
                                     </div>
                                 </dl>
@@ -315,10 +331,204 @@
                         </div>
                     }
                     @case ('requests') {
-                        <p class="ind-empty">{{ 'dashboard.empty.requests' | transloco }}</p>
+                        @if (requestsLoading()) {
+                            <div class="ind-loading"><span class="spinner"></span></div>
+                        } @else if (requests().length) {
+                            <div class="ind-requests-list">
+                                @for (r of requests(); track r.id) {
+                                    <div class="ind-request-card">
+                                        <div class="ind-request-head">
+                                            @if (data()?.individualProfile?.photoUrl) {
+                                                <img [src]="data()?.individualProfile?.photoUrl" [alt]="data()?.firstName" class="ind-request-avatar" />
+                                            } @else {
+                                                <div class="ind-request-avatar ind-request-avatar--placeholder">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                                        <circle cx="12" cy="8" r="4" />
+                                                        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                                                    </svg>
+                                                </div>
+                                            }
+                                            <div class="ind-request-meta">
+                                                <strong>{{ data()?.firstName }} {{ data()?.lastName }}</strong>
+                                                <small class="ind-request-date">{{ r.createdAt | date:'dd/MM/yyyy' }}</small>
+                                            </div>
+                                            <span class="ind-request-status">{{ 'dashboard.requests.status.pending' | transloco }}</span>
+                                        </div>
+                                        <p class="ind-request-desc">{{ r.descriptif }}</p>
+                                        @if (r.trade?.name) {
+                                            <p class="ind-request-trade">{{ r.trade.name }}</p>
+                                        }
+                                        <p class="ind-request-lieu">{{ r.lieu }}</p>
+                                        <div class="ind-request-actions">
+                                            <button class="ind-btn" (click)="openRequestModal(r)">{{ 'dashboard.requests.actions.details' | transloco }}</button>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            @if (selectedRequest(); as req) {
+                                <div class="modal-overlay fixed inset-0 z-50 flex items-center justify-center">
+                                    <div class="modal-backdrop absolute inset-0 bg-black opacity-50" (click)="closeRequestModal()"></div>
+                                    <div class="modal-content relative bg-white rounded-lg p-6 max-w-3xl w-[90%] z-10 max-h-[90vh] overflow-y-auto">
+                                        <button class="modal-close absolute top-3 right-3 px-2 py-1 text-sm" (click)="closeRequestModal()">{{ 'dashboard.requests.modal.close' | transloco }}</button>
+                                        <h3 class="text-lg font-bold mb-2">{{ 'dashboard.requests.modal.title' | transloco }}</h3>
+                                        <p class="text-sm text-gray-600 mb-1"><strong>{{ 'dashboard.requests.modal.date' | transloco }}:</strong> {{ req.createdAt | date:'dd/MM/yyyy' }}</p>
+                                        @if (req.trade?.name) {
+                                            <p class="text-sm text-gray-600 mb-1"><strong>{{ 'dashboard.requests.modal.trade' | transloco }}:</strong> {{ req.trade.name }}</p>
+                                        }
+                                        <p class="text-sm text-gray-600 mb-2"><strong>{{ 'dashboard.requests.modal.lieu' | transloco }}:</strong> {{ req.lieu }}</p>
+                                        <p class="mb-4">{{ req.descriptif }}</p>
+
+                                        @if (req.professionals?.length) {
+                                            <h4 class="font-semibold mb-2">{{ 'dashboard.requests.modal.professionals' | transloco }}</h4>
+                                            <div class="ind-request-pros">
+                                                @for (p of req.professionals; track p.id) {
+                                                    <div class="ind-request-pro">
+                                                        <strong>{{ p.user?.firstName }} {{ p.user?.lastName }}</strong>
+                                                        @if (p.companyName) {
+                                                            <small> - {{ p.companyName }}</small>
+                                                        }
+                                                    </div>
+                                                }
+                                            </div>
+                                        } @else {
+                                            <p class="ind-empty">{{ 'dashboard.requests.modal.noProfessionals' | transloco }}</p>
+                                        }
+
+                                        @if (req.medias?.length) {
+                                            <h4 class="font-semibold mb-2 mt-4">{{ 'dashboard.requests.modal.attachments' | transloco }}</h4>
+                                            <div class="grid grid-cols-3 gap-2">
+                                                @for (m of req.medias; track m.id) {
+                                                    <a [href]="m.url" target="_blank" rel="noopener" class="block">
+                                                        <img [src]="m.url" class="w-full h-28 object-cover rounded" [alt]="'Attachment ' + m.id" />
+                                                    </a>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        } @else {
+                            <p class="ind-empty">{{ 'dashboard.empty.requests' | transloco }}</p>
+                        }
                     }
                     @case ('quotes') {
-                        <p class="ind-empty">{{ 'dashboard.empty.quotes' | transloco }}</p>
+                        @if (quotesLoading()) {
+                            <div class="ind-loading"><span class="spinner"></span></div>
+                        } @else if (quotes().length) {
+                            <div class="ind-requests-list">
+                                @for (q of quotes(); track q.id) {
+                                    <div class="ind-request-card">
+                                        <div class="ind-request-head">
+                                            <div class="ind-request-meta">
+                                                <strong>{{ 'dashboard.quotes.number' | transloco }} {{ q.quoteNumber }}</strong>
+                                                <small class="ind-request-date">{{ q.updatedAt | date:'dd/MM/yyyy' }}</small>
+                                            </div>
+                                            <span class="ind-quote-status" [attr.data-status]="q.status">{{ 'dashboard.quotes.status.' + q.status | transloco }}</span>
+                                        </div>
+                                        <p class="ind-request-desc">{{ q.mission.descriptif }}</p>
+                                        @if (q.mission.trade?.name) {
+                                            <p class="ind-request-trade">{{ q.mission.trade?.name }}</p>
+                                        }
+                                        @if (q.mission.professionals?.length) {
+                                            <p class="ind-request-lieu">
+                                                {{ q.mission.professionals![0].companyName }}
+                                                ({{ q.mission.professionals![0].user.firstName }} {{ q.mission.professionals![0].user.lastName }})
+                                            </p>
+                                        }
+                                        @if (q.status === 'REJECTED' && q.rejectionMessage) {
+                                            <p class="ind-quote-reject-note">{{ 'dashboard.quotes.yourMessage' | transloco }}: {{ q.rejectionMessage }}</p>
+                                        }
+                                        <div class="ind-request-actions">
+                                            <button class="ind-btn" (click)="openQuoteModal(q)">{{ 'dashboard.quotes.actions.details' | transloco }}</button>
+                                            <button class="ind-btn ind-btn--primary" (click)="openQuotePreview(q)" [disabled]="previewLoading()">{{ 'dashboard.quotes.actions.preview' | transloco }}</button>
+                                            @if (q.status === 'ACCEPTED' && q.clientSignatureUrl) {
+                                                <a [href]="q.clientSignatureUrl" target="_blank" class="ind-btn ind-btn--success">{{ 'dashboard.quotes.actions.signatureLink' | transloco }}</a>
+                                            }
+                                            @if (q.status === 'SENT') {
+                                                <button class="ind-btn ind-btn--danger" (click)="openRejectModal(q)">{{ 'dashboard.quotes.actions.refuse' | transloco }}</button>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            @if (selectedQuote(); as q) {
+                                <div class="modal-overlay fixed inset-0 z-50 flex items-center justify-center">
+                                    <div class="modal-backdrop absolute inset-0 bg-black opacity-50" (click)="closeQuoteModal()"></div>
+                                    <div class="modal-content relative bg-white rounded-lg p-6 max-w-3xl w-[90%] z-10 max-h-[90vh] overflow-y-auto">
+                                        <button class="modal-close absolute top-3 right-3 px-2 py-1 text-sm" (click)="closeQuoteModal()">{{ 'dashboard.quotes.modal.close' | transloco }}</button>
+                                        <h3 class="text-lg font-bold mb-2">{{ 'dashboard.quotes.modal.title' | transloco }} {{ q.quoteNumber }}</h3>
+                                        <p class="text-sm text-gray-600 mb-1"><strong>{{ 'dashboard.quotes.modal.status' | transloco }}:</strong> {{ 'dashboard.quotes.status.' + q.status | transloco }}</p>
+                                        <p class="text-sm text-gray-600 mb-1"><strong>{{ 'dashboard.quotes.modal.date' | transloco }}:</strong> {{ q.updatedAt | date:'dd/MM/yyyy' }}</p>
+                                        @if (q.mission.trade?.name) {
+                                            <p class="text-sm text-gray-600 mb-1"><strong>{{ 'dashboard.quotes.modal.trade' | transloco }}:</strong> {{ q.mission.trade?.name }}</p>
+                                        }
+                                        <p class="text-sm text-gray-600 mb-2"><strong>{{ 'dashboard.quotes.modal.lieu' | transloco }}:</strong> {{ q.mission.lieu }}</p>
+                                        <p class="mb-4">{{ q.mission.descriptif }}</p>
+
+                                        @if (q.mission.professionals?.length) {
+                                            <h4 class="font-semibold mb-2">{{ 'dashboard.quotes.modal.professional' | transloco }}</h4>
+                                            <div class="ind-request-pros">
+                                                @for (p of q.mission.professionals; track p.id) {
+                                                    <div class="ind-request-pro">
+                                                        <strong>{{ p.user.firstName }} {{ p.user.lastName }}</strong>
+                                                        @if (p.companyName) {
+                                                            <small> - {{ p.companyName }}</small>
+                                                        }
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+
+                                        @if (q.status === 'REJECTED' && q.rejectionMessage) {
+                                            <p class="ind-quote-reject-note mt-4">{{ 'dashboard.quotes.yourMessage' | transloco }}: {{ q.rejectionMessage }}</p>
+                                        }
+
+                                        @if (q.status === 'SENT') {
+                                            <div class="ind-request-actions mt-4">
+                                                <button class="ind-btn ind-btn--danger" (click)="closeQuoteModal(); openRejectModal(q)">{{ 'dashboard.quotes.actions.refuse' | transloco }}</button>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+
+                            @if (rejectingQuote(); as q) {
+                                <div class="modal-overlay fixed inset-0 z-50 flex items-center justify-center">
+                                    <div class="modal-backdrop absolute inset-0 bg-black opacity-50" (click)="closeRejectModal()"></div>
+                                    <div class="modal-content relative bg-white rounded-lg p-6 max-w-lg w-[90%] z-10">
+                                        <button class="modal-close absolute top-3 right-3 px-2 py-1 text-sm" (click)="closeRejectModal()">{{ 'dashboard.quotes.modal.close' | transloco }}</button>
+                                        <h3 class="text-lg font-bold mb-2">{{ 'dashboard.quotes.reject.title' | transloco }}</h3>
+                                        <p class="text-sm text-gray-600 mb-3">{{ 'dashboard.quotes.reject.description' | transloco }}</p>
+                                        <label class="block text-sm font-medium mb-1">{{ 'dashboard.quotes.reject.messageLabel' | transloco }}</label>
+                                        <textarea
+                                            class="w-full border rounded p-2 text-sm mb-4"
+                                            rows="4"
+                                            [ngModel]="rejectMessage()"
+                                            (ngModelChange)="rejectMessage.set($event)"
+                                            [placeholder]="'dashboard.quotes.reject.messagePlaceholder' | transloco"></textarea>
+                                        <div class="ind-request-actions">
+                                            <button class="ind-btn" (click)="closeRejectModal()" [disabled]="rejectSubmitting()">{{ 'dashboard.quotes.reject.cancel' | transloco }}</button>
+                                            <button class="ind-btn ind-btn--danger" (click)="confirmReject()" [disabled]="rejectSubmitting()">
+                                                @if (rejectSubmitting()) { <span class="spinner spinner--sm"></span> } @else { {{ 'dashboard.quotes.reject.confirm' | transloco }} }
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (previewQuoteData(); as pq) {
+                                <ac-quote-preview
+                                    [quoteData]="pq"
+                                    [quoteId]="previewQuote()?.id"
+                                    [showAccept]="previewQuote()?.status === 'SENT'"
+                                    (accepted)="onQuoteAccepted()"
+                                    (close)="closeQuotePreview()"></ac-quote-preview>
+                            }
+                        } @else {
+                            <p class="ind-empty">{{ 'dashboard.empty.quotes' | transloco }}</p>
+                        }
                     }
                     @case ('invoices') {
                         <p class="ind-empty">{{ 'dashboard.empty.invoices' | transloco }}</p>
@@ -336,7 +546,8 @@
                                 <div class="aff-loading">
                                     <span class="spinner"></span>
                                 </div>
-                            } @else if (affiliationData(); as aff) {
+                            } @else if (affiliationData()) {
+                                @let aff = affiliationData()!;
                                 @if (!aff.affiliateCode) {
                                     <div class="aff-empty-state">
                                         <div class="aff-empty-icon">
@@ -547,4 +758,5 @@
             </div>
         }
     </div>
+    }
 }
