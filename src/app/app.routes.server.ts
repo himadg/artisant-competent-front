@@ -14,14 +14,15 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'affiliation', renderMode: RenderMode.Prerender },
   { path: 'contact', renderMode: RenderMode.Prerender },
 
-  // Pages métier → prérendu pour chaque métier
-  {
-    path: 'job/:trade',
-    renderMode: RenderMode.Prerender,
-    async getPrerenderParams() {
-      return TRADES.map(trade => ({ trade: trade.slug }));
-    },
-  },
+  // Pages métier → prérendu statique par métier
+  { path: 'job/electrician', renderMode: RenderMode.Prerender },
+  { path: 'job/locksmith', renderMode: RenderMode.Prerender },
+  { path: 'job/plumber-sanitary', renderMode: RenderMode.Prerender },
+  { path: 'job/drain-unblocker', renderMode: RenderMode.Prerender },
+  { path: 'job/heating', renderMode: RenderMode.Prerender },
+  { path: 'job/hvac', renderMode: RenderMode.Prerender },
+  { path: 'job/glazier', renderMode: RenderMode.Prerender },
+  { path: 'job/pest-control', renderMode: RenderMode.Prerender },
 
   // Pages ville → prérendu pour chaque ville
   {

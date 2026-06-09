@@ -1,27 +1,27 @@
 <footer class="mt-16 bg-grad-brown text-[var(--primary-beige)]">
     <!--
-      Bloc newsletter WhatsApp retiré du rendu lors de la refonte du footer.
-      Markup conservé en commentaire pour pouvoir le réactiver plus tard si besoin.
-      (Aucune logique d'envoi n'était branchée : le formulaire était purement statique.)
+        Bloc newsletter WhatsApp retiré du rendu lors de la refonte du footer.
+        Markup conservé en commentaire pour pouvoir le réactiver plus tard si besoin.
+        (Aucune logique d'envoi n'était branchée : le formulaire était purement statique.)
 
-      <div class="px-4 py-10 mx-auto space-y-4 max-w-screen-lg text-center border-b border-[var(--secondary-beige)]">
-          <h2 class="text-lg font-semibold md:text-2xl">{{ 'footer.newsletterTitle' | transloco }}</h2>
-          <p class="text-sm md:text-base">{{ 'footer.newsletterSubtitle' | transloco }}</p>
-          <div class="flex flex-col gap-3 items-center">
-              <input
-                  type="tel"
-                  [placeholder]="'footer.newsletterPhone' | transloco"
-                  class="px-4 py-2 w-full max-w-sm text-black rounded-lg"
-              />
-              <label class="flex gap-2 items-start max-w-sm text-sm text-left">
-                  <input type="checkbox" class="mt-1" />
-                  <span>{{ 'footer.newsletterConsent' | transloco }}</span>
-              </label>
-              <button type="button" class="px-6 py-3 font-semibold rounded-lg bg-[#a97849] text-[var(--primary-beige)]">
-                  {{ 'footer.newsletterButton' | transloco }}
-              </button>
-          </div>
-      </div>
+        <div class="px-4 py-10 mx-auto space-y-4 max-w-screen-lg text-center border-b border-[var(--secondary-beige)]">
+            <h2 class="text-lg font-semibold md:text-2xl">{{ 'footer.newsletterTitle' | transloco }}</h2>
+            <p class="text-sm md:text-base">{{ 'footer.newsletterSubtitle' | transloco }}</p>
+            <div class="flex flex-col gap-3 items-center">
+                <input
+                    type="tel"
+                    [placeholder]="'footer.newsletterPhone' | transloco"
+                    class="px-4 py-2 w-full max-w-sm text-black rounded-lg"
+                />
+                <label class="flex gap-2 items-start max-w-sm text-sm text-left">
+                    <input type="checkbox" class="mt-1" />
+                    <span>{{ 'footer.newsletterConsent' | transloco }}</span>
+                </label>
+                <button type="button" class="px-6 py-3 font-semibold rounded-lg bg-[#a97849] text-[var(--primary-beige)]">
+                    {{ 'footer.newsletterButton' | transloco }}
+                </button>
+            </div>
+        </div>
     -->
 
     <!-- Corps du footer : 4 colonnes en desktop, 2 en tablette, 1 en mobile -->
@@ -32,12 +32,12 @@
             <ul class="space-y-2 text-sm">
                 <li><a routerLink="/" class="no-underline hover:underline">{{ 'footer.nav.home' | transloco }}</a></li>
                 <li>
-                    <a routerLink="/metiers" class="no-underline hover:underline">
+                    <a routerLink="/jobs" class="no-underline hover:underline">
                         {{ 'footer.nav.trades' | transloco }}
                     </a>
                 </li>
                 <li>
-                    <a routerLink="/villes" class="no-underline hover:underline">
+                    <a routerLink="/cities" class="no-underline hover:underline">
                         {{ 'footer.nav.cities' | transloco }}
                     </a>
                 </li>
@@ -134,7 +134,7 @@
         </nav>
 
         <!-- Formulaire de contact universel, multi-motifs, indépendant du CMOD.
-             Accordéon fermé par défaut, peut être ouvert à la demande via ContactFormService.requestOpen(). -->
+            Accordéon fermé par défaut, peut être ouvert à la demande via ContactFormService.requestOpen(). -->
         <div id="footer-contact-form" class="mx-auto max-w-md">
             <accordion
                 [title]="'footer.legal.contactForm' | transloco"
