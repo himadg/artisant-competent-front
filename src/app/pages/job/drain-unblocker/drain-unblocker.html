@@ -2,7 +2,13 @@
     <article class="mx-auto max-w-screen-lg px-4 pt-8 space-y-12">
         <!-- Hero -->
         <section class="space-y-4">
-            <h1 class="text-2xl font-semibold title">{{ tradeContent.title }}</h1>
+            <h1 class="text-2xl font-semibold title">
+                @if (city) {
+                    {{ tradeContent.name }} à {{ city.name }}
+                } @else {
+                    {{ tradeContent.title }}
+                }
+            </h1>
             <div class="grid gap-8 items-center md:grid-cols-2">
                 <div class="overflow-hidden rounded-lg border">
                     <img [src]="trade.image" [alt]="tradeContent.title" class="object-cover w-full h-64 md:h-full" />
@@ -207,7 +213,23 @@
         }
 
         <!-- Villes -->
-        <section class="border-t pt-8">
+        <section class="border-t pt-8 space-y-8">
+            @if (city && nearbyCities.length > 0) {
+                <div class="mb-6">
+                    <h2 class="mb-6 text-xl font-semibold">
+                        {{ tradeContent.title }}
+                        {{ 'jobs.nearbyCities' | transloco: { city: city.name } }}
+                    </h2>
+                    <div class="flex flex-wrap gap-2">
+                        @for (item of nearbyCities; track item.city.slug) {
+                            <a [routerLink]="getTradeUrl(trade.slug, item.city.slug)" class="pill-link">
+                                {{ item.city.name }}
+                            </a>
+                        }
+                    </div>
+                </div>
+            }
+
             <job-cities-section [tradeSlug]="trade.slug" />
         </section>
     </article>
