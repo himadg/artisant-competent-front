@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { TRADES_MAP } from '../../../data/trades';
-import { getCity, City, CITIES_MAP } from '../../../data/cities';
+import { getCity, City, CITIES_MAP, getAllCities } from '../../../data/cities';
 import { JobCitiesSection } from '../../../shared/components/job-cities-section/job-cities-section';
 
 @Component({
@@ -12,13 +12,14 @@ import { JobCitiesSection } from '../../../shared/components/job-cities-section/
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoModule, JobCitiesSection, RouterModule],
   templateUrl: './electrician.html',
-  styleUrl: './electrician.scss',
+  styleUrl: './electrician.scss'
 })
 export class ElectricianPage implements OnInit, OnDestroy {
   private readonly meta = inject(Meta);
   private readonly titleService = inject(Title);
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly transloco = inject(TranslocoService);
+  private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
 
   private contentSub?: Subscription;
@@ -34,19 +35,18 @@ export class ElectricianPage implements OnInit, OnDestroy {
     this.querySub = this.route.queryParamMap.subscribe(params => {
       const citySlug = params.get('city');
 
-      if (citySlug) {
+      if (citySlug && getAllCities().includes(citySlug)) {
         this.city = getCity(citySlug) ?? null;
         if (this.city) {
           this.nearbyCities = this.city.nearbyCities
-            .map(slug => CITIES_MAP.get(slug))
+            .map((slug) => CITIES_MAP.get(slug))
             .filter((c): c is City => !!c)
-            .map(c => ({ city: c, tradeSlug: this.trade.slug }));
+            .map((c) => ({ city: c, tradeSlug: this.trade.slug }));
         } else {
           this.nearbyCities = [];
         }
       } else {
-        this.city = null;
-        this.nearbyCities = [];
+        this.router.navigate(['/job', this.trade.slug]);
       }
 
       this.updateMetaTags();

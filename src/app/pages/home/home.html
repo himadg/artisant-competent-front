@@ -1,28 +1,58 @@
 <div class="overflow-hidden absolute top-0 left-0 z-0 w-full h-[30rem] pictures-fader md:h-[42rem]">
-    <img src="assets/img/image-qui-defile-1.webp" alt="Image qui défile 1"
-        class="object-cover w-full h-full pictures-frame" loading="eager" fetchpriority="high" decoding="async" />
-    <img src="assets/img/image-qui-defile-2.webp" alt="Image qui défile 2"
-        class="object-cover w-full h-full pictures-frame" loading="lazy" fetchpriority="low" decoding="async" />
-    <img src="assets/img/image-qui-defile-3.webp" alt="Image qui défile 3"
-        class="object-cover w-full h-full pictures-frame" loading="lazy" fetchpriority="low" decoding="async" />
-    <img src="assets/img/image-qui-defile-4.webp" alt="Image qui défile 4"
-        class="object-cover w-full h-full pictures-frame" loading="lazy" fetchpriority="low" decoding="async" />
-    <img src="assets/img/image-qui-defile-5.webp" alt="Image qui défile 5"
-        class="object-cover w-full h-full pictures-frame" loading="lazy" fetchpriority="low" decoding="async" />
+    <img
+        src="assets/img/image-qui-defile-1.webp"
+        alt="Image qui défile 1"
+        class="object-cover w-full h-full pictures-frame"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+    />
+    <img
+        src="assets/img/image-qui-defile-2.webp"
+        alt="Image qui défile 2"
+        class="object-cover w-full h-full pictures-frame"
+        loading="lazy"
+        fetchpriority="low"
+        decoding="async"
+    />
+    <img
+        src="assets/img/image-qui-defile-3.webp"
+        alt="Image qui défile 3"
+        class="object-cover w-full h-full pictures-frame"
+        loading="lazy"
+        fetchpriority="low"
+        decoding="async"
+    />
+    <img
+        src="assets/img/image-qui-defile-4.webp"
+        alt="Image qui défile 4"
+        class="object-cover w-full h-full pictures-frame"
+        loading="lazy"
+        fetchpriority="low"
+        decoding="async"
+    />
+    <img
+        src="assets/img/image-qui-defile-5.webp"
+        alt="Image qui défile 5"
+        class="object-cover w-full h-full pictures-frame"
+        loading="lazy"
+        fetchpriority="low"
+        decoding="async"
+    />
 </div>
 
-<div class="pt-[3rem] pb-12 mx-auto space-y-6 max-w-screen-lg z-10 relative md:pt-[10rem]">
+<div class="pt-[1rem] md:pt-[4rem] pb-12 mx-auto space-y-6 max-w-screen-lg z-10 relative">
     <!-- Section 1b : H1 -->
     <h1 class="text-center font-extrabold text-[var(--primary-beige)] text-2xl md:text-3xl lg:text-5xl">
         {{ 'home.hero.h1' | transloco }}
     </h1>
 
     <!-- Section 1f : Formulaire de recherche.
-         Sur desktop, le wrapper est poussé vers le bas (md:!mt-[22rem]) pour que la carte
-         vienne se positionner à cheval sur la limite entre la zone des photos et la suite
-         de la page, donnant l'effet "carte qui flotte". Sur mobile, on garde l'enchaînement
-         vertical classique géré par space-y-6 du conteneur parent. -->
-    <div id="devis" class="hero-search-card md:!mt-[15rem]">
+        Sur desktop, le wrapper est poussé vers le bas (md:!mt-[22rem]) pour que la carte
+        vienne se positionner à cheval sur la limite entre la zone des photos et la suite
+        de la page, donnant l'effet "carte qui flotte". Sur mobile, on garde l'enchaînement
+        vertical classique géré par space-y-6 du conteneur parent. -->
+    <div id="devis" class="hero-search-card md:!mt-[11rem]">
         <search-pro id="hero-search-form"></search-pro>
     </div>
 
@@ -40,7 +70,7 @@
     <ul
         class="grid gap-2 p-6 mx-auto text-sm list-disc list-inside rounded-lg w-fit bg-[var(--primary-water-green)] text-[var(--primary-beige)] md:text-base"
     >
-        @for (arg of ('home.hero.args' | transloco); track $index) {
+        @for (arg of 'home.hero.args' | transloco; track $index) {
             <li>{{ arg }}</li>
         }
     </ul>
@@ -53,10 +83,9 @@
             <p>{{ 'home.cities.outro' | transloco }}</p>
             <p>
                 {{ 'home.cities.affiliateTeaserBefore' | transloco
-                }}<a
-                    routerLink="/affiliation"
-                    class="underline font-semibold text-[var(--tertiary-brown)]"
-                    >{{ 'home.cities.affiliateTeaserLink' | transloco }}</a
+                }}<a routerLink="/affiliation" class="underline font-semibold text-[var(--tertiary-brown)]">{{
+                    'home.cities.affiliateTeaserLink' | transloco
+                }}</a
                 >{{ 'home.cities.affiliateTeaserAfter' | transloco }}
             </p>
         </accordion>
@@ -64,51 +93,111 @@
         <div class="overflow-x-auto py-2 w-full h-scroll">
             <div class="flex gap-4">
                 <a routerLink="/city/paris" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img src="assets/img/paris.webp" alt="Paris" class="object-cover w-full h-24 md:h-40" loading="lazy" />
+                    <img
+                        src="assets/img/paris.webp"
+                        alt="Paris"
+                        class="object-cover w-full h-24 md:h-40"
+                        loading="lazy"
+                    />
                     <div class="p-4">{{ 'home.where.cities.paris' | transloco }}</div>
                 </a>
                 <a routerLink="/city/marseille" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img src="assets/img/marseille.webp" alt="Marseille" class="object-cover w-full h-24 md:h-40" loading="lazy" />
+                    <img
+                        src="assets/img/marseille.webp"
+                        alt="Marseille"
+                        class="object-cover w-full h-24 md:h-40"
+                        loading="lazy"
+                    />
                     <div class="p-4">{{ 'home.where.cities.marseille' | transloco }}</div>
                 </a>
                 <a routerLink="/city/lyon" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img src="assets/img/lyon.webp" alt="Lyon" class="object-cover w-full h-24 md:h-40" loading="lazy" />
+                    <img
+                        src="assets/img/lyon.webp"
+                        alt="Lyon"
+                        class="object-cover w-full h-24 md:h-40"
+                        loading="lazy"
+                    />
                     <div class="p-4">{{ 'home.where.cities.lyon' | transloco }}</div>
                 </a>
                 <a routerLink="/city/toulouse" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img src="assets/img/toulouse.webp" alt="Toulouse" class="object-cover w-full h-24 md:h-40" loading="lazy" />
+                    <img
+                        src="assets/img/toulouse.webp"
+                        alt="Toulouse"
+                        class="object-cover w-full h-24 md:h-40"
+                        loading="lazy"
+                    />
                     <div class="p-4">{{ 'home.where.cities.toulouse' | transloco }}</div>
                 </a>
                 <a routerLink="/city/nice" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img src="assets/img/nice.webp" alt="Nice" class="object-cover w-full h-24 md:h-40" loading="lazy" />
+                    <img
+                        src="assets/img/nice.webp"
+                        alt="Nice"
+                        class="object-cover w-full h-24 md:h-40"
+                        loading="lazy"
+                    />
                     <div class="p-4">{{ 'home.where.cities.nice' | transloco }}</div>
                 </a>
                 <a routerLink="/city/nantes" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img src="assets/img/nantes.webp" alt="Nantes" class="object-cover w-full h-24 md:h-40" loading="lazy" />
+                    <img
+                        src="assets/img/nantes.webp"
+                        alt="Nantes"
+                        class="object-cover w-full h-24 md:h-40"
+                        loading="lazy"
+                    />
                     <div class="p-4">{{ 'home.where.cities.nantes' | transloco }}</div>
                 </a>
                 <a routerLink="/city/montpellier" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img src="assets/img/montpellier.webp" alt="Montpellier" class="object-cover w-full h-24 md:h-40" loading="lazy" />
+                    <img
+                        src="assets/img/montpellier.webp"
+                        alt="Montpellier"
+                        class="object-cover w-full h-24 md:h-40"
+                        loading="lazy"
+                    />
                     <div class="p-4">{{ 'home.where.cities.montpellier' | transloco }}</div>
                 </a>
                 <a routerLink="/city/strasbourg" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img src="assets/img/strasbourg.webp" alt="Strasbourg" class="object-cover w-full h-24 md:h-40" loading="lazy" />
+                    <img
+                        src="assets/img/strasbourg.webp"
+                        alt="Strasbourg"
+                        class="object-cover w-full h-24 md:h-40"
+                        loading="lazy"
+                    />
                     <div class="p-4">{{ 'home.where.cities.strasbourg' | transloco }}</div>
                 </a>
                 <a routerLink="/city/bordeaux" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img src="assets/img/bordeaux.jpg" alt="Bordeaux" class="object-cover w-full h-24 md:h-40" loading="lazy" />
+                    <img
+                        src="assets/img/bordeaux.jpg"
+                        alt="Bordeaux"
+                        class="object-cover w-full h-24 md:h-40"
+                        loading="lazy"
+                    />
                     <div class="p-4">{{ 'home.where.cities.bordeaux' | transloco }}</div>
                 </a>
                 <a routerLink="/city/lille" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img src="assets/img/lille.webp" alt="Lille" class="object-cover w-full h-24 md:h-40" loading="lazy" />
+                    <img
+                        src="assets/img/lille.webp"
+                        alt="Lille"
+                        class="object-cover w-full h-24 md:h-40"
+                        loading="lazy"
+                    />
                     <div class="p-4">{{ 'home.where.cities.lille' | transloco }}</div>
                 </a>
                 <a routerLink="/city/rennes" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img src="assets/img/rennes.webp" alt="Rennes" class="object-cover w-full h-24 md:h-40" loading="lazy" />
+                    <img
+                        src="assets/img/rennes.webp"
+                        alt="Rennes"
+                        class="object-cover w-full h-24 md:h-40"
+                        loading="lazy"
+                    />
                     <div class="p-4">{{ 'home.where.cities.rennes' | transloco }}</div>
                 </a>
                 <a routerLink="/city/toulon" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img src="assets/img/toulon.webp" alt="Toulon" class="object-cover w-full h-24 md:h-40" loading="lazy" />
+                    <img
+                        src="assets/img/toulon.webp"
+                        alt="Toulon"
+                        class="object-cover w-full h-24 md:h-40"
+                        loading="lazy"
+                    />
                     <div class="p-4">{{ 'home.where.cities.toulon' | transloco }}</div>
                 </a>
             </div>
@@ -133,91 +222,91 @@
             <div class="flex gap-6">
                 <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'electrician']">
                     <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img src="assets/img/electricien.jpg" alt="{{ 'jobs.list.electrician.name' | transloco }}"
-                            class="object-cover w-full h-full" loading="lazy" />
+                        <img
+                            src="assets/img/electricien.jpg"
+                            alt="{{ 'jobs.list.electrician.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                            loading="lazy"
+                        />
                     </div>
                     <div class="mt-2">{{ 'home.trades.cards.electrician' | transloco }}</div>
                 </a>
-                <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'locksmith-metaller']">
+                <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'locksmith']">
                     <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img src="assets/img/serrurier-metallier.jpg"
-                            alt="{{ 'jobs.list.locksmithMetaller.name' | transloco }}"
-                            class="object-cover w-full h-full" loading="lazy" />
+                        <img
+                            src="assets/img/serrurier.jpg"
+                            alt="{{ 'jobs.list.locksmith.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                            loading="lazy"
+                        />
                     </div>
-                    <div class="mt-2">{{ 'home.trades.cards.locksmithMetaller' | transloco }}</div>
+                    <div class="mt-2">{{ 'home.trades.cards.locksmith' | transloco }}</div>
                 </a>
                 <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'plumber-sanitary']">
                     <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img src="assets/img/plombier.jpg" alt="{{ 'jobs.list.plumberSanitary.name' | transloco }}"
-                            class="object-cover w-full h-full" loading="lazy" />
+                        <img
+                            src="assets/img/plombier.jpg"
+                            alt="{{ 'jobs.list.plumberSanitary.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                            loading="lazy"
+                        />
                     </div>
                     <div class="mt-2">{{ 'home.trades.cards.plumberSanitary' | transloco }}</div>
                 </a>
-                <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'heating-tech']">
+                <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'heating']">
                     <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img src="assets/img/chauffagiste.jpg" alt="{{ 'jobs.list.heatingTech.name' | transloco }}"
-                            class="object-cover w-full h-full" loading="lazy" />
+                        <img
+                            src="assets/img/chauffagiste.jpg"
+                            alt="{{ 'jobs.list.heating.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                            loading="lazy"
+                        />
                     </div>
-                    <div class="mt-2">{{ 'home.trades.cards.heatingTech' | transloco }}</div>
+                    <div class="mt-2">{{ 'home.trades.cards.heating' | transloco }}</div>
                 </a>
                 <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'drain-unblocker']">
                     <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img src="assets/img/deboucheur-canalisation.jpg"
+                        <img
+                            src="assets/img/deboucheur-canalisation.jpg"
                             alt="{{ 'jobs.list.drainUnblocker.name' | transloco }}"
-                            class="object-cover w-full h-full" loading="lazy" />
+                            class="object-cover w-full h-full"
+                            loading="lazy"
+                        />
                     </div>
                     <div class="mt-2">{{ 'home.trades.cards.drainUnblocker' | transloco }}</div>
                 </a>
-                <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'hvac-installer']">
+                <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'hvac']">
                     <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img src="assets/img/installateur-clim.jpg"
-                            alt="{{ 'jobs.list.hvacInstaller.name' | transloco }}" class="object-cover w-full h-full" loading="lazy" />
+                        <img
+                            src="assets/img/installeur-clim.jpg"
+                            alt="{{ 'jobs.list.hvac.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                            loading="lazy"
+                        />
                     </div>
-                    <div class="mt-2">{{ 'home.trades.cards.hvacInstaller' | transloco }}</div>
+                    <div class="mt-2">{{ 'home.trades.cards.hvac' | transloco }}</div>
                 </a>
-                <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'carpenter-glazier']">
+                <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'glazier']">
                     <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img src="assets/img/vitrier.jpg" alt="{{ 'jobs.list.carpenterGlazier.name' | transloco }}"
-                            class="object-cover w-full h-full" loading="lazy" />
+                        <img
+                            src="assets/img/vitrier.jpg"
+                            alt="{{ 'jobs.list.glazier.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                            loading="lazy"
+                        />
                     </div>
-                    <div class="mt-2">{{ 'home.trades.cards.carpenterGlazier' | transloco }}</div>
-                </a>
-                <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'insulation-in-out']">
-                    <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img src="assets/img/isolation.jpg" alt="{{ 'jobs.list.insulationInOut.name' | transloco }}"
-                            class="object-cover w-full h-full" loading="lazy" />
-                    </div>
-                    <div class="mt-2">{{ 'home.trades.cards.insulationInOut' | transloco }}</div>
-                </a>
-                <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'painter-interior-facade']">
-                    <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img src="assets/img/peintre.jpg" alt="{{ 'jobs.list.painterInteriorFacade.name' | transloco }}"
-                            class="object-cover w-full h-full" loading="lazy" />
-                    </div>
-                    <div class="mt-2">{{ 'home.trades.cards.painterInteriorFacade' | transloco }}</div>
-                </a>
-                <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'floor-coverings']">
-                    <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img src="assets/img/revetement-sol.webp"
-                            alt="{{ 'jobs.list.floorCoverings.name' | transloco }}"
-                            class="object-cover w-full h-full" loading="lazy" />
-                    </div>
-                    <div class="mt-2">{{ 'home.trades.cards.floorCoverings' | transloco }}</div>
+                    <div class="mt-2">{{ 'home.trades.cards.glazier' | transloco }}</div>
                 </a>
                 <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'pest-control']">
                     <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img src="assets/img/anti-nuisible.jpg" alt="{{ 'jobs.list.pestControl.name' | transloco }}"
-                            class="object-cover w-full h-full" loading="lazy" />
+                        <img
+                            src="assets/img/anti-nuisibles.jpg"
+                            alt="{{ 'jobs.list.pestControl.name' | transloco }}"
+                            class="object-cover w-full h-full"
+                            loading="lazy"
+                        />
                     </div>
                     <div class="mt-2">{{ 'home.trades.cards.pestControl' | transloco }}</div>
-                </a>
-                <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'alarm-video-surveillance']">
-                    <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img src="assets/img/alarme-video-surveillance.webp"
-                            alt="{{ 'jobs.list.alarmVideoSurveillance.name' | transloco }}"
-                            class="object-cover w-full h-full" loading="lazy" />
-                    </div>
-                    <div class="mt-2">{{ 'home.trades.cards.alarmVideoSurveillance' | transloco }}</div>
                 </a>
             </div>
         </div>
@@ -256,7 +345,7 @@
                 <p>{{ 'home.emergency.description.p3' | transloco }}</p>
                 <p>{{ 'home.emergency.description.p4' | transloco }}</p>
                 <ul class="pl-6 space-y-1 list-disc">
-                    @for (item of ('home.emergency.description.list1' | transloco); track $index) {
+                    @for (item of 'home.emergency.description.list1' | transloco; track $index) {
                         <li>{{ item }}</li>
                     }
                 </ul>
@@ -269,7 +358,7 @@
                 <p>{{ 'home.emergency.description.p11' | transloco }}</p>
                 <p>{{ 'home.emergency.description.p12' | transloco }}</p>
                 <ul class="pl-6 space-y-1 list-disc">
-                    @for (item of ('home.emergency.description.list2' | transloco); track $index) {
+                    @for (item of 'home.emergency.description.list2' | transloco; track $index) {
                         <li>{{ item }}</li>
                     }
                 </ul>
@@ -288,7 +377,7 @@
             </li>
             <li class="md:col-span-2">
                 <a
-                    routerLink="/job/heating-tech"
+                    routerLink="/job/heating"
                     class="flex justify-center items-center p-6 h-full font-medium text-center text-white no-underline rounded-lg transition bg-[var(--tertiary-brown)] hover:brightness-95 hover:shadow-md"
                 >
                     {{ 'home.emergency.trades.heating' | transloco }}
@@ -296,7 +385,7 @@
             </li>
             <li class="md:col-span-2">
                 <a
-                    routerLink="/job/locksmith-metaller"
+                    routerLink="/job/locksmith"
                     class="flex justify-center items-center p-6 h-full font-medium text-center text-white no-underline rounded-lg transition bg-[var(--tertiary-brown)] hover:brightness-95 hover:shadow-md"
                 >
                     {{ 'home.emergency.trades.locksmith' | transloco }}
@@ -574,10 +663,7 @@
             >
                 <div class="faq-body" [innerHTML]="'home.faq.affiliation.body' | transloco"></div>
                 <p class="mt-3">
-                    <a
-                        routerLink="/affiliation"
-                        class="underline font-semibold text-[var(--tertiary-brown)]"
-                    >
+                    <a routerLink="/affiliation" class="underline font-semibold text-[var(--tertiary-brown)]">
                         {{ 'home.faq.affiliation.linkLabel' | transloco }}
                     </a>
                 </p>
