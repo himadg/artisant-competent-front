@@ -64,7 +64,8 @@ export class QuoteService {
   }
 
   initiateSignature(quoteData: any, quoteId?: string): Observable<SignatureUrlResponse> {
-    return this.http.post<SignatureUrlResponse>(`${this.apiUrl}/pdf/initiate-signature`, { ...quoteData, quoteId });
+    const payload = { ...quoteData, quoteId };
+    return this.http.post<SignatureUrlResponse>(`${this.apiUrl}/pdf/initiate-signature`, payload);
   }
 
   // Persist quote to backend
