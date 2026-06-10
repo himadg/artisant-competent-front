@@ -147,14 +147,12 @@ export class QuoteFormComponent implements OnInit {
       estimatedEndDate: ['', [Validators.required, minDateTodayValidator()]]
     }, { validators: [dateRangeValidator('dateOfWriting', 'validityDate', 'invalidValidityRange'), dateRangeValidator('dateOfWriting', 'estimatedStartDate', 'invalidStartRange'), dateRangeValidator('estimatedStartDate', 'estimatedEndDate', 'invalidEstimatedRange')] }),
     legal: this.fb.nonNullable.group({
-      rcProDocument: [null as File | null, Validators.required],
-      rcProDocumentKey: [null as string | null],
+      // Les documents légaux (RC Pro, décennale, autres certifications) proviennent
+      // désormais du profil du professionnel et sont résolus côté backend lors de
+      // la signature. Le formulaire ne conserve que les bascules qui décident si
+      // ce devis inclut la décennale / les autres certifications enregistrées.
       addDecennale: [false],
-      decennaleDocument: [null as File | null],
-      decennaleDocumentKey: [null as string | null],
       addOtherCertifications: [false],
-      otherCertifications: this.fb.array<FormControl<File | null>>([]),
-      otherCertificationsKeys: this.fb.array<FormControl<string | null>>([]),
       applyTvaExemption: [false],
       includeRcsDispensation: [false]
     }),
@@ -181,8 +179,6 @@ export class QuoteFormComponent implements OnInit {
   get planningControls() { return this.f.planning.controls; }
   get planningGroup() { return this.f.planning; }
   get legalControls() { return this.f.legal.controls; }
-  get otherCertifications() { return this.legalControls.otherCertifications as FormArray; }
-  get otherCertificationsKeys() { return this.legalControls.otherCertificationsKeys as FormArray; }
 
   private statusControl = this.artisanControls['status'];
   artisanStatus: Signal<string> = toSignal(this.statusControl.valueChanges.pipe(startWith(this.statusControl.value)), { initialValue: 'Auto-entrepreneur' });
@@ -261,24 +257,6 @@ export class QuoteFormComponent implements OnInit {
         }
       });
     });
-
-    this.legalControls.addDecennale.valueChanges.subscribe(add => {
-      const docControl = this.legalControls.decennaleDocument;
-      if (add) {
-        docControl.setValidators([Validators.required]);
-      } else {
-        docControl.clearValidators();
-        docControl.patchValue(null);
-      }
-      docControl.updateValueAndValidity();
-    });
-
-    this.legalControls.addOtherCertifications.valueChanges.subscribe(add => {
-      if (!add) {
-        this.otherCertifications.clear();
-        this.otherCertificationsKeys.clear();
-      }
-    });
   }
 
   ngOnInit(): void {
@@ -302,10 +280,6 @@ export class QuoteFormComponent implements OnInit {
         this.rebuildMaterials(payload.materials ?? []);
         this.rebuildServices(payload.services ?? []);
         this.rebuildSuppliers(payload.logistics?.suppliers ?? []);
-
-        // Les certifications "autres" sont des fichiers : on recrée les contrôles
-        // vides correspondants pour refléter le nombre de documents joints.
-        this.rebuildOtherCertifications(payload.legal?.otherCertificationsKeys ?? []);
 
         // Le statut de l'artisan pilote les validateurs conditionnels :
         // on le pousse en premier pour que les validators soient corrects.
@@ -370,17 +344,6 @@ export class QuoteFormComponent implements OnInit {
     });
   }
 
-  private rebuildOtherCertifications(keys: string[]): void {
-    this.otherCertifications.clear();
-    this.otherCertificationsKeys.clear();
-    if (keys && keys.length > 0) {
-        keys.forEach((key) => {
-            this.otherCertifications.push(this.fb.control(null as File | null)); // Fichier non requis si clé existe
-            this.otherCertificationsKeys.push(this.fb.control(key));
-        });
-    }
-  }
-
   private preloadCoordinates(): void {
     // Pré-remplir les coordonnées du client si la mission est fournie
     if (this.mission?.client) {
@@ -437,37 +400,6 @@ export class QuoteFormComponent implements OnInit {
         error: (err) => console.error('Erreur lors du chargement du profil professionnel', err),
       });
     }
-  }
-
-  onFileChange(event: Event, controlName: 'rcProDocument' | 'decennaleDocument' | 'otherCertifications', index?: number): void {
-    const input = event.target as HTMLInputElement;
-    const file = input.files?.[0] ?? null;
-
-    if (controlName === 'otherCertifications') {
-        if (index === undefined) return;
-        this.otherCertifications.at(index).setValue(file);
-        if (file) {
-            // If a new file is added, nullify the corresponding key to indicate it's a replacement
-            this.otherCertificationsKeys.at(index).setValue(null);
-        }
-    } else {
-        this.legalControls[controlName].setValue(file);
-        const keyControlName = `${controlName}Key` as 'rcProDocumentKey' | 'decennaleDocumentKey';
-        if (file && this.legalControls[keyControlName]) {
-            // If a new file is added, nullify the key to indicate it's a replacement
-            this.legalControls[keyControlName].setValue(null);
-        }
-    }
-  }
-
-  addCertification(): void {
-    this.otherCertifications.push(this.fb.control(null as File | null, Validators.required));
-    this.otherCertificationsKeys.push(this.fb.control(null as string | null));
-  }
-
-  removeCertification(index: number): void {
-    this.otherCertifications.removeAt(index);
-    this.otherCertificationsKeys.removeAt(index);
   }
 
   get materials() { return this.f.materials; }
@@ -554,27 +486,12 @@ export class QuoteFormComponent implements OnInit {
     const payload: QuotePayload = {
       ...formValue,
       missionId: this.mission?.id || '',
-      legal: {
-        ...formValue.legal,
-        otherCertificationsKeys: this.otherCertificationsKeys.value.filter((k: any) => k !== null) as string[],
-      }
     };
 
-    // Build FormData to allow file uploads
-    const formData = new FormData();
-    formData.append('payload', JSON.stringify(payload));
-    const rcFile = this.legalControls.rcProDocument.value as File | null;
-    if (rcFile) formData.append('rcProDocument', rcFile, rcFile.name);
-    const decFile = this.legalControls.decennaleDocument?.value as File | null;
-    if (decFile) formData.append('decennaleDocument', decFile, decFile.name);
-    this.otherCertifications.controls.forEach((c, i) => {
-      const f = c.value as File | null;
-      if (f) formData.append(`otherCertification_${i}`, f, f.name);
-    });
-
-    // submit to backend (create or update)
+    // Les documents légaux ne sont plus envoyés depuis le devis : ils sont
+    // résolus côté backend depuis le profil du professionnel lors de la signature.
     if (this.quoteId) {
-      this.quoteService.updateQuote(this.quoteId, formData).subscribe({
+      this.quoteService.updateQuote(this.quoteId, payload).subscribe({
         next: (res) => this.saved.emit(res),
         error: (err) => {
           console.error('Erreur lors de la mise à jour du devis', err);
@@ -582,7 +499,7 @@ export class QuoteFormComponent implements OnInit {
         }
       });
     } else {
-      this.quoteService.createQuote(formData).subscribe({
+      this.quoteService.createQuote(payload).subscribe({
         next: (res) => this.saved.emit(res),
         error: (err) => {
           console.error('Erreur lors de la création du devis', err);

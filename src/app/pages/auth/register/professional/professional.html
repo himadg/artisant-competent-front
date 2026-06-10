@@ -907,6 +907,36 @@
                         </div>
                     }
                 </div>
+
+                <!-- Autres certifications (optionnel) -->
+                <div class="flex flex-col gap-2">
+                    <label class="font-medium">
+                        {{ 'professional.otherCertifications.label' | transloco }} ({{ 'professional.optional' | transloco }})
+                    </label>
+                    @for (cert of otherCertifications.controls; track $index) {
+                        <div class="flex gap-2 items-center">
+                            <input
+                                type="file"
+                                class="flex-1 text-sm"
+                                accept="image/*,.pdf"
+                                (change)="onCertificationChange($event, $index)"
+                            />
+                            <button
+                                type="button"
+                                class="px-2 leading-none text-red-500 bg-transparent border-none cursor-pointer"
+                                (click)="removeCertification($index)"
+                                [title]="'professional.otherCertifications.remove' | transloco"
+                            >×</button>
+                        </div>
+                    }
+                    <button
+                        type="button"
+                        class="self-start px-3 py-1 text-sm rounded border border-[var(--color)] text-[var(--color)] bg-transparent cursor-pointer"
+                        (click)="addCertification()"
+                    >
+                        + {{ 'professional.otherCertifications.add' | transloco }}
+                    </button>
+                </div>
             </ng-container>
 
             <!-- captcha et CGUV au niveau racine -->

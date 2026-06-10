@@ -624,6 +624,11 @@
     "addDiplomaDoc": "Add diploma or proof (RGE, Calibat, reduced VAT rate etc)",
     "addLogo": "Add a logo",
     "addRib": "Add bank account (RIB)",
+    "otherCertifications": {
+      "label": "Other certifications",
+      "add": "Add a certification",
+      "remove": "Remove certification"
+    },
     "onCall": "I am on call 24/7",
     "siret": {
       "checking": "Checking SIRET...",
@@ -1451,15 +1456,9 @@
       "city": "City"
     },
     "legal": {
-      "rcPro": "Professional liability insurance (mandatory)",
-      "rcProRequired": "The professional liability document is mandatory.",
-      "addDecennale": "Add ten-year warranty insurance (if applicable)",
-      "decennaleFile": "Ten-year warranty insurance file",
-      "documentRequired": "The document is required.",
-      "addOtherCertifications": "Add other certifications",
-      "fileRequired": "A file is required.",
-      "removeCertification": "Remove certification",
-      "addCertification": "+ Add a certification",
+      "documentsFromProfile": "Insurance (professional liability, ten-year warranty) and certifications come from your professional profile and are attached automatically when signing.",
+      "addDecennale": "Include my ten-year warranty insurance (if applicable)",
+      "addOtherCertifications": "Include my other certifications",
       "applyTvaExemption": "Apply VAT exemption",
       "includeRcsDispensation": "Add the RCS registration exemption mention"
     },

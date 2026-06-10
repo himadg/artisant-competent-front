@@ -11,6 +11,7 @@ export interface DocumentKeys {
   diplomaDocKey: string;
   companyLogoKey: string;
   ribKey: string;
+  otherCertificationsKeys: string[];
 }
 
 type OpeningHoursUpdate = {

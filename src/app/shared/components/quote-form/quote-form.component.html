@@ -328,30 +328,13 @@
   <fieldset formGroupName="legal">
     <legend>{{ 'quoteForm.sections.legal' | transloco }}</legend>
 
-    <label for="rcProDocument">{{ 'quoteForm.legal.rcPro' | transloco }}</label>
-    <input id="rcProDocument" type="file" (change)="onFileChange($event, 'rcProDocument')" accept=".pdf" [class.is-invalid]="legalControls.rcProDocument.invalid">
-    @if (legalControls.rcProDocument.invalid) {
-      <div class="error-feedback">
-        @if (legalControls.rcProDocument.errors?.['required']) { <span>{{ 'quoteForm.legal.rcProRequired' | transloco }}</span> }
-      </div>
-    }
+    <p class="legal-note">{{ 'quoteForm.legal.documentsFromProfile' | transloco }}</p>
 
     <div class="legal-mention">
       <label>
         <input type="checkbox" formControlName="addDecennale">
         {{ 'quoteForm.legal.addDecennale' | transloco }}
       </label>
-      @if(legalControls.addDecennale.value) {
-        <div class="sub-input mt-2">
-          <label for="decennaleDocument">{{ 'quoteForm.legal.decennaleFile' | transloco }}</label>
-          <input id="decennaleDocument" type="file" (change)="onFileChange($event, 'decennaleDocument')" accept=".pdf" [class.is-invalid]="legalControls.decennaleDocument.invalid">
-          @if (legalControls.decennaleDocument.invalid) {
-            <div class="error-feedback">
-              @if (legalControls.decennaleDocument.errors?.['required']) { <span>{{ 'quoteForm.legal.documentRequired' | transloco }}</span> }
-            </div>
-          }
-        </div>
-      }
     </div>
 
     <div class="legal-mention">
@@ -359,22 +342,6 @@
         <input type="checkbox" formControlName="addOtherCertifications">
         {{ 'quoteForm.legal.addOtherCertifications' | transloco }}
       </label>
-      @if(legalControls.addOtherCertifications.value) {
-        <div formArrayName="otherCertifications" class="certifications-list">
-          @for(cert of otherCertifications.controls; track $index) {
-            <div class="certification-item">
-              <div class="file-input-wrapper">
-                <input type="file" accept=".pdf" (change)="onFileChange($event, 'otherCertifications', $index)" [class.is-invalid]="cert.invalid">
-                @if (cert.invalid) {
-                  <div class="error-feedback">{{ 'quoteForm.legal.fileRequired' | transloco }}</div>
-                }
-              </div>
-              <button type="button" class="btn-remove" (click)="removeCertification($index)" [title]="'quoteForm.legal.removeCertification' | transloco">×</button>
-            </div>
-          }
-          <button type="button" class="btn-add" (click)="addCertification()">{{ 'quoteForm.legal.addCertification' | transloco }}</button>
-        </div>
-      }
     </div>
 
     @if (tvaMentions().length > 0) {

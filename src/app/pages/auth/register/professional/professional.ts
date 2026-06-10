@@ -192,6 +192,8 @@ export class RegisterProfessional implements OnDestroy {
       diplomaDoc: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
       logo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
       rib: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
+      // Autres certifications (optionnel) : liste de fichiers téléversés au profil du pro.
+      otherCertifications: this.fb.array<FormControl<File | null>>([]),
       insuranceName: ['', [Validators.required, Validators.pattern(NAME_REGEXP)]],
       insuranceNumber: ['', Validators.required],
       insuranceExpiry: ['', Validators.required],
@@ -399,6 +401,24 @@ export class RegisterProfessional implements OnDestroy {
     this.form.get('professionalProfile')!.patchValue({ [target]: null } as any);
   }
 
+  // --- Autres certifications (liste dynamique de fichiers, optionnel) ---
+  get otherCertifications(): FormArray<FormControl<File | null>> {
+    return this.form.get('professionalProfile.otherCertifications') as FormArray<FormControl<File | null>>;
+  }
+
+  addCertification() {
+    this.otherCertifications.push(new FormControl<File | null>(null));
+  }
+
+  removeCertification(index: number) {
+    this.otherCertifications.removeAt(index);
+  }
+
+  onCertificationChange(event: Event, index: number) {
+    const file = (event.target as HTMLInputElement).files?.[0] ?? null;
+    this.otherCertifications.at(index).setValue(file);
+  }
+
   // --- Trades ---
   isTradeSelected(id: string) {
     const trades = this.form.get('professionalProfile')!.value.trades as string[];
@@ -583,12 +603,18 @@ export class RegisterProfessional implements OnDestroy {
       })),
     };
 
-    const { hours: _h, trustName, trustPhone, suppliers, photo, idFront, idBack, insuranceDoc, decennialInsuranceDoc, diplomaDoc, logo, rib, ...profRest } =
+    const { hours: _h, trustName, trustPhone, suppliers, photo, idFront, idBack, insuranceDoc, decennialInsuranceDoc, diplomaDoc, logo, rib, otherCertifications: _certs, ...profRest } =
       raw.professionalProfile as Record<string, unknown> & {
         hours: unknown; trustName: string; trustPhone: string; suppliers: string[];
         photo: File | null; idFront: File | null; idBack: File | null;
         insuranceDoc: File | null; decennialInsuranceDoc: File | null; diplomaDoc: File | null; logo: File | null; rib: File | null;
+        otherCertifications: (File | null)[];
       };
+
+    // Fichiers de certifications (hors valeur du formulaire, téléversés à part).
+    const certificationFiles = this.otherCertifications.controls
+      .map((ctrl) => ctrl.value)
+      .filter((file): file is File => file instanceof File);
 
     const { confirmPassword: _cp, ...userFields } = raw.user as Record<string, unknown> & { confirmPassword: unknown };
 
@@ -617,21 +643,28 @@ export class RegisterProfessional implements OnDestroy {
           mailSent = ms;
           this.authService.setTempToken(accessToken);
           clearAffiliateCode();
-          return forkJoin([
-            upload(photo),
-            upload(idFront),
-            upload(idBack),
-            upload(insuranceDoc),
-            upload(decennialInsuranceDoc),
-            upload(diplomaDoc),
-            upload(logo),
-            upload(rib),
-          ]).pipe(
-            switchMap(([photoKey, idFrontKey, idBackKey, insuranceDocKey, decennialInsuranceDocKey, diplomaDocKey, companyLogoKey, ribKey]) =>
-              this.userApi.createProfessionalDocuments(userId, {
+          return forkJoin({
+            singles: forkJoin([
+              upload(photo),
+              upload(idFront),
+              upload(idBack),
+              upload(insuranceDoc),
+              upload(decennialInsuranceDoc),
+              upload(diplomaDoc),
+              upload(logo),
+              upload(rib),
+            ]),
+            certs: certificationFiles.length
+              ? forkJoin(certificationFiles.map((file) => this.uploadService.upload(file)))
+              : of<string[]>([]),
+          }).pipe(
+            switchMap(({ singles, certs }) => {
+              const [photoKey, idFrontKey, idBackKey, insuranceDocKey, decennialInsuranceDocKey, diplomaDocKey, companyLogoKey, ribKey] = singles;
+              return this.userApi.createProfessionalDocuments(userId, {
                 photoKey, idFrontKey, idBackKey, insuranceDocKey, decennialInsuranceDocKey, diplomaDocKey, companyLogoKey, ribKey,
-              }),
-            ),
+                otherCertificationsKeys: certs.filter((key) => !!key),
+              });
+            }),
           );
         }),
         takeUntil(this.destroy$),

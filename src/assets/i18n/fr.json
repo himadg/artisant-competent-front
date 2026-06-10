@@ -664,6 +664,11 @@
     "addDiplomaDoc": "Ajouter diplôme ou justificatif",
     "addLogo": "Ajouter un logo",
     "addRib": "Ajouter un RIB",
+    "otherCertifications": {
+      "label": "Autres certifications",
+      "add": "Ajouter une certification",
+      "remove": "Supprimer la certification"
+    },
     "onCall": "Je suis d'astreinte (24h/24 et 7j/7)",
     "siret": {
       "checking": "Vérification du SIRET...",
@@ -1451,15 +1456,9 @@
       "city": "Ville"
     },
     "legal": {
-      "rcPro": "Assurance RC PRO (obligatoire)",
-      "rcProRequired": "Le document RC PRO est obligatoire.",
-      "addDecennale": "Ajouter une Assurance Décennale (si applicable)",
-      "decennaleFile": "Fichier Assurance Décennale",
-      "documentRequired": "Le document est requis.",
-      "addOtherCertifications": "Ajouter d'autres certifications",
-      "fileRequired": "Un fichier est requis.",
-      "removeCertification": "Supprimer la certification",
-      "addCertification": "+ Ajouter une certification",
+      "documentsFromProfile": "Les assurances (RC Pro, décennale) et certifications proviennent de votre profil professionnel et sont jointes automatiquement lors de la signature.",
+      "addDecennale": "Inclure mon Assurance Décennale (si applicable)",
+      "addOtherCertifications": "Inclure mes autres certifications",
       "applyTvaExemption": "Appliquer l'exonération de TVA",
       "includeRcsDispensation": "Ajouter la mention de dispense d'immatriculation au RCS"
     },

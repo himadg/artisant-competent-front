@@ -77,14 +77,8 @@ export interface QuotePayload {
     estimatedEndDate: string;
   };
   legal: {
-    rcProDocument?: File | null;
-    rcProDocumentKey?: string | null;
     addDecennale: boolean;
-    decennaleDocument?: File | null;
-    decennaleDocumentKey?: string | null;
     addOtherCertifications: boolean;
-    otherCertifications?: (File | null)[];
-    otherCertificationsKeys?: string[];
     applyTvaExemption: boolean;
     includeRcsDispensation: boolean;
   };

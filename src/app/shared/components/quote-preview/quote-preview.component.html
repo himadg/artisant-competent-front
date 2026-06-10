@@ -202,17 +202,15 @@
           <h3>{{ 'quotePreview.legalInfo' | transloco }}</h3>
           <p><strong>{{ 'quotePreview.estimatedDelays' | transloco }}</strong> {{ 'quotePreview.from' | transloco }} {{ (quoteData.planning?.estimatedStartDate | date:'dd/MM/yyyy') || ('quotePreview.notProvided' | transloco) }} {{ 'quotePreview.to' | transloco }} {{ (quoteData.planning?.estimatedEndDate | date:'dd/MM/yyyy') || ('quotePreview.notProvided' | transloco) }} <br><em>{{ 'quotePreview.delayNote' | transloco }}</em></p>
 
-          @if (quoteData.legal?.rcProDocument) {
-            <div class="legal-block">
-              <p><strong>{{ 'quotePreview.rcPro' | transloco }}</strong> {{ 'quotePreview.rcProValue' | transloco }}</p>
-            </div>
-          }
-          @if (quoteData.legal?.decennaleDocument) {
+          <div class="legal-block">
+            <p><strong>{{ 'quotePreview.rcPro' | transloco }}</strong> {{ 'quotePreview.rcProValue' | transloco }}</p>
+          </div>
+          @if (quoteData.legal?.addDecennale) {
             <div class="legal-block">
               <p><strong>{{ 'quotePreview.decennale' | transloco }}</strong> {{ 'quotePreview.rcProValue' | transloco }}</p>
             </div>
           }
-          @if (quoteData.legal?.otherCertifications && quoteData.legal?.otherCertifications.length > 0) {
+          @if (quoteData.legal?.addOtherCertifications) {
             <div class="legal-block">
               <p><strong>{{ 'quotePreview.otherCertifications' | transloco }}</strong> {{ 'quotePreview.otherCertificationsValue' | transloco }}</p>
             </div>

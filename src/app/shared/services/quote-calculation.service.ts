@@ -37,11 +37,8 @@ export interface QuoteData {
   legal: {
     applyTvaExemption: boolean;
     includeRcsDispensation?: boolean;
-    rcProDocument?: any;
     addDecennale?: boolean;
-    decennaleDocument?: any;
     addOtherCertifications?: boolean;
-    otherCertifications?: any[];
   };
   agreement?: { insuranceVerified: boolean; waiveRetractionRights: boolean; arbitrationAgreement: boolean };
   quoteNumber?: string;
