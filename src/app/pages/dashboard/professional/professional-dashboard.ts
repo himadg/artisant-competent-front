@@ -3,7 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule, PlatformLocation } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TranslocoModule } from '@jsverse/transloco';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { forkJoin } from 'rxjs';
 import { DashboardApiService } from '../../../core/services/dashboard-api.service';
 import { AuthService } from '../../../core/services/auth.service';
@@ -16,6 +16,7 @@ import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
 import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
+import { DocModal, PreviewDocument } from '../../../shared/components/doc-modal/doc-modal';
 
 export type ProSection = 'requests' | 'quotes' | 'invoices' | 'profile' | 'legal' | 'practices' | 'affiliation';
 export type ProTab = 'presentation' | 'services' | 'missions' | 'reviews' | 'documents';
@@ -26,7 +27,7 @@ const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'satu
   selector: 'dashboard-professional',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FormsModule, RouterLink, TranslocoModule, LangToggle, ThemeToggle, LegalModal],
+  imports: [CommonModule, FormsModule, RouterLink, TranslocoModule, LangToggle, ThemeToggle, LegalModal, DocModal],
   templateUrl: './professional-dashboard.html',
   styleUrl: './professional-dashboard.scss',
 })
@@ -37,6 +38,7 @@ export class ProfessionalDashboard implements OnInit {
   private readonly affiliationApi = inject(AffiliationApiService);
   private readonly route = inject(ActivatedRoute);
   private readonly platformLocation = inject(PlatformLocation);
+  private readonly transloco = inject(TranslocoService);
   readonly authService = inject(AuthService);
 
   readonly data = signal<ProfessionalDashboardData | null>(null);
@@ -65,6 +67,13 @@ export class ProfessionalDashboard implements OnInit {
 
   readonly moreMenuOpen = signal(false);
   readonly moreMenuContentDisplayed = signal(false);
+
+  readonly docToPreview = signal<PreviewDocument | null>(null);
+
+  openDocModal(url: string | null | undefined, labelKey: string) {
+    if (!url) return;
+    this.docToPreview.set({ url, title: this.transloco.translate(labelKey) });
+  }
 
   ngOnInit() {
     const userId = this.route.snapshot.paramMap.get('userId');
