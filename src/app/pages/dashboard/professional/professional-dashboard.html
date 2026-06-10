@@ -1002,7 +1002,11 @@
                                             track doc.key
                                         ) {
                                             <div class="doc-card">
-                                                <div class="doc-card-preview">
+                                                <div
+                                                    class="doc-card-preview"
+                                                    [style.cursor]="doc.url ? 'pointer' : 'default'"
+                                                    (click)="openDocModal(doc.url, doc.label)"
+                                                >
                                                     @if (doc.url && doc.key.endsWith('.webp')) {
                                                         <img
                                                             [src]="doc.url"
@@ -1300,4 +1304,8 @@
             }
         </div>
     }
+}
+
+@if (docToPreview()) {
+    <doc-modal [document]="docToPreview()" (closeModal)="docToPreview.set(null)" />
 }
