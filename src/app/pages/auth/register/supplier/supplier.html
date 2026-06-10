@@ -3,46 +3,12 @@
 
     <form [formGroup]="form" (ngSubmit)="submit()" class="py-8 mx-auto space-y-4 max-w-[29rem] autofill-fix">
         <div class="grid gap-4 items-stretch md:grid-cols-2">
-            <div class="flex justify-center items-stretch h-36">
-                <div class="overflow-hidden relative w-36 h-full rounded-md border group">
-                    @if (logoPreview()) {
-                        <img
-                            [src]="logoPreview()"
-                            alt="Logo"
-                            class="object-cover w-full h-full cursor-pointer"
-                            (click)="removeLogo()"
-                        />
-                        <div
-                            class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                            (click)="removeLogo()"
-                        >
-                            {{ 'common.delete' | transloco }}
-                        </div>
-                    } @else if (logoName()) {
-                        <div
-                            class="flex justify-center items-center w-full h-full text-center cursor-pointer"
-                            (click)="removeLogo()"
-                        >
-                            <span class="text-[10px]">{{ logoName() }}</span>
-                            <span
-                                class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                (click)="removeLogo()"
-                                >{{ 'common.delete' | transloco }}</span
-                            >
-                        </div>
-                    } @else {
-                        <div class="flex flex-col justify-center items-center w-full h-full text-center">
-                            <span class="text-4xl leading-none">+</span>
-                            <span class="mt-1 text-xs">{{ 'supplier.addLogo' | transloco }}</span>
-                        </div>
-                        <input
-                            type="file"
-                            class="absolute inset-0 opacity-0 cursor-pointer"
-                            accept="image/*,.pdf"
-                            (change)="addLogo($event)"
-                        />
-                    }
-                </div>
+            <div class="flex justify-center items-stretch">
+                <ac-file-upload
+                    formControlName="logoKey"
+                    accept="image/*,.pdf"
+                    [label]="'supplier.addLogo' | transloco"
+                ></ac-file-upload>
             </div>
             <div class="space-y-3">
                 <select formControlName="gender" class="appearance-none px-3 py-2 w-full rounded border text-[0.85rem]">
@@ -175,44 +141,12 @@
             </div>
         </div>
 
-        <div class="overflow-hidden relative mx-auto w-40 h-28 rounded-md border group">
-            @if (ribPreview()) {
-                <img
-                    [src]="ribPreview()"
-                    alt="RIB"
-                    class="object-cover w-full h-full cursor-pointer"
-                    (click)="removeRib()"
-                />
-                <div
-                    class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                    (click)="removeRib()"
-                >
-                    {{ 'common.delete' | transloco }}
-                </div>
-            } @else if (ribName()) {
-                <div
-                    class="flex justify-center items-center w-full h-full text-center cursor-pointer"
-                    (click)="removeRib()"
-                >
-                    <span class="text-[10px]">{{ ribName() }}</span>
-                    <span
-                        class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                        (click)="removeRib()"
-                        >{{ 'common.delete' | transloco }}</span
-                    >
-                </div>
-            } @else {
-                <div class="flex flex-col justify-center items-center w-full h-full text-center">
-                    <span class="text-4xl leading-none">+</span>
-                    <span class="mt-1 text-xs">{{ 'supplier.addRib' | transloco }}</span>
-                </div>
-                <input
-                    type="file"
-                    class="absolute inset-0 opacity-0 cursor-pointer"
-                    accept="image/*,.pdf"
-                    (change)="addRib($event)"
-                />
-            }
+        <div class="mx-auto w-40">
+            <ac-file-upload
+                formControlName="ribKey"
+                accept="image/*,.pdf"
+                [label]="'supplier.addRib' | transloco"
+            ></ac-file-upload>
         </div>
 
         <div class="flex flex-col">

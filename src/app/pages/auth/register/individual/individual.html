@@ -3,37 +3,12 @@
 
     <form [formGroup]="form" (ngSubmit)="submit()" class="py-8 mx-auto space-y-4 max-w-[29rem] autofill-fix">
         <div class="grid gap-4 items-stretch md:grid-cols-2">
-            <div class="flex flex-col gap-3 items-center h-36">
-                <div
-                    class="overflow-hidden relative w-36 h-full rounded-full border group"
-                    [class.force-invalid]="form.get('photo')?.invalid && form.get('photo')?.touched"
-                >
-                    @if (photoPreview()) {
-                        <img
-                            [src]="photoPreview()"
-                            alt="Photo"
-                            class="object-cover absolute inset-0 w-full h-full cursor-pointer"
-                            (click)="removePhoto()"
-                        />
-                        <div
-                            class="flex absolute inset-0 justify-center items-center text-xs text-white rounded-full opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                            (click)="removePhoto()"
-                        >
-                            {{ 'common.delete' | transloco }}
-                        </div>
-                    } @else {
-                        <div class="flex flex-col justify-center items-center w-full h-full text-center">
-                            <span class="text-3xl leading-none">+</span>
-                            <span class="px-5 text-xs">{{ 'register.addPhoto' | transloco }}</span>
-                        </div>
-                        <input
-                            type="file"
-                            class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                            accept="image/*"
-                            (change)="addPhoto($event)"
-                        />
-                    }
-                </div>
+            <div class="flex flex-col gap-3 items-center">
+                <ac-file-upload
+                    formControlName="photoKey"
+                    accept="image/*"
+                    [label]="'register.addPhoto' | transloco"
+                ></ac-file-upload>
             </div>
             <div class="space-y-3 h-full">
                 <div class="flex flex-col">

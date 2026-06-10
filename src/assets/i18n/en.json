@@ -1293,6 +1293,7 @@
     "descriptifLabel": "Description of your need",
     "descriptifPlaceholder": "Describe in detail the work you would like to carry out…",
     "photosLabel": "Photos (3 maximum)",
+    "addPhoto": "Add a photo",
     "back": "Back",
     "submit": "Send request",
     "errors": {

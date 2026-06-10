@@ -4,50 +4,13 @@
     @if (step() === 1) {
         <form [formGroup]="form" class="py-8 mx-auto space-y-4 max-w-[29rem] autofill-fix">
             <div class="grid gap-4 items-stretch md:grid-cols-2">
-                <!-- Photo : pas de formControlName, géré via addFile/removeFile -->
-                <div class="flex justify-center items-stretch h-36">
-                    <div
-                        class="overflow-hidden relative w-36 h-full rounded-full border group"
-                        [class.force-invalid]="form.get('professionalProfile.photo')?.invalid && form.get('professionalProfile.photo')?.touched"
-                    >
-                        @if (photoPreview()) {
-                            <img
-                                [src]="photoPreview()"
-                                alt="Photo"
-                                class="object-cover w-full h-full cursor-pointer"
-                                (click)="removeFile('photo')"
-                            />
-                            <div
-                                class="flex absolute inset-0 justify-center items-center text-xs text-white rounded-full opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                (click)="removeFile('photo')"
-                            >
-                                {{ 'common.delete' | transloco }}
-                            </div>
-                        } @else if (photoName()) {
-                            <div
-                                class="flex justify-center items-center w-full h-full text-center cursor-pointer"
-                                (click)="removeFile('photo')"
-                            >
-                                <span class="text-[10px]">{{ photoName() }}</span>
-                                <span
-                                    class="flex absolute inset-0 justify-center items-center text-xs text-white rounded-full opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                    (click)="removeFile('photo')"
-                                    >{{ 'common.delete' | transloco }}</span
-                                >
-                            </div>
-                        } @else {
-                            <div class="flex flex-col justify-center items-center w-full h-full text-center">
-                                <span class="text-4xl leading-none">+</span>
-                                <span class="text-[0.72rem] mt-1">{{ 'professional.addPhoto' | transloco }} *</span>
-                            </div>
-                            <input
-                                type="file"
-                                class="absolute inset-0 opacity-0 cursor-pointer"
-                                accept="image/*"
-                                (change)="addFile('photo', $event)"
-                            />
-                        }
-                    </div>
+                <!-- Photo (clé de stockage via ac-file-upload) -->
+                <div class="flex justify-center items-stretch">
+                    <ac-file-upload
+                        [formControl]="$any(form.get('professionalProfile.photo'))"
+                        accept="image/*"
+                        [label]="'professional.addPhoto' | transloco"
+                    ></ac-file-upload>
                 </div>
 
                 <!-- user : gender, lastName, firstName -->
@@ -231,135 +194,24 @@
 
             <!-- Documents identité -->
             <div class="grid gap-4 md:grid-cols-2">
-                <div
-                    class="overflow-hidden relative w-full h-28 rounded-md border group"
-                    [class.force-invalid]="form.get('professionalProfile.idFront')?.invalid && form.get('professionalProfile.idFront')?.touched"
-                >
-                    @if (idFrontPreview()) {
-                        <img
-                            [src]="idFrontPreview()"
-                            alt="ID front"
-                            class="object-cover w-full h-full cursor-pointer"
-                            (click)="removeFile('idFront')"
-                        />
-                        <div
-                            class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                            (click)="removeFile('idFront')"
-                        >
-                            {{ 'common.delete' | transloco }}
-                        </div>
-                    } @else if (idFrontName()) {
-                        <div
-                            class="flex justify-center items-center w-full h-full text-center cursor-pointer"
-                            (click)="removeFile('idFront')"
-                        >
-                            <span class="text-[10px]">{{ idFrontName() }}</span>
-                            <span
-                                class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                (click)="removeFile('idFront')"
-                                >{{ 'common.delete' | transloco }}</span
-                            >
-                        </div>
-                    } @else {
-                        <div class="flex flex-col justify-center items-center w-full h-full text-center">
-                            <span class="text-4xl leading-none">+</span>
-                            <span class="mt-1 text-xs">{{ 'professional.addIdFront' | transloco }} *</span>
-                        </div>
-                        <input
-                            type="file"
-                            class="absolute inset-0 opacity-0 cursor-pointer"
-                            accept="image/*,.pdf"
-                            (change)="addFile('idFront', $event)"
-                        />
-                    }
-                </div>
-                <div
-                    class="overflow-hidden relative w-full h-28 rounded-md border group"
-                    [class.force-invalid]="form.get('professionalProfile.idBack')?.invalid && form.get('professionalProfile.idBack')?.touched"
-                >
-                    @if (idBackPreview()) {
-                        <img
-                            [src]="idBackPreview()"
-                            alt="ID back"
-                            class="object-cover w-full h-full cursor-pointer"
-                            (click)="removeFile('idBack')"
-                        />
-                        <div
-                            class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                            (click)="removeFile('idBack')"
-                        >
-                            {{ 'common.delete' | transloco }}
-                        </div>
-                    } @else if (idBackName()) {
-                        <div
-                            class="flex justify-center items-center w-full h-full text-center cursor-pointer"
-                            (click)="removeFile('idBack')"
-                        >
-                            <span class="text-[10px]">{{ idBackName() }}</span>
-                            <span
-                                class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                (click)="removeFile('idBack')"
-                                >{{ 'common.delete' | transloco }}</span
-                            >
-                        </div>
-                    } @else {
-                        <div class="flex flex-col justify-center items-center w-full h-full text-center">
-                            <span class="text-4xl leading-none">+</span>
-                            <span class="mt-1 text-xs">{{ 'professional.addIdBack' | transloco }} *</span>
-                        </div>
-                        <input
-                            type="file"
-                            class="absolute inset-0 opacity-0 cursor-pointer"
-                            accept="image/*,.pdf"
-                            (change)="addFile('idBack', $event)"
-                        />
-                    }
-                </div>
+                <ac-file-upload
+                    [formControl]="$any(form.get('professionalProfile.idFront'))"
+                    accept="image/*,.pdf"
+                    [label]="'professional.addIdFront' | transloco"
+                ></ac-file-upload>
+                <ac-file-upload
+                    [formControl]="$any(form.get('professionalProfile.idBack'))"
+                    accept="image/*,.pdf"
+                    [label]="'professional.addIdBack' | transloco"
+                ></ac-file-upload>
             </div>
 
             <!-- Diplôme -->
-            <div
-                class="overflow-hidden relative w-full h-28 rounded-md border group"
-                [class.force-invalid]="form.get('professionalProfile.diplomaDoc')?.invalid && form.get('professionalProfile.diplomaDoc')?.touched"
-            >
-                @if (diplomaPreview()) {
-                    <img
-                        [src]="diplomaPreview()"
-                        alt="Diplôme"
-                        class="object-cover w-full h-full cursor-pointer"
-                        (click)="removeFile('diplomaDoc')"
-                    />
-                    <div
-                        class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                        (click)="removeFile('diplomaDoc')"
-                    >
-                        {{ 'common.delete' | transloco }}
-                    </div>
-                } @else if (diplomaName()) {
-                    <div
-                        class="flex justify-center items-center w-full h-full text-center cursor-pointer"
-                        (click)="removeFile('diplomaDoc')"
-                    >
-                        <span class="text-[10px]">{{ diplomaName() }}</span>
-                        <span
-                            class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                            (click)="removeFile('diplomaDoc')"
-                            >{{ 'common.delete' | transloco }}</span
-                        >
-                    </div>
-                } @else {
-                    <div class="flex flex-col justify-center items-center w-full h-full text-center">
-                        <span class="text-4xl leading-none">+</span>
-                        <span class="mt-1 text-xs">{{ 'professional.addDiplomaDoc' | transloco }} *</span>
-                    </div>
-                    <input
-                        type="file"
-                        class="absolute inset-0 opacity-0 cursor-pointer"
-                        accept="image/*,.pdf"
-                        (change)="addFile('diplomaDoc', $event)"
-                    />
-                }
-            </div>
+            <ac-file-upload
+                [formControl]="$any(form.get('professionalProfile.diplomaDoc'))"
+                accept="image/*,.pdf"
+                [label]="'professional.addDiplomaDoc' | transloco"
+            ></ac-file-upload>
 
             <!-- Assurances RC Pro + Décennale côte à côte -->
             <ng-container formGroupName="professionalProfile">
@@ -368,48 +220,11 @@
                     <!-- Colonne RC Pro -->
                     <div class="flex flex-col gap-2">
                         <!-- Document RC Pro -->
-                        <div
-                            class="overflow-hidden relative w-full h-24 rounded-md border group"
-                            [class.force-invalid]="form.get('professionalProfile.insuranceDoc')?.invalid && form.get('professionalProfile.insuranceDoc')?.touched"
-                        >
-                            @if (insuranceDocPreview()) {
-                                <img
-                                    [src]="insuranceDocPreview()"
-                                    alt="Assurance RC Pro"
-                                    class="object-cover w-full h-full cursor-pointer"
-                                    (click)="removeFile('insuranceDoc')"
-                                />
-                                <div
-                                    class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                    (click)="removeFile('insuranceDoc')"
-                                >
-                                    {{ 'common.delete' | transloco }}
-                                </div>
-                            } @else if (insuranceDocName()) {
-                                <div
-                                    class="flex justify-center items-center w-full h-full text-center cursor-pointer"
-                                    (click)="removeFile('insuranceDoc')"
-                                >
-                                    <span class="text-[9px]">{{ insuranceDocName() }}</span>
-                                    <span
-                                        class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                        (click)="removeFile('insuranceDoc')"
-                                        >{{ 'common.delete' | transloco }}</span
-                                    >
-                                </div>
-                            } @else {
-                                <div class="flex flex-col justify-center items-center w-full h-full text-center">
-                                    <span class="text-3xl leading-none">+</span>
-                                    <span class="mt-1 text-[0.6rem]">{{ 'professional.addInsuranceDoc' | transloco }} *</span>
-                                </div>
-                                <input
-                                    type="file"
-                                    class="absolute inset-0 opacity-0 cursor-pointer"
-                                    accept="image/*,.pdf"
-                                    (change)="addFile('insuranceDoc', $event)"
-                                />
-                            }
-                        </div>
+                        <ac-file-upload
+                            formControlName="insuranceDoc"
+                            accept="image/*,.pdf"
+                            [label]="'professional.addInsuranceDoc' | transloco"
+                        ></ac-file-upload>
                         <!-- Champs RC Pro -->
                         <input
                             type="text"
@@ -443,47 +258,11 @@
                     <!-- Colonne Décennale -->
                     <div class="flex flex-col gap-2">
                         <!-- Document Décennale -->
-                        <div
-                            class="overflow-hidden relative w-full h-24 rounded-md border group"
-                        >
-                            @if (decennialInsuranceDocPreview()) {
-                                <img
-                                    [src]="decennialInsuranceDocPreview()"
-                                    alt="Assurance décennale"
-                                    class="object-cover w-full h-full cursor-pointer"
-                                    (click)="removeFile('decennialInsuranceDoc')"
-                                />
-                                <div
-                                    class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                    (click)="removeFile('decennialInsuranceDoc')"
-                                >
-                                    {{ 'common.delete' | transloco }}
-                                </div>
-                            } @else if (decennialInsuranceDocName()) {
-                                <div
-                                    class="flex justify-center items-center w-full h-full text-center cursor-pointer"
-                                    (click)="removeFile('decennialInsuranceDoc')"
-                                >
-                                    <span class="text-[9px]">{{ decennialInsuranceDocName() }}</span>
-                                    <span
-                                        class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                        (click)="removeFile('decennialInsuranceDoc')"
-                                        >{{ 'common.delete' | transloco }}</span
-                                    >
-                                </div>
-                            } @else {
-                                <div class="flex flex-col justify-center items-center w-full h-full text-center">
-                                    <span class="text-3xl leading-none">+</span>
-                                    <span class="mt-1 text-[0.6rem]">{{ 'professional.addDecennialInsuranceDoc' | transloco }}</span>
-                                </div>
-                                <input
-                                    type="file"
-                                    class="absolute inset-0 opacity-0 cursor-pointer"
-                                    accept="image/*,.pdf"
-                                    (change)="addFile('decennialInsuranceDoc', $event)"
-                                />
-                            }
-                        </div>
+                        <ac-file-upload
+                            formControlName="decennialInsuranceDoc"
+                            accept="image/*,.pdf"
+                            [label]="'professional.addDecennialInsuranceDoc' | transloco"
+                        ></ac-file-upload>
                         <!-- Champs Décennale -->
                         <input
                             type="text"
@@ -573,91 +352,17 @@
                 <div class="grid gap-6 items-stretch md:grid-cols-2">
                     <!-- Logo + RIB -->
                     <div class="flex flex-col gap-3 justify-evenly items-center">
-                        <div
-                            class="overflow-hidden relative w-40 h-28 rounded-md border group"
-                            [class.force-invalid]="form.get('professionalProfile.logo')?.invalid && form.get('professionalProfile.logo')?.touched"
-                        >
-                            @if (logoPreview()) {
-                                <img
-                                    [src]="logoPreview()"
-                                    alt="Logo"
-                                    class="object-cover w-full h-full cursor-pointer"
-                                    (click)="removeFile('logo')"
-                                />
-                                <div
-                                    class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                    (click)="removeFile('logo')"
-                                >
-                                    {{ 'common.delete' | transloco }}
-                                </div>
-                            } @else if (logoName()) {
-                                <div
-                                    class="flex justify-center items-center w-full h-full text-center cursor-pointer"
-                                    (click)="removeFile('logo')"
-                                >
-                                    <span class="text-[10px]">{{ logoName() }}</span>
-                                    <span
-                                        class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                        (click)="removeFile('logo')"
-                                        >{{ 'common.delete' | transloco }}</span
-                                    >
-                                </div>
-                            } @else {
-                                <div class="flex flex-col justify-center items-center w-full h-full text-center">
-                                    <span class="text-4xl leading-none">+</span>
-                                    <span class="mt-1 text-xs">{{ 'professional.addLogo' | transloco }} *</span>
-                                </div>
-                                <input
-                                    type="file"
-                                    class="absolute inset-0 opacity-0 cursor-pointer"
-                                    accept="image/*,.pdf"
-                                    (change)="addFile('logo', $event)"
-                                />
-                            }
-                        </div>
+                        <ac-file-upload
+                            formControlName="logo"
+                            accept="image/*,.pdf"
+                            [label]="'professional.addLogo' | transloco"
+                        ></ac-file-upload>
 
-                        <div
-                            class="overflow-hidden relative w-40 h-28 rounded-md border group"
-                            [class.force-invalid]="form.get('professionalProfile.rib')?.invalid && form.get('professionalProfile.rib')?.touched"
-                        >
-                            @if (ribPreview()) {
-                                <img
-                                    [src]="ribPreview()"
-                                    alt="RIB"
-                                    class="object-cover w-full h-full cursor-pointer"
-                                    (click)="removeFile('rib')"
-                                />
-                                <div
-                                    class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                    (click)="removeFile('rib')"
-                                >
-                                    {{ 'common.delete' | transloco }}
-                                </div>
-                            } @else if (ribName()) {
-                                <div
-                                    class="flex justify-center items-center w-full h-full text-center cursor-pointer"
-                                    (click)="removeFile('rib')"
-                                >
-                                    <span class="text-[10px]">{{ ribName() }}</span>
-                                    <span
-                                        class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                        (click)="removeFile('rib')"
-                                        >{{ 'common.delete' | transloco }}</span
-                                    >
-                                </div>
-                            } @else {
-                                <div class="flex flex-col justify-center items-center w-full h-full text-center">
-                                    <span class="text-4xl leading-none">+</span>
-                                    <span class="mt-1 text-xs">{{ 'professional.addRib' | transloco }} *</span>
-                                </div>
-                                <input
-                                    type="file"
-                                    class="absolute inset-0 opacity-0 cursor-pointer"
-                                    accept="image/*,.pdf"
-                                    (change)="addFile('rib', $event)"
-                                />
-                            }
-                        </div>
+                        <ac-file-upload
+                            formControlName="rib"
+                            accept="image/*,.pdf"
+                            [label]="'professional.addRib' | transloco"
+                        ></ac-file-upload>
                     </div>
 
                     <!-- Nom société + adresse de travail -->
@@ -913,22 +618,24 @@
                     <label class="font-medium">
                         {{ 'professional.otherCertifications.label' | transloco }} ({{ 'professional.optional' | transloco }})
                     </label>
-                    @for (cert of otherCertifications.controls; track $index) {
-                        <div class="flex gap-2 items-center">
-                            <input
-                                type="file"
-                                class="flex-1 text-sm"
-                                accept="image/*,.pdf"
-                                (change)="onCertificationChange($event, $index)"
-                            />
-                            <button
-                                type="button"
-                                class="px-2 leading-none text-red-500 bg-transparent border-none cursor-pointer"
-                                (click)="removeCertification($index)"
-                                [title]="'professional.otherCertifications.remove' | transloco"
-                            >×</button>
-                        </div>
-                    }
+                    <ng-container formArrayName="otherCertifications">
+                        @for (cert of otherCertifications.controls; track $index) {
+                            <div class="flex gap-2 items-center">
+                                <div class="flex-1">
+                                    <ac-file-upload
+                                        [formControlName]="$index"
+                                        accept="image/*,.pdf"
+                                    ></ac-file-upload>
+                                </div>
+                                <button
+                                    type="button"
+                                    class="px-2 leading-none text-red-500 bg-transparent border-none cursor-pointer"
+                                    (click)="removeCertification($index)"
+                                    [title]="'professional.otherCertifications.remove' | transloco"
+                                >×</button>
+                            </div>
+                        }
+                    </ng-container>
                     <button
                         type="button"
                         class="self-start px-3 py-1 text-sm rounded border border-[var(--color)] text-[var(--color)] bg-transparent cursor-pointer"

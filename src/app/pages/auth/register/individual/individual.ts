@@ -6,8 +6,8 @@ import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, of, tak
 import { GeocodingService, AddressSuggestion } from '../../../../core/services/geocoding.service';
 import { TurnstileComponent } from '../../../../shared/components/turnstile/turnstile';
 import { LegalModal } from '../../../../shared/components/legal-modal/legal-modal';
+import { FileUpload } from '../../../../shared/components/file-upload/file-upload';
 import { AppConfigService } from '../../../../core/services/app-config.service';
-import { UploadService } from '../../../../core/services/upload.service';
 import { UserApiService } from '../../../../core/services/user-api.service';
 import { AuthService } from '../../../../core/services/auth.service';
 import { Router } from '@angular/router';
@@ -19,14 +19,13 @@ import { LangService } from '../../../../core/services/lang.service';
   selector: 'register-individual',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent, LegalModal],
+  imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent, LegalModal, FileUpload],
   templateUrl: './individual.html',
   styleUrl: './individual.scss',
 })
 export class RegisterIndividual implements OnDestroy {
   private readonly fb = inject(FormBuilder);
   private readonly geocodingService = inject(GeocodingService);
-  private readonly uploadService = inject(UploadService);
   private readonly userApi = inject(UserApiService);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
@@ -37,7 +36,6 @@ export class RegisterIndividual implements OnDestroy {
   readonly turnstileSiteKey = inject(AppConfigService).get('turnstileSiteKey');
   readonly today = new Date().toISOString().split('T')[0];
 
-  readonly photoPreview = signal<string | null>(null);
   readonly addressSuggestions = signal<AddressSuggestion[]>([]);
   readonly addressOpen = signal(false);
   readonly captchaToken = signal<string | null>(null);
@@ -49,7 +47,8 @@ export class RegisterIndividual implements OnDestroy {
   readonly referralCodeError = signal(false);
 
   readonly form = this.fb.group({
-    photo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
+    // Valeur : clé de stockage renvoyée par le backend (upload via ac-file-upload).
+    photoKey: new FormControl<string | null>(null, { validators: [Validators.required] }),
     gender: ['', Validators.required],
     lastName: ['', Validators.required],
     firstName: ['', Validators.required],
@@ -144,26 +143,6 @@ export class RegisterIndividual implements OnDestroy {
     this.form.get('captcha')!.setValue(false);
   }
 
-  // --- Photo ---
-  addPhoto(event: Event) {
-    const file = (event.target as HTMLInputElement).files?.[0] ?? null;
-    this.form.get('photo')!.setValue(file);
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => this.photoPreview.set(reader.result as string);
-      reader.readAsDataURL(file);
-    } else {
-      this.photoPreview.set(null);
-    }
-  }
-
-  removePhoto() {
-    if (confirm('Supprimer la photo ?')) {
-      this.photoPreview.set(null);
-      this.form.get('photo')!.setValue(null);
-    }
-  }
-
   submit() {
     this.showSubmitError.set(false);
     this.form.markAllAsTouched();
@@ -181,7 +160,7 @@ export class RegisterIndividual implements OnDestroy {
       return;
     }
 
-    const { gender, lastName, firstName, birthDate, email, password, phone, address, photo } = this.form.value;
+    const { gender, lastName, firstName, birthDate, email, password, phone, address, photoKey } = this.form.value;
     const captchaToken = this.captchaToken();
     if (!captchaToken) return;
 
@@ -207,11 +186,8 @@ export class RegisterIndividual implements OnDestroy {
         switchMap(({ userId, accessToken, user: _user }) => {
           this.authService.setTempToken(accessToken);
           clearAffiliateCode();
-          return (photo ? this.uploadService.upload(photo) : of('')).pipe(
-            switchMap((photoKey) =>
-              photoKey ? this.userApi.createIndividualDocuments(userId, photoKey) : of(undefined),
-            ),
-          );
+          // La photo est déjà uploadée (clé en main) ; on n'envoie que la clé.
+          return photoKey ? this.userApi.createIndividualDocuments(userId, photoKey) : of(undefined);
         }),
         takeUntil(this.destroy$),
       )

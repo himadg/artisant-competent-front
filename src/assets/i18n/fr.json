@@ -1293,6 +1293,7 @@
     "descriptifLabel": "Description de votre besoin",
     "descriptifPlaceholder": "Décrivez en détail les travaux que vous souhaitez réaliser…",
     "photosLabel": "Photos (3 maximum)",
+    "addPhoto": "Ajouter une photo",
     "back": "Retour",
     "submit": "Envoyer la demande",
     "errors": {

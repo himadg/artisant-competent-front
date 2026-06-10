@@ -1,4 +1,4 @@
-﻿import { capitalize } from './../../../../core/utils/common-utils';
+import { capitalize } from './../../../../core/utils/common-utils';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 import {
@@ -12,21 +12,18 @@ import {
 } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
 import { LegalModal } from '../../../../shared/components/legal-modal/legal-modal';
+import { FileUpload } from '../../../../shared/components/file-upload/file-upload';
 
 @Component({
   selector: 'register-supplier',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, TranslocoModule, LegalModal],
+  imports: [ReactiveFormsModule, TranslocoModule, LegalModal, FileUpload],
   templateUrl: './supplier.html',
   styleUrl: './supplier.scss',
 })
 export class RegisterSupplier {
   readonly fb = new FormBuilder();
-  readonly logoPreview = signal<string | null>(null);
-  readonly logoName = signal<string | null>(null);
-  readonly ribPreview = signal<string | null>(null);
-  readonly ribName = signal<string | null>(null);
   readonly legalModalOpen = signal(false);
 
   readonly servicesKeys = ['installation', 'repair', 'maintenance', 'consulting'];
@@ -66,70 +63,13 @@ export class RegisterSupplier {
     services: [<string[]>[]],
     captcha: [false, Validators.requiredTrue],
     terms: [false, Validators.requiredTrue],
-    logo: new FormControl<File | null>(null),
-    rib: new FormControl<File | null>(null),
+    // Valeurs : clés de stockage renvoyées par le backend (upload via ac-file-upload).
+    logoKey: new FormControl<string | null>(null),
+    ribKey: new FormControl<string | null>(null),
   });
 
   get hours(): FormArray {
     return this.form.get('hours') as FormArray;
-  }
-
-  addLogo(e: Event) {
-    const file = (e.target as HTMLInputElement).files?.[0] ?? null;
-    if (!file) {
-      this.logoPreview.set(null);
-      this.logoName.set(null);
-      this.form.patchValue({ logo: null });
-      return;
-    }
-    if (file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = () => this.logoPreview.set(reader.result as string);
-      reader.readAsDataURL(file);
-      this.logoName.set(file.name);
-    } else {
-      this.logoPreview.set(null);
-      this.logoName.set(file.name);
-    }
-    this.form.patchValue({ logo: file });
-  }
-
-  removeLogo() {
-    const ok = confirm('Supprimer le logo ?');
-    if (ok) {
-      this.logoPreview.set(null);
-      this.logoName.set(null);
-      this.form.patchValue({ logo: null });
-    }
-  }
-
-  addRib(e: Event) {
-    const file = (e.target as HTMLInputElement).files?.[0] ?? null;
-    if (!file) {
-      this.ribPreview.set(null);
-      this.ribName.set(null);
-      this.form.patchValue({ rib: null });
-      return;
-    }
-    if (file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = () => this.ribPreview.set(reader.result as string);
-      reader.readAsDataURL(file);
-      this.ribName.set(file.name);
-    } else {
-      this.ribPreview.set(null);
-      this.ribName.set(file.name);
-    }
-    this.form.patchValue({ rib: file });
-  }
-
-  removeRib() {
-    const ok = confirm('Supprimer le RIB ?');
-    if (ok) {
-      this.ribPreview.set(null);
-      this.ribName.set(null);
-      this.form.patchValue({ rib: null });
-    }
   }
 
   isServiceSelected(key: string) {
@@ -150,8 +90,6 @@ export class RegisterSupplier {
     this.form.value.firstName = capitalize(this.form.value.firstName as string);
     const payload = {
       ...this.form.value,
-      logoName: this.logoName(),
-      ribName: this.ribName(),
     };
   }
 }

@@ -10,7 +10,7 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, forkJoin, of, takeUntil, merge } from 'rxjs';
+import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, takeUntil, merge } from 'rxjs';
 import { hourValidator, servicesValidator, openingAtLeastOne, decennialInsuranceValidator, trustedContactValidator, optionalEmailValidator } from '../../../../core/utils/validators';
 import { capitalize, normalizeName, evaluatePasswordCriteria, getAffiliateCode, clearAffiliateCode } from '../../../../core/utils/common-utils';
 import { ServiceApiService } from '../../../../core/services/service-api.service';
@@ -23,7 +23,7 @@ import { Router } from '@angular/router';
 import { UserApiService } from '../../../../core/services/user-api.service';
 import { GeocodingService, AddressSuggestion } from '../../../../core/services/geocoding.service';
 import { SiretService } from '../../../../core/services/siret.service';
-import { UploadService } from '../../../../core/services/upload.service';
+import { FileUpload } from '../../../../shared/components/file-upload/file-upload';
 import {
   NAME_REGEXP,
   PASSWORD_STRONG_REGEXP,
@@ -37,13 +37,11 @@ import { LangService } from '../../../../core/services/lang.service';
 import { AuthService } from '../../../../core/services/auth.service';
 
 
-type DocTarget = 'photo' | 'idFront' | 'idBack' | 'insuranceDoc' | 'decennialInsuranceDoc' | 'diplomaDoc' | 'logo' | 'rib';
-
 @Component({
   selector: 'register-professional',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent, LegalModal],
+  imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent, LegalModal, FileUpload],
   templateUrl: './professional.html',
   styleUrl: './professional.scss',
 })
@@ -54,7 +52,6 @@ export class RegisterProfessional implements OnDestroy {
   private readonly userApi = inject(UserApiService);
   private readonly geocodingService = inject(GeocodingService);
   private readonly siretService = inject(SiretService);
-  private readonly uploadService = inject(UploadService);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly langService = inject(LangService);
@@ -62,24 +59,6 @@ export class RegisterProfessional implements OnDestroy {
 
   // Navigation entre les pages du formulaire (UX)
   readonly step = signal<1 | 2>(1);
-
-  // File previews & names
-  readonly photoPreview = signal<string | null>(null);
-  readonly photoName = signal<string | null>(null);
-  readonly idFrontPreview = signal<string | null>(null);
-  readonly idFrontName = signal<string | null>(null);
-  readonly idBackPreview = signal<string | null>(null);
-  readonly idBackName = signal<string | null>(null);
-  readonly insuranceDocPreview = signal<string | null>(null);
-  readonly insuranceDocName = signal<string | null>(null);
-  readonly decennialInsuranceDocPreview = signal<string | null>(null);
-  readonly decennialInsuranceDocName = signal<string | null>(null);
-  readonly diplomaPreview = signal<string | null>(null);
-  readonly diplomaName = signal<string | null>(null);
-  readonly logoPreview = signal<string | null>(null);
-  readonly logoName = signal<string | null>(null);
-  readonly ribPreview = signal<string | null>(null);
-  readonly ribName = signal<string | null>(null);
 
   readonly trades = signal<Trade[]>([]);
   readonly days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
@@ -184,16 +163,17 @@ export class RegisterProfessional implements OnDestroy {
     professionalProfile: this.fb.group({
       managerPhone: ['', [Validators.required, Validators.pattern(PHONE_FR_REGEXP)]],
       professionalEmail: ['', optionalEmailValidator],
-      photo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
-      idFront: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
-      idBack: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
-      insuranceDoc: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
-      decennialInsuranceDoc: new FormControl<File | null>(null, { nonNullable: false }),
-      diplomaDoc: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
-      logo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
-      rib: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
-      // Autres certifications (optionnel) : liste de fichiers téléversés au profil du pro.
-      otherCertifications: this.fb.array<FormControl<File | null>>([]),
+      // Valeurs : clés de stockage renvoyées par le backend (upload via ac-file-upload).
+      photo: new FormControl<string | null>(null, { validators: [Validators.required] }),
+      idFront: new FormControl<string | null>(null, { validators: [Validators.required] }),
+      idBack: new FormControl<string | null>(null, { validators: [Validators.required] }),
+      insuranceDoc: new FormControl<string | null>(null, { validators: [Validators.required] }),
+      decennialInsuranceDoc: new FormControl<string | null>(null),
+      diplomaDoc: new FormControl<string | null>(null, { validators: [Validators.required] }),
+      logo: new FormControl<string | null>(null, { validators: [Validators.required] }),
+      rib: new FormControl<string | null>(null, { validators: [Validators.required] }),
+      // Autres certifications (optionnel) : liste de clés de stockage.
+      otherCertifications: this.fb.array<FormControl<string | null>>([]),
       insuranceName: ['', [Validators.required, Validators.pattern(NAME_REGEXP)]],
       insuranceNumber: ['', Validators.required],
       insuranceExpiry: ['', Validators.required],
@@ -351,72 +331,18 @@ export class RegisterProfessional implements OnDestroy {
     if (this.siretCompanyName()) this.validateCompanyNameMatch();
   }
 
-  // --- Files (step 2) ---
-  private setPreview(target: DocTarget, val: string | null) {
-    if (target === 'photo') this.photoPreview.set(val);
-    else if (target === 'idFront') this.idFrontPreview.set(val);
-    else if (target === 'idBack') this.idBackPreview.set(val);
-    else if (target === 'insuranceDoc') this.insuranceDocPreview.set(val);
-    else if (target === 'decennialInsuranceDoc') this.decennialInsuranceDocPreview.set(val);
-    else if (target === 'diplomaDoc') this.diplomaPreview.set(val);
-    else if (target === 'logo') this.logoPreview.set(val);
-    else if (target === 'rib') this.ribPreview.set(val);
-  }
-
-  private setName(target: DocTarget, name: string | null) {
-    if (target === 'photo') this.photoName.set(name);
-    else if (target === 'idFront') this.idFrontName.set(name);
-    else if (target === 'idBack') this.idBackName.set(name);
-    else if (target === 'insuranceDoc') this.insuranceDocName.set(name);
-    else if (target === 'decennialInsuranceDoc') this.decennialInsuranceDocName.set(name);
-    else if (target === 'diplomaDoc') this.diplomaName.set(name);
-    else if (target === 'logo') this.logoName.set(name);
-    else if (target === 'rib') this.ribName.set(name);
-  }
-
-  addFile(target: DocTarget, e: Event) {
-    const file = (e.target as HTMLInputElement).files?.[0] ?? null;
-    if (!file) {
-      this.setPreview(target, null);
-      this.setName(target, null);
-      this.form.get('professionalProfile')!.patchValue({ [target]: null } as any);
-      return;
-    }
-    if (file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = () => this.setPreview(target, reader.result as string);
-      reader.readAsDataURL(file);
-    } else {
-      this.setPreview(target, null);
-    }
-    this.setName(target, file.name);
-    this.form.get('professionalProfile')!.patchValue({ [target]: file } as any);
-  }
-
-  removeFile(target: DocTarget) {
-    const ok = confirm('Supprimer le fichier ?');
-    if (!ok) return;
-    this.setPreview(target, null);
-    this.setName(target, null);
-    this.form.get('professionalProfile')!.patchValue({ [target]: null } as any);
-  }
-
-  // --- Autres certifications (liste dynamique de fichiers, optionnel) ---
-  get otherCertifications(): FormArray<FormControl<File | null>> {
-    return this.form.get('professionalProfile.otherCertifications') as FormArray<FormControl<File | null>>;
+  // --- Autres certifications (liste dynamique, optionnel) ---
+  // Chaque entrée contient la clé de stockage renvoyée par ac-file-upload.
+  get otherCertifications(): FormArray<FormControl<string | null>> {
+    return this.form.get('professionalProfile.otherCertifications') as FormArray<FormControl<string | null>>;
   }
 
   addCertification() {
-    this.otherCertifications.push(new FormControl<File | null>(null));
+    this.otherCertifications.push(new FormControl<string | null>(null));
   }
 
   removeCertification(index: number) {
     this.otherCertifications.removeAt(index);
-  }
-
-  onCertificationChange(event: Event, index: number) {
-    const file = (event.target as HTMLInputElement).files?.[0] ?? null;
-    this.otherCertifications.at(index).setValue(file);
   }
 
   // --- Trades ---
@@ -606,15 +532,15 @@ export class RegisterProfessional implements OnDestroy {
     const { hours: _h, trustName, trustPhone, suppliers, photo, idFront, idBack, insuranceDoc, decennialInsuranceDoc, diplomaDoc, logo, rib, otherCertifications: _certs, ...profRest } =
       raw.professionalProfile as Record<string, unknown> & {
         hours: unknown; trustName: string; trustPhone: string; suppliers: string[];
-        photo: File | null; idFront: File | null; idBack: File | null;
-        insuranceDoc: File | null; decennialInsuranceDoc: File | null; diplomaDoc: File | null; logo: File | null; rib: File | null;
-        otherCertifications: (File | null)[];
+        photo: string | null; idFront: string | null; idBack: string | null;
+        insuranceDoc: string | null; decennialInsuranceDoc: string | null; diplomaDoc: string | null; logo: string | null; rib: string | null;
+        otherCertifications: (string | null)[];
       };
 
-    // Fichiers de certifications (hors valeur du formulaire, téléversés à part).
-    const certificationFiles = this.otherCertifications.controls
+    // Clés des fichiers déjà uploadés (ac-file-upload) : on ne garde que les non vides.
+    const otherCertificationsKeys = this.otherCertifications.controls
       .map((ctrl) => ctrl.value)
-      .filter((file): file is File => file instanceof File);
+      .filter((key): key is string => !!key);
 
     const { confirmPassword: _cp, ...userFields } = raw.user as Record<string, unknown> & { confirmPassword: unknown };
 
@@ -633,8 +559,6 @@ export class RegisterProfessional implements OnDestroy {
       ...(referralCode ? { referralCode } : {}),
     };
 
-    const upload = (file: File | null) => file ? this.uploadService.upload(file) : of('');
-
     let mailSent = true;
 
     this.userApi.registerProfessional(payload, captchaToken)
@@ -643,29 +567,18 @@ export class RegisterProfessional implements OnDestroy {
           mailSent = ms;
           this.authService.setTempToken(accessToken);
           clearAffiliateCode();
-          return forkJoin({
-            singles: forkJoin([
-              upload(photo),
-              upload(idFront),
-              upload(idBack),
-              upload(insuranceDoc),
-              upload(decennialInsuranceDoc),
-              upload(diplomaDoc),
-              upload(logo),
-              upload(rib),
-            ]),
-            certs: certificationFiles.length
-              ? forkJoin(certificationFiles.map((file) => this.uploadService.upload(file)))
-              : of<string[]>([]),
-          }).pipe(
-            switchMap(({ singles, certs }) => {
-              const [photoKey, idFrontKey, idBackKey, insuranceDocKey, decennialInsuranceDocKey, diplomaDocKey, companyLogoKey, ribKey] = singles;
-              return this.userApi.createProfessionalDocuments(userId, {
-                photoKey, idFrontKey, idBackKey, insuranceDocKey, decennialInsuranceDocKey, diplomaDocKey, companyLogoKey, ribKey,
-                otherCertificationsKeys: certs.filter((key) => !!key),
-              });
-            }),
-          );
+          // Les documents sont déjà uploadés (clés en main) ; on n'envoie que les clés.
+          return this.userApi.createProfessionalDocuments(userId, {
+            photoKey: photo ?? '',
+            idFrontKey: idFront ?? '',
+            idBackKey: idBack ?? '',
+            insuranceDocKey: insuranceDoc ?? '',
+            decennialInsuranceDocKey: decennialInsuranceDoc ?? '',
+            diplomaDocKey: diplomaDoc ?? '',
+            companyLogoKey: logo ?? '',
+            ribKey: rib ?? '',
+            otherCertificationsKeys,
+          });
         }),
         takeUntil(this.destroy$),
       )

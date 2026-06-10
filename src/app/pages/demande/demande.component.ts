@@ -1,16 +1,17 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule, FormArray } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { SearchStateService } from '../../core/services/search-state.service';
 import { MissionService } from '../../core/services/mission.service';
 import { TranslocoModule } from '@jsverse/transloco';
 import { AuthService } from '../../core/services/auth.service';
+import { FileUpload } from '../../shared/components/file-upload/file-upload';
 
 @Component({
   selector: 'app-demande',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, TranslocoModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, TranslocoModule, FileUpload],
   templateUrl: './demande.component.html',
 })
 export class DemandePageComponent implements OnInit {
@@ -20,13 +21,16 @@ export class DemandePageComponent implements OnInit {
   private missionService = inject(MissionService);
   private authService = inject(AuthService);
 
+  /** Nombre maximum de photos jointes à la demande. */
+  readonly maxPhotos = 3;
+
   form: FormGroup;
-  photoPreviews: string[] = [];
 
   constructor() {
     this.form = this.fb.group({
       descriptif: ['', [Validators.required, Validators.minLength(20)]],
-      photos: this.fb.array([]),
+      // Chaque entrée = une clé de stockage renvoyée par le backend (upload via ac-file-upload).
+      photos: this.fb.array<FormControl<string | null>>([]),
     });
   }
 
@@ -38,42 +42,17 @@ export class DemandePageComponent implements OnInit {
     }
   }
 
-  get photos(): FormArray {
-    return this.form.get('photos') as FormArray;
+  get photos(): FormArray<FormControl<string | null>> {
+    return this.form.get('photos') as FormArray<FormControl<string | null>>;
   }
 
-  onFileChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      if (this.photos.length >= 3) {
-        alert('Vous ne pouvez télécharger que 3 photos maximum.');
-        return;
-      }
-
-      const file = input.files[0];
-      // TODO: Implement direct S3 upload here and get the URL/key
-      // For now, we'll just use a dummy URL and show a preview
-
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.photoPreviews.push(e.target.result);
-        this.photos.push(this.fb.control(`dummy-s3-key-${Date.now()}`));
-
-        // Set a timeout to remove the photo after 10 minutes
-        setTimeout(() => {
-          const index = this.photos.controls.findIndex(c => c.value === `dummy-s3-key-${Date.now()}`);
-          if (index !== -1) {
-            this.removePhoto(index);
-          }
-        }, 10 * 60 * 1000);
-      };
-      reader.readAsDataURL(file);
-    }
+  addPhoto(): void {
+    if (this.photos.length >= this.maxPhotos) return;
+    this.photos.push(new FormControl<string | null>(null));
   }
 
   removePhoto(index: number): void {
     this.photos.removeAt(index);
-    this.photoPreviews.splice(index, 1);
   }
 
   onSubmit(): void {
@@ -88,12 +67,15 @@ export class DemandePageComponent implements OnInit {
       return;
     }
 
+    // On ne garde que les clés réellement uploadées (entrées non vides).
+    const photoUrls = (this.photos.value as (string | null)[]).filter((key): key is string => !!key);
+
     const missionData = {
       descriptif: this.form.value.descriptif,
       prestataireIds: searchState.professionalIds,
       metierId: searchState.tradeId,
       lieu: searchState.location,
-      photoUrls: this.form.value.photos,
+      photoUrls,
     };
 
     this.missionService.createMission(missionData).subscribe({
