@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng cache clean && ng serve",
     "start:staging": "ng serve -c staging",
     "dev": "ng serve --hmr",
     "dev:clean": "ng cache clean && ng serve --hmr",
