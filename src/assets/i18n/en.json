@@ -1051,6 +1051,10 @@
           "joinedAt": "Joined on"
         }
       },
+      "myReferrer": {
+        "title": "My referrer",
+        "none": "You don't have a referrer."
+      },
       "howItWorks": {
         "title": "How it works?",
         "individual": "Referred individual → 20% commission for the first 6 months, then 10% for the next 6.",

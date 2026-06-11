@@ -421,22 +421,39 @@
                                             </div>
                                         }
                                     </div>
-
-                                    <div class="aff-how-block">
-                                        <h4 class="aff-sub-title">{{ 'dashboard.affiliation.howItWorks.title' | transloco }}</h4>
-                                        <div class="aff-how-grid">
-                                            <div class="aff-how-step">
-                                                <div class="aff-how-num">1</div>
-                                                <p>{{ 'dashboard.affiliation.howItWorks.individual' | transloco }}</p>
-                                            </div>
-                                            <div class="aff-how-step">
-                                                <div class="aff-how-num">2</div>
-                                                <p>{{ 'dashboard.affiliation.howItWorks.professional' | transloco }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
                                 }
                             }
+
+                            @if (!affiliationLoading()) {
+                                <div class="aff-block">
+                                    <h4 class="aff-sub-title">{{ 'dashboard.affiliation.myReferrer.title' | transloco }}</h4>
+                                    @if (affiliationData()?.myReferrer; as referrer) {
+                                        <div class="aff-referral-item">
+                                            <div class="aff-referral-avatar">{{ referrer.firstName[0] }}{{ referrer.lastName[0] }}</div>
+                                            <div class="aff-referral-info">
+                                                <span class="aff-referral-name">{{ referrer.firstName }} {{ referrer.lastName }}</span>
+                                                <span class="aff-referral-meta">{{ ('dashboard.affiliation.referrals.role.' + referrer.role.code) | transloco }} · {{ referrer.createdAt | date:'dd/MM/yyyy' }}</span>
+                                            </div>
+                                        </div>
+                                    } @else {
+                                        <p class="ind-empty">{{ 'dashboard.affiliation.myReferrer.none' | transloco }}</p>
+                                    }
+                                </div>
+                            }
+
+                            <div class="aff-how-block">
+                                <h4 class="aff-sub-title">{{ 'dashboard.affiliation.howItWorks.title' | transloco }}</h4>
+                                <div class="aff-how-grid">
+                                    <div class="aff-how-step">
+                                        <div class="aff-how-num">1</div>
+                                        <p>{{ 'dashboard.affiliation.howItWorks.individual' | transloco }}</p>
+                                    </div>
+                                    <div class="aff-how-step">
+                                        <div class="aff-how-num">2</div>
+                                        <p>{{ 'dashboard.affiliation.howItWorks.professional' | transloco }}</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     }
                 }

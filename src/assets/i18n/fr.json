@@ -1091,6 +1091,10 @@
           "joinedAt": "Inscrit le"
         }
       },
+      "myReferrer": {
+        "title": "Mon parrain",
+        "none": "Vous n'avez pas de parrain."
+      },
       "howItWorks": {
         "title": "Comment ça marche ?",
         "individual": "Particulier parrainé → 20% de commission les 6 premiers mois, puis 10% les 6 suivants.",

@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export interface AffiliationReferral {
   id: string;
   affiliateFirstName: string;
@@ -17,4 +19,5 @@ export interface AffiliationDashboard {
   totalEarned: number;
   pendingEarnings: number;
   referrals: AffiliationReferral[];
+  myReferrer: User | null;
 }
