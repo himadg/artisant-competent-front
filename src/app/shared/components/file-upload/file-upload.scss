@@ -1,5 +1,12 @@
 :host {
   display: block;
+  // Le parent (`.flex .flex-col .items-center`) centre ses enfants sur l'axe
+  // horizontal : un bloc sans largeur explicite se réduit alors à la largeur
+  // de son contenu. FilePond calcule l'aperçu image à partir de la largeur du
+  // conteneur (`root.rect.inner.width`) ; si elle est ~0, l'échelle vaut 0 et
+  // l'aperçu reste figé en `scale3d(0,0,1)` (canvas invisible). On force donc
+  // la largeur pleine pour garantir une mesure correcte.
+  width: 100%;
 }
 
 // FilePond hérite des couleurs du thème

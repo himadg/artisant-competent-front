@@ -23,7 +23,7 @@ interface TurnstileApi {
     container: HTMLElement,
     options: {
       sitekey: string;
-      size?: 'normal' | 'compact' | 'invisible' | 'flexible';
+      size?: 'normal' | 'compact' | 'flexible';
       callback?: (token: string) => void;
       'error-callback'?: (error?: unknown) => void;
       'expired-callback'?: () => void;
@@ -118,7 +118,10 @@ export class TurnstileService {
 
           this.widgetId = turnstile.render(container, {
             sitekey: this.siteKey,
-            size: 'invisible',
+            // Pas de `size: 'invisible'` : l'API Turnstile actuelle rejette cette
+            // valeur (« expected "compact", "flexible", or "normal" »). Le
+            // comportement invisible vient de `execution: 'execute'` combiné à un
+            // sitekey configuré en mode invisible/pre-clearance côté dashboard.
             execution: 'execute',
             callback: (token: string) => {
               const r = this.pendingResolve;

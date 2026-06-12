@@ -55,6 +55,7 @@
     "@ng-icons/core": "^32.5.0",
     "@ng-icons/heroicons": "^32.5.0",
     "@ng-icons/lucide": "^32.5.0",
+    "dompurify": "^3.4.9",
     "express": "^5.1.0",
     "filepond": "^4.32.12",
     "filepond-plugin-file-validate-size": "^2.2.8",

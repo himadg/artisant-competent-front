@@ -4,6 +4,7 @@ import {
   forwardRef,
   inject,
   Input,
+  OnInit,
   signal,
   ViewChild,
 } from '@angular/core';
@@ -47,7 +48,7 @@ registerPlugin(FilePondPluginImagePreview, FilePondPluginFileValidateType, FileP
     },
   ],
 })
-export class FileUpload implements ControlValueAccessor {
+export class FileUpload implements ControlValueAccessor, OnInit {
   private readonly storage = inject(StorageService);
 
   @ViewChild('pond') pond?: FilePondComponent;
@@ -72,7 +73,23 @@ export class FileUpload implements ControlValueAccessor {
   /** Clé courante stockée côté backend. */
   private currentKey: string | null = null;
 
-  get pondOptions() {
+  /**
+   * Options FilePond — calculées une seule fois (référence stable).
+   *
+   * IMPORTANT : `ngx-filepond` rappelle `pond.setOptions()` à chaque fois que
+   * la référence de l'input `[options]` change (cf. son `ngOnChanges`). Si on
+   * expose un getter, Angular fournit un nouvel objet à chaque cycle de
+   * détection de changement, ce qui reconfigure FilePond en boucle et empêche
+   * le plugin image-preview de terminer le rendu de l'aperçu. On fige donc la
+   * référence dans `ngOnInit`.
+   */
+  pondOptions: Record<string, unknown> = {};
+
+  ngOnInit(): void {
+    this.pondOptions = this.buildPondOptions();
+  }
+
+  private buildPondOptions() {
     // FilePond attend des types MIME ; on convertit les extensions courantes.
     const extToMime: Record<string, string> = {
       '.pdf': 'application/pdf',
