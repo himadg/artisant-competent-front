@@ -36,7 +36,8 @@
               "src/fonts.css",
               "src/styles.css",
               "node_modules/filepond/dist/filepond.min.css",
-              "node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css"
+              "node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css",
+              "node_modules/filepond-plugin-pdf-preview/dist/filepond-plugin-pdf-preview.min.css"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",

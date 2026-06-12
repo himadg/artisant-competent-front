@@ -2,6 +2,7 @@ import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   forwardRef,
+  HostBinding,
   inject,
   Input,
   OnInit,
@@ -13,13 +14,21 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FilePondModule, FilePondComponent } from 'ngx-filepond';
 import { registerPlugin } from 'filepond';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+import FilePondPluginPdfPreview from 'filepond-plugin-pdf-preview';
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
 import { firstValueFrom } from 'rxjs';
 import { StorageService } from '../../../core/services/storage.service';
 
-// Enregistrement unique des plugins FilePond (au chargement du module)
-registerPlugin(FilePondPluginImagePreview, FilePondPluginFileValidateType, FilePondPluginFileValidateSize);
+// Enregistrement unique des plugins FilePond (au chargement du module).
+// `pdf-preview` rend la 1re page via un <object> natif (visionneuse PDF du
+// navigateur) : pas de worker pdf.js, donc rien à câbler côté Trusted Types.
+registerPlugin(
+  FilePondPluginImagePreview,
+  FilePondPluginPdfPreview,
+  FilePondPluginFileValidateType,
+  FilePondPluginFileValidateSize,
+);
 
 /**
  * Champ d'upload réutilisable basé sur FilePond.
@@ -61,8 +70,21 @@ export class FileUpload implements ControlValueAccessor, OnInit {
   @Input() maxFileSize: string | null = '10MB';
   /** Affiche l'aperçu image. */
   @Input() imagePreview = true;
+  /** Hauteur (px) de l'aperçu PDF. */
+  @Input() pdfPreviewHeight = 320;
   /** Désactive le champ. */
   @Input() disabled = false;
+
+  /**
+   * Expose la hauteur d'aperçu PDF en variable CSS sur le host. Le plugin
+   * pdf-preview écrase la hauteur de l'item par le `scrollHeight` mesuré du PDF
+   * (variable selon la largeur de colonne), donc on la fige côté CSS via cette
+   * variable (cf. file-upload.scss) pour une hauteur constante sur toutes les pages.
+   */
+  @HostBinding('style.--ac-pdf-preview-height')
+  get pdfPreviewHeightVar(): string {
+    return `${this.pdfPreviewHeight}px`;
+  }
 
   /** Fichiers à afficher au démarrage (restauration depuis une clé). */
   readonly pondFiles = signal<any[]>([]);
@@ -106,6 +128,9 @@ export class FileUpload implements ControlValueAccessor, OnInit {
 
     return {
       allowImagePreview: this.imagePreview,
+      // Aperçu PDF (1re page via <object> natif). Hauteur configurable par usage.
+      allowPdfPreview: true,
+      pdfPreviewHeight: this.pdfPreviewHeight,
       allowMultiple: false,
       maxFiles: 1,
       disabled: this.disabled,

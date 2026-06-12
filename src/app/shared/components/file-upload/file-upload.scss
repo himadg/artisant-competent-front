@@ -20,3 +20,13 @@
   border: 1px solid var(--color, #d1d5db);
   background-color: transparent;
 }
+
+// Aperçu PDF : le plugin pdf-preview fixe la hauteur de l'item sur le
+// `scrollHeight` mesuré du <object> PDF, qui varie selon la largeur de la
+// colonne (d'où une hauteur incohérente entre les pages). On fige donc la
+// hauteur sur la valeur de l'input `pdfPreviewHeight` (exposée en variable CSS
+// `--ac-pdf-preview-height`). On ne cible que les items contenant un aperçu PDF
+// pour ne pas toucher les aperçus image.
+:host ::ng-deep .filepond--item:has(.filepond--pdf-preview-wrapper) {
+  height: var(--ac-pdf-preview-height, 320px) !important;
+}
