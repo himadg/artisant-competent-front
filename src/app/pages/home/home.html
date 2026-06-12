@@ -1,44 +1,14 @@
 <div class="overflow-hidden absolute top-0 left-0 z-0 w-full h-[30rem] pictures-fader md:h-[42rem]">
-    <img
-        src="assets/img/image-qui-defile-1.webp"
-        alt="Image qui défile 1"
-        class="object-cover w-full h-full pictures-frame"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-    />
-    <img
-        src="assets/img/image-qui-defile-2.webp"
-        alt="Image qui défile 2"
-        class="object-cover w-full h-full pictures-frame"
-        loading="lazy"
-        fetchpriority="low"
-        decoding="async"
-    />
-    <img
-        src="assets/img/image-qui-defile-3.webp"
-        alt="Image qui défile 3"
-        class="object-cover w-full h-full pictures-frame"
-        loading="lazy"
-        fetchpriority="low"
-        decoding="async"
-    />
-    <img
-        src="assets/img/image-qui-defile-4.webp"
-        alt="Image qui défile 4"
-        class="object-cover w-full h-full pictures-frame"
-        loading="lazy"
-        fetchpriority="low"
-        decoding="async"
-    />
-    <img
-        src="assets/img/image-qui-defile-5.webp"
-        alt="Image qui défile 5"
-        class="object-cover w-full h-full pictures-frame"
-        loading="lazy"
-        fetchpriority="low"
-        decoding="async"
-    />
+    <img src="assets/img/image-qui-defile-1.webp" alt="Image qui défile 1"
+        class="object-cover w-full h-full pictures-frame" loading="eager" fetchpriority="high" decoding="async" />
+    <img src="assets/img/image-qui-defile-2.webp" alt="Image qui défile 2"
+        class="object-cover w-full h-full pictures-frame" loading="lazy" fetchpriority="low" decoding="async" />
+    <img src="assets/img/image-qui-defile-3.webp" alt="Image qui défile 3"
+        class="object-cover w-full h-full pictures-frame" loading="lazy" fetchpriority="low" decoding="async" />
+    <img src="assets/img/image-qui-defile-4.webp" alt="Image qui défile 4"
+        class="object-cover w-full h-full pictures-frame" loading="lazy" fetchpriority="low" decoding="async" />
+    <img src="assets/img/image-qui-defile-5.webp" alt="Image qui défile 5"
+        class="object-cover w-full h-full pictures-frame" loading="lazy" fetchpriority="low" decoding="async" />
 </div>
 
 <div class="pt-[1rem] md:pt-[4rem] pb-12 mx-auto space-y-6 max-w-screen-lg z-10 relative">
@@ -58,20 +28,17 @@
 
     <!-- Section 1e : CTA Inscrivez-vous -->
     <div class="flex justify-center">
-        <a
-            [routerLink]="['/auth/register']"
-            class="px-6 py-3 font-semibold rounded-lg no-underline bg-[#a97849] text-[var(--primary-beige)]"
-        >
+        <a [routerLink]="['/auth/register']"
+            class="px-6 py-3 font-semibold rounded-lg no-underline bg-[#a97849] text-[var(--primary-beige)]">
             {{ 'home.hero.ctaRegister' | transloco }}
         </a>
     </div>
 
     <!-- Section 1d : cadre arguments -->
     <ul
-        class="grid gap-2 p-6 mx-auto text-sm list-disc list-inside rounded-lg w-fit bg-[var(--primary-water-green)] text-[var(--primary-beige)] md:text-base"
-    >
+        class="grid gap-2 p-6 mx-auto text-sm list-disc list-inside rounded-lg w-fit bg-[var(--primary-water-green)] text-[var(--primary-beige)] md:text-base">
         @for (arg of 'home.hero.args' | transloco; track $index) {
-            <li>{{ arg }}</li>
+        <li>{{ arg }}</li>
         }
     </ul>
 
@@ -85,128 +52,77 @@
                 {{ 'home.cities.affiliateTeaserBefore' | transloco
                 }}<a routerLink="/affiliation" class="underline font-semibold text-[var(--tertiary-brown)]">{{
                     'home.cities.affiliateTeaserLink' | transloco
-                }}</a
-                >{{ 'home.cities.affiliateTeaserAfter' | transloco }}
+                }}</a>{{ 'home.cities.affiliateTeaserAfter' | transloco }}
             </p>
         </accordion>
         <!-- TODO: pastille "Disponible 24/7" (home.cities.badge247) a poser sur les villes couvertes en urgence (liste a fournir) -->
         <div class="overflow-x-auto py-2 w-full h-scroll">
             <div class="flex gap-4">
                 <a routerLink="/city/paris" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img
-                        src="assets/img/paris.webp"
-                        alt="Paris"
-                        class="object-cover w-full h-24 md:h-40"
-                        loading="lazy"
-                    />
+                    <img src="assets/img/paris.webp" alt="Paris" class="object-cover w-full h-24 md:h-40"
+                        loading="lazy" />
                     <div class="p-4">{{ 'home.where.cities.paris' | transloco }}</div>
                 </a>
                 <a routerLink="/city/marseille" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img
-                        src="assets/img/marseille.webp"
-                        alt="Marseille"
-                        class="object-cover w-full h-24 md:h-40"
-                        loading="lazy"
-                    />
+                    <img src="assets/img/marseille.webp" alt="Marseille" class="object-cover w-full h-24 md:h-40"
+                        loading="lazy" />
                     <div class="p-4">{{ 'home.where.cities.marseille' | transloco }}</div>
                 </a>
                 <a routerLink="/city/lyon" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img
-                        src="assets/img/lyon.webp"
-                        alt="Lyon"
-                        class="object-cover w-full h-24 md:h-40"
-                        loading="lazy"
-                    />
+                    <img src="assets/img/lyon.webp" alt="Lyon" class="object-cover w-full h-24 md:h-40"
+                        loading="lazy" />
                     <div class="p-4">{{ 'home.where.cities.lyon' | transloco }}</div>
                 </a>
                 <a routerLink="/city/toulouse" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img
-                        src="assets/img/toulouse.webp"
-                        alt="Toulouse"
-                        class="object-cover w-full h-24 md:h-40"
-                        loading="lazy"
-                    />
+                    <img src="assets/img/toulouse.webp" alt="Toulouse" class="object-cover w-full h-24 md:h-40"
+                        loading="lazy" />
                     <div class="p-4">{{ 'home.where.cities.toulouse' | transloco }}</div>
                 </a>
                 <a routerLink="/city/nice" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img
-                        src="assets/img/nice.webp"
-                        alt="Nice"
-                        class="object-cover w-full h-24 md:h-40"
-                        loading="lazy"
-                    />
+                    <img src="assets/img/nice.webp" alt="Nice" class="object-cover w-full h-24 md:h-40"
+                        loading="lazy" />
                     <div class="p-4">{{ 'home.where.cities.nice' | transloco }}</div>
                 </a>
                 <a routerLink="/city/nantes" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img
-                        src="assets/img/nantes.webp"
-                        alt="Nantes"
-                        class="object-cover w-full h-24 md:h-40"
-                        loading="lazy"
-                    />
+                    <img src="assets/img/nantes.webp" alt="Nantes" class="object-cover w-full h-24 md:h-40"
+                        loading="lazy" />
                     <div class="p-4">{{ 'home.where.cities.nantes' | transloco }}</div>
                 </a>
                 <a routerLink="/city/montpellier" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img
-                        src="assets/img/montpellier.webp"
-                        alt="Montpellier"
-                        class="object-cover w-full h-24 md:h-40"
-                        loading="lazy"
-                    />
+                    <img src="assets/img/montpellier.webp" alt="Montpellier" class="object-cover w-full h-24 md:h-40"
+                        loading="lazy" />
                     <div class="p-4">{{ 'home.where.cities.montpellier' | transloco }}</div>
                 </a>
                 <a routerLink="/city/strasbourg" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img
-                        src="assets/img/strasbourg.webp"
-                        alt="Strasbourg"
-                        class="object-cover w-full h-24 md:h-40"
-                        loading="lazy"
-                    />
+                    <img src="assets/img/strasbourg.webp" alt="Strasbourg" class="object-cover w-full h-24 md:h-40"
+                        loading="lazy" />
                     <div class="p-4">{{ 'home.where.cities.strasbourg' | transloco }}</div>
                 </a>
                 <a routerLink="/city/bordeaux" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img
-                        src="assets/img/bordeaux.jpg"
-                        alt="Bordeaux"
-                        class="object-cover w-full h-24 md:h-40"
-                        loading="lazy"
-                    />
+                    <img src="assets/img/bordeaux.jpg" alt="Bordeaux" class="object-cover w-full h-24 md:h-40"
+                        loading="lazy" />
                     <div class="p-4">{{ 'home.where.cities.bordeaux' | transloco }}</div>
                 </a>
                 <a routerLink="/city/lille" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img
-                        src="assets/img/lille.webp"
-                        alt="Lille"
-                        class="object-cover w-full h-24 md:h-40"
-                        loading="lazy"
-                    />
+                    <img src="assets/img/lille.webp" alt="Lille" class="object-cover w-full h-24 md:h-40"
+                        loading="lazy" />
                     <div class="p-4">{{ 'home.where.cities.lille' | transloco }}</div>
                 </a>
                 <a routerLink="/city/rennes" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img
-                        src="assets/img/rennes.webp"
-                        alt="Rennes"
-                        class="object-cover w-full h-24 md:h-40"
-                        loading="lazy"
-                    />
+                    <img src="assets/img/rennes.webp" alt="Rennes" class="object-cover w-full h-24 md:h-40"
+                        loading="lazy" />
                     <div class="p-4">{{ 'home.where.cities.rennes' | transloco }}</div>
                 </a>
                 <a routerLink="/city/toulon" class="overflow-hidden w-48 rounded-lg border shrink-0">
-                    <img
-                        src="assets/img/toulon.webp"
-                        alt="Toulon"
-                        class="object-cover w-full h-24 md:h-40"
-                        loading="lazy"
-                    />
+                    <img src="assets/img/toulon.webp" alt="Toulon" class="object-cover w-full h-24 md:h-40"
+                        loading="lazy" />
                     <div class="p-4">{{ 'home.where.cities.toulon' | transloco }}</div>
                 </a>
             </div>
         </div>
         <div class="flex justify-center">
-            <a
-                routerLink="/cities"
-                class="px-6 py-3 font-semibold no-underline bg-[#a97849] rounded-lg text-[var(--primary-beige)] w-fit"
-            >
+            <a routerLink="/cities"
+                class="px-6 py-3 font-semibold no-underline bg-[#a97849] rounded-lg text-[var(--primary-beige)] w-fit">
                 {{ 'home.cities.discoverAll' | transloco }}
             </a>
         </div>
@@ -222,105 +138,70 @@
             <div class="flex gap-6">
                 <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'electrician']">
                     <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img
-                            src="assets/img/electricien.jpg"
-                            alt="{{ 'jobs.list.electrician.name' | transloco }}"
-                            class="object-cover w-full h-full"
-                            loading="lazy"
-                        />
+                        <img src="assets/img/electricien.jpg" alt="{{ 'jobs.list.electrician.name' | transloco }}"
+                            class="object-cover w-full h-full" loading="lazy" />
                     </div>
                     <div class="mt-2">{{ 'home.trades.cards.electrician' | transloco }}</div>
                 </a>
                 <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'locksmith']">
                     <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img
-                            src="assets/img/serrurier.jpg"
-                            alt="{{ 'jobs.list.locksmith.name' | transloco }}"
-                            class="object-cover w-full h-full"
-                            loading="lazy"
-                        />
+                        <img src="assets/img/serrurier.jpg" alt="{{ 'jobs.list.locksmith.name' | transloco }}"
+                            class="object-cover w-full h-full" loading="lazy" />
                     </div>
                     <div class="mt-2">{{ 'home.trades.cards.locksmith' | transloco }}</div>
                 </a>
                 <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'plumber-sanitary']">
                     <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img
-                            src="assets/img/plombier.jpg"
-                            alt="{{ 'jobs.list.plumberSanitary.name' | transloco }}"
-                            class="object-cover w-full h-full"
-                            loading="lazy"
-                        />
+                        <img src="assets/img/plombier.jpg" alt="{{ 'jobs.list.plumberSanitary.name' | transloco }}"
+                            class="object-cover w-full h-full" loading="lazy" />
                     </div>
                     <div class="mt-2">{{ 'home.trades.cards.plumberSanitary' | transloco }}</div>
                 </a>
                 <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'heating']">
                     <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img
-                            src="assets/img/chauffagiste.jpg"
-                            alt="{{ 'jobs.list.heating.name' | transloco }}"
-                            class="object-cover w-full h-full"
-                            loading="lazy"
-                        />
+                        <img src="assets/img/chauffagiste.jpg" alt="{{ 'jobs.list.heating.name' | transloco }}"
+                            class="object-cover w-full h-full" loading="lazy" />
                     </div>
                     <div class="mt-2">{{ 'home.trades.cards.heating' | transloco }}</div>
                 </a>
                 <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'drain-unblocker']">
                     <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img
-                            src="assets/img/deboucheur-canalisation.jpg"
-                            alt="{{ 'jobs.list.drainUnblocker.name' | transloco }}"
-                            class="object-cover w-full h-full"
-                            loading="lazy"
-                        />
+                        <img src="assets/img/deboucheur-canalisation.jpg"
+                            alt="{{ 'jobs.list.drainUnblocker.name' | transloco }}" class="object-cover w-full h-full"
+                            loading="lazy" />
                     </div>
                     <div class="mt-2">{{ 'home.trades.cards.drainUnblocker' | transloco }}</div>
                 </a>
                 <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'hvac']">
                     <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img
-                            src="assets/img/installeur-clim.jpg"
-                            alt="{{ 'jobs.list.hvac.name' | transloco }}"
-                            class="object-cover w-full h-full"
-                            loading="lazy"
-                        />
+                        <img src="assets/img/installeur-clim.jpg" alt="{{ 'jobs.list.hvac.name' | transloco }}"
+                            class="object-cover w-full h-full" loading="lazy" />
                     </div>
                     <div class="mt-2">{{ 'home.trades.cards.hvac' | transloco }}</div>
                 </a>
                 <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'glazier']">
                     <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img
-                            src="assets/img/vitrier.jpg"
-                            alt="{{ 'jobs.list.glazier.name' | transloco }}"
-                            class="object-cover w-full h-full"
-                            loading="lazy"
-                        />
+                        <img src="assets/img/vitrier.jpg" alt="{{ 'jobs.list.glazier.name' | transloco }}"
+                            class="object-cover w-full h-full" loading="lazy" />
                     </div>
                     <div class="mt-2">{{ 'home.trades.cards.glazier' | transloco }}</div>
                 </a>
                 <a class="block w-48 text-center shrink-0" [routerLink]="['/job', 'pest-control']">
                     <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
-                        <img
-                            src="assets/img/anti-nuisibles.jpg"
-                            alt="{{ 'jobs.list.pestControl.name' | transloco }}"
-                            class="object-cover w-full h-full"
-                            loading="lazy"
-                        />
+                        <img src="assets/img/anti-nuisibles.jpg" alt="{{ 'jobs.list.pestControl.name' | transloco }}"
+                            class="object-cover w-full h-full" loading="lazy" />
                     </div>
                     <div class="mt-2">{{ 'home.trades.cards.pestControl' | transloco }}</div>
                 </a>
             </div>
         </div>
         <div class="flex flex-col gap-4 mx-auto w-full max-w-md sm:flex-row sm:max-w-xl">
-            <a
-                routerLink="/jobs"
-                class="flex-1 basis-0 min-w-0 px-6 py-3 font-semibold text-center no-underline rounded-lg bg-[#a97849] text-[var(--primary-beige)]"
-            >
+            <a routerLink="/jobs"
+                class="flex-1 basis-0 min-w-0 px-6 py-3 font-semibold text-center no-underline rounded-lg bg-[#a97849] text-[var(--primary-beige)]">
                 {{ 'home.trades.cta' | transloco }}
             </a>
-            <a
-                [routerLink]="['/auth/register']"
-                class="flex-1 basis-0 min-w-0 px-6 py-3 font-semibold text-center no-underline rounded-lg bg-[#a97849] text-[var(--primary-beige)]"
-            >
+            <a [routerLink]="['/auth/register']"
+                class="flex-1 basis-0 min-w-0 px-6 py-3 font-semibold text-center no-underline rounded-lg bg-[#a97849] text-[var(--primary-beige)]">
                 {{ 'home.trades.ctaRegister' | transloco }}
             </a>
         </div>
@@ -346,7 +227,7 @@
                 <p>{{ 'home.emergency.description.p4' | transloco }}</p>
                 <ul class="pl-6 space-y-1 list-disc">
                     @for (item of 'home.emergency.description.list1' | transloco; track $index) {
-                        <li>{{ item }}</li>
+                    <li>{{ item }}</li>
                     }
                 </ul>
                 <p>{{ 'home.emergency.description.p5' | transloco }}</p>
@@ -359,7 +240,7 @@
                 <p>{{ 'home.emergency.description.p12' | transloco }}</p>
                 <ul class="pl-6 space-y-1 list-disc">
                     @for (item of 'home.emergency.description.list2' | transloco; track $index) {
-                        <li>{{ item }}</li>
+                    <li>{{ item }}</li>
                     }
                 </ul>
                 <p>{{ 'home.emergency.description.p13' | transloco }}</p>
@@ -368,42 +249,32 @@
         <h3 class="text-lg font-semibold md:text-xl">{{ 'home.emergency.tradesTitle' | transloco }}</h3>
         <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-6">
             <li class="md:col-span-2">
-                <a
-                    routerLink="/job/plumber-sanitary"
-                    class="flex justify-center items-center p-6 h-full font-medium text-center text-white no-underline rounded-lg transition bg-[var(--tertiary-brown)] hover:brightness-95 hover:shadow-md"
-                >
+                <a routerLink="/job/plumber-sanitary"
+                    class="flex justify-center items-center p-6 h-full font-medium text-center text-white no-underline rounded-lg transition bg-[var(--tertiary-brown)] hover:brightness-95 hover:shadow-md">
                     {{ 'home.emergency.trades.plumber' | transloco }}
                 </a>
             </li>
             <li class="md:col-span-2">
-                <a
-                    routerLink="/job/heating"
-                    class="flex justify-center items-center p-6 h-full font-medium text-center text-white no-underline rounded-lg transition bg-[var(--tertiary-brown)] hover:brightness-95 hover:shadow-md"
-                >
+                <a routerLink="/job/heating"
+                    class="flex justify-center items-center p-6 h-full font-medium text-center text-white no-underline rounded-lg transition bg-[var(--tertiary-brown)] hover:brightness-95 hover:shadow-md">
                     {{ 'home.emergency.trades.heating' | transloco }}
                 </a>
             </li>
             <li class="md:col-span-2">
-                <a
-                    routerLink="/job/locksmith"
-                    class="flex justify-center items-center p-6 h-full font-medium text-center text-white no-underline rounded-lg transition bg-[var(--tertiary-brown)] hover:brightness-95 hover:shadow-md"
-                >
+                <a routerLink="/job/locksmith"
+                    class="flex justify-center items-center p-6 h-full font-medium text-center text-white no-underline rounded-lg transition bg-[var(--tertiary-brown)] hover:brightness-95 hover:shadow-md">
                     {{ 'home.emergency.trades.locksmith' | transloco }}
                 </a>
             </li>
             <li class="md:col-span-2 md:col-start-2">
-                <a
-                    routerLink="/job/electrician"
-                    class="flex justify-center items-center p-6 h-full font-medium text-center text-white no-underline rounded-lg transition bg-[var(--tertiary-brown)] hover:brightness-95 hover:shadow-md"
-                >
+                <a routerLink="/job/electrician"
+                    class="flex justify-center items-center p-6 h-full font-medium text-center text-white no-underline rounded-lg transition bg-[var(--tertiary-brown)] hover:brightness-95 hover:shadow-md">
                     {{ 'home.emergency.trades.electrician' | transloco }}
                 </a>
             </li>
             <li class="md:col-span-2">
-                <a
-                    routerLink="/job/drain-unblocker"
-                    class="flex justify-center items-center p-6 h-full font-medium text-center text-white no-underline rounded-lg transition bg-[var(--tertiary-brown)] hover:brightness-95 hover:shadow-md"
-                >
+                <a routerLink="/job/drain-unblocker"
+                    class="flex justify-center items-center p-6 h-full font-medium text-center text-white no-underline rounded-lg transition bg-[var(--tertiary-brown)] hover:brightness-95 hover:shadow-md">
                     {{ 'home.emergency.trades.drainUnblocker' | transloco }}
                 </a>
             </li>
@@ -415,17 +286,12 @@
         <h2 class="text-xl font-semibold md:text-3xl">{{ 'home.midCta.title' | transloco }}</h2>
         <p class="mx-auto max-w-xl text-base md:text-lg">{{ 'home.midCta.lead' | transloco }}</p>
         <div class="flex flex-col gap-4 justify-center mx-auto w-full max-w-md sm:flex-row sm:max-w-xl">
-            <button
-                type="button"
-                (click)="scrollToSearch()"
-                class="flex-1 basis-0 min-w-0 px-6 py-3 font-semibold text-center rounded-lg cursor-pointer bg-[#a97849] text-[var(--primary-beige)]"
-            >
+            <button type="button" (click)="scrollToSearch()"
+                class="flex-1 basis-0 min-w-0 px-6 py-3 font-semibold text-center rounded-lg cursor-pointer bg-[#a97849] text-[var(--primary-beige)]">
                 {{ 'home.midCta.primaryBtn' | transloco }}
             </button>
-            <a
-                routerLink="/auth/register"
-                class="flex-1 basis-0 min-w-0 px-6 py-3 font-semibold text-center no-underline rounded-lg border-2 border-[#a97849] text-[#a97849]"
-            >
+            <a routerLink="/auth/register"
+                class="flex-1 basis-0 min-w-0 px-6 py-3 font-semibold text-center no-underline rounded-lg border-2 border-[#a97849] text-[#a97849]">
                 {{ 'home.midCta.secondaryBtn' | transloco }}
             </a>
         </div>
@@ -437,16 +303,9 @@
         <p class="text-lg font-semibold md:text-xl">{{ 'home.protection.lead' | transloco }}</p>
 
         <div class="space-y-4">
-            <accordion variant="section" [title]="'home.protection.cmod.title' | transloco">
-                <div class="protection-body" [innerHTML]="'home.protection.cmod.body' | transloco"></div>
-                <div class="flex justify-center mt-4">
-                    <a
-                        [routerLink]="['/cmod/formule']"
-                        class="inline-block px-6 py-3 font-semibold no-underline rounded-lg bg-[#a97849] text-[var(--primary-beige)] w-fit"
-                    >
-                        {{ 'home.protection.cmod.cta' | transloco }}
-                    </a>
-                </div>
+            <!-- TODO_HIMAD: contenu placeholder de l'accordéon "Fournitures et matériaux" à compléter avec la version finale (document WhatsApp). -->
+            <accordion variant="section" [title]="'home.encadrement.fournitures.title' | transloco">
+                <div class="protection-body" [innerHTML]="'home.encadrement.fournitures.content' | transloco"></div>
             </accordion>
             <accordion variant="section" [title]="'home.protection.escrow.title' | transloco">
                 <div class="protection-body" [innerHTML]="'home.protection.escrow.body' | transloco"></div>
@@ -463,9 +322,14 @@
             <accordion variant="section" [title]="'home.protection.signed.title' | transloco">
                 <div class="protection-body" [innerHTML]="'home.protection.signed.body' | transloco"></div>
             </accordion>
-            <!-- TODO_HIMAD: contenu placeholder de l'accordéon "Fournitures et matériaux" à compléter avec la version finale (document WhatsApp). -->
-            <accordion variant="section" [title]="'home.encadrement.fournitures.title' | transloco">
-                <div class="protection-body" [innerHTML]="'home.encadrement.fournitures.content' | transloco"></div>
+            <accordion variant="section" [title]="'home.protection.cmod.title' | transloco">
+                <div class="protection-body" [innerHTML]="'home.protection.cmod.body' | transloco"></div>
+                <div class="flex justify-center mt-4">
+                    <a [routerLink]="['/cmod/formule']"
+                        class="inline-block px-6 py-3 font-semibold no-underline rounded-lg bg-[#a97849] text-[var(--primary-beige)] w-fit">
+                        {{ 'home.protection.cmod.cta' | transloco }}
+                    </a>
+                </div>
             </accordion>
         </div>
     </section>
@@ -473,66 +337,60 @@
     <!-- Section 7 : Preuve sociale (avis) -->
     <!-- Masquee tant que reviewsEnabled = false (moins de 3 avis reels). Flag dans home.ts -->
     @if (reviewsEnabled) {
-        <section id="avis" class="space-y-4">
-            <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.reviews.h2' | transloco }}</h2>
-            <p class="text-lg md:text-xl">{{ 'home.reviews.subtitle' | transloco }}</p>
+    <section id="avis" class="space-y-4">
+        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.reviews.h2' | transloco }}</h2>
+        <p class="text-lg md:text-xl">{{ 'home.reviews.subtitle' | transloco }}</p>
 
-            <!-- TODO: grille/carrousel de 3 a 6 avis reels : prenom, note en etoiles,
+        <!-- TODO: grille/carrousel de 3 a 6 avis reels : prenom, note en etoiles,
                  extrait du commentaire, mention "Avis verifie Google" / "Avis verifie Trustpilot" -->
 
-            <p>{{ 'home.reviews.note' | transloco }}</p>
+        <p>{{ 'home.reviews.note' | transloco }}</p>
 
-            <!-- TODO: miniature cliquable vers la video YouTube de presentation (URL a fournir) -->
+        <!-- TODO: miniature cliquable vers la video YouTube de presentation (URL a fournir) -->
 
-            <p class="text-lg font-semibold md:text-xl">{{ 'home.reviews.strong' | transloco }}</p>
+        <p class="text-lg font-semibold md:text-xl">{{ 'home.reviews.strong' | transloco }}</p>
 
-            <div class="flex flex-col gap-4 mx-auto w-full max-w-md sm:flex-row sm:max-w-xl">
-                <!-- TODO: lien fiche Google Business -->
-                <a
-                    href="#"
-                    class="flex-1 basis-0 min-w-0 px-6 py-3 font-semibold text-center rounded-lg no-underline bg-grad-brown text-[var(--primary-beige)]"
-                >
-                    {{ 'home.reviews.ctaGoogle' | transloco }}
-                </a>
-                <!-- TODO: lien page Trustpilot -->
-                <a
-                    href="#"
-                    class="flex-1 basis-0 min-w-0 px-6 py-3 font-semibold text-center rounded-lg no-underline bg-grad-brown text-[var(--primary-beige)]"
-                >
-                    {{ 'home.reviews.ctaTrustpilot' | transloco }}
-                </a>
-            </div>
-        </section>
+        <div class="flex flex-col gap-4 mx-auto w-full max-w-md sm:flex-row sm:max-w-xl">
+            <!-- TODO: lien fiche Google Business -->
+            <a href="#"
+                class="flex-1 basis-0 min-w-0 px-6 py-3 font-semibold text-center rounded-lg no-underline bg-grad-brown text-[var(--primary-beige)]">
+                {{ 'home.reviews.ctaGoogle' | transloco }}
+            </a>
+            <!-- TODO: lien page Trustpilot -->
+            <a href="#"
+                class="flex-1 basis-0 min-w-0 px-6 py-3 font-semibold text-center rounded-lg no-underline bg-grad-brown text-[var(--primary-beige)]">
+                {{ 'home.reviews.ctaTrustpilot' | transloco }}
+            </a>
+        </div>
+    </section>
     }
 
     @defer (on viewport) {
-        <section id="comment-ca-marche" class="mt-12 space-y-6 steps-accordion">
-            <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.etapes.title' | transloco }}</h2>
-            <div class="space-y-4 mt-6">
-                <accordion variant="section" titleTag="h3" [title]="'home.etapes.etape1.title' | transloco">
-                    <div class="protection-body" [innerHTML]="'home.etapes.etape1.body' | transloco"></div>
-                </accordion>
-                <accordion variant="section" titleTag="h3" [title]="'home.etapes.etape2.title' | transloco">
-                    <div class="protection-body" [innerHTML]="'home.etapes.etape2.body' | transloco"></div>
-                </accordion>
-                <accordion variant="section" titleTag="h3" [title]="'home.etapes.etape3.title' | transloco">
-                    <div class="protection-body" [innerHTML]="'home.etapes.etape3.body' | transloco"></div>
-                </accordion>
-                <accordion variant="section" titleTag="h3" [title]="'home.etapes.etape4.title' | transloco">
-                    <div class="protection-body" [innerHTML]="'home.etapes.etape4.body' | transloco"></div>
-                </accordion>
-            </div>
-            <div class="flex justify-center mt-6">
-                <a
-                    [routerLink]="['/auth/register']"
-                    class="inline-block px-6 py-3 font-semibold no-underline rounded-lg bg-[#a97849] text-[var(--primary-beige)] w-fit"
-                >
-                    {{ 'home.etapes.ctaRegister' | transloco }}
-                </a>
-            </div>
-        </section>
+    <section id="comment-ca-marche" class="mt-12 space-y-6 steps-accordion">
+        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.etapes.title' | transloco }}</h2>
+        <div class="space-y-4 mt-6">
+            <accordion variant="section" titleTag="h3" [title]="'home.etapes.etape1.title' | transloco">
+                <div class="protection-body" [innerHTML]="'home.etapes.etape1.body' | transloco"></div>
+            </accordion>
+            <accordion variant="section" titleTag="h3" [title]="'home.etapes.etape2.title' | transloco">
+                <div class="protection-body" [innerHTML]="'home.etapes.etape2.body' | transloco"></div>
+            </accordion>
+            <accordion variant="section" titleTag="h3" [title]="'home.etapes.etape3.title' | transloco">
+                <div class="protection-body" [innerHTML]="'home.etapes.etape3.body' | transloco"></div>
+            </accordion>
+            <accordion variant="section" titleTag="h3" [title]="'home.etapes.etape4.title' | transloco">
+                <div class="protection-body" [innerHTML]="'home.etapes.etape4.body' | transloco"></div>
+            </accordion>
+        </div>
+        <div class="flex justify-center mt-6">
+            <a [routerLink]="['/auth/register']"
+                class="inline-block px-6 py-3 font-semibold no-underline rounded-lg bg-[#a97849] text-[var(--primary-beige)] w-fit">
+                {{ 'home.etapes.ctaRegister' | transloco }}
+            </a>
+        </div>
+    </section>
     } @placeholder {
-        <div class="mt-12 h-40"></div>
+    <div class="mt-12 h-40"></div>
     }
 
     <!-- Section 11 : Je suis un professionnel -->
@@ -544,11 +402,8 @@
             <p>{{ 'home.pro.p2' | transloco }}</p>
         </accordion>
         <div class="flex justify-center">
-            <a
-                [routerLink]="['/auth/register']"
-                [queryParams]="{ t: 'professional' }"
-                class="inline-block px-6 py-3 font-semibold rounded-lg no-underline bg-[#a97849] text-[var(--primary-beige)] w-fit"
-            >
+            <a [routerLink]="['/auth/register']" [queryParams]="{ t: 'professional' }"
+                class="inline-block px-6 py-3 font-semibold rounded-lg no-underline bg-[#a97849] text-[var(--primary-beige)] w-fit">
                 {{ 'home.pro.cta' | transloco }}
             </a>
         </div>
@@ -559,108 +414,63 @@
     <section id="faq" class="mt-12 space-y-6">
         <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.faq.title' | transloco }}</h2>
         <div class="space-y-4">
-            <accordion
-                variant="faq"
-                [title]="'home.faq.q1.question' | transloco"
-                [summary]="'home.faq.q1.summary' | transloco"
-            >
+            <accordion variant="faq" [title]="'home.faq.q1.question' | transloco"
+                [summary]="'home.faq.q1.summary' | transloco">
                 <div class="faq-body" [innerHTML]="'home.faq.q1.body' | transloco"></div>
             </accordion>
-            <accordion
-                variant="faq"
-                [title]="'home.faq.q2.question' | transloco"
-                [summary]="'home.faq.q2.summary' | transloco"
-            >
+            <accordion variant="faq" [title]="'home.faq.q2.question' | transloco"
+                [summary]="'home.faq.q2.summary' | transloco">
                 <div class="faq-body" [innerHTML]="'home.faq.q2.body' | transloco"></div>
             </accordion>
-            <accordion
-                variant="faq"
-                [title]="'home.faq.q3.question' | transloco"
-                [summary]="'home.faq.q3.summary' | transloco"
-            >
+            <accordion variant="faq" [title]="'home.faq.q3.question' | transloco"
+                [summary]="'home.faq.q3.summary' | transloco">
                 <div class="faq-body" [innerHTML]="'home.faq.q3.body' | transloco"></div>
             </accordion>
-            <accordion
-                variant="faq"
-                [title]="'home.faq.q4.question' | transloco"
-                [summary]="'home.faq.q4.summary' | transloco"
-            >
+            <accordion variant="faq" [title]="'home.faq.q4.question' | transloco"
+                [summary]="'home.faq.q4.summary' | transloco">
                 <div class="faq-body" [innerHTML]="'home.faq.q4.body' | transloco"></div>
             </accordion>
-            <accordion
-                variant="faq"
-                [title]="'home.faq.q5.question' | transloco"
-                [summary]="'home.faq.q5.summary' | transloco"
-            >
+            <accordion variant="faq" [title]="'home.faq.q5.question' | transloco"
+                [summary]="'home.faq.q5.summary' | transloco">
                 <div class="faq-body" [innerHTML]="'home.faq.q5.body' | transloco"></div>
             </accordion>
-            <accordion
-                variant="faq"
-                [title]="'home.faq.q6.question' | transloco"
-                [summary]="'home.faq.q6.summary' | transloco"
-            >
+            <accordion variant="faq" [title]="'home.faq.q6.question' | transloco"
+                [summary]="'home.faq.q6.summary' | transloco">
                 <div class="faq-body" [innerHTML]="'home.faq.q6.body' | transloco"></div>
             </accordion>
-            <accordion
-                variant="faq"
-                [title]="'home.faq.q7.question' | transloco"
-                [summary]="'home.faq.q7.summary' | transloco"
-            >
+            <accordion variant="faq" [title]="'home.faq.q7.question' | transloco"
+                [summary]="'home.faq.q7.summary' | transloco">
                 <div class="faq-body" [innerHTML]="'home.faq.q7.body' | transloco"></div>
             </accordion>
-            <accordion
-                variant="faq"
-                [title]="'home.faq.q8.question' | transloco"
-                [summary]="'home.faq.q8.summary' | transloco"
-            >
+            <accordion variant="faq" [title]="'home.faq.q8.question' | transloco"
+                [summary]="'home.faq.q8.summary' | transloco">
                 <div class="faq-body" [innerHTML]="'home.faq.q8.body' | transloco"></div>
             </accordion>
-            <accordion
-                variant="faq"
-                [title]="'home.faq.q9.question' | transloco"
-                [summary]="'home.faq.q9.summary' | transloco"
-            >
+            <accordion variant="faq" [title]="'home.faq.q9.question' | transloco"
+                [summary]="'home.faq.q9.summary' | transloco">
                 <div class="faq-body" [innerHTML]="'home.faq.q9.body' | transloco"></div>
             </accordion>
-            <accordion
-                variant="faq"
-                [title]="'home.faq.q10.question' | transloco"
-                [summary]="'home.faq.q10.summary' | transloco"
-            >
+            <accordion variant="faq" [title]="'home.faq.q10.question' | transloco"
+                [summary]="'home.faq.q10.summary' | transloco">
                 <div class="faq-body" [innerHTML]="'home.faq.q10.body' | transloco"></div>
             </accordion>
-            <accordion
-                variant="faq"
-                [title]="'home.faq.q11.question' | transloco"
-                [summary]="'home.faq.q11.summary' | transloco"
-            >
+            <accordion variant="faq" [title]="'home.faq.q11.question' | transloco"
+                [summary]="'home.faq.q11.summary' | transloco">
                 <div class="faq-body" [innerHTML]="'home.faq.q11.body' | transloco"></div>
             </accordion>
-            <div
-                id="faq-klarna"
-                class="scroll-mt-[calc(6rem+var(--announcement-banner-h))] md:scroll-mt-[calc(5rem+var(--announcement-banner-h))]"
-            >
-                <accordion
-                    #klarnaAccordion
-                    variant="faq"
-                    [title]="'home.faq.q12.question' | transloco"
-                    [summary]="'home.faq.q12.summary' | transloco"
-                >
+            <div id="faq-klarna"
+                class="scroll-mt-[calc(6rem+var(--announcement-banner-h))] md:scroll-mt-[calc(5rem+var(--announcement-banner-h))]">
+                <accordion #klarnaAccordion variant="faq" [title]="'home.faq.q12.question' | transloco"
+                    [summary]="'home.faq.q12.summary' | transloco">
                     <div class="faq-body" [innerHTML]="'home.faq.q12.body' | transloco"></div>
                 </accordion>
             </div>
-            <accordion
-                variant="faq"
-                [title]="'home.faq.q13.question' | transloco"
-                [summary]="'home.faq.q13.summary' | transloco"
-            >
+            <accordion variant="faq" [title]="'home.faq.q13.question' | transloco"
+                [summary]="'home.faq.q13.summary' | transloco">
                 <div class="faq-body" [innerHTML]="'home.faq.q13.body' | transloco"></div>
             </accordion>
-            <accordion
-                variant="faq"
-                [title]="'home.faq.affiliation.question' | transloco"
-                [summary]="'home.faq.affiliation.summary' | transloco"
-            >
+            <accordion variant="faq" [title]="'home.faq.affiliation.question' | transloco"
+                [summary]="'home.faq.affiliation.summary' | transloco">
                 <div class="faq-body" [innerHTML]="'home.faq.affiliation.body' | transloco"></div>
                 <p class="mt-3">
                     <a routerLink="/affiliation" class="underline font-semibold text-[var(--tertiary-brown)]">
@@ -683,10 +493,8 @@
         <div class="space-y-4 text-center">
             <p class="text-lg font-semibold md:text-2xl">{{ 'home.finalCta.p1' | transloco }}</p>
             <div class="flex flex-wrap gap-4 justify-center">
-                <a
-                    [routerLink]="['/auth/register']"
-                    class="px-6 py-3 font-semibold rounded-lg no-underline bg-[#a97849] text-[var(--primary-beige)]"
-                >
+                <a [routerLink]="['/auth/register']"
+                    class="px-6 py-3 font-semibold rounded-lg no-underline bg-[#a97849] text-[var(--primary-beige)]">
                     {{ 'home.finalCta.cta' | transloco }}
                 </a>
             </div>
