@@ -269,7 +269,7 @@
       "q10": {
         "question": "Quelle est la différence entre Artisan Compétent et une plateforme de mise en relation classique ?",
         "summary": "Contrairement aux plateformes classiques qui se limitent à mettre en relation, Artisan Compétent encadre toute la prestation : artisans vérifiés avant intégration, paiement séquestré via Stripe jusqu'à validation du chantier, suivi digital horodaté, médiation possible en cas de litige. L'argent ne transite jamais directement vers l'artisan ou Artisan Compétent.",
-        "body": "<p>La plupart des plateformes du bâtiment se limitent à mettre en relation un client et un artisan. Une fois la connexion établie, le client est seul face au professionnel pour gérer le paiement, le suivi des travaux et les éventuels litiges.</p><p>Artisan Compétent fonctionne différemment :</p><ul><li>les artisans sont vérifiés avant intégration (SIRET, assurances, certifications),</li><li>les échanges passent par le chat interne sécurisé,</li><li>le paiement est séquestré via Stripe jusqu'à validation du chantier,</li><li>chaque étape est horodatée et archivée dans le suivi digital,</li><li>une médiation est possible en cas de litige sur la base des éléments enregistrés.</li></ul><p>L'argent ne transite jamais directement vers l'artisan, ni même sur le compte bancaire d'Artisan Compétent. Les fonds restent dans le protocole sécurisé Stripe jusqu'à libération vers le professionnel ou restitution au client selon la situation.</p><p>Cet encadrement complet vise à protéger autant les clients honnêtes que les artisans sérieux, et à rétablir la confiance dans le secteur du bâtiment.</p>"
+        "body": "<p>La plupart des plateformes du bâtiment se limitent à mettre en relation un client et un artisan. Une fois la connexion établie, le client est seul face au professionnel pour gérer le paiement, le suivi des travaux et les éventuels litiges.</p><p>Artisan Compétent fonctionne différemment :</p><ul><li>les artisans sont vérifiés avant intégration (SIRET, assurances, certifications),</li><li>les échanges passent par le chat interne sécurisé,</li><li>le paiement est séquestré via Stripe jusqu'à validation du chantier,</li><li>chaque étape est horodatée et archivée dans le suivi digital,</li><li>une médiation est possible en cas de litige sur la base des éléments enregistrés.</li></ul><p>L'argent ne transite jamais directement vers l'artisan, ni même sur le compte bancaire d'Artisan Compétent. Les fonds restent dans le protocole sécurisé Stripe jusqu'à leur libération vers le professionnel ou restitution au client selon la situation.</p><p>Cet encadrement complet vise à protéger autant les clients honnêtes que les artisans sérieux, et à rétablir la confiance dans le secteur du bâtiment.</p>"
       },
       "q11": {
         "question": "Comment trouver un bon plombier, électricien ou serrurier près de chez moi ?",
@@ -809,7 +809,7 @@
       "detailsTitle": "Le détail si besoin",
       "detailClient": "Client particulier : 20 % de commission sur la marge Artisan Compétent les 3 premiers mois après l'inscription du client, 10 % les 3 mois suivants. Au-delà de 12 mois, la commission s'arrête.",
       "detailArtisan": "Artisan recommandé : 5 % sur la marge générée par les chantiers signés de cet artisan, pendant 3 mois après son inscription sur la plateforme.",
-      "detailCumul": "Cumul : si vous ramenez à la fois un client et un artisan, vous touchez sur les deux. Une même personne peut donc gagner jusqu'à 25 % sur un même chantier (20 % côté client + 5 % côté artisan).",
+      "detailCumul": "Si vous ramenez à la fois un client et un artisan, vous touchez sur les deux. Une même personne peut donc gagner jusqu'à 25 % sur un même chantier (20 % côté client + 5 % côté artisan).",
       "conditionsTitle": "Conditions communes",
       "condition1": "Cookie d'attribution valable 15 jours après le premier clic sur votre lien. Il se renouvelle à chaque nouveau clic d'un visiteur via votre lien. Donc en pratique, tant que vous publiez régulièrement, le cookie reste actif.",
       "condition2": "En complément du cookie, votre filleul est rattaché à votre compte partenaire au moment de son inscription. Vous touchez vos commissions pendant les 12 mois qui suivent son inscription (3 mois pour tout artisan amené).",
@@ -1322,9 +1322,6 @@
     "clientBilling": "Client (Facturation)",
     "jobsiteAddress": "Adresse du chantier",
     "provider": "Prestataire",
-    "building": "Bâtiment",
-    "floor": "Étage",
-    "apartment": "Appt",
     "email": "Email :",
     "phone": "Tél :",
     "siret": "SIRET :",
@@ -1408,6 +1405,7 @@
     "arbitration": "J'autorise la plateforme à arbitrer et libérer les fonds en cas de nécessité.",
     "summary": "Récapitulatif",
     "totalHTLabel": "Total HT (Matériaux + Prestations + Frais):",
+    "totalTVALabel": "Montant TVA :",
     "totalToPay": "Total à payer par le client :",
     "formHasErrors": "Le formulaire contient des erreurs. Veuillez vérifier les champs en rouge.",
     "preview": "Prévisualiser",
@@ -1432,12 +1430,7 @@
       "artisanLastName": "Nom de l'artisan",
       "companyName": "Nom de la société",
       "streetNumber": "N°",
-      "streetType": "Type de voie",
       "streetName": "Nom de la rue",
-      "locality": "Lieu-dit / Résidence",
-      "building": "Bâtiment",
-      "floor": "Étage",
-      "apartment": "Appartement",
       "postalCode": "Code Postal",
       "city": "Ville",
       "email": "Adresse mail",
@@ -1456,8 +1449,6 @@
     },
     "placeholders": {
       "streetNumber": "Ex: 123",
-      "locality": "Lieu-dit, résidence, etc. (optionnel)",
-      "apartment": "N° Appt",
       "companyName": "Nom de l'entreprise",
       "siret": "14 chiffres",
       "materialDescription": "Description détaillée",

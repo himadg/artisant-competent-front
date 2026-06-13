@@ -7,12 +7,7 @@ export interface QuoteData {
       firstName?: string;
       lastName?: string;
       streetNumber?: string;
-      streetType?: string;
       streetName?: string;
-      locality?: string;
-      buildingNumber?: string;
-      floor?: string;
-      apartmentNumber?: string;
       postalCode?: string;
       city?: string;
       email?: string;
@@ -20,12 +15,7 @@ export interface QuoteData {
     };
     jobsite?: {
       streetNumber?: string;
-      streetType?: string;
       streetName?: string;
-      locality?: string;
-      buildingNumber?: string;
-      floor?: string;
-      apartmentNumber?: string;
       postalCode?: string;
       city?: string;
     };

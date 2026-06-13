@@ -324,3 +324,8 @@ select option {
 .protection-body li:last-child {
   margin-bottom: 0;
 }
+
+.modal-content, .legal-modal {
+  transform: scale(1.1);
+  transform-origin: center;
+}

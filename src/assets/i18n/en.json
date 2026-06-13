@@ -258,7 +258,7 @@
       },
       "q8": {
         "question": "How can I avoid scams when looking for a tradesperson?",
-        "summary": "The best way to avoid scams is to never send money directly to a tradesperson without oversight or tracking. On Artisan Compétent, professionals are verified, communication is centralised, the work is tracked step by step and the funds stay in escrow via Stripe until validation. The system protects you even if the professional runs into financial difficulty or closes their business.",
+        "summary": "The best way to avoid scams is to never send money directly to a tradesperson without oversight or tracking. On Artisan Compétent, professionals are verified, communication is centralized, the work is tracked step by step and the funds stay in escrow via Stripe until validation. The system protects you even if the professional runs into financial difficulty or closes their business.",
         "body": "<p>The best way to avoid scams is to never send money directly to a tradesperson without oversight or tracking.</p><p>With Artisan Compétent:</p><ul><li>professionals are verified before joining,</li><li>communication is centralised,</li><li>the work is tracked step by step,</li><li>and the funds stay secured in escrow until the project is validated.</li></ul><p>The system was designed to limit:</p><ul><li>abandoned projects,</li><li>overcharged call-outs,</li><li>and situations where a tradesperson disappears after payment.</li></ul><p>Even in the event of a life accident, financial difficulty or closure of the professional's business, the funds escrowed via Stripe stay protected within the secure payment protocol as long as they have not been released.</p>"
       },
       "q9": {
@@ -1322,9 +1322,6 @@
     "clientBilling": "Client (Billing)",
     "jobsiteAddress": "Jobsite address",
     "provider": "Provider",
-    "building": "Building",
-    "floor": "Floor",
-    "apartment": "Apt",
     "email": "Email:",
     "phone": "Phone:",
     "siret": "SIRET:",
@@ -1408,6 +1405,7 @@
     "arbitration": "I authorize the platform to arbitrate and release the funds if needed.",
     "summary": "Summary",
     "totalHTLabel": "Total excl. VAT (Materials + Services + Costs):",
+    "totalTVALabel": "Total VAT:",
     "totalToPay": "Total to be paid by the client:",
     "formHasErrors": "The form contains errors. Please check the fields in red.",
     "preview": "Preview",
@@ -1432,12 +1430,7 @@
       "artisanLastName": "Artisan last name",
       "companyName": "Company name",
       "streetNumber": "No.",
-      "streetType": "Street type",
       "streetName": "Street name",
-      "locality": "Locality / Residence",
-      "building": "Building",
-      "floor": "Floor",
-      "apartment": "Apartment",
       "postalCode": "Postal code",
       "city": "City",
       "email": "Email address",
@@ -1456,8 +1449,6 @@
     },
     "placeholders": {
       "streetNumber": "E.g. 123",
-      "locality": "Locality, residence, etc. (optional)",
-      "apartment": "Apt no.",
       "companyName": "Company name",
       "siret": "14 digits",
       "materialDescription": "Detailed description",

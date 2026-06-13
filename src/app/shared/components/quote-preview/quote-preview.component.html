@@ -22,21 +22,7 @@
             <h3>{{ 'quotePreview.clientBilling' | transloco }}</h3>
             <p><strong>{{ quoteData.coordinates?.client?.firstName || '' }} {{ quoteData.coordinates?.client?.lastName || '' }}</strong></p>
             <div class="address">
-              <p>{{ quoteData.coordinates?.client?.streetNumber }} {{ quoteData.coordinates?.client?.streetType }} {{ quoteData.coordinates?.client?.streetName }}</p>
-              @if (quoteData.coordinates?.client?.locality) {
-                <p>{{ quoteData.coordinates?.client?.locality }}</p>
-              }
-              <p>
-                @if (quoteData.coordinates?.client?.buildingNumber) {
-                  <span>{{ 'quotePreview.building' | transloco }} {{ quoteData.coordinates?.client?.buildingNumber }}</span>
-                }
-                @if (quoteData.coordinates?.client?.floor) {
-                  <span>, {{ 'quotePreview.floor' | transloco }} {{ quoteData.coordinates?.client?.floor }}</span>
-                }
-                @if (quoteData.coordinates?.client?.apartmentNumber) {
-                  <span>, {{ 'quotePreview.apartment' | transloco }} {{ quoteData.coordinates?.client?.apartmentNumber }}</span>
-                }
-              </p>
+              <p>{{ quoteData.coordinates?.client?.streetNumber }} {{ quoteData.coordinates?.client?.streetName }}</p>
               <p>{{ quoteData.coordinates?.client?.postalCode }} {{ quoteData.coordinates?.client?.city }}</p>
               <p>{{ 'quotePreview.email' | transloco }} {{ quoteData.coordinates?.client?.email }}</p>
               @if (quoteData.coordinates?.client?.phone) {
@@ -49,21 +35,7 @@
             <div class="jobsite-box">
               <h3>{{ 'quotePreview.jobsiteAddress' | transloco }}</h3>
               <div class="address">
-                <p>{{ quoteData.coordinates?.jobsite?.streetNumber }} {{ quoteData.coordinates?.jobsite?.streetType }} {{ quoteData.coordinates?.jobsite?.streetName }}</p>
-                @if (quoteData.coordinates?.jobsite?.locality) {
-                  <p>{{ quoteData.coordinates?.jobsite?.locality }}</p>
-                }
-                <p>
-                  @if (quoteData.coordinates?.jobsite?.buildingNumber) {
-                    <span>{{ 'quotePreview.building' | transloco }} {{ quoteData.coordinates?.jobsite?.buildingNumber }}</span>
-                  }
-                  @if (quoteData.coordinates?.jobsite?.floor) {
-                    <span>, {{ 'quotePreview.floor' | transloco }} {{ quoteData.coordinates?.jobsite?.floor }}</span>
-                  }
-                  @if (quoteData.coordinates?.jobsite?.apartmentNumber) {
-                    <span>, {{ 'quotePreview.apartment' | transloco }} {{ quoteData.coordinates?.jobsite?.apartmentNumber }}</span>
-                  }
-                </p>
+                <p>{{ quoteData.coordinates?.jobsite?.streetNumber }} {{ quoteData.coordinates?.jobsite?.streetName }}</p>
                 <p>{{ quoteData.coordinates?.jobsite?.postalCode }} {{ quoteData.coordinates?.jobsite?.city }}</p>
               </div>
             </div>
@@ -82,21 +54,7 @@
             </p>
             <p>{{ 'quotePreview.siret' | transloco }} {{ quoteData.coordinates?.artisan?.siret || ('quotePreview.notProvided' | transloco) }}</p>
             <div class="address">
-              <p>{{ quoteData.coordinates?.artisan?.streetNumber }} {{ quoteData.coordinates?.artisan?.streetType }} {{ quoteData.coordinates?.artisan?.streetName }}</p>
-              @if (quoteData.coordinates?.artisan?.locality) {
-                <p>{{ quoteData.coordinates?.artisan?.locality }}</p>
-              }
-              <p>
-                @if (quoteData.coordinates?.artisan?.buildingNumber) {
-                  <span>{{ 'quotePreview.building' | transloco }} {{ quoteData.coordinates?.artisan?.buildingNumber }}</span>
-                }
-                @if (quoteData.coordinates?.artisan?.floor) {
-                  <span>, {{ 'quotePreview.floor' | transloco }} {{ quoteData.coordinates?.artisan?.floor }}</span>
-                }
-                @if (quoteData.coordinates?.artisan?.apartmentNumber) {
-                  <span>, {{ 'quotePreview.apartment' | transloco }} {{ quoteData.coordinates?.artisan?.apartmentNumber }}</span>
-                }
-              </p>
+              <p>{{ quoteData.coordinates?.artisan?.streetNumber }} {{ quoteData.coordinates?.artisan?.streetName }}</p>
               <p>{{ quoteData.coordinates?.artisan?.postalCode }} {{ quoteData.coordinates?.artisan?.city }}</p>
               <p>{{ 'quotePreview.email' | transloco }} {{ quoteData.coordinates?.artisan?.email }}</p>
               <p>{{ 'quotePreview.phone' | transloco }} {{ quoteData.coordinates?.artisan?.phone }}</p>

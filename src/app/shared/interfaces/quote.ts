@@ -6,12 +6,7 @@ export interface QuotePayload {
       firstName: string;
       lastName: string;
       streetNumber: string;
-      streetType: string;
       streetName: string;
-      locality: string;
-      apartmentNumber: string;
-      buildingNumber: string;
-      floor: string;
       postalCode: string;
       city: string;
       email: string;
@@ -19,12 +14,7 @@ export interface QuotePayload {
     };
     jobsite: {
       streetNumber: string;
-      streetType: string;
       streetName: string;
-      locality: string;
-      apartmentNumber: string;
-      buildingNumber: string;
-      floor: string;
       postalCode: string;
       city: string;
     };
@@ -34,12 +24,7 @@ export interface QuotePayload {
       lastName: string | null;
       siret: string | null;
       streetNumber: string | null;
-      streetType: string | null;
       streetName: string | null;
-      locality: string | null;
-      apartmentNumber: string | null;
-      buildingNumber: string | null;
-      floor: string | null;
       postalCode: string | null;
       city: string | null;
       email: string | null;

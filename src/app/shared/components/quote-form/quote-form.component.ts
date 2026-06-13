@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, Signal, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, computed, effect, inject, Signal, Input, Output, EventEmitter, OnInit, ElementRef } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, Validators, ReactiveFormsModule, FormGroup, FormControl, FormArray, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -53,12 +53,7 @@ type ArtisanForm = FormGroup<{
   lastName: FormControl<string>;
   siret: FormControl<string>;
   streetNumber: FormControl<string>;
-  streetType: FormControl<string>;
   streetName: FormControl<string>;
-  locality: FormControl<string>;
-  apartmentNumber: FormControl<string>;
-  buildingNumber: FormControl<string>;
-  floor: FormControl<string>;
   postalCode: FormControl<string>;
   city: FormControl<string>;
   email: FormControl<string>;
@@ -79,9 +74,9 @@ export class QuoteFormComponent implements OnInit {
   private quoteService = inject(QuoteService);
   private userApi = inject(UserApiService);
   private authService = inject(AuthService);
+  private elementRef = inject(ElementRef);
 
   artisanStatuses = ['Société', 'Auto-entrepreneur'];
-  streetTypes = ['Rue', 'Avenue', 'Boulevard', 'Chemin', 'Place', 'Impasse', 'Allée'];
   showPreview = false;
 
   quoteForm = this.fb.nonNullable.group({
@@ -91,12 +86,7 @@ export class QuoteFormComponent implements OnInit {
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         streetNumber: [''],
-        streetType: ['Rue', Validators.required],
         streetName: ['', Validators.required],
-        locality: [''],
-        apartmentNumber: [''],
-        buildingNumber: [''],
-        floor: [''],
         postalCode: ['', [Validators.required, Validators.pattern('^[0-9]{5}$')]],
         city: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
@@ -104,12 +94,7 @@ export class QuoteFormComponent implements OnInit {
       }),
       jobsite: this.fb.nonNullable.group({
         streetNumber: [''],
-        streetType: ['Rue', Validators.required],
         streetName: ['', Validators.required],
-        locality: [''],
-        apartmentNumber: [''],
-        buildingNumber: [''],
-        floor: [''],
         postalCode: ['', [Validators.required, Validators.pattern('^[0-9]{5}$')]],
         city: ['', Validators.required]
       }),
@@ -119,12 +104,7 @@ export class QuoteFormComponent implements OnInit {
         lastName: [''],
         siret: ['', [Validators.required, Validators.pattern('^[0-9]{14}$')]],
         streetNumber: ['', Validators.required],
-        streetType: ['Rue', Validators.required],
         streetName: ['', Validators.required],
-        locality: [''],
-        apartmentNumber: [''],
-        buildingNumber: [''],
-        floor: [''],
         postalCode: ['', [Validators.required, Validators.pattern('^[0-9]{5}$')]],
         city: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
@@ -147,10 +127,6 @@ export class QuoteFormComponent implements OnInit {
       estimatedEndDate: ['', [Validators.required, minDateTodayValidator()]]
     }, { validators: [dateRangeValidator('dateOfWriting', 'validityDate', 'invalidValidityRange'), dateRangeValidator('dateOfWriting', 'estimatedStartDate', 'invalidStartRange'), dateRangeValidator('estimatedStartDate', 'estimatedEndDate', 'invalidEstimatedRange')] }),
     legal: this.fb.nonNullable.group({
-      // Les documents légaux (RC Pro, décennale, autres certifications) proviennent
-      // désormais du profil du professionnel et sont résolus côté backend lors de
-      // la signature. Le formulaire ne conserve que les bascules qui décident si
-      // ce devis inclut la décennale / les autres certifications enregistrées.
       addDecennale: [false],
       addOtherCertifications: [false],
       applyTvaExemption: [false],
@@ -163,11 +139,8 @@ export class QuoteFormComponent implements OnInit {
     })
   });
 
-  /** If provided, the mission object containing all necessary data */
   @Input() mission?: any | null = null;
-  /** If provided, existing quote id to update */
   @Input() quoteId?: string | null = null;
-  /** If provided, professional user ID to pre-fill professional coordinates */
   @Input() professionalUserId?: string | null = null;
   @Output() saved = new EventEmitter<any>();
   @Output() cancelled = new EventEmitter<void>();
@@ -210,7 +183,7 @@ export class QuoteFormComponent implements OnInit {
         nameControl?.setValidators([Validators.required]);
         firstNameControl?.clearValidators();
         lastNameControl?.clearValidators();
-      } else { // Auto-entrepreneur
+      } else {
         nameControl?.clearValidators();
         firstNameControl?.setValidators([Validators.required]);
         lastNameControl?.setValidators([Validators.required]);
@@ -261,7 +234,6 @@ export class QuoteFormComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.quoteId) {
-      // En édition : on charge le devis existant, mais si la mission est dispo, on pré-remplit les coordonnées du client manquantes
       this.loadQuote();
     } else {
       this.preloadCoordinates();
@@ -275,28 +247,18 @@ export class QuoteFormComponent implements OnInit {
         const payload = quote.payload;
         if (!payload) return;
 
-        // Reconstruire les FormArray dynamiques avant le patchValue,
-        // car patchValue ne crée pas les contrôles manquants.
         this.rebuildMaterials(payload.materials ?? []);
         this.rebuildServices(payload.services ?? []);
         this.rebuildSuppliers(payload.logistics?.suppliers ?? []);
 
-        // Le statut de l'artisan pilote les validateurs conditionnels :
-        // on le pousse en premier pour que les validators soient corrects.
         const status = payload.coordinates?.artisan?.status;
         if (status) {
           this.artisanControls['status'].patchValue(status, { emitEvent: true });
         }
 
-        // Si c'est une modification et que le payload n'a pas le téléphone,
-        // on essaie de le récupérer depuis la mission (qui a été passée par le dashboard)
         if (this.mission?.client && (!payload.coordinates?.client?.phone || !payload.coordinates?.client?.email)) {
-             if (!payload.coordinates) {
-                 payload.coordinates = {} as any;
-             }
-             if (!payload.coordinates.client) {
-                  payload.coordinates.client = {} as any;
-             }
+             if (!payload.coordinates) payload.coordinates = {} as any;
+             if (!payload.coordinates.client) payload.coordinates.client = {} as any;
              payload.coordinates.client.phone = payload.coordinates.client.phone || this.mission.client.phone;
              payload.coordinates.client.email = payload.coordinates.client.email || this.mission.client.email;
         }
@@ -345,7 +307,6 @@ export class QuoteFormComponent implements OnInit {
   }
 
   private preloadCoordinates(): void {
-    // Pré-remplir les coordonnées du client si la mission est fournie
     if (this.mission?.client) {
       const clientData = this.mission.client;
       const clientAddress = clientData.address || {};
@@ -356,18 +317,12 @@ export class QuoteFormComponent implements OnInit {
         email: clientData.email || '',
         phone: clientData.phone || '',
         streetNumber: clientAddress.streetNumber || '',
-        streetType: clientAddress.streetType || 'Rue',
         streetName: clientAddress.streetName || '',
-        locality: clientAddress.locality || '',
-        apartmentNumber: clientAddress.apartmentNumber || '',
-        buildingNumber: clientAddress.buildingNumber || '',
-        floor: clientAddress.floor || '',
         postalCode: clientAddress.postalCode || '',
         city: clientAddress.city || '',
       });
     }
 
-    // Pré-remplir les coordonnées du professionnel si professionalUserId est fourni (ou utiliser l'utilisateur actuel)
     const proUserId = this.professionalUserId || this.authService.getCurrentUserId();
     if (proUserId) {
       this.userApi.getProfessionalProfile(proUserId).subscribe({
@@ -387,12 +342,7 @@ export class QuoteFormComponent implements OnInit {
             phone: proData.managerPhone || '',
             siret: proData.siret || '',
             streetNumber: proAddress.streetNumber || '',
-            streetType: proAddress.streetType || 'Rue',
             streetName: proAddress.streetName || '',
-            locality: proAddress.locality || '',
-            apartmentNumber: proAddress.apartmentNumber || '',
-            buildingNumber: proAddress.buildingNumber || '',
-            floor: proAddress.floor || '',
             postalCode: proAddress.postalCode || '',
             city: proAddress.city || '',
           });
@@ -416,6 +366,27 @@ export class QuoteFormComponent implements OnInit {
 
   get totalHT(): number { return this.calcService.getTotalHT(this.quoteForm.getRawValue()); }
   get grandTotalTTC(): number { return this.calcService.getGrandTotalTTC(this.quoteForm.getRawValue()); }
+  get totalTVA(): number { return this.grandTotalTTC - this.totalHT; }
+
+  get totalMaterialsHT(): number {
+    return this.calcService.getTotalMaterialsHT(this.quoteForm.getRawValue().materials);
+  }
+
+  get totalMaterialsTVA(): number {
+    const rawValue = this.quoteForm.getRawValue();
+    const ttc = this.calcService.getTotalMaterialsTTC(rawValue.materials, rawValue.legal);
+    return ttc - this.totalMaterialsHT;
+  }
+
+  get totalServicesHT(): number {
+    return this.calcService.getTotalServicesHT(this.quoteForm.getRawValue().services);
+  }
+
+  get totalServicesTVA(): number {
+    const rawValue = this.quoteForm.getRawValue();
+    const ttc = this.calcService.getTotalServicesTTC(rawValue.services, rawValue.legal);
+    return ttc - this.totalServicesHT;
+  }
 
   hasWaste(): boolean { return this.f.logistics.controls.wasteManagement.controls.hasWaste.value; }
 
@@ -444,41 +415,65 @@ export class QuoteFormComponent implements OnInit {
     const client = this.quoteForm.getRawValue().coordinates.client;
     this.quoteForm.controls.coordinates.controls.jobsite.patchValue({
       streetNumber: client.streetNumber,
-      streetType: client.streetType,
       streetName: client.streetName,
-      locality: client.locality,
-      apartmentNumber: client.apartmentNumber,
-      buildingNumber: client.buildingNumber,
-      floor: client.floor,
       postalCode: client.postalCode,
       city: client.city
     });
   }
 
+  private scrollToFirstInvalidControl(): void {
+    setTimeout(() => {
+      const firstInvalidControl = document.querySelector('.is-invalid, .text-danger, .error-feedback');
+      if (firstInvalidControl) {
+        firstInvalidControl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 50);
+  }
+
+  private getScrollableParent(element: HTMLElement): HTMLElement {
+    if (!element) {
+      return document.documentElement;
+    }
+    const regex = /(auto|scroll)/;
+    let parent = element.parentElement;
+    while (parent) {
+      const style = window.getComputedStyle(parent);
+      if (regex.test(style.overflow + style.overflowY + style.overflowX)) {
+        return parent;
+      }
+      parent = parent.parentElement;
+    }
+    return document.documentElement;
+  }
+
   openPreview(): void {
     if (this.quoteForm.invalid) {
       this.quoteForm.markAllAsTouched();
-      alert("Veuillez remplir correctement les champs obligatoires avant de prévisualiser.");
+      this.scrollToFirstInvalidControl();
       return;
     }
     if (this.hasWaste() && !this.f.logistics.controls.wasteManagement.controls.cerfaSigned.value) {
-      alert("Le document CERFA doit être signé pour la gestion des déchets.");
+      this.f.logistics.controls.wasteManagement.controls.cerfaSigned.markAsTouched();
+      this.scrollToFirstInvalidControl();
       return;
     }
     this.generateQuoteNumber();
     this.showPreview = true;
+
+    const scrollableParent = this.getScrollableParent(this.elementRef.nativeElement);
+    scrollableParent.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   onSubmit(): void {
     this.generateQuoteNumber();
     if (this.quoteForm.invalid) {
       this.quoteForm.markAllAsTouched();
-      console.log('Formulaire invalide', this.quoteForm.value);
-      alert("Veuillez corriger les erreurs et remplir tous les champs obligatoires.");
+      this.scrollToFirstInvalidControl();
       return;
     }
     if (this.hasWaste() && !this.f.logistics.controls.wasteManagement.controls.cerfaSigned.value) {
-      alert("Le document CERFA doit être signé pour la gestion des déchets.");
+      this.f.logistics.controls.wasteManagement.controls.cerfaSigned.markAsTouched();
+      this.scrollToFirstInvalidControl();
       return;
     }
 
@@ -488,8 +483,6 @@ export class QuoteFormComponent implements OnInit {
       missionId: this.mission?.id || '',
     };
 
-    // Les documents légaux ne sont plus envoyés depuis le devis : ils sont
-    // résolus côté backend depuis le profil du professionnel lors de la signature.
     if (this.quoteId) {
       this.quoteService.updateQuote(this.quoteId, payload).subscribe({
         next: (res) => this.saved.emit(res),

@@ -19,66 +19,38 @@
         <div class="form-row-split">
           <div class="form-group">
             <label for="clientFirstName">{{ 'quoteForm.fields.firstName' | transloco }}</label>
-            <input id="clientFirstName" formControlName="firstName" [placeholder]="'quoteForm.fields.firstName' | transloco" [class.is-invalid]="clientControls['firstName'].invalid">
-            @if (clientControls['firstName'].invalid) {
+            <input id="clientFirstName" formControlName="firstName" [placeholder]="'quoteForm.fields.firstName' | transloco" [class.is-invalid]="clientControls['firstName'].invalid && (clientControls['firstName'].touched || clientControls['firstName'].dirty)">
+            @if (clientControls['firstName'].invalid && (clientControls['firstName'].touched || clientControls['firstName'].dirty)) {
               <div class="error-feedback">@if (clientControls['firstName'].errors?.['required']) { <span>{{ 'quoteForm.errors.firstNameRequired' | transloco }}</span> }</div>
             }
           </div>
           <div class="form-group">
             <label for="clientLastName">{{ 'quoteForm.fields.lastName' | transloco }}</label>
-            <input id="clientLastName" formControlName="lastName" [placeholder]="'quoteForm.fields.lastName' | transloco" [class.is-invalid]="clientControls['lastName'].invalid">
-            @if (clientControls['lastName'].invalid) {
+            <input id="clientLastName" formControlName="lastName" [placeholder]="'quoteForm.fields.lastName' | transloco" [class.is-invalid]="clientControls['lastName'].invalid && (clientControls['lastName'].touched || clientControls['lastName'].dirty)">
+            @if (clientControls['lastName'].invalid && (clientControls['lastName'].touched || clientControls['lastName'].dirty)) {
               <div class="error-feedback">@if (clientControls['lastName'].errors?.['required']) { <span>{{ 'quoteForm.errors.lastNameRequired' | transloco }}</span> }</div>
             }
           </div>
         </div>
 
-        <div class="form-row-split">
-          <div class="form-group street-number">
-            <label for="clientStreetNumber">{{ 'quoteForm.fields.streetNumber' | transloco }}</label>
-            <input id="clientStreetNumber" formControlName="streetNumber" [placeholder]="'quoteForm.placeholders.streetNumber' | transloco">
-          </div>
-          <div class="form-group street-type">
-            <label for="clientStreetType">{{ 'quoteForm.fields.streetType' | transloco }}</label>
-            <select id="clientStreetType" formControlName="streetType">
-              @for(type of streetTypes; track type) { <option [value]="type">{{type}}</option> }
-            </select>
-          </div>
+        <div class="form-group">
+          <label for="clientStreetNumber">{{ 'quoteForm.fields.streetNumber' | transloco }}</label>
+          <input id="clientStreetNumber" formControlName="streetNumber" [placeholder]="'quoteForm.placeholders.streetNumber' | transloco">
         </div>
 
         <div class="form-group">
           <label for="clientStreetName">{{ 'quoteForm.fields.streetName' | transloco }}</label>
-          <input id="clientStreetName" formControlName="streetName" [placeholder]="'quoteForm.fields.streetName' | transloco" [class.is-invalid]="clientControls['streetName'].invalid">
-          @if (clientControls['streetName'].invalid) {
+          <input id="clientStreetName" formControlName="streetName" [placeholder]="'quoteForm.fields.streetName' | transloco" [class.is-invalid]="clientControls['streetName'].invalid && (clientControls['streetName'].touched || clientControls['streetName'].dirty)">
+          @if (clientControls['streetName'].invalid && (clientControls['streetName'].touched || clientControls['streetName'].dirty)) {
             <div class="error-feedback">@if (clientControls['streetName'].errors?.['required']) { <span>{{ 'quoteForm.errors.streetNameRequired' | transloco }}</span> }</div>
           }
-        </div>
-
-        <div class="form-group">
-          <label for="clientLocality">{{ 'quoteForm.fields.locality' | transloco }}</label>
-          <input id="clientLocality" formControlName="locality" [placeholder]="'quoteForm.placeholders.locality' | transloco">
-        </div>
-
-        <div class="form-row-split">
-          <div class="form-group">
-            <label for="clientBuildingNumber">{{ 'quoteForm.fields.building' | transloco }}</label>
-            <input id="clientBuildingNumber" formControlName="buildingNumber" [placeholder]="'quoteForm.fields.building' | transloco">
-          </div>
-          <div class="form-group">
-            <label for="clientFloor">{{ 'quoteForm.fields.floor' | transloco }}</label>
-            <input id="clientFloor" formControlName="floor" [placeholder]="'quoteForm.fields.floor' | transloco">
-          </div>
-          <div class="form-group">
-            <label for="clientApartmentNumber">{{ 'quoteForm.fields.apartment' | transloco }}</label>
-            <input id="clientApartmentNumber" formControlName="apartmentNumber" [placeholder]="'quoteForm.placeholders.apartment' | transloco">
-          </div>
         </div>
 
         <div class="form-row-split">
           <div class="form-group">
             <label for="clientPostalCode">{{ 'quoteForm.fields.postalCode' | transloco }}</label>
-            <input id="clientPostalCode" formControlName="postalCode" placeholder="75001" [class.is-invalid]="clientControls['postalCode'].invalid">
-            @if (clientControls['postalCode'].invalid) {
+            <input id="clientPostalCode" formControlName="postalCode" placeholder="75001" [class.is-invalid]="clientControls['postalCode'].invalid && (clientControls['postalCode'].touched || clientControls['postalCode'].dirty)">
+            @if (clientControls['postalCode'].invalid && (clientControls['postalCode'].touched || clientControls['postalCode'].dirty)) {
               <div class="error-feedback">
                 @if (clientControls['postalCode'].errors?.['required']) { <span>{{ 'quoteForm.errors.postalCodeRequired' | transloco }}</span> }
                 @if (clientControls['postalCode'].errors?.['pattern']) { <span>{{ 'quoteForm.errors.postalCodeInvalid' | transloco }}</span> }
@@ -87,8 +59,8 @@
           </div>
           <div class="form-group">
             <label for="clientCity">{{ 'quoteForm.fields.city' | transloco }}</label>
-            <input id="clientCity" formControlName="city" placeholder="Paris" [class.is-invalid]="clientControls['city'].invalid">
-            @if (clientControls['city'].invalid) {
+            <input id="clientCity" formControlName="city" placeholder="Paris" [class.is-invalid]="clientControls['city'].invalid && (clientControls['city'].touched || clientControls['city'].dirty)">
+            @if (clientControls['city'].invalid && (clientControls['city'].touched || clientControls['city'].dirty)) {
               <div class="error-feedback">@if (clientControls['city'].errors?.['required']) { <span>{{ 'quoteForm.errors.cityRequired' | transloco }}</span> }</div>
             }
           </div>
@@ -97,8 +69,8 @@
         <div class="form-row-split">
           <div class="form-group">
             <label for="clientEmail">{{ 'quoteForm.fields.email' | transloco }}</label>
-            <input id="clientEmail" type="email" formControlName="email" placeholder="email@example.com" [class.is-invalid]="clientControls['email'].invalid">
-            @if (clientControls['email'].invalid) {
+            <input id="clientEmail" type="email" formControlName="email" placeholder="email@example.com" [class.is-invalid]="clientControls['email'].invalid && (clientControls['email'].touched || clientControls['email'].dirty)">
+            @if (clientControls['email'].invalid && (clientControls['email'].touched || clientControls['email'].dirty)) {
               <div class="error-feedback">
                 @if (clientControls['email'].errors?.['required']) { <span>{{ 'quoteForm.errors.emailRequired' | transloco }}</span> }
                 @if (clientControls['email'].errors?.['email']) { <span>{{ 'quoteForm.errors.emailInvalid' | transloco }}</span> }
@@ -107,8 +79,8 @@
           </div>
           <div class="form-group">
             <label for="clientPhone">{{ 'quoteForm.fields.phone' | transloco }}</label>
-            <input id="clientPhone" type="tel" formControlName="phone" placeholder="06 12 34 56 78" [class.is-invalid]="clientControls['phone'].invalid">
-            @if (clientControls['phone'].invalid) {
+            <input id="clientPhone" type="tel" formControlName="phone" placeholder="06 12 34 56 78" [class.is-invalid]="clientControls['phone'].invalid && (clientControls['phone'].touched || clientControls['phone'].dirty)">
+            @if (clientControls['phone'].invalid && (clientControls['phone'].touched || clientControls['phone'].dirty)) {
               <div class="error-feedback">
                 @if (clientControls['phone'].errors?.['required']) { <span>{{ 'quoteForm.errors.phoneRequired' | transloco }}</span> }
                 @if (clientControls['phone'].errors?.['pattern']) { <span>{{ 'quoteForm.errors.formatInvalid' | transloco }}</span> }
@@ -122,7 +94,7 @@
         <h3>{{ 'quoteForm.provider' | transloco }}</h3>
 
         <label for="artisanStatus">{{ 'quoteForm.fields.status' | transloco }}</label>
-        <select id="artisanStatus" formControlName="status" [class.is-invalid]="artisanControls['status'].invalid">
+        <select id="artisanStatus" formControlName="status" [class.is-invalid]="artisanControls['status'].invalid && (artisanControls['status'].touched || artisanControls['status'].dirty)">
           @for (status of artisanStatuses; track status) {
             <option [value]="status">{{ status }}</option>
           }
@@ -133,8 +105,8 @@
           <div class="form-row mt-2" style="margin-bottom: 0; padding: 0; background: none;">
             <div class="form-group" style="margin-bottom: 1rem;">
               <label for="artisanFirstName">{{ 'quoteForm.fields.artisanFirstName' | transloco }}</label>
-              <input id="artisanFirstName" formControlName="firstName" [placeholder]="'quoteForm.fields.firstName' | transloco" [class.is-invalid]="artisanControls['firstName'].invalid">
-              @if (artisanControls['firstName'].invalid) {
+              <input id="artisanFirstName" formControlName="firstName" [placeholder]="'quoteForm.fields.firstName' | transloco" [class.is-invalid]="artisanControls['firstName'].invalid && (artisanControls['firstName'].touched || artisanControls['firstName'].dirty)">
+              @if (artisanControls['firstName'].invalid && (artisanControls['firstName'].touched || artisanControls['firstName'].dirty)) {
                 <div class="error-feedback">
                   @if (artisanControls['firstName'].errors?.['required']) { <span>{{ 'quoteForm.errors.firstNameRequired' | transloco }}</span> }
                 </div>
@@ -142,8 +114,8 @@
             </div>
             <div class="form-group" style="margin-bottom: 1rem;">
               <label for="artisanLastName">{{ 'quoteForm.fields.artisanLastName' | transloco }}</label>
-              <input id="artisanLastName" formControlName="lastName" [placeholder]="'quoteForm.fields.lastName' | transloco" [class.is-invalid]="artisanControls['lastName'].invalid">
-              @if (artisanControls['lastName'].invalid) {
+              <input id="artisanLastName" formControlName="lastName" [placeholder]="'quoteForm.fields.lastName' | transloco" [class.is-invalid]="artisanControls['lastName'].invalid && (artisanControls['lastName'].touched || artisanControls['lastName'].dirty)">
+              @if (artisanControls['lastName'].invalid && (artisanControls['lastName'].touched || artisanControls['lastName'].dirty)) {
                 <div class="error-feedback">
                   @if (artisanControls['lastName'].errors?.['required']) { <span>{{ 'quoteForm.errors.lastNameRequired' | transloco }}</span> }
                 </div>
@@ -152,8 +124,8 @@
           </div>
         } @else {
           <label for="artisanName" class="mt-2">{{ 'quoteForm.fields.companyName' | transloco }}</label>
-          <input id="artisanName" formControlName="name" [placeholder]="'quoteForm.placeholders.companyName' | transloco" [class.is-invalid]="artisanControls['name'].invalid">
-          @if (artisanControls['name'].invalid) {
+          <input id="artisanName" formControlName="name" [placeholder]="'quoteForm.placeholders.companyName' | transloco" [class.is-invalid]="artisanControls['name'].invalid && (artisanControls['name'].touched || artisanControls['name'].dirty)">
+          @if (artisanControls['name'].invalid && (artisanControls['name'].touched || artisanControls['name'].dirty)) {
             <div class="error-feedback">
               @if (artisanControls['name'].errors?.['required']) { <span>{{ 'quoteForm.errors.companyNameRequired' | transloco }}</span> }
             </div>
@@ -161,63 +133,35 @@
         }
 
         <label for="artisanSiret">{{ 'quoteForm.fields.siret' | transloco }}</label>
-        <input id="artisanSiret" formControlName="siret" [placeholder]="'quoteForm.placeholders.siret' | transloco" [class.is-invalid]="artisanControls['siret'].invalid">
-        @if (artisanControls['siret'].invalid) {
+        <input id="artisanSiret" formControlName="siret" [placeholder]="'quoteForm.placeholders.siret' | transloco" [class.is-invalid]="artisanControls['siret'].invalid && (artisanControls['siret'].touched || artisanControls['siret'].dirty)">
+        @if (artisanControls['siret'].invalid && (artisanControls['siret'].touched || artisanControls['siret'].dirty)) {
           <div class="error-feedback">
             @if (artisanControls['siret'].errors?.['required']) { <span>{{ 'quoteForm.errors.siretRequired' | transloco }}</span> }
             @if (artisanControls['siret'].errors?.['pattern']) { <span>{{ 'quoteForm.errors.siretPattern' | transloco }}</span> }
           </div>
         }
 
-        <div class="form-row-split">
-          <div class="form-group street-number">
-            <label for="artisanStreetNumber">{{ 'quoteForm.fields.streetNumber' | transloco }}</label>
-            <input id="artisanStreetNumber" formControlName="streetNumber" [placeholder]="'quoteForm.placeholders.streetNumber' | transloco" [class.is-invalid]="artisanControls['streetNumber'].invalid">
-            @if (artisanControls['streetNumber'].invalid) {
-              <div class="error-feedback">@if (artisanControls['streetNumber'].errors?.['required']) { <span>{{ 'quoteForm.errors.streetNumberRequired' | transloco }}</span> }</div>
-            }
-          </div>
-          <div class="form-group street-type">
-            <label for="artisanStreetType">{{ 'quoteForm.fields.streetType' | transloco }}</label>
-            <select id="artisanStreetType" formControlName="streetType">
-              @for(type of streetTypes; track type) { <option [value]="type">{{type}}</option> }
-            </select>
-          </div>
-        </div>
-
         <div class="form-group">
-          <label for="artisanStreetName">{{ 'quoteForm.fields.streetName' | transloco }}</label>
-          <input id="artisanStreetName" formControlName="streetName" [placeholder]="'quoteForm.fields.streetName' | transloco" [class.is-invalid]="artisanControls['streetName'].invalid">
-          @if (artisanControls['streetName'].invalid) {
-            <div class="error-feedback">@if (artisanControls['streetName'].errors?.['required']) { <span>{{ 'quoteForm.errors.streetNameRequired' | transloco }}</span> }</div>
+          <label for="artisanStreetNumber">{{ 'quoteForm.fields.streetNumber' | transloco }}</label>
+          <input id="artisanStreetNumber" formControlName="streetNumber" [placeholder]="'quoteForm.placeholders.streetNumber' | transloco" [class.is-invalid]="artisanControls['streetNumber'].invalid && (artisanControls['streetNumber'].touched || artisanControls['streetNumber'].dirty)">
+          @if (artisanControls['streetNumber'].invalid && (artisanControls['streetNumber'].touched || artisanControls['streetNumber'].dirty)) {
+            <div class="error-feedback">@if (artisanControls['streetNumber'].errors?.['required']) { <span>{{ 'quoteForm.errors.streetNumberRequired' | transloco }}</span> }</div>
           }
         </div>
 
         <div class="form-group">
-          <label for="artisanLocality">{{ 'quoteForm.fields.locality' | transloco }}</label>
-          <input id="artisanLocality" formControlName="locality" [placeholder]="'quoteForm.placeholders.locality' | transloco">
-        </div>
-
-        <div class="form-row-split">
-          <div class="form-group">
-            <label for="artisanBuildingNumber">{{ 'quoteForm.fields.building' | transloco }}</label>
-            <input id="artisanBuildingNumber" formControlName="buildingNumber" [placeholder]="'quoteForm.fields.building' | transloco">
-          </div>
-          <div class="form-group">
-            <label for="artisanFloor">{{ 'quoteForm.fields.floor' | transloco }}</label>
-            <input id="artisanFloor" formControlName="floor" [placeholder]="'quoteForm.fields.floor' | transloco">
-          </div>
-          <div class="form-group">
-            <label for="artisanApartmentNumber">{{ 'quoteForm.fields.apartment' | transloco }}</label>
-            <input id="artisanApartmentNumber" formControlName="apartmentNumber" [placeholder]="'quoteForm.placeholders.apartment' | transloco">
-          </div>
+          <label for="artisanStreetName">{{ 'quoteForm.fields.streetName' | transloco }}</label>
+          <input id="artisanStreetName" formControlName="streetName" [placeholder]="'quoteForm.fields.streetName' | transloco" [class.is-invalid]="artisanControls['streetName'].invalid && (artisanControls['streetName'].touched || artisanControls['streetName'].dirty)">
+          @if (artisanControls['streetName'].invalid && (artisanControls['streetName'].touched || artisanControls['streetName'].dirty)) {
+            <div class="error-feedback">@if (artisanControls['streetName'].errors?.['required']) { <span>{{ 'quoteForm.errors.streetNameRequired' | transloco }}</span> }</div>
+          }
         </div>
 
         <div class="form-row-split">
           <div class="form-group">
             <label for="artisanPostalCode">{{ 'quoteForm.fields.postalCode' | transloco }}</label>
-            <input id="artisanPostalCode" formControlName="postalCode" placeholder="75001" [class.is-invalid]="artisanControls['postalCode'].invalid">
-            @if (artisanControls['postalCode'].invalid) {
+            <input id="artisanPostalCode" formControlName="postalCode" placeholder="75001" [class.is-invalid]="artisanControls['postalCode'].invalid && (artisanControls['postalCode'].touched || artisanControls['postalCode'].dirty)">
+            @if (artisanControls['postalCode'].invalid && (artisanControls['postalCode'].touched || artisanControls['postalCode'].dirty)) {
               <div class="error-feedback">
                 @if (artisanControls['postalCode'].errors?.['required']) { <span>{{ 'quoteForm.errors.postalCodeRequired' | transloco }}</span> }
                 @if (artisanControls['postalCode'].errors?.['pattern']) { <span>{{ 'quoteForm.errors.postalCodeInvalid' | transloco }}</span> }
@@ -226,8 +170,8 @@
           </div>
           <div class="form-group">
             <label for="artisanCity">{{ 'quoteForm.fields.city' | transloco }}</label>
-            <input id="artisanCity" formControlName="city" placeholder="Paris" [class.is-invalid]="artisanControls['city'].invalid">
-            @if (artisanControls['city'].invalid) {
+            <input id="artisanCity" formControlName="city" placeholder="Paris" [class.is-invalid]="artisanControls['city'].invalid && (artisanControls['city'].touched || artisanControls['city'].dirty)">
+            @if (artisanControls['city'].invalid && (artisanControls['city'].touched || artisanControls['city'].dirty)) {
               <div class="error-feedback">@if (artisanControls['city'].errors?.['required']) { <span>{{ 'quoteForm.errors.cityRequired' | transloco }}</span> }</div>
             }
           </div>
@@ -236,8 +180,8 @@
         <div class="form-row-split">
           <div class="form-group">
             <label for="artisanEmail">{{ 'quoteForm.fields.email' | transloco }}</label>
-            <input id="artisanEmail" type="email" formControlName="email" placeholder="email@example.com" [class.is-invalid]="artisanControls['email'].invalid">
-            @if (artisanControls['email'].invalid) {
+            <input id="artisanEmail" type="email" formControlName="email" placeholder="email@example.com" [class.is-invalid]="artisanControls['email'].invalid && (artisanControls['email'].touched || artisanControls['email'].dirty)">
+            @if (artisanControls['email'].invalid && (artisanControls['email'].touched || artisanControls['email'].dirty)) {
               <div class="error-feedback">
                 @if (artisanControls['email'].errors?.['required']) { <span>{{ 'quoteForm.errors.emailRequired' | transloco }}</span> }
                 @if (artisanControls['email'].errors?.['email']) { <span>{{ 'quoteForm.errors.emailInvalid' | transloco }}</span> }
@@ -246,8 +190,8 @@
           </div>
           <div class="form-group">
             <label for="artisanPhone">{{ 'quoteForm.fields.phone' | transloco }}</label>
-            <input id="artisanPhone" type="tel" formControlName="phone" placeholder="06 12 34 56 78" [class.is-invalid]="artisanControls['phone'].invalid">
-            @if (artisanControls['phone'].invalid) {
+            <input id="artisanPhone" type="tel" formControlName="phone" placeholder="06 12 34 56 78" [class.is-invalid]="artisanControls['phone'].invalid && (artisanControls['phone'].touched || artisanControls['phone'].dirty)">
+            @if (artisanControls['phone'].invalid && (artisanControls['phone'].touched || artisanControls['phone'].dirty)) {
               <div class="error-feedback">
                 @if (artisanControls['phone'].errors?.['required']) { <span>{{ 'quoteForm.errors.phoneRequired' | transloco }}</span> }
                 @if (artisanControls['phone'].errors?.['pattern']) { <span>{{ 'quoteForm.errors.formatInvalid' | transloco }}</span> }
@@ -261,52 +205,24 @@
         <h3>{{ 'quoteForm.jobsiteAddress' | transloco }}</h3>
         <button type="button" (click)="copyClientAddressToJobsite()" class="btn-copy">{{ 'quoteForm.copyClientAddress' | transloco }}</button>
 
-        <div class="form-row-split">
-          <div class="form-group street-number">
-            <label for="jobsiteStreetNumber">{{ 'quoteForm.fields.streetNumber' | transloco }}</label>
-            <input id="jobsiteStreetNumber" formControlName="streetNumber" [placeholder]="'quoteForm.placeholders.streetNumber' | transloco">
-          </div>
-          <div class="form-group street-type">
-            <label for="jobsiteStreetType">{{ 'quoteForm.fields.streetType' | transloco }}</label>
-            <select id="jobsiteStreetType" formControlName="streetType">
-              @for(type of streetTypes; track type) { <option [value]="type">{{type}}</option> }
-            </select>
-          </div>
+        <div class="form-group">
+          <label for="jobsiteStreetNumber">{{ 'quoteForm.fields.streetNumber' | transloco }}</label>
+          <input id="jobsiteStreetNumber" formControlName="streetNumber" [placeholder]="'quoteForm.placeholders.streetNumber' | transloco">
         </div>
 
         <div class="form-group">
           <label for="jobsiteStreetName">{{ 'quoteForm.fields.streetName' | transloco }}</label>
-          <input id="jobsiteStreetName" formControlName="streetName" [placeholder]="'quoteForm.fields.streetName' | transloco" [class.is-invalid]="jobsiteControls['streetName'].invalid">
-          @if (jobsiteControls['streetName'].invalid) {
+          <input id="jobsiteStreetName" formControlName="streetName" [placeholder]="'quoteForm.fields.streetName' | transloco" [class.is-invalid]="jobsiteControls['streetName'].invalid && (jobsiteControls['streetName'].touched || jobsiteControls['streetName'].dirty)">
+          @if (jobsiteControls['streetName'].invalid && (jobsiteControls['streetName'].touched || jobsiteControls['streetName'].dirty)) {
             <div class="error-feedback">@if (jobsiteControls['streetName'].errors?.['required']) { <span>{{ 'quoteForm.errors.streetNameRequired' | transloco }}</span> }</div>
           }
-        </div>
-
-        <div class="form-group">
-          <label for="jobsiteLocality">{{ 'quoteForm.fields.locality' | transloco }}</label>
-          <input id="jobsiteLocality" formControlName="locality" [placeholder]="'quoteForm.placeholders.locality' | transloco">
-        </div>
-
-        <div class="form-row-split">
-          <div class="form-group">
-            <label for="jobsiteBuildingNumber">{{ 'quoteForm.fields.building' | transloco }}</label>
-            <input id="jobsiteBuildingNumber" formControlName="buildingNumber" [placeholder]="'quoteForm.fields.building' | transloco">
-          </div>
-          <div class="form-group">
-            <label for="jobsiteFloor">{{ 'quoteForm.fields.floor' | transloco }}</label>
-            <input id="jobsiteFloor" formControlName="floor" [placeholder]="'quoteForm.fields.floor' | transloco">
-          </div>
-          <div class="form-group">
-            <label for="jobsiteApartmentNumber">{{ 'quoteForm.fields.apartment' | transloco }}</label>
-            <input id="jobsiteApartmentNumber" formControlName="apartmentNumber" [placeholder]="'quoteForm.placeholders.apartment' | transloco">
-          </div>
         </div>
 
         <div class="form-row-split">
           <div class="form-group">
             <label for="jobsitePostalCode">{{ 'quoteForm.fields.postalCode' | transloco }}</label>
-            <input id="jobsitePostalCode" formControlName="postalCode" placeholder="75001" [class.is-invalid]="jobsiteControls['postalCode'].invalid">
-            @if (jobsiteControls['postalCode'].invalid) {
+            <input id="jobsitePostalCode" formControlName="postalCode" placeholder="75001" [class.is-invalid]="jobsiteControls['postalCode'].invalid && (jobsiteControls['postalCode'].touched || jobsiteControls['postalCode'].dirty)">
+            @if (jobsiteControls['postalCode'].invalid && (jobsiteControls['postalCode'].touched || jobsiteControls['postalCode'].dirty)) {
               <div class="error-feedback">
                 @if (jobsiteControls['postalCode'].errors?.['required']) { <span>{{ 'quoteForm.errors.postalCodeRequired' | transloco }}</span> }
                 @if (jobsiteControls['postalCode'].errors?.['pattern']) { <span>{{ 'quoteForm.errors.postalCodeInvalid' | transloco }}</span> }
@@ -315,8 +231,8 @@
           </div>
           <div class="form-group">
             <label for="jobsiteCity">{{ 'quoteForm.fields.city' | transloco }}</label>
-            <input id="jobsiteCity" formControlName="city" placeholder="Paris" [class.is-invalid]="jobsiteControls['city'].invalid">
-            @if (jobsiteControls['city'].invalid) {
+            <input id="jobsiteCity" formControlName="city" placeholder="Paris" [class.is-invalid]="jobsiteControls['city'].invalid && (jobsiteControls['city'].touched || jobsiteControls['city'].dirty)">
+            @if (jobsiteControls['city'].invalid && (jobsiteControls['city'].touched || jobsiteControls['city'].dirty)) {
               <div class="error-feedback">@if (jobsiteControls['city'].errors?.['required']) { <span>{{ 'quoteForm.errors.cityRequired' | transloco }}</span> }</div>
             }
           </div>
@@ -376,8 +292,8 @@
         <div [formGroupName]="$index" class="form-row">
           <div class="form-group description-group">
             <label for="matDesc-{{$index}}">{{ 'quoteForm.fields.descriptionMax' | transloco }}</label>
-            <textarea id="matDesc-{{$index}}" formControlName="description" [placeholder]="'quoteForm.placeholders.materialDescription' | transloco" rows="2" [class.is-invalid]="material.controls.description.invalid"></textarea>
-            @if (material.controls.description.invalid) {
+            <textarea id="matDesc-{{$index}}" formControlName="description" [placeholder]="'quoteForm.placeholders.materialDescription' | transloco" rows="2" [class.is-invalid]="material.controls.description.invalid && (material.controls.description.touched || material.controls.description.dirty)"></textarea>
+            @if (material.controls.description.invalid && (material.controls.description.touched || material.controls.description.dirty)) {
               <div class="error-feedback">
                 @if (material.controls.description.errors?.['required']) { <span>{{ 'quoteForm.errors.descriptionRequired' | transloco }}</span> }
                 @if (material.controls.description.errors?.['maxlength']) { <span>{{ 'quoteForm.errors.descriptionMaxlength' | transloco }}</span> }
@@ -386,8 +302,8 @@
           </div>
           <div class="form-group">
             <label for="matAmount-{{$index}}">{{ 'quoteForm.fields.amountHT' | transloco }}</label>
-            <input id="matAmount-{{$index}}" type="number" min="0" formControlName="amountHT" placeholder="0.00" [class.is-invalid]="material.controls.amountHT.invalid">
-            @if (material.controls.amountHT.invalid) {
+            <input id="matAmount-{{$index}}" type="number" min="0" formControlName="amountHT" placeholder="0.00" [class.is-invalid]="material.controls.amountHT.invalid && (material.controls.amountHT.touched || material.controls.amountHT.dirty)">
+            @if (material.controls.amountHT.invalid && (material.controls.amountHT.touched || material.controls.amountHT.dirty)) {
               <div class="error-feedback">
                 @if (material.controls.amountHT.errors?.['required']) { <span>{{ 'quoteForm.errors.amountRequired' | transloco }}</span> }
                 @if (material.controls.amountHT.errors?.['min']) { <span>{{ 'quoteForm.errors.amountMin' | transloco }}</span> }
@@ -396,8 +312,8 @@
           </div>
           <div class="form-group">
             <label for="matTva-{{$index}}">{{ 'quoteForm.fields.tva' | transloco }}</label>
-            <input id="matTva-{{$index}}" type="number" min="0" formControlName="tva" placeholder="20" [class.is-invalid]="material.controls.tva.invalid">
-            @if (material.controls.tva.invalid) {
+            <input id="matTva-{{$index}}" type="number" min="0" formControlName="tva" placeholder="20" [class.is-invalid]="material.controls.tva.invalid && (material.controls.tva.touched || material.controls.tva.dirty)">
+            @if (material.controls.tva.invalid && (material.controls.tva.touched || material.controls.tva.dirty)) {
               <div class="error-feedback">
                 @if (material.controls.tva.errors?.['required']) { <span>{{ 'quoteForm.errors.tvaRequired' | transloco }}</span> }
                 @if (material.controls.tva.errors?.['min']) { <span>{{ 'quoteForm.errors.tvaMin' | transloco }}</span> }
@@ -408,9 +324,16 @@
           <label class="mt-2"><input type="checkbox" formControlName="providedByClient"> {{ 'quoteForm.providedByClient' | transloco }}</label>
           <label class="mt-2"><input type="checkbox" formControlName="isReconditioned"> {{ 'quoteForm.reconditioned' | transloco }}</label>
           <label class="mt-2">{{ 'quoteForm.paidBy' | transloco }} {{ material.controls.providedByClient.value ? ('quoteForm.client' | transloco) : ('quoteForm.artisan' | transloco) }}</label>
-          <button type="button" class="btn-remove mt-2" (click)="removeMaterial($index)" [title]="'quoteForm.removeMaterial' | transloco">×</button>
+          <button type="button" class="btn-remove mt-2" (click)="removeMaterial($index)" [title]="'quoteForm.removeMaterial' | transloco">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+          </button>
         </div>
       }
+    </div>
+    <div class="section-totals mt-2 mb-2 p-2" style="background: #f1f5f9; border-radius: 6px; font-weight: 500;">
+      <span>Total HT: {{ totalMaterialsHT | number:'1.2-2' }} €</span> |
+      <span>TVA: {{ totalMaterialsTVA | number:'1.2-2' }} €</span> |
+      <span style="color: var(--primary-water-green); font-weight: 700;">TTC: {{ totalMaterialsHT + totalMaterialsTVA | number:'1.2-2' }} €</span>
     </div>
     <button type="button" class="btn-add" (click)="addMaterial()">{{ 'quoteForm.addMaterial' | transloco }}</button>
   </fieldset>
@@ -422,8 +345,8 @@
         <div [formGroupName]="$index" class="form-row">
           <div class="form-group description-group">
             <label for="servDesc-{{$index}}">{{ 'quoteForm.fields.descriptionMax' | transloco }}</label>
-            <textarea id="servDesc-{{$index}}" formControlName="description" [placeholder]="'quoteForm.placeholders.serviceDescription' | transloco" rows="2" [class.is-invalid]="service.controls.description.invalid"></textarea>
-            @if (service.controls.description.invalid) {
+            <textarea id="servDesc-{{$index}}" formControlName="description" [placeholder]="'quoteForm.placeholders.serviceDescription' | transloco" rows="2" [class.is-invalid]="service.controls.description.invalid && (service.controls.description.touched || service.controls.description.dirty)"></textarea>
+            @if (service.controls.description.invalid && (service.controls.description.touched || service.controls.description.dirty)) {
               <div class="error-feedback">
                 @if (service.controls.description.errors?.['required']) { <span>{{ 'quoteForm.errors.descriptionRequired' | transloco }}</span> }
                 @if (service.controls.description.errors?.['maxlength']) { <span>{{ 'quoteForm.errors.descriptionMaxlength' | transloco }}</span> }
@@ -432,11 +355,11 @@
           </div>
           <div class="form-group">
             <label for="servType-{{$index}}">{{ 'quoteForm.fields.type' | transloco }}</label>
-            <select id="servType-{{$index}}" formControlName="type" [class.is-invalid]="service.controls.type.invalid">
+            <select id="servType-{{$index}}" formControlName="type" [class.is-invalid]="service.controls.type.invalid && (service.controls.type.touched || service.controls.type.dirty)">
               <option value="Principale">{{ 'quoteForm.serviceType.main' | transloco }}</option>
               <option value="Annexe">{{ 'quoteForm.serviceType.annex' | transloco }}</option>
             </select>
-            @if (service.controls.type.invalid) {
+            @if (service.controls.type.invalid && (service.controls.type.touched || service.controls.type.dirty)) {
               <div class="error-feedback">
                 @if (service.controls.type.errors?.['required']) { <span>{{ 'quoteForm.errors.typeRequired' | transloco }}</span> }
               </div>
@@ -444,8 +367,8 @@
           </div>
           <div class="form-group">
             <label for="servAmount-{{$index}}">{{ 'quoteForm.fields.amountHT' | transloco }}</label>
-            <input id="servAmount-{{$index}}" type="number" min="0" formControlName="amountHT" placeholder="0.00" [class.is-invalid]="service.controls.amountHT.invalid">
-            @if (service.controls.amountHT.invalid) {
+            <input id="servAmount-{{$index}}" type="number" min="0" formControlName="amountHT" placeholder="0.00" [class.is-invalid]="service.controls.amountHT.invalid && (service.controls.amountHT.touched || service.controls.amountHT.dirty)">
+            @if (service.controls.amountHT.invalid && (service.controls.amountHT.touched || service.controls.amountHT.dirty)) {
               <div class="error-feedback">
                 @if (service.controls.amountHT.errors?.['required']) { <span>{{ 'quoteForm.errors.amountRequired' | transloco }}</span> }
                 @if (service.controls.amountHT.errors?.['min']) { <span>{{ 'quoteForm.errors.amountMin' | transloco }}</span> }
@@ -454,8 +377,8 @@
           </div>
           <div class="form-group">
             <label for="servTva-{{$index}}">{{ 'quoteForm.fields.tva' | transloco }}</label>
-            <input id="servTva-{{$index}}" type="number" min="0" formControlName="tva" placeholder="20" [class.is-invalid]="service.controls.tva.invalid">
-            @if (service.controls.tva.invalid) {
+            <input id="servTva-{{$index}}" type="number" min="0" formControlName="tva" placeholder="20" [class.is-invalid]="service.controls.tva.invalid && (service.controls.tva.touched || service.controls.tva.dirty)">
+            @if (service.controls.tva.invalid && (service.controls.tva.touched || service.controls.tva.dirty)) {
               <div class="error-feedback">
                 @if (service.controls.tva.errors?.['required']) { <span>{{ 'quoteForm.errors.tvaRequired' | transloco }}</span> }
                 @if (service.controls.tva.errors?.['min']) { <span>{{ 'quoteForm.errors.tvaMin' | transloco }}</span> }
@@ -463,9 +386,16 @@
             }
           </div>
           <span class="mt-2">TTC: {{ calcService.calculateItemTTC(service.controls.amountHT.value, service.controls.tva.value, legalControls.applyTvaExemption.value) | number:'1.2-2' }} €</span>
-          <button type="button" class="btn-remove mt-2" (click)="removeService($index)" [title]="'quoteForm.removeService' | transloco">×</button>
+          <button type="button" class="btn-remove mt-2" (click)="removeService($index)" [title]="'quoteForm.removeService' | transloco">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+          </button>
         </div>
       }
+    </div>
+    <div class="section-totals mt-2 mb-2 p-2" style="background: #f1f5f9; border-radius: 6px; font-weight: 500;">
+      <span>Total HT: {{ totalServicesHT | number:'1.2-2' }} €</span> |
+      <span>TVA: {{ totalServicesTVA | number:'1.2-2' }} €</span> |
+      <span style="color: var(--primary-water-green); font-weight: 700;">TTC: {{ totalServicesHT + totalServicesTVA | number:'1.2-2' }} €</span>
     </div>
     <button type="button" class="btn-add" (click)="addService()">{{ 'quoteForm.addService' | transloco }}</button>
   </fieldset>
@@ -476,12 +406,14 @@
       <label>{{ 'quoteForm.suppliersList' | transloco }}</label>
       @for (supplier of suppliers.controls; track $index) {
         <div class="supplier-row">
-          <input [formControlName]="$index" [placeholder]="'quoteForm.placeholders.supplierName' | transloco" [class.is-invalid]="supplier.invalid">
+          <input [formControlName]="$index" [placeholder]="'quoteForm.placeholders.supplierName' | transloco" [class.is-invalid]="supplier.invalid && (supplier.touched || supplier.dirty)">
           @if (suppliers.length > 1) {
-            <button type="button" class="btn-remove" (click)="removeSupplier($index)" [title]="'quoteForm.removeSupplier' | transloco">×</button>
+            <button type="button" class="btn-remove" (click)="removeSupplier($index)" [title]="'quoteForm.removeSupplier' | transloco">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+            </button>
           }
         </div>
-        @if (supplier.invalid) {
+        @if (supplier.invalid && (supplier.touched || supplier.dirty)) {
           <div class="error-feedback mb-2">
             @if (supplier.errors?.['required']) { <span>{{ 'quoteForm.errors.supplierNameRequired' | transloco }}</span> }
           </div>
@@ -493,8 +425,8 @@
     <hr>
 
     <label for="travelCost">{{ 'quoteForm.travelCostHT' | transloco }}</label>
-    <input id="travelCost" type="number" min="0" formControlName="travelCostHT" placeholder="0.00" [class.is-invalid]="f.logistics.controls.travelCostHT.invalid">
-    @if (f.logistics.controls.travelCostHT.invalid) {
+    <input id="travelCost" type="number" min="0" formControlName="travelCostHT" placeholder="0.00" [class.is-invalid]="f.logistics.controls.travelCostHT.invalid && (f.logistics.controls.travelCostHT.touched || f.logistics.controls.travelCostHT.dirty)">
+    @if (f.logistics.controls.travelCostHT.invalid && (f.logistics.controls.travelCostHT.touched || f.logistics.controls.travelCostHT.dirty)) {
       <div class="error-feedback">
         @if (f.logistics.controls.travelCostHT.errors?.['required']) { <span>{{ 'quoteForm.errors.travelCostRequired' | transloco }}</span> }
         @if (f.logistics.controls.travelCostHT.errors?.['min']) { <span>{{ 'quoteForm.errors.amountMin' | transloco }}</span> }
@@ -520,16 +452,16 @@
   <fieldset formGroupName="planning">
     <legend>{{ 'quoteForm.sections.planning' | transloco }}</legend>
     <label for="placeOfWriting">{{ 'quoteForm.fields.placeOfWriting' | transloco }}</label>
-    <input id="placeOfWriting" formControlName="placeOfWriting" [placeholder]="'quoteForm.placeholders.city' | transloco" [class.is-invalid]="planningControls.placeOfWriting.invalid">
-    @if (planningControls.placeOfWriting.invalid) {
+    <input id="placeOfWriting" formControlName="placeOfWriting" [placeholder]="'quoteForm.placeholders.city' | transloco" [class.is-invalid]="planningControls.placeOfWriting.invalid && (planningControls.placeOfWriting.touched || planningControls.placeOfWriting.dirty)">
+    @if (planningControls.placeOfWriting.invalid && (planningControls.placeOfWriting.touched || planningControls.placeOfWriting.dirty)) {
       <div class="error-feedback">
         @if (planningControls.placeOfWriting.errors?.['required']) { <span>{{ 'quoteForm.errors.placeOfWritingRequired' | transloco }}</span> }
       </div>
     }
 
     <label for="dateOfWriting">{{ 'quoteForm.fields.dateOfWriting' | transloco }}</label>
-    <input id="dateOfWriting" type="date" formControlName="dateOfWriting" [class.is-invalid]="planningControls.dateOfWriting.invalid">
-    @if (planningControls.dateOfWriting.invalid) {
+    <input id="dateOfWriting" type="date" formControlName="dateOfWriting" [class.is-invalid]="planningControls.dateOfWriting.invalid && (planningControls.dateOfWriting.touched || planningControls.dateOfWriting.dirty)">
+    @if (planningControls.dateOfWriting.invalid && (planningControls.dateOfWriting.touched || planningControls.dateOfWriting.dirty)) {
       <div class="error-feedback">
         @if (planningControls.dateOfWriting.errors?.['required']) { <span>{{ 'quoteForm.errors.dateOfWritingRequired' | transloco }}</span> }
         @if (planningControls.dateOfWriting.errors?.['minDateToday']) { <span>{{ 'quoteForm.errors.dateMinToday' | transloco }}</span> }
@@ -537,38 +469,38 @@
     }
 
     <label for="validityDate">{{ 'quoteForm.fields.validityDate' | transloco }}</label>
-    <input id="validityDate" type="date" formControlName="validityDate" [class.is-invalid]="planningControls.validityDate.invalid || planningGroup.hasError('invalidValidityRange')">
-    @if (planningControls.validityDate.invalid) {
+    <input id="validityDate" type="date" formControlName="validityDate" [class.is-invalid]="(planningControls.validityDate.invalid || planningGroup.hasError('invalidValidityRange')) && (planningControls.validityDate.touched || planningControls.validityDate.dirty)">
+    @if (planningControls.validityDate.invalid && (planningControls.validityDate.touched || planningControls.validityDate.dirty)) {
       <div class="error-feedback">
         @if (planningControls.validityDate.errors?.['required']) { <span>{{ 'quoteForm.errors.validityDateRequired' | transloco }}</span> }
         @if (planningControls.validityDate.errors?.['minDateToday']) { <span>{{ 'quoteForm.errors.dateMinToday' | transloco }}</span> }
       </div>
     }
-    @if (planningGroup.hasError('invalidValidityRange') && !planningControls.validityDate.hasError('minDateToday')) {
+    @if (planningGroup.hasError('invalidValidityRange') && !planningControls.validityDate.hasError('minDateToday') && (planningControls.validityDate.touched || planningControls.validityDate.dirty)) {
       <div class="error-feedback">{{ 'quoteForm.errors.validityRange' | transloco }}</div>
     }
 
     <label for="estimatedStartDate">{{ 'quoteForm.fields.estimatedStartDate' | transloco }}</label>
-    <input id="estimatedStartDate" type="date" formControlName="estimatedStartDate" [class.is-invalid]="planningControls.estimatedStartDate.invalid || planningGroup.hasError('invalidStartRange')">
-    @if (planningControls.estimatedStartDate.invalid) {
+    <input id="estimatedStartDate" type="date" formControlName="estimatedStartDate" [class.is-invalid]="(planningControls.estimatedStartDate.invalid || planningGroup.hasError('invalidStartRange')) && (planningControls.estimatedStartDate.touched || planningControls.estimatedStartDate.dirty)">
+    @if (planningControls.estimatedStartDate.invalid && (planningControls.estimatedStartDate.touched || planningControls.estimatedStartDate.dirty)) {
       <div class="error-feedback">
         @if (planningControls.estimatedStartDate.errors?.['required']) { <span>{{ 'quoteForm.errors.startDateRequired' | transloco }}</span> }
         @if (planningControls.estimatedStartDate.errors?.['minDateToday']) { <span>{{ 'quoteForm.errors.dateMinToday' | transloco }}</span> }
       </div>
     }
-    @if (planningGroup.hasError('invalidStartRange') && !planningControls.estimatedStartDate.hasError('minDateToday')) {
+    @if (planningGroup.hasError('invalidStartRange') && !planningControls.estimatedStartDate.hasError('minDateToday') && (planningControls.estimatedStartDate.touched || planningControls.estimatedStartDate.dirty)) {
       <div class="error-feedback">{{ 'quoteForm.errors.startRange' | transloco }}</div>
     }
 
     <label for="estimatedEndDate">{{ 'quoteForm.fields.estimatedEndDate' | transloco }}</label>
-    <input id="estimatedEndDate" type="date" formControlName="estimatedEndDate" [class.is-invalid]="planningControls.estimatedEndDate.invalid || planningGroup.hasError('invalidEstimatedRange')">
-    @if (planningControls.estimatedEndDate.invalid) {
+    <input id="estimatedEndDate" type="date" formControlName="estimatedEndDate" [class.is-invalid]="(planningControls.estimatedEndDate.invalid || planningGroup.hasError('invalidEstimatedRange')) && (planningControls.estimatedEndDate.touched || planningControls.estimatedEndDate.dirty)">
+    @if (planningControls.estimatedEndDate.invalid && (planningControls.estimatedEndDate.touched || planningControls.estimatedEndDate.dirty)) {
       <div class="error-feedback">
         @if (planningControls.estimatedEndDate.errors?.['required']) { <span>{{ 'quoteForm.errors.endDateRequired' | transloco }}</span> }
         @if (planningControls.estimatedEndDate.errors?.['minDateToday']) { <span>{{ 'quoteForm.errors.dateMinToday' | transloco }}</span> }
       </div>
     }
-    @if (planningGroup.hasError('invalidEstimatedRange') && !planningControls.estimatedEndDate.hasError('minDateToday')) {
+    @if (planningGroup.hasError('invalidEstimatedRange') && !planningControls.estimatedEndDate.hasError('minDateToday') && (planningControls.estimatedEndDate.touched || planningControls.estimatedEndDate.dirty)) {
       <div class="error-feedback">{{ 'quoteForm.errors.endRange' | transloco }}</div>
     }
 
@@ -585,27 +517,27 @@
       </ul>
     </div>
 
-    <label [class.text-danger]="f.agreement.controls.insuranceVerified.invalid">
+    <label [class.text-danger]="f.agreement.controls.insuranceVerified.invalid && (f.agreement.controls.insuranceVerified.touched || f.agreement.controls.insuranceVerified.dirty)">
       <input type="checkbox" formControlName="insuranceVerified">
       {{ 'quoteForm.insuranceVerified' | transloco }}
     </label>
-    @if (f.agreement.controls.insuranceVerified.invalid) {
+    @if (f.agreement.controls.insuranceVerified.invalid && (f.agreement.controls.insuranceVerified.touched || f.agreement.controls.insuranceVerified.dirty)) {
       <div class="error-feedback mb-2">{{ 'quoteForm.errors.mustAccept' | transloco }}</div>
     }
 
-    <label [class.text-danger]="f.agreement.controls.waiveRetractionRights.invalid">
+    <label [class.text-danger]="f.agreement.controls.waiveRetractionRights.invalid && (f.agreement.controls.waiveRetractionRights.touched || f.agreement.controls.waiveRetractionRights.dirty)">
       <input type="checkbox" formControlName="waiveRetractionRights">
       {{ 'quoteForm.waiveRetraction' | transloco }}
     </label>
-    @if (f.agreement.controls.waiveRetractionRights.invalid) {
+    @if (f.agreement.controls.waiveRetractionRights.invalid && (f.agreement.controls.waiveRetractionRights.touched || f.agreement.controls.waiveRetractionRights.dirty)) {
       <div class="error-feedback mb-2">{{ 'quoteForm.errors.mustAccept' | transloco }}</div>
     }
 
-    <label [class.text-danger]="f.agreement.controls.arbitrationAgreement.invalid">
+    <label [class.text-danger]="f.agreement.controls.arbitrationAgreement.invalid && (f.agreement.controls.arbitrationAgreement.touched || f.agreement.controls.arbitrationAgreement.dirty)">
       <input type="checkbox" formControlName="arbitrationAgreement">
       {{ 'quoteForm.arbitration' | transloco }}
     </label>
-    @if (f.agreement.controls.arbitrationAgreement.invalid) {
+    @if (f.agreement.controls.arbitrationAgreement.invalid && (f.agreement.controls.arbitrationAgreement.touched || f.agreement.controls.arbitrationAgreement.dirty)) {
       <div class="error-feedback mb-2">{{ 'quoteForm.errors.mustAccept' | transloco }}</div>
     }
   </fieldset>
@@ -613,10 +545,11 @@
   <div class="summary">
     <h2>{{ 'quoteForm.summary' | transloco }}</h2>
     <p>{{ 'quoteForm.totalHTLabel' | transloco }} <strong>{{ totalHT | number:'1.2-2' }} €</strong></p>
+    <p>{{ 'quoteForm.totalTVALabel' | transloco }} <strong>{{ totalTVA | number:'1.2-2' }} €</strong></p>
     <p><strong>{{ 'quoteForm.totalToPay' | transloco }} {{ grandTotalTTC | number:'1.2-2' }} €</strong></p>
   </div>
 
-  @if (quoteForm.invalid) {
+  @if (quoteForm.invalid && quoteForm.touched) {
     <div class="alert-danger mb-2 p-2">{{ 'quoteForm.formHasErrors' | transloco }}</div>
   }
 
