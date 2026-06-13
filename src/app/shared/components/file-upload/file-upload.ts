@@ -172,7 +172,10 @@ export class FileUpload implements ControlValueAccessor, OnInit {
           this.setKey(null);
           load();
         },
-        // Restauration d'un fichier existant à partir de sa clé (via URL signée).
+        // Restauration d'un fichier existant à partir de sa clé.
+        // On télécharge le binaire via notre backend (same-origin) plutôt que
+        // l'URL signée Backblaze : un fetch() direct vers B2 serait bloqué par
+        // CORS si le bucket n'expose pas de règle adéquate.
         load: (
           source: string,
           load: (file: Blob) => void,
@@ -181,9 +184,7 @@ export class FileUpload implements ControlValueAccessor, OnInit {
           abort: () => void,
         ) => {
           let aborted = false;
-          firstValueFrom(this.storage.getUrl(source))
-            .then((res) => fetch(res.url))
-            .then((r) => r.blob())
+          firstValueFrom(this.storage.getContent(source))
             .then((blob) => {
               if (aborted) return;
               progress(true, 1, 1);

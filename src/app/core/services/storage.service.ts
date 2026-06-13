@@ -53,4 +53,18 @@ export class StorageService {
   getUrl(key: string): Observable<SignedUrlResponse> {
     return this.http.get<SignedUrlResponse>(`${BASE_URL}/${encodeURIComponent(key)}/url`);
   }
+
+  /**
+   * Télécharge le binaire d'un fichier déjà uploadé, servi par notre propre
+   * backend (same-origin). À privilégier pour un `fetch()`/blob côté navigateur :
+   * l'URL signée pointe vers Backblaze et serait bloquée par CORS si le bucket
+   * n'expose pas de règle adéquate. Ici, pas de souci CORS.
+   */
+  getContent(key: string): Observable<Blob> {
+    const path = key
+      .split('/')
+      .map((segment) => encodeURIComponent(segment))
+      .join('/');
+    return this.http.get(`${BASE_URL}/content/${path}`, { responseType: 'blob' });
+  }
 }
