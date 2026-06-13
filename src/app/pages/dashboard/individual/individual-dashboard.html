@@ -49,6 +49,13 @@
                     </svg>
                     {{ 'dashboard.individual.nav.profile' | transloco }}
                 </button>
+                <button class="nav-item" [class.active]="activeSection() === 'documents'" (click)="setSection('documents')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                    </svg>
+                    {{ 'dashboard.individual.nav.documents' | transloco }}
+                </button>
                 <button
                     class="nav-item"
                     [class.active]="activeSection() === 'requests'"
@@ -327,6 +334,32 @@
                                         }
                                     </div>
                                 </dl>
+                            </div>
+                        </div>
+                    }
+                    @case ('documents') {
+                        <div class="ind-section">
+                            <h3 class="ind-section-title">{{ 'dashboard.individual.docs.title' | transloco }}</h3>
+                            <div class="doc-grid">
+                                @for (
+                                    doc of [
+                                        { field: 'photoKey', value: client.individualProfile.photoKey, label: 'dashboard.individual.docs.photo' },
+                                        { field: 'idFrontKey', value: client.individualProfile.idFrontKey, label: 'dashboard.individual.docs.idFront' },
+                                        { field: 'idBackKey', value: client.individualProfile.idBackKey, label: 'dashboard.individual.docs.idBack' },
+                                        { field: 'ribKey', value: client.individualProfile.ribKey, label: 'dashboard.individual.docs.rib' }
+                                    ];
+                                    track doc.field
+                                ) {
+                                    <div class="doc-slot">
+                                        <p class="doc-slot-label">{{ doc.label | transloco }}</p>
+                                        <ac-file-upload
+                                            accept="image/*,.pdf"
+                                            [ngModel]="doc.value || null"
+                                            [ngModelOptions]="{ standalone: true }"
+                                            (ngModelChange)="onDocChange($any(doc.field), $event)"
+                                        ></ac-file-upload>
+                                    </div>
+                                }
                             </div>
                         </div>
                     }

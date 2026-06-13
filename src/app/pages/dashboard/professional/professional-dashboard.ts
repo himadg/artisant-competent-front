@@ -8,7 +8,7 @@ import { forkJoin } from 'rxjs';
 import { DashboardApiService } from '../../../core/services/dashboard-api.service';
 import { MissionService } from '../../../core/services/mission.service';
 import { AuthService } from '../../../core/services/auth.service';
-import { UserApiService } from '../../../core/services/user-api.service';
+import { UserApiService, DocumentKeys } from '../../../core/services/user-api.service';
 import { ServiceApiService } from '../../../core/services/service-api.service';
 import { AffiliationApiService } from '../../../core/services/affiliation-api.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -18,6 +18,7 @@ import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
 import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
 import { QuoteFormComponent } from '../../../shared/components/quote-form/quote-form.component';
+import { FileUpload } from '../../../shared/components/file-upload/file-upload';
 import { QuoteService, QuoteListItem } from '../../../shared/services/quote.service';
 
 export type ProSection = 'requests' | 'quotes' | 'invoices' | 'profile' | 'legal' | 'practices' | 'affiliation';
@@ -29,7 +30,7 @@ const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'satu
   selector: 'dashboard-professional',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FormsModule, RouterLink, TranslocoModule, LangToggle, ThemeToggle, LegalModal, QuoteFormComponent],
+  imports: [CommonModule, FormsModule, RouterLink, TranslocoModule, LangToggle, ThemeToggle, LegalModal, QuoteFormComponent, FileUpload],
   templateUrl: './professional-dashboard.html',
   styleUrl: './professional-dashboard.scss',
 })
@@ -50,6 +51,9 @@ export class ProfessionalDashboard implements OnInit {
 
   readonly activeSection = signal<ProSection>('profile');
   readonly activeTab = signal<ProTab>('presentation');
+
+  /** Clé du champ document en cours d'enregistrement (pour feedback UI). */
+  readonly docSaving = signal<keyof DocumentKeys | null>(null);
 
   readonly affiliationData = signal<AffiliationDashboard | null>(null);
   readonly affiliationLoading = signal(false);
@@ -247,6 +251,29 @@ export class ProfessionalDashboard implements OnInit {
 
   setTab(tab: ProTab) {
     this.activeTab.set(tab);
+  }
+
+  /**
+   * Persiste un changement de document (ajout/remplacement/suppression) émis par
+   * un `ac-file-upload`. `key` vaut `null` quand le fichier est retiré : on envoie
+   * alors une chaîne vide au backend (suppression de l'emplacement). On met à jour
+   * le signal `data()` localement pour refléter la nouvelle clé sans recharger.
+   */
+  onDocChange(field: keyof DocumentKeys, key: string | null) {
+    const pro = this.data();
+    if (!pro) return;
+    this.docSaving.set(field);
+    this.userApi.updateProfessionalDocuments(pro.id, { [field]: key ?? '' }).subscribe({
+      next: () => {
+        this.data.update((prev) =>
+          prev
+            ? { ...prev, professionalProfile: { ...prev.professionalProfile, [field]: key ?? '' } }
+            : prev,
+        );
+        this.docSaving.set(null);
+      },
+      error: () => this.docSaving.set(null),
+    });
   }
 
   toggleMoreMenu() {

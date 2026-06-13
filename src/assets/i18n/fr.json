@@ -972,12 +972,20 @@
     "individual": {
       "nav": {
         "profile": "Infos personnelles",
+        "documents": "Mes documents",
         "requests": "Mes demandes",
         "quotes": "Mes devis",
         "invoices": "Mes factures",
         "legal": "Informations légales",
         "practices": "Bonnes pratiques",
         "affiliation": "Affiliation"
+      },
+      "docs": {
+        "title": "Mes documents",
+        "photo": "Photo de profil",
+        "idFront": "Pièce d'identité (recto)",
+        "idBack": "Pièce d'identité (verso)",
+        "rib": "RIB"
       },
       "mobile": {
         "profile": "Compte",
@@ -1022,6 +1030,7 @@
         "reviews": "Aucun avis pour le moment."
       },
       "docs": {
+        "photo": "Photo de profil",
         "idFront": "Pièce d'identité (recto)",
         "idBack": "Pièce d'identité (verso)",
         "insurance": "Attestation d'assurance",

@@ -968,92 +968,24 @@
                                     <div class="doc-grid">
                                         @for (
                                             doc of [
-                                                {
-                                                    key: pro.professionalProfile.idFrontKey,
-                                                    url: pro.professionalProfile.idFrontUrl,
-                                                    label: 'dashboard.pro.docs.idFront',
-                                                },
-                                                {
-                                                    key: pro.professionalProfile.idBackKey,
-                                                    url: pro.professionalProfile.idBackUrl,
-                                                    label: 'dashboard.pro.docs.idBack',
-                                                },
-                                                {
-                                                    key: pro.professionalProfile.insuranceDocKey,
-                                                    url: pro.professionalProfile.insuranceDocUrl,
-                                                    label: 'dashboard.pro.docs.insurance',
-                                                },
-                                                {
-                                                    key: pro.professionalProfile.diplomaDocKey,
-                                                    url: pro.professionalProfile.diplomaDocUrl,
-                                                    label: 'dashboard.pro.docs.diploma',
-                                                },
-                                                {
-                                                    key: pro.professionalProfile.ribKey,
-                                                    url: pro.professionalProfile.ribUrl,
-                                                    label: 'dashboard.pro.docs.rib',
-                                                },
-                                                {
-                                                    key: pro.professionalProfile.companyLogoKey,
-                                                    url: pro.professionalProfile.logoUrl,
-                                                    label: 'dashboard.pro.docs.logo',
-                                                },
+                                                { field: 'photoKey', value: pro.professionalProfile.photoKey, label: 'dashboard.pro.docs.photo' },
+                                                { field: 'companyLogoKey', value: pro.professionalProfile.companyLogoKey, label: 'dashboard.pro.docs.logo' },
+                                                { field: 'idFrontKey', value: pro.professionalProfile.idFrontKey, label: 'dashboard.pro.docs.idFront' },
+                                                { field: 'idBackKey', value: pro.professionalProfile.idBackKey, label: 'dashboard.pro.docs.idBack' },
+                                                { field: 'insuranceDocKey', value: pro.professionalProfile.insuranceDocKey, label: 'dashboard.pro.docs.insurance' },
+                                                { field: 'diplomaDocKey', value: pro.professionalProfile.diplomaDocKey, label: 'dashboard.pro.docs.diploma' },
+                                                { field: 'ribKey', value: pro.professionalProfile.ribKey, label: 'dashboard.pro.docs.rib' }
                                             ];
-                                            track doc.key
+                                            track doc.field
                                         ) {
-                                            <div class="doc-card">
-                                                <div class="doc-card-preview">
-                                                    @if (doc.url && doc.key.endsWith('.webp')) {
-                                                        <img
-                                                            [src]="doc.url"
-                                                            [alt]="doc.label | transloco"
-                                                            class="doc-card-img"
-                                                        />
-                                                    } @else {
-                                                        <svg
-                                                            class="doc-card-icon"
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            stroke-width="1.5"
-                                                        >
-                                                            <path
-                                                                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                                                            />
-                                                            <polyline points="14 2 14 8 20 8" />
-                                                            <line x1="16" y1="13" x2="8" y2="13" />
-                                                            <line x1="16" y1="17" x2="8" y2="17" />
-                                                            <line x1="10" y1="9" x2="8" y2="9" />
-                                                        </svg>
-                                                    }
-                                                </div>
-                                                <div class="doc-card-body">
-                                                    <p class="doc-card-label">{{ doc.label | transloco }}</p>
-                                                    @if (doc.url) {
-                                                        <a
-                                                            [href]="doc.url"
-                                                            target="_blank"
-                                                            rel="noopener"
-                                                            class="doc-card-btn"
-                                                        >
-                                                            <svg
-                                                                viewBox="0 0 24 24"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                stroke-width="1.8"
-                                                            >
-                                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                                                                <polyline points="7 10 12 15 17 10" />
-                                                                <line x1="12" y1="15" x2="12" y2="3" />
-                                                            </svg>
-                                                            {{ 'dashboard.pro.docs.download' | transloco }}
-                                                        </a>
-                                                    } @else {
-                                                        <span class="doc-card-missing">{{
-                                                            'dashboard.pro.docs.missing' | transloco
-                                                        }}</span>
-                                                    }
-                                                </div>
+                                            <div class="doc-slot">
+                                                <p class="doc-slot-label">{{ doc.label | transloco }}</p>
+                                                <ac-file-upload
+                                                    accept="image/*,.pdf"
+                                                    [ngModel]="doc.value || null"
+                                                    [ngModelOptions]="{ standalone: true }"
+                                                    (ngModelChange)="onDocChange($any(doc.field), $event)"
+                                                ></ac-file-upload>
                                             </div>
                                         }
                                     </div>

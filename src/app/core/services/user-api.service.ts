@@ -14,6 +14,14 @@ export interface DocumentKeys {
   otherCertificationsKeys: string[];
 }
 
+/** Emplacements documentaires d'un profil particulier. */
+export interface IndividualDocumentKeys {
+  photoKey: string;
+  idFrontKey: string;
+  idBackKey: string;
+  ribKey: string;
+}
+
 type OpeningHoursUpdate = {
   days: { day: string; closed: boolean; intervals: { start: string; end: string }[] }[];
 };
@@ -31,8 +39,14 @@ export class UserApiService {
     });
   }
 
-  createIndividualDocuments(userId: string, photoKey: string): Observable<void> {
-    return this.http.patch<void>(`/individuals/${userId}/documents`, { photoKey });
+  /**
+   * Met à jour (partiellement) les documents d'un particulier. Chaque clé
+   * fournie écrase l'emplacement correspondant ; une chaîne vide supprime le
+   * document (le backend gère le détachement). Payload partiel : on n'envoie
+   * que les emplacements modifiés.
+   */
+  updateIndividualDocuments(userId: string, keys: Partial<IndividualDocumentKeys>): Observable<void> {
+    return this.http.patch<void>(`/individuals/${userId}/documents`, keys);
   }
 
   updateUser(userId: string, data: Partial<{ firstName: string; lastName: string; email: string; birthDate: string; gender: string }>): Observable<void> {
@@ -63,6 +77,14 @@ export class UserApiService {
 
   createProfessionalDocuments(userId: string, documents: DocumentKeys): Observable<void> {
     return this.http.patch<void>(`/professionals/${userId}/documents`, documents);
+  }
+
+  /**
+   * Met à jour (partiellement) les documents d'un professionnel. Payload
+   * partiel : on n'envoie que les emplacements modifiés (chaîne vide = suppression).
+   */
+  updateProfessionalDocuments(userId: string, keys: Partial<DocumentKeys>): Observable<void> {
+    return this.http.patch<void>(`/professionals/${userId}/documents`, keys);
   }
 
   getAllTrades(): Observable<{ id: string; name: string }[]> {

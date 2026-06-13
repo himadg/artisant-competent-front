@@ -932,12 +932,20 @@
     "individual": {
       "nav": {
         "profile": "Personal info",
+        "documents": "My documents",
         "requests": "My requests",
         "quotes": "My quotes",
         "invoices": "My invoices",
         "legal": "Legal information",
         "practices": "Best practices",
         "affiliation": "Referral program"
+      },
+      "docs": {
+        "title": "My documents",
+        "photo": "Profile photo",
+        "idFront": "ID card (front)",
+        "idBack": "ID card (back)",
+        "rib": "Bank details (RIB)"
       },
       "mobile": {
         "profile": "Account",
@@ -982,6 +990,7 @@
         "reviews": "No reviews yet"
       },
       "docs": {
+        "photo": "Profile photo",
         "idFront": "ID card (front)",
         "idBack": "ID card (back)",
         "insurance": "Insurance certificate",

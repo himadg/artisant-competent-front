@@ -806,6 +806,19 @@
   gap: 1rem;
 }
 
+// Emplacement document éditable (FilePond via ac-file-upload).
+.doc-slot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.doc-slot-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-color, inherit);
+}
+
 .doc-card {
   border: 1px solid var(--border-color);
   border-radius: 0.75rem;

@@ -187,7 +187,7 @@ export class RegisterIndividual implements OnDestroy {
           this.authService.setTempToken(accessToken);
           clearAffiliateCode();
           // La photo est déjà uploadée (clé en main) ; on n'envoie que la clé.
-          return photoKey ? this.userApi.createIndividualDocuments(userId, photoKey) : of(undefined);
+          return photoKey ? this.userApi.updateIndividualDocuments(userId, { photoKey }) : of(undefined);
         }),
         takeUntil(this.destroy$),
       )

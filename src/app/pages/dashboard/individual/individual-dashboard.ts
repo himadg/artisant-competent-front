@@ -6,7 +6,7 @@ import { FormsModule, Validators } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
 import { DashboardApiService } from '../../../core/services/dashboard-api.service';
 import { AuthService } from '../../../core/services/auth.service';
-import { UserApiService } from '../../../core/services/user-api.service';
+import { UserApiService, IndividualDocumentKeys } from '../../../core/services/user-api.service';
 import { AffiliationApiService } from '../../../core/services/affiliation-api.service';
 import { MissionService } from '../../../core/services/mission.service';
 import { QuoteService, QuoteListItem } from '../../../shared/services/quote.service';
@@ -16,15 +16,16 @@ import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
 import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
 import { QuotePreviewComponent } from '../../../shared/components/quote-preview/quote-preview.component';
+import { FileUpload } from '../../../shared/components/file-upload/file-upload';
 import { RouterLink } from "@angular/router";
 
-export type IndividualSection = 'profile' | 'requests' | 'quotes' | 'invoices' | 'legal' | 'practices' | 'affiliation';
+export type IndividualSection = 'profile' | 'documents' | 'requests' | 'quotes' | 'invoices' | 'legal' | 'practices' | 'affiliation';
 
 @Component({
   selector: 'dashboard-individual',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FormsModule, TranslocoModule, LangToggle, ThemeToggle, LegalModal, QuotePreviewComponent, RouterLink],
+  imports: [CommonModule, FormsModule, TranslocoModule, LangToggle, ThemeToggle, LegalModal, QuotePreviewComponent, RouterLink, FileUpload],
   templateUrl: './individual-dashboard.html',
   styleUrl: './individual-dashboard.scss',
 })
@@ -42,6 +43,9 @@ export class IndividualDashboard implements OnInit {
   readonly error = signal<string | null>(null);
   readonly activeSection = signal<IndividualSection>('profile');
   readonly moreMenuOpen = signal(false);
+
+  /** Clé du champ document en cours d'enregistrement (feedback UI). */
+  readonly docSaving = signal<keyof IndividualDocumentKeys | null>(null);
 
   readonly affiliationData = signal<AffiliationDashboard | null>(null);
   readonly affiliationLoading = signal(false);
@@ -109,6 +113,28 @@ export class IndividualDashboard implements OnInit {
     if (section === 'quotes') {
       this.loadQuotes();
     }
+  }
+
+  /**
+   * Persiste un changement de document (ajout/remplacement/suppression) émis par
+   * un `ac-file-upload`. `key === null` (fichier retiré) → chaîne vide au backend.
+   * Met à jour `data()` localement pour refléter la nouvelle clé sans recharger.
+   */
+  onDocChange(field: keyof IndividualDocumentKeys, key: string | null) {
+    const d = this.data();
+    if (!d) return;
+    this.docSaving.set(field);
+    this.userApi.updateIndividualDocuments(d.id, { [field]: key ?? '' }).subscribe({
+      next: () => {
+        this.data.update((prev) =>
+          prev
+            ? { ...prev, individualProfile: { ...prev.individualProfile, [field]: key ?? '' } }
+            : prev,
+        );
+        this.docSaving.set(null);
+      },
+      error: () => this.docSaving.set(null),
+    });
   }
 
   loadRequests() {

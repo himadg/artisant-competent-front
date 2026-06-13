@@ -1240,3 +1240,21 @@
     grid-template-columns: 1fr;
   }
 }
+
+// Espace documents (FilePond via ac-file-upload)
+.doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 1rem;
+}
+
+.doc-slot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.doc-slot-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
