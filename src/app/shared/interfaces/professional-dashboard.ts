@@ -2,10 +2,9 @@ import { Address } from './address';
 import { Role } from './user';
 
 export interface Trade { id: string; name: string; }
-export interface Service { id: string; description: string; }
 
 export interface OpeningHoursInterval { start: string; end: string; }
-export interface OpeningHoursDay { day: string; closed: boolean; intervals: OpeningHoursInterval[]; }
+export interface OpeningHoursDay { day: string; closed: boolean; onCall: boolean; intervals: OpeningHoursInterval[]; }
 export interface OpeningHours { days: OpeningHoursDay[]; }
 
 export interface ProfessionalProfile {
@@ -21,16 +20,11 @@ export interface ProfessionalProfile {
   idFrontUrl: string | null;
   idBackKey: string;
   idBackUrl: string | null;
-  insuranceDocKey: string;
-  insuranceDocUrl: string | null;
-  diplomaDocKey: string;
-  diplomaDocUrl: string | null;
+  diplomas: { id: string; documentName: string; expiryDate: string; fileKey: string; url: string | null }[];
   ribKey: string;
   ribUrl: string | null;
-  insuranceName: string;
-  insuranceNumber: string;
-  insuranceExpiry: string;
   siret: string;
+  companyStatus: 'COMPANY' | 'INDIVIDUAL';
   yearsExperience: number;
   isCmod: boolean;
   onCall: boolean;
@@ -40,7 +34,13 @@ export interface ProfessionalProfile {
   suppliers: string[];
   workAddress: Address;
   trades: Trade[];
-  services: Service[];
+  mediatorName?: string | null;
+  mediatorAddress?: string | null;
+  mediatorWebsite?: string | null;
+  mediatorContactMethod?: string | null;
+  mediatorAdditionalInfo?: string | null;
+  additionalRemarks?: string | null;
+  companyRemarks?: string | null;
 }
 
 export interface ProfessionalDashboardData {

@@ -8,11 +8,7 @@ export interface ProfessionalProfile {
   photoKey: string;
   idFrontKey: string;
   idBackKey: string;
-  insuranceDocKey: string;
-  insuranceName: string;
-  insuranceNumber: string;
-  insuranceExpiry: string;
-  diplomaDocKey: string;
+  diplomas: { id: string; documentName: string; expiryDate: string; fileKey: string }[];
   companyLogoKey: string;
   companyName: string;
   workAddressId: string;

@@ -8,10 +8,9 @@ import { forkJoin } from 'rxjs';
 import { DashboardApiService } from '../../../core/services/dashboard-api.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { UserApiService } from '../../../core/services/user-api.service';
-import { ServiceApiService } from '../../../core/services/service-api.service';
 import { AffiliationApiService } from '../../../core/services/affiliation-api.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ProfessionalDashboardData, OpeningHoursDay, Service } from '../../../shared/interfaces/professional-dashboard';
+import { ProfessionalDashboardData, OpeningHoursDay } from '../../../shared/interfaces/professional-dashboard';
 import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
@@ -19,7 +18,7 @@ import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
 import { DocModal, PreviewDocument } from '../../../shared/components/doc-modal/doc-modal';
 
 export type ProSection = 'requests' | 'quotes' | 'invoices' | 'profile' | 'legal' | 'practices' | 'affiliation';
-export type ProTab = 'presentation' | 'services' | 'missions' | 'reviews' | 'documents';
+export type ProTab = 'presentation' | 'missions' | 'reviews' | 'documents';
 
 const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as const;
 
@@ -34,7 +33,6 @@ const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'satu
 export class ProfessionalDashboard implements OnInit {
   private readonly dashboardApi = inject(DashboardApiService);
   private readonly userApi = inject(UserApiService);
-  private readonly serviceApi = inject(ServiceApiService);
   private readonly affiliationApi = inject(AffiliationApiService);
   private readonly route = inject(ActivatedRoute);
   private readonly platformLocation = inject(PlatformLocation);
@@ -265,7 +263,7 @@ export class ProfessionalDashboard implements OnInit {
         })),
       );
     } else {
-      this.editHours.set(WEEK_DAYS.map((day) => ({ day, closed: true, intervals: [] })));
+      this.editHours.set(WEEK_DAYS.map((day) => ({ day, closed: true, onCall: false, intervals: [] })));
     }
     this.editHoursMode.set(true);
   }
@@ -276,7 +274,12 @@ export class ProfessionalDashboard implements OnInit {
 
   toggleDay(index: number, event: Event) {
     const checked = (event.target as HTMLInputElement).checked;
-    this.editHours.update((days) => days.map((day, i) => (i !== index ? day : { ...day, closed: !checked })));
+    this.editHours.update((days) => days.map((day, i) => (i !== index ? day : { ...day, closed: !checked, onCall: false })));
+  }
+
+  toggleOnCall(index: number, event: Event) {
+    const checked = (event.target as HTMLInputElement).checked;
+    this.editHours.update((days) => days.map((d, i) => i !== index ? d : { ...d, onCall: checked }));
   }
 
   setHourStart(index: number, event: Event) {
@@ -371,6 +374,198 @@ export class ProfessionalDashboard implements OnInit {
     });
   }
 
+  // ── Personal info ─────────────────────────────────────────────────────────
+  readonly editPersonalInfoMode = signal(false);
+  readonly savingPersonalInfo = signal(false);
+  editPersonalInfo = { gender: '', lastName: '', firstName: '', birthDate: '', email: '', professionalEmail: '', managerPhone: '' };
+
+  enterEditPersonalInfo() {
+    const d = this.data();
+    if (!d) return;
+    const p = d.professionalProfile;
+    this.editPersonalInfo = {
+      gender: d.gender,
+      lastName: d.lastName,
+      firstName: d.firstName,
+      birthDate: d.birthDate ? d.birthDate.slice(0, 10) : '',
+      email: d.email,
+      professionalEmail: p.professionalEmail ?? '',
+      managerPhone: p.managerPhone,
+    };
+    this.editPersonalInfoMode.set(true);
+  }
+
+  cancelEditPersonalInfo() { this.editPersonalInfoMode.set(false); }
+
+  saveEditPersonalInfo() {
+    const d = this.data();
+    if (!d) return;
+    const { gender, lastName, firstName, birthDate, email, professionalEmail, managerPhone } = this.editPersonalInfo;
+    this.savingPersonalInfo.set(true);
+    forkJoin([
+      this.userApi.updateUser(d.id, { gender, lastName, firstName, birthDate, email }),
+      this.userApi.updateProfessional(d.id, { managerPhone, professionalEmail: professionalEmail || null }),
+    ]).subscribe({
+      next: () => {
+        this.data.update((prev) =>
+          prev ? {
+            ...prev,
+            gender, lastName, firstName, birthDate, email,
+            professionalProfile: { ...prev.professionalProfile, managerPhone, professionalEmail: professionalEmail || null },
+          } : prev,
+        );
+        this.editPersonalInfoMode.set(false);
+        this.savingPersonalInfo.set(false);
+      },
+      error: () => this.savingPersonalInfo.set(false),
+    });
+  }
+
+  // ── Mediator ──────────────────────────────────────────────────────────────
+  readonly editMediatorMode = signal(false);
+  readonly savingMediator = signal(false);
+  editMediator = { mediatorName: '', mediatorAddress: '', mediatorWebsite: '', mediatorContactMethod: '', mediatorAdditionalInfo: '' };
+
+  enterEditMediator() {
+    const p = this.data()?.professionalProfile;
+    if (!p) return;
+    this.editMediator = {
+      mediatorName: p.mediatorName ?? '',
+      mediatorAddress: p.mediatorAddress ?? '',
+      mediatorWebsite: p.mediatorWebsite ?? '',
+      mediatorContactMethod: p.mediatorContactMethod ?? '',
+      mediatorAdditionalInfo: p.mediatorAdditionalInfo ?? '',
+    };
+    this.editMediatorMode.set(true);
+  }
+
+  cancelEditMediator() { this.editMediatorMode.set(false); }
+
+  saveEditMediator() {
+    const d = this.data();
+    if (!d) return;
+    const { mediatorName, mediatorAddress, mediatorWebsite, mediatorContactMethod, mediatorAdditionalInfo } = this.editMediator;
+    this.savingMediator.set(true);
+    this.userApi.updateProfessional(d.id, {
+      mediatorName: mediatorName || null,
+      mediatorAddress: mediatorAddress || null,
+      mediatorWebsite: mediatorWebsite || null,
+      mediatorContactMethod: mediatorContactMethod || null,
+      mediatorAdditionalInfo: mediatorAdditionalInfo || null,
+    }).subscribe({
+      next: () => {
+        this.data.update((prev) =>
+          prev ? {
+            ...prev,
+            professionalProfile: {
+              ...prev.professionalProfile,
+              mediatorName: mediatorName || null,
+              mediatorAddress: mediatorAddress || null,
+              mediatorWebsite: mediatorWebsite || null,
+              mediatorContactMethod: mediatorContactMethod || null,
+              mediatorAdditionalInfo: mediatorAdditionalInfo || null,
+            },
+          } : prev,
+        );
+        this.editMediatorMode.set(false);
+        this.savingMediator.set(false);
+      },
+      error: () => this.savingMediator.set(false),
+    });
+  }
+
+  // ── Additional remarks ────────────────────────────────────────────────────
+  readonly editAdditionalRemarksMode = signal(false);
+  readonly savingAdditionalRemarks = signal(false);
+  editAdditionalRemarksText = '';
+
+  enterEditAdditionalRemarks() {
+    this.editAdditionalRemarksText = this.data()?.professionalProfile.additionalRemarks ?? '';
+    this.editAdditionalRemarksMode.set(true);
+  }
+
+  cancelEditAdditionalRemarks() { this.editAdditionalRemarksMode.set(false); }
+
+  saveEditAdditionalRemarks() {
+    const d = this.data();
+    if (!d) return;
+    const text = this.editAdditionalRemarksText;
+    this.savingAdditionalRemarks.set(true);
+    this.userApi.updateProfessional(d.id, { additionalRemarks: text || null }).subscribe({
+      next: () => {
+        this.data.update((prev) =>
+          prev ? { ...prev, professionalProfile: { ...prev.professionalProfile, additionalRemarks: text || null } } : prev,
+        );
+        this.editAdditionalRemarksMode.set(false);
+        this.savingAdditionalRemarks.set(false);
+      },
+      error: () => this.savingAdditionalRemarks.set(false),
+    });
+  }
+
+  // ── Company extra (yearsExperience, onCall) ───────────────────────────────
+  readonly editCompanyExtraMode = signal(false);
+  readonly savingCompanyExtra = signal(false);
+  editCompanyExtra = { yearsExperience: 0, onCall: false };
+
+  enterEditCompanyExtra() {
+    const p = this.data()?.professionalProfile;
+    if (!p) return;
+    this.editCompanyExtra = { yearsExperience: p.yearsExperience, onCall: p.onCall };
+    this.editCompanyExtraMode.set(true);
+  }
+
+  cancelEditCompanyExtra() { this.editCompanyExtraMode.set(false); }
+
+  saveEditCompanyExtra() {
+    const d = this.data();
+    if (!d) return;
+    const { yearsExperience, onCall } = this.editCompanyExtra;
+    this.savingCompanyExtra.set(true);
+    this.userApi.updateProfessional(d.id, { yearsExperience, onCall }).subscribe({
+      next: () => {
+        this.data.update((prev) =>
+          prev ? {
+            ...prev,
+            professionalProfile: { ...prev.professionalProfile, yearsExperience, onCall, isCmod: yearsExperience >= 3 },
+          } : prev,
+        );
+        this.editCompanyExtraMode.set(false);
+        this.savingCompanyExtra.set(false);
+      },
+      error: () => this.savingCompanyExtra.set(false),
+    });
+  }
+
+  // ── Company remarks ───────────────────────────────────────────────────────
+  readonly editCompanyRemarksMode = signal(false);
+  readonly savingCompanyRemarks = signal(false);
+  editCompanyRemarksText = '';
+
+  enterEditCompanyRemarks() {
+    this.editCompanyRemarksText = this.data()?.professionalProfile.companyRemarks ?? '';
+    this.editCompanyRemarksMode.set(true);
+  }
+
+  cancelEditCompanyRemarks() { this.editCompanyRemarksMode.set(false); }
+
+  saveEditCompanyRemarks() {
+    const d = this.data();
+    if (!d) return;
+    const text = this.editCompanyRemarksText;
+    this.savingCompanyRemarks.set(true);
+    this.userApi.updateProfessional(d.id, { companyRemarks: text || null }).subscribe({
+      next: () => {
+        this.data.update((prev) =>
+          prev ? { ...prev, professionalProfile: { ...prev.professionalProfile, companyRemarks: text || null } } : prev,
+        );
+        this.editCompanyRemarksMode.set(false);
+        this.savingCompanyRemarks.set(false);
+      },
+      error: () => this.savingCompanyRemarks.set(false),
+    });
+  }
+
   // ── Trusted contact ───────────────────────────────────────────────────────
   readonly editTrustedContactMode = signal(false);
   readonly savingTrustedContact = signal(false);
@@ -420,110 +615,4 @@ export class ProfessionalDashboard implements OnInit {
       });
   }
 
-  // ── Services ──────────────────────────────────────────────────────────────
-  readonly editServicesMode = signal(false);
-  readonly savingServices = signal(false);
-  readonly editServiceList = signal<Service[]>([]);
-  readonly pendingServiceDescriptions = signal<string[]>([]);
-  serviceQuery = '';
-  readonly serviceResults = signal<Service[]>([]);
-  readonly searchingServices = signal(false);
-
-  enterEditServices() {
-    const services = this.data()?.professionalProfile.services;
-    if (!services) return;
-    this.editServiceList.set([...services]);
-    this.pendingServiceDescriptions.set([]);
-    this.serviceQuery = '';
-    this.serviceResults.set([]);
-    this.editServicesMode.set(true);
-  }
-
-  cancelEditServices() {
-    this.editServicesMode.set(false);
-  }
-
-  searchServices() {
-    const query = this.serviceQuery.trim();
-    if (query.length < 3) {
-      this.serviceResults.set([]);
-      return;
-    }
-
-    this.searchingServices.set(true);
-    this.userApi.searchServices(query).subscribe({
-      next: (results) => {
-        this.serviceResults.set(results);
-        this.searchingServices.set(false);
-      },
-      error: () => this.searchingServices.set(false),
-    });
-  }
-
-  get unselectedServiceResults(): Service[] {
-    const selected = this.editServiceList();
-    const pending = this.pendingServiceDescriptions();
-    return this.serviceResults().filter(
-      result => !selected.some(s => s.id === result.id) && !pending.includes(result.description),
-    );
-  }
-
-  addServiceToEdit(service: Service) {
-    if (!this.editServiceList().some(s => s.id === service.id)) {
-      this.editServiceList.update(list => [...list, service]);
-    }
-    this.serviceQuery = '';
-    this.serviceResults.set([]);
-  }
-
-  addPendingService() {
-    const description = this.serviceQuery.trim();
-    if (!description || this.pendingServiceDescriptions().includes(description)) return;
-    this.pendingServiceDescriptions.update(list => [...list, description]);
-    this.serviceQuery = '';
-    this.serviceResults.set([]);
-  }
-
-  removePendingService(description: string) {
-    this.pendingServiceDescriptions.update(list => list.filter(d => d !== description));
-  }
-
-  removeServiceFromEdit(id: string) {
-    this.editServiceList.update(list => list.filter(s => s.id !== id));
-  }
-
-  saveEditServices() {
-    const data = this.data();
-    if (!data) return;
-
-    this.savingServices.set(true);
-
-    const persist = (serviceIds: string[]) => {
-      this.userApi.updateProfessional(data.id, { serviceIds }).subscribe({
-        next: () => {
-          const list = this.editServiceList();
-          this.data.update(prev =>
-            prev ? { ...prev, professionalProfile: { ...prev.professionalProfile, services: [...list] } } : prev,
-          );
-          this.editServicesMode.set(false);
-          this.savingServices.set(false);
-        },
-        error: () => this.savingServices.set(false),
-      });
-    };
-
-    const pending = this.pendingServiceDescriptions();
-    if (pending.length === 0) {
-      persist(this.editServiceList().map(s => s.id));
-      return;
-    }
-
-    forkJoin(pending.map(desc => this.serviceApi.create(desc))).subscribe({
-      next: (created: Service[]) => {
-        this.editServiceList.update(list => [...list, ...created]);
-        persist([...this.editServiceList().map(s => s.id)]);
-      },
-      error: () => this.savingServices.set(false),
-    });
-  }
 }

@@ -12,134 +12,427 @@
 </ng-template>
 
 <ng-template #bodyTpl>
-    <div class="legal-modal__body">
+    <div class="legal-modal__body list-disc">
         @if (activeTab() === 'cgu') {
             <h2>{{ 'legal.cgu.title' | transloco }}</h2>
 
-            <h3>Article 1 – Objet</h3>
-            <p>Les présentes Conditions Générales d'Utilisation (CGU) ont pour objet de définir les modalités et conditions dans lesquelles les utilisateurs accèdent et utilisent la plateforme Artisan Compétent, accessible en ligne, ainsi que les droits et obligations des parties.</p>
+            <p>L'accès, la consultation et l'utilisation du site Artisan-Compétent.com, des Applications et de nos Services sont subordonnés à l'acceptation sans réserve des présentes Conditions Générales d'Utilisation, de la Politique d'Annulation et du Règlement, faisant partie intégrante desdites Conditions Générales d'Utilisation.</p>
+            <p>Les présentes Conditions Générale d'Utilisation (CGU) constituent un accord juridique entre vous et nous et régissent votre utilisation de notre Plateforme et de nos Services. Vous acceptez les présentes si vous cliquez sur le bouton indiquant votre acceptation lorsque vous vous inscrivez et créez un compte Client sur Artisan Compétent (un « <strong>Compte</strong> ») ou lorsque nous vous informons de la mise à jour des présentes CGU.</p>
 
-            <h3>Article 2 – Définitions</h3>
-            <p><strong>Plateforme :</strong> le site internet et l'application mobile Artisan Compétent.</p>
-            <p><strong>Utilisateur :</strong> toute personne physique ou morale accédant à la Plateforme.</p>
-            <p><strong>Particulier :</strong> utilisateur inscrit en tant que client particulier.</p>
-            <p><strong>Artisan :</strong> professionnel inscrit proposant ses services sur la Plateforme.</p>
-            <p><strong>Compte :</strong> espace personnel créé lors de l'inscription.</p>
+            <h3>Définitions</h3>
+            <p>Dans les présentes Conditions, les termes «Artisan Compétent», « Plateforme » « nous », « nos » ou « notre » désignent l'entité Artisan Compétent, société éditrice de la Plateforme, avec laquelle vous concluez un contrat.</p>
+            <p>Chacun des termes mentionnés ci-dessous aura dans les présentes Conditions Générales d'Utilisation du Site Artisan-Compétent.com, des Applications et des Services (ci-après dénommées les " CGU ") la signification suivante :</p>
+            <p><strong>« Artisan(s) »</strong> : désigne toute personne physique ou morale, agissant à titre professionnel, inscrite sur la Plateforme afin de proposer des prestations de travaux ou de services.</p>
+            <p><strong>« Conditions Générales de Vente (CGV) »</strong> : désigne les conditions contractuelles applicables aux prestations de travaux conclues entre l'Artisan et le Client, annexées au devis signé entre les parties. Les CGV constituent, avec le devis, le contrat liant directement l'Artisan et le Client</p>
+            <p><strong>« Compte »</strong> : désigne l'espace personnel accessible depuis le Site et les Applications, créé par l'Utilisateur afin d'accéder aux Services de la Plateforme.</p>
+            <p><strong>« Contenu »</strong> : désigne tout texte, commentaire, avis, message, évaluation, image, fichier, vidéo, rapport ou tout autre élément fourni, partagé ou publié par un Utilisateur via la Plateforme.</p>
+            <p><strong>« Contestation »</strong> : désigne toute notification formelle effectuée par un Utilisateur via la Plateforme, par laquelle il conteste tout ou partie d'une prestation, notamment sa réalisation, sa conformité, son prix ou ses conditions d'exécution. La Contestation constitue le point de départ d'un Litige.</p>
+            <p><strong>« Contournement »</strong> : désigne toute prise de contact et/ou conclusion de contrat de travaux directement entre un Artisan et un Client, pour des prestations initialement proposées ou négociées via la Plateforme, en vue d'éviter le paiement de la commission due à la Plateforme.</p>
+            <p><strong>« Conseiller à Maître d'Ouvrage Digital » ou « CMOD »</strong> : désigne un prestataire indépendant inscrit sur la Plateforme, proposant des services d'assistance et de conseil au Client dans le cadre de son projet de travaux, dans les conditions prévues par une convention distincte.</p>
+            <p><strong>« Devis »</strong> : désigne le document contractuel établi par l'Artisan et accepté par le Client, définissant les conditions de la prestation (notamment la nature des travaux, le prix et les délais), et constituant le contrat de prestation conclu entre ces derniers.</p>
+            <p><strong>« Frais »</strong> : désigne l'ensemble des sommes facturées par la Plateforme aux Utilisateurs en contrepartie de l'utilisation des Services, incluant notamment les frais de service, les frais de transaction et, le cas échéant, les frais d'annulation.</p>
+            <p><strong>« Litige »</strong> : désigne tout désaccord opposant un Client et un Artisan relatif à l'exécution, la conformité, la réception ou le paiement d'une prestation réalisée via la Plateforme, à compter de la formulation d'une Contestation, tel que défini dans la clause relative à la procédure de contestation et de gestion des litiges.</p>
+            <p><strong>« Client(s) »</strong> : désigne toute personne physique ou morale, agissant à des fins qui n'entrent pas dans le cadre de son activité professionnelle, qui recherche, sollicite ou réserve une prestation via la Plateforme.</p>
+            <p><strong>« Prestataire de services de paiement »</strong> : désigne tout établissement de paiement ou établissement de crédit agréé fournissant des services de paiement au sens de la réglementation applicable, notamment la société Stripe, en charge de la gestion des flux financiers entre les Utilisateurs.</p>
+            <p><strong>« Réception des travaux »</strong> : désigne l'acte par lequel le Client accepte les travaux réalisés par l'Artisan, avec ou sans réserves, matérialisé par un procès-verbal de réception établi via la Plateforme.</p>
+            <p><strong>« Services »</strong> : désigne l'ensemble des fonctionnalités et services proposés par la Plateforme, incluant notamment la mise en relation entre Utilisateurs, le suivi de chantier, les outils de communication, ainsi que les services de paiement.</p>
+            <p><strong>« Utilisateur(s) »</strong> : désigne toute personne physique ou morale inscrite sur la Plateforme, incluant notamment les Artisans, les Clients, les Fournisseurs et, le cas échéant, les Conseillers à Maître d'Ouvrage Digital (CMOD).</p>
 
-            <h3>Article 3 – Acceptation des CGU</h3>
-            <p>L'inscription sur la Plateforme implique l'acceptation pleine et entière des présentes CGU. Toute utilisation des services proposés vaut acceptation sans réserve des présentes conditions.</p>
+            <h3>Clause 1 - Rôle d'Artisan Compétent</h3>
+            <p>La Plateforme Artisan Compétent propose un service en ligne permettant aux Utilisateurs de publier, proposer, rechercher et conclure des prestations de travaux.</p>
+            <p>Les Utilisateurs qui proposent des prestations sont des Artisans, et les Utilisateurs qui recherchent ou réservent ces prestations sont des Clients.</p>
+            <p>Lorsqu'un Client réserve une prestation auprès d'un artisan, un contrat de prestation est conclu directement entre l'artisan et le Client, comprenant le devis, auquel sont annexées aux Conditions Générales de Ventes.</p>
+            <p>Artisan Compétent agit à titre d'intermédiaire en tant que prestataire technique dans la mise à disposition d'outils numérique, via la Plateforme Artisan Compétent, auprès des Utilisateurs permettant la mise en relation ainsi que l'encadrement du suivi du chantier jusqu'à la réception des travaux.</p>
+            <p>Artisan Compétent n'est pas et ne devient pas partie à un quelconque contrat conclu entre l'Artisan et le Client, ni au contrat conclu avec le Fournisseur, le cas échéant. Artisan Compétent n'agit pas en qualité de mandataire d'un quelconque Artisan ou Client.</p>
+            <p>En conséquence, Artisan Compétent n'assume aucune responsabilité ni obligation contractuelle sur l'exécution et l'adéquation des travaux, la qualité ou les défauts des matériaux, fournitures ou équipements fournis, ni n'assume de mission de maîtrise d'œuvre, de direction de chantier ni de suivi technique des travaux.</p>
 
-            <h3>Article 4 – Inscription et accès au compte</h3>
-            <p>L'inscription est réservée aux personnes majeures. L'utilisateur s'engage à fournir des informations exactes, complètes et à jour lors de son inscription. Il est seul responsable de la confidentialité de ses identifiants et de toute activité effectuée depuis son compte.</p>
+            <h3>Clause 2 - Vérification des Utilisateurs</h3>
+            <p>Pour assurer l'identification des utilisateurs, la Plateforme se réserve le droit de procéder à une vérification d'identité.</p>
+            <p>Le Client à l'obligation d'effectuer, par appel téléphonique ou tout autre moyen, les vérifications nécessaires permettant de s'assurer de la véracité de la couverture assurantielle ainsi que des certifications et qualifications de l'Artisan, et le cas échéant, de ses sous-traitants.</p>
+            <p>L'Artisan s'engage, lors de la création de son Compte puis à tout moment pendant la durée de son inscription sur la Plateforme, à fournir des informations exactes, complètes et sincères, ainsi que tous documents justificatifs raisonnablement demandés par la Plateforme, notamment relatifs à son identité, à son immatriculation, à ses assurances, à ses qualifications professionnelles et, le cas échéant, à ses certifications.</p>
+            <p>L'Artisan autorise la Plateforme à procéder à des vérifications ponctuelles, aléatoires ou déclenchées à l'occasion de l'expiration, de l'invalidité apparente ou du doute portant sur un document communiqué, ainsi qu'en cas de soupçon de fraude, d'usurpation d'identité, de non-conformité ou de manquement aux présentes conditions.</p>
+            <p>L'Artisan s'engage à coopérer avec les équipes d'Artisan Compétent et à transmettre sans délai, tout document mis à jour ou complémentaire nécessaire au maintien de son Compte en conformité, y compris sur demande.</p>
+            <p>En cas de refus de coopérer, de transmission d'un document expiré, incomplet, inexact, falsifié ou manifestement non conforme, la Plateforme pourra, après information de l'Artisan, suspendre temporairement l'accès au Compte, retirer certaines fonctionnalités, supprimer toute mention ou badge de vérification, ou résilier le Compte dans les conditions prévues aux présentes.</p>
+            <p>L'Artisan s'engage à maintenir en vigueur, pendant toute la durée de son inscription sur la Plateforme, l'ensemble des assurances obligatoires et déclarées lors de son inscription, y compris, le cas échéant, l'assurance couvrant la responsabilité de tous vos employés ou agents travaillant avec vous ou en votre nom.</p>
+            <p>Il s'engage à informer sans délai la Plateforme de toute suspension, résiliation, non-renouvellement ou modification de sa couverture d'assurance, quand bien même la date d'échéance initialement communiquée n'aurait pas été atteinte. À défaut, la Plateforme pourra suspendre ou supprimer le Compte de l'Artisan sans délai.</p>
+            <p>Les Utilisateurs reconnaissent que ces vérifications ont pour seul objet de sécuriser la Plateforme, de prévenir la fraude et de permettre la mise en relation avec des utilisateurs dans des conditions de confiance, sans constituer une certification par la Plateforme Artisan Compétent de la qualité des prestations réalisées par l'Artisan.</p>
+            <p>Les Utilisateurs reconnaissent que ces vérifications ne constituent ni une certification de la qualité des prestations, ni une garantie de validité permanente des documents communiqués.</p>
+            <p>Toutes les références à un Artisan « vérifié » (ou tout terme similaire) signifient uniquement qu'il a fait l'objet d'une procédure de vérification ou d'identification appropriée, et rien d'autre.</p>
 
-            <h3>Article 5 – Description des services</h3>
-            <p>La Plateforme met en relation des particuliers avec des artisans qualifiés. Elle permet notamment la demande de devis, la consultation de profils professionnels, la réservation de prestations et le suivi des missions.</p>
+            <h3>Clause 3 - Obligations des Utilisateurs et Règlement de la Plateforme Artisan Compétent</h3>
+            <h4>3.1 Obligation des Utilisateurs</h4>
+            <p>Chaque Utilisateur, qu'il soit Artisan ou Client, s'engage à respecter l'ensemble des processus de la Plateforme, notamment :</p>
+            <ul>
+                <li>la mise en relation entre l'Artisan et le Client ;</li>
+                <li>le suivi du chantier dans l'espace dédié (excepté pour la réparation d'ordinateur et de téléphone) ;</li>
+                <li>la validation de la réception des travaux dans les conditions prévues par la Plateforme.</li>
+            </ul>
+            <p>Toute modification ou contournement de ces processus, notamment via des échanges en dehors de la Plateforme ou le non-respect des étapes obligatoires, constitue un manquement aux présentes conditions pouvant justifier la suspension ou la résiliation du Compte. »</p>
+            <p>L'Artisan ainsi que le Client s'engage à respecter le processus de suivi de chantier et de réception des travaux défini par la Plateforme, y compris la fourniture de photos, de rapports, de commentaires avec des mises à jour régulières.</p>
+            <p>Le Conseiller à Maître d'Ouvrage Digital (CMOD) agit conformément aux dispositions de la convention de service conclu avec le Client (lien vers les conditions d'utilisation du service CMOD), qui fait partie intégrante des présentes CGU.</p>
+            <p>Le CMOD est un prestataire indépendant, utilisateur de la Plateforme, et n'a aucun lien de subordination avec la Plateforme.</p>
 
-            <h3>Article 6 – Obligations de l'utilisateur</h3>
-            <p>L'utilisateur s'engage à utiliser la Plateforme dans le respect des lois en vigueur, à ne pas publier de contenu illicite, trompeur ou portant atteinte aux droits de tiers, et à ne pas tenter de contourner les mesures de sécurité mises en place.</p>
+            <h4>3.2 Règlement de la Plateforme Artisan Compétent</h4>
+            <p>Les Utilisateurs prennent connaissance du présent Règlement, qui fait partie intégrante des présentes Conditions Générales d'Utilisation, et s'engagent à le respecter pleinement.</p>
+            <p>Afin de faciliter la compréhension du fonctionnement de la Plateforme, de ses outils, de ses processus et de certaines règles applicables à son utilisation, Artisan Compétent peut mettre à disposition des Utilisateurs différents guides, modes d'emploi, fiches pratiques, documents d'information ou contenus pédagogiques.</p>
+            <p>Ces documents sont fournis exclusivement à titre informatif, pédagogique et explicatif. Ils ont pour seul objet d'aider les Utilisateurs à mieux comprendre le fonctionnement des Services proposés.</p>
+            <p>Ils ne constituent ni un conseil juridique, ni un conseil professionnel, ni un document contractuel indépendant. Ils ne remplacent ni les présentes Conditions Générales d'Utilisation, ni les Conditions Générales de Vente, ni la réglementation applicable, ni les obligations légales, réglementaires, administratives, fiscales, assurantielles ou professionnelles propres à chaque Utilisateur.</p>
+            <p>Chaque Utilisateur demeure seul responsable de la vérification, de l'interprétation et du respect des obligations applicables à sa situation, à son activité, à son projet ou aux prestations qu'il réalise ou commande, même lorsqu'un guide, un mode d'emploi ou un document d'information est mis à sa disposition par la Plateforme.</p>
+            <p>Le présent Règlement comprend notamment les dispositions suivantes :</p>
+            <ul>
+                <li>Les Utilisateurs s'engagent à adopter un comportement courtois et respectueux envers les autres, notamment en s'abstenant de toute déclaration mensongère, de toute présentation trompeuse d'une situation ou d'une personne, ainsi que de toute usurpation d'identité.</li>
+                <li>Des pénalités de retard peuvent être appliquées, à la demande du Client, et déduites du montant de la prestation, conformément aux Conditions Générales de Vente (CGV) conclues entre l'Artisan et le Client ;</li>
+                <li>L'Artisan est tenu à une obligation de conseil, qu'il doit exercer de manière loyale, claire et adaptée aux besoins du Client ;</li>
+                <li>Le Client demeure seul responsable de la vérification et de l'acceptation des conditions financières figurant sur le devis, notamment les prix, taux horaires, frais de déplacement, majorations éventuelles, fournitures, matériaux, remises, taux de TVA appliqués et, plus généralement, tout élément ayant une incidence sur le montant total de la prestation.</li>
+                <li>Le Client est tenu à une obligation de collaboration, notamment en facilitant l'accès au chantier, en fournissant les informations nécessaires et en permettant la bonne exécution des travaux ;</li>
+                <li>L'Artisan peut appliquer une majoration pour les interventions d'urgence, de nuit, de week-end ou de jour férié, sous réserve que celle-ci soit clairement portée à la connaissance du Client avant l'acceptation du devis et ne présente pas un caractère manifestement excessif au regard des usages du secteur.</li>
+            </ul>
+            <p>Sont notamment considérées comme des interventions de nuit les prestations réalisées entre 20 heures (20h00) et 7 heures (07h00).</p>
+            <p>Toute majoration appliquée doit être indiquée de manière claire, transparente et compréhensible au Client avant le commencement de l'intervention.</p>
+            <p>À cette fin, la Plateforme met à disposition de l'Artisan, lors de l'établissement du devis, une mention spécifique lui permettant d'indiquer si l'intervention constitue une intervention de nuit. Lorsque l'Artisan coche la case correspondante sur le devis, cette information est portée à la connaissance du Client avant son acceptation du devis et vaut information préalable sur l'application éventuelle d'une majoration liée à une intervention de nuit.</p>
+            <ul>
+                <li>En cas de prix manifestement disproportionnée au regard des pratiques du secteur et des caractéristiques de l'intervention, les équipes d'Artisan Compétent pourront intervenir dans le cadre d'une contestation en cas d'abus manifeste et, le cas échéant, Artisan Compétent prendre toute mesure appropriée, notamment la suspension du compte concerné et l'application de frais de gestion du litige d'un montant de 250€ retenu sur la part séquestre de l'artisan ;</li>
+                <li>En cas de fourniture de matériaux, l'Utilisateur concerné s'engage à transmettre les justificatifs correspondants (factures) via la Plateforme, accompagnés de preuves photographiques attestant de la livraison sur le chantier ;</li>
+                <li>L'Artisan s'engage à exécuter exclusivement des prestations relevant de son périmètre d'intervention, conformément à ses qualifications professionnelles et aux assurances déclarées.</li>
+                <li>Clause particulière des travaux hors métiers proposés sur la plateforme_ Artisan Compétent peut autoriser certains professionnels à proposer plusieurs prestations sur un même devis lorsqu'elles correspondent aux activités déclarées de leur entreprise. Exemple : Un plombier réalisant une rénovation complète de salle de bain peut proposer sur un seul devis : plomberie, carrelage, peinture, plaquiste / isolation, ou autres travaux complémentaires. Cette possibilité est proposée afin d'éviter au Client la multiplication des devis et de simplifier l'organisation du chantier. Cependant, en cas de litige : Artisan Compétent et les CMOD n'assureront l'analyse, le suivi et l'arbitrage que sur les métiers effectivement proposés sur la Plateforme et couverts par les assurances déclarées du professionnel. Les prestations concernant des métiers non proposés par la Plateforme ne feront donc pas l'objet d'un accompagnement technique spécifique ou d'un arbitrage.</li>
+                <li>L'Artisan s'engage à réaliser un état des lieux initial du chantier avant le début des travaux, incluant, le cas échéant, des photographies ou tout autre élément permettant de constater l'état initial des lieux.</li>
+                <li>L'Artisan s'engage à informer, dans le devis, le Client, de tout recours à la sous-traitance pour l'exécution des prestations. Celui-ci à l'obligation, dans ce cadre, de vérifier que le sous-traitant dispose des assurances professionnelles requises, ainsi que de procéder à la vérification de son identité et de son immatriculation. L'Artisan s'engage également à déposer sur la Plateforme le contrat de sous-traitance correspondant.</li>
+                <li>L'Artisan s'engage à respecter l'ensemble des obligations légales et réglementaires applicables à son activité, notamment en matière de sécurité, de droit du travail, de normes techniques et environnementales applicables aux travaux réalisés.</li>
+                <li>L'Artisan s'engage, pour tout devis inférieur à 2 500 € TTC, à intégrer obligatoirement les matériaux et fournitures directement au devis établi via la Plateforme et à en assurer l'avance financière. Par exception, concernant les activités de vitrerie, vitrerie-miroiterie ou fabrication sur mesure de vitrages et miroirs, lorsque l'Artisan assure lui-même la fabrication, la découpe, la transformation ou l'assemblage des éléments fournis au Client, l'intégralité des prestations devra obligatoirement être intégrée directement au devis, quel que soit le montant total du chantier. Cette obligation comprend notamment : les matériaux, vitrages, miroirs, éléments fabriqués sur mesure, fournitures, fabrication, transformation, pose, ainsi que la main-d'œuvre associée.</li>
+                <li>L'Artisan a l'obligation, quel que soit le montant du devis, de faire figurer sur le devis établi via la Plateforme l'intégralité de la main-d'œuvre correspondant au chantier, et de soumettre obligatoirement la totalité de cette main-d'œuvre au système de séquestre sécurisé mis en place par Artisan Compétent.</li>
+                <li>Il est interdit de demander, d'envoyer ou de recevoir des paiements en dehors de la Plateforme d'Artisan Compétent.</li>
+                <li>La Plateforme se réserve le droit de mettre en œuvre des mesures de détection et de prévention des comportements frauduleux ou tendant à contourner son fonctionnement, visant à vérifier le respect des présentes Conditions Générales d'Utilisation, notamment en matière de contournement du service. À ce titre, des contrôles peuvent être réalisés afin d'identifier de tels comportements.</li>
+            </ul>
+            <p>En cas de violations des présentes, notamment d'un Contournement établi de la Plateforme, celle-ci pourra suspendre ou résilier le compte concerné, supprimer les avantages et garanties de service accordées par les présentes Conditions, et réclamer, le cas échéant, une indemnité forfaitaire correspondant aux commissions qui auraient été dues.</p>
 
-            <h3>Article 7 – Obligations de l'artisan</h3>
-            <p>L'artisan certifie être en règle avec les obligations légales et administratives liées à son activité (assurance décennale, qualification professionnelle, immatriculation). Il s'engage à maintenir ses informations à jour et à réaliser les prestations dans le respect des règles de l'art.</p>
+            <h3>Clause 4 - Réception des travaux</h3>
+            <h4>4.1 Modalités générales</h4>
+            <p>La réception des travaux s'effectue conformément aux modalités précisées dans les Conditions Générales de Vente (CGV), annexées au devis signé entre l'Artisan et le Client.</p>
+            <p>La signature du procès-verbal de réception marque l'acceptation des prestations exécutées par l'Artisan et déclenche, le cas échéant, le paiement final conformément aux clauses de règlement prévues.</p>
+            <p>La réception des travaux intervient par la signature d'un procès-verbal de réception attestant de l'achèvement des travaux.</p>
+            <p>Entre la livraison (fin de la réalisation des prestations annoncée par l'Artisan) et la signature du procès-verbal de réception par le Client, la Plateforme prévoit un délai raisonnable de 48 heures afin de permettre au Client d'inspecter les travaux, de formuler des observations et de signaler d'éventuels désordres apparents.</p>
+            <p>Ce délai de 48 heures est considéré comme une période de contrôle et de décision, au cours de laquelle le Client doit, s'il constate des désordres apparents, les inscrire expressément comme réserves sur le procès-verbal de réception. Ce n'est qu'à l'issue de ce délai que le procès-verbal de réception est signé, sauf renonciation expresse à celui-ci.</p>
+            <p>L'absence de réserves sur des vices apparents sera réputée constituer une acceptation pleine et entière des travaux entraînant la purges de ces vices.</p>
+            <p>À défaut d'émission de réserves ou de contestation dans le délai de quarante-huit (48) heures suivant l'envoi du procès-verbal de réception par l'Artisan, le procès-verbal sera réputé accepté et validé automatiquement. Cette validation automatique entraînera la libération des fonds conformément aux présentes CGU et aux Conditions Générales de Vente applicables entre le Client et l'Artisan. L'absence de réserves sur les vices apparents vaudra acceptation des travaux.</p>
 
-            <h3>Article 8 – Propriété intellectuelle</h3>
-            <p>L'ensemble des contenus présents sur la Plateforme (textes, images, logos, structure) sont protégés par les droits de propriété intellectuelle. Toute reproduction ou utilisation sans autorisation expresse est interdite.</p>
+            <h4>4.2 Réception partielle</h4>
+            <p>Conformément aux Conditions Générales de Vente entre le Client et l'Artisan, en cas de réception partielle, seule la part correspondant aux fournitures et matériaux effectivement avancés par l'Artisan pourra être libérée, sur présentation des justificatifs correspondants.</p>
+            <p>Par "réception partielle", il est notamment entendu les situations dans lesquelles le chantier est interrompu, bloqué ou ne sera pas terminé par l'Artisan initial, pour les motifs et conditions prévus dans les CGU et CGV de la Plateforme.</p>
+            <p>Dans ce cas, le solde restant pourra être conservé sous séquestre dans l'attente :</p>
+            <ul>
+                <li>soit d'un accord entre les parties,</li>
+                <li>soit de l'arbitrage réalisé par Artisan Compétent,</li>
+                <li>soit de la reprise ou finalisation du chantier selon la situation.</li>
+            </ul>
+            <p>L'Artisan pourra demander la libération des sommes correspondant aux fournitures avancées via une demande écrite adressée à la Plateforme.</p>
+            <p>Sous réserve de la vérification des justificatifs et des éléments du dossier, la libération des sommes concernées pourra intervenir dans un délai pouvant aller jusqu'à soixante (60) jours à compter de la demande formulée par l'Artisan.</p>
+            <p>Cette procédure pourra également entraîner des frais de gestion conformément aux clauses prévues à cet effet dans les présentes CGU et CGV.</p>
+            <p>Si toutefois un accord amiable est finalement trouvé entre les parties et que l'Artisan initial poursuit et termine les travaux, la réception finale devra alors être communiquée à la Plateforme, notamment via la signature du procès-verbal de réception de chantier, afin de procéder à la libération des fonds restants au profit de l'Artisan.</p>
 
-            <h3>Article 9 – Données personnelles</h3>
-            <p>Le traitement des données personnelles est régi par la Politique de Confidentialité de la Plateforme, conforme au Règlement Général sur la Protection des Données (RGPD). Les utilisateurs disposent d'un droit d'accès, de rectification et de suppression de leurs données.</p>
+            <h4>4.3 Contestation</h4>
+            <p>En cas de contestation lors de la réception, notamment sur des réserves, doit être signalée afin de suspendre temporairement la libération des fonds, conformément à la Clause XX – Procédure de contestation et gestion des litiges des présentes CGU.</p>
+            <p>Toute contestation relative aux travaux doit être formulée avant la réception totale sans réserve des prestations, sous peine de purge des vices apparents, conformément aux CGV.</p>
+            <p>La contestation peut porter sur :</p>
+            <ul>
+                <li>la qualité ou la conformité des prestations ;</li>
+                <li>le respect du devis ou des engagements contractuels.</li>
+            </ul>
+            <p>La Plateforme peut intervenir pour faciliter la résolution du litige, conformément aux procédures prévues.</p>
 
-            <h3>Article 10 – Cookies</h3>
-            <p>La Plateforme utilise des cookies nécessaires à son bon fonctionnement. Des cookies analytiques peuvent être utilisés avec le consentement de l'utilisateur conformément à la réglementation en vigueur.</p>
+            <h4>4.4 Effet de la réception</h4>
+            <p>Les effets juridiques et financiers de la réception des travaux, y compris les obligations de paiement et la gestion des réceptions partielles, sont régis exclusivement par les Conditions Générales de Vente (CGV).</p>
 
-            <h3>Article 11 – Responsabilité</h3>
-            <p>La Plateforme est un intermédiaire technique et ne peut être tenue responsable des manquements des artisans ou des particuliers dans l'exécution de leurs obligations respectives. La Plateforme ne garantit pas la disponibilité continue et sans interruption du service.</p>
+            <h3>Clause 5 - Contenu</h3>
+            <p>Certaines parties de la Plateforme Artisan Compétent permettent aux Utilisateurs de fournir, de partager ou de transmettre des commentaires, des avis, du texte, des photos, du contenu audio ou vidéo, des informations et d'autres contenus (le « Contenu »).</p>
+            <p>Les commentaires ne sont pas vérifiés par Artisan Compétent et peuvent être infondés ou trompeurs.</p>
+            <p>En publiant ou en fournissant un Contenu sur la Plateforme, l'Utilisateur reconnaît en être entièrement responsable et garantit que :</p>
+            <ul>
+                <li>il est titulaire des droits nécessaires sur ce Contenu, ou qu'il dispose de toutes les autorisations requises pour l'utiliser et le diffuser sur la Plateforme ;</li>
+                <li>ce Contenu n'enfreint pas les droits de tiers (notamment droits de propriété intellectuelle, droits à l'image, droits de la personnalité, obligations de confidentialité) ;</li>
+                <li>ce Contenu, en Client les commentaires et avis, ne doit pas contenir d'informations trompeuses, diffamatoires, obscènes, discriminatoires, violentes, harcelantes, révisionniste, portant atteinte à l'honneur ou à la réputation d'autrui ou contraires à l'ordre public et aux bonnes mœurs, ainsi qu'au Règlement intérieur annexée aux présentes CGU.</li>
+            </ul>
+            <p>En fournissant du Contenu, sous quelque forme et par quelque moyen que ce soit, vous accordez à Artisan Compétent, à partir du moment où vous créez ou publiez ce Contenu et pour la durée de la protection des droits cédés, une licence non exclusive, valable dans le monde entier, libre de droits, pouvant faire l'objet d'une sous-licence et cessible, pour utiliser, stocker, reproduire, modifier, créer des œuvres dérivées de, distribuer, publier, transmettre, diffuser et exploiter de toute autre manière ce Contenu afin d'améliorer les services et de promouvoir la Plateforme Artisan Compétent sur tout support, en Client sur internet et sur les réseaux sociaux.</p>
 
-            <h3>Article 12 – Suspension et résiliation de compte</h3>
-            <p>La Plateforme se réserve le droit de suspendre ou de résilier tout compte en cas de violation des présentes CGU, de comportement frauduleux ou préjudiciable à la communauté, sans préavis ni indemnité.</p>
+            <h3>Clause 6 - Signalement et Modération des contenus</h3>
+            <p>Les Utilisateurs peuvent signaler à tout moment un Contenu, une Annonce ou tout autre élément présumé inapproprié, illégal, diffamatoire, trompeur, violent, harcelant, discriminatoire, ou contraire aux présentes Conditions et au Règlement intérieur, via la fonction de signalement prévue dans l'interface de la Plateforme.</p>
+            <p>Artisan Compétent s'engage à :</p>
+            <ul>
+                <li>réexaminer tout Contenu signalé dans des délais raisonnables ;</li>
+                <li>prendre toutes les mesures nécessaires, notamment la suppression ou à la limitation de visibilité du Contenu signalé, en cas de contenu manifestement illicite ou contraire aux règles de la Plateforme ;</li>
+            </ul>
+            <p>Cependant, Artisan Compétent n'a aucune obligation générale de surveillances des Contenus publiés par les Utilisateurs et stocké pour leur compte, ou de rechercher activement des faits ou des circonstances indiquant une activité illégale ou l'incompatibilité du Contenu avec les droits de tiers, les présentes Conditions ou le Règlement intérieur.</p>
+            <p>Toutefois, elle s'engage à agir promptement pour retirer ou rendre inaccessible tout contenu manifestement illicite dès lors qu'elle en a connaissance effective.</p>
+            <p>En cas d'utilisation abusive du dispositif de signalement, notamment par des signalements manifestement infondés ou malveillants, Artisan Compétent se réserve le droit de prendre toute mesure appropriée à l'encontre de l'Utilisateur concerné.</p>
 
-            <h3>Article 13 – Signalement et modération</h3>
-            <p>Tout utilisateur peut signaler un contenu ou un comportement inapproprié. L'équipe de modération s'engage à traiter les signalements dans un délai raisonnable et à prendre les mesures appropriées.</p>
+            <h3>Clause 7 – Affiliation</h3>
+            <p>La Plateforme peut recourir à des partenaires affiliés, particuliers ou professionnels, dans le cadre de la promotion de ses services.</p>
+            <p>L'affiliation peut être mise en place selon deux modalités : par l'utilisation de cookies ou traceurs d'affiliation ou par un système de parrainage intégré à la Plateforme.</p>
+            <p>Ces mécanismes sont utilisés afin d'identifier l'origine de la navigation des utilisateurs et d'attribuer certaines actions réalisées sur la Plateforme à un partenaire affilié.</p>
+            <p>Dans le cadre du parrainage, certaines informations pourront être demandées au partenaire affilié afin de permettre l'attribution des droits à la commission, notamment un relevé d'identité bancaire valide.</p>
+            <p>Ces mécanismes peuvent donner lieu au versement d'une rémunération au partenaire concerné, selon les modalités suivantes :</p>
+            <ul>
+                <li>une commission de <strong>5 %</strong> est attribuée pour l'invitation d'un artisan sur la Plateforme, sur une durée de trois (3) mois. Cette commission est calculée sur la base des commissions perçues par la Plateforme sur les prestations réalisées par les artisans invités au cours de cette période ;</li>
+                <li>une commission de <strong>20 %</strong> est attribuée pour toute prestation réalisée via la Plateforme par un client. Cette commission est calculée sur la base de la commission perçue sur la marge nette par la Plateforme sur ladite prestation. Ce pourcentage est applicable uniquement durant les six (6) premiers mois suivant la mise en relation, puis est réduit à 10 % pour les six (6) mois suivant.</li>
+            </ul>
+            <p>Sauf accord contraire, ces mécanismes n'ont aucune incidence sur le prix payé par l'utilisateur.</p>
+            <p>La commission est due sous réserve de la réalisation effective de la prestation via la Plateforme à compter de la signature du procès-verbal de réception, et de l'absence de fraude ou d'abus.</p>
+            <p>L'affilié s'engage par ailleurs à respecter l'ensemble des obligations légales et réglementaires qui lui incombent, notamment en matière fiscale. La Plateforme ne serait être tenue responsable des manquements de l'affilié à ses obligations.</p>
 
-            <h3>Article 14 – Avis et évaluations</h3>
-            <p>Les avis déposés par les utilisateurs doivent être sincères et reposer sur une expérience réelle. La Plateforme se réserve le droit de supprimer tout avis ne respectant pas ces critères ou portant atteinte à des tiers.</p>
+            <h3>Clause 8 - Paiement</h3>
+            <p>Les fonds versés par le Client sont conservés par Stripe, prestataire de services de paiement agrée, dans l'attente de la réalisation de la prestation. La Plateforme agit exclusivement en qualité d'intermédiaire technique, et ne détient, ni ne conserve les fonds à aucun moment, lesquels sont exclusivement traités par un prestataire de services de paiement agréé.</p>
+            <p>La Plateforme ne fait que transmettre des instructions de paiement émises par les Utilisateurs ou résultant de l'application des règles contractuelles acceptées par les Utilisateurs, notamment à la <strong>Clause 11 - Procédure de contestation et gestion des litiges</strong>.</p>
+            <p>La libération des fonds au profit de l'Artisan intervient sur instruction de la Plateforme, après validation par les parties par procès-verbal de réception sur la Plateforme, aux modalités de réception définies dans les Conditions Générales de Vente applicables entre le Client et l'Artisan.</p>
+            <p>Conformément aux Conditions Générales de Vente entre le Client et l'Artisan, en cas de réception partielle, seule le montant des fournitures, sur justificatif, sera libérée, le solde restant étant retenu en attente d'une réception complète, sauf accord contraire exprès des parties.</p>
+            <p>En cas de différend entre le Client et l'Artisan, les fonds seront temporairement conservés par le prestataire de paiement jusqu'à résolution du différend (<strong>Clause 11 - Procédure de contestation et gestion des litiges</strong>).</p>
+            <p>La Plateforme ne saurait être tenue responsable des opérations de paiement réalisées par le prestataire de services de paiement, sauf faute prouvée dans la transmission des instructions.</p>
 
-            <h3>Article 15 – Liens hypertextes</h3>
-            <p>La Plateforme peut contenir des liens vers des sites tiers. Ces liens sont fournis à titre informatif et la Plateforme ne saurait être tenue responsable du contenu de ces sites externes.</p>
+            <h3>Clause 9 - Frais</h3>
+            <p>La Plateforme peut facturer des frais (et les taxes applicables) aux Artisans et aux Clients pour l'utilisation de ses services. Tous les frais applicables sont divulgués aux Artisans avant la publication d'une Annonce et aux Client avant la signature du devis. Ces frais comprennent, notamment :</p>
+            <ul>
+                <li>Les Frais de service de la Plateforme s'élèvent à quinze pour cent (15 %) HT (hors taxes) calculés sur le montant total TTC du devis accepté via la Plateforme pour tout devis inférieur à deux mille cinq cents euros (2 500 € TTC). Au-delà de ce seuil, les Frais de service de la Plateforme s'élèvent à dix pour cent (10 %) HT (hors taxes) calculés sur le montant total TTC du devis accepté via la Plateforme.</li>
+                <li>Les frais de transaction liés à l'utilisation du service de paiement Stripe s'élèvent à 1,5 % et sont obligatoirement supportés par l'Artisan. Ces frais seront automatiquement déduits des sommes reversées à l'Artisan lors de la libération des fonds. En cas d'utilisation facultative du service de paiement fractionné Klarna, des frais supplémentaires de 4,9 % seront également supportés par l'Artisan. Le recours au service Klarna relève exclusivement du choix de l'Artisan lorsqu'il souhaite proposer une facilité de paiement au Client.</li>
+                <li>En cas de litige et après tentative préalable de résolution amiable entre le Client et l'Artisan restée sans effet, le Client et/ou la plate-forme peut demander, via son dashboard, l'intervention d'un CMOD (Conseiller Maître d'Ouvrage Digital) afin d'obtenir une analyse consultative du dossier. Les frais de consultation du CMOD, fixés à 35 € TTC par intervention, sont intégralement à la charge de l'Artisan et seront déduits des fonds séquestrés via la plateforme.</li>
+                <li>L'Artisan reconnaît qu'il lui est strictement interdit de faire apparaître de manière distincte sur le devis, la facture ou tout autre document contractuel, des lignes intitulées notamment "frais Stripe", "frais Klarna", "frais de paiement", "frais de financement" ou toute dénomination équivalente visant à répercuter directement au Client les frais liés aux services de paiement proposés via la Plateforme. Cette interdiction résulte notamment des conditions contractuelles applicables aux services de paiement utilisés par la Plateforme, notamment Stripe et Klarna.</li>
+                <li>L'Artisan demeure toutefois libre de fixer librement ses prix et d'intégrer, de manière globale et non individualisée, ses charges, coûts d'exploitation ou frais liés à son activité dans le montant général de son devis, sous réserve du respect de la réglementation applicable et de l'absence de pratique abusive ou trompeuse à l'égard du Client. »</li>
+                <li>les Frais d'annulation sont applicables dans les conditions fixés par la Politique d'Annulation qui fait partie intégrante des CGU.</li>
+            </ul>
+            <p>Sauf mention contraire sur la plateforme Artisan-compétent, les frais de service et les frais de transaction ne sont pas remboursables, même en cas d'annulation, de litige ou de remboursement.</p>
+            <p>Les frais d'annulation, lorsqu'ils sont applicables, sont dus dans les conditions prévues par les présentes et portés à la connaissance de l'Utilisateur avant la conclusion du contrat.</p>
+            <p>Artisan-compétent se réserve le droit de modifier les Frais à tout moment, et informera les Utilisateurs de toute modification de frais avant qu'elle n'entre en vigueur. Ces modifications de frais n'auront pas d'effet sur les réservations effectuées avant la date d'entrée en vigueur des frais modifiés. Si vous êtes en désaccord avec une modification des frais, vous pouvez résilier le présent contrat à tout moment.</p>
 
-            <h3>Article 16 – Disponibilité du service</h3>
-            <p>La Plateforme s'efforce d'assurer la disponibilité du service 24h/24 et 7j/7. Des interruptions pour maintenance peuvent survenir et seront, dans la mesure du possible, annoncées à l'avance. Aucune indemnité ne pourra être réclamée en cas d'indisponibilité.</p>
+            <h3>Clause 10 - Droit de rétractation</h3>
+            <p>Lorsque le contrat est conclu à distance ou hors établissement, le Client consommateur bénéficie, en principe, d'un délai de rétractation de quatorze (14) jours à compter de la conclusion du contrat, conformément aux dispositions du Code de la consommation.</p>
+            <p>Si le Client demande expressément le commencement de l'exécution des travaux avant l'expiration de ce délai, il reconnaît avoir été informé que cette demande peut entraîner la perte de son droit de rétractation ou, selon les cas, le paiement des prestations déjà exécutées à la date de sa rétractation.</p>
+            <p>Le Client reconnaît également que, lorsque les travaux ont été pleinement exécutés avant la fin du délai de rétractation avec son accord préalable exprès et sa renonciation expresse au droit de rétractation, il ne pourra plus exercer ce droit.</p>
 
-            <h3>Article 17 – Modification des CGU</h3>
-            <p>La Plateforme se réserve le droit de modifier les présentes CGU à tout moment. Les utilisateurs seront informés des modifications par tout moyen approprié. La poursuite de l'utilisation de la Plateforme après modification vaut acceptation des nouvelles CGU.</p>
+            <h3>Clause 11 - Procédure de contestation et gestion des litiges</h3>
+            <p>Tout désaccord entre le Client et l'Artisan, notamment portant sur la réception des travaux lorsque des réserves sont émises par le Client et contestées par l'Artisan comme étant abusives ou infondées ou sur une annulation de la prestation en cours de chantier, est qualifié de litige au sens de la présente clause à compter du signalement.</p>
+            <p>La contestation devra être motivée et accompagnée de tout élément justificatif utile, via la fonctionnalité signalement accessible depuis la Plateforme.</p>
+            <p>L'Artisan et le Client s'engagent à apporter leur concours afin de trouver une solution amiable, à compter de l'ouverture du litige et l'intervention des équipes d'Artisan Compétent.</p>
+            <p>À réception de la contestation et après en avoir informé l'Artisan et le Client, la Plateforme suspend la libération des fonds auprès du prestataire de services de paiement, lesquels demeureront conservés par ce dernier jusqu'à la résolution du litige.</p>
+            <p>Durant cette phase de résolution amiable entre le Client et l'Artisan, les parties sont invitées à échanger afin de tenter de trouver une solution. En l'absence d'accord amiable, le Client pourra alors demander, via son dashboard, l'intervention d'un CMOD (Conseiller Maître d'Ouvrage Digital) afin d'obtenir une analyse consultative du dossier, les frais liés à cette intervention restant intégralement à la charge de l'Artisan conformément aux présentes CGU/CGV.</p>
+            <p>À défaut d'accord amiable, les parties peuvent recourir à un médiateur de la consommation, conformément aux dispositions des articles L.612-1 et suivants du Code de la consommation.</p>
+            <p>À défaut de résolution amiable ou de médiation dans un délai maximum de 30 jours à partir de l'ouverture du litige, les équipes d'Artisan Compétent seront automatiquement sollicités pour intervenir.</p>
+            <p>Les équipes d'Artisan Compétent se réservent le droit de demander à tout moment à l'Artisan et au Client des photos, vidéos, observations ou tout autre élément permettant de faciliter la résolution du litige.</p>
+            <p>Dans le cadre de l'examen de la contestation, les Utilisateurs autorise les équipes d'Artisan compétent à accéder aux échanges strictement nécessaires entre les parties, uniquement aux fins d'instruction et de résolution du litige.</p>
+            <p>Lors de l'examen de la contestation :</p>
+            <ul>
+                <li>en l'absence de réponse de l'Artisan ou du Client aux sollicitations des équipes d'Artisan Compétent, ces dernières se réservent le droit de trancher le litige à l'encontre de la partie non diligente.</li>
+                <li>en outre, dans l'hypothèse où aucune solution amiable n'aurait été trouvée dans le délai imparti, les équipes d'Artisan Compétent se réservent le droit de trancher le litige en faveur de l'Artisan ou du Client au regard des éléments en leur possession et, le cas échéant, de la Politique d'Annulation.</li>
+            </ul>
+            <p>A l'issue de l'examen de la contestation :</p>
+            <ul>
+                <li>le prix de la prestation conservé sera alors transféré, en totalité ou partiellement, en faveur du Client ou de l'Artisan.</li>
+            </ul>
+            <p>Les stipulations de la Politique d'annulation viennent compléter la présente clause et s'appliquent de manière cumulative, notamment en ce qui concerne les modalités de remboursement en cas d'annulation, sans préjudice du droit de rétractation ou des garanties légales.</p>
+            <p>En cas de contestation postérieure à la réception totale des travaux et après libération des fonds, la Plateforme n'intervient plus dans la gestion du litige, ceux-ci ayant été définitivement versé par le prestataire de services de paiement conformément aux présentes.</p>
+            <p>Le Client conserve néanmoins la possibilité de faire valoir ses droits directement à l'encontre de l'Artisan, notamment au titre des garanties légales applicables (notamment la garantie des vice cachés…) les assurances obligatoires de l'Artisan et de la responsabilité contractuelle, par voie amiable ou judiciaire.</p>
 
-            <h3>Article 18 – Droit applicable et juridiction compétente</h3>
-            <p>Les présentes CGU sont soumises au droit français. En cas de litige, les parties s'engagent à rechercher une solution amiable. À défaut, les tribunaux compétents du ressort du siège social de la Plateforme seront saisis.</p>
+            <h3>Clause 12 - Responsabilité</h3>
+            <p>En cas de violation des présentes Conditions, nous ne serons pas tenues responsables des frais que vous aurez encourus en conséquence.</p>
+            <p>Nous n'endossons pas ou ne garantissons ni l'exactitude, ni la validité, ni la fiabilité, ni la qualité, ni la sécurité, ni la conformité légale ou réglementaire de tout Artisan, de ses prestations, de ses assurances, de ses qualifications ou de ses certifications.</p>
+            <p>Artisan Compétent ne saurait donc être tenue pour responsable de l'exécution de la prestation, laquelle relève de la seule responsabilité de l'Artisan.</p>
+            <p>Dans la mesure permise par la loi, le maximum de ce dont la Plateforme pourra être tenue responsable, que ce soit pour un événement ou une série d'événements liés, sera limité à la perte ou aux dommages directs, réels et raisonnablement prévisibles, liés à votre ou vos prestations réservées sur la Plateforme.</p>
+            <p>La Plateforme ne sera en aucun cas responsable des dommages indirects, notamment la perte de bénéfices, la perte de clientèle, la perte de chance, le préjudice d'image, ou tout autre dommage immatériel.</p>
+            <p>Nous ne sommes pas responsables en cas de pannes ou coupures d'internet ou des infrastructures de télécommunications qui ne relèvent pas de notre contrôle et qui peuvent conduire à des interruptions d'accessibilité à la Plateforme.</p>
 
-            <h3>Article 19 – Dispositions diverses</h3>
-            <p>Si l'une des dispositions des présentes CGU est déclarée nulle ou inapplicable, les autres dispositions resteront en vigueur. Le fait de ne pas exercer un droit prévu par les présentes CGU ne constitue pas une renonciation à ce droit.</p>
+            <h3>Clause 13 - Force Majeure</h3>
+            <p>Artisan Compétent ne peut être tenu responsable de tout retard ou défaut d'exécution résultant de circonstances anormales et imprévisibles hors de son contrôle raisonnable, dont les conséquences auraient été inévitables malgré tous les efforts déployés, y compris, mais sans s'y limiter, les événements de force majeure, la guerre, le terrorisme, les émeutes, les embargos, les actes des autorités civiles ou militaires, les incendies, les inondations, les accidents, les pandémies, les épidémies ou les maladies, les grèves ou les pénuries de moyens de transport, de carburant, d'énergie, de main-d'œuvre ou de matériaux.</p>
 
-            <h3>Article 20 – Contact</h3>
-            <p>Pour toute question relative aux présentes CGU, vous pouvez contacter l'équipe Artisan Compétent à l'adresse : <strong>contact&#64;artisan-competent.fr</strong></p>
+            <h3>Clause 14 - Durée &amp; Résiliation</h3>
+            <p>Le contrat entre vous et Artisan Compétent reflété par ces Conditions reste en vigueur jusqu'à ce que vous ou nous résilions le contrat conformément à ces Conditions.</p>
+            <p>Vous pouvez résilier le présent contrat à tout moment en nous envoyant un e-mail ou en supprimant votre compte. Artisan Compétent peut résilier ce contrat pour toute raison en vous donnant un préavis de 30 jours par e-mail ou en utilisant toute autre coordonnée que vous avez fournie pour votre compte.</p>
+            <p>Artisan Compétent peut également résilier ce contrat immédiatement et sans préavis et cesser de fournir l'accès à la Plateforme si (i) vous enfreignez significativement ces Conditions, si (ii) vous violez le droit applicable, ou si (iii) une telle action est nécessaire pour protéger la sécurité ou la propriété d'Artisan Compétent, de ses Utilisateurs ou de tiers (par exemple, dans le cas d'un comportement frauduleux d'un Membre), ou si (iv) votre compte est inactif depuis plus de trois ans.</p>
+
+            <h3>Clause 15 - Effet de la résiliation</h3>
+            <p>Si vous êtes Artisan et résiliez votre compte Artisan Compétent, toutes les réservations confirmées seront automatiquement annulées et vos Clients recevront un remboursement intégral. Si vous supprimez votre compte en tant que Client, toutes les réservations confirmées seront automatiquement annulées et le remboursement éventuel dépendra des conditions d'annulation prévues dans les présentes.</p>
+
+            <h3>Clause 16 - Propriété Intellectuelle</h3>
+            <p>La Plateforme Artisan Compétent, y compris sa marque, son logo, son nom de domaine, son interface, sa charte graphique, sa base de données, ses algorithmes, son code source, son contenu rédactionnel, sa structure, ses modèles et outils, ainsi que tout autre élément composant la Plateforme, sont la propriété exclusive de la société ARTISAN COMPÉTENT, ou font l'objet d'un droit d'utilisation concédé à son profit. L'ensemble de ces éléments sont protégées par des droits de propriété intellectuelle de ARTISAN COMPÉTENT.</p>
+            <p>Les Conditions Générales d'Utilisation n'ont ni pour objet, ni pour effet, de transférer des droits de propriété intellectuelle de ARTISAN COMPÉTENT, de quelque nature que ce soit.</p>
+            <p>L'Utilisateur bénéficie uniquement d'un droit d'utilisation non exclusif, non cessible, révocable à tout moment, sur la Plateforme, pour les seuls besoins de l'utilisation de son Compte, et pour la durée de validité de son Compte. Les Utilisateurs s'interdisent toute utilisation non expressément autorisé par les présentes Conditions Générales.</p>
+            <p>Les Comptes Utilisateurs pourront être clôturés et les droits d'utilisation résiliés en cas de manquement à l'une quelconque des obligations décrites aux présentes CGU ou à la législation en vigueur.</p>
+            <p>Les Utilisateurs s'engage notamment à ne pas :</p>
+            <ul>
+                <li>exploiter, reproduire, représenter, modifier, traduire, adapter, décompiler, extraire ou combiner tout ou partie du code source, des bases de données, de l'interface ou de la structure de la Plateforme, à des fins commerciales ;</li>
+                <li>extraire ou réutiliser, de manière substantielle ou répétée, tout ou partie du contenu des bases de données de la Plateforme ;</li>
+                <li>utiliser un robot, notamment d'exploration (spider), une application de recherche ou récupération de sites Internet ou tout autre moyen permettant de récupérer ou d'indexer tout ou partie du contenu du Site et des Applications, excepté en cas d'autorisation expresse et préalable de LBC France ;</li>
+                <li>intervenir directement, par quelque moyen que ce soit, dans le code source, la structure, les bases de données, les algorithmes ou tout autre composant technique de la Plateforme, y compris pour corriger des erreurs ;</li>
+                <li>reproduire, représenter, diffuser, adapter, exploiter ou utiliser, de quelque manière que ce soit, tout ou partie de la marque, du logo, du nom commercial, du nom de domaine ou de tout autre signe distinctif de la société ARTISAN COMPÉTENT, sans son autorisation préalable, expresse et écrite ;</li>
+                <li>de manière générale, porter atteinte aux droits de propriété intellectuelle de la société ARTISAN COMPÉTENT</li>
+            </ul>
+            <p>Toute reproduction, représentation, modification ou exploitation non autorisée de tout ou partie, des droits de propriété intellectuelle de la société ARTISAN COMPÉTENT, notamment des éléments composant la Plateforme, constitue une violation des droits de propriété intellectuelle de la dite société qui se réserve le droit d'intenter toute action en justice (y compris action en contrefaçon, dommages-intérêts, suppression ou blocage d'accès), sans préjudice de toute réclamation de dommages-intérêts complémentaires. Toute tentative de modification, de correction ou d'intervention non autorisée sera considérée comme un manquement aux présentes, susceptible de donner lieu à la suspension ou la résiliation du compte.</p>
+
+            <h3>Clause 17 - Données personnelles</h3>
+            <p>Tout traitement de données personnelles dans le cadre des présentes est soumis aux dispositions de notre politique de confidentialité, qui fait partie intégrante des présentes CGU.</p>
+
+            <h3>Clause 18 - Modification des présentes</h3>
+            <p>Artisan Compétent se réserve le droit de modifier à tout moment les présentes CGU ou les règles concernant l'utilisation de la Plateforme.</p>
+            <p>Les modifications apportées seront notifiées aux Utilisateurs via la Plateforme ou par email. L'Utilisateur pourra alors être invité à les accepter à nouveau. Le fait de continuer à utiliser la Plateforme après toute modification des CGU entraîne l'acceptation des modifications des CGU.</p>
+
+            <h3>Clause 19 - Indivisibilité</h3>
+            <p>Si une partie des CGU devait s'avérer invalide ou inapplicable, pour quelque raison que ce soit, les dispositions en question seraient réputées non écrites, sans remettre en cause la validité des autres dispositions qui continueront de s'appliquer entre les Utilisateurs et Artisan Compétent.</p>
+
+            <h3>Clause 20 - Droit applicable et Juridiction compétente</h3>
+            <p>Les présentes Conditions Générales d'Utilisation sont régies par le droit français.</p>
+            <p>En cas de litige né de l'interprétation, de l'exécution ou de la résiliation des présentes Conditions, et sauf dispositions d'ordre public impératives contraires, tout différend qui ne pourra être résolu à l'amiable sera de la seule compétence du tribunal de commerce du ressort du siège social de la société ARTISAN COMPÉTENT.</p>
+            <p>Les Utilisateurs non professionnels (Consommateur) conservent néanmoins la possibilité de saisir, le cas échéant, la juridiction de leur domicile, conformément aux dispositions du Code de la consommation relatives à la compétence en matière de consommation.</p>
         }
 
         @if (activeTab() === 'cgv') {
             <h2>{{ 'legal.cgv.title' | transloco }}</h2>
 
-            <h3>Article 1 – Champ d'application</h3>
-            <p>Les présentes Conditions Générales de Vente (CGV) s'appliquent à toutes les transactions réalisées via la plateforme Artisan Compétent entre des particuliers (ci-après « Clients ») et des artisans professionnels (ci-après « Artisans »).</p>
+            <h3>Acceptation</h3>
+            <p>Les présentes Conditions Générales de Vente (ci-après désignées « CGV ») constituent, avec le devis signé entre l'Artisan et le Client, le contrat relatif à la réalisation des prestations décrites ci-dessus.</p>
+            <p>Elles sont réputées expressément acceptées par le Client et l'Artisan dès la signature du devis, en qualité d'annexe au devis, lequel fait mention de leur existence et de leur opposabilité.</p>
+            <p>L'acceptation du devis vaut acceptation des CGV.</p>
 
-            <h3>Article 2 – Rôle de la Plateforme</h3>
-            <p>Artisan Compétent agit en qualité d'intermédiaire de mise en relation. La Plateforme n'est pas partie au contrat conclu entre le Client et l'Artisan et n'est pas responsable de l'exécution des prestations.</p>
+            <h3>Clause 1 – Objet</h3>
+            <p>Les présentes CGV ont pour objet de définir les conditions dans lesquelles l'Artisan réalise les prestations de travaux au profit du Client, telles que décrites dans le devis accepté par les parties.</p>
 
-            <h3>Article 3 – Processus de commande</h3>
-            <p>Le Client formule une demande de prestation via la Plateforme. L'Artisan étudie la demande et soumet un devis. La commande est validée à réception de l'acceptation explicite du devis par le Client.</p>
+            <h3>Clause 2 – Prestation</h3>
+            <p>Les prestations réalisées par l'Artisan sont strictement celles définies dans le devis accepté par le Client. A savoir : la nature des travaux, la portée de la mission, les fournitures incluses et toutes autres mentions expressément indiquées dans le devis.</p>
+            <p>Toute prestation supplémentaire ou modification devra faire l'objet d'un avenant ou d'un nouveau devis accepté par les parties.</p>
 
-            <h3>Article 4 – Devis et tarification</h3>
-            <p>Les devis établis par les Artisans sont fermes et définitifs pendant la durée de validité précisée. Toute modification de la prestation après acceptation du devis fera l'objet d'un avenant tarifaire.</p>
+            <h3>Clause 2 bis – Interventions d'urgence, de nuit, week-end et jours fériés</h3>
+            <p>L'Artisan peut appliquer une majoration pour les interventions d'urgence, de nuit, de week-end ou de jour férié, sous réserve que celle-ci soit clairement portée à la connaissance du Client avant l'acceptation du devis et ne présente pas un caractère manifestement excessif au regard des usages du secteur.</p>
+            <p>Sont notamment considérées comme des interventions de nuit les prestations réalisées entre 20 heures (20h00) et 7 heures (07h00).</p>
+            <p>Toute majoration appliquée doit être indiquée de manière claire, transparente et compréhensible au Client avant le commencement de l'intervention.</p>
+            <p>À cette fin, la Plateforme met à disposition de l'Artisan, lors de l'établissement du devis, une mention spécifique lui permettant d'indiquer si l'intervention constitue une intervention de nuit. Lorsque l'Artisan coche la case correspondante sur le devis, cette information est portée à la connaissance du Client avant son acceptation du devis et vaut information préalable sur l'application éventuelle d'une majoration liée à une intervention de nuit.</p>
 
-            <h3>Article 5 – Conditions de paiement</h3>
-            <p>Le paiement est effectué selon les modalités convenues entre le Client et l'Artisan et précisées dans le devis. La Plateforme peut proposer des solutions de paiement sécurisé. Tout retard de paiement entraîne l'application de pénalités légales.</p>
+            <h3>Clause 3 – Durée d'exécution</h3>
+            <p>La durée prévisionnelle d'exécution des prestations, le cas échéant, ainsi que les éventuelles étapes ou jalons, sont indiquées dans le devis ci-dessus.</p>
+            <p>Les délais peuvent être suspendus ou prorogés en cas de suspension, de force majeure, de cause imputable au Client (notamment absence, indisponibilité, défaut d'accès ou informations incomplètes), ou de modification de projet, sous réserve de préavis et de justification.</p>
+            <p>La durée de suspension ou de prorogation est fixée à une durée raisonnable, proportionnée à la cause ayant entraîné la suspension ou la prorogation, sauf accord contraire des parties.</p>
 
-            <h3>Article 6 – Acomptes et arrhes</h3>
-            <p>Un acompte peut être demandé à la commande selon les conditions définies dans le devis. En cas d'annulation du Client après versement d'un acompte, celui-ci peut être retenu par l'Artisan selon les conditions contractuelles.</p>
+            <h3>Clause 4 - Droit de rétractation</h3>
+            <p>Lorsque le contrat est conclu à distance ou hors établissement, le Client consommateur bénéficie, en principe, d'un délai de rétractation de quatorze (14) jours à compter de la conclusion du contrat, conformément aux dispositions du Code de la consommation.</p>
+            <p>Si le Client demande expressément le commencement de l'exécution des travaux avant l'expiration de ce délai, il reconnaît avoir été informé que cette demande peut entraîner la perte de son droit de rétractation ou, selon les cas, le paiement des prestations déjà exécutées à la date de sa rétractation.</p>
+            <p>Le Client reconnaît également que, lorsque les travaux ont été pleinement exécutés avant la fin du délai de rétractation avec son accord préalable exprès et sa renonciation expresse au droit de rétractation, il ne pourra plus exercer ce droit.</p>
 
-            <h3>Article 7 – Exécution de la prestation</h3>
-            <p>L'Artisan s'engage à réaliser la prestation dans les délais convenus, avec le soin et le professionnalisme attendus. En cas d'empêchement, il doit en informer le Client au plus tôt et proposer une solution alternative.</p>
+            <h3>Clause 5 – Pénalité de retard</h3>
+            <p>En cas de retard dans l'exécution des travaux imputable à l'Artisan, des pénalités de retard peuvent être appliquées, selon les modalités définies dans les CGU.</p>
+            <p>Les pénalités sont calculées, sauf stipulation contraire, au prorata du montant hors taxes du devis sur la base du ou des jours de retard, et sont déduites du montant de la prestation.</p>
+            <p>Toutefois, tout retard imputable au Client (notamment absence, indisponibilité, défaut d'accès ou informations incomplètes) pourra entraîner un report des délais d'exécution, sans engager l'application de pénalité de retard, ni la responsabilité de l'Artisan.</p>
+            <p>En cas de suspension ou de prorogation des délais pour une durée raisonnable, fixée conformément à la clause "Durée d'exécution", les pénalités de retard ne s'appliquent qu'à compter du dépassement du nouveau délai ainsi reporté ou prorogé.</p>
 
-            <h3>Article 8 – Réception des travaux</h3>
-            <p>À l'issue de la prestation, une réception contradictoire peut être organisée. Le Client dispose d'un délai raisonnable pour formuler des réserves. L'absence de réserves dans ce délai vaut réception sans réserve.</p>
+            <h3>Clause 6 - Réception des travaux</h3>
+            <p>La réception des travaux intervient à la signature d'un procès-verbal de réception, avec ou sans réserves, matérialisé sur la Plateforme Artisan Compétent.</p>
+            <p>Le Client bénéficie d'un délai de 48 heures à compter de la livraison (entendue comme la fin de la réalisation des prestations annoncée par l'Artisan), à l'issue duquel il effectue la réception des travaux via la Plateforme, afin d'inspecter les lieux et de formuler d'éventuelles réserves.</p>
+            <p>À défaut d'émission de réserves, de contestation ou de validation expresse du procès-verbal de réception par le Client dans un délai de quarante-huit (48) heures suivant l'envoi du procès-verbal par l'Artisan, la Plateforme adressera au Client, huit (8) heures avant l'expiration de ce délai, une notification de rappel par courrier électronique faisant également office de mise en demeure, l'informant qu'à défaut de réponse, de réserve ou de contestation de sa part avant l'expiration du délai restant, les travaux seront réputés acceptés sans réserve. Cette acceptation entraînera automatiquement la validation du procès-verbal de réception ainsi que la libération des fonds au profit de l'Artisan, sauf preuve contraire apportée par le Client ou contestation régulièrement formulée conformément aux présentes CGU et CGV.</p>
+            <p>Les réserves éventuelles formulées par le Client doivent décrire précisément les vices ou désordres apparents constatés, en les identifiant clairement (localisation, nature, conséquence sur l'usage ou l'esthétique, etc.), et être accompagnées de preuves, notamment de photos ou tout autre élément permettant leur constatation.</p>
+            <p>Un procès-verbal contenant des réserves constitue une réception partielle des prestations effectivement réalisées et nécessite, à terme, un procès-verbal de réception définitif, intervenu après la levée des réserves et l'achèvement des travaux restants.</p>
+            <p>La signature du procès-verbal de réception, avec ou sans réserves, vaut acceptation définitive de la prestation pour l'ensemble des vices apparents qui n'ont pas été indiqués comme réserves.</p>
+            <p>À compter de cette signature, tout vice ou désordre qui était apparent au moment de la réception et qui n'a pas été mentionné sur le PV ou signalé conformément aux procédures de contestation de la Plateforme est purgé et ne pourra plus être invoqué à l'encontre de l'Artisan, à l'exception des vices cachés ou des dommages révélés ultérieurement.</p>
 
-            <h3>Article 9 – Garanties légales</h3>
-            <p>Les prestations de l'Artisan sont couvertes par les garanties légales applicables, notamment la garantie de parfait achèvement (1 an), la garantie biennale (2 ans) et la garantie décennale (10 ans) pour les travaux de construction.</p>
+            <h3>Clause 7 - Paiement</h3>
+            <p>La réception totale des travaux déclenche la libération des fonds, conformément aux Conditions Générales d'Utilisation de la Plateforme Artisan Compétent.</p>
+            <p>En cas de réception partielle, seule le montant des fournitures, sur justificatif, sera libérée, le solde restant étant retenu en attente d'une réception complète, sauf accord contraire exprès des parties.</p>
+            <p>La réception finale devra être communiquée à la Plateforme afin de procéder à la libération des fonds restants au profit de l'Artisan, étant précisé que la signature du procès-verbal de réception de chantier par le Client fera automatiquement office de confirmation et d'information de réception finale auprès de la Plateforme.</p>
 
-            <h3>Article 10 – Assurance professionnelle</h3>
-            <p>Chaque Artisan inscrit sur la Plateforme certifie être couvert par une assurance responsabilité civile professionnelle en cours de validité. Les justificatifs sont vérifiés par la Plateforme lors de l'inscription.</p>
+            <h3>Clause 8 - Modalités de règlement</h3>
+            <p>Le règlement des sommes dues s'effectue exclusivement via la Plateforme Artisan Compétent, par l'intermédiaire de prestataires de services de paiement agréés.</p>
+            <p>Aucun paiement entre le Client et l'Artisan ne doit intervenir en dehors de la Plateforme.</p>
+            <p>Le paiement est conservé jusqu'à la validation de la réception des travaux, dans les conditions prévues à la clause « Réception des travaux » et aux CGU d'Artisan Compétent.</p>
 
-            <h3>Article 11 – Droit de rétractation</h3>
-            <p>Conformément aux dispositions légales, le Client particulier dispose d'un droit de rétractation de 14 jours à compter de la conclusion du contrat, sauf si la prestation a déjà été pleinement exécutée avec son accord.</p>
+            <h3>Clause 9 - Résiliation</h3>
+            <p>En cas de manquement grave par l'une des parties à ses obligations contractuelles, le contrat pourra être résilié de plein droit par l'autre partie, après mise en demeure adressée par tout moyen et restée sans effet pendant un délai de 30 jours.</p>
+            <p>Peuvent notamment constituer des manquements graves, sans que cette liste soit limitative :</p>
+            <ul>
+                <li>l'abandon du chantier par l'Artisan sans justification légitime ;</li>
+                <li>le refus injustifié d'exécuter tout ou partie des prestations prévues au devis ;</li>
+                <li>l'inexécution ou la mauvaise exécution substantielle des travaux, notamment en cas de non-conformité manifeste aux règles de l'art ou au devis ;</li>
+                <li>le non-respect répété ou significatif des délais contractuels, hors cas de suspension ou de force majeure ;</li>
+                <li>l'utilisation de matériaux non conformes ou non prévus au devis sans accord du Client ;</li>
+                <li>le refus par l'une des parties de coopérer de manière raisonnable à l'exécution du chantier (accès, validation, informations essentielles) ;</li>
+                <li>toute fraude, dissimulation ou comportement de mauvaise foi dans le cadre de l'exécution du contrat.</li>
+            </ul>
+            <p>Le contrat de prestation peut être résilié par l'Artisan ou le Client en cas de survenance d'un événement de force majeure, après un délai raisonnable, au sens de l'article 1218 du Code civil, rendant l'exécution de la prestation impossible ou durablement impraticable.</p>
+            <p>La résiliation entraîne l'arrêt des prestations à la date de prise d'effet de la résiliation.</p>
+            <p>Les prestations déjà réalisées à la date de résiliation restent dues à l'Artisan, au prorata de leur exécution, sur la base de l'état d'avancement des travaux et sur présentation de justificatifs.</p>
+            <p>Les modalités financières de la résiliation, notamment les frais applicables et les conditions de remboursement, sont régies par la Politique d'annulation applicable, laquelle s'applique de manière cumulative aux présentes CGV.</p>
 
-            <h3>Article 12 – Annulation et report</h3>
-            <p>Toute annulation doit être notifiée dans les délais prévus au devis. En cas d'annulation tardive, des frais peuvent être retenus à titre d'indemnisation pour les préparatifs effectués par l'Artisan.</p>
+            <h3>Clause 10 - Responsabilité</h3>
+            <p>L'Artisan est seul responsable de la bonne exécution des prestations réalisées dans le cadre du devis, dans le respect des règles de l'art, des normes techniques applicables, des règles de sécurité, ainsi que de l'ensemble des dispositions légales et réglementaires applicables à son activité.</p>
+            <p>À ce titre, l'Artisan assume l'entière responsabilité :</p>
+            <ul>
+                <li>de la qualité des travaux réalisés ;</li>
+                <li>du respect des délais, sous réserve des causes de suspension ou de prorogation prévues aux présentes ;</li>
+                <li>des dommages causés au Client ou à des tiers du fait de l'exécution des travaux, y compris ceux résultant de ses préposés, sous-traitants ou fournisseurs.</li>
+            </ul>
+            <p>L'Artisan ne saurait être tenu responsable des retards, défauts d'exécution ou impossibilités d'exécution résultant :</p>
+            <ul>
+                <li>d'une faute, d'une omission ou d'un manquement du Client ;</li>
+                <li>d'un défaut d'accès au chantier ;</li>
+                <li>d'informations erronées, incomplètes ou tardivement communiquées ;</li>
+                <li>ou de tout événement constitutif d'un cas de force majeure.</li>
+            </ul>
+            <p>La responsabilité relative aux fournitures et matériaux incombe à la partie les ayant fournies.</p>
 
-            <h3>Article 13 – Responsabilité de l'Artisan</h3>
-            <p>L'Artisan est responsable des dommages causés dans le cadre de l'exécution de sa prestation, dans la limite de sa couverture d'assurance et des dispositions légales applicables.</p>
+            <h3>Clause 11 - Garanties légales</h3>
+            <p>Les travaux réalisés sont couverts par les garanties légales de conformité prévues par le Code civil, notamment :</p>
+            <ul>
+                <li>la garantie de parfait achèvement (article 1792-6 du Code civil) ;</li>
+                <li>la garantie biennale de bon fonctionnement (articles 1792 et suivants du Code civil) ;</li>
+                <li>la garantie décennale (articles 1792 et suivants du Code civil).</li>
+            </ul>
+            <p>Ces garanties s'appliquent selon les conditions, durées et modalités prévues par la loi, sans préjudice des stipulations contractuelles visées dans les présentes CGV et dans le devis.</p>
+            <p>Ces garanties ne s'appliquent pas dans le cadre de la réparation de matériel électronique ainsi que l'installation d'équipements notamment les alarmes, caméras, matériels anti incendie, produits anti nuisible.</p>
 
-            <h3>Article 14 – Limitation de responsabilité de la Plateforme</h3>
-            <p>La responsabilité d'Artisan Compétent est limitée à son rôle d'intermédiaire. La Plateforme ne peut être tenue responsable des litiges survenant entre Clients et Artisans, ni de la qualité des prestations réalisées.</p>
+            <h3>Clause 12 - Assurance</h3>
+            <p>L'Artisan déclare être titulaire de toutes les assurances obligatoires nécessaires à l'exercice de son activité, notamment une assurance responsabilité civile professionnelle et, le cas échéant, une assurance décennale couvrant les travaux réalisés.</p>
+            <p>Il s'engage à maintenir ces assurances en vigueur pendant toute la durée d'exécution des prestations.</p>
+            <p>Il s'engage à informer le Client, sur demande, des conditions de sa couverture et de l'étendue de son assurance.</p>
 
-            <h3>Article 15 – Règlement des litiges</h3>
-            <p>En cas de litige entre un Client et un Artisan, les parties sont encouragées à trouver une solution amiable. La Plateforme propose un service de médiation accessible via l'espace utilisateur. À défaut, les parties peuvent saisir le médiateur de la consommation compétent.</p>
+            <h3>Clause 12 bis – Vérification des assurances, certifications et qualifications professionnelles</h3>
+            <p>Le Client reconnaît qu'il lui appartient de vérifier, avant le démarrage des travaux et pendant toute leur durée lorsque cela est nécessaire, la validité des assurances, certifications, qualifications professionnelles, habilitations et autorisations éventuellement requises pour l'exécution des travaux concernés, tant pour l'Artisan que, le cas échéant, pour ses sous-traitants.</p>
+            <p>Le Client est notamment invité à profiter du délai de quarante-huit (48) heures prévu avant la validation définitive du procès-verbal de réception afin de vérifier les documents transmis par l'Artisan, notamment ses attestations d'assurance, certifications, qualifications professionnelles et tout document utile à la réalisation des travaux concernés.</p>
+            <p>Le Client reconnaît que les vérifications réalisées par la Plateforme lors de l'inscription des Artisans, lors de la création des devis ou au cours de l'utilisation du service ont uniquement pour objet de renforcer la sécurité des échanges et la confiance entre les Utilisateurs.</p>
+            <p>La Plateforme effectue uniquement des contrôles de cohérence documentaire et de conformité apparente des informations et documents transmis par les Utilisateurs. Ces vérifications ne constituent ni une certification, ni une validation juridique, administrative, technique ou professionnelle des documents communiqués.</p>
+            <p>Il appartient au Client, avant la signature du devis et chaque fois qu'il l'estime nécessaire, de vérifier directement auprès des organismes, administrations, assureurs ou autorités compétentes l'authenticité, la validité, la période de couverture, l'étendue des garanties, les activités couvertes ainsi que l'adéquation des documents transmis avec les travaux envisagés.</p>
+            <p>Cette vérification peut notamment concerner les assurances professionnelles, les assurances décennales, les certifications, les qualifications professionnelles, les habilitations, les diplômes, les autorisations administratives, les attestations réglementaires, les CERFA, les BSD (bordereaux de suivi des déchets), les attestations de capacité ainsi que tout autre document obligatoire ou utile à l'exercice de l'activité concernée.</p>
+            <p>Les Utilisateurs reconnaissent expressément que ces vérifications ne constituent ni une certification de la qualité des prestations réalisées, ni une garantie permanente de validité, d'actualité ou d'exhaustivité des documents communiqués par l'Artisan.</p>
+            <p>Le Client reconnaît que les assurances, certifications, qualifications professionnelles, habilitations, diplômes, autorisations administratives ou autres documents communiqués peuvent être modifiés, suspendus, résiliés, retirés, expirer ou devenir inadaptés à certains travaux postérieurement à leur transmission ou à leur vérification par la Plateforme.</p>
+            <p>Toute contestation relative à l'absence, à l'expiration, à la suspension, à l'insuffisance ou à l'inadéquation apparente d'une assurance, d'une certification, d'une qualification professionnelle, d'une habilitation, d'un diplôme ou de tout document obligatoire devra être signalée sans délai via la Plateforme dès que le Client en a connaissance.</p>
 
-            <h3>Article 16 – Protection des données dans le cadre commercial</h3>
-            <p>Les données collectées dans le cadre des transactions sont traitées conformément au RGPD et à la Politique de Confidentialité de la Plateforme. Elles ne sont transmises qu'aux parties impliquées dans la prestation.</p>
+            <h3>Clause 13 - Force majeure</h3>
+            <p>Aucune des parties ne pourra être tenue responsable d'un retard ou d'une inexécution résultant d'un événement de force majeure au sens de l'article 1218 du Code civil (guerre, épidémie, catastrophes naturelles, grève, embargo, etc.).</p>
+            <p>Dans ce cas, l'exécution des obligations contractuelles est suspendue pendant la durée de l'événement.</p>
 
-            <h3>Article 17 – Force majeure</h3>
-            <p>Ni la Plateforme, ni l'Artisan ne sauront être tenus responsables en cas d'inexécution due à un cas de force majeure tel que défini par le droit français (catastrophe naturelle, grève, pandémie, etc.).</p>
+            <h3>Clause 14 – Obligations de l'Artisan</h3>
+            <p>L'Artisan s'engage à :</p>
+            <ul>
+                <li>exécuter la prestation conformément au devis et aux règles de l'art ;</li>
+                <li>respecter l'ensemble des règles légales et réglementaires applicables à son activité, notamment en matière de sécurité, de droit du travail et de normes techniques applicables aux travaux réalisés ;</li>
+                <li>informer le Client de toute difficulté ou imprévu important affectant la réalisation du projet ;</li>
+                <li>prévenir et gérer les risques liés à la réalisation des travaux, notamment ceux liés à l'occupation des lieux, aux voisins et à la sécurité des tiers.</li>
+                <li>respecter le règlement de la Plateforme, conformément aux CGU, notamment en s'abstenant de pratiquer des prix manifestement excessifs au regard des usages du secteur et des caractéristiques de l'intervention.</li>
+            </ul>
 
-            <h3>Article 18 – Modification des CGV</h3>
-            <p>Les présentes CGV peuvent être modifiées à tout moment. Les CGV applicables à une transaction sont celles en vigueur au moment de la validation de la commande.</p>
+            <h3>Clause 15 – Collaboration du Client</h3>
+            <p>Le Client est tenu, pour sa part, de coopérer de bonne foi à la bonne exécution des travaux, notamment en :</p>
+            <ul>
+                <li>permettant l'accès au chantier aux dates convenues ;</li>
+                <li>fournissant les informations nécessaires à l'exécution des travaux</li>
+                <li>signalant toute difficulté susceptible d'affecter la réalisation de la prestation ;</li>
+            </ul>
+            <p>Tout manquement du Client à cette obligation pourra entraîner un report des délais d'exécution sans responsabilité de l'Artisan.</p>
 
-            <h3>Article 19 – Droit applicable</h3>
-            <p>Les présentes CGV sont régies par le droit français. Tout litige relatif à leur interprétation ou leur exécution relèvera de la compétence exclusive des tribunaux français, après tentative de médiation obligatoire.</p>
+            <h3>Clause 16 – Gestion des litiges</h3>
+            <p>En cas de désaccord relatif à l'exécution des prestations, à la réception des travaux, au paiement, à l'annulation ou plus généralement à l'interprétation ou à l'exécution des présentes CGV, les Parties s'engagent à rechercher une solution amiable.</p>
+            <p>À réception de la contestation et après en avoir informé l'Artisan et le Client, la Plateforme Artisan Compétent suspend la libération des fonds auprès du prestataire de services de paiement, lesquels demeureront conservés par ce dernier jusqu'à la résolution du litige.</p>
+            <p>À défaut d'accord amiable, les parties peuvent recourir à un médiateur de la consommation, conformément aux dispositions des articles L.612-1 et suivants du Code de la consommation.</p>
+            <p>À défaut de résolution amiable ou de médiation, le litige sera traité conformément à la procédure de contestation et de gestion des litiges prévue dans les Conditions Générales d'Utilisation (CGU) de la Plateforme Artisan Compétent, laquelle complète les présentes CGV pour les litiges survenant dans le cadre de la relation contractuelle entre l'Artisan et le Client.</p>
+
+            <h3>Clause 17 – Indivisibilité</h3>
+            <p>Si l'une des stipulations du présent contrat était annulée, cette nullité n'entraînerait pas la nullité des autres stipulations qui demeureront en vigueur entre les parties. Toute modification contractuelle n'est valable qu'après un accord écrit et signé des parties.</p>
+
+            <h3>Clause 18 – Liens avec les CGU</h3>
+            <p>Les présentes CGV sont en lien fonctionnel avec les Conditions Générales d'Utilisation de la Plateforme Artisan Compétent, notamment en ce qui concerne la mise en relation, le suivi de chantier, la procédure de contestation et la gestion des litiges et le paiement via la plateforme.</p>
+            <p>Toutefois, seule la relation contractuelle entre l'Artisan et le Client est régie par les présentes CGV et le devis, la Plateforme n'intervenant qu'en tant qu'intermédiaire technique et non comme partie au contrat.</p>
+
+            <h3>Clause 19 – Droit applicable</h3>
+            <p>Les présentes CGV sont régies par le droit français.</p>
         }
     </div>
 </ng-template>

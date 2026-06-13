@@ -353,6 +353,65 @@
   padding: 1.75rem 2rem;
 }
 
+/* ── Info list (présentation inline edit) ── */
+.pro-info-list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-color);
+  border-radius: 0.625rem;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.pro-info-row {
+  display: flex;
+  align-items: center;
+  padding: 0.55rem 1rem;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border-color);
+
+  &:last-child { border-bottom: none; }
+
+  dt {
+    font-size: 0.8rem;
+    color: var(--color);
+    opacity: 0.55;
+    min-width: 8.5rem;
+    flex-shrink: 0;
+  }
+
+  dd {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color);
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+
+    .pro-edit-input {
+      margin-bottom: 0;
+      font-size: 0.875rem;
+      font-weight: 500;
+      height: 1.5em;
+      padding: 0 0.5rem;
+    }
+
+    select.pro-edit-input {
+      appearance: auto;
+      height: 1.5em;
+    }
+  }
+}
+
+.pro-info-address {
+  font-size: 0.875rem;
+  color: var(--color);
+  opacity: 0.8;
+  margin: 0.75rem 0 0;
+  line-height: 1.55;
+}
+
 /* ── Blocs de section ── */
 .pro-block {
   padding-bottom: 1.5rem;
@@ -640,6 +699,11 @@
   color: var(--color);
   opacity: 0.4;
   font-style: italic;
+}
+
+.hours-oncall {
+  font-style: italic;
+  color: var(--primary-water-green);
 }
 
 .trusted-contact-name {

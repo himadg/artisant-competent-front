@@ -2,13 +2,17 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+export interface DiplomaDoc {
+  key: string;
+  documentName: string;
+  expiryDate: string;
+}
+
 export interface DocumentKeys {
   photoKey: string;
   idFrontKey: string;
   idBackKey: string;
-  insuranceDocKey: string;
-  decennialInsuranceDocKey: string;
-  diplomaDocKey: string;
+  diplomas: DiplomaDoc[];
   companyLogoKey: string;
   ribKey: string;
 }
@@ -41,12 +45,23 @@ export class UserApiService {
   updateProfessional(userId: string, data: Partial<{
     companyName: string;
     description: string;
+    managerPhone: string;
+    professionalEmail: string | null;
     trustedContactName: string | null;
     trustedContactPhone: string | null;
     tradeIds: string[];
     serviceIds: string[];
     suppliers: string[];
     openingHours: OpeningHoursUpdate;
+    yearsExperience: number;
+    onCall: boolean;
+    mediatorName: string | null;
+    mediatorAddress: string | null;
+    mediatorWebsite: string | null;
+    mediatorContactMethod: string | null;
+    mediatorAdditionalInfo: string | null;
+    additionalRemarks: string | null;
+    companyRemarks: string | null;
   }>): Observable<void> {
     return this.http.patch<void>(`/professionals/${userId}`, data);
   }
@@ -66,10 +81,6 @@ export class UserApiService {
 
   getAllTrades(): Observable<{ id: string; name: string }[]> {
     return this.http.get<{ id: string; name: string }[]>('/trades');
-  }
-
-  searchServices(q: string): Observable<{ id: string; description: string }[]> {
-    return this.http.get<{ id: string; description: string }[]>('/services/search', { params: { q } });
   }
 
 }
