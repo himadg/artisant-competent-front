@@ -275,38 +275,6 @@
                                             </div>
                                         </div>
 
-                                        <!-- Assurance -->
-                                        <div class="flex overflow-hidden flex-col rounded-lg border">
-                                            <div class="flex justify-center items-center h-32 bg-gray-100 border-b">
-                                                @if (pro.insuranceDocUrl) {
-                                                    @if (pro.insuranceDocKey.endsWith('.pdf')) {
-                                                        <svg class="w-12 h-12 text-red-500 opacity-80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M10 12v6"/><path d="M8 14h4"/><path d="M14 12v6"/><path d="M12 14h4"/></svg>
-                                                    } @else {
-                                                        <img [src]="pro.insuranceDocUrl" class="object-contain w-full h-full" alt="Assurance">
-                                                    }
-                                                } @else {
-                                                    <span class="text-sm italic text-gray-400">{{ 'dashboard.admin.missing' | transloco }}</span>
-                                                }
-                                            </div>
-                                            <div class="flex flex-1 justify-between items-center p-3 bg-white">
-                                                <div class="flex flex-col">
-                                                    <span class="text-sm font-medium text-gray-700 truncate">{{ 'dashboard.admin.docInsurance' | transloco }}</span>
-                                                    <span class="text-xs text-gray-500">{{ pro.insuranceName }}</span>
-                                                </div>
-                                                @if (pro.insuranceDocUrl) {
-                                                    @if (pro.insuranceDocKey.endsWith('.pdf')) {
-                                                        <button type="button" (click)="openDocumentModal(pro.insuranceDocUrl, true)" class="text-red-600 hover:text-red-800" title="{{ 'dashboard.admin.viewPdf' | transloco }}">
-                                                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-                                                        </button>
-                                                    } @else {
-                                                        <button type="button" (click)="openDocumentModal(pro.insuranceDocUrl, false)" class="text-blue-600 hover:text-blue-800" title="{{ 'dashboard.admin.enlargeImage' | transloco }}">
-                                                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-                                                        </button>
-                                                    }
-                                                }
-                                            </div>
-                                        </div>
-
                                         <!-- RIB -->
                                         <div class="flex overflow-hidden flex-col rounded-lg border">
                                             <div class="flex justify-center items-center h-32 bg-gray-100 border-b">
@@ -336,34 +304,45 @@
                                             </div>
                                         </div>
 
-                                        <!-- Diplôme -->
-                                        <div class="flex overflow-hidden flex-col rounded-lg border">
-                                            <div class="flex justify-center items-center h-32 bg-gray-100 border-b">
-                                                @if (pro.diplomaDocUrl) {
-                                                    @if (pro.diplomaDocKey.endsWith('.pdf')) {
-                                                        <svg class="w-12 h-12 text-red-500 opacity-80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M10 12v6"/><path d="M8 14h4"/><path d="M14 12v6"/><path d="M12 14h4"/></svg>
-                                                    } @else {
-                                                        <img [src]="pro.diplomaDocUrl" class="object-contain w-full h-full" alt="Diplôme">
-                                                    }
-                                                } @else {
+                                        <!-- Diplômes -->
+                                        @if (pro.diplomaDocUrls?.length) {
+                                            @for (diplomaUrl of pro.diplomaDocUrls; track $index) {
+                                                <div class="flex overflow-hidden flex-col rounded-lg border">
+                                                    <div class="flex justify-center items-center h-32 bg-gray-100 border-b">
+                                                        @if (diplomaUrl) {
+                                                            @if (diplomaUrl.includes('.pdf')) {
+                                                                <svg class="w-12 h-12 text-red-500 opacity-80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M10 12v6"/><path d="M8 14h4"/><path d="M14 12v6"/><path d="M12 14h4"/></svg>
+                                                            } @else {
+                                                                <img [src]="diplomaUrl" class="object-contain w-full h-full" alt="Diplôme">
+                                                            }
+                                                        }
+                                                    </div>
+                                                    <div class="flex flex-1 justify-between items-center p-3 bg-white">
+                                                        <span class="text-sm font-medium text-gray-700">{{ 'dashboard.admin.docDiploma' | transloco }} {{ $index + 1 }}</span>
+                                                        @if (diplomaUrl) {
+                                                            @if (diplomaUrl.includes('.pdf')) {
+                                                                <button type="button" (click)="openDocumentModal(diplomaUrl, true)" class="text-red-600 hover:text-red-800" title="{{ 'dashboard.admin.viewPdf' | transloco }}">
+                                                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                                                                </button>
+                                                            } @else {
+                                                                <button type="button" (click)="openDocumentModal(diplomaUrl, false)" class="text-blue-600 hover:text-blue-800" title="{{ 'dashboard.admin.enlargeImage' | transloco }}">
+                                                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                                                                </button>
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                            }
+                                        } @else {
+                                            <div class="flex overflow-hidden flex-col rounded-lg border">
+                                                <div class="flex justify-center items-center h-32 bg-gray-100 border-b">
                                                     <span class="text-sm italic text-gray-400">{{ 'dashboard.admin.missing' | transloco }}</span>
-                                                }
+                                                </div>
+                                                <div class="p-3 bg-white">
+                                                    <span class="text-sm font-medium text-gray-700">{{ 'dashboard.admin.docDiploma' | transloco }}</span>
+                                                </div>
                                             </div>
-                                            <div class="flex flex-1 justify-between items-center p-3 bg-white">
-                                                <span class="text-sm font-medium text-gray-700">{{ 'dashboard.admin.docDiploma' | transloco }}</span>
-                                                @if (pro.diplomaDocUrl) {
-                                                    @if (pro.diplomaDocKey.endsWith('.pdf')) {
-                                                        <button type="button" (click)="openDocumentModal(pro.diplomaDocUrl, true)" class="text-red-600 hover:text-red-800" title="{{ 'dashboard.admin.viewPdf' | transloco }}">
-                                                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-                                                        </button>
-                                                    } @else {
-                                                        <button type="button" (click)="openDocumentModal(pro.diplomaDocUrl, false)" class="text-blue-600 hover:text-blue-800" title="{{ 'dashboard.admin.enlargeImage' | transloco }}">
-                                                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-                                                        </button>
-                                                    }
-                                                }
-                                            </div>
-                                        </div>
+                                        }
 
                                     </div>
                                 </section>

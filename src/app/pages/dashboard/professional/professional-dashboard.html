@@ -282,13 +282,6 @@
                             </button>
                             <button
                                 class="pro-tab"
-                                [class.active]="activeTab() === 'services'"
-                                (click)="setTab('services')"
-                            >
-                                {{ 'dashboard.pro.tabs.services' | transloco }}
-                            </button>
-                            <button
-                                class="pro-tab"
                                 [class.active]="activeTab() === 'missions'"
                                 (click)="setTab('missions')"
                             >
@@ -804,158 +797,6 @@
                                     </div>
                                 }
 
-                                @case ('services') {
-                                    <div class="pro-group-header">
-                                        <h3>{{ 'dashboard.pro.servicesTitle' | transloco }}</h3>
-                                        @if (!editServicesMode()) {
-                                            <button class="pro-edit-btn" type="button" (click)="enterEditServices()">
-                                                <svg
-                                                    viewBox="0 0 24 24"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    stroke-width="1.8"
-                                                >
-                                                    <path
-                                                        d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
-                                                    />
-                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                                                </svg>
-                                            </button>
-                                        } @else {
-                                            <div class="pro-edit-actions">
-                                                <button
-                                                    class="pro-cancel-btn"
-                                                    type="button"
-                                                    (click)="cancelEditServices()"
-                                                >
-                                                    <svg
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        stroke-width="2"
-                                                    >
-                                                        <line x1="18" y1="6" x2="6" y2="18" />
-                                                        <line x1="6" y1="6" x2="18" y2="18" />
-                                                    </svg>
-                                                </button>
-                                                <button
-                                                    class="pro-save-btn"
-                                                    type="button"
-                                                    (click)="saveEditServices()"
-                                                    [disabled]="savingServices()"
-                                                >
-                                                    @if (savingServices()) {
-                                                        <span class="pro-spinner-sm"></span>
-                                                    } @else {
-                                                        <svg
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            stroke-width="2.5"
-                                                        >
-                                                            <polyline points="20 6 9 17 4 12" />
-                                                        </svg>
-                                                    }
-                                                </button>
-                                            </div>
-                                        }
-                                    </div>
-                                    @if (editServicesMode()) {
-                                        <div class="pro-service-search">
-                                            <input
-                                                class="pro-edit-input"
-                                                type="text"
-                                                [(ngModel)]="serviceQuery"
-                                                (input)="searchServices()"
-                                                [placeholder]="'dashboard.pro.servicesSearch' | transloco"
-                                            />
-                                            @if (searchingServices()) {
-                                                <span class="pro-spinner-sm pro-spinner-sm--inline"></span>
-                                            }
-                                            @if (unselectedServiceResults.length) {
-                                                <ul class="pro-service-results">
-                                                    @for (s of unselectedServiceResults; track s.id) {
-                                                        <li class="pro-service-result" (click)="addServiceToEdit(s)">
-                                                            {{ s.description }}
-                                                        </li>
-                                                    }
-                                                    @if (serviceQuery.trim().length >= 3) {
-                                                        <li
-                                                            class="pro-service-result pro-service-result--new"
-                                                            (click)="addPendingService()"
-                                                        >
-                                                            + {{ 'dashboard.pro.addService' | transloco }} "{{
-                                                                serviceQuery.trim()
-                                                            }}"
-                                                        </li>
-                                                    }
-                                                </ul>
-                                            } @else if (serviceQuery.trim().length >= 3 && !searchingServices()) {
-                                                <ul class="pro-service-results">
-                                                    <li
-                                                        class="pro-service-result pro-service-result--new"
-                                                        (click)="addPendingService()"
-                                                    >
-                                                        + {{ 'dashboard.pro.addService' | transloco }} "{{
-                                                            serviceQuery.trim()
-                                                        }}"
-                                                    </li>
-                                                </ul>
-                                            }
-                                        </div>
-                                        <ul class="pro-list">
-                                            @for (service of editServiceList(); track service.id) {
-                                                <li class="pro-service-edit-item">
-                                                    <span>{{ service.description }}</span>
-                                                    <button
-                                                        class="pro-service-remove"
-                                                        type="button"
-                                                        (click)="removeServiceFromEdit(service.id)"
-                                                    >
-                                                        <svg
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            stroke-width="2.2"
-                                                        >
-                                                            <line x1="18" y1="6" x2="6" y2="18" />
-                                                            <line x1="6" y1="6" x2="18" y2="18" />
-                                                        </svg>
-                                                    </button>
-                                                </li>
-                                            }
-                                            @for (desc of pendingServiceDescriptions(); track desc) {
-                                                <li class="pro-service-edit-item pro-service-edit-item--pending">
-                                                    <span>{{ desc }}</span>
-                                                    <button
-                                                        class="pro-service-remove"
-                                                        type="button"
-                                                        (click)="removePendingService(desc)"
-                                                    >
-                                                        <svg
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            stroke-width="2.2"
-                                                        >
-                                                            <line x1="18" y1="6" x2="6" y2="18" />
-                                                            <line x1="6" y1="6" x2="18" y2="18" />
-                                                        </svg>
-                                                    </button>
-                                                </li>
-                                            }
-                                        </ul>
-                                    } @else if (pro.professionalProfile.services.length) {
-                                        <ul class="pro-list pro-list--check">
-                                            @for (service of pro.professionalProfile.services; track service.id) {
-                                                <li>{{ service.description }}</li>
-                                            }
-                                        </ul>
-                                    } @else {
-                                        <p class="pro-empty">{{ 'dashboard.pro.noServices' | transloco }}</p>
-                                    }
-                                }
-
                                 @case ('missions') {
                                     <p class="pro-empty">{{ 'dashboard.empty.missions' | transloco }}</p>
                                 }
@@ -977,16 +818,6 @@
                                                     key: pro.professionalProfile.idBackKey,
                                                     url: pro.professionalProfile.idBackUrl,
                                                     label: 'dashboard.pro.docs.idBack',
-                                                },
-                                                {
-                                                    key: pro.professionalProfile.insuranceDocKey,
-                                                    url: pro.professionalProfile.insuranceDocUrl,
-                                                    label: 'dashboard.pro.docs.insurance',
-                                                },
-                                                {
-                                                    key: pro.professionalProfile.diplomaDocKey,
-                                                    url: pro.professionalProfile.diplomaDocUrl,
-                                                    label: 'dashboard.pro.docs.diploma',
                                                 },
                                                 {
                                                     key: pro.professionalProfile.ribKey,
@@ -1056,6 +887,44 @@
                                                         <span class="doc-card-missing">{{
                                                             'dashboard.pro.docs.missing' | transloco
                                                         }}</span>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+                                        <!-- Diplômes (un doc-card par diplôme) -->
+                                        @for (diplomaUrl of pro.professionalProfile.diplomaDocUrls; track $index) {
+                                            <div class="doc-card">
+                                                <div
+                                                    class="doc-card-preview"
+                                                    [style.cursor]="diplomaUrl ? 'pointer' : 'default'"
+                                                    (click)="openDocModal(diplomaUrl, 'dashboard.pro.docs.diploma')"
+                                                >
+                                                    @if (diplomaUrl) {
+                                                        <svg class="doc-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                            <polyline points="14 2 14 8 20 8"/>
+                                                            <line x1="16" y1="13" x2="8" y2="13"/>
+                                                        </svg>
+                                                    } @else {
+                                                        <svg class="doc-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                            <polyline points="14 2 14 8 20 8"/>
+                                                        </svg>
+                                                    }
+                                                </div>
+                                                <div class="doc-card-body">
+                                                    <p class="doc-card-label">{{ 'dashboard.pro.docs.diploma' | transloco }} {{ $index + 1 }}</p>
+                                                    @if (diplomaUrl) {
+                                                        <a [href]="diplomaUrl" target="_blank" rel="noopener" class="doc-card-btn">
+                                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                                                <polyline points="7 10 12 15 17 10"/>
+                                                                <line x1="12" y1="15" x2="12" y2="3"/>
+                                                            </svg>
+                                                            {{ 'dashboard.pro.docs.download' | transloco }}
+                                                        </a>
+                                                    } @else {
+                                                        <span class="doc-card-missing">{{ 'dashboard.pro.docs.missing' | transloco }}</span>
                                                     }
                                                 </div>
                                             </div>

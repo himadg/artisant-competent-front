@@ -1,49 +1,40 @@
-import { AbstractControl, FormArray, FormGroup, ValidatorFn, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 
 export const hourValidator: ValidatorFn = (group: AbstractControl) => {
   const form = group as FormGroup;
-  const start = form.get('start')?.value as string;
-  const end = form.get('end')?.value as string;
-  if (!start && !end) return null;
-  if (!start || !end) return { timeRequired: true } as ValidationErrors;
-  return start < end ? null : ({ timeOrder: true } as ValidationErrors);
+  const closed = form.get('closed')?.value;
+  const onCallDay = form.get('onCallDay')?.value;
+  if (closed || onCallDay) return null;
+
+  const openHour = form.get('openHour')?.value as string;
+  const openMinute = form.get('openMinute')?.value as string;
+  const closeHour = form.get('closeHour')?.value as string;
+  const closeMinute = form.get('closeMinute')?.value as string;
+
+  if (!openHour || !openMinute || !closeHour || !closeMinute) return { timeRequired: true };
+
+  const start = `${openHour.padStart(2, '0')}:${openMinute.padStart(2, '0')}`;
+  const end = `${closeHour.padStart(2, '0')}:${closeMinute.padStart(2, '0')}`;
+  return start < end ? null : { timeOrder: true };
 };
 
 export const openingAtLeastOne: ValidatorFn = (control: AbstractControl) => {
   const arr = control as FormArray;
-  const ok = arr.controls.some((control) => {
-    const group = control as FormGroup;
-    const start = group.get('start')?.value;
-    const end = group.get('end')?.value;
-    return !!start && !!end;
+  const ok = arr.controls.some((ctrl) => {
+    const group = ctrl as FormGroup;
+    const closed = group.get('closed')?.value as boolean;
+    const onCallDay = group.get('onCallDay')?.value as boolean;
+    if (closed || onCallDay) return true;
+    return !!group.get('openHour')?.value && !!group.get('openMinute')?.value
+      && !!group.get('closeHour')?.value && !!group.get('closeMinute')?.value;
   });
-  return ok ? null : ({ atLeastOneOpen: true } as ValidationErrors);
-};
-
-export const servicesValidator = (getPendingCount: () => number): ValidatorFn => {
-  return (control: AbstractControl): ValidationErrors | null => {
-    const hasExisting = Array.isArray(control.value) && control.value.length > 0;
-    const hasPending = getPendingCount() > 0;
-    return (hasExisting || hasPending) ? null : { required: true };
-  };
+  return ok ? null : { atLeastOneOpen: true };
 };
 
 export const optionalEmailValidator: ValidatorFn = (control: AbstractControl) => {
   const value = (control.value as string)?.trim();
   if (!value) return null;
   return Validators.email(control);
-};
-
-export const decennialInsuranceValidator: ValidatorFn = (group: AbstractControl) => {
-  const form = group as FormGroup;
-  const name = (form.get('decennialInsuranceName')?.value as string)?.trim();
-  const number = (form.get('decennialInsuranceNumber')?.value as string)?.trim();
-  const expiry = form.get('decennialInsuranceExpiry')?.value as string;
-  const doc = form.get('decennialInsuranceDoc')?.value;
-
-  const filled = [name, number, expiry, doc].filter(v => v !== null && v !== '' && v !== undefined).length;
-  if (filled !== 4) return { decennialInsuranceIncomplete: true };
-  return null;
 };
 
 export const trustedContactValidator: ValidatorFn = (group: AbstractControl) => {

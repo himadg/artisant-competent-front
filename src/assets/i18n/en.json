@@ -1695,16 +1695,58 @@
     "next": "Next",
     "back": "Back",
     "submit": "Submit",
-    "optional": "optional field",
     "addPhoto": "Add photo",
     "addIdFront": "Add ID card front",
     "addIdBack": "Add ID card back",
     "addInsuranceDoc": "RC Pro",
     "addDecennialInsuranceDoc": "Decennial insurance",
     "addDiplomaDoc": "Add diploma or proof (RGE, Calibat, reduced VAT rate etc)",
+    "addDiplomaSlot": "Add diploma or certification",
+    "documents": {
+      "title": "Insurance, certification, accreditation, diploma or any other mandatory document",
+      "intro1": "Please attach all mandatory documents corresponding to the trades you have selected.",
+      "intro2": "This may include your insurance policies, certifications, accreditations, diplomas, CERFA forms or any other required professional document.",
+      "intro3": "Each professional is responsible for verifying that they comply with the legal, regulatory and documentary obligations applicable to their activity.",
+      "warning": "Any missing, expired or non-compliant mandatory document may result in the refusal or suspension of registration.",
+      "consultHelper": "For guidance, consult the following document:",
+      "obligationsBtn": "Employment mode - Your documentary obligations and insurance by trade",
+      "examplesLabel": "Examples:",
+      "examples": "RC Pro, decennial insurance, Qualibat, RGE, Qualifelec, QualiPAC, Certibiocide, refrigeration capacity certificate, mandatory CERFA forms, diplomas, accreditations, professional certifications, employer certificates, qualification documents, etc.",
+      "colName": "Name the document explicitly",
+      "colExpiry": "Expiry date",
+      "colFile": "Choose a file",
+      "namePlaceholder": "E.g.: RC Pro, Decennial insurance, Plumbing BEP, Qualibat...",
+      "addBtn": "Add a document"
+    },
     "addLogo": "Add a logo",
     "addRib": "Add bank account (RIB)",
     "onCall": "I am on call 24/7",
+    "requiredFieldsNotice": "All required fields are marked with a *",
+    "goodPracticesBtn": "Employment mode - View good practices",
+    "goodPracticesAlt": "Professional good practices",
+    "insuranceExplanation": "Please provide your RC Pro insurance, your decennial insurance, or both. At least one complete insurance is required.",
+    "hours": {
+      "closed": "Closed",
+      "onCallDay": "On call this day"
+    },
+    "openingHours": {
+      "guideBtn": "User guide - Hours, holidays & on-call rules"
+    },
+    "description": {
+      "guideBtn": "User guide - Tips for selling your services"
+    },
+    "workAddress": {
+      "guideBtn": "User guide - Geolocation address"
+    },
+    "cmod": {
+      "guideBtn": "User guide - Digital Project Owner Advisor (CMOD)",
+      "intro": "The CMOD intervenes only in the event of a dispute to assist the client and find an amicable solution.",
+      "conditionsTitle": "Conditions to become a CMOD",
+      "condition1": "Minimum 3 years of experience in your trade",
+      "condition2": "Mission paid at 35 € per intervention",
+      "condition3": "Intervention only in case of dispute",
+      "condition4": "Advisory opinion, non-binding"
+    },
     "siret": {
       "checking": "Checking SIRET...",
       "valid": "Valid SIRET",
@@ -1729,7 +1771,10 @@
       "openingAtLeastOne": "Please fill at least one day with start and end times",
       "step1Errors": "You also have errors on page 1.",
       "emailInvalid": "The professional email address is not valid.",
-      "decennialInsuranceIncomplete": "If you fill in the decennial insurance, all fields (document, name, number, expiry date) are required.",
+      "insuranceRequired": "Please provide at least one complete insurance (RC Pro or decennial).",
+      "rcProIncomplete": "The RC Pro insurance is partially filled. Please complete all fields (document, name, number, expiry date).",
+      "decennialInsuranceIncomplete": "The decennial insurance is partially filled. Please complete all fields (document, name, number, expiry date).",
+      "diplomaRequired": "Please add at least one diploma or proof document.",
       "trustedContactIncomplete": "Please fill in both the name and phone number of the trusted contact.",
       "formSummary": {
         "title": "The form contains errors:",
@@ -1753,6 +1798,8 @@
       "managerPhone": "Manager phone number",
       "email": "Manager personal email",
       "professionalEmail": "Manager professional email",
+        "tradesHint": "(Multiple choices possible, subject to holding the required insurance, certifications, authorisations or qualifications for the selected trades)",
+        "professionalEmailHint": "The manager's professional email can be the same as their personal email",
       "password": "Password",
       "passwordConfirm": "Confirm password",
       "address": {
@@ -1783,14 +1830,56 @@
       "trades": "Trades",
       "yearsExperience": "Years of experience",
       "openingHours": "Opening hours",
-      "description": "Seller pitch (max 500 chars)",
+      "descriptionTitle": "Seller description and services offered",
+      "description": "Introduce your company, your experience, your specialities and describe precisely the services you provide.\nThe more complete your description, the easier it will be for clients to understand your activity and find your profile.\nExamples: leak detection, electrical troubleshooting, drain unblocking, lock replacement, HVAC maintenance, water heater installation, pest control, etc.\nFeel free to use artificial intelligence.",
       "services": "Services offered",
       "servicesSearch": "Search for a service...",
       "servicesAdd": "Add service",
-      "trustName": "Trusted contact name",
-      "trustPhone": "Trusted contact phone",
-      "suppliers": "Suppliers",
-      "suppliersAdd": "Add the supplier"
+      "trustTitle": "Trusted contact",
+      "trustSubtitle": "Person to contact in case of emergency or particular situation.",
+      "trustName": "Full name",
+      "trustPhone": "Phone",
+      "diplomas": "Diplomas and certifications",
+      "suppliers": "Regular suppliers",
+      "suppliersSubtitle": "This information helps improve material traceability, manufacturer warranty management and dispute resolution. (multiple suppliers possible).",
+      "suppliersPlaceholder": "Ex.: Point P, Rexel, CEDEO, etc.",
+      "suppliersAdd": "+ Add the supplier",
+      "suppliersAdded": "Added suppliers"
+    },
+    "ribInfo": {
+      "text1": "The bank details (RIB) requested here are used by Artisan Compétent for certain administrative operations and services offered on the platform.",
+      "stripe": "Customer payments go through Stripe.",
+      "text2": "A few days before the official launch, you will receive an email inviting you to create and finalise your Stripe account for free so that you can receive your payments."
+    },
+    "mediator": {
+      "title": "My consumer mediator",
+      "guideBtn": "Employment mode - Consumer mediator user guide",
+      "description": "In accordance with the provisions of the Consumer Code, any professional dealing with consumers must be able to provide the contact details of their consumer mediator. To guide you through this process and help you meet your legal obligations, consulting the Consumer Mediator User Guide made available to you is mandatory.",
+      "name": "Mediator name",
+      "namePlaceholder": "E.g.: CM2C, CNPM Médiation Consommation...",
+      "address": "Postal address",
+      "addressPlaceholder": "E.g.: 49 rue de Ponthieu, 75008 Paris",
+      "website": "Website",
+      "websitePlaceholder": "E.g.: https://www.cm2c.net",
+      "contactMethod": "Contact method",
+      "contactMethodSelect": "Select a contact method",
+      "contactMethodMail": "By post",
+      "contactMethodForm": "Via an online form",
+      "contactMethodBoth": "Both",
+      "contactMethodHint": "Indicate how the consumer can reach your mediator: by post, via an online form, or both.",
+      "additionalInfo": "Additional information",
+      "additionalInfoOptional": "(optional)",
+      "additionalInfoPlaceholder": "Specify any useful information to contact your mediator"
+    },
+    "additionalRemarks": {
+      "title": "Remarks and additional information",
+      "description": "If some important information is not included in the submitted documents, you can specify it here. For example: a diploma, certification or qualification held by an employee, as well as any other useful detail about your activity or the organisation of your company.",
+      "placeholder": "Describe your situation or add any useful information (500 characters max)"
+    },
+    "companyRemarks": {
+      "title": "Remarks and additional information",
+      "description": "If some important information is not included in the submitted documents, you can specify it here. For example: a diploma, certification or qualification held by an employee, as well as any other useful detail about your activity or the organisation of your company.",
+      "placeholder": "Describe your situation or add any useful information (500 characters max)"
     }
   },
   "proCard": {

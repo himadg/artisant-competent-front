@@ -1,14 +1,30 @@
 <div class="my-12 md:my-24">
     <h1 class="my-8 text-4xl font-semibold text-center">{{ 'professional.title' | transloco }}</h1>
 
+    <!-- Required fields notice + good practices -->
+    <div class="flex flex-col flex-center justify-center items-center mx-auto mb-6 space-y-3 px-4">
+        <p class="text-lg font-bold mb-4">{{ 'professional.requiredFieldsNotice' | transloco }}</p>
+        <button
+            type="button"
+            class="text-sm px-4 py-2 rounded-lg text-[var(--primary-beige)] bg-grad-water-green hover:opacity-80 flex items-center"
+            (click)="goodPracticesModalOpen.set(true)"
+        >
+            <iconify-icon icon="lucide:clipboard-check" class="mr-1"></iconify-icon>
+            {{ 'professional.goodPracticesBtn' | transloco }}
+        </button>
+    </div>
+
     @if (step() === 1) {
-        <form [formGroup]="form" class="py-8 mx-auto space-y-4 max-w-[29rem] autofill-fix">
+        <form [formGroup]="form" class="py-8 mx-auto space-y-4 max-w-[35rem] autofill-fix">
             <div class="grid gap-4 items-stretch md:grid-cols-2">
-                <!-- Photo : pas de formControlName, géré via addFile/removeFile -->
+                <!-- Photo -->
                 <div class="flex justify-center items-stretch h-36">
                     <div
                         class="overflow-hidden relative w-36 h-full rounded-full border group"
-                        [class.force-invalid]="form.get('professionalProfile.photo')?.invalid && form.get('professionalProfile.photo')?.touched"
+                        [class.force-invalid]="
+                            form.get('professionalProfile.photo')?.invalid &&
+                            form.get('professionalProfile.photo')?.touched
+                        "
                     >
                         @if (photoPreview()) {
                             <img
@@ -52,7 +68,10 @@
 
                 <!-- user : gender, lastName, firstName -->
                 <div class="space-y-3" formGroupName="user">
-                    <select formControlName="gender" class="appearance-none px-3 py-2 w-full rounded border text-[0.85rem]">
+                    <select
+                        formControlName="gender"
+                        class="appearance-none px-3 py-2 w-full rounded border text-[0.85rem]"
+                    >
                         <option value="">{{ 'register.gender.select' | transloco }} *</option>
                         <option value="female">{{ 'register.gender.female' | transloco }}</option>
                         <option value="male">{{ 'register.gender.male' | transloco }}</option>
@@ -84,7 +103,9 @@
                         (blur)="birthDateFocused.set(false)"
                     />
                     @if (!form.get('user.birthDate')?.value && !birthDateFocused()) {
-                        <span class="flex self-center absolute w-[50%] h-[90%] inset-0 items-center px-3 text-sm text-gray-500 pointer-events-none left-[2px] bg-[var(--background-color)]">
+                        <span
+                            class="flex self-center absolute w-[50%] h-[90%] inset-0 items-center px-3 text-sm text-gray-500 pointer-events-none left-[2px] bg-[var(--background-color)]"
+                        >
                             {{ 'professional.fields.birthDate' | transloco }} *
                         </span>
                     }
@@ -99,13 +120,17 @@
 
             <!-- professionalProfile : professionalEmail -->
             <ng-container formGroupName="professionalProfile">
+                <p class="text-xs text-gray-500 -mb-2">{{ 'professional.fields.professionalEmailHint' | transloco }}</p>
                 <input
                     type="email"
                     formControlName="professionalEmail"
                     class="px-3 py-2 w-full rounded border"
                     placeholder="{{ 'professional.fields.professionalEmail' | transloco }}"
                 />
-                @if (form.get('professionalProfile.professionalEmail')?.errors?.['email'] && form.get('professionalProfile.professionalEmail')?.touched) {
+                @if (
+                    form.get('professionalProfile.professionalEmail')?.errors?.['email'] &&
+                    form.get('professionalProfile.professionalEmail')?.touched
+                ) {
                     <p class="text-xs text-red-500">{{ 'professional.errors.emailInvalid' | transloco }}</p>
                 }
             </ng-container>
@@ -127,12 +152,47 @@
                         (click)="showPassword.set(!showPassword())"
                         (mousedown)="$event.preventDefault()"
                         tabindex="-1"
-                        [attr.aria-label]="showPassword() ? ('login.visibility.hide' | transloco) : ('login.visibility.show' | transloco)"
+                        [attr.aria-label]="
+                            showPassword()
+                                ? ('login.visibility.hide' | transloco)
+                                : ('login.visibility.show' | transloco)
+                        "
                     >
                         @if (showPassword()) {
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" /></svg>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="w-5 h-5"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"
+                                />
+                            </svg>
                         } @else {
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="w-5 h-5"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+                                />
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                />
+                            </svg>
                         }
                     </button>
                 </div>
@@ -152,7 +212,8 @@
                             {{ passwordCriteria().number ? '✓' : '✗' }} {{ 'login.errors.passwordNumber' | transloco }}
                         </p>
                         <p [class]="passwordCriteria().special ? 'text-green-500' : 'text-red-500'">
-                            {{ passwordCriteria().special ? '✓' : '✗' }} {{ 'login.errors.passwordSpecial' | transloco }}
+                            {{ passwordCriteria().special ? '✓' : '✗' }}
+                            {{ 'login.errors.passwordSpecial' | transloco }}
                         </p>
                     </div>
                 }
@@ -163,7 +224,10 @@
                             [type]="showConfirmPassword() ? 'text' : 'password'"
                             formControlName="confirmPassword"
                             class="px-3 py-2 pr-10 w-full rounded border"
-                            [class.force-invalid]="form.get('user.password')?.value !== form.get('user.confirmPassword')?.value && form.get('user.confirmPassword')?.touched"
+                            [class.force-invalid]="
+                                form.get('user.password')?.value !== form.get('user.confirmPassword')?.value &&
+                                form.get('user.confirmPassword')?.touched
+                            "
                             placeholder="{{ 'professional.fields.passwordConfirm' | transloco }} *"
                         />
                         <button
@@ -172,16 +236,54 @@
                             (click)="showConfirmPassword.set(!showConfirmPassword())"
                             (mousedown)="$event.preventDefault()"
                             tabindex="-1"
-                            [attr.aria-label]="showConfirmPassword() ? ('login.visibility.hide' | transloco) : ('login.visibility.show' | transloco)"
+                            [attr.aria-label]="
+                                showConfirmPassword()
+                                    ? ('login.visibility.hide' | transloco)
+                                    : ('login.visibility.show' | transloco)
+                            "
                         >
                             @if (showConfirmPassword()) {
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" /></svg>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    class="w-5 h-5"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"
+                                    />
+                                </svg>
                             } @else {
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    class="w-5 h-5"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+                                    />
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                    />
+                                </svg>
                             }
                         </button>
                     </div>
-                    @if (form.get('user.password')?.value !== form.get('user.confirmPassword')?.value && form.get('user.confirmPassword')?.touched) {
+                    @if (
+                        form.get('user.password')?.value !== form.get('user.confirmPassword')?.value &&
+                        form.get('user.confirmPassword')?.touched
+                    ) {
                         <p class="px-2 text-sm text-red-500">{{ 'login.errors.passwordMismatch' | transloco }}</p>
                     }
                 </div>
@@ -197,43 +299,76 @@
                 />
             </ng-container>
 
-            <!-- address : adresse personnelle -->
+            <!-- Adresse personnelle -->
             <ng-container formGroupName="user">
-            <div formGroupName="address" class="space-y-4">
-                <input type="text" formControlName="streetNumber" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.address.number' | transloco }} *" />
-                <div class="relative">
+                <div formGroupName="address" class="space-y-4">
                     <input
                         type="text"
-                        formControlName="streetName"
+                        formControlName="streetNumber"
                         class="px-3 py-2 w-full rounded border"
-                        placeholder="{{ 'professional.fields.address.street' | transloco }} *"
-                        autocomplete="off"
-                        (input)="onPersonalAddressSearch($event)"
-                        (focus)="personalAddressOpen.set(true)"
-                        (blur)="closePersonalAddressSuggestions()"
+                        placeholder="{{ 'professional.fields.address.number' | transloco }} *"
                     />
-                    @if (personalAddressOpen() && personalAddressSuggestions().length) {
-                        <ul class="overflow-y-auto absolute z-10 w-full max-h-48 bg-white rounded-b border-b shadow-sm border-x">
-                            @for (s of personalAddressSuggestions(); track s.label) {
-                                <li class="px-3 py-2 text-sm cursor-pointer hover:bg-gray-50" (click)="selectPersonalAddress(s)">{{ s.label }}</li>
-                            }
-                        </ul>
+                    <div class="relative">
+                        <input
+                            type="text"
+                            formControlName="streetName"
+                            class="px-3 py-2 w-full rounded border"
+                            placeholder="{{ 'professional.fields.address.street' | transloco }} *"
+                            autocomplete="off"
+                            (input)="onPersonalAddressSearch($event)"
+                            (focus)="personalAddressOpen.set(true)"
+                            (blur)="closePersonalAddressSuggestions()"
+                        />
+                        @if (personalAddressOpen() && personalAddressSuggestions().length) {
+                            <ul
+                                class="overflow-y-auto absolute z-10 w-full max-h-48 bg-white rounded-b border-b shadow-sm border-x"
+                            >
+                                @for (s of personalAddressSuggestions(); track s.label) {
+                                    <li
+                                        class="px-3 py-2 text-sm cursor-pointer hover:bg-gray-50"
+                                        (click)="selectPersonalAddress(s)"
+                                    >
+                                        {{ s.label }}
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </div>
+                    <input
+                        type="text"
+                        formControlName="additionalInfo"
+                        class="px-3 py-2 w-full rounded border"
+                        placeholder="{{ 'professional.fields.address.complement' | transloco }}"
+                    />
+                    <input
+                        type="text"
+                        formControlName="postalCode"
+                        class="px-3 py-2 w-full rounded border"
+                        placeholder="{{ 'professional.fields.address.zip' | transloco }} *"
+                        (input)="onPersonalPostalCodeInput($event)"
+                    />
+                    <input
+                        type="text"
+                        formControlName="city"
+                        class="px-3 py-2 w-full rounded border"
+                        placeholder="{{ 'professional.fields.address.city' | transloco }} *"
+                    />
+                    @if (adressError() === 'addressPersonal') {
+                        <p class="text-xs text-red-500">
+                            {{ 'professional.errors.addressPersonalInvalid' | transloco }}
+                        </p>
                     }
                 </div>
-                <input type="text" formControlName="additionalInfo" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.address.complement' | transloco }}" />
-                <input type="text" formControlName="postalCode" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.address.zip' | transloco }} *" (input)="onPersonalPostalCodeInput($event)" />
-                <input type="text" formControlName="city" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.address.city' | transloco }} *" />
-                @if (adressError() === 'addressPersonal') {
-                    <p class="text-xs text-red-500">{{ 'professional.errors.addressPersonalInvalid' | transloco }}</p>
-                }
-            </div>
             </ng-container>
 
             <!-- Documents identité -->
             <div class="grid gap-4 md:grid-cols-2">
                 <div
                     class="overflow-hidden relative w-full h-28 rounded-md border group"
-                    [class.force-invalid]="form.get('professionalProfile.idFront')?.invalid && form.get('professionalProfile.idFront')?.touched"
+                    [class.force-invalid]="
+                        form.get('professionalProfile.idFront')?.invalid &&
+                        form.get('professionalProfile.idFront')?.touched
+                    "
                 >
                     @if (idFrontPreview()) {
                         <img
@@ -275,7 +410,10 @@
                 </div>
                 <div
                     class="overflow-hidden relative w-full h-28 rounded-md border group"
-                    [class.force-invalid]="form.get('professionalProfile.idBack')?.invalid && form.get('professionalProfile.idBack')?.touched"
+                    [class.force-invalid]="
+                        form.get('professionalProfile.idBack')?.invalid &&
+                        form.get('professionalProfile.idBack')?.touched
+                    "
                 >
                     @if (idBackPreview()) {
                         <img
@@ -317,208 +455,209 @@
                 </div>
             </div>
 
-            <!-- Diplôme -->
-            <div
-                class="overflow-hidden relative w-full h-28 rounded-md border group"
-                [class.force-invalid]="form.get('professionalProfile.diplomaDoc')?.invalid && form.get('professionalProfile.diplomaDoc')?.touched"
-            >
-                @if (diplomaPreview()) {
-                    <img
-                        [src]="diplomaPreview()"
-                        alt="Diplôme"
-                        class="object-cover w-full h-full cursor-pointer"
-                        (click)="removeFile('diplomaDoc')"
-                    />
-                    <div
-                        class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                        (click)="removeFile('diplomaDoc')"
-                    >
-                        {{ 'common.delete' | transloco }}
+            <!-- Diplômes / Documents obligatoires -->
+            <div class="space-y-3">
+                <!-- En-tête -->
+                <h3 class="font-bold text-[var(--primary-blue)]">{{ 'professional.documents.title' | transloco }}</h3>
+                <p class="text-sm text-gray-600">{{ 'professional.documents.intro1' | transloco }}</p>
+                <p class="text-sm text-gray-600">{{ 'professional.documents.intro2' | transloco }}</p>
+                <p class="text-sm text-gray-600">{{ 'professional.documents.intro3' | transloco }}</p>
+                <p class="text-sm font-bold text-gray-800">{{ 'professional.documents.warning' | transloco }}</p>
+
+                <!-- Bouton obligations -->
+                <p class="text-sm text-gray-600">{{ 'professional.documents.consultHelper' | transloco }}</p>
+                <button
+                    type="button"
+                    class="inline-flex gap-2 items-center px-4 py-2 text-sm rounded-lg text-[var(--primary-beige)] bg-grad-water-green hover:opacity-80"
+                    (click)="docObligationsModalOpen.set(true)"
+                >
+                    <iconify-icon icon="lucide:file-text" class="text-base shrink-0"></iconify-icon>
+                    {{ 'professional.documents.obligationsBtn' | transloco }}
+                </button>
+
+                <!-- Exemples -->
+                <div
+                    class="flex gap-2 items-start p-3 text-sm rounded-lg border border-orange-300 bg-orange-50 text-orange-800"
+                >
+                    <iconify-icon icon="lucide:info" class="mt-0.5 text-base shrink-0"></iconify-icon>
+                    <p>
+                        <strong>{{ 'professional.documents.examplesLabel' | transloco }}</strong>
+                        {{ 'professional.documents.examples' | transloco }}
+                    </p>
+                </div>
+
+                <!-- Tableau documents -->
+                <div class="rounded-lg border border-gray-200">
+                    <!-- En-têtes (desktop uniquement) -->
+                    <div class="hidden sm:grid items-center gap-2 bg-gray-50 rounded-tl-lg rounded-tr-lg border-b border-gray-200 px-3 py-2 text-[0.65rem] font-semibold uppercase tracking-wide text-gray-500"
+                         style="grid-template-columns: minmax(0,2fr) minmax(0,1fr) minmax(0,1fr) 1.75rem">
+                        <span>{{ 'professional.documents.colName' | transloco }} *</span>
+                        <span>{{ 'professional.documents.colExpiry' | transloco }} *</span>
+                        <span>{{ 'professional.documents.colFile' | transloco }} *</span>
+                        <span></span>
                     </div>
-                } @else if (diplomaName()) {
-                    <div
-                        class="flex justify-center items-center w-full h-full text-center cursor-pointer"
-                        (click)="removeFile('diplomaDoc')"
-                    >
-                        <span class="text-[10px]">{{ diplomaName() }}</span>
-                        <span
-                            class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                            (click)="removeFile('diplomaDoc')"
-                            >{{ 'common.delete' | transloco }}</span
+
+                    <!-- Lignes -->
+                    @for (entry of diplomaFiles(); track $index) {
+                        <div
+                            class="relative flex flex-col gap-2 px-3 py-3 border-b border-[var(--border-color)] last:border-b-0 sm:grid sm:gap-x-2 sm:gap-y-1 sm:py-2"
+                            [class.bg-red-50]="diplomaTouched() && (!entry.file || !entry.documentName.trim())"
+                            style="grid-template-columns: minmax(0,2fr) minmax(0,1fr) minmax(0,1fr) 1.75rem; grid-template-rows: auto auto"
                         >
-                    </div>
-                } @else {
-                    <div class="flex flex-col justify-center items-center w-full h-full text-center">
-                        <span class="text-4xl leading-none">+</span>
-                        <span class="mt-1 text-xs">{{ 'professional.addDiplomaDoc' | transloco }} *</span>
-                    </div>
-                    <input
-                        type="file"
-                        class="absolute inset-0 opacity-0 cursor-pointer"
-                        accept="image/*,.pdf"
-                        (change)="addFile('diplomaDoc', $event)"
-                    />
+                            <!-- Textarea nom du document -->
+                            <div class="sm:[grid-column:1] sm:[grid-row:1/3] flex flex-col gap-1">
+                                <span class="sm:hidden py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-gray-500">{{ 'professional.documents.colName' | transloco }} *</span>
+                                <textarea
+                                    rows="2"
+                                    [value]="entry.documentName"
+                                    (input)="updateDiplomaDocumentName($index, $any($event).target.value)"
+                                    class="px-2 py-1.5 w-full h-full text-xs rounded border resize-none"
+                                    [placeholder]="'professional.documents.namePlaceholder' | transloco"
+                                ></textarea>
+                            </div>
+
+                            <!-- Date d'expiration -->
+                            <div class="sm:[grid-column:2] sm:[grid-row:1] flex flex-col gap-1">
+                                <span class="sm:hidden py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-gray-500">{{ 'professional.documents.colExpiry' | transloco }} *</span>
+                                <input
+                                    type="date"
+                                    [value]="entry.expiryDate"
+                                    (change)="updateDiplomaExpiry($index, $any($event).target.value)"
+                                    class="px-2 py-2 w-full text-xs rounded border"
+                                />
+                            </div>
+
+                            <!-- Bouton fichier -->
+                            <div class="sm:[grid-column:3] sm:[grid-row:1] flex flex-col gap-1">
+                                <span class="sm:hidden py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-gray-500">{{ 'professional.documents.colFile' | transloco }} *</span>
+                                <label class="flex items-center justify-center gap-1 px-2 py-2 text-xs rounded border cursor-pointer hover:bg-gray-50 whitespace-nowrap">
+                                    {{ 'professional.documents.chooseFile' | transloco }}
+                                    <input type="file" class="hidden" accept="image/*,.pdf" (change)="onDiplomaFileChange($index, $event)" />
+                                </label>
+                            </div>
+
+                            <!-- Nom du fichier -->
+                            <div class="flex items-center gap-1 min-w-0 sm:[grid-column:2/4] sm:[grid-row:2]">
+                                <span class="text-[0.65rem] text-gray-500 truncate">
+                                    {{ entry.fileName ?? ('professional.documents.noFile' | transloco) }}
+                                </span>
+                                @if (entry.fileName) {
+                                    <button type="button" class="text-red-400 hover:text-red-600 leading-none shrink-0" (click)="removeDiplomaFile($index)">×</button>
+                                }
+                            </div>
+
+                            <!-- Supprimer la ligne -->
+                            <button
+                                type="button"
+                                class="absolute top-3 right-3 flex justify-center items-center w-6 h-6 text-sm text-white rounded bg-red-400 hover:bg-red-600 shrink-0 sm:static sm:[grid-column:4] sm:[grid-row:1/3]"
+                                [class.invisible]="diplomaFiles().length < 2"
+                                (click)="removeDiplomaSlot($index)"
+                            >×</button>
+                        </div>
+                    }
+                </div>
+
+                <!-- Ajouter un document -->
+                <button
+                    type="button"
+                    class="inline-flex gap-2 items-center px-4 py-2 text-sm border rounded-lg border-gray-400 hover:border-gray-600 hover:bg-gray-50"
+                    (click)="addDiplomaSlot()"
+                >
+                    <span class="text-lg leading-none">+</span>
+                    {{ 'professional.documents.addBtn' | transloco }}
+                </button>
+
+                @if (diplomaTouched() && !diplomasValid()) {
+                    <p class="text-xs text-red-500">{{ 'professional.errors.diplomaRequired' | transloco }}</p>
                 }
             </div>
 
-            <!-- Assurances RC Pro + Décennale côte à côte -->
-            <ng-container formGroupName="professionalProfile">
-                <div class="grid grid-cols-2 gap-3">
-
-                    <!-- Colonne RC Pro -->
-                    <div class="flex flex-col gap-2">
-                        <!-- Document RC Pro -->
-                        <div
-                            class="overflow-hidden relative w-full h-24 rounded-md border group"
-                            [class.force-invalid]="form.get('professionalProfile.insuranceDoc')?.invalid && form.get('professionalProfile.insuranceDoc')?.touched"
-                        >
-                            @if (insuranceDocPreview()) {
-                                <img
-                                    [src]="insuranceDocPreview()"
-                                    alt="Assurance RC Pro"
-                                    class="object-cover w-full h-full cursor-pointer"
-                                    (click)="removeFile('insuranceDoc')"
-                                />
-                                <div
-                                    class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                    (click)="removeFile('insuranceDoc')"
-                                >
-                                    {{ 'common.delete' | transloco }}
-                                </div>
-                            } @else if (insuranceDocName()) {
-                                <div
-                                    class="flex justify-center items-center w-full h-full text-center cursor-pointer"
-                                    (click)="removeFile('insuranceDoc')"
-                                >
-                                    <span class="text-[9px]">{{ insuranceDocName() }}</span>
-                                    <span
-                                        class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                        (click)="removeFile('insuranceDoc')"
-                                        >{{ 'common.delete' | transloco }}</span
-                                    >
-                                </div>
-                            } @else {
-                                <div class="flex flex-col justify-center items-center w-full h-full text-center">
-                                    <span class="text-3xl leading-none">+</span>
-                                    <span class="mt-1 text-[0.6rem]">{{ 'professional.addInsuranceDoc' | transloco }} *</span>
-                                </div>
-                                <input
-                                    type="file"
-                                    class="absolute inset-0 opacity-0 cursor-pointer"
-                                    accept="image/*,.pdf"
-                                    (change)="addFile('insuranceDoc', $event)"
-                                />
-                            }
-                        </div>
-                        <!-- Champs RC Pro -->
-                        <input
-                            type="text"
-                            formControlName="insuranceName"
-                            class="px-2 py-2 w-full text-sm rounded border"
-                            placeholder="{{ 'professional.fields.insuranceName' | transloco }} *"
-                        />
-                        <input
-                            type="text"
-                            formControlName="insuranceNumber"
-                            class="px-2 py-2 w-full text-sm rounded border"
-                            placeholder="{{ 'professional.fields.insuranceNumber' | transloco }} *"
-                        />
-                        <div class="relative">
-                            <input
-                                type="date"
-                                formControlName="insuranceExpiry"
-                                class="px-2 py-2 w-full text-sm rounded border"
-                                [min]="today"
-                                (focus)="insuranceExpiryFocused.set(true)"
-                                (blur)="insuranceExpiryFocused.set(false)"
-                            />
-                            @if (!form.get('professionalProfile.insuranceExpiry')?.value && !insuranceExpiryFocused()) {
-                                <span class="flex self-center absolute w-[calc(100%-2rem)] h-[90%] inset-0 items-center px-2 text-sm text-gray-500 pointer-events-none left-[2px] bg-[var(--background-color)]">
-                                    {{ 'professional.fields.insuranceExpiry' | transloco }} *
-                                </span>
-                            }
-                        </div>
+            <!-- Médiateur de la consommation -->
+            <div class="flex flex-col gap-4" formGroupName="professionalProfile">
+                <div class="flex flex-wrap gap-3 items-start justify-between">
+                    <div>
+                        <h3 class="font-bold text-[var(--primary-blue)]">{{ 'professional.mediator.title' | transloco }}</h3>
                     </div>
-
-                    <!-- Colonne Décennale -->
-                    <div class="flex flex-col gap-2">
-                        <!-- Document Décennale -->
-                        <div
-                            class="overflow-hidden relative w-full h-24 rounded-md border group"
-                        >
-                            @if (decennialInsuranceDocPreview()) {
-                                <img
-                                    [src]="decennialInsuranceDocPreview()"
-                                    alt="Assurance décennale"
-                                    class="object-cover w-full h-full cursor-pointer"
-                                    (click)="removeFile('decennialInsuranceDoc')"
-                                />
-                                <div
-                                    class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                    (click)="removeFile('decennialInsuranceDoc')"
-                                >
-                                    {{ 'common.delete' | transloco }}
-                                </div>
-                            } @else if (decennialInsuranceDocName()) {
-                                <div
-                                    class="flex justify-center items-center w-full h-full text-center cursor-pointer"
-                                    (click)="removeFile('decennialInsuranceDoc')"
-                                >
-                                    <span class="text-[9px]">{{ decennialInsuranceDocName() }}</span>
-                                    <span
-                                        class="flex absolute inset-0 justify-center items-center text-xs text-white opacity-0 transition cursor-pointer bg-black/40 group-hover:opacity-100"
-                                        (click)="removeFile('decennialInsuranceDoc')"
-                                        >{{ 'common.delete' | transloco }}</span
-                                    >
-                                </div>
-                            } @else {
-                                <div class="flex flex-col justify-center items-center w-full h-full text-center">
-                                    <span class="text-3xl leading-none">+</span>
-                                    <span class="mt-1 text-[0.6rem]">{{ 'professional.addDecennialInsuranceDoc' | transloco }}</span>
-                                </div>
-                                <input
-                                    type="file"
-                                    class="absolute inset-0 opacity-0 cursor-pointer"
-                                    accept="image/*,.pdf"
-                                    (change)="addFile('decennialInsuranceDoc', $event)"
-                                />
-                            }
-                        </div>
-                        <!-- Champs Décennale -->
-                        <input
-                            type="text"
-                            formControlName="decennialInsuranceName"
-                            class="px-2 py-2 w-full text-sm rounded border"
-                            placeholder="{{ 'professional.fields.decennialInsuranceName' | transloco }}"
-                        />
-                        <input
-                            type="text"
-                            formControlName="decennialInsuranceNumber"
-                            class="px-2 py-2 w-full text-sm rounded border"
-                            placeholder="{{ 'professional.fields.decennialInsuranceNumber' | transloco }}"
-                        />
-                        <div class="relative">
-                            <input
-                                type="date"
-                                formControlName="decennialInsuranceExpiry"
-                                class="px-2 py-2 w-full text-sm rounded border"
-                                [min]="today"
-                                (focus)="decennialInsuranceExpiryFocused.set(true)"
-                                (blur)="decennialInsuranceExpiryFocused.set(false)"
-                            />
-                            @if (!form.get('professionalProfile.decennialInsuranceExpiry')?.value && !decennialInsuranceExpiryFocused()) {
-                                <span class="flex self-center absolute w-[calc(100%-2rem)] h-[90%] inset-0 items-center px-2 text-sm text-gray-500 pointer-events-none left-[2px] bg-[var(--background-color)]">
-                                    {{ 'professional.fields.decennialInsuranceExpiry' | transloco }}
-                                </span>
-                            }
-                        </div>
-                    </div>
-
+                    <button
+                        type="button"
+                        class="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg text-[var(--primary-beige)] bg-grad-water-green hover:opacity-80 shrink-0"
+                        (click)="mediatorGuideModalOpen.set(true)"
+                    >
+                        <iconify-icon icon="lucide:book-open" class="text-sm shrink-0"></iconify-icon>
+                        {{ 'professional.mediator.guideBtn' | transloco }}
+                    </button>
                 </div>
-                @if (form.get('professionalProfile')?.errors?.['decennialInsuranceIncomplete'] && form.get('professionalProfile')?.touched) {
-                    <p class="text-xs text-red-500">{{ 'professional.errors.decennialInsuranceIncomplete' | transloco }}</p>
-                }
-            </ng-container>
+                <p class="text-sm text-gray-600 -mt-2">{{ 'professional.mediator.description' | transloco }}</p>
+                <div class="grid gap-4 md:grid-cols-2">
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-medium text-gray-700">{{ 'professional.mediator.name' | transloco }}</label>
+                        <input
+                            type="text"
+                            formControlName="mediatorName"
+                            class="px-3 py-2 w-full rounded border text-sm"
+                            placeholder="{{ 'professional.mediator.namePlaceholder' | transloco }}"
+                        />
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-medium text-gray-700">{{ 'professional.mediator.address' | transloco }}</label>
+                        <input
+                            type="text"
+                            formControlName="mediatorAddress"
+                            class="px-3 py-2 w-full rounded border text-sm"
+                            placeholder="{{ 'professional.mediator.addressPlaceholder' | transloco }}"
+                        />
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-medium text-gray-700">{{ 'professional.mediator.website' | transloco }}</label>
+                        <input
+                            type="url"
+                            formControlName="mediatorWebsite"
+                            class="px-3 py-2 w-full rounded border text-sm"
+                            placeholder="{{ 'professional.mediator.websitePlaceholder' | transloco }}"
+                        />
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-medium text-gray-700">{{ 'professional.mediator.contactMethod' | transloco }}</label>
+                        <select
+                            formControlName="mediatorContactMethod"
+                            class="px-3 py-2 w-full rounded border text-sm"
+                            [class.text-gray-400]="!form.get('professionalProfile.mediatorContactMethod')?.value"
+                        >
+                            <option value="">{{ 'professional.mediator.contactMethodSelect' | transloco }}</option>
+                            <option value="courrier">{{ 'professional.mediator.contactMethodMail' | transloco }}</option>
+                            <option value="formulaire">{{ 'professional.mediator.contactMethodForm' | transloco }}</option>
+                            <option value="les deux">{{ 'professional.mediator.contactMethodBoth' | transloco }}</option>
+                        </select>
+                        <p class="text-xs text-gray-500">{{ 'professional.mediator.contactMethodHint' | transloco }}</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label class="text-sm font-medium text-gray-700">
+                        {{ 'professional.mediator.additionalInfo' | transloco }}
+                        <span class="font-normal text-gray-400 text-xs">{{ 'professional.mediator.additionalInfoOptional' | transloco }}</span>
+                    </label>
+                    <textarea
+                        formControlName="mediatorAdditionalInfo"
+                        rows="3"
+                        maxlength="500"
+                        class="w-full px-3 py-2 rounded border border-gray-300 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-gray-400"
+                        placeholder="{{ 'professional.mediator.additionalInfoPlaceholder' | transloco }}"
+                    ></textarea>
+                </div>
+            </div>
+
+            <!-- Remarques et informations complémentaires -->
+            <div class="flex flex-col gap-3" formGroupName="professionalProfile">
+                <h3 class="font-semibold text-gray-800">{{ 'professional.additionalRemarks.title' | transloco }}</h3>
+                <p class="text-sm text-gray-500">{{ 'professional.additionalRemarks.description' | transloco }}</p>
+                <textarea
+                    formControlName="additionalRemarks"
+                    rows="4"
+                    maxlength="500"
+                    class="w-full px-3 py-2 rounded border border-gray-300 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-gray-400"
+                    placeholder="{{ 'professional.additionalRemarks.placeholder' | transloco }}"
+                ></textarea>
+            </div>
 
             <div class="flex justify-end">
                 <button
@@ -531,9 +670,7 @@
             </div>
         </form>
     } @else if (step() === 2) {
-        <form [formGroup]="form" class="p-4 mx-auto space-y-4 max-w-xl autofill-fix">
-
-            <!-- professionalProfile : toutes les infos entreprise -->
+        <form [formGroup]="form" class="p-0 md:p-4 mx-auto space-y-4 max-w-xl autofill-fix">
             <ng-container formGroupName="professionalProfile">
                 <!-- SIRET + statut juridique -->
                 <div class="flex flex-col md:flex-row gap-2">
@@ -564,7 +701,10 @@
                             <option value="COMPANY">{{ 'professional.manager.company' | transloco }}</option>
                             <option value="INDIVIDUAL">{{ 'professional.manager.sole' | transloco }}</option>
                         </select>
-                        @if (form.get('professionalProfile.companyStatus')?.invalid && form.get('professionalProfile.companyStatus')?.touched) {
+                        @if (
+                            form.get('professionalProfile.companyStatus')?.invalid &&
+                            form.get('professionalProfile.companyStatus')?.touched
+                        ) {
                             <p class="mt-1 text-xs text-red-500">{{ 'professional.errors.required' | transloco }}</p>
                         }
                     </div>
@@ -575,7 +715,10 @@
                     <div class="flex flex-col gap-3 justify-evenly items-center">
                         <div
                             class="overflow-hidden relative w-40 h-28 rounded-md border group"
-                            [class.force-invalid]="form.get('professionalProfile.logo')?.invalid && form.get('professionalProfile.logo')?.touched"
+                            [class.force-invalid]="
+                                form.get('professionalProfile.logo')?.invalid &&
+                                form.get('professionalProfile.logo')?.touched
+                            "
                         >
                             @if (logoPreview()) {
                                 <img
@@ -618,7 +761,10 @@
 
                         <div
                             class="overflow-hidden relative w-40 h-28 rounded-md border group"
-                            [class.force-invalid]="form.get('professionalProfile.rib')?.invalid && form.get('professionalProfile.rib')?.touched"
+                            [class.force-invalid]="
+                                form.get('professionalProfile.rib')?.invalid &&
+                                form.get('professionalProfile.rib')?.touched
+                            "
                         >
                             @if (ribPreview()) {
                                 <img
@@ -673,7 +819,12 @@
                             <p class="text-xs text-red-500">{{ 'professional.errors.siretMismatch' | transloco }}</p>
                         }
                         <div formGroupName="workAddress" class="space-y-2">
-                            <input type="text" formControlName="streetNumber" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.workAddress.number' | transloco }} *" />
+                            <input
+                                type="text"
+                                formControlName="streetNumber"
+                                class="px-3 py-2 w-full rounded border"
+                                placeholder="{{ 'professional.fields.workAddress.number' | transloco }} *"
+                            />
                             <div class="relative">
                                 <input
                                     type="text"
@@ -686,36 +837,94 @@
                                     (blur)="closeWorkAddressSuggestions()"
                                 />
                                 @if (workAddressOpen() && workAddressSuggestions().length) {
-                                    <ul class="overflow-y-auto absolute z-10 w-full max-h-48 bg-white rounded-b border-b shadow-sm border-x">
+                                    <ul
+                                        class="overflow-y-auto absolute z-10 w-full max-h-48 bg-white rounded-b border-b shadow-sm border-x"
+                                    >
                                         @for (s of workAddressSuggestions(); track s.label) {
-                                            <li class="px-3 py-2 text-sm cursor-pointer hover:bg-gray-50" (click)="selectWorkAddress(s)">{{ s.label }}</li>
+                                            <li
+                                                class="px-3 py-2 text-sm cursor-pointer hover:bg-gray-50"
+                                                (click)="selectWorkAddress(s)"
+                                            >
+                                                {{ s.label }}
+                                            </li>
                                         }
                                     </ul>
                                 }
                             </div>
-                            <input type="text" formControlName="additionalInfo" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.workAddress.complement' | transloco }}" />
-                            <input type="text" formControlName="postalCode" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.workAddress.zip' | transloco }} *" (input)="onWorkPostalCodeInput($event)" />
-                            <input type="text" formControlName="city" class="px-3 py-2 w-full rounded border" placeholder="{{ 'professional.fields.workAddress.city' | transloco }} *" />
+                            <input
+                                type="text"
+                                formControlName="additionalInfo"
+                                class="px-3 py-2 w-full rounded border"
+                                placeholder="{{ 'professional.fields.workAddress.complement' | transloco }}"
+                            />
+                            <input
+                                type="text"
+                                formControlName="postalCode"
+                                class="px-3 py-2 w-full rounded border"
+                                placeholder="{{ 'professional.fields.workAddress.zip' | transloco }} *"
+                                (input)="onWorkPostalCodeInput($event)"
+                            />
+                            <input
+                                type="text"
+                                formControlName="city"
+                                class="px-3 py-2 w-full rounded border"
+                                placeholder="{{ 'professional.fields.workAddress.city' | transloco }} *"
+                            />
                         </div>
+                        <button
+                            type="button"
+                            class="inline-flex gap-2 items-center px-4 py-2 text-sm rounded-lg text-[var(--primary-beige)] bg-grad-water-green hover:opacity-80"
+                            (click)="workingAddressModalOpen.set(true)"
+                        >
+                            <iconify-icon icon="lucide:map-pin" class="text-base shrink-0"></iconify-icon>
+                            {{ 'professional.workAddress.guideBtn' | transloco }}
+                        </button>
                         @if (adressError() === 'addressWork') {
                             <p class="text-xs text-red-500">{{ 'professional.errors.addressInvalid' | transloco }}</p>
                         }
                     </div>
                 </div>
 
+                <!-- Info RIB -->
+                <div class="w-full rounded-lg bg-[#fdf5e6] border border-[#e8c87a] px-3 py-3 text-xs text-gray-700 space-y-2">
+                    <div class="flex gap-2">
+                        <span class="mt-0.5 shrink-0 text-[#c8933a]">
+                            <iconify-icon icon="lucide:info" width="14"></iconify-icon>
+                        </span>
+                        <p>{{ 'professional.ribInfo.text1' | transloco }}</p>
+                    </div>
+                    <p class="font-semibold">{{ 'professional.ribInfo.stripe' | transloco }}</p>
+                    <p>{{ 'professional.ribInfo.text2' | transloco }}</p>
+                </div>
+
                 <!-- Métiers -->
                 <div class="flex flex-col gap-2">
-                    <label class="font-medium" [class.text-red-500]="form.get('professionalProfile.trades')?.invalid && form.get('professionalProfile.trades')?.touched">
+                    <label
+                        class="font-medium"
+                        [class.text-red-500]="
+                            form.get('professionalProfile.trades')?.invalid &&
+                            form.get('professionalProfile.trades')?.touched
+                        "
+                    >
                         {{ 'professional.fields.trades' | transloco }} *
                     </label>
-                    <div class="flex flex-wrap gap-2 p-2 rounded-lg" [class.force-invalid]="form.get('professionalProfile.trades')?.invalid && form.get('professionalProfile.trades')?.touched">
+                    <p class="text-xs text-gray-500 -mt-1">{{ 'professional.fields.tradesHint' | transloco }}</p>
+                    <div
+                        class="flex flex-wrap gap-2 p-2 rounded-lg"
+                        [class.force-invalid]="
+                            form.get('professionalProfile.trades')?.invalid &&
+                            form.get('professionalProfile.trades')?.touched
+                        "
+                    >
                         @for (trade of trades(); track trade.id) {
                             <button
                                 type="button"
                                 class="px-3 py-1 text-sm rounded-full border transition-colors"
-                                [class]="isTradeSelected(trade.id)
-                                    ? 'bg-grad-water-green text-[var(--primary-beige)] border-transparent'
-                                    : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400'"
+                                [class]="
+                                    isTradeSelected(trade.id)
+                                        ? 'bg-grad-water-green text-[var(--primary-beige)] border-transparent'
+                                        : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400'
+                                "
                                 (click)="toggleTrade(trade.id)"
                             >
                                 {{ `jobs.list.${trade.name}.name` | transloco }}
@@ -724,192 +933,288 @@
                     </div>
                 </div>
 
-                <input
-                    type="number"
-                    formControlName="yearsExperience"
-                    class="px-3 py-2 w-full rounded border"
-                    placeholder="{{ 'professional.fields.yearsExperience' | transloco }} *"
-                />
+                <div class="flex flex-col gap-2">
+                    <div class="flex flex-wrap gap-2 items-center justify-between">
+                        <span class="font-medium text-sm text-gray-700">{{ 'professional.fields.yearsExperience' | transloco }} *</span>
+                        <button
+                            type="button"
+                            class="inline-flex gap-2 items-center px-4 py-2 text-sm rounded-lg text-[var(--primary-beige)] bg-grad-water-green hover:opacity-80"
+                            (click)="cmodModalOpen.set(true)"
+                        >
+                            <iconify-icon icon="lucide:award" class="text-base shrink-0"></iconify-icon>
+                            {{ 'professional.cmod.guideBtn' | transloco }}
+                        </button>
+                    </div>
+                    <input
+                        type="number"
+                        formControlName="yearsExperience"
+                        class="px-3 py-2 w-full rounded border"
+                        placeholder="{{ 'professional.fields.yearsExperience' | transloco }} *"
+                    />
+                </div>
+
+                <!-- Encart CMOD si >= 3 ans d'expérience -->
+                @if (showCmod()) {
+                    <div class="p-4 rounded-xl border border-green-200 bg-green-50 space-y-3">
+                        <p class="text-sm text-gray-700">{{ 'professional.cmod.intro' | transloco }}</p>
+                        <div class="rounded-lg border border-green-300 bg-white p-3 space-y-2">
+                            <p class="text-xs font-bold uppercase tracking-wide text-green-700">
+                                {{ 'professional.cmod.conditionsTitle' | transloco }}
+                            </p>
+                            <div class="grid grid-cols-1 gap-1.5 md:grid-cols-2">
+                                <div class="flex gap-2 items-start text-sm">
+                                    <span class="text-green-500 mt-0.5">✔</span>
+                                    <span>{{ 'professional.cmod.condition1' | transloco }}</span>
+                                </div>
+                                <div class="flex gap-2 items-start text-sm">
+                                    <span class="text-green-500 mt-0.5">✔</span>
+                                    <span>{{ 'professional.cmod.condition2' | transloco }}</span>
+                                </div>
+                                <div class="flex gap-2 items-start text-sm">
+                                    <span class="text-green-500 mt-0.5">✔</span>
+                                    <span>{{ 'professional.cmod.condition3' | transloco }}</span>
+                                </div>
+                                <div class="flex gap-2 items-start text-sm">
+                                    <span class="text-green-500 mt-0.5">✔</span>
+                                    <span>{{ 'professional.cmod.condition4' | transloco }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
 
                 <label class="inline-flex gap-2 items-center">
                     <input type="checkbox" formControlName="onCall" />
                     <span>{{ 'professional.onCall' | transloco }}</span>
                 </label>
 
+                <!-- Horaires d'ouverture -->
                 <div class="space-y-3">
-                    <label class="font-medium" [class.text-red-500]="hours.errors?.['atLeastOneOpen'] && hours.touched">
-                        {{ 'professional.fields.openingHours' | transloco }} *
-                    </label>
-                    <div class="p-2 space-y-2 rounded-lg" [class.force-invalid]="hours.errors?.['atLeastOneOpen'] && hours.touched">
+                    <div class="flex flex-wrap gap-2 items-center justify-between">
+                        <label class="font-medium" [class.text-red-500]="hours.errors?.['atLeastOneOpen'] && hoursTouched()">
+                            {{ 'professional.fields.openingHours' | transloco }} *
+                        </label>
+                        <button
+                            type="button"
+                            class="inline-flex gap-2 items-center px-4 py-2 text-sm rounded-lg text-[var(--primary-beige)] bg-grad-water-green hover:opacity-80"
+                            (click)="openingHoursModalOpen.set(true)"
+                        >
+                            <iconify-icon icon="lucide:book-open" class="text-base shrink-0"></iconify-icon>
+                            {{ 'professional.openingHours.guideBtn' | transloco }}
+                        </button>
+                    </div>
+                    <div
+                        class="space-y-2 rounded-lg p-2"
+                        [class.force-invalid]="hours.errors?.['atLeastOneOpen'] && hoursTouched()"
+                    >
                         @for (ctrl of hours.controls; track ctrl.value.day) {
-                            <div class="grid grid-cols-1 gap-2 items-start md:grid-cols-2 md:gap-3 md:items-center">
-                                <span class="text-sm font-medium md:text-base">{{ `supplier.days.${ctrl.value.day}` | transloco }}</span>
-                                <div class="flex gap-2 justify-start items-center md:justify-end">
-                                    <input
-                                        type="time"
-                                        [formControl]="$any(ctrl.get('start'))"
-                                        class="px-3 py-2 w-28 font-mono text-center rounded border md:w-32"
-                                        [class.force-invalid]="ctrl.invalid && ctrl.touched"
-                                    />
-                                    <span>–</span>
-                                    <input
-                                        type="time"
-                                        [formControl]="$any(ctrl.get('end'))"
-                                        class="px-3 py-2 w-28 font-mono text-center rounded border md:w-32"
-                                        [class.force-invalid]="ctrl.invalid && ctrl.touched"
-                                    />
+                            <div class="p-3 rounded-lg border space-y-2">
+                                <!-- Ligne jour + checkboxes -->
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 items-center justify-between">
+                                    <span class="text-sm font-medium">{{
+                                        `supplier.days.${ctrl.value.day}` | transloco
+                                    }}</span>
+                                    <div class="flex gap-4">
+                                        <label class="inline-flex gap-1.5 items-center text-sm cursor-pointer">
+                                            <input type="checkbox" [formControl]="$any(ctrl.get('closed'))" (change)="onDayCheckboxChange(ctrl, 'closed')" />
+                                            {{ 'professional.hours.closed' | transloco }}
+                                        </label>
+                                        <label class="inline-flex gap-1.5 items-center text-sm cursor-pointer">
+                                            <input type="checkbox" [formControl]="$any(ctrl.get('onCallDay'))" (change)="onDayCheckboxChange(ctrl, 'onCallDay')" />
+                                            {{ 'professional.hours.onCallDay' | transloco }}
+                                        </label>
+                                    </div>
                                 </div>
-                                @if (ctrl.errors?.['timeRequired']) {
-                                    <span class="text-xs text-red-600 md:col-span-2">{{
+                                <!-- Dropdowns horaires (cachés si fermé ou d'astreinte) -->
+                                @if (!ctrl.get('closed')?.value && !ctrl.get('onCallDay')?.value) {
+                                    <div class="flex flex-wrap gap-1 items-center">
+                                        <select
+                                            [formControl]="$any(ctrl.get('openHour'))"
+                                            class="px-2 py-1.5 text-sm rounded border"
+                                            [class.force-invalid]="ctrl.invalid && hoursTouched()"
+                                            (change)="onOpenTimeChange(ctrl)"
+                                        >
+                                            <option value="">--</option>
+                                            @for (h of hoursOptions; track h) {
+                                                <option [value]="h">{{ h }}</option>
+                                            }
+                                        </select>
+                                        <span class="text-sm">h</span>
+                                        <select
+                                            [formControl]="$any(ctrl.get('openMinute'))"
+                                            class="px-2 py-1.5 text-sm rounded border"
+                                            [class.force-invalid]="ctrl.invalid && hoursTouched()"
+                                            (change)="onOpenTimeChange(ctrl)"
+                                        >
+                                            <option value="">--</option>
+                                            @for (m of minutesOptions; track m) {
+                                                <option [value]="m">{{ m }}</option>
+                                            }
+                                        </select>
+                                        <span class="mx-1 text-sm">–</span>
+                                        <select
+                                            [formControl]="$any(ctrl.get('closeHour'))"
+                                            class="px-2 py-1.5 text-sm rounded border"
+                                            [class.force-invalid]="ctrl.invalid && hoursTouched()"
+                                        >
+                                            <option value="">--</option>
+                                            @for (h of hoursOptions; track h) {
+                                                <option [value]="h" [disabled]="h === '00' || (ctrl.get('openHour')?.value && h < ctrl.get('openHour')?.value)">{{ h }}</option>
+                                            }
+                                        </select>
+                                        <span class="text-sm">h</span>
+                                        <select
+                                            [formControl]="$any(ctrl.get('closeMinute'))"
+                                            class="px-2 py-1.5 text-sm rounded border"
+                                            [class.force-invalid]="ctrl.invalid && hoursTouched()"
+                                        >
+                                            <option value="">--</option>
+                                            @for (m of minutesOptions; track m) {
+                                                <option [value]="m" [disabled]="ctrl.get('closeHour')?.value === ctrl.get('openHour')?.value && ctrl.get('openMinute')?.value && m <= ctrl.get('openMinute')?.value">{{ m }}</option>
+                                            }
+                                        </select>
+                                    </div>
+                                }
+                                @if (ctrl.errors?.['timeRequired'] && hoursTouched()) {
+                                    <span class="text-xs text-red-600">{{
                                         'supplier.errors.timeRequired' | transloco
                                     }}</span>
-                                } @else if (ctrl.errors?.['timeOrder']) {
-                                    <span class="text-xs text-red-600 md:col-span-2">{{
+                                } @else if (ctrl.errors?.['timeOrder'] && hoursTouched()) {
+                                    <span class="text-xs text-red-600">{{
                                         'supplier.errors.timeOrder' | transloco
                                     }}</span>
                                 }
                             </div>
                         }
                     </div>
-                </div>
-
-                <textarea
-                    formControlName="description"
-                    class="px-3 py-2 w-full rounded border"
-                    placeholder="{{ 'professional.fields.description' | transloco }} *"
-                    maxlength="500"
-                    rows="5"
-                ></textarea>
-
-                <!-- Services -->
-                <div class="flex flex-col gap-2">
-                    <label class="font-medium" [class.text-red-500]="form.get('professionalProfile.services')?.invalid && form.get('professionalProfile.services')?.touched">
-                        {{ 'professional.fields.services' | transloco }} *
-                    </label>
-
-                    <!-- Search input + dropdown -->
-                    <div class="relative">
-                        <input
-                            type="text"
-                            [value]="serviceQuery()"
-                            class="px-3 py-2 w-full bg-white rounded border"
-                            [class.force-invalid]="form.get('professionalProfile.services')?.invalid && form.get('professionalProfile.services')?.touched"
-                            placeholder="{{ 'professional.fields.servicesSearch' | transloco }}"
-                            (input)="onServiceSearch($event)"
-                            (focus)="openDropdown()"
-                            (blur)="closeDropdown()"
-                            autocomplete="off"
-                        />
-
-                        @if (dropdownOpen() && (serviceQuery().trim() !== '' || serviceResults().length > 0 || searchingService())) {
-                            <div class="overflow-y-scroll absolute z-10 w-full bg-white rounded-b border-b shadow-sm border-x max-h-[300px]">
-                                @if (unselectedResults.length) {
-                                    <ul class="divide-y">
-                                        @for (result of unselectedResults; track result.id) {
-                                            <li
-                                                class="px-3 py-2 text-sm cursor-pointer hover:bg-gray-50 active:bg-gray-100"
-                                                (click)="toggleService(result)"
-                                            >
-                                                {{ result.description }}
-                                            </li>
-                                        }
-                                    </ul>
-                                } @else if (!searchingService()) {
-                                    <button
-                                        type="button"
-                                        class="flex gap-2 items-center px-3 py-2 w-full text-sm text-left hover:bg-gray-50"
-                                        (click)="addPendingService()"
-                                    >
-                                        <span class="text-gray-400">+</span>
-                                        <span>{{ 'professional.fields.servicesAdd' | transloco }} <strong>« {{ serviceQuery() }} »</strong></span>
-                                    </button>
-                                }
-                            </div>
-                        }
-                    </div>
-
-                    <!-- Tags : services existants + services en attente de création -->
-                    @if (selectedServices().length || pendingServiceDescriptions().length) {
-                        <div class="flex flex-wrap gap-2">
-                            @for (service of selectedServices(); track service.id) {
-                                <span class="inline-flex gap-1 items-center px-3 py-1 text-sm rounded-full bg-grad-water-green text-[var(--primary-beige)]">
-                                    {{ service.description }}
-                                    <button type="button" (click)="removeService(service.id)" class="ml-1 leading-none">×</button>
-                                </span>
-                            }
-                            @for (desc of pendingServiceDescriptions(); track desc) {
-                                <span class="inline-flex gap-1 items-center px-3 py-1 text-sm rounded-full bg-grad-water-green text-[var(--primary-beige)]">
-                                    {{ desc }}
-                                    <button type="button" (click)="removePendingService(desc)" class="ml-1 leading-none">×</button>
-                                </span>
-                            }
-                        </div>
+                    @if (hours.errors?.['atLeastOneOpen'] && hoursTouched()) {
+                        <p class="text-xs text-red-500">{{ 'professional.errors.openingAtLeastOne' | transloco }}</p>
                     }
                 </div>
 
-                <input
-                    type="text"
-                    formControlName="trustName"
-                    class="px-3 py-2 w-full rounded border"
-                    placeholder="{{ 'professional.fields.trustName' | transloco }} ({{
-                        'professional.optional' | transloco
-                    }})"
-                />
-                <input
-                    type="tel"
-                    formControlName="trustPhone"
-                    class="px-3 py-2 w-full rounded border"
-                    placeholder="{{ 'professional.fields.trustPhone' | transloco }} ({{
-                        'professional.optional' | transloco
-                    }})"
-                />
-                @if (form.get('professionalProfile')?.errors?.['trustedContactIncomplete'] && form.get('professionalProfile')?.touched) {
-                    <p class="text-xs text-red-500">{{ 'professional.errors.trustedContactIncomplete' | transloco }}</p>
-                }
+                <div class="flex flex-col gap-1">
+                    <div class="flex flex-wrap gap-2 items-center justify-between">
+                        <label class="font-medium">{{ 'professional.fields.descriptionTitle' | transloco }} *</label>
+                        <button
+                            type="button"
+                            class="inline-flex gap-2 items-center px-4 py-2 text-sm rounded-lg text-[var(--primary-beige)] bg-grad-water-green hover:opacity-80"
+                            (click)="sellingTipsModalOpen.set(true)"
+                        >
+                            <iconify-icon icon="lucide:lightbulb" class="text-base shrink-0"></iconify-icon>
+                            {{ 'professional.description.guideBtn' | transloco }}
+                        </button>
+                    </div>
+                    <textarea
+                        formControlName="description"
+                        class="px-3 py-2 w-full rounded border"
+                        placeholder="{{ 'professional.fields.description' | transloco }} *"
+                        maxlength="1000"
+                        rows="8"
+                        (input)="descriptionLength.set($any($event.target).value.length)"
+                    ></textarea>
+                    <p class="text-xs text-gray-400 text-right">{{ descriptionLength() }} / 1000</p>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <div>
+                        <p class="font-medium">{{ 'professional.fields.trustTitle' | transloco }}</p>
+                        <p class="text-sm text-gray-500">{{ 'professional.fields.trustSubtitle' | transloco }}</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <input
+                            type="text"
+                            formControlName="trustName"
+                            class="px-3 py-2 w-full rounded border"
+                            placeholder="{{ 'professional.fields.trustName' | transloco }}"
+                        />
+                        <input
+                            type="tel"
+                            formControlName="trustPhone"
+                            class="px-3 py-2 w-full rounded border"
+                            placeholder="{{ 'professional.fields.trustPhone' | transloco }}"
+                        />
+                    </div>
+                    @if (
+                        form.get('professionalProfile')?.errors?.['trustedContactIncomplete'] &&
+                        form.get('professionalProfile')?.touched
+                    ) {
+                        <p class="text-xs text-red-500">{{ 'professional.errors.trustedContactIncomplete' | transloco }}</p>
+                    }
+                </div>
 
                 <!-- Fournisseurs -->
-                <div class="flex flex-col gap-2">
-                    <label class="font-medium" [class.text-red-500]="form.get('professionalProfile.suppliers')?.invalid && form.get('professionalProfile.suppliers')?.touched">
-                        {{ 'professional.fields.suppliers' | transloco }} *
-                    </label>
-                    <div class="relative">
+                <div class="flex flex-col gap-3">
+                    <div>
+                        <p
+                            class="font-medium"
+                            [class.text-red-500]="
+                                form.get('professionalProfile.suppliers')?.invalid &&
+                                form.get('professionalProfile.suppliers')?.touched
+                            "
+                        >
+                            {{ 'professional.fields.suppliers' | transloco }} *
+                        </p>
+                        <p class="text-sm text-gray-500">{{ 'professional.fields.suppliersSubtitle' | transloco }}</p>
+                    </div>
+                    <div class="flex gap-2">
                         <input
                             type="text"
                             [value]="supplierQuery()"
                             class="px-3 py-2 w-full bg-white rounded border"
-                            [class.force-invalid]="form.get('professionalProfile.suppliers')?.invalid && form.get('professionalProfile.suppliers')?.touched"
-                            placeholder="{{ 'professional.fields.suppliersAdd' | transloco }}"
+                            [class.force-invalid]="
+                                form.get('professionalProfile.suppliers')?.invalid &&
+                                form.get('professionalProfile.suppliers')?.touched
+                            "
+                            placeholder="{{ 'professional.fields.suppliersPlaceholder' | transloco }}"
                             (input)="onSupplierInput($event)"
-                            (blur)="closeSupplierDropdown()"
                             autocomplete="off"
                         />
-                        @if (supplierDropdownOpen() && supplierQuery().trim()) {
-                            <div class="overflow-y-scroll absolute z-10 w-full bg-white rounded-b border-b shadow-sm border-x">
-                                <button
-                                    type="button"
-                                    class="flex gap-2 items-center px-3 py-2 w-full text-sm text-left hover:bg-gray-50"
-                                    (click)="addSupplierFromInput()"
-                                >
-                                    <span class="text-gray-400">+</span>
-                                    <span>{{ 'professional.fields.suppliersAdd' | transloco }} <strong>« {{ supplierQuery() }} »</strong></span>
-                                </button>
-                            </div>
-                        }
+                        <button
+                            type="button"
+                            class="shrink-0 px-4 py-2 text-sm font-medium rounded border border-[var(--primary-beige)] transition-colors whitespace-nowrap"
+                            (click)="addSupplierFromInput()"
+                        >
+                            {{ 'professional.fields.suppliersAdd' | transloco }}
+                        </button>
                     </div>
                     @if ($any(form.get('professionalProfile.suppliers'))?.value?.length) {
-                        <div class="flex flex-wrap gap-2">
+                        <p class="text-sm font-medium text-gray-600">{{ 'professional.fields.suppliersAdded' | transloco }}</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
                             @for (supplier of $any(form.get('professionalProfile.suppliers'))?.value; track supplier) {
-                                <span class="inline-flex gap-1 items-center px-3 py-1 text-sm rounded-full bg-grad-water-green text-[var(--primary-beige)]">
+                                <span
+                                    class="inline-flex gap-1 items-center px-3 py-1 text-sm rounded-full bg-grad-water-green text-[var(--primary-beige)]"
+                                >
                                     {{ supplier }}
-                                    <button type="button" (click)="removeSupplier(supplier)" class="ml-1 leading-none opacity-70 hover:opacity-100">×</button>
+                                    <button
+                                        type="button"
+                                        (click)="removeSupplier(supplier)"
+                                        class="ml-1 leading-none opacity-70 hover:opacity-100"
+                                    >
+                                        ×
+                                    </button>
                                 </span>
                             }
                         </div>
                     }
                 </div>
+
+                <!-- Remarques et informations complémentaires (entreprise) -->
+                <div class="flex flex-col gap-3">
+                    <div>
+                        <h3 class="font-bold text-[var(--primary-blue)]">{{ 'professional.companyRemarks.title' | transloco }}</h3>
+                        <p class="text-sm text-gray-500 mt-1">{{ 'professional.companyRemarks.description' | transloco }}</p>
+                    </div>
+                    <textarea
+                        formControlName="companyRemarks"
+                        rows="4"
+                        maxlength="500"
+                        class="w-full px-3 py-2 rounded border border-gray-300 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-gray-400"
+                        placeholder="{{ 'professional.companyRemarks.placeholder' | transloco }}"
+                    ></textarea>
+                </div>
             </ng-container>
 
-            <!-- captcha et CGUV au niveau racine -->
+            <!-- captcha et CGUV -->
             <app-turnstile
                 [siteKey]="turnstileSiteKey"
                 (resolved)="onCaptchaResolved($event)"
@@ -919,7 +1224,14 @@
             <div class="flex gap-2 items-center">
                 <input type="checkbox" formControlName="terms" />
                 <span>
-                    <button type="button" class="p-0 underline bg-transparent border-none cursor-pointer text-inherit" (click)="legalModalOpen.set(true)">{{ 'register.cguv' | transloco }}</button> *
+                    <button
+                        type="button"
+                        class="p-0 underline bg-transparent border-none cursor-pointer text-inherit"
+                        (click)="legalModalOpen.set(true)"
+                    >
+                        {{ 'register.cguv' | transloco }}
+                    </button>
+                    *
                 </span>
             </div>
 
@@ -933,7 +1245,6 @@
                 >
                     {{ 'professional.back' | transloco }}
                 </button>
-
                 <div class="flex flex-col gap-2 items-end">
                     <button
                         type="submit"
@@ -947,21 +1258,191 @@
 
             <div class="mt-4">
                 @if (adressError() === 'addressPersonal') {
-                    <p class="text-xs text-right text-red-500">{{ 'professional.errors.addressPersonalInvalid' | transloco }}</p>
+                    <p class="text-xs text-right text-red-500">
+                        {{ 'professional.errors.addressPersonalInvalid' | transloco }}
+                    </p>
                 }
                 @if (adressError() === 'addressWork') {
-                    <p class="text-xs text-right text-red-500">{{ 'professional.errors.addressWorkInvalid' | transloco }}</p>
+                    <p class="text-xs text-right text-red-500">
+                        {{ 'professional.errors.addressWorkInvalid' | transloco }}
+                    </p>
                 }
                 @if (showSubmitError()) {
-                    <span class="text-sm font-medium text-red-500">{{ 'login.errors.fillRequiredFields' | transloco }}</span><br>
+                    <span class="text-sm font-medium text-red-500">{{
+                        'login.errors.fillRequiredFields' | transloco
+                    }}</span
+                    ><br />
                 }
                 @if (referralCodeError()) {
-                    <span class="text-sm font-medium text-red-500">{{ 'register.errors.invalidReferralCode' | transloco }}</span><br>
+                    <span class="text-sm font-medium text-red-500">{{
+                        'register.errors.invalidReferralCode' | transloco
+                    }}</span
+                    ><br />
                 }
                 @if (hasStep1Errors()) {
-                    <span class="text-sm font-medium text-red-500">{{ 'professional.errors.step1Errors' | transloco }}</span>
+                    <span class="text-sm font-medium text-red-500">{{
+                        'professional.errors.step1Errors' | transloco
+                    }}</span>
                 }
             </div>
         </form>
     }
 </div>
+
+<!-- Good practices modal -->
+@if (goodPracticesModalOpen()) {
+    <div
+        class="flex fixed inset-0 z-50 justify-center items-center bg-black/60 p-4 mt-[calc(var(--top-banners-h))] h-[calc(100lvh_-_var(--top-banners-h))]"
+        (click)="goodPracticesModalOpen.set(false)"
+    >
+        <div
+            class="overflow-auto relative max-w-2xl h-[90%] rounded-xl bg-white shadow-xl"
+            (click)="$event.stopPropagation()"
+        >
+            <button
+                type="button"
+                class="absolute top-2 right-3 text-2xl text-gray-500 hover:text-gray-800"
+                (click)="goodPracticesModalOpen.set(false)"
+            >
+                ×
+            </button>
+            <img
+                src="assets/img/help-good-practices-pro.jpeg"
+                alt="{{ 'professional.goodPracticesAlt' | transloco }}"
+                class="w-full h-auto"
+            />
+        </div>
+    </div>
+}
+
+<!-- Working address modal -->
+@if (workingAddressModalOpen()) {
+    <div
+        class="flex fixed inset-0 z-50 justify-center items-center bg-black/60 p-4 mt-[calc(var(--top-banners-h))] h-[calc(100lvh_-_var(--top-banners-h))]"
+        (click)="workingAddressModalOpen.set(false)"
+    >
+        <div
+            class="overflow-auto relative max-w-2xl h-[90%] rounded-xl bg-white shadow-xl"
+            (click)="$event.stopPropagation()"
+        >
+            <button
+                type="button"
+                class="absolute top-2 right-3 text-2xl text-gray-500 hover:text-gray-800"
+                (click)="workingAddressModalOpen.set(false)"
+            >×</button>
+            <img src="assets/img/help-working-address.jpeg" alt="Mode d'emploi adresse de géolocalisation" class="w-full h-auto" />
+        </div>
+    </div>
+}
+
+<!-- CMOD modal -->
+@if (cmodModalOpen()) {
+    <div
+        class="flex fixed inset-0 z-50 justify-center items-center bg-black/60 p-4 mt-[calc(var(--top-banners-h))] h-[calc(100lvh_-_var(--top-banners-h))]"
+        (click)="cmodModalOpen.set(false)"
+    >
+        <div
+            class="overflow-auto relative max-w-2xl h-[90%] rounded-xl bg-white shadow-xl"
+            (click)="$event.stopPropagation()"
+        >
+            <button
+                type="button"
+                class="absolute top-2 right-3 text-2xl text-gray-500 hover:text-gray-800"
+                (click)="cmodModalOpen.set(false)"
+            >×</button>
+            <img src="assets/img/help-cmod.jpeg" alt="Mode d'emploi CMOD" class="w-full h-auto" />
+        </div>
+    </div>
+}
+
+<!-- Opening hours modal -->
+@if (openingHoursModalOpen()) {
+    <div
+        class="flex fixed inset-0 z-50 justify-center items-center bg-black/60 p-4 mt-[calc(var(--top-banners-h))] h-[calc(100lvh_-_var(--top-banners-h))]"
+        (click)="openingHoursModalOpen.set(false)"
+    >
+        <div
+            class="overflow-auto relative max-w-2xl h-[90%] rounded-xl bg-white shadow-xl"
+            (click)="$event.stopPropagation()"
+        >
+            <button
+                type="button"
+                class="absolute top-2 right-3 text-2xl text-gray-500 hover:text-gray-800"
+                (click)="openingHoursModalOpen.set(false)"
+            >×</button>
+            <img src="assets/img/help-opening-hours.jpeg" alt="Mode d'emploi horaires" class="w-full h-auto" />
+        </div>
+    </div>
+}
+
+<!-- Selling tips modal -->
+@if (sellingTipsModalOpen()) {
+    <div
+        class="flex fixed inset-0 z-50 justify-center items-center bg-black/60 p-4 mt-[calc(var(--top-banners-h))] h-[calc(100lvh_-_var(--top-banners-h))]"
+        (click)="sellingTipsModalOpen.set(false)"
+    >
+        <div
+            class="overflow-auto relative max-w-2xl h-[90%] rounded-xl bg-white shadow-xl"
+            (click)="$event.stopPropagation()"
+        >
+            <button
+                type="button"
+                class="absolute top-2 right-3 text-2xl text-gray-500 hover:text-gray-800"
+                (click)="sellingTipsModalOpen.set(false)"
+            >×</button>
+            <img src="assets/img/help-selling-tips.jpeg" alt="Mode d'emploi conseils vente" class="w-full h-auto" />
+        </div>
+    </div>
+}
+
+<!-- Doc obligations modal -->
+@if (docObligationsModalOpen()) {
+    <div
+        class="flex fixed inset-0 z-50 justify-center items-center bg-black/60 p-4 mt-[calc(var(--top-banners-h))] h-[calc(100lvh_-_var(--top-banners-h))]"
+        (click)="docObligationsModalOpen.set(false)"
+    >
+        <div
+            class="overflow-auto relative max-w-2xl h-[90%] rounded-xl bg-white shadow-xl"
+            (click)="$event.stopPropagation()"
+        >
+            <button
+                type="button"
+                class="absolute top-2 right-3 text-2xl text-gray-500 hover:text-gray-800"
+                (click)="docObligationsModalOpen.set(false)"
+            >
+                ×
+            </button>
+            <img
+                src="assets/img/help-doc-obligations-pro.jpeg"
+                alt="{{ 'professional.documents.obligationsBtn' | transloco }}"
+                class="w-full h-auto"
+            />
+        </div>
+    </div>
+}
+
+<!-- Mediator guide modal -->
+@if (mediatorGuideModalOpen()) {
+    <div
+        class="flex fixed inset-0 z-50 justify-center items-center bg-black/60 p-4 mt-[calc(var(--top-banners-h))] h-[calc(100lvh_-_var(--top-banners-h))]"
+        (click)="mediatorGuideModalOpen.set(false)"
+    >
+        <div
+            class="overflow-auto relative max-w-2xl h-[90%] rounded-xl bg-white shadow-xl"
+            (click)="$event.stopPropagation()"
+        >
+            <button
+                type="button"
+                class="absolute top-2 right-3 text-2xl text-gray-500 hover:text-gray-800"
+                (click)="mediatorGuideModalOpen.set(false)"
+            >
+                ×
+            </button>
+            <img
+                src="assets/img/help-consumer-ombudsman.jpeg"
+                alt="{{ 'professional.mediator.guideBtn' | transloco }}"
+                class="w-full h-auto"
+            />
+        </div>
+    </div>
+}

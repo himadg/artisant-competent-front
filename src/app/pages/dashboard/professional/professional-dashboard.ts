@@ -4,14 +4,12 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule, PlatformLocation } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { forkJoin } from 'rxjs';
 import { DashboardApiService } from '../../../core/services/dashboard-api.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { UserApiService } from '../../../core/services/user-api.service';
-import { ServiceApiService } from '../../../core/services/service-api.service';
 import { AffiliationApiService } from '../../../core/services/affiliation-api.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ProfessionalDashboardData, OpeningHoursDay, Service } from '../../../shared/interfaces/professional-dashboard';
+import { ProfessionalDashboardData, OpeningHoursDay } from '../../../shared/interfaces/professional-dashboard';
 import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
@@ -19,7 +17,7 @@ import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
 import { DocModal, PreviewDocument } from '../../../shared/components/doc-modal/doc-modal';
 
 export type ProSection = 'requests' | 'quotes' | 'invoices' | 'profile' | 'legal' | 'practices' | 'affiliation';
-export type ProTab = 'presentation' | 'services' | 'missions' | 'reviews' | 'documents';
+export type ProTab = 'presentation' | 'missions' | 'reviews' | 'documents';
 
 const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as const;
 
@@ -34,7 +32,6 @@ const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'satu
 export class ProfessionalDashboard implements OnInit {
   private readonly dashboardApi = inject(DashboardApiService);
   private readonly userApi = inject(UserApiService);
-  private readonly serviceApi = inject(ServiceApiService);
   private readonly affiliationApi = inject(AffiliationApiService);
   private readonly route = inject(ActivatedRoute);
   private readonly platformLocation = inject(PlatformLocation);
@@ -420,110 +417,4 @@ export class ProfessionalDashboard implements OnInit {
       });
   }
 
-  // ── Services ──────────────────────────────────────────────────────────────
-  readonly editServicesMode = signal(false);
-  readonly savingServices = signal(false);
-  readonly editServiceList = signal<Service[]>([]);
-  readonly pendingServiceDescriptions = signal<string[]>([]);
-  serviceQuery = '';
-  readonly serviceResults = signal<Service[]>([]);
-  readonly searchingServices = signal(false);
-
-  enterEditServices() {
-    const services = this.data()?.professionalProfile.services;
-    if (!services) return;
-    this.editServiceList.set([...services]);
-    this.pendingServiceDescriptions.set([]);
-    this.serviceQuery = '';
-    this.serviceResults.set([]);
-    this.editServicesMode.set(true);
-  }
-
-  cancelEditServices() {
-    this.editServicesMode.set(false);
-  }
-
-  searchServices() {
-    const query = this.serviceQuery.trim();
-    if (query.length < 3) {
-      this.serviceResults.set([]);
-      return;
-    }
-
-    this.searchingServices.set(true);
-    this.userApi.searchServices(query).subscribe({
-      next: (results) => {
-        this.serviceResults.set(results);
-        this.searchingServices.set(false);
-      },
-      error: () => this.searchingServices.set(false),
-    });
-  }
-
-  get unselectedServiceResults(): Service[] {
-    const selected = this.editServiceList();
-    const pending = this.pendingServiceDescriptions();
-    return this.serviceResults().filter(
-      result => !selected.some(s => s.id === result.id) && !pending.includes(result.description),
-    );
-  }
-
-  addServiceToEdit(service: Service) {
-    if (!this.editServiceList().some(s => s.id === service.id)) {
-      this.editServiceList.update(list => [...list, service]);
-    }
-    this.serviceQuery = '';
-    this.serviceResults.set([]);
-  }
-
-  addPendingService() {
-    const description = this.serviceQuery.trim();
-    if (!description || this.pendingServiceDescriptions().includes(description)) return;
-    this.pendingServiceDescriptions.update(list => [...list, description]);
-    this.serviceQuery = '';
-    this.serviceResults.set([]);
-  }
-
-  removePendingService(description: string) {
-    this.pendingServiceDescriptions.update(list => list.filter(d => d !== description));
-  }
-
-  removeServiceFromEdit(id: string) {
-    this.editServiceList.update(list => list.filter(s => s.id !== id));
-  }
-
-  saveEditServices() {
-    const data = this.data();
-    if (!data) return;
-
-    this.savingServices.set(true);
-
-    const persist = (serviceIds: string[]) => {
-      this.userApi.updateProfessional(data.id, { serviceIds }).subscribe({
-        next: () => {
-          const list = this.editServiceList();
-          this.data.update(prev =>
-            prev ? { ...prev, professionalProfile: { ...prev.professionalProfile, services: [...list] } } : prev,
-          );
-          this.editServicesMode.set(false);
-          this.savingServices.set(false);
-        },
-        error: () => this.savingServices.set(false),
-      });
-    };
-
-    const pending = this.pendingServiceDescriptions();
-    if (pending.length === 0) {
-      persist(this.editServiceList().map(s => s.id));
-      return;
-    }
-
-    forkJoin(pending.map(desc => this.serviceApi.create(desc))).subscribe({
-      next: (created: Service[]) => {
-        this.editServiceList.update(list => [...list, ...created]);
-        persist([...this.editServiceList().map(s => s.id)]);
-      },
-      error: () => this.savingServices.set(false),
-    });
-  }
 }

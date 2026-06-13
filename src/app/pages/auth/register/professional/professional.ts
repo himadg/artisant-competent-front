@@ -1,4 +1,4 @@
-import { Component, signal, inject, OnDestroy, ViewChild, computed, ChangeDetectionStrategy } from '@angular/core';
+import { Component, signal, inject, OnDestroy, ViewChild, computed, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
   ReactiveFormsModule,
@@ -10,12 +10,10 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, forkJoin, of, takeUntil, merge } from 'rxjs';
-import { hourValidator, servicesValidator, openingAtLeastOne, decennialInsuranceValidator, trustedContactValidator, optionalEmailValidator } from '../../../../core/utils/validators';
+import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, forkJoin, of, takeUntil } from 'rxjs';
+import { hourValidator, openingAtLeastOne, trustedContactValidator, optionalEmailValidator } from '../../../../core/utils/validators';
 import { capitalize, normalizeName, evaluatePasswordCriteria, getAffiliateCode, clearAffiliateCode } from '../../../../core/utils/common-utils';
-import { ServiceApiService } from '../../../../core/services/service-api.service';
 import { TradeApiService } from '../../../../core/services/trade-api.service';
-import { Service } from '../../../../shared/interfaces/service';
 import { Trade } from '../../../../shared/interfaces/trade';
 import { TurnstileComponent } from '../../../../shared/components/turnstile/turnstile';
 import { LegalModal } from '../../../../shared/components/legal-modal/legal-modal';
@@ -35,21 +33,21 @@ import {
 import { AppConfigService } from '../../../../core/services/app-config.service';
 import { LangService } from '../../../../core/services/lang.service';
 import { AuthService } from '../../../../core/services/auth.service';
+import { DiplomaEntry } from '../../../../shared/interfaces/diploma-entry';
 
-
-type DocTarget = 'photo' | 'idFront' | 'idBack' | 'insuranceDoc' | 'decennialInsuranceDoc' | 'diplomaDoc' | 'logo' | 'rib';
+type DocTarget = 'photo' | 'idFront' | 'idBack' | 'logo' | 'rib';
 
 @Component({
   selector: 'register-professional',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent, LegalModal],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './professional.html',
   styleUrl: './professional.scss',
 })
 export class RegisterProfessional implements OnDestroy {
   readonly fb = new FormBuilder();
-  private readonly serviceApi = inject(ServiceApiService);
   private readonly tradeApi = inject(TradeApiService);
   private readonly userApi = inject(UserApiService);
   private readonly geocodingService = inject(GeocodingService);
@@ -60,41 +58,38 @@ export class RegisterProfessional implements OnDestroy {
   private readonly langService = inject(LangService);
   private readonly destroy$ = new Subject<void>();
 
-  // Navigation entre les pages du formulaire (UX)
   readonly step = signal<1 | 2>(1);
 
-  // File previews & names
+  // File previews & names (non-diploma)
   readonly photoPreview = signal<string | null>(null);
   readonly photoName = signal<string | null>(null);
   readonly idFrontPreview = signal<string | null>(null);
   readonly idFrontName = signal<string | null>(null);
   readonly idBackPreview = signal<string | null>(null);
   readonly idBackName = signal<string | null>(null);
-  readonly insuranceDocPreview = signal<string | null>(null);
-  readonly insuranceDocName = signal<string | null>(null);
-  readonly decennialInsuranceDocPreview = signal<string | null>(null);
-  readonly decennialInsuranceDocName = signal<string | null>(null);
-  readonly diplomaPreview = signal<string | null>(null);
-  readonly diplomaName = signal<string | null>(null);
   readonly logoPreview = signal<string | null>(null);
   readonly logoName = signal<string | null>(null);
   readonly ribPreview = signal<string | null>(null);
   readonly ribName = signal<string | null>(null);
 
+  // Multiple diplomas
+  readonly diplomaFiles = signal<DiplomaEntry[]>([{ file: null, preview: null, fileName: null, documentName: '', expiryDate: '' }]);
+  readonly diplomaTouched = signal(false);
+  readonly hoursTouched = signal(false);
+  readonly diplomasValid = computed(() => this.diplomaFiles().some(d => d.file !== null && d.documentName.trim() !== ''));
+
   readonly trades = signal<Trade[]>([]);
   readonly days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
-  readonly serviceResults = signal<Service[]>([]);
-  readonly selectedServices = signal<Service[]>([]);
-  readonly serviceQuery = signal<string>('');
-  readonly pendingServiceDescriptions = signal<string[]>([]);
+  // Dropdowns for opening hours
+  readonly hoursOptions = Array.from({ length: 24 }, (_, i) => String(i).padStart(2, '0'));
+  readonly minutesOptions = Array.from({ length: 60 }, (_, i) => String(i).padStart(2, '0'));
+
+  readonly descriptionLength = signal(0);
   readonly supplierQuery = signal<string>('');
   readonly supplierDropdownOpen = signal<boolean>(false);
   readonly adressError = signal<'addressPersonal' | 'addressWork' | null>(null);
-  readonly searchingService = signal<boolean>(false);
-  readonly dropdownOpen = signal<boolean>(false);
   readonly birthDateFocused = signal<boolean>(false);
-  readonly insuranceExpiryFocused = signal<boolean>(false);
   readonly today = new Date().toLocaleDateString('en-CA');
 
   readonly showPassword = signal<boolean>(false);
@@ -104,7 +99,13 @@ export class RegisterProfessional implements OnDestroy {
   readonly referralCodeError = signal(false);
   readonly legalModalOpen = signal(false);
   readonly hasStep1Errors = signal<boolean>(false);
-  readonly decennialInsuranceExpiryFocused = signal<boolean>(false);
+  readonly goodPracticesModalOpen = signal(false);
+  readonly mediatorGuideModalOpen = signal(false);
+  readonly docObligationsModalOpen = signal(false);
+  readonly workingAddressModalOpen = signal(false);
+  readonly cmodModalOpen = signal(false);
+  readonly openingHoursModalOpen = signal(false);
+  readonly sellingTipsModalOpen = signal(false);
 
   readonly personalAddressSuggestions = signal<AddressSuggestion[]>([]);
   readonly personalAddressOpen = signal<boolean>(false);
@@ -116,8 +117,6 @@ export class RegisterProfessional implements OnDestroy {
   readonly siretCompanyName = signal<string | null>(null);
   readonly captchaToken = signal<string | null>(null);
 
-  private readonly serviceFocus$ = new Subject<string>();
-  private readonly serviceType$ = new Subject<string>();
   private readonly personalAddressSearch$ = new Subject<string>();
   private readonly workAddressSearch$ = new Subject<string>();
 
@@ -126,20 +125,6 @@ export class RegisterProfessional implements OnDestroy {
 
   constructor() {
     this.tradeApi.getAll().subscribe(trades => this.trades.set(trades));
-
-    merge(
-      this.serviceFocus$,
-      this.serviceType$.pipe(debounceTime(300)),
-    ).pipe(
-      switchMap(query => {
-        this.searchingService.set(true);
-        return query.trim() ? this.serviceApi.search(query) : this.serviceApi.getAll();
-      }),
-      takeUntil(this.destroy$),
-    ).subscribe(results => {
-      this.serviceResults.set(results.filter(service => !this.selectedServices().some(selectedService => selectedService.id === service.id)));
-      this.searchingService.set(false);
-    });
 
     this.personalAddressSearch$.pipe(
       distinctUntilChanged(),
@@ -185,17 +170,8 @@ export class RegisterProfessional implements OnDestroy {
       photo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
       idFront: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
       idBack: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
-      insuranceDoc: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
-      decennialInsuranceDoc: new FormControl<File | null>(null, { nonNullable: false }),
-      diplomaDoc: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
       logo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
       rib: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
-      insuranceName: ['', [Validators.required, Validators.pattern(NAME_REGEXP)]],
-      insuranceNumber: ['', Validators.required],
-      insuranceExpiry: ['', Validators.required],
-      decennialInsuranceName: [''],
-      decennialInsuranceNumber: [''],
-      decennialInsuranceExpiry: [''],
       companyName: ['', Validators.required],
       workAddress: this.fb.group({
         streetNumber: ['', [Validators.required, Validators.pattern(STREET_NUMBER_REGEXP)]],
@@ -212,18 +188,24 @@ export class RegisterProfessional implements OnDestroy {
       hours: this.fb.array(
         this.days.map((day) =>
           this.fb.group(
-            { day: day, start: '', end: '', closed: true },
-            { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(7), hourValidator] } as AbstractControlOptions,
+            { day, openHour: '', openMinute: '', closeHour: '', closeMinute: '', closed: false, onCallDay: false },
+            { validators: [Validators.required, hourValidator] },
           ),
         ),
         { validators: [openingAtLeastOne] }
       ),
-      description: ['', [Validators.required, Validators.maxLength(500)]],
-      services: [<string[]>[], [servicesValidator(() => this.pendingServiceDescriptions().length)]],
+      description: ['', [Validators.required, Validators.maxLength(1000)]],
       trustName: [''],
       trustPhone: [''],
       suppliers: new FormControl<string[]>([], { nonNullable: true, validators: [Validators.required] }),
-    }, { validators: [decennialInsuranceValidator, trustedContactValidator] }),
+      mediatorName: [''],
+      mediatorAddress: [''],
+      mediatorWebsite: [''],
+      mediatorContactMethod: [''],
+      mediatorAdditionalInfo: ['', Validators.maxLength(500)],
+      additionalRemarks: ['', Validators.maxLength(500)],
+      companyRemarks: ['', Validators.maxLength(500)],
+    }, { validators: [trustedContactValidator] }),
     captcha: [false, Validators.requiredTrue],
     terms: [false, Validators.requiredTrue],
   });
@@ -239,6 +221,16 @@ export class RegisterProfessional implements OnDestroy {
   );
 
   readonly passwordCriteria = computed(() => evaluatePasswordCriteria(this.passwordValue() as string));
+
+  readonly yearsExperienceValue = toSignal(
+    this.form.get('professionalProfile.yearsExperience')!.valueChanges,
+    { initialValue: this.form.get('professionalProfile.yearsExperience')!.value }
+  );
+
+  readonly showCmod = computed(() => {
+    const years = Number(this.yearsExperienceValue());
+    return !isNaN(years) && years >= 3;
+  });
 
   get hours(): FormArray {
     return this.form.get('professionalProfile.hours') as FormArray;
@@ -347,14 +339,11 @@ export class RegisterProfessional implements OnDestroy {
     if (this.siretCompanyName()) this.validateCompanyNameMatch();
   }
 
-  // --- Files (step 2) ---
+  // --- Files (non-diploma) ---
   private setPreview(target: DocTarget, val: string | null) {
     if (target === 'photo') this.photoPreview.set(val);
     else if (target === 'idFront') this.idFrontPreview.set(val);
     else if (target === 'idBack') this.idBackPreview.set(val);
-    else if (target === 'insuranceDoc') this.insuranceDocPreview.set(val);
-    else if (target === 'decennialInsuranceDoc') this.decennialInsuranceDocPreview.set(val);
-    else if (target === 'diplomaDoc') this.diplomaPreview.set(val);
     else if (target === 'logo') this.logoPreview.set(val);
     else if (target === 'rib') this.ribPreview.set(val);
   }
@@ -363,9 +352,6 @@ export class RegisterProfessional implements OnDestroy {
     if (target === 'photo') this.photoName.set(name);
     else if (target === 'idFront') this.idFrontName.set(name);
     else if (target === 'idBack') this.idBackName.set(name);
-    else if (target === 'insuranceDoc') this.insuranceDocName.set(name);
-    else if (target === 'decennialInsuranceDoc') this.decennialInsuranceDocName.set(name);
-    else if (target === 'diplomaDoc') this.diplomaName.set(name);
     else if (target === 'logo') this.logoName.set(name);
     else if (target === 'rib') this.ribName.set(name);
   }
@@ -397,6 +383,75 @@ export class RegisterProfessional implements OnDestroy {
     this.form.get('professionalProfile')!.patchValue({ [target]: null } as any);
   }
 
+  // --- Diplomas (multiple) ---
+  addDiplomaSlot() {
+    this.diplomaFiles.update(list => [...list, { file: null, preview: null, fileName: null, documentName: '', expiryDate: '' }]);
+  }
+
+  removeDiplomaSlot(index: number) {
+    if (this.diplomaFiles().length < 2) return;
+    this.diplomaFiles.update(list => list.filter((_, i) => i !== index));
+  }
+
+  updateDiplomaDocumentName(index: number, value: string) {
+    this.diplomaFiles.update(list => list.map((entry, i) => i === index ? { ...entry, documentName: value } : entry));
+  }
+
+  updateDiplomaExpiry(index: number, value: string) {
+    this.diplomaFiles.update(list => list.map((entry, i) => i === index ? { ...entry, expiryDate: value } : entry));
+  }
+
+  onDiplomaFileChange(index: number, e: Event) {
+    const file = (e.target as HTMLInputElement).files?.[0] ?? null;
+    if (!file) {
+      this.diplomaFiles.update(list => list.map((entry, i) => i === index ? { ...entry, file: null, preview: null, fileName: null } : entry));
+      return;
+    }
+    if (file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.diplomaFiles.update(list => list.map((entry, i) => i === index ? { ...entry, file, preview: reader.result as string, fileName: file.name } : entry));
+      };
+      reader.readAsDataURL(file);
+    } else {
+      this.diplomaFiles.update(list => list.map((entry, i) => i === index ? { ...entry, file, preview: null, fileName: file.name } : entry));
+    }
+  }
+
+  removeDiplomaFile(index: number) {
+    this.diplomaFiles.update(list => list.map((entry, i) => i === index ? { ...entry, file: null, preview: null, fileName: null } : entry));
+  }
+
+  // --- Opening hours ---
+  resetTime(ctrl: AbstractControl) {
+    ctrl.get('openHour')?.setValue('');
+    ctrl.get('openMinute')?.setValue('');
+    ctrl.get('closeHour')?.setValue('');
+    ctrl.get('closeMinute')?.setValue('');
+  }
+
+  onDayCheckboxChange(ctrl: AbstractControl, changed: 'closed' | 'onCallDay') {
+    if (ctrl.get(changed)?.value) {
+      const other = changed === 'closed' ? 'onCallDay' : 'closed';
+      ctrl.get(other)?.setValue(false);
+    }
+    this.resetTime(ctrl);
+  }
+
+  onOpenTimeChange(ctrl: AbstractControl) {
+    const openH = (ctrl.get('openHour')?.value as string) ?? '';
+    const openM = (ctrl.get('openMinute')?.value as string) ?? '';
+    const closeH = (ctrl.get('closeHour')?.value as string) ?? '';
+    const closeM = (ctrl.get('closeMinute')?.value as string) ?? '';
+    if (!openH || !openM || !closeH || !closeM) return;
+    const start = `${openH.padStart(2, '0')}:${openM.padStart(2, '0')}`;
+    const end = `${closeH.padStart(2, '0')}:${closeM.padStart(2, '0')}`;
+    if (start >= end) {
+      ctrl.get('closeHour')?.setValue('');
+      ctrl.get('closeMinute')?.setValue('');
+    }
+  }
+
   // --- Trades ---
   isTradeSelected(id: string) {
     const trades = this.form.get('professionalProfile')!.value.trades as string[];
@@ -412,73 +467,6 @@ export class RegisterProfessional implements OnDestroy {
 
   isOnCallTradeSelected() {
     return this.trades().some(trade => trade.isOnCall && this.isTradeSelected(trade.id));
-  }
-
-  // --- Services ---
-  openDropdown() {
-    this.dropdownOpen.set(true);
-    this.searchingService.set(true);
-    this.serviceFocus$.next(this.serviceQuery().trim());
-  }
-
-  closeDropdown() {
-    setTimeout(() => {
-      this.dropdownOpen.set(false);
-      this.searchingService.set(false);
-      this.serviceResults.set([]);
-    }, 150);
-  }
-
-  onServiceSearch(event: Event) {
-    const query = (event.target as HTMLInputElement).value.trim();
-    this.serviceQuery.set(query);
-    this.searchingService.set(true);
-    this.serviceType$.next(query);
-  }
-
-  get unselectedResults(): Service[] {
-    const selected = this.selectedServices();
-    const pending = this.pendingServiceDescriptions();
-    return this.serviceResults().filter(
-      result => !selected.some(service => service.id === result.id) && !pending.includes(result.description),
-    );
-  }
-
-  addPendingService() {
-    const description = this.serviceQuery().trim();
-    if (!description || this.pendingServiceDescriptions().includes(description)) return;
-    this.pendingServiceDescriptions.update(list => [...list, description]);
-    this.form.get('professionalProfile.services')?.updateValueAndValidity();
-    this.dropdownOpen.set(false);
-    this.serviceQuery.set('');
-    this.serviceResults.set([]);
-  }
-
-  removePendingService(description: string) {
-    this.pendingServiceDescriptions.update(list => list.filter(desc => desc !== description));
-    this.form.get('professionalProfile.services')?.updateValueAndValidity();
-  }
-
-  isServiceSelected(id: string) {
-    return this.selectedServices().some(service => service.id === id);
-  }
-
-  toggleService(item: Service) {
-    const current = this.selectedServices();
-    const next = current.some(service => service.id === item.id)
-      ? current.filter(service => service.id !== item.id)
-      : [...current, item];
-    this.selectedServices.set(next);
-    this.form.get('professionalProfile')!.patchValue({ services: next.map(service => service.id) } as any);
-    this.dropdownOpen.set(false);
-    this.serviceQuery.set('');
-    this.serviceResults.set([]);
-  }
-
-  removeService(id: string) {
-    const next = this.selectedServices().filter(service => service.id !== id);
-    this.selectedServices.set(next);
-    this.form.get('professionalProfile')!.patchValue({ services: next.map(service => service.id) } as any);
   }
 
   // --- Suppliers ---
@@ -508,13 +496,16 @@ export class RegisterProfessional implements OnDestroy {
 
   // --- Submit ---
   submit() {
+    console.log('submit', this.form.value);
     this.showSubmitError.set(false);
     this.hasStep1Errors.set(false);
+    this.diplomaTouched.set(true);
+    this.hoursTouched.set(true);
     this.form.markAllAsTouched();
 
     const user = this.form.value.user;
 
-    if (this.form.invalid || user?.password !== user?.confirmPassword) {
+    if (this.form.invalid || user?.password !== user?.confirmPassword || !this.diplomasValid()) {
       this.showSubmitError.set(true);
 
       const step1Controls = [
@@ -524,15 +515,12 @@ export class RegisterProfessional implements OnDestroy {
         this.form.get('professionalProfile.photo'),
         this.form.get('professionalProfile.idFront'),
         this.form.get('professionalProfile.idBack'),
-        this.form.get('professionalProfile.insuranceDoc'),
-        this.form.get('professionalProfile.diplomaDoc'),
-        this.form.get('professionalProfile.insuranceName'),
-        this.form.get('professionalProfile.insuranceNumber'),
-        this.form.get('professionalProfile.insuranceExpiry')
       ];
 
       const isStep1Invalid = step1Controls.some(ctrl => ctrl?.invalid)
-        || !!this.form.get('professionalProfile')?.errors?.['decennialInsuranceIncomplete'];
+        || !this.diplomasValid()
+        || !!this.form.get('professionalProfile')?.errors?.['trustedContactIncomplete'];
+
       const passwordMismatch = user?.password !== user?.confirmPassword;
 
       if (isStep1Invalid || passwordMismatch) {
@@ -548,7 +536,6 @@ export class RegisterProfessional implements OnDestroy {
       };
       findInvalid(this.form);
 
-      // Auto-scroll vers le premier élément en erreur
       setTimeout(() => {
         const firstError = document.querySelector('.ng-invalid.ng-touched, .force-invalid');
         if (firstError) {
@@ -563,49 +550,66 @@ export class RegisterProfessional implements OnDestroy {
     const captchaToken = this.captchaToken();
     if (!captchaToken) return;
 
-    const pending = this.pendingServiceDescriptions();
-    const serviceIds = this.selectedServices().map((service) => service.id);
-
-    // On convertit le nom en majuscules
     this.form.value.user!.lastName = this.form.value.user!.lastName!.trim().toUpperCase();
-    // On capitalise le prénom, c'est à dire prenom => Prenom
     this.form.value.user!.firstName = capitalize(this.form.value.user!.firstName!.trim());
 
     const raw = this.form.value;
-    const rawHours = ((raw.professionalProfile?.hours ?? []) as { day: string; start: string | null; end: string | null }[]);
+    const rawHours = ((raw.professionalProfile?.hours ?? []) as {
+      day: string;
+      openHour: string; openMinute: string;
+      closeHour: string; closeMinute: string;
+      closed: boolean;
+      onCallDay: boolean;
+    }[]);
+
     const openingHours = {
-      days: rawHours.map(h => ({
-        day: h.day,
-        closed: !h.start && !h.end,
-        intervals: h.start && h.end ? [{ start: h.start, end: h.end }] : [],
-      })),
+      days: rawHours.map(h => {
+        const start = !h.closed && h.openHour && h.openMinute
+          ? `${h.openHour.padStart(2, '0')}:${h.openMinute.padStart(2, '0')}`
+          : null;
+        const end = !h.closed && h.closeHour && h.closeMinute
+          ? `${h.closeHour.padStart(2, '0')}:${h.closeMinute.padStart(2, '0')}`
+          : null;
+        return {
+          day: h.day,
+          closed: h.closed,
+          onCall: h.onCallDay,
+          intervals: start && end ? [{ start, end }] : [],
+        };
+      }),
     };
 
-    const { hours: _h, trustName, trustPhone, suppliers, photo, idFront, idBack, insuranceDoc, decennialInsuranceDoc, diplomaDoc, logo, rib, ...profRest } =
+    const { hours: _h, trustName, trustPhone, suppliers, photo, idFront, idBack, logo, rib, additionalRemarks, companyRemarks, ...profRest } =
       raw.professionalProfile as Record<string, unknown> & {
         hours: unknown; trustName: string; trustPhone: string; suppliers: string[];
         photo: File | null; idFront: File | null; idBack: File | null;
-        insuranceDoc: File | null; decennialInsuranceDoc: File | null; diplomaDoc: File | null; logo: File | null; rib: File | null;
+        logo: File | null; rib: File | null; additionalRemarks: string; companyRemarks: string;
       };
 
     const { confirmPassword: _cp, ...userFields } = raw.user as Record<string, unknown> & { confirmPassword: unknown };
 
     const referralCode = getAffiliateCode();
     const payload: Record<string, unknown> = {
-      user: { ...userFields, lang: this.langService.lang() },
+      lang: this.langService.lang(),
+      user: { ...userFields },
       professionalProfile: {
         ...profRest,
-        services: serviceIds,
-        pendingServices: pending,
         openingHours,
         trustedContactName: trustName || undefined,
         trustedContactPhone: trustPhone || undefined,
         suppliers,
+        additionalRemarks: additionalRemarks || undefined,
+        companyRemarks: companyRemarks || undefined,
       },
       ...(referralCode ? { referralCode } : {}),
     };
 
     const upload = (file: File | null) => file ? this.uploadService.upload(file) : of('');
+
+    const diplomaFilesList = this.diplomaFiles().filter(d => d.file !== null).map(d => d.file!);
+    const diplomaUploads$ = diplomaFilesList.length > 0
+      ? forkJoin(diplomaFilesList.map(f => upload(f)))
+      : of<string[]>([]);
 
     let mailSent = true;
 
@@ -619,16 +623,19 @@ export class RegisterProfessional implements OnDestroy {
             upload(photo),
             upload(idFront),
             upload(idBack),
-            upload(insuranceDoc),
-            upload(decennialInsuranceDoc),
-            upload(diplomaDoc),
             upload(logo),
             upload(rib),
           ]).pipe(
-            switchMap(([photoKey, idFrontKey, idBackKey, insuranceDocKey, decennialInsuranceDocKey, diplomaDocKey, companyLogoKey, ribKey]) =>
-              this.userApi.createProfessionalDocuments(userId, {
-                photoKey, idFrontKey, idBackKey, insuranceDocKey, decennialInsuranceDocKey, diplomaDocKey, companyLogoKey, ribKey,
-              }),
+            switchMap(([photoKey, idFrontKey, idBackKey, companyLogoKey, ribKey]) =>
+              diplomaUploads$.pipe(
+                switchMap((diplomaDocKeys) =>
+                  this.userApi.createProfessionalDocuments(userId, {
+                    photoKey, idFrontKey, idBackKey,
+                    diplomaDocKeys,
+                    companyLogoKey, ribKey,
+                  }),
+                ),
+              )
             ),
           );
         }),

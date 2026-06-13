@@ -167,6 +167,8 @@ export class RegisterIndividual implements OnDestroy {
     this.showSubmitError.set(false);
     this.form.markAllAsTouched();
 
+    console.log('submit', this.form.value);
+
     if (this.form.invalid || this.form.value.password !== this.form.value.confirmPassword) {
       this.showSubmitError.set(true);
 
@@ -186,6 +188,7 @@ export class RegisterIndividual implements OnDestroy {
 
     const referralCode = getAffiliateCode();
     const payload: Record<string, unknown> = {
+      lang: this.langService.lang(),
       user: {
         gender,
         lastName: lastName!.toUpperCase(),
@@ -194,7 +197,6 @@ export class RegisterIndividual implements OnDestroy {
         email,
         password,
         address,
-        lang: this.langService.lang(),
       },
       phone,
       ...(referralCode ? { referralCode } : {}),

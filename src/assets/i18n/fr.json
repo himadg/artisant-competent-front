@@ -2030,16 +2030,60 @@
     "next": "Suivant",
     "back": "Retour",
     "submit": "Valider",
-    "optional": "champ optionnel",
     "addPhoto": "Ajouter photo",
     "addIdFront": "Ajouter carte d'identité recto",
     "addIdBack": "Ajouter carte d'identité verso",
     "addInsuranceDoc": "RC Pro",
     "addDecennialInsuranceDoc": "Assurance décennale",
     "addDiplomaDoc": "Ajouter diplôme ou justificatif",
+    "addDiplomaSlot": "Ajouter diplôme ou certification",
+    "documents": {
+      "title": "Assurance, certification, habilitation, diplôme ou tout autre justificatif obligatoire",
+      "intro1": "Merci de joindre tous les documents obligatoires correspondant aux métiers que vous avez sélectionnés.",
+      "intro2": "Cela peut notamment inclure vos assurances, certifications, habilitations, diplômes, CERFA ou tout autre justificatif professionnel requis.",
+      "intro3": "Chaque professionnel reste responsable de vérifier qu'il respecte les obligations légales, réglementaires et documentaires applicables à son activité.",
+      "warning": "Tout document obligatoire manquant, expiré ou non conforme pourra entraîner le refus ou la suspension de l'inscription.",
+      "consultHelper": "Pour vous aider, consultez le document suivant :",
+      "obligationsBtn": "Mode d'emploi - Vos obligations documentaires et assurances par métier",
+      "examplesLabel": "Exemples :",
+      "examples": "RC Pro, assurance décennale, Qualibat, RGE, Qualifelec, QualiPAC, Certibiocide, attestation de capacité frigorifique, CERFA obligatoires, diplômes, habilitations, certifications professionnelles, attestations employeur, justificatifs de qualification, etc.",
+      "colName": "Nommer explicitement le document",
+      "colExpiry": "Date d'expiration",
+      "colFile": "Choisir un fichier",
+      "namePlaceholder": "Ex. : RC Pro, Assurance décennale, BEP Plomberie, Qualibat...",
+      "chooseFile": "Choisir un fichier",
+      "noFile": "Aucun fichier choisi",
+      "addBtn": "Ajouter un document"
+    },
     "addLogo": "Ajouter un logo",
     "addRib": "Ajouter un RIB",
     "onCall": "Je suis d'astreinte (24h/24 et 7j/7)",
+    "requiredFieldsNotice": "Tous les champs obligatoires sont marqués d'un *",
+    "goodPracticesBtn": "Mode d'emploi - Consulter les bonnes pratiques",
+    "goodPracticesAlt": "Bonnes pratiques professionnelles",
+    "insuranceExplanation": "Fournissez votre assurance RC Pro, votre assurance décennale, ou les deux. Au moins une assurance complète est obligatoire.",
+    "hours": {
+      "closed": "Fermé",
+      "onCallDay": "Astreinte ce jour"
+    },
+    "openingHours": {
+      "guideBtn": "Mode d'emploi - Règles horaires, congés, astreintes"
+    },
+    "description": {
+      "guideBtn": "Mode d'emploi - Conseils pour bien vendre vos services"
+    },
+    "workAddress": {
+      "guideBtn": "Mode d'emploi - Adresse de géolocalisation"
+    },
+    "cmod": {
+      "guideBtn": "Mode d'emploi - Conseiller à Maître d'Ouvrage Digital (CMOD)",
+      "intro": "Le CMOD intervient uniquement en cas de litige pour accompagner le client et rechercher une solution amiable.",
+      "conditionsTitle": "Conditions pour devenir CMOD",
+      "condition1": "Minimum 3 ans d'expérience dans votre métier",
+      "condition2": "Mission rémunérée 35 € par intervention",
+      "condition3": "Intervention uniquement en cas de litige",
+      "condition4": "Avis consultatif, non décisionnel"
+    },
     "siret": {
       "checking": "Vérification du SIRET...",
       "valid": "SIRET valide",
@@ -2062,7 +2106,10 @@
       "openingAtLeastOne": "Veuillez renseigner au moins un jour avec des horaires d'ouverture et de fermeture",
       "step1Errors": "Vous avez également des erreurs dans la page 1.",
       "emailInvalid": "L'adresse email professionnelle n'est pas valide.",
-      "decennialInsuranceIncomplete": "Si vous renseignez l'assurance décennale, tous les champs (document, nom, numéro, date d'expiration) sont obligatoires.",
+      "insuranceRequired": "Veuillez fournir au moins une assurance complète (RC Pro ou décennale).",
+      "rcProIncomplete": "L'assurance RC Pro est partiellement renseignée. Veuillez compléter tous les champs (document, nom, numéro, date d'expiration).",
+      "decennialInsuranceIncomplete": "L'assurance décennale est partiellement renseignée. Veuillez compléter tous les champs (document, nom, numéro, date d'expiration).",
+      "diplomaRequired": "Veuillez ajouter au moins un diplôme ou justificatif.",
       "trustedContactIncomplete": "Veuillez renseigner à la fois le nom et le téléphone de la personne de confiance.",
       "apiError": "Une erreur est survenue lors de l'inscription. Veuillez réessayer ultérieurement.",
       "addressError": "Impossible de valider votre adresse. Veuillez vérifier votre saisie.",
@@ -2088,6 +2135,8 @@
       "managerPhone": "Numéro de téléphone du gérant",
       "email": "Email personnel du gérant",
       "professionalEmail": "Email professionnel du gérant",
+        "tradesHint": "(Plusieurs choix possibles, sous réserve de détenir les assurances, certifications, habilitations ou qualifications requises pour les métiers sélectionnés)",
+      "professionalEmailHint": "L'email professionnel du gérant peut être identique à l'email personnel",
       "password": "Mot de passe",
       "passwordConfirm": "Confirmation du mot de passe",
       "address": {
@@ -2117,15 +2166,57 @@
       "trades": "Métiers",
       "yearsExperience": "Années d'expérience",
       "openingHours": "Horaires d'ouverture",
-      "description": "Descriptif vendeur (500 caractères max)",
+      "descriptionTitle": "Descriptif vendeur et services proposés",
+      "description": "Présentez votre entreprise, votre expérience, vos spécialités et détaillez précisément les prestations que vous réalisez.\nPlus votre description est complète, plus les clients pourront comprendre votre activité et trouver facilement votre profil.\nExemples : recherche de fuite, dépannage électrique, débouchage canalisation, remplacement serrure, entretien climatisation, pose chauffe-eau, traitement anti-nuisibles, etc.\nN'hésitez pas à utiliser l'intelligence artificielle.",
       "services": "Services proposés",
       "servicesSearch": "Rechercher un service...",
       "servicesAdd": "Ajouter le service",
-      "trustName": "Nom de la personne de confiance",
-      "trustPhone": "Téléphone de la personne de confiance",
+      "trustTitle": "Personne de confiance",
+      "trustSubtitle": "Personne à contacter en cas d'urgence ou de situation particulière.",
+      "trustName": "Nom et prénom",
+      "trustPhone": "Téléphone",
       "rib": "RIB (relevé d'identité bancaire)",
-      "suppliers": "Fournisseurs",
-      "suppliersAdd": "Ajouter le fournisseur"
+      "diplomas": "Diplômes et certifications",
+      "suppliers": "Fournisseurs habituels",
+      "suppliersSubtitle": "Ces informations permettent d'améliorer la traçabilité des matériaux, la gestion des garanties fabricants et le traitement d'éventuels litiges. (plusieurs fournisseurs, un ou plusieurs fournisseurs possibles).",
+      "suppliersPlaceholder": "Ex. : Point P, Rexel, CEDEO, etc.",
+      "suppliersAdd": "+ Ajouter le fournisseur",
+      "suppliersAdded": "Fournisseurs ajoutés"
+    },
+    "ribInfo": {
+      "text1": "Le RIB demandé ici est utilisé par Artisan Compétent pour certaines opérations administratives et services proposés sur la plateforme.",
+      "stripe": "Les paiements des clients transitent par Stripe.",
+      "text2": "Quelques jours avant le lancement officiel, vous recevrez un e-mail vous invitant à créer et finaliser gratuitement votre compte Stripe afin de pouvoir recevoir vos paiements."
+    },
+    "mediator": {
+      "title": "Mon médiateur de la consommation",
+      "guideBtn": "Mode d'emploi - Médiateur de la consommation",
+      "description": "Conformément aux dispositions du Code de la consommation, tout professionnel intervenant auprès de consommateurs doit être en mesure d'indiquer les coordonnées de son médiateur de la consommation. Afin de vous accompagner dans cette démarche et de vous permettre de respecter vos obligations légales, la consultation du Mode d'emploi médiateur de la consommation mis à votre disposition est obligatoire.",
+      "name": "Nom du médiateur",
+      "namePlaceholder": "Ex. : CM2C, CNPM Médiation Consommation...",
+      "address": "Adresse postale",
+      "addressPlaceholder": "Ex. : 49 rue de Ponthieu, 75008 Paris",
+      "website": "Site internet",
+      "websitePlaceholder": "Ex. : https://www.cm2c.net",
+      "contactMethod": "Modalités de saisine",
+      "contactMethodSelect": "Sélectionner une modalité de saisine",
+      "contactMethodMail": "Par courrier",
+      "contactMethodForm": "Via un formulaire en ligne",
+      "contactMethodBoth": "Les deux",
+      "contactMethodHint": "Indiquer comment le consommateur peut faire appel à votre médiateur : par courrier, via un formulaire en ligne ou les deux.",
+      "additionalInfo": "Informations complémentaires",
+      "additionalInfoOptional": "(facultatif)",
+      "additionalInfoPlaceholder": "Précisez toute information utile pour joindre votre médiateur"
+    },
+    "additionalRemarks": {
+      "title": "Remarques et informations complémentaires",
+      "description": "Si certaines informations importantes ne figurent pas dans les documents transmis, vous pouvez les préciser ici. Exemple : diplôme, certification ou habilitation détenue par un salarié, ainsi que toute autre précision utile concernant votre activité ou l'organisation de votre entreprise.",
+      "placeholder": "Décrivez votre situation ou ajoutez toute information utile (500 caractères max)"
+    },
+    "companyRemarks": {
+      "title": "Remarques et informations complémentaires",
+      "description": "Si certaines informations importantes ne figurent pas dans les documents transmis, vous pouvez les préciser ici. Exemple : diplôme, certification ou habilitation détenue par un salarié, ainsi que toute autre précision utile concernant votre activité ou l'organisation de votre entreprise.",
+      "placeholder": "Décrivez votre situation ou ajoutez toute information utile (500 caractères max)"
     }
   },
   "proCard": {
