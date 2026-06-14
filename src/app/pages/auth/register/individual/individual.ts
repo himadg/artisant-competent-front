@@ -37,6 +37,50 @@ export class RegisterIndividual implements OnDestroy {
   readonly turnstileSiteKey = inject(AppConfigService).get('turnstileSiteKey');
   readonly today = new Date().toISOString().split('T')[0];
 
+  // Birth date dropdowns
+  bdDay = 0;
+  bdMonth = 0;
+  bdYear = 0;
+  readonly BD_MONTHS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  readonly BD_YEARS = Array.from({ length: new Date().getFullYear() - 1900 + 1 }, (_, i) => 1900 + i);
+
+  get bdDaysInMonth(): number {
+    if (!this.bdMonth) return 31;
+    return new Date(this.bdYear || 2000, this.bdMonth, 0).getDate();
+  }
+
+  get bdDayOptions(): number[] {
+    return Array.from({ length: this.bdDaysInMonth }, (_, i) => i + 1);
+  }
+
+  private updateBirthDateControl(): void {
+    const ctrl = this.form.get('birthDate')!;
+    if (this.bdDay && this.bdMonth && this.bdYear) {
+      const mm = String(this.bdMonth).padStart(2, '0');
+      const dd = String(this.bdDay).padStart(2, '0');
+      ctrl.setValue(`${this.bdYear}-${mm}-${dd}`);
+    } else {
+      ctrl.setValue('');
+    }
+  }
+
+  onBdDayChange(e: Event): void {
+    this.bdDay = +(e.target as HTMLSelectElement).value;
+    this.updateBirthDateControl();
+  }
+
+  onBdMonthChange(e: Event): void {
+    this.bdMonth = +(e.target as HTMLSelectElement).value;
+    if (this.bdDay > this.bdDaysInMonth) this.bdDay = this.bdDaysInMonth;
+    this.updateBirthDateControl();
+  }
+
+  onBdYearChange(e: Event): void {
+    this.bdYear = +(e.target as HTMLSelectElement).value;
+    if (this.bdDay > this.bdDaysInMonth) this.bdDay = this.bdDaysInMonth;
+    this.updateBirthDateControl();
+  }
+
   readonly photoPreview = signal<string | null>(null);
   readonly addressSuggestions = signal<AddressSuggestion[]>([]);
   readonly addressOpen = signal(false);
@@ -69,10 +113,9 @@ export class RegisterIndividual implements OnDestroy {
     terms: [false, Validators.requiredTrue],
   });
 
-  readonly passwordValue = toSignal(
-    this.form.get('password')!.valueChanges,
-    { initialValue: this.form.get('password')!.value }
-  );
+  readonly passwordValue = toSignal(this.form.get('password')!.valueChanges, {
+    initialValue: this.form.get('password')!.value,
+  });
 
   readonly passwordCriteria = computed(() => evaluatePasswordCriteria(this.passwordValue() as string));
 

@@ -445,14 +445,49 @@
         "comparatif": {
           "title": "Comparison: Artisan Compétent vs other platforms vs Google search",
           "lead": "Three ways to find an electrician in France. Three radically different levels of protection, particularly around regulatory compliance.",
-          "headers": ["Criterion", "Other platforms", "Google search", "Artisan Compétent"],
+          "headers": [
+            "Criterion",
+            "Other platforms",
+            "Google search",
+            "Artisan Compétent"
+          ],
           "rows": [
-            ["SIRET verification", "Variable", "None", "Systematic before validation"],
-            ["Insurance & NF C 18-510 certification check", "Rare", "None", "RC pro, decennial, certification, IRVE if applicable"],
-            ["Managed payment", "Variable", "None", "Stripe escrow, released at 48h"],
-            ["Recourse in case of dispute", "Limited", "None", "Hold up to €250 on report < 48h"],
-            ["NF C 15-100 & Consuel compliance", "Variable", "None", "Enforced"],
-            ["Project management advisor", "No", "None", "CMOD available as option"]
+            [
+              "SIRET verification",
+              "Variable",
+              "None",
+              "Systematic before validation"
+            ],
+            [
+              "Insurance & NF C 18-510 certification check",
+              "Rare",
+              "None",
+              "RC pro, decennial, certification, IRVE if applicable"
+            ],
+            [
+              "Managed payment",
+              "Variable",
+              "None",
+              "Stripe escrow, released at 48h"
+            ],
+            [
+              "Recourse in case of dispute",
+              "Limited",
+              "None",
+              "Hold up to €250 on report < 48h"
+            ],
+            [
+              "NF C 15-100 & Consuel compliance",
+              "Variable",
+              "None",
+              "Enforced"
+            ],
+            [
+              "Project management advisor",
+              "No",
+              "None",
+              "CMOD available as option"
+            ]
           ]
         },
         "traps": {
@@ -606,15 +641,55 @@
         "comparatif": {
           "title": "Comparison: Artisan Compétent vs other platforms vs Direct Google search",
           "lead": "Three ways to find a locksmith in France. Three radically different levels of protection, particularly for night-time call-outs.",
-          "headers": ["Criterion", "Other platforms", "Direct Google", "Artisan Compétent"],
+          "headers": [
+            "Criterion",
+            "Other platforms",
+            "Direct Google",
+            "Artisan Compétent"
+          ],
           "rows": [
-            ["Tradesperson SIRET verification", "Variable", "None", "Systematic before validation"],
-            ["RC pro insurance verification", "Rare", "None", "Verified before validation, uploaded to dashboard"],
-            ["Night-time emergency scam risk", "Variable", "Very high", "Neutralised by prior quote and escrow"],
-            ["Escrowed payment", "Variable", "No", "Stripe escrow, released at 48h"],
-            ["Recourse in case of abuse", "Limited", "None", "Withholding up to €250 upon report < 48h"],
-            ["Prior detailed quote", "Variable", "No", "Required before intervention"],
-            ["Project management advisor", "No", "No", "CMOD available as an option"]
+            [
+              "Tradesperson SIRET verification",
+              "Variable",
+              "None",
+              "Systematic before validation"
+            ],
+            [
+              "RC pro insurance verification",
+              "Rare",
+              "None",
+              "Verified before validation, uploaded to dashboard"
+            ],
+            [
+              "Night-time emergency scam risk",
+              "Variable",
+              "Very high",
+              "Neutralised by prior quote and escrow"
+            ],
+            [
+              "Escrowed payment",
+              "Variable",
+              "No",
+              "Stripe escrow, released at 48h"
+            ],
+            [
+              "Recourse in case of abuse",
+              "Limited",
+              "None",
+              "Withholding up to €250 upon report < 48h"
+            ],
+            [
+              "Prior detailed quote",
+              "Variable",
+              "No",
+              "Required before intervention"
+            ],
+            [
+              "Project management advisor",
+              "No",
+              "No",
+              "CMOD available as an option"
+            ]
           ]
         },
         "traps": {
@@ -665,6 +740,57 @@
           "title": "Klarna: how it works",
           "p1": "Klarna is an interest-free payment service allowing you to pay in 3 instalments. Artisan Compétent makes this tool available during the payment process. Its activation is negotiated between the client and the tradesperson: it is not automatic.",
           "p2": "If the tradesperson agrees to offer Klarna (mainly for scheduled jobs but also emergencies like installing an armoured door or metalwork), the escrow mechanism remains active, and the payment is protected until the job is validated at 48 hours."
+        },
+        "faq": {
+          "title": "Frequently asked questions",
+          "lead": "This FAQ compiles the most common questions from homeowners looking for a verified locksmith on Artisan Competent.",
+          "items": [
+            {
+              "q": "How do I avoid a locksmith scam in an emergency?",
+              "a": "Emergency locksmith calls account for the vast majority of disputes in the trade. Three habits protect you: demand a signed quote before any work begins (required by the Consumer Code for any service over 150 EUR at your home), refuse any cylinder drilling until a non-destructive entry has been attempted, and verify the locksmith's SIRET number and public liability insurance. On Artisan Competent, all three are verified in advance and payment is processed through a regulated Stripe escrow."
+            },
+            {
+              "q": "Can a locksmith work 24/7, including at night?",
+              "a": "Yes. Verified locksmiths on Artisan Competent are available 24/7 for locked-out calls, jammed locks, and break-in repairs. The 48-hour window to report an abuse still applies to night call-outs. The funds escrow is especially valuable in emergencies -- that is precisely when psychological pressure is highest and abnormal pricing most likely to be accepted."
+            },
+            {
+              "q": "Does my home insurance cover a locksmith after a break-in?",
+              "a": "In most cases, yes. Most comprehensive home insurance policies include a theft and attempted theft guarantee that covers all or part of a locksmith call-out after a break-in or attempted break-in. Some premium bank cards also include assistance coverage. You must open a claim with your insurer within the deadline set by your policy (generally 5 working days), providing the police report, the quote, and the invoice. The process is yours to handle -- Artisan Competent does not intervene in the insurance claim."
+            },
+            {
+              "q": "What does a locked-out call typically cost?",
+              "a": "A ballpark figure exists for routine call-outs during business hours, but the actual price depends on urgency (day, night, weekend, public holiday), lock type (standard, multi-point, A2P), technical difficulty (non-destructive entry vs. justified drilling), and the call-out charge. The Consumer Code requires a detailed written quote above 150 EUR, including for night call-outs. On Artisan Competent, the quote is sent before the locksmith travels and gates the escrow payment."
+            },
+            {
+              "q": "Why fit an A2P lock or cylinder instead of a standard one?",
+              "a": "The A2P (Assurance Prevention Protection) certification is issued by the CNPP and rates a lock or cylinder's resistance to forced entry. A2P one, two, or three stars means resistance times of 5, 10, and 15 minutes respectively. Several home insurers require an A2P lock to apply the theft guarantee, especially in high-risk urban areas. The verified locksmith's quote must always specify the brand, reference, and A2P level of the cylinder or lock installed."
+            },
+            {
+              "q": "How does the funds escrow work for an emergency call-out?",
+              "a": "The funds escrow is a third-party account managed via Stripe. When you approve the quote, the payment leaves your account but stays held in escrow. The funds are released 48 hours after the job, provided no dispute is raised. This window gives you time to check the hardware installed (A2P stamp, cylinder reference, quality of fitting) and flag any abuse. If you report an abuse within 48 hours, Artisan Competent can withhold up to 250 EUR from the locksmith's payment before release."
+            },
+            {
+              "q": "Is Klarna 3-instalment available for a locksmith job?",
+              "a": "For scheduled work (armoured door installation, metalwork, sealed safe installation), Klarna 3 instalments with no fees may be offered by the tradesperson within Klarna's applicable limits."
+            },
+            {
+              "q": "What is the CMOD used for on a locksmith job?",
+              "a": "The CMOD may be triggered when no amicable resolution could be reached between the client and the tradesperson in a dispute arising from a job carried out via Artisan Competent. The procedure may be initiated by the client or by the Artisan Competent team when a disagreement persists. CMOD intervention incurs a flat fee of 35 EUR charged to the tradesperson, deducted from the escrowed funds. The tradesperson therefore has every incentive to settle amicably before the CMOD is triggered."
+            },
+            {
+              "q": "What should I do if the locksmith drilled when non-destructive entry was possible?",
+              "a": "Report the abuse within 48 hours of the job via the shared dashboard. Funds remain held in escrow for as long as this window is open. Artisan Competent requests the factual evidence (signed quote, photos of the drilled cylinder, any witness accounts) and can withhold up to 250 EUR from the locksmith's payment before release. The verified locksmith's quote must always state the intended entry method and explain why drilling is necessary if that is the case."
+            },
+            {
+              "q": "Which cities does Artisan Competent cover for locksmith services?",
+              "a": "Artisan Competent aims to cover mainland France, overseas territories, and Corsica -- 38 zones in total -- with a 30 km radius around each listed city. All major metropolitan areas are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) with 24/7 night availability in dense urban zones."
+            }
+          ]
+        },
+        "conclusion": {
+          "title": "Going further",
+          "body": "A slammed door at 2 a.m., a break-in to secure the next morning, a move requiring a cylinder change, an armoured door to fit, an A2P safe to install: in every one of these cases, the key risk is the verbal quote and on-the-spot cash payment. Artisan Competent handles upfront locksmith verification and frames the entire process through escrow up to 48 hours after the job.",
+          "footer": "Locksmith verified: SIRET and public liability insurance. Mandatory written quote required. Process governed by Stripe escrow. Withholding up to 250 EUR on reported abuse. Systematic home insurance claim after a break-in."
         }
       },
       "plumberSanitary": {
@@ -674,6 +800,200 @@
         "verifiedBadge": "In short, a verified plumber on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, PG qualification for gas interventions, and, if applicable, RGE qualification for heat pumps and air conditioning eligible for public grants. The entire process is overseen by a Stripe escrow: quote, intervention, fund release 48h after the job is completed. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 30 km radius per city.",
         "description": {
           "p1": "A verified plumber on Artisan Compétent has their SIRET checked, their RC pro and decennial insurances up to date, and the PG qualification if their work involves gas. The Stripe fund escrow oversees the entire process: the payment leaves your account when the quote is validated, remains held during the intervention, and for an additional 48h after the end of the work. This 48-hour period gives you time to report a defect, an abuse, or non-compliance with the quote before the funds are released to the plumber."
+        },
+        "whenToCall": {
+          "title": "When to call a verified plumber",
+          "lead": "A verified plumber covers leaks, sanitary equipment, water heaters, and domestic gas networks. Depending on qualifications, they also handle air conditioning and RGE heat pumps. Emergencies cover active leaks and critical hot-water failures.",
+          "body": "The typical cases handled by sanitary plumbers listed on Artisan Competent cover both fast call-outs and longer renovation projects. A few concrete examples that justify calling a verified professional rather than a DIY approach:",
+          "items": [
+            "Active water leak under sink, washbasin, inside a wall or ceiling, with immediate water-damage risk",
+            "Concealed leak detection (thermal camera, tracer gas, electro-acoustic method) before opening partition walls",
+            "Electric, gas, or thermodynamic water-heater breakdown or replacement",
+            "Simple drain unblocking, siphon and waste pipe replacement",
+            "Full bathroom renovation: shower, bath, toilet, and taps installation",
+            "Domestic gas network work (boiler connection, stop valve) with PG qualification",
+            "Bringing an old or faulty sanitary installation up to code",
+            "Water softener, reverse-osmosis unit, or central filter installation"
+          ],
+          "footer": "Many sanitary plumbers also handle residential air conditioning (wall-mounted split, multi-split) and, when RGE-qualified, install heat pumps eligible for MaPrimeRenov and CEE subsidies. The RGE qualification is not reserved for heating engineers -- an RGE plumber can install state-aided equipment. The professional's exact scope (air conditioning, heat pumps, RGE) is verified at sign-up on the platform. Each job engages the plumber's ten-year liability on permanent sanitary installations and two-year guarantee on equipment. This liability is what makes insurance and SIRET verification essential before handing over access."
+        },
+        "whyUs": {
+          "title": "Why use Artisan Competent for your plumbing work",
+          "lead": "Artisan Competent verifies the plumber upfront, holds your payment in Stripe escrow, and gives you 48 hours to validate the job before any funds are released.",
+          "blocks": [
+            {
+              "title": "Every plumber listed on Artisan Competent has their SIRET checked against public databases (Business Directory, INSEE/SIRENE) and their insurance verified before approval.",
+              "body": "Verification covers three concrete points: active and current SIRET, public liability insurance covering sanitary plumbing, and mandatory ten-year decennial insurance on permanent sanitary installations. PG qualification is also required for plumbers who work on gas networks; RGE qualification for those who install equipment eligible for public subsidies. A plumber missing or showing an expired document is simply not approved on the platform. Verification happens before the profile goes live -- never after a client complaint. Once the quote is signed, the tradesperson must upload their legal documents (insurance certificates, certifications, RGE qualification where applicable) to their Artisan Competent dashboard. These documents are accessible by the client in their personal account. Clients are nonetheless encouraged to re-check sensitive items before work starts: current decennial insurance, PG qualification for gas work, RGE qualification for state-aided equipment. This double-check guards against the marginal cases where a certificate expired between the initial approval and the job start date."
+            },
+            {
+              "title": "The funds escrow is a third-party account managed via Stripe that governs the entire process from quote to fund release.",
+              "body": "When you approve the plumber's quote, the payment leaves your account but does not reach the tradesperson: it is held in a Stripe escrow account. This hold lasts until the end of the job, plus a 48-hour window during which you can report an abuse, a quality issue, or a deviation from the signed quote. With no dispute, funds are released to the plumber at the end of these 48 hours. During the 48-hour window, the escrow acts as leverage -- it is the most effective incentive for a tradesperson to finish the job properly."
+            },
+            {
+              "title": "The 48-hour countdown is clearly marked: acceptance report, reserve window, deadline notification.",
+              "body": "In practice, the 48 hours do not run in a vacuum. At the end of the job, a formal acceptance report is issued on the platform. This report opens the 48-hour window during which you can raise reserves: defects observed, non-compliance with the quote, missing finishing, a promised document not delivered. Eight hours before the deadline, a notification email is sent so the release does not happen through simple oversight. With no reserve raised at the end of the 48 hours, funds are released automatically to the tradesperson. With a reserve raised, the escrow remains active until the dispute is resolved."
+            },
+            {
+              "title": "The CMOD may be triggered when no amicable resolution could be reached between the client and the tradesperson in a dispute arising from a job carried out via the Artisan Competent platform.",
+              "body": "The procedure may be initiated by the client or by the Artisan Competent team when a disagreement persists despite exchanges. CMOD intervention incurs a flat fee of 35 EUR charged to the tradesperson, deducted directly from the escrowed funds. The tradesperson therefore has every incentive to settle amicably before the CMOD is triggered."
+            }
+          ]
+        },
+        "pricing": {
+          "title": "How much does a plumber call-out cost",
+          "lead": "The hourly rate of a sanitary plumber varies by experience and area: indicative ballpark of 60-80 EUR per hour, excluding emergencies and materials. Only a detailed quote from a verified plumber commits the professional to the final price.",
+          "body": "The cost of a call-out depends on five factors that do not offset each other. The variables that move the quote:",
+          "items": [
+            "The nature of the job (simple call-out, leak detection, equipment replacement, renovation project)",
+            "Urgency: business hours, night, weekend, or public holiday call-out",
+            "Travel: dense urban area, rural area, upper floor without a lift",
+            "Hardware installed: entry-level or high-end taps, standard or thermodynamic water heater",
+            "Regulatory compliance required (gas network work with PG qualification, bringing to code, connection to drainage)"
+          ],
+          "footer": "As a guide, the observed labour hourly rate for a sanitary plumber in France is between 60 and 80 EUR per hour depending on experience, excluding emergencies and materials. This range does not pre-judge travel costs, materials, or night/weekend rates. Artisan Competent requires a detailed written quote, accepted before any work begins."
+        },
+        "comparatif": {
+          "title": "Comparison: Artisan Competent vs other platforms vs Google search",
+          "lead": "Three ways to find a plumber in France. Three radically different levels of protection.",
+          "headers": [
+            "Criterion",
+            "Other platforms",
+            "Google search",
+            "Artisan Competent"
+          ],
+          "rows": [
+            [
+              "Tradesperson SIRET check",
+              "Variable",
+              "None",
+              "Systematic before approval"
+            ],
+            [
+              "Insurance verification",
+              "Rare",
+              "None",
+              "Public liability, decennial, PG, RGE where applicable"
+            ],
+            [
+              "Regulated payment",
+              "Variable",
+              "No",
+              "Stripe funds escrow, released at 48h"
+            ],
+            [
+              "Recourse in case of abuse",
+              "Limited",
+              "None",
+              "Withholding up to 250 EUR on report < 48h"
+            ],
+            [
+              "Transparent hourly rate",
+              "Variable",
+              "Variable",
+              "Detailed quote required before work begins"
+            ],
+            [
+              "Project manager adviser",
+              "No",
+              "No",
+              "CMOD available on request"
+            ]
+          ]
+        },
+        "traps": {
+          "title": "3 traps to avoid when looking for a plumber",
+          "lead": "Emergency plumbing accounts for a large share of trade disputes. Three traps come up repeatedly, especially during night and weekend call-outs.",
+          "items": [
+            {
+              "title": "Trap 1: The quote that doubles at night",
+              "body": "A late-night call to a number found on Google. A tradesperson arrives quickly, gives a verbal assessment, quotes a price three to four times higher than the daytime hourly rate, and demands immediate payment before starting. The client, under pressure, agrees. The quote is never signed, or signed after the fact. The funds escrow makes this practice unworkable: no payment is made before the quote is approved on Artisan Competent, and the night-time quote remains recorded on the platform."
+            },
+            {
+              "title": "Trap 2: The unnecessary part replacement",
+              "body": "The plumber announces that a water heater, thermostatic tap, or stop valve must be replaced when a repair would have been sufficient. The part is invoiced at a brand-new premium price, installed without demonstrating the failure of the old one, and the old part disappears. A verified plumber documents what they replace; an opportunistic one avoids the paper trail."
+            },
+            {
+              "title": "Trap 3: The inflated flat fee with no hourly breakdown",
+              "body": "No detail in the quote: a single global amount for a vague job description, e.g. 'drain unblocking: 480 EUR'. No stated duration, no itemised materials, no mention of travel costs. The client has no way to check whether the price reflects the time spent. Artisan Competent requires a broken-down quote (travel, labour, materials, emergency surcharge) before approval and escrow payment."
+            }
+          ]
+        },
+        "followUp": {
+          "title": "Your role in monitoring the job",
+          "lead": "The escrow protection is powerful but relies on a written contradictory record. Your active participation determines the quality of any recourse in case of dispute: no written trace, no leverage.",
+          "body": "For jobs lasting more than one day, the tradesperson uploads daily progress photos to the shared client-tradesperson dashboard. You comment, approve, or flag issues in the same space, creating a written contradictory record in case of a later dispute. On your side, document too: photos of the area before work starts, photos at the end of each day, short but dated written observations.",
+          "footer": "If an abuse is reported within 48 hours of the end of the job, Artisan Competent can withhold up to 250 EUR from the tradesperson's payment before release, in accordance with the Terms and Conditions. This withholding covers cases of proven defective work or non-compliance with the signed quote. Beyond 48 hours, statutory guarantees take over (one-year perfect completion guarantee, two-year guarantee on equipment, ten-year decennial guarantee on permanent installations)."
+        },
+        "insurance": {
+          "title": "Home insurance and reimbursement",
+          "lead": "Depending on the incident, your home insurance may reimburse all or part of the call-out. The process is yours to handle with your insurer. Artisan Competent does not intervene in the insurance claim.",
+          "body": "In several typical plumbing situations, home insurance partially or fully reimburses the call-out: water damage, post-incident leak detection, pipe burst, emergency call-out after damage. You must contact your insurance directly after receiving the quote to check eligibility and cover terms (excess, cap, potential expert assessment). Some guarantees included in premium bank cards may also cover the job.",
+          "footer": "Artisan Competent does not advance funds, does not act as a substitute for your insurer, and does not suspend escrow to wait for compensation. The job is initiated through the standard process; you then deal with your insurance in parallel."
+        },
+        "howItWorks": {
+          "title": "How it works in 3 steps",
+          "lead": "The Artisan Competent process has three stages: describe your need, approve the quote with escrow payment, job completion and fund release after 48 hours.",
+          "steps": [
+            "Step 1. You describe your need (breakdown, call-out, or full project) on Artisan Competent and receive a detailed quote from a verified plumber in your area.",
+            "Step 2. You approve the quote, the payment goes into Stripe escrow, and the job is scheduled.",
+            "Step 3. The plumber carries out the work. At the end of the job, a formal acceptance report is issued on the platform: it opens a 48-hour window during which you can raise reserves. A notification email is sent 8 hours before the deadline as a reminder. Without a reserve, funds are released automatically to the tradesperson."
+          ]
+        },
+        "emergency": {
+          "title": "Emergency plumber 24/7",
+          "lead": "Artisan Competent covers emergency plumbing 24/7 across all served areas. The 48-hour window to report an abuse applies even to night call-outs.",
+          "body": "The sanitary plumber is one of the five trades covered around the clock on Artisan Competent, alongside the electrician, locksmith, heating engineer, and drain cleaner. An active leak, a failed water heater in mid-winter, or a burst pipe cannot wait until the next morning. Night call-outs follow the same protocol as daytime jobs: written quote, Stripe escrow payment, job, 48-hour validation. The funds escrow is especially protective in these situations, where the pressure of urgency leads some professionals to overcharge."
+        },
+        "klarna": {
+          "title": "Klarna: how it works",
+          "p1": "Klarna is a buy-now-pay-later service offering 3 interest-free instalments. Artisan Competent makes this tool available in the payment flow. Activation is negotiated between the client and the tradesperson -- it is not automatic.",
+          "p2": "If the tradesperson agrees to offer Klarna, the funds escrow mechanism remains active and the payment stays protected until the job is validated at the 48-hour mark. Applicable on larger projects (complete bathroom renovation)."
+        },
+        "faq": {
+          "title": "Frequently asked questions",
+          "lead": "This FAQ compiles the most common questions from homeowners looking for a verified plumber on Artisan Competent.",
+          "items": [
+            {
+              "q": "How quickly can an emergency plumber arrive?",
+              "a": "A verified plumber on Artisan Competent can respond 24/7 for critical failures: active water leak, burst pipe, water heater breakdown. Response time depends on the actual availability of tradespeople in the area and is never promised in advance without confirmation. The 48-hour window to report an abuse still applies to night call-outs."
+            },
+            {
+              "q": "How do I check that a plumber is trustworthy before signing a quote?",
+              "a": "Three items must be verifiable: the SIRET number (checkable on the Business Directory and the INSEE/SIRENE database), a valid decennial and/or public liability insurance certificate, and PG qualification if the work involves a gas network. On Artisan Competent, all three are verified in advance. You can re-check them in the tradesperson's dashboard once the quote is signed."
+            },
+            {
+              "q": "How does the funds escrow work when I hire a plumber?",
+              "a": "The funds escrow is a third-party account managed via Stripe. When the client approves the quote, the payment goes into escrow and stays held until the job is complete. Once the work is finished, the client has 48 hours to validate it or report an abuse. With no dispute, the funds are released to the plumber."
+            },
+            {
+              "q": "Can I pay for a plumbing call-out in instalments with Klarna?",
+              "a": "Klarna 3 interest-free instalments may be offered by the tradesperson within the applicable Klarna limits. Activation is not automatic -- it is negotiated between you and the tradesperson. The funds escrow mechanism remains active: payment is protected until the final validation at the 48-hour mark."
+            },
+            {
+              "q": "What is the CMOD used for on a plumbing job?",
+              "a": "The CMOD may be triggered when no amicable resolution could be reached between the client and the tradesperson in a dispute via Artisan Competent. The procedure may be initiated by the client or the Artisan Competent team when a disagreement persists. CMOD intervention incurs a flat fee of 35 EUR charged to the tradesperson, deducted from the escrowed funds."
+            },
+            {
+              "q": "Can my home insurance reimburse the plumber's call-out?",
+              "a": "Depending on the incident (water damage, burst pipe, emergency call-out after damage), your home insurance may cover all or part of the call-out. Contact your insurer directly after receiving the quote to check eligibility. Artisan Competent does not intervene in the insurance claim: the job proceeds through the standard flow and you deal with your insurance in parallel."
+            },
+            {
+              "q": "What happens if the plumber does not comply with the signed quote?",
+              "a": "Report the abuse within 48 hours of the end of the job via the shared dashboard. As long as this window is open, funds remain in escrow and are not released to the plumber. Artisan Competent can withhold up to 250 EUR from the tradesperson's payment before release. Daily site photos serve as the written contradictory record."
+            },
+            {
+              "q": "Can a plumber also install air conditioning or a heat pump?",
+              "a": "Yes, in many cases. A sanitary plumber frequently works on residential air conditioning (wall-mounted split, multi-split) and, when RGE-qualified, on heat pumps eligible for MaPrimeRenov and CEE subsidies. The RGE qualification is not reserved for heating engineers. On Artisan Competent, the exact scope (air conditioning, heat pumps, RGE) is verified at sign-up."
+            },
+            {
+              "q": "Which cities does Artisan Competent cover for plumbing?",
+              "a": "Artisan Competent aims to cover mainland France, overseas territories, and Corsica -- 38 zones in total -- with a 30 km radius around each listed city. All major metropolitan areas are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) as well as an extensive regional network."
+            },
+            {
+              "q": "Is a special qualification required for a plumber working on gas?",
+              "a": "Yes. The PG (Professionnel Gaz) qualification is required for any work on a natural gas or propane network, whether connecting a boiler, replacing a stop valve, or fitting a gas cooker. Plumbers listed on Artisan Competent who work on gas hold this qualification, verified in advance."
+            }
+          ]
         }
       },
       "drainUnblocker": {
@@ -742,13 +1062,48 @@
             "Artisan Compétent"
           ],
           "rows": [
-            ["Professional SIRET verification", "Variable", "None", "Systematic before validation"],
-            ["RC pro insurance & prefectural approval verification", "Rare", "None", "RC pro, emptying approval, equipment proof"],
-            ["Escrowed payment", "No", "No", "Stripe escrow, released at 48h"],
-            ["Recourse if pipe clogs within 48h", "Limited", "None", "Funds blocked until effective validation"],
-            ["Recourse in case of abuse", "Limited", "None", "Withholding up to €250 upon report < 48h"],
-            ["Pricing framed on market reference", "No", "None", "Compagnie des Déboucheurs grid being integrated"],
-            ["Project management advisor", "No", "No", "CMOD available as an option"]
+            [
+              "Professional SIRET verification",
+              "Variable",
+              "None",
+              "Systematic before validation"
+            ],
+            [
+              "RC pro insurance & prefectural approval verification",
+              "Rare",
+              "None",
+              "RC pro, emptying approval, equipment proof"
+            ],
+            [
+              "Escrowed payment",
+              "No",
+              "No",
+              "Stripe escrow, released at 48h"
+            ],
+            [
+              "Recourse if pipe clogs within 48h",
+              "Limited",
+              "None",
+              "Funds blocked until effective validation"
+            ],
+            [
+              "Recourse in case of abuse",
+              "Limited",
+              "None",
+              "Withholding up to €250 upon report < 48h"
+            ],
+            [
+              "Pricing framed on market reference",
+              "No",
+              "None",
+              "Compagnie des Déboucheurs grid being integrated"
+            ],
+            [
+              "Project management advisor",
+              "No",
+              "No",
+              "CMOD available as an option"
+            ]
           ]
         },
         "traps": {
@@ -915,15 +1270,55 @@
         "comparatif": {
           "title": "Comparison: Artisan Compétent vs other platforms vs Direct Google search",
           "lead": "Three ways to find a heating engineer in France. Three radically different levels of protection, particularly concerning PG and RGE qualifications and the mobilisation of public grants.",
-          "headers": ["Criterion", "Other platforms", "Direct Google", "Artisan Compétent"],
+          "headers": [
+            "Criterion",
+            "Other platforms",
+            "Direct Google",
+            "Artisan Compétent"
+          ],
           "rows": [
-            ["Tradesperson SIRET verification", "Variable", "None", "Systematic before validation"],
-            ["Insurance and PG qualification verification", "Rare", "None", "RC pro, decennial, PG, RGE uploaded to dashboard"],
-            ["RGE qualification and public grants", "Variable", "None", "Checked upon registration"],
-            ["Escrowed payment", "No", "No", "Stripe escrow, released at 48h"],
-            ["Recourse in case of abuse", "Limited", "None", "Withholding up to €250 upon report < 48h"],
-            ["Qualigaz certificate at start-up", "Variable", "None", "Checked upon registration"],
-            ["Project management advisor", "No", "No", "CMOD available as an option"]
+            [
+              "Tradesperson SIRET verification",
+              "Variable",
+              "None",
+              "Systematic before validation"
+            ],
+            [
+              "Insurance and PG qualification verification",
+              "Rare",
+              "None",
+              "RC pro, decennial, PG, RGE uploaded to dashboard"
+            ],
+            [
+              "RGE qualification and public grants",
+              "Variable",
+              "None",
+              "Checked upon registration"
+            ],
+            [
+              "Escrowed payment",
+              "No",
+              "No",
+              "Stripe escrow, released at 48h"
+            ],
+            [
+              "Recourse in case of abuse",
+              "Limited",
+              "None",
+              "Withholding up to €250 upon report < 48h"
+            ],
+            [
+              "Qualigaz certificate at start-up",
+              "Variable",
+              "None",
+              "Checked upon registration"
+            ],
+            [
+              "Project management advisor",
+              "No",
+              "No",
+              "CMOD available as an option"
+            ]
           ]
         },
         "traps": {
@@ -1110,13 +1505,48 @@
             "Artisan Compétent"
           ],
           "rows": [
-            ["Professional SIRET verification", "Variable depending on platform", "None by default", "Systematic before profile validation"],
-            ["Refrigerant handling certificate checked", "Rare", "None", "Category I to IV verified based on declared scope"],
-            ["Insurance verification (RC pro, decennial)", "Rare or declarative", "None", "RC pro and decennial required and verified"],
-            ["RGE QualiPAC qualification for heat pumps", "Variable", "None", "Verified for grant-eligible projects"],
-            ["Escrowed payment", "No", "No", "Stripe fund escrow, release at 48h"],
-            ["Recourse in case of defect", "Limited", "None", "Withhold up to €250 if reported < 48h"],
-            ["Project management advisor", "No", "No", "CMOD available as an option"]
+            [
+              "Professional SIRET verification",
+              "Variable depending on platform",
+              "None by default",
+              "Systematic before profile validation"
+            ],
+            [
+              "Refrigerant handling certificate checked",
+              "Rare",
+              "None",
+              "Category I to IV verified based on declared scope"
+            ],
+            [
+              "Insurance verification (RC pro, decennial)",
+              "Rare or declarative",
+              "None",
+              "RC pro and decennial required and verified"
+            ],
+            [
+              "RGE QualiPAC qualification for heat pumps",
+              "Variable",
+              "None",
+              "Verified for grant-eligible projects"
+            ],
+            [
+              "Escrowed payment",
+              "No",
+              "No",
+              "Stripe fund escrow, release at 48h"
+            ],
+            [
+              "Recourse in case of defect",
+              "Limited",
+              "None",
+              "Withhold up to €250 if reported < 48h"
+            ],
+            [
+              "Project management advisor",
+              "No",
+              "No",
+              "CMOD available as an option"
+            ]
           ]
         },
         "traps": {
@@ -1508,13 +1938,48 @@
             "Artisan Compétent"
           ],
           "rows": [
-            ["Professional SIRET verification", "Variable depending on platform", "None by default", "Systematic before profile validation"],
-            ["Certibiocide certificate checked", "Rare", "None", "Verified and uploaded to dashboard"],
-            ["Insurance verification (RC pro)", "Rare or declarative", "None", "RC pro required and verified"],
-            ["Escrowed payment", "No", "No", "Stripe fund escrow, release at 48h"],
-            ["Recourse in case of ineffective treatment", "Limited", "None", "Withhold up to €250 if reported < 48h"],
-            ["Documented follow-up visits", "Variable", "None", "Photos and report on the dashboard"],
-            ["Project management advisor", "No", "No", "CMOD available as an option"]
+            [
+              "Professional SIRET verification",
+              "Variable depending on platform",
+              "None by default",
+              "Systematic before profile validation"
+            ],
+            [
+              "Certibiocide certificate checked",
+              "Rare",
+              "None",
+              "Verified and uploaded to dashboard"
+            ],
+            [
+              "Insurance verification (RC pro)",
+              "Rare or declarative",
+              "None",
+              "RC pro required and verified"
+            ],
+            [
+              "Escrowed payment",
+              "No",
+              "No",
+              "Stripe fund escrow, release at 48h"
+            ],
+            [
+              "Recourse in case of ineffective treatment",
+              "Limited",
+              "None",
+              "Withhold up to €250 if reported < 48h"
+            ],
+            [
+              "Documented follow-up visits",
+              "Variable",
+              "None",
+              "Photos and report on the dashboard"
+            ],
+            [
+              "Project management advisor",
+              "No",
+              "No",
+              "CMOD available as an option"
+            ]
           ]
         },
         "traps": {
@@ -1563,16 +2028,46 @@
           "title": "Frequently asked questions",
           "lead": "This FAQ groups the most frequently asked questions by individuals looking for a verified pest control specialist on Artisan Compétent.",
           "items": [
-            { "q": "What is Certibiocide and why is it mandatory?", "a": "Certibiocide is a mandatory individual certificate for anyone purchasing, distributing, or using professional-use biocidal products under categories TP14 (rodenticides), TP18 (professional-use insecticides), and TP21 (antifouling products). It certifies that the operator knows the risks, best practices, and regulations. On Artisan Compétent, it is verified upon registration and uploaded to the dashboard after the quote is signed." },
-            { "q": "How many visits are needed to treat bedbugs?", "a": "The professional standard is two to three visits spaced 15 to 30 days apart, to break the reproductive cycle (unhatched eggs during the first visit, emerging adults treated during the second). Some thermal protocols (very high-temperature dry steam) can reduce this to one visit plus an inspection. On Artisan Compétent, the schedule is fixed in the quote and each visit is documented." },
-            { "q": "Can my insurance reimburse a pest control treatment?", "a": "This depends on your comprehensive home insurance contract and any optional guarantees subscribed. Some policies include coverage for rat or insect control costs, and sometimes even mattress replacement after bedbugs. To be checked directly with your insurer, quote in hand. Artisan Compétent does not intervene in the compensation process." },
-            { "q": "Is chemical treatment dangerous for children and animals?", "a": "Professional-use biocidal products are regulated and their application follows precise protocols (wait times before returning to the home, ventilation, protection of food and animals). The verified professional will give you the safety data sheets for the products used and post-application instructions. If you have toddlers, pets, or allergic individuals, mention it for the quote: the professional will adapt the protocol (gel baits instead of sprays, chemical-free thermal treatment, etc.)." },
-            { "q": "How much does rat control cost?", "a": "The cost depends on the surface area, the level of infestation, the number of visits, and the possible placement of traps or sealing. No reliable national flat rate exists: only a detailed quote from the verified specialist commits the professional. On Artisan Compétent, the breakdown (travel, method, products, visits) is required before payment is triggered." },
-            { "q": "What happens if the infestation returns after the treatment?", "a": "If the infestation returns during the window covered by the quote (planned visits, announced post-treatment warranty period), the professional is required to intervene again without additional billing. You report the return in the dashboard with photos. As long as the escrow is active, funds are not released. If the infestation returns after the funds are released, the post-treatment warranty announced in the quote applies." },
-            { "q": "Does the escrow cover all planned follow-up visits?", "a": "Yes. The Stripe escrow holds the full amount inclusive of tax of the signed quote, including treatment visits and planned follow-up visits. The escrow is only released after the final visit and the 48h window." },
-            { "q": "What is CMOD used for in a pest control job?", "a": "The CMOD can be triggered when no amicable solution could be found between the client and the professional regarding a dispute related to an intervention carried out via the Artisan Compétent platform.\nThis procedure can be initiated either by the client or by the Artisan Compétent team when a disagreement persists despite discussions between the parties.\nThe CMOD intervention incurs a flat fee of €35, borne by the concerned professional. This amount will be directly deducted from the sum due to them on the escrowed funds related to the file.\nTherefore, it is in the professional's best interest to favor an amicable and quick settlement before the CMOD is involved, to avoid this extra charge and extended processing time." },
-            { "q": "Do I have to report an Asian hornet nest?", "a": "In several French regions and municipalities, the Asian hornet is subject to surveillance plans and mandatory reporting. Inquire with your town hall or the departmental hunters' federation. The destruction of the nest must be done by an equipped professional. On Artisan Compétent, the verified professional intervenes with suitable equipment (suit, cherry picker if needed, authorized products)." },
-            { "q": "Which cities are covered by Artisan Compétent for pest control?", "a": "Artisan Compétent aims to cover metropolitan France, the overseas territories, and Corsica, i.e., 38 zones, with an intervention radius of 30 km around each listed city. All major cities are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille)." }
+            {
+              "q": "What is Certibiocide and why is it mandatory?",
+              "a": "Certibiocide is a mandatory individual certificate for anyone purchasing, distributing, or using professional-use biocidal products under categories TP14 (rodenticides), TP18 (professional-use insecticides), and TP21 (antifouling products). It certifies that the operator knows the risks, best practices, and regulations. On Artisan Compétent, it is verified upon registration and uploaded to the dashboard after the quote is signed."
+            },
+            {
+              "q": "How many visits are needed to treat bedbugs?",
+              "a": "The professional standard is two to three visits spaced 15 to 30 days apart, to break the reproductive cycle (unhatched eggs during the first visit, emerging adults treated during the second). Some thermal protocols (very high-temperature dry steam) can reduce this to one visit plus an inspection. On Artisan Compétent, the schedule is fixed in the quote and each visit is documented."
+            },
+            {
+              "q": "Can my insurance reimburse a pest control treatment?",
+              "a": "This depends on your comprehensive home insurance contract and any optional guarantees subscribed. Some policies include coverage for rat or insect control costs, and sometimes even mattress replacement after bedbugs. To be checked directly with your insurer, quote in hand. Artisan Compétent does not intervene in the compensation process."
+            },
+            {
+              "q": "Is chemical treatment dangerous for children and animals?",
+              "a": "Professional-use biocidal products are regulated and their application follows precise protocols (wait times before returning to the home, ventilation, protection of food and animals). The verified professional will give you the safety data sheets for the products used and post-application instructions. If you have toddlers, pets, or allergic individuals, mention it for the quote: the professional will adapt the protocol (gel baits instead of sprays, chemical-free thermal treatment, etc.)."
+            },
+            {
+              "q": "How much does rat control cost?",
+              "a": "The cost depends on the surface area, the level of infestation, the number of visits, and the possible placement of traps or sealing. No reliable national flat rate exists: only a detailed quote from the verified specialist commits the professional. On Artisan Compétent, the breakdown (travel, method, products, visits) is required before payment is triggered."
+            },
+            {
+              "q": "What happens if the infestation returns after the treatment?",
+              "a": "If the infestation returns during the window covered by the quote (planned visits, announced post-treatment warranty period), the professional is required to intervene again without additional billing. You report the return in the dashboard with photos. As long as the escrow is active, funds are not released. If the infestation returns after the funds are released, the post-treatment warranty announced in the quote applies."
+            },
+            {
+              "q": "Does the escrow cover all planned follow-up visits?",
+              "a": "Yes. The Stripe escrow holds the full amount inclusive of tax of the signed quote, including treatment visits and planned follow-up visits. The escrow is only released after the final visit and the 48h window."
+            },
+            {
+              "q": "What is CMOD used for in a pest control job?",
+              "a": "The CMOD can be triggered when no amicable solution could be found between the client and the professional regarding a dispute related to an intervention carried out via the Artisan Compétent platform.\nThis procedure can be initiated either by the client or by the Artisan Compétent team when a disagreement persists despite discussions between the parties.\nThe CMOD intervention incurs a flat fee of €35, borne by the concerned professional. This amount will be directly deducted from the sum due to them on the escrowed funds related to the file.\nTherefore, it is in the professional's best interest to favor an amicable and quick settlement before the CMOD is involved, to avoid this extra charge and extended processing time."
+            },
+            {
+              "q": "Do I have to report an Asian hornet nest?",
+              "a": "In several French regions and municipalities, the Asian hornet is subject to surveillance plans and mandatory reporting. Inquire with your town hall or the departmental hunters' federation. The destruction of the nest must be done by an equipped professional. On Artisan Compétent, the verified professional intervenes with suitable equipment (suit, cherry picker if needed, authorized products)."
+            },
+            {
+              "q": "Which cities are covered by Artisan Compétent for pest control?",
+              "a": "Artisan Compétent aims to cover metropolitan France, the overseas territories, and Corsica, i.e., 38 zones, with an intervention radius of 30 km around each listed city. All major cities are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille)."
+            }
           ]
         },
         "conclusion": {
@@ -1613,6 +2108,24 @@
       "select": "Select gender",
       "female": "Female",
       "male": "Male"
+    },
+    "birthDate": "Date of birth",
+    "birthDay": "Day",
+    "birthMonth": "Month",
+    "birthYear": "Year",
+    "months": {
+      "1": "January",
+      "2": "February",
+      "3": "March",
+      "4": "April",
+      "5": "May",
+      "6": "June",
+      "7": "July",
+      "8": "August",
+      "9": "September",
+      "10": "October",
+      "11": "November",
+      "12": "December"
     },
     "fields": {
       "lastName": "Last name",
@@ -1716,7 +2229,9 @@
       "colExpiry": "Expiry date",
       "colFile": "Choose a file",
       "namePlaceholder": "E.g.: RC Pro, Decennial insurance, Plumbing BEP, Qualibat...",
-      "addBtn": "Add a document"
+      "addBtn": "Add a document",
+      "chooseFile": "Choose a file",
+      "noFile": "No file chosen"
     },
     "addLogo": "Add a logo",
     "addRib": "Add bank account (RIB)",
@@ -1798,8 +2313,8 @@
       "managerPhone": "Manager phone number",
       "email": "Manager personal email",
       "professionalEmail": "Manager professional email",
-        "tradesHint": "(Multiple choices possible, subject to holding the required insurance, certifications, authorisations or qualifications for the selected trades)",
-        "professionalEmailHint": "The manager's professional email can be the same as their personal email",
+      "tradesHint": "(Multiple choices possible, subject to holding the required insurance, certifications, authorisations or qualifications for the selected trades)",
+      "professionalEmailHint": "The manager's professional email can be the same as their personal email",
       "password": "Password",
       "passwordConfirm": "Confirm password",
       "address": {

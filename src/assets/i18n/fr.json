@@ -1949,6 +1949,15 @@
       "female": "Femme",
       "male": "Homme"
     },
+    "birthDate": "Date de naissance",
+    "birthDay": "Jour",
+    "birthMonth": "Mois",
+    "birthYear": "Année",
+    "months": {
+      "1": "Janvier", "2": "Février", "3": "Mars", "4": "Avril",
+      "5": "Mai", "6": "Juin", "7": "Juillet", "8": "Août",
+      "9": "Septembre", "10": "Octobre", "11": "Novembre", "12": "Décembre"
+    },
     "fields": {
       "lastName": "Nom",
       "firstName": "Prénom",

@@ -18,9 +18,9 @@
         <form [formGroup]="form" class="py-8 mx-auto space-y-4 max-w-[35rem] autofill-fix">
             <div class="grid gap-4 items-stretch md:grid-cols-2">
                 <!-- Photo -->
-                <div class="flex justify-center items-stretch h-36">
+                <div class="flex justify-center items-center">
                     <div
-                        class="overflow-hidden relative w-36 h-full rounded-full border group"
+                        class="overflow-hidden relative w-36 h-36 rounded-full border group"
                         [class.force-invalid]="
                             form.get('professionalProfile.photo')?.invalid &&
                             form.get('professionalProfile.photo')?.touched
@@ -66,7 +66,7 @@
                     </div>
                 </div>
 
-                <!-- user : gender, lastName, firstName -->
+                <!-- user : gender, lastName, firstName, birthDate -->
                 <div class="space-y-3" formGroupName="user">
                     <select
                         formControlName="gender"
@@ -88,28 +88,47 @@
                         class="px-3 py-2 w-full rounded border"
                         placeholder="{{ 'professional.fields.firstName' | transloco }} *"
                     />
+                    <div class="flex flex-col gap-1">
+                        <label for="bd-day-pro" class="text-sm text-gray-500">{{ 'register.birthDate' | transloco }} *</label>
+                        <div class="flex w-full">
+                            <select
+                                id="bd-day-pro"
+                                class="px-2 py-2 border rounded-l text-sm bg-[var(--background-color)] text-[var(--color)] focus:outline-none focus:ring-1 focus:ring-[var(--primary-water-green)]"
+                                [value]="bdDay"
+                                (change)="onBdDayChange($event)"
+                            >
+                                <option value="0">{{ 'register.birthDay' | transloco }}</option>
+                                @for (d of bdDayOptions; track d) {
+                                    <option [value]="d" [selected]="bdDay === d">{{ d }}</option>
+                                }
+                            </select>
+                            <select
+                                class="px-2 py-2 border border-l-0 flex-1 min-w-0 text-sm bg-[var(--background-color)] text-[var(--color)] focus:outline-none focus:ring-1 focus:ring-[var(--primary-water-green)]"
+                                [value]="bdMonth"
+                                (change)="onBdMonthChange($event)"
+                            >
+                                <option value="0">{{ 'register.birthMonth' | transloco }}</option>
+                                @for (m of BD_MONTHS; track m) {
+                                    <option [value]="m" [selected]="bdMonth === m">{{ 'register.months.' + m | transloco }}</option>
+                                }
+                            </select>
+                            <select
+                                class="px-2 py-2 border border-l-0 rounded-r text-sm bg-[var(--background-color)] text-[var(--color)] focus:outline-none focus:ring-1 focus:ring-[var(--primary-water-green)]"
+                                [value]="bdYear"
+                                (change)="onBdYearChange($event)"
+                            >
+                                <option value="0">{{ 'register.birthYear' | transloco }}</option>
+                                @for (y of BD_YEARS; track y) {
+                                    <option [value]="y" [selected]="bdYear === y">{{ y }}</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- user : birthDate, email -->
+            <!-- user : email -->
             <ng-container formGroupName="user">
-                <div class="relative">
-                    <input
-                        type="date"
-                        formControlName="birthDate"
-                        class="px-3 py-2 w-full rounded border"
-                        [max]="today"
-                        (focus)="birthDateFocused.set(true)"
-                        (blur)="birthDateFocused.set(false)"
-                    />
-                    @if (!form.get('user.birthDate')?.value && !birthDateFocused()) {
-                        <span
-                            class="flex self-center absolute w-[50%] h-[90%] inset-0 items-center px-3 text-sm text-gray-500 pointer-events-none left-[2px] bg-[var(--background-color)]"
-                        >
-                            {{ 'professional.fields.birthDate' | transloco }} *
-                        </span>
-                    }
-                </div>
                 <input
                     type="email"
                     formControlName="email"

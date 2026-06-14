@@ -6,7 +6,6 @@ import {
   FormControl,
   Validators,
   FormArray,
-  AbstractControlOptions,
   AbstractControl,
 } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -91,6 +90,50 @@ export class RegisterProfessional implements OnDestroy {
   readonly adressError = signal<'addressPersonal' | 'addressWork' | null>(null);
   readonly birthDateFocused = signal<boolean>(false);
   readonly today = new Date().toLocaleDateString('en-CA');
+
+  // Birth date dropdowns
+  bdDay = 0;
+  bdMonth = 0;
+  bdYear = 0;
+  readonly BD_MONTHS = [1,2,3,4,5,6,7,8,9,10,11,12];
+  readonly BD_YEARS = Array.from({ length: 101 }, (_, i) => new Date().getFullYear() - i);
+
+  get bdDaysInMonth(): number {
+    if (!this.bdMonth) return 31;
+    return new Date(this.bdYear || 2000, this.bdMonth, 0).getDate();
+  }
+
+  get bdDayOptions(): number[] {
+    return Array.from({ length: this.bdDaysInMonth }, (_, i) => i + 1);
+  }
+
+  private updateBirthDateControl(): void {
+    const ctrl = this.form.get('user.birthDate')!;
+    if (this.bdDay && this.bdMonth && this.bdYear) {
+      const mm = String(this.bdMonth).padStart(2, '0');
+      const dd = String(this.bdDay).padStart(2, '0');
+      ctrl.setValue(`${this.bdYear}-${mm}-${dd}`);
+    } else {
+      ctrl.setValue('');
+    }
+  }
+
+  onBdDayChange(e: Event): void {
+    this.bdDay = +(e.target as HTMLSelectElement).value;
+    this.updateBirthDateControl();
+  }
+
+  onBdMonthChange(e: Event): void {
+    this.bdMonth = +(e.target as HTMLSelectElement).value;
+    if (this.bdDay > this.bdDaysInMonth) this.bdDay = this.bdDaysInMonth;
+    this.updateBirthDateControl();
+  }
+
+  onBdYearChange(e: Event): void {
+    this.bdYear = +(e.target as HTMLSelectElement).value;
+    if (this.bdDay > this.bdDaysInMonth) this.bdDay = this.bdDaysInMonth;
+    this.updateBirthDateControl();
+  }
 
   readonly showPassword = signal<boolean>(false);
   readonly showConfirmPassword = signal<boolean>(false);
