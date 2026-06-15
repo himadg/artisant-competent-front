@@ -1,7 +1,7 @@
 <div class="my-12 md:my-24">
     <h1 class="my-8 text-4xl font-semibold text-center">{{ 'register.title' | transloco }}</h1>
 
-    <form [formGroup]="form" (ngSubmit)="submit()" class="py-8 mx-auto space-y-4 max-w-[29rem] autofill-fix">
+    <form [formGroup]="form" (ngSubmit)="submit()" class="py-8 px-4 mx-auto space-y-4 max-w-[29rem] autofill-fix">
         <div class="grid gap-4 items-stretch md:grid-cols-2">
             <div class="flex justify-center items-center">
                 <div
@@ -258,8 +258,12 @@
         <div class="flex flex-col gap-2 items-center mt-4">
             <button
                 type="submit"
-                class="px-4 py-2 rounded-lg text-[var(--primary-beige)] bg-grad-water-green block mx-auto"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[var(--primary-beige)] bg-grad-water-green mx-auto disabled:opacity-60 disabled:cursor-not-allowed"
+                [disabled]="submitting()"
             >
+                @if (submitting()) {
+                    <span class="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                }
                 {{ 'register.submit' | transloco }}
             </button>
             @if (showSubmitError()) {

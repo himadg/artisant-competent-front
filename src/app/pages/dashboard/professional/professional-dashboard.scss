@@ -296,6 +296,12 @@
   opacity: 0.7;
 }
 
+.pro-since-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
 .pro-badge-amod {
   display: inline-flex;
   align-items: center;
@@ -710,7 +716,7 @@
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--color);
-  margin: 0 0 0.2rem;
+  margin: 0 1rem 0.2rem 0;
 }
 
 .trusted-contact-phone {
@@ -1023,8 +1029,16 @@
     justify-content: center;
   }
 
+  .pro-since-badge {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
   .pro-badge-amod {
-    font-size: 0.875rem;
+    font-size: 0.6rem;
   }
 
   /* ── Onglets ── */

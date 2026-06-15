@@ -14,12 +14,12 @@ export interface AddressSuggestion {
 
 @Injectable({ providedIn: 'root' })
 export class GeocodingService {
-  private readonly baseUrl = 'https://api-adresse.data.gouv.fr/search/';
+  private readonly baseUrl = '/addresses/geocode';
 
   constructor(private http: HttpClient) {}
 
   lookupCity(postalCode: string): Observable<string | null> {
-    const params = new HttpParams().set('q', postalCode).set('limit', '1');
+    const params = new HttpParams().set('q', postalCode);
     return this.http.get<any>(this.baseUrl, { params }).pipe(
       map((res) => (res.features?.[0]?.properties?.city as string) ?? null),
       catchError(() => of(null)),
@@ -27,7 +27,7 @@ export class GeocodingService {
   }
 
   search(query: string): Observable<AddressSuggestion[]> {
-    const params = new HttpParams().set('q', query).set('limit', '5');
+    const params = new HttpParams().set('q', query);
     return this.http.get<any>(this.baseUrl, { params }).pipe(
       map((res) =>
         (res.features ?? []).map((feature: any) => ({

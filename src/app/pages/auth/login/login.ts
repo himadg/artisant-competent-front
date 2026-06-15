@@ -28,6 +28,7 @@ export class LoginPage {
 
   readonly registeredPro = this.route.snapshot.queryParamMap.get('registeredPro') === 'success';
   readonly registeredProMailFailed = this.route.snapshot.queryParamMap.get('mailFailed') === '1';
+  readonly registeredIndividual = this.route.snapshot.queryParamMap.get('registeredIndividual') === 'success';
 
   async submit() {
     if (this.form.invalid) {

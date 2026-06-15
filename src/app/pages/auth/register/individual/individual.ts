@@ -89,6 +89,7 @@ export class RegisterIndividual implements OnDestroy {
   readonly showConfirmPassword = signal(false);
   readonly passwordFocused = signal(false);
   readonly showSubmitError = signal(false);
+  readonly submitting = signal(false);
   readonly legalModalOpen = signal(false);
   readonly referralCodeError = signal(false);
 
@@ -245,6 +246,7 @@ export class RegisterIndividual implements OnDestroy {
       ...(referralCode ? { referralCode } : {}),
     };
 
+    this.submitting.set(true);
     this.userApi
       .registerIndividual(payload, captchaToken)
       .pipe(
@@ -261,9 +263,10 @@ export class RegisterIndividual implements OnDestroy {
       )
       .subscribe({
         next: () => {
-          this.router.navigate(['/auth/login']);
+          this.router.navigate(['/auth/login'], { queryParams: { registeredIndividual: 'success' } });
         },
         error: (err) => {
+          this.submitting.set(false);
           const msg = (err?.error?.message ?? '') as string;
           if (msg === 'INVALID_REFERRAL_CODE') {
             this.referralCodeError.set(true);

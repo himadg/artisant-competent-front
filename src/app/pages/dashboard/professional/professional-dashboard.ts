@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal, computed } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule, PlatformLocation } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { forkJoin } from 'rxjs';
+import { Subject, debounceTime, distinctUntilChanged, filter, forkJoin, switchMap } from 'rxjs';
+import { GeocodingService, AddressSuggestion } from '../../../core/services/geocoding.service';
 import { DashboardApiService } from '../../../core/services/dashboard-api.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { UserApiService } from '../../../core/services/user-api.service';
@@ -31,6 +32,8 @@ const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'satu
   styleUrl: './professional-dashboard.scss',
 })
 export class ProfessionalDashboard implements OnInit {
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly geocodingService = inject(GeocodingService);
   private readonly dashboardApi = inject(DashboardApiService);
   private readonly userApi = inject(UserApiService);
   private readonly affiliationApi = inject(AffiliationApiService);
@@ -91,6 +94,14 @@ export class ProfessionalDashboard implements OnInit {
     });
   }
 
+  // ── Address autocomplete ──────────────────────────────────────────────────
+  private readonly personalAddressSearch$ = new Subject<string>();
+  private readonly workAddressSearch$ = new Subject<string>();
+  readonly personalAddressSuggestions = signal<AddressSuggestion[]>([]);
+  readonly personalAddressOpen = signal(false);
+  readonly workAddressSuggestions = signal<AddressSuggestion[]>([]);
+  readonly workAddressOpen = signal(false);
+
   constructor() {
     inject(BreakpointObserver)
       .observe('(orientation: landscape)')
@@ -101,6 +112,74 @@ export class ProfessionalDashboard implements OnInit {
           this.moreMenuContentDisplayed.set(false);
         }
       });
+
+    this.personalAddressSearch$.pipe(
+      debounceTime(300), distinctUntilChanged(),
+      filter(q => q.length >= 3),
+      switchMap(q => this.geocodingService.search(q)),
+      takeUntilDestroyed(),
+    ).subscribe(s => this.personalAddressSuggestions.set(s));
+
+    this.workAddressSearch$.pipe(
+      debounceTime(300), distinctUntilChanged(),
+      filter(q => q.length >= 3),
+      switchMap(q => this.geocodingService.search(q)),
+      takeUntilDestroyed(),
+    ).subscribe(s => this.workAddressSuggestions.set(s));
+  }
+
+  onPersonalAddressSearch(e: Event) {
+    const q = (e.target as HTMLInputElement).value;
+    if (q.length < 3) { this.personalAddressSuggestions.set([]); return; }
+    this.personalAddressSearch$.next(q);
+  }
+
+  selectPersonalAddress(addr: AddressSuggestion) {
+    this.personalAddressSuggestions.set([]);
+    this.personalAddressOpen.set(false);
+    if (addr.streetNumber) this.editPersonalInfo.address.streetNumber = addr.streetNumber;
+    this.editPersonalInfo.address.streetName = addr.streetName;
+    this.editPersonalInfo.address.postalCode = addr.postalCode;
+    this.editPersonalInfo.address.city = addr.city;
+  }
+
+  closePersonalAddressSuggestions() {
+    setTimeout(() => this.personalAddressOpen.set(false), 150);
+  }
+
+  onPersonalPostalCodeInput(e: Event) {
+    const code = (e.target as HTMLInputElement).value;
+    if (code.length !== 5) return;
+    this.geocodingService.lookupCity(code).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(city => {
+      if (city) this.editPersonalInfo.address.city = city;
+    });
+  }
+
+  onWorkAddressSearch(e: Event) {
+    const q = (e.target as HTMLInputElement).value;
+    if (q.length < 3) { this.workAddressSuggestions.set([]); return; }
+    this.workAddressSearch$.next(q);
+  }
+
+  selectWorkAddress(addr: AddressSuggestion) {
+    this.workAddressSuggestions.set([]);
+    this.workAddressOpen.set(false);
+    if (addr.streetNumber) this.editCompanyExtra.workAddress.streetNumber = addr.streetNumber;
+    this.editCompanyExtra.workAddress.streetName = addr.streetName;
+    this.editCompanyExtra.workAddress.postalCode = addr.postalCode;
+    this.editCompanyExtra.workAddress.city = addr.city;
+  }
+
+  closeWorkAddressSuggestions() {
+    setTimeout(() => this.workAddressOpen.set(false), 150);
+  }
+
+  onWorkPostalCodeInput(e: Event) {
+    const code = (e.target as HTMLInputElement).value;
+    if (code.length !== 5) return;
+    this.geocodingService.lookupCity(code).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(city => {
+      if (city) this.editCompanyExtra.workAddress.city = city;
+    });
   }
 
   setSection(section: ProSection) {
@@ -377,7 +456,10 @@ export class ProfessionalDashboard implements OnInit {
   // ── Personal info ─────────────────────────────────────────────────────────
   readonly editPersonalInfoMode = signal(false);
   readonly savingPersonalInfo = signal(false);
-  editPersonalInfo = { gender: '', lastName: '', firstName: '', birthDate: '', email: '', professionalEmail: '', managerPhone: '' };
+  editPersonalInfo = {
+    gender: '', lastName: '', firstName: '', birthDate: '', email: '', professionalEmail: '', managerPhone: '',
+    address: { streetNumber: '', streetName: '', additionalInfo: '', postalCode: '', city: '' },
+  };
 
   enterEditPersonalInfo() {
     const d = this.data();
@@ -391,6 +473,13 @@ export class ProfessionalDashboard implements OnInit {
       email: d.email,
       professionalEmail: p.professionalEmail ?? '',
       managerPhone: p.managerPhone,
+      address: {
+        streetNumber: d.address?.streetNumber ?? '',
+        streetName: d.address?.streetName ?? '',
+        additionalInfo: d.address?.additionalInfo ?? '',
+        postalCode: String(d.address?.postalCode ?? ''),
+        city: d.address?.city ?? '',
+      },
     };
     this.editPersonalInfoMode.set(true);
   }
@@ -400,10 +489,17 @@ export class ProfessionalDashboard implements OnInit {
   saveEditPersonalInfo() {
     const d = this.data();
     if (!d) return;
-    const { gender, lastName, firstName, birthDate, email, professionalEmail, managerPhone } = this.editPersonalInfo;
+    const { gender, lastName, firstName, birthDate, email, professionalEmail, managerPhone, address } = this.editPersonalInfo;
+    const addressPayload = {
+      streetNumber: address.streetNumber,
+      streetName: address.streetName,
+      additionalInfo: address.additionalInfo || null,
+      postalCode: address.postalCode,
+      city: address.city,
+    };
     this.savingPersonalInfo.set(true);
     forkJoin([
-      this.userApi.updateUser(d.id, { gender, lastName, firstName, birthDate, email }),
+      this.userApi.updateUser(d.id, { gender, lastName, firstName, birthDate, email, address: addressPayload }),
       this.userApi.updateProfessional(d.id, { managerPhone, professionalEmail: professionalEmail || null }),
     ]).subscribe({
       next: () => {
@@ -411,6 +507,14 @@ export class ProfessionalDashboard implements OnInit {
           prev ? {
             ...prev,
             gender, lastName, firstName, birthDate, email,
+            address: prev.address ? {
+              ...prev.address,
+              streetNumber: addressPayload.streetNumber,
+              streetName: addressPayload.streetName,
+              additionalInfo: addressPayload.additionalInfo ?? undefined,
+              postalCode: Number(addressPayload.postalCode) || prev.address.postalCode,
+              city: addressPayload.city,
+            } : prev.address,
             professionalProfile: { ...prev.professionalProfile, managerPhone, professionalEmail: professionalEmail || null },
           } : prev,
         );
@@ -506,12 +610,25 @@ export class ProfessionalDashboard implements OnInit {
   // ── Company extra (yearsExperience, onCall) ───────────────────────────────
   readonly editCompanyExtraMode = signal(false);
   readonly savingCompanyExtra = signal(false);
-  editCompanyExtra = { yearsExperience: 0, onCall: false };
+  editCompanyExtra = {
+    yearsExperience: 0, onCall: false,
+    workAddress: { streetNumber: '', streetName: '', additionalInfo: '', postalCode: '', city: '' },
+  };
 
   enterEditCompanyExtra() {
     const p = this.data()?.professionalProfile;
     if (!p) return;
-    this.editCompanyExtra = { yearsExperience: p.yearsExperience, onCall: p.onCall };
+    this.editCompanyExtra = {
+      yearsExperience: p.yearsExperience,
+      onCall: p.onCall,
+      workAddress: {
+        streetNumber: p.workAddress?.streetNumber ?? '',
+        streetName: p.workAddress?.streetName ?? '',
+        additionalInfo: p.workAddress?.additionalInfo ?? '',
+        postalCode: String(p.workAddress?.postalCode ?? ''),
+        city: p.workAddress?.city ?? '',
+      },
+    };
     this.editCompanyExtraMode.set(true);
   }
 
@@ -520,14 +637,32 @@ export class ProfessionalDashboard implements OnInit {
   saveEditCompanyExtra() {
     const d = this.data();
     if (!d) return;
-    const { yearsExperience, onCall } = this.editCompanyExtra;
+    const { yearsExperience, onCall, workAddress } = this.editCompanyExtra;
+    const workAddressPayload = {
+      streetNumber: workAddress.streetNumber,
+      streetName: workAddress.streetName,
+      additionalInfo: workAddress.additionalInfo || null,
+      postalCode: workAddress.postalCode,
+      city: workAddress.city,
+    };
     this.savingCompanyExtra.set(true);
-    this.userApi.updateProfessional(d.id, { yearsExperience, onCall }).subscribe({
+    this.userApi.updateProfessional(d.id, { yearsExperience, onCall, workAddress: workAddressPayload }).subscribe({
       next: () => {
         this.data.update((prev) =>
           prev ? {
             ...prev,
-            professionalProfile: { ...prev.professionalProfile, yearsExperience, onCall, isCmod: yearsExperience >= 3 },
+            professionalProfile: {
+              ...prev.professionalProfile,
+              yearsExperience, onCall, isCmod: yearsExperience >= 3,
+              workAddress: prev.professionalProfile.workAddress ? {
+                ...prev.professionalProfile.workAddress,
+                streetNumber: workAddressPayload.streetNumber,
+                streetName: workAddressPayload.streetName,
+                additionalInfo: workAddressPayload.additionalInfo ?? undefined,
+                postalCode: Number(workAddressPayload.postalCode) || prev.professionalProfile.workAddress.postalCode,
+                city: workAddressPayload.city,
+              } : prev.professionalProfile.workAddress,
+            },
           } : prev,
         );
         this.editCompanyExtraMode.set(false);

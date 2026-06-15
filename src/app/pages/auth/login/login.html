@@ -1,6 +1,12 @@
 <div class="my-12 md:my-24">
     <h1 class="my-8 text-4xl font-semibold text-center">{{ 'login.title' | transloco }}</h1>
 
+    @if (registeredIndividual) {
+        <p class="px-4 py-3 mx-auto mb-4 max-w-[29rem] text-sm text-green-800 bg-green-100 rounded border border-green-300">
+            {{ 'login.registeredIndividualNotice' | transloco }}
+        </p>
+    }
+
     @if (registeredPro) {
         @if (registeredProMailFailed) {
             <p class="px-4 py-3 mx-auto mb-4 max-w-[29rem] text-sm text-yellow-800 bg-yellow-100 rounded border border-yellow-300">

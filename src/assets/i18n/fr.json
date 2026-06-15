@@ -485,14 +485,49 @@
         "comparatif": {
           "title": "Comparatif : Artisan Compétent vs autres plateformes vs Google direct",
           "lead": "Trois manières de trouver un électricien en France. Trois niveaux de protection radicalement différents, particulièrement sur la conformité réglementaire.",
-          "headers": ["Critère", "Autres plateformes", "Google direct", "Artisan Compétent"],
+          "headers": [
+            "Critère",
+            "Autres plateformes",
+            "Google direct",
+            "Artisan Compétent"
+          ],
           "rows": [
-            ["Vérification SIRET artisan", "Variable", "Aucune", "Systématique avant validation"],
-            ["Vérification assurances et habilitation NF C 18-510", "Rare", "Aucune", "RC pro, décennale, habilitation, IRVE si applicable"],
-            ["Paiement encadré", "Variable", "Aucun", "Séquestre de fonds Stripe, libération à 48h"],
-            ["Recours en cas d'abus", "Limité", "Aucun", "Retenue jusqu'à 250 € sur signalement < 48h"],
-            ["Conformité NF C 15-100 et Consuel", "Variable", "Aucune", "Imposée"],
-            ["Conseiller maître d'ouvrage", "Non", "Aucun", "CMOD disponible sur option"]
+            [
+              "Vérification SIRET artisan",
+              "Variable",
+              "Aucune",
+              "Systématique avant validation"
+            ],
+            [
+              "Vérification assurances et habilitation NF C 18-510",
+              "Rare",
+              "Aucune",
+              "RC pro, décennale, habilitation, IRVE si applicable"
+            ],
+            [
+              "Paiement encadré",
+              "Variable",
+              "Aucun",
+              "Séquestre de fonds Stripe, libération à 48h"
+            ],
+            [
+              "Recours en cas d'abus",
+              "Limité",
+              "Aucun",
+              "Retenue jusqu'à 250 € sur signalement < 48h"
+            ],
+            [
+              "Conformité NF C 15-100 et Consuel",
+              "Variable",
+              "Aucune",
+              "Imposée"
+            ],
+            [
+              "Conseiller maître d'ouvrage",
+              "Non",
+              "Aucun",
+              "CMOD disponible sur option"
+            ]
           ]
         },
         "traps": {
@@ -867,12 +902,42 @@
             "Artisan Compétent"
           ],
           "rows": [
-            ["Vérification SIRET artisan", "Variable", "Aucune", "Systématique avant validation"],
-            ["Vérification assurances", "Rare", "Aucune", "RC pro, décennale, PG, RGE si applicable"],
-            ["Paiement encadré", "Variable", "Non", "Séquestre de fonds Stripe, libération à 48h"],
-            ["Recours en cas d’abus", "Limité", "Aucun", "Retenue jusqu’à 250 € sur signalement < 48h"],
-            ["Tarif horaire transparent", "Variable", "Variable", "Devis détaillé imposé avant intervention"],
-            ["Conseiller maître d’ouvrage", "Non", "Non", "CMOD disponible sur option"]
+            [
+              "Vérification SIRET artisan",
+              "Variable",
+              "Aucune",
+              "Systématique avant validation"
+            ],
+            [
+              "Vérification assurances",
+              "Rare",
+              "Aucune",
+              "RC pro, décennale, PG, RGE si applicable"
+            ],
+            [
+              "Paiement encadré",
+              "Variable",
+              "Non",
+              "Séquestre de fonds Stripe, libération à 48h"
+            ],
+            [
+              "Recours en cas d’abus",
+              "Limité",
+              "Aucun",
+              "Retenue jusqu’à 250 € sur signalement < 48h"
+            ],
+            [
+              "Tarif horaire transparent",
+              "Variable",
+              "Variable",
+              "Devis détaillé imposé avant intervention"
+            ],
+            [
+              "Conseiller maître d’ouvrage",
+              "Non",
+              "Non",
+              "CMOD disponible sur option"
+            ]
           ]
         },
         "traps": {
@@ -1037,13 +1102,48 @@
             "Artisan Compétent"
           ],
           "rows": [
-            ["Vérification SIRET artisan", "Variable", "Aucune", "Systématique avant validation"],
-            ["Vérification assurance RC pro et agrément préfectoral", "Rare", "Aucune", "RC pro, agrément vidange, justificatif matériel"],
-            ["Paiement encadré", "Non", "Non", "Séquestre de fonds Stripe, libération à 48h"],
-            ["Recours en cas de canalisation reboucher sous 48h", "Limité", "Aucun", "Fonds bloqués jusqu’à validation effective"],
-            ["Recours en cas d’abus", "Limité", "Aucun", "Retenue jusqu’à 250 € sur signalement < 48h"],
-            ["Tarification cadrée sur référence du marché", "Non", "Aucune", "Grille Compagnie des Déboucheurs en cours d’intégration"],
-            ["Conseiller maître d’ouvrage", "Non", "Non", "CMOD disponible sur option"]
+            [
+              "Vérification SIRET artisan",
+              "Variable",
+              "Aucune",
+              "Systématique avant validation"
+            ],
+            [
+              "Vérification assurance RC pro et agrément préfectoral",
+              "Rare",
+              "Aucune",
+              "RC pro, agrément vidange, justificatif matériel"
+            ],
+            [
+              "Paiement encadré",
+              "Non",
+              "Non",
+              "Séquestre de fonds Stripe, libération à 48h"
+            ],
+            [
+              "Recours en cas de canalisation reboucher sous 48h",
+              "Limité",
+              "Aucun",
+              "Fonds bloqués jusqu’à validation effective"
+            ],
+            [
+              "Recours en cas d’abus",
+              "Limité",
+              "Aucun",
+              "Retenue jusqu’à 250 € sur signalement < 48h"
+            ],
+            [
+              "Tarification cadrée sur référence du marché",
+              "Non",
+              "Aucune",
+              "Grille Compagnie des Déboucheurs en cours d’intégration"
+            ],
+            [
+              "Conseiller maître d’ouvrage",
+              "Non",
+              "Non",
+              "CMOD disponible sur option"
+            ]
           ]
         },
         "traps": {
@@ -1445,13 +1545,48 @@
             "Artisan Compétent"
           ],
           "rows": [
-            ["Vérification SIRET de l’artisan", "Variable selon la plateforme", "Aucune par défaut", "Systématique avant validation du profil"],
-            ["Attestation fluides frigorigènes contrôlée", "Rare", "Aucune", "Catégorie I à IV vérifiée selon périmètre déclaré"],
-            ["Vérification assurances (RC pro, décennale)", "Rare ou déclarative", "Aucune", "RC pro et décennale exigées et vérifiées"],
-            ["Qualification RGE QualiPAC pour pompes à chaleur", "Variable", "Aucune", "Vérifiée pour les chantiers éligibles aux aides"],
-            ["Paiement encadré", "Non", "Non", "Séquestre de fonds Stripe, libération à 48h"],
-            ["Recours en cas de malfaçon", "Limité", "Aucun", "Retenue jusqu’à 250 € si signalement < 48h"],
-            ["Conseiller maître d’ouvrage", "Non", "Non", "CMOD disponible sur option"]
+            [
+              "Vérification SIRET de l’artisan",
+              "Variable selon la plateforme",
+              "Aucune par défaut",
+              "Systématique avant validation du profil"
+            ],
+            [
+              "Attestation fluides frigorigènes contrôlée",
+              "Rare",
+              "Aucune",
+              "Catégorie I à IV vérifiée selon périmètre déclaré"
+            ],
+            [
+              "Vérification assurances (RC pro, décennale)",
+              "Rare ou déclarative",
+              "Aucune",
+              "RC pro et décennale exigées et vérifiées"
+            ],
+            [
+              "Qualification RGE QualiPAC pour pompes à chaleur",
+              "Variable",
+              "Aucune",
+              "Vérifiée pour les chantiers éligibles aux aides"
+            ],
+            [
+              "Paiement encadré",
+              "Non",
+              "Non",
+              "Séquestre de fonds Stripe, libération à 48h"
+            ],
+            [
+              "Recours en cas de malfaçon",
+              "Limité",
+              "Aucun",
+              "Retenue jusqu’à 250 € si signalement < 48h"
+            ],
+            [
+              "Conseiller maître d’ouvrage",
+              "Non",
+              "Non",
+              "CMOD disponible sur option"
+            ]
           ]
         },
         "traps": {
@@ -1843,13 +1978,48 @@
             "Artisan Compétent"
           ],
           "rows": [
-            ["Vérification SIRET de l’artisan", "Variable selon la plateforme", "Aucune par défaut", "Systématique avant validation du profil"],
-            ["Certificat Certibiocide contrôlé", "Rare", "Aucune", "Vérifié et déposé au tableau de bord"],
-            ["Vérification assurances (RC pro)", "Rare ou déclarative", "Aucune", "RC pro exigée et vérifiée"],
-            ["Paiement encadré", "Non", "Non", "Séquestre de fonds Stripe, libération à 48h"],
-            ["Recours en cas d’inefficacité de traitement", "Limité", "Aucun", "Retenue jusqu’à 250 € si signalement < 48h"],
-            ["Visites de contrôle documentées", "Variable", "Aucune", "Photos et compte-rendu au tableau de bord"],
-            ["Conseiller maître d’ouvrage", "Non", "Non", "CMOD disponible sur option"]
+            [
+              "Vérification SIRET de l’artisan",
+              "Variable selon la plateforme",
+              "Aucune par défaut",
+              "Systématique avant validation du profil"
+            ],
+            [
+              "Certificat Certibiocide contrôlé",
+              "Rare",
+              "Aucune",
+              "Vérifié et déposé au tableau de bord"
+            ],
+            [
+              "Vérification assurances (RC pro)",
+              "Rare ou déclarative",
+              "Aucune",
+              "RC pro exigée et vérifiée"
+            ],
+            [
+              "Paiement encadré",
+              "Non",
+              "Non",
+              "Séquestre de fonds Stripe, libération à 48h"
+            ],
+            [
+              "Recours en cas d’inefficacité de traitement",
+              "Limité",
+              "Aucun",
+              "Retenue jusqu’à 250 € si signalement < 48h"
+            ],
+            [
+              "Visites de contrôle documentées",
+              "Variable",
+              "Aucune",
+              "Photos et compte-rendu au tableau de bord"
+            ],
+            [
+              "Conseiller maître d’ouvrage",
+              "Non",
+              "Non",
+              "CMOD disponible sur option"
+            ]
           ]
         },
         "traps": {
@@ -1898,16 +2068,46 @@
           "title": "Questions fréquentes",
           "lead": "Cette FAQ regroupe les questions les plus posées par les particuliers qui cherchent un spécialiste anti-nuisibles vérifié sur Artisan Compétent.",
           "items": [
-            { "q": "Qu’est-ce que le Certibiocide et pourquoi est-il obligatoire ?", "a": "Le Certibiocide est un certificat individuel obligatoire pour toute personne qui achète, distribue ou utilise des produits biocides à usage professionnel relevant des catégories TP14 (rodenticides), TP18 (insecticides à usage professionnel) et TP21 (produits antifouling). Il atteste que l’opérateur connaît les risques, les bons usages et la réglementation. Sur Artisan Compétent, il est vérifié à la souscription et déposé au tableau de bord après signature du devis." },
-            { "q": "Combien de passages faut-il pour traiter des punaises de lit ?", "a": "Le standard professionnel est de deux à trois passages espacés de 15 à 30 jours, pour interrompre le cycle reproductif (œufs non éclos lors du premier passage, adultes émergents traités au second). Certains protocoles thermiques (vapeur sèche à très haute température) peuvent réduire à un passage plus un contrôle. Sur Artisan Compétent, le calendrier est fixé au devis et chaque passage est documenté." },
-            { "q": "Mon assurance peut-elle rembourser un traitement anti-nuisibles ?", "a": "Cela dépend de votre contrat multirisques habitation et des garanties optionnelles souscrites. Certaines polices incluent la prise en charge des frais de dératisation ou de désinsectisation, parfois aussi le remplacement de matelas après punaises de lit. À vérifier directement avec votre assureur, devis en main. Artisan Compétent n’intervient pas dans la procédure d’indemnisation." },
-            { "q": "Le traitement chimique est-il dangereux pour les enfants et les animaux ?", "a": "Les produits biocides à usage professionnel sont réglementés et leur application suit des protocoles précis (délais avant retour dans le logement, ventilation, protection des aliments et des animaux). L’artisan vérifié vous remet les fiches de données de sécurité des produits utilisés et les consignes post-application. Si vous avez des enfants en bas âge, des animaux domestiques ou des personnes allergiques, signalez-le au devis : l’artisan adapte le protocole (gels appâts plutôt que pulvérisations, traitement thermique sans chimie, etc.)." },
-            { "q": "Combien coûte une dératisation ?", "a": "Le coût dépend de la surface, du niveau d’infestation, du nombre de passages et de la pose éventuelle de pièges ou de bouchages. Aucun forfait national fiable n’existe : seul un devis chiffré du spécialiste vérifié engage l’artisan. Sur Artisan Compétent, la décomposition (déplacement, méthode, produits, passages) est imposée avant déclenchement du paiement." },
-            { "q": "Que se passe-t-il si l’infestation revient après le traitement ?", "a": "Si l’infestation revient pendant la fenêtre couverte par le devis (passages prévus, période de garantie post-traitement annoncée), l’artisan est tenu d’intervenir à nouveau sans facturation supplémentaire. Vous signalez le retour dans le tableau de bord avec photos. Tant que le séquestre est actif, les fonds ne sont pas libérés. Si l’infestation revient après libération des fonds, c’est la garantie post-traitement annoncée au devis qui s’applique." },
-            { "q": "Le séquestre couvre-t-il toutes les visites de contrôle prévues ?", "a": "Oui. Le séquestre Stripe retient l’intégralité du montant TTC du devis signé, y compris les passages de traitement et les visites de contrôle prévues. Le séquestre n’est libéré qu’après la dernière visite et le délai de 48h." },
-            { "q": "À quoi sert CMOD pour un chantier anti-nuisibles ?", "a": "Le CMOD peut être déclenché lorsqu’aucune solution amiable n’a pu être trouvée entre le client et l’artisan dans le cadre d’un litige lié à une intervention réalisée via la plateforme Artisan Compétent.\nCette procédure peut être initiée soit par le client, soit par l’équipe Artisan Compétent lorsqu’un désaccord persiste malgré les échanges entre les parties.\nL’intervention du CMOD donne lieu à des frais forfaitaires de 35 €, pris en charge par l’artisan concerné. Ce montant sera directement déduit de la somme lui revenant sur les fonds séquestrés dans le cadre du dossier concerné.\nL’artisan a donc tout intérêt à privilégier un règlement amiable et rapide avec le client avant l’enclenchement du CMOD, afin d’éviter cette facturation complémentaire ainsi qu’un allongement du traitement du dossier." },
-            { "q": "Faut-il déclarer un nid de frelons asiatiques ?", "a": "Dans plusieurs régions et communes françaises, le frelon asiatique fait l’objet de plans de surveillance et de déclaration obligatoire. Renseignez-vous auprès de votre mairie ou de la fédération départementale des chasseurs. La destruction du nid doit être faite par un professionnel équipé. Sur Artisan Compétent, l’artisan vérifié intervient avec l’équipement adapté (combinaison, nacelle si besoin, produits autorisés)." },
-            { "q": "Quelles villes sont couvertes par Artisan Compétent pour l’anti-nuisibles ?", "a": "Artisan Compétent ambitionne de couvrir la France métropolitaine, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d’intervention de 30 km autour de chaque ville référencée. Toutes les grandes métropoles sont couvertes (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille)." }
+            {
+              "q": "Qu’est-ce que le Certibiocide et pourquoi est-il obligatoire ?",
+              "a": "Le Certibiocide est un certificat individuel obligatoire pour toute personne qui achète, distribue ou utilise des produits biocides à usage professionnel relevant des catégories TP14 (rodenticides), TP18 (insecticides à usage professionnel) et TP21 (produits antifouling). Il atteste que l’opérateur connaît les risques, les bons usages et la réglementation. Sur Artisan Compétent, il est vérifié à la souscription et déposé au tableau de bord après signature du devis."
+            },
+            {
+              "q": "Combien de passages faut-il pour traiter des punaises de lit ?",
+              "a": "Le standard professionnel est de deux à trois passages espacés de 15 à 30 jours, pour interrompre le cycle reproductif (œufs non éclos lors du premier passage, adultes émergents traités au second). Certains protocoles thermiques (vapeur sèche à très haute température) peuvent réduire à un passage plus un contrôle. Sur Artisan Compétent, le calendrier est fixé au devis et chaque passage est documenté."
+            },
+            {
+              "q": "Mon assurance peut-elle rembourser un traitement anti-nuisibles ?",
+              "a": "Cela dépend de votre contrat multirisques habitation et des garanties optionnelles souscrites. Certaines polices incluent la prise en charge des frais de dératisation ou de désinsectisation, parfois aussi le remplacement de matelas après punaises de lit. À vérifier directement avec votre assureur, devis en main. Artisan Compétent n’intervient pas dans la procédure d’indemnisation."
+            },
+            {
+              "q": "Le traitement chimique est-il dangereux pour les enfants et les animaux ?",
+              "a": "Les produits biocides à usage professionnel sont réglementés et leur application suit des protocoles précis (délais avant retour dans le logement, ventilation, protection des aliments et des animaux). L’artisan vérifié vous remet les fiches de données de sécurité des produits utilisés et les consignes post-application. Si vous avez des enfants en bas âge, des animaux domestiques ou des personnes allergiques, signalez-le au devis : l’artisan adapte le protocole (gels appâts plutôt que pulvérisations, traitement thermique sans chimie, etc.)."
+            },
+            {
+              "q": "Combien coûte une dératisation ?",
+              "a": "Le coût dépend de la surface, du niveau d’infestation, du nombre de passages et de la pose éventuelle de pièges ou de bouchages. Aucun forfait national fiable n’existe : seul un devis chiffré du spécialiste vérifié engage l’artisan. Sur Artisan Compétent, la décomposition (déplacement, méthode, produits, passages) est imposée avant déclenchement du paiement."
+            },
+            {
+              "q": "Que se passe-t-il si l’infestation revient après le traitement ?",
+              "a": "Si l’infestation revient pendant la fenêtre couverte par le devis (passages prévus, période de garantie post-traitement annoncée), l’artisan est tenu d’intervenir à nouveau sans facturation supplémentaire. Vous signalez le retour dans le tableau de bord avec photos. Tant que le séquestre est actif, les fonds ne sont pas libérés. Si l’infestation revient après libération des fonds, c’est la garantie post-traitement annoncée au devis qui s’applique."
+            },
+            {
+              "q": "Le séquestre couvre-t-il toutes les visites de contrôle prévues ?",
+              "a": "Oui. Le séquestre Stripe retient l’intégralité du montant TTC du devis signé, y compris les passages de traitement et les visites de contrôle prévues. Le séquestre n’est libéré qu’après la dernière visite et le délai de 48h."
+            },
+            {
+              "q": "À quoi sert CMOD pour un chantier anti-nuisibles ?",
+              "a": "Le CMOD peut être déclenché lorsqu’aucune solution amiable n’a pu être trouvée entre le client et l’artisan dans le cadre d’un litige lié à une intervention réalisée via la plateforme Artisan Compétent.\nCette procédure peut être initiée soit par le client, soit par l’équipe Artisan Compétent lorsqu’un désaccord persiste malgré les échanges entre les parties.\nL’intervention du CMOD donne lieu à des frais forfaitaires de 35 €, pris en charge par l’artisan concerné. Ce montant sera directement déduit de la somme lui revenant sur les fonds séquestrés dans le cadre du dossier concerné.\nL’artisan a donc tout intérêt à privilégier un règlement amiable et rapide avec le client avant l’enclenchement du CMOD, afin d’éviter cette facturation complémentaire ainsi qu’un allongement du traitement du dossier."
+            },
+            {
+              "q": "Faut-il déclarer un nid de frelons asiatiques ?",
+              "a": "Dans plusieurs régions et communes françaises, le frelon asiatique fait l’objet de plans de surveillance et de déclaration obligatoire. Renseignez-vous auprès de votre mairie ou de la fédération départementale des chasseurs. La destruction du nid doit être faite par un professionnel équipé. Sur Artisan Compétent, l’artisan vérifié intervient avec l’équipement adapté (combinaison, nacelle si besoin, produits autorisés)."
+            },
+            {
+              "q": "Quelles villes sont couvertes par Artisan Compétent pour l’anti-nuisibles ?",
+              "a": "Artisan Compétent ambitionne de couvrir la France métropolitaine, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d’intervention de 30 km autour de chaque ville référencée. Toutes les grandes métropoles sont couvertes (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille)."
+            }
           ]
         },
         "conclusion": {
@@ -1954,9 +2154,18 @@
     "birthMonth": "Mois",
     "birthYear": "Année",
     "months": {
-      "1": "Janvier", "2": "Février", "3": "Mars", "4": "Avril",
-      "5": "Mai", "6": "Juin", "7": "Juillet", "8": "Août",
-      "9": "Septembre", "10": "Octobre", "11": "Novembre", "12": "Décembre"
+      "1": "Janvier",
+      "2": "Février",
+      "3": "Mars",
+      "4": "Avril",
+      "5": "Mai",
+      "6": "Juin",
+      "7": "Juillet",
+      "8": "Août",
+      "9": "Septembre",
+      "10": "Octobre",
+      "11": "Novembre",
+      "12": "Décembre"
     },
     "fields": {
       "lastName": "Nom",
@@ -2144,7 +2353,7 @@
       "managerPhone": "Numéro de téléphone du gérant",
       "email": "Email personnel du gérant",
       "professionalEmail": "Email professionnel du gérant",
-        "tradesHint": "(Plusieurs choix possibles, sous réserve de détenir les assurances, certifications, habilitations ou qualifications requises pour les métiers sélectionnés)",
+      "tradesHint": "(Plusieurs choix possibles, sous réserve de détenir les assurances, certifications, habilitations ou qualifications requises pour les métiers sélectionnés)",
       "professionalEmailHint": "L'email professionnel du gérant peut être identique à l'email personnel",
       "password": "Mot de passe",
       "passwordConfirm": "Confirmation du mot de passe",
@@ -2374,6 +2583,7 @@
       "show": "Afficher le mot de passe",
       "hide": "Masquer le mot de passe"
     },
+    "registeredIndividualNotice": "Votre inscription a bien été enregistrée. Vous pouvez désormais vous connecter avec vos identifiants.",
     "registeredProNotice": "Votre inscription a bien été enregistrée et est en attente de validation. Vous recevrez un email de confirmation prochainement.",
     "registeredProMailFailed": "Votre inscription a été prise en compte. Nous n'avons pas pu vous envoyer d'email de confirmation. Veuillez nous contacter à contact@artisan-competent.com pour valider votre compte."
   },
@@ -2402,6 +2612,7 @@
       "personalAddress": "Adresse personnelle",
       "company": "Entreprise",
       "description": "Description",
+      "companyDescription": "Description et services proposés",
       "companyName": "Raison sociale",
       "siret": "SIRET",
       "managerPhone": "Téléphone gérant",
@@ -2433,7 +2644,23 @@
       "approveProfile": "Approuver ce profil",
       "rejectProfile": "Refuser",
       "selectProfilePrompt": "Sélectionnez un profil dans la liste pour l'examiner",
-      "documentPreview": "Aperçu du document"
+      "documentPreview": "Aperçu du document",
+      "photo": "Photo de profil",
+      "companyStatus": "Statut juridique",
+      "companyStatusCompany": "Société",
+      "companyStatusIndividual": "Entreprise individuelle",
+      "docLogo": "Logo entreprise",
+      "trustedContactName": "Nom du contact",
+      "trustedContactPhone": "Téléphone du contact",
+      "remarks": "Remarques",
+      "additionalRemarks": "Remarques additionnelles",
+      "companyRemarks": "Remarques entreprise",
+      "mediator": "Médiateur de la consommation",
+      "mediatorName": "Nom du médiateur",
+      "mediatorAddress": "Adresse du médiateur",
+      "mediatorWebsite": "Site web",
+      "mediatorContactMethod": "Méthode de contact",
+      "mediatorAdditionalInfo": "Informations complémentaires"
     },
     "errors": {
       "load": "Impossible de charger le dashboard",
@@ -2536,6 +2763,9 @@
       "email": "Email",
       "professionalEmail": "Email professionnel",
       "managerPhone": "Téléphone",
+      "addressStreet": "N° et rue",
+      "addressComplement": "Complément",
+      "addressCity": "CP / Ville",
       "personalAddress": "Adresse personnelle",
       "mediator": "Médiateur de la consommation",
       "mediatorName": "Nom",
@@ -2547,6 +2777,7 @@
       "additionalRemarks": "Remarques personnelles",
       "companyInfo": "Infos entreprise",
       "siret": "SIRET",
+      "companyName": "Raison sociale",
       "companyStatus": "Statut",
       "companyStatusCompany": "Société",
       "companyStatusIndividual": "Entrepreneur individuel",

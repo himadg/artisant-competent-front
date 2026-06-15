@@ -139,6 +139,7 @@ export class RegisterProfessional implements OnDestroy {
   readonly showConfirmPassword = signal<boolean>(false);
   readonly passwordFocused = signal<boolean>(false);
   readonly showSubmitError = signal<boolean>(false);
+  readonly submitting = signal(false);
   readonly referralCodeError = signal(false);
   readonly legalModalOpen = signal(false);
   readonly hasStep1Errors = signal<boolean>(false);
@@ -279,7 +280,10 @@ export class RegisterProfessional implements OnDestroy {
     return this.form.get('professionalProfile.hours') as FormArray;
   }
 
-  nextStep() { this.step.set(2); }
+  nextStep() {
+    this.step.set(2);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
   backStep() { this.step.set(1); }
 
   // --- Address autocomplete ---
@@ -580,9 +584,11 @@ export class RegisterProfessional implements OnDestroy {
       findInvalid(this.form);
 
       setTimeout(() => {
-        const firstError = document.querySelector('.ng-invalid.ng-touched, .force-invalid');
+        const firstError = document.querySelector<HTMLElement>(
+          'input.ng-invalid.ng-touched, select.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched, .force-invalid'
+        );
         if (firstError) {
-          firstError.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       }, 100);
 
@@ -656,6 +662,7 @@ export class RegisterProfessional implements OnDestroy {
 
     let mailSent = true;
 
+    this.submitting.set(true);
     this.userApi.registerProfessional(payload, captchaToken)
       .pipe(
         switchMap(({ userId, accessToken, mailSent: ms }) => {
@@ -695,6 +702,7 @@ export class RegisterProfessional implements OnDestroy {
           });
         },
         error: (err) => {
+          this.submitting.set(false);
           const msg = (err?.error?.message ?? '') as string;
           if (msg === 'INVALID_REFERRAL_CODE') {
             this.referralCodeError.set(true);

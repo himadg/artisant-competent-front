@@ -38,7 +38,14 @@ export class UserApiService {
     return this.http.patch<void>(`/individuals/${userId}/documents`, { photoKey });
   }
 
-  updateUser(userId: string, data: Partial<{ firstName: string; lastName: string; email: string; birthDate: string; gender: string }>): Observable<void> {
+  updateUser(userId: string, data: Partial<{
+    firstName: string;
+    lastName: string;
+    email: string;
+    birthDate: string;
+    gender: string;
+    address: { streetNumber: string; streetName: string; additionalInfo: string | null; postalCode: string; city: string };
+  }>): Observable<void> {
     return this.http.patch<void>(`/users/${userId}`, data);
   }
 
@@ -55,6 +62,7 @@ export class UserApiService {
     openingHours: OpeningHoursUpdate;
     yearsExperience: number;
     onCall: boolean;
+    workAddress: { streetNumber: string; streetName: string; additionalInfo: string | null; postalCode: string; city: string };
     mediatorName: string | null;
     mediatorAddress: string | null;
     mediatorWebsite: string | null;

@@ -17,13 +17,6 @@
             >
                 {{ 'auth.roles.professional' | transloco }}
             </a>
-            <a
-                [routerLink]="['/auth/register']"
-                [queryParams]="{ t: 'supplier' }"
-                class="px-4 py-3 rounded-lg border border-[var(--secondary-beige)] hover:bg-[var(--secondary-beige)] transition-colors no-underline font-medium"
-            >
-                {{ 'auth.roles.supplier' | transloco }}
-            </a>
         </div>
         <p class="text-sm opacity-60">
             {{ 'login.alreadyAccount' | transloco }}

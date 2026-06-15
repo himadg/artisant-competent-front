@@ -34,6 +34,7 @@ export class AdminDashboard implements OnInit {
     this.loading.set(true);
     this.adminApi.getPendingUsers().subscribe({
       next: (users) => {
+        console.log(users);
         this.pendingUsers.set(users);
         this.loading.set(false);
       },
