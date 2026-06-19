@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, of } from 'rxjs';
-
-export interface SiretResult {
-  valid: boolean;
-  companyName?: string;
-  closed?: boolean;
-}
+import { SiretResult } from '../../shared/interfaces/siret-result';
 
 @Injectable({ providedIn: 'root' })
 export class SiretService {

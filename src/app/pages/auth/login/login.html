@@ -1,22 +1,24 @@
 <div class="my-12 md:my-24">
     <h1 class="my-8 text-4xl font-semibold text-center">{{ 'login.title' | transloco }}</h1>
 
-    @if (registeredIndividual) {
-        <p class="px-4 py-3 mx-auto mb-4 max-w-[29rem] text-sm text-green-800 bg-green-100 rounded border border-green-300">
-            {{ 'login.registeredIndividualNotice' | transloco }}
-        </p>
+    @if (flashKey === 'login.registeredIndividualSuccess') {
+        <div class="px-4 py-3 mx-auto mb-4 max-w-[29rem] text-sm text-green-800 bg-green-100 rounded border border-green-300 space-y-1">
+            <p>{{ 'login.registeredIndividualSuccess' | transloco }}</p>
+            <p class="text-xs opacity-80">{{ 'login.spamNotice' | transloco }}</p>
+        </div>
     }
 
-    @if (registeredPro) {
-        @if (registeredProMailFailed) {
-            <p class="px-4 py-3 mx-auto mb-4 max-w-[29rem] text-sm text-yellow-800 bg-yellow-100 rounded border border-yellow-300">
-                {{ 'login.registeredProMailFailed' | transloco }}
-            </p>
-        } @else {
-            <p class="px-4 py-3 mx-auto mb-4 max-w-[29rem] text-sm text-green-800 bg-green-100 rounded border border-green-300">
-                {{ 'login.registeredProNotice' | transloco }}
-            </p>
-        }
+    @if (flashKey === 'login.registeredProSuccess') {
+        <div class="px-4 py-3 mx-auto mb-4 max-w-[29rem] text-sm text-green-800 bg-green-100 rounded border border-green-300 space-y-1">
+            <p>{{ 'login.registeredProSuccess' | transloco }}</p>
+            <p class="text-xs opacity-80">{{ 'login.spamNotice' | transloco }}</p>
+        </div>
+    }
+
+    @if (flashKey === 'login.registeredProMailFailed') {
+        <p class="px-4 py-3 mx-auto mb-4 max-w-[29rem] text-sm text-yellow-800 bg-yellow-100 rounded border border-yellow-300">
+            {{ 'login.registeredProMailFailed' | transloco }}
+        </p>
     }
 
     <form [formGroup]="form" (ngSubmit)="submit()" class="py-8 mx-auto space-y-4 max-w-[29rem] autofill-fix">

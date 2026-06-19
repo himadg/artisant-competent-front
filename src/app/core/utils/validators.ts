@@ -1,4 +1,5 @@
 import { AbstractControl, FormArray, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { PHONE_FR_REGEXP } from './regexp';
 
 export const hourValidator: ValidatorFn = (group: AbstractControl) => {
   const form = group as FormGroup;
@@ -35,6 +36,18 @@ export const optionalEmailValidator: ValidatorFn = (control: AbstractControl) =>
   const value = (control.value as string)?.trim();
   if (!value) return null;
   return Validators.email(control);
+};
+
+export const optionalPhoneValidator: ValidatorFn = (control: AbstractControl) => {
+  const value = (control.value as string)?.trim();
+  if (!value) return null;
+  return Validators.pattern(PHONE_FR_REGEXP)(control);
+};
+
+export const pastDateValidator: ValidatorFn = (control: AbstractControl) => {
+  const value = control.value as string;
+  if (!value) return null;
+  return value <= new Date().toLocaleDateString('en-CA') ? null : { futureDate: true };
 };
 
 export const trustedContactValidator: ValidatorFn = (group: AbstractControl) => {

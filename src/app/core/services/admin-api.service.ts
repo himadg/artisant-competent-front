@@ -1,19 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface PendingUser {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  createdAt: string;
-  role: { code: string };
-  professionalProfile?: {
-    companyName: string;
-    workAddress: { city: string; postalCode: number };
-  };
-}
+import { PendingUser } from '../../shared/interfaces/pending-user';
 
 @Injectable({ providedIn: 'root' })
 export class AdminApiService {

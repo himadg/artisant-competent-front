@@ -76,24 +76,35 @@
                         <option value="female">{{ 'register.gender.female' | transloco }}</option>
                         <option value="male">{{ 'register.gender.male' | transloco }}</option>
                     </select>
-                    <input
-                        type="text"
-                        formControlName="lastName"
-                        class="px-3 py-2 w-full rounded border"
-                        placeholder="{{ 'professional.fields.lastName' | transloco }} *"
-                    />
-                    <input
-                        type="text"
-                        formControlName="firstName"
-                        class="px-3 py-2 w-full rounded border"
-                        placeholder="{{ 'professional.fields.firstName' | transloco }} *"
-                    />
+                    <div class="flex flex-col gap-0.5">
+                        <input
+                            type="text"
+                            formControlName="lastName"
+                            class="px-3 py-2 w-full rounded border"
+                            placeholder="{{ 'professional.fields.lastName' | transloco }} *"
+                        />
+                        @if (form.get('user.lastName')?.errors?.['pattern'] && form.get('user.lastName')?.touched) {
+                            <p class="text-xs text-red-500">{{ 'professional.errors.noNumbers' | transloco }}</p>
+                        }
+                    </div>
+                    <div class="flex flex-col gap-0.5">
+                        <input
+                            type="text"
+                            formControlName="firstName"
+                            class="px-3 py-2 w-full rounded border"
+                            placeholder="{{ 'professional.fields.firstName' | transloco }} *"
+                        />
+                        @if (form.get('user.firstName')?.errors?.['pattern'] && form.get('user.firstName')?.touched) {
+                            <p class="text-xs text-red-500">{{ 'professional.errors.noNumbers' | transloco }}</p>
+                        }
+                    </div>
                     <div class="flex flex-col gap-1">
                         <label for="bd-day-pro" class="text-sm text-gray-500">{{ 'register.birthDate' | transloco }} *</label>
                         <div class="flex w-full">
                             <select
                                 id="bd-day-pro"
                                 class="px-2 py-2 border rounded-l text-sm bg-[var(--background-color)] text-[var(--color)] focus:outline-none focus:ring-1 focus:ring-[var(--primary-water-green)]"
+                                [class.border-red-400]="form.get('user.birthDate')?.invalid && form.get('user.birthDate')?.touched"
                                 [value]="bdDay"
                                 (change)="onBdDayChange($event)"
                             >
@@ -104,6 +115,7 @@
                             </select>
                             <select
                                 class="px-2 py-2 border border-l-0 flex-1 min-w-0 text-sm bg-[var(--background-color)] text-[var(--color)] focus:outline-none focus:ring-1 focus:ring-[var(--primary-water-green)]"
+                                [class.border-red-400]="form.get('user.birthDate')?.invalid && form.get('user.birthDate')?.touched"
                                 [value]="bdMonth"
                                 (change)="onBdMonthChange($event)"
                             >
@@ -114,6 +126,7 @@
                             </select>
                             <select
                                 class="px-2 py-2 border border-l-0 rounded-r text-sm bg-[var(--background-color)] text-[var(--color)] focus:outline-none focus:ring-1 focus:ring-[var(--primary-water-green)]"
+                                [class.border-red-400]="form.get('user.birthDate')?.invalid && form.get('user.birthDate')?.touched"
                                 [value]="bdYear"
                                 (change)="onBdYearChange($event)"
                             >
@@ -123,6 +136,11 @@
                                 }
                             </select>
                         </div>
+                        @if (form.get('user.birthDate')?.errors?.['required'] && form.get('user.birthDate')?.touched) {
+                            <p class="text-xs text-red-500">{{ 'professional.errors.required' | transloco }}</p>
+                        } @else if (form.get('user.birthDate')?.errors?.['futureDate'] && form.get('user.birthDate')?.touched) {
+                            <p class="text-xs text-red-500">{{ 'professional.errors.birthDateFuture' | transloco }}</p>
+                        }
                     </div>
                 </div>
             </div>
@@ -366,12 +384,17 @@
                         placeholder="{{ 'professional.fields.address.zip' | transloco }} *"
                         (input)="onPersonalPostalCodeInput($event)"
                     />
-                    <input
-                        type="text"
-                        formControlName="city"
-                        class="px-3 py-2 w-full rounded border"
-                        placeholder="{{ 'professional.fields.address.city' | transloco }} *"
-                    />
+                    <div class="flex flex-col gap-0.5">
+                        <input
+                            type="text"
+                            formControlName="city"
+                            class="px-3 py-2 w-full rounded border"
+                            placeholder="{{ 'professional.fields.address.city' | transloco }} *"
+                        />
+                        @if (form.get('user.address.city')?.errors?.['pattern'] && form.get('user.address.city')?.touched) {
+                            <p class="text-xs text-red-500">{{ 'professional.errors.noNumbers' | transloco }}</p>
+                        }
+                    </div>
                     @if (adressError() === 'addressPersonal') {
                         <p class="text-xs text-red-500">
                             {{ 'professional.errors.addressPersonalInvalid' | transloco }}
@@ -520,8 +543,8 @@
                     @for (entry of diplomaFiles(); track $index) {
                         <div
                             class="relative flex flex-col gap-2 px-3 py-3 border-b border-[var(--border-color)] last:border-b-0 sm:grid sm:gap-x-2 sm:gap-y-1 sm:py-2"
-                            [class.bg-red-50]="diplomaTouched() && (!entry.file || !entry.documentName.trim())"
-                            style="grid-template-columns: minmax(0,2fr) minmax(0,1fr) minmax(0,1fr) 1.75rem; grid-template-rows: auto auto"
+                            [class.bg-red-50]="diplomaTouched() && diplomaEntryErrors()[$index] !== null"
+                            style="grid-template-columns: minmax(0,2fr) minmax(0,1fr) minmax(0,1fr) 1.75rem; grid-template-rows: auto auto auto"
                         >
                             <!-- Textarea nom du document -->
                             <div class="sm:[grid-column:1] sm:[grid-row:1/3] flex flex-col gap-1">
@@ -531,6 +554,7 @@
                                     [value]="entry.documentName"
                                     (input)="updateDiplomaDocumentName($index, $any($event).target.value)"
                                     class="px-2 py-1.5 w-full h-full text-xs rounded border resize-none"
+                                    [class.border-red-400]="diplomaTouched() && diplomaEntryErrors()[$index]?.missingName"
                                     [placeholder]="'professional.documents.namePlaceholder' | transloco"
                                 ></textarea>
                             </div>
@@ -541,15 +565,18 @@
                                 <input
                                     type="date"
                                     [value]="entry.expiryDate"
+                                    [min]="today"
                                     (change)="updateDiplomaExpiry($index, $any($event).target.value)"
                                     class="px-2 py-2 w-full text-xs rounded border"
+                                    [class.border-red-400]="diplomaTouched() && (diplomaEntryErrors()[$index]?.missingExpiry || diplomaEntryErrors()[$index]?.expiryPast)"
                                 />
                             </div>
 
                             <!-- Bouton fichier -->
                             <div class="sm:[grid-column:3] sm:[grid-row:1] flex flex-col gap-1">
                                 <span class="sm:hidden py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-gray-500">{{ 'professional.documents.colFile' | transloco }} *</span>
-                                <label class="flex items-center justify-center gap-1 px-2 py-2 text-xs rounded border cursor-pointer hover:bg-gray-50 whitespace-nowrap">
+                                <label class="flex items-center justify-center gap-1 px-2 py-2 text-xs rounded border cursor-pointer hover:bg-gray-50 whitespace-nowrap"
+                                    [class.border-red-400]="diplomaTouched() && diplomaEntryErrors()[$index]?.missingFile">
                                     {{ 'professional.documents.chooseFile' | transloco }}
                                     <input type="file" class="hidden" accept="image/*,.pdf" (change)="onDiplomaFileChange($index, $event)" />
                                 </label>
@@ -572,6 +599,24 @@
                                 [class.invisible]="diplomaFiles().length < 2"
                                 (click)="removeDiplomaSlot($index)"
                             >×</button>
+
+                            <!-- Erreurs par entrée -->
+                            @if (diplomaTouched() && diplomaEntryErrors()[$index]; as errs) {
+                                <div class="sm:[grid-column:1/5] sm:[grid-row:3] flex flex-col gap-0.5">
+                                    @if (errs.missingFile) {
+                                        <p class="text-[0.65rem] text-red-500">{{ 'professional.errors.diplomaMissingFile' | transloco }}</p>
+                                    }
+                                    @if (errs.missingName) {
+                                        <p class="text-[0.65rem] text-red-500">{{ 'professional.errors.diplomaIncomplete' | transloco }}</p>
+                                    }
+                                    @if (errs.missingExpiry) {
+                                        <p class="text-[0.65rem] text-red-500">{{ 'professional.errors.diplomaIncomplete' | transloco }}</p>
+                                    }
+                                    @if (errs.expiryPast) {
+                                        <p class="text-[0.65rem] text-red-500">{{ 'professional.errors.diplomaExpiryPast' | transloco }}</p>
+                                    }
+                                </div>
+                            }
                         </div>
                     }
                 </div>
@@ -595,7 +640,7 @@
             <div class="flex flex-col gap-4" formGroupName="professionalProfile">
                 <div class="flex flex-wrap gap-3 items-start justify-between">
                     <div>
-                        <h3 class="font-bold text-[var(--primary-blue)]">{{ 'professional.mediator.title' | transloco }}</h3>
+                        <h3 class="font-bold text-[var(--primary-blue)]">{{ 'professional.mediator.title' | transloco }} *</h3>
                     </div>
                     <button
                         type="button"
@@ -609,45 +654,62 @@
                 <p class="text-sm text-gray-600 -mt-2">{{ 'professional.mediator.description' | transloco }}</p>
                 <div class="grid gap-4 md:grid-cols-2">
                     <div class="flex flex-col gap-1">
-                        <label class="text-sm font-medium text-gray-700">{{ 'professional.mediator.name' | transloco }}</label>
+                        <label class="text-sm font-medium text-gray-700">{{ 'professional.mediator.name' | transloco }} *</label>
                         <input
                             type="text"
                             formControlName="mediatorName"
                             class="px-3 py-2 w-full rounded border text-sm"
+                            [class.border-red-400]="form.get('professionalProfile.mediatorName')?.invalid && form.get('professionalProfile.mediatorName')?.touched"
                             placeholder="{{ 'professional.mediator.namePlaceholder' | transloco }}"
                         />
+                        @if (form.get('professionalProfile.mediatorName')?.invalid && form.get('professionalProfile.mediatorName')?.touched) {
+                            <p class="text-xs text-red-500">{{ 'professional.errors.mediatorRequired' | transloco }}</p>
+                        }
                     </div>
                     <div class="flex flex-col gap-1">
-                        <label class="text-sm font-medium text-gray-700">{{ 'professional.mediator.address' | transloco }}</label>
+                        <label class="text-sm font-medium text-gray-700">{{ 'professional.mediator.address' | transloco }} *</label>
                         <input
                             type="text"
                             formControlName="mediatorAddress"
                             class="px-3 py-2 w-full rounded border text-sm"
+                            [class.border-red-400]="form.get('professionalProfile.mediatorAddress')?.invalid && form.get('professionalProfile.mediatorAddress')?.touched"
                             placeholder="{{ 'professional.mediator.addressPlaceholder' | transloco }}"
                         />
+                        @if (form.get('professionalProfile.mediatorAddress')?.invalid && form.get('professionalProfile.mediatorAddress')?.touched) {
+                            <p class="text-xs text-red-500">{{ 'professional.errors.mediatorRequired' | transloco }}</p>
+                        }
                     </div>
                     <div class="flex flex-col gap-1">
-                        <label class="text-sm font-medium text-gray-700">{{ 'professional.mediator.website' | transloco }}</label>
+                        <label class="text-sm font-medium text-gray-700">{{ 'professional.mediator.website' | transloco }} *</label>
                         <input
                             type="url"
                             formControlName="mediatorWebsite"
                             class="px-3 py-2 w-full rounded border text-sm"
+                            [class.border-red-400]="form.get('professionalProfile.mediatorWebsite')?.invalid && form.get('professionalProfile.mediatorWebsite')?.touched"
                             placeholder="{{ 'professional.mediator.websitePlaceholder' | transloco }}"
                         />
+                        @if (form.get('professionalProfile.mediatorWebsite')?.invalid && form.get('professionalProfile.mediatorWebsite')?.touched) {
+                            <p class="text-xs text-red-500">{{ 'professional.errors.mediatorRequired' | transloco }}</p>
+                        }
                     </div>
                     <div class="flex flex-col gap-1">
-                        <label class="text-sm font-medium text-gray-700">{{ 'professional.mediator.contactMethod' | transloco }}</label>
+                        <label class="text-sm font-medium text-gray-700">{{ 'professional.mediator.contactMethod' | transloco }} *</label>
                         <select
                             formControlName="mediatorContactMethod"
                             class="px-3 py-2 w-full rounded border text-sm"
                             [class.text-gray-400]="!form.get('professionalProfile.mediatorContactMethod')?.value"
+                            [class.border-red-400]="form.get('professionalProfile.mediatorContactMethod')?.invalid && form.get('professionalProfile.mediatorContactMethod')?.touched"
                         >
                             <option value="">{{ 'professional.mediator.contactMethodSelect' | transloco }}</option>
                             <option value="courrier">{{ 'professional.mediator.contactMethodMail' | transloco }}</option>
                             <option value="formulaire">{{ 'professional.mediator.contactMethodForm' | transloco }}</option>
                             <option value="les deux">{{ 'professional.mediator.contactMethodBoth' | transloco }}</option>
                         </select>
-                        <p class="text-xs text-gray-500">{{ 'professional.mediator.contactMethodHint' | transloco }}</p>
+                        @if (form.get('professionalProfile.mediatorContactMethod')?.invalid && form.get('professionalProfile.mediatorContactMethod')?.touched) {
+                            <p class="text-xs text-red-500">{{ 'professional.errors.mediatorRequired' | transloco }}</p>
+                        } @else {
+                            <p class="text-xs text-gray-500">{{ 'professional.mediator.contactMethodHint' | transloco }}</p>
+                        }
                     </div>
                 </div>
                 <div class="flex flex-col gap-1">
@@ -883,12 +945,17 @@
                                 placeholder="{{ 'professional.fields.workAddress.zip' | transloco }} *"
                                 (input)="onWorkPostalCodeInput($event)"
                             />
-                            <input
-                                type="text"
-                                formControlName="city"
-                                class="px-3 py-2 w-full rounded border"
-                                placeholder="{{ 'professional.fields.workAddress.city' | transloco }} *"
-                            />
+                            <div class="flex flex-col gap-0.5">
+                                <input
+                                    type="text"
+                                    formControlName="city"
+                                    class="px-3 py-2 w-full rounded border"
+                                    placeholder="{{ 'professional.fields.workAddress.city' | transloco }} *"
+                                />
+                                @if (form.get('professionalProfile.workAddress.city')?.errors?.['pattern'] && form.get('professionalProfile.workAddress.city')?.touched) {
+                                    <p class="text-xs text-red-500">{{ 'professional.errors.noNumbers' | transloco }}</p>
+                                }
+                            </div>
                         </div>
                         <button
                             type="button"
@@ -950,6 +1017,9 @@
                             </button>
                         }
                     </div>
+                    @if (form.get('professionalProfile.trades')?.invalid && form.get('professionalProfile.trades')?.touched) {
+                        <p class="text-xs text-red-500">{{ 'professional.errors.tradesRequired' | transloco }}</p>
+                    }
                 </div>
 
                 <div class="flex flex-col gap-2">
@@ -959,9 +1029,15 @@
                     <input
                         type="number"
                         formControlName="yearsExperience"
+                        min="0"
+                        max="100"
                         class="px-3 py-2 w-full rounded border"
+                        [class.border-red-400]="form.get('professionalProfile.yearsExperience')?.invalid && form.get('professionalProfile.yearsExperience')?.touched"
                         placeholder="{{ 'professional.fields.yearsExperience' | transloco }} *"
                     />
+                    @if (form.get('professionalProfile.yearsExperience')?.errors?.['max'] && form.get('professionalProfile.yearsExperience')?.touched) {
+                        <p class="text-xs text-red-500">{{ 'professional.errors.yearsMax' | transloco }}</p>
+                    }
                 </div>
 
                 <!-- Encart CMOD si >= 3 ans d'expérience -->
@@ -1106,6 +1182,9 @@
                         (input)="descriptionLength.set($any($event.target).value.length)"
                     ></textarea>
                     <p class="text-xs text-gray-400 text-right">{{ descriptionLength() }} / 1000</p>
+                    @if (form.get('professionalProfile.description')?.invalid && form.get('professionalProfile.description')?.touched) {
+                        <p class="text-xs text-red-500">{{ 'professional.errors.descriptionRequired' | transloco }}</p>
+                    }
                 </div>
 
                 <div class="flex flex-col gap-3">
@@ -1124,9 +1203,13 @@
                             type="tel"
                             formControlName="trustPhone"
                             class="px-3 py-2 w-full rounded border"
+                            [class.border-red-400]="form.get('professionalProfile.trustPhone')?.invalid && form.get('professionalProfile.trustPhone')?.touched"
                             placeholder="{{ 'professional.fields.trustPhone' | transloco }}"
                         />
                     </div>
+                    @if (form.get('professionalProfile.trustPhone')?.errors?.['pattern'] && form.get('professionalProfile.trustPhone')?.touched) {
+                        <p class="text-xs text-red-500">{{ 'professional.errors.trustPhoneInvalid' | transloco }}</p>
+                    }
                     @if (
                         form.get('professionalProfile')?.errors?.['trustedContactIncomplete'] &&
                         form.get('professionalProfile')?.touched
@@ -1275,11 +1358,6 @@
                         'register.errors.invalidReferralCode' | transloco
                     }}</span
                     ><br />
-                }
-                @if (hasStep1Errors()) {
-                    <span class="text-sm font-medium text-red-500">{{
-                        'professional.errors.step1Errors' | transloco
-                    }}</span>
                 }
             </div>
         </form>

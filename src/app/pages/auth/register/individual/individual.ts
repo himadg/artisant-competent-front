@@ -1,9 +1,10 @@
-﻿import { Component, signal, inject, OnDestroy, computed, ChangeDetectionStrategy } from '@angular/core';
+import { Component, signal, inject, OnDestroy, computed, ChangeDetectionStrategy } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
 import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, of, takeUntil } from 'rxjs';
-import { GeocodingService, AddressSuggestion } from '../../../../core/services/geocoding.service';
+import { GeocodingService } from '../../../../core/services/geocoding.service';
+import { AddressSuggestion } from '../../../../shared/interfaces/address-suggestion';
 import { TurnstileComponent } from '../../../../shared/components/turnstile/turnstile';
 import { LegalModal } from '../../../../shared/components/legal-modal/legal-modal';
 import { AppConfigService } from '../../../../core/services/app-config.service';
@@ -12,6 +13,7 @@ import { UserApiService } from '../../../../core/services/user-api.service';
 import { AuthService } from '../../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { capitalize, evaluatePasswordCriteria, getAffiliateCode, clearAffiliateCode } from '../../../../core/utils/common-utils';
+import { FlashMessageService } from '../../../../core/services/flash-message.service';
 import { PASSWORD_STRONG_REGEXP } from '../../../../core/utils/regexp';
 import { LangService } from '../../../../core/services/lang.service';
 
@@ -30,6 +32,7 @@ export class RegisterIndividual implements OnDestroy {
   private readonly userApi = inject(UserApiService);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly flashMessage = inject(FlashMessageService);
   private readonly langService = inject(LangService);
   private readonly destroy$ = new Subject<void>();
   private readonly addressSearch$ = new Subject<string>();
@@ -211,8 +214,6 @@ export class RegisterIndividual implements OnDestroy {
     this.showSubmitError.set(false);
     this.form.markAllAsTouched();
 
-    console.log('submit', this.form.value);
-
     if (this.form.invalid || this.form.value.password !== this.form.value.confirmPassword) {
       this.showSubmitError.set(true);
 
@@ -263,7 +264,8 @@ export class RegisterIndividual implements OnDestroy {
       )
       .subscribe({
         next: () => {
-          this.router.navigate(['/auth/login'], { queryParams: { registeredIndividual: 'success' } });
+          this.flashMessage.set({ type: 'success', key: 'login.registeredIndividualSuccess' });
+          this.router.navigate(['/auth/login']);
         },
         error: (err) => {
           this.submitting.set(false);

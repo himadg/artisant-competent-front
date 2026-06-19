@@ -1,13 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Injectable, RendererFactory2, inject } from '@angular/core';
-
-/** Une entrée de FAQ : intitulé de la question et pavé de réponse (HTML autorisé). */
-export interface FaqEntry {
-  /** Intitulé de la question, en texte brut. */
-  question: string;
-  /** Réponse complète. Peut contenir du HTML (p, ul, li) — autorisé par Google pour FAQPage. */
-  answerHtml: string;
-}
+import { FaqEntry } from '../../shared/interfaces/faq-entry';
 
 /**
  * Service SEO : injection de données structurées Schema.org (JSON-LD) dans le <head>.

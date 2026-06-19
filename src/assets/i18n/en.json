@@ -2290,6 +2290,16 @@
       "rcProIncomplete": "The RC Pro insurance is partially filled. Please complete all fields (document, name, number, expiry date).",
       "decennialInsuranceIncomplete": "The decennial insurance is partially filled. Please complete all fields (document, name, number, expiry date).",
       "diplomaRequired": "Please add at least one diploma or proof document.",
+      "diplomaMissingFile": "Please attach a file for this document.",
+      "diplomaIncomplete": "Please fill in the document name and expiry date.",
+      "diplomaExpiryPast": "The expiry date cannot be in the past.",
+      "birthDateFuture": "Birth date cannot be in the future.",
+      "noNumbers": "This field does not allow numbers.",
+      "descriptionRequired": "Please describe your company and mention the services you offer.",
+      "tradesRequired": "Please select at least one trade.",
+      "mediatorRequired": "This field is required.",
+      "trustPhoneInvalid": "Invalid phone number format (e.g. 06XXXXXXXX).",
+      "yearsMax": "Years of experience cannot exceed 100.",
       "trustedContactIncomplete": "Please fill in both the name and phone number of the trusted contact.",
       "formSummary": {
         "title": "The form contains errors:",
@@ -2369,7 +2379,7 @@
     "mediator": {
       "title": "My consumer mediator",
       "guideBtn": "Employment mode - Consumer mediator user guide",
-      "description": "In accordance with the provisions of the Consumer Code, any professional dealing with consumers must be able to provide the contact details of their consumer mediator. To guide you through this process and help you meet your legal obligations, consulting the Consumer Mediator User Guide made available to you is mandatory.",
+      "description": "As a professional, you are legally required to designate a consumer mediator and share their contact details with your clients. Fill in your mediator's information below. If you don't have one yet, check the guide above to choose one.",
       "name": "Mediator name",
       "namePlaceholder": "E.g.: CM2C, CNPM Médiation Consommation...",
       "address": "Postal address",
@@ -2545,7 +2555,8 @@
     },
     "registeredIndividualNotice": "Your registration has been successfully recorded. You can now log in with your credentials.",
     "registeredProNotice": "Your registration has been received and is pending validation. You will receive a confirmation email shortly.",
-    "registeredProMailFailed": "Your registration has been recorded. We were unable to send you a confirmation email. Please contact us at contact@artisan-competent.com to validate your account."
+    "registeredProMailFailed": "Your registration has been recorded. We were unable to send you a confirmation email. Please contact us at contact@artisan-competent.com to validate your account.",
+    "spamNotice": "If you don't see the email in your inbox, please check your spam folder."
   },
   "dashboard": {
     "title": "Dashboard",

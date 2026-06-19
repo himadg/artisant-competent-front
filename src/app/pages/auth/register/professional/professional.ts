@@ -10,7 +10,7 @@ import {
 } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
 import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, forkJoin, of, takeUntil } from 'rxjs';
-import { hourValidator, openingAtLeastOne, trustedContactValidator, optionalEmailValidator } from '../../../../core/utils/validators';
+import { hourValidator, openingAtLeastOne, trustedContactValidator, optionalEmailValidator, optionalPhoneValidator, pastDateValidator } from '../../../../core/utils/validators';
 import { capitalize, normalizeName, evaluatePasswordCriteria, getAffiliateCode, clearAffiliateCode } from '../../../../core/utils/common-utils';
 import { TradeApiService } from '../../../../core/services/trade-api.service';
 import { Trade } from '../../../../shared/interfaces/trade';
@@ -18,7 +18,9 @@ import { TurnstileComponent } from '../../../../shared/components/turnstile/turn
 import { LegalModal } from '../../../../shared/components/legal-modal/legal-modal';
 import { Router } from '@angular/router';
 import { UserApiService } from '../../../../core/services/user-api.service';
-import { GeocodingService, AddressSuggestion } from '../../../../core/services/geocoding.service';
+import { FlashMessageService } from '../../../../core/services/flash-message.service';
+import { GeocodingService } from '../../../../core/services/geocoding.service';
+import { AddressSuggestion } from '../../../../shared/interfaces/address-suggestion';
 import { SiretService } from '../../../../core/services/siret.service';
 import { UploadService } from '../../../../core/services/upload.service';
 import {
@@ -55,6 +57,7 @@ export class RegisterProfessional implements OnDestroy {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly langService = inject(LangService);
+  private readonly flashMessage = inject(FlashMessageService);
   private readonly destroy$ = new Subject<void>();
 
   readonly step = signal<1 | 2>(1);
@@ -75,7 +78,28 @@ export class RegisterProfessional implements OnDestroy {
   readonly diplomaFiles = signal<DiplomaEntry[]>([{ file: null, preview: null, fileName: null, documentName: '', expiryDate: '' }]);
   readonly diplomaTouched = signal(false);
   readonly hoursTouched = signal(false);
-  readonly diplomasValid = computed(() => this.diplomaFiles().some(d => d.file !== null && d.documentName.trim() !== ''));
+
+  readonly diplomaEntryErrors = computed(() =>
+    this.diplomaFiles().map(d => {
+      if (!d.file && !d.documentName.trim() && !d.expiryDate) return null;
+      const missingFile = !d.file;
+      const missingName = !d.documentName.trim();
+      const expiryPast = !!d.expiryDate && d.expiryDate < this.today;
+      const missingExpiry = !d.expiryDate;
+      if (missingFile || missingName || expiryPast || missingExpiry) return { missingFile, missingName, expiryPast, missingExpiry };
+      return null;
+    })
+  );
+
+  readonly diplomasValid = computed(() => {
+    const entries = this.diplomaFiles();
+    const hasAtLeastOne = entries.some(d => d.file !== null);
+    if (!hasAtLeastOne) return false;
+    return this.diplomaEntryErrors().every((err, i) => {
+      if (!entries[i].file && !entries[i].documentName.trim() && !entries[i].expiryDate) return true;
+      return err === null;
+    });
+  });
 
   readonly trades = signal<Trade[]>([]);
   readonly days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
@@ -142,7 +166,7 @@ export class RegisterProfessional implements OnDestroy {
   readonly submitting = signal(false);
   readonly referralCodeError = signal(false);
   readonly legalModalOpen = signal(false);
-  readonly hasStep1Errors = signal<boolean>(false);
+
   readonly goodPracticesModalOpen = signal(false);
   readonly mediatorGuideModalOpen = signal(false);
   readonly docObligationsModalOpen = signal(false);
@@ -196,16 +220,16 @@ export class RegisterProfessional implements OnDestroy {
       gender: ['', Validators.required],
       lastName: ['', [Validators.required, Validators.pattern(NAME_REGEXP)]],
       firstName: ['', [Validators.required, Validators.pattern(NAME_REGEXP)]],
-      birthDate: ['', Validators.required],
+      birthDate: ['', [Validators.required, pastDateValidator]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(PASSWORD_STRONG_REGEXP)]],
       confirmPassword: ['', Validators.required],
       address: this.fb.group({
-        streetNumber: ['', Validators.required],
+        streetNumber: ['', [Validators.required, Validators.pattern(STREET_NUMBER_REGEXP)]],
         streetName: ['', Validators.required],
         additionalInfo: [''],
         postalCode: ['', [Validators.required, Validators.pattern(POSTAL_CODE_REGEXP)]],
-        city: ['', Validators.required],
+        city: ['', [Validators.required, Validators.pattern(NAME_REGEXP)]],
       }),
     }),
     professionalProfile: this.fb.group({
@@ -222,12 +246,12 @@ export class RegisterProfessional implements OnDestroy {
         streetName: ['', Validators.required],
         additionalInfo: [''],
         postalCode: ['', [Validators.required, Validators.pattern(POSTAL_CODE_REGEXP)]],
-        city: ['', Validators.required],
+        city: ['', [Validators.required, Validators.pattern(NAME_REGEXP)]],
       }),
       siret: ['', [Validators.required, Validators.pattern(SIRET_REGEXP)]],
       companyStatus: ['', Validators.required],
       trades: [<string[]>[], [Validators.required]],
-      yearsExperience: ['', [Validators.required, Validators.min(0)]],
+      yearsExperience: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
       onCall: [false],
       hours: this.fb.array(
         this.days.map((day) =>
@@ -240,7 +264,7 @@ export class RegisterProfessional implements OnDestroy {
       ),
       description: ['', [Validators.required, Validators.maxLength(1000)]],
       trustName: [''],
-      trustPhone: [''],
+      trustPhone: ['', optionalPhoneValidator],
       suppliers: new FormControl<string[]>([], { nonNullable: true, validators: [Validators.required] }),
       mediatorName: [''],
       mediatorAddress: [''],
@@ -273,17 +297,59 @@ export class RegisterProfessional implements OnDestroy {
 
   readonly showCmod = computed(() => {
     const years = Number(this.yearsExperienceValue());
-    return !isNaN(years) && years >= 3;
+    return !Number.isNaN(years) && years >= 3;
   });
 
   get hours(): FormArray {
     return this.form.get('professionalProfile.hours') as FormArray;
   }
 
+  private readonly step1ControlPaths = [
+    'user',
+    'professionalProfile.managerPhone',
+    'professionalProfile.professionalEmail',
+    'professionalProfile.photo',
+    'professionalProfile.idFront',
+    'professionalProfile.idBack',
+    'professionalProfile.trustName',
+    'professionalProfile.trustPhone',
+    'professionalProfile.mediatorName',
+    'professionalProfile.mediatorAddress',
+    'professionalProfile.mediatorWebsite',
+    'professionalProfile.mediatorContactMethod',
+    'professionalProfile.mediatorAdditionalInfo',
+  ];
+
+  private scrollToFirstError(): void {
+    setTimeout(() => {
+      const firstError = document.querySelector<HTMLElement>(
+        'input.ng-invalid.ng-touched, select.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched, .force-invalid'
+      );
+      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  }
+
   nextStep() {
+    this.diplomaTouched.set(true);
+    this.step1ControlPaths.forEach(path => this.form.get(path)?.markAllAsTouched());
+    this.form.get('professionalProfile')?.markAsTouched();
+
+    const user = this.form.value.user;
+    const step1Invalid =
+      this.step1ControlPaths.some(path => this.form.get(path)?.invalid)
+      || !this.diplomasValid()
+      || !!this.form.get('professionalProfile')?.errors?.['trustedContactIncomplete']
+      || user?.password !== user?.confirmPassword;
+
+    if (step1Invalid) {
+      this.scrollToFirstError();
+      return;
+    }
+
     this.step.set(2);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
   backStep() { this.step.set(1); }
 
   // --- Address autocomplete ---
@@ -353,7 +419,7 @@ export class RegisterProfessional implements OnDestroy {
     if (!apiName || !companyCtrl) return;
     const formName = normalizeName(companyCtrl.value ?? '');
     const normalized = normalizeName(apiName);
-    const matches = normalized.includes(formName) || formName.includes(normalized);
+    const matches = normalized.includes(formName) || formName.includes(normalized) || formName === normalized;
     companyCtrl.setErrors(matches ? null : { siretMismatch: true });
   }
 
@@ -543,36 +609,31 @@ export class RegisterProfessional implements OnDestroy {
 
   // --- Submit ---
   submit() {
-    console.log('submit', this.form.value);
     this.showSubmitError.set(false);
-    this.hasStep1Errors.set(false);
-    this.diplomaTouched.set(true);
     this.hoursTouched.set(true);
-    this.form.markAllAsTouched();
 
-    const user = this.form.value.user;
+    [
+      'professionalProfile.siret',
+      'professionalProfile.companyStatus',
+      'professionalProfile.logo',
+      'professionalProfile.rib',
+      'professionalProfile.companyName',
+      'professionalProfile.workAddress',
+      'professionalProfile.trades',
+      'professionalProfile.yearsExperience',
+      'professionalProfile.hours',
+      'professionalProfile.description',
+      'professionalProfile.suppliers',
+      'professionalProfile.additionalRemarks',
+      'professionalProfile.companyRemarks',
+      'captcha',
+      'terms',
+    ].forEach(path => this.form.get(path)?.markAllAsTouched());
 
-    if (this.form.invalid || user?.password !== user?.confirmPassword || !this.diplomasValid()) {
+    this.validateCompanyNameMatch();
+
+    if (this.siretStatus() !== 'valid' || this.form.invalid) {
       this.showSubmitError.set(true);
-
-      const step1Controls = [
-        this.form.get('user'),
-        this.form.get('professionalProfile.professionalEmail'),
-        this.form.get('professionalProfile.managerPhone'),
-        this.form.get('professionalProfile.photo'),
-        this.form.get('professionalProfile.idFront'),
-        this.form.get('professionalProfile.idBack'),
-      ];
-
-      const isStep1Invalid = step1Controls.some(ctrl => ctrl?.invalid)
-        || !this.diplomasValid()
-        || !!this.form.get('professionalProfile')?.errors?.['trustedContactIncomplete'];
-
-      const passwordMismatch = user?.password !== user?.confirmPassword;
-
-      if (isStep1Invalid || passwordMismatch) {
-        this.hasStep1Errors.set(true);
-      }
 
       const findInvalid = (group: AbstractControl, path = ''): void => {
         if ('controls' in group) {
@@ -583,15 +644,7 @@ export class RegisterProfessional implements OnDestroy {
       };
       findInvalid(this.form);
 
-      setTimeout(() => {
-        const firstError = document.querySelector<HTMLElement>(
-          'input.ng-invalid.ng-touched, select.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched, .force-invalid'
-        );
-        if (firstError) {
-          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      }, 100);
-
+      this.scrollToFirstError();
       return;
     }
 
@@ -697,9 +750,11 @@ export class RegisterProfessional implements OnDestroy {
       )
       .subscribe({
         next: () => {
-          this.router.navigate(['/auth/login'], {
-            queryParams: { registeredPro: 'success', mailFailed: mailSent ? null : '1' },
+          this.flashMessage.set({
+            type: mailSent ? 'success' : 'warning',
+            key: mailSent ? 'login.registeredProSuccess' : 'login.registeredProMailFailed',
           });
+          this.router.navigate(['/auth/login']);
         },
         error: (err) => {
           this.submitting.set(false);

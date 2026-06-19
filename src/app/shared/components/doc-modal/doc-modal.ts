@@ -1,11 +1,7 @@
 import { Component, input, output, inject, computed, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-
-export interface PreviewDocument {
-  url: string;
-  title?: string;
-}
+import { PreviewDocument } from '../../interfaces/preview-document';
 
 @Component({
   selector: 'doc-modal',

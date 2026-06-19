@@ -1,16 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
-
-export interface AddressSuggestion {
-  label: string;
-  streetNumber: string;
-  streetName: string;
-  postalCode: string;
-  city: string;
-  latitude: number;
-  longitude: number;
-}
+import { AddressSuggestion } from '../../shared/interfaces/address-suggestion';
 
 @Injectable({ providedIn: 'root' })
 export class GeocodingService {

@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { Subject, switchMap, debounceTime, filter } from 'rxjs';
 import { TradeApiService } from '../../../core/services/trade-api.service';
-import { GeocodingService, AddressSuggestion } from '../../../core/services/geocoding.service';
+import { GeocodingService } from '../../../core/services/geocoding.service';
+import { AddressSuggestion } from '../../interfaces/address-suggestion';
 import { Trade } from '../../interfaces/trade';
 
 @Component({

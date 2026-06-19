@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
-import { AdminApiService, PendingUser } from '../../../core/services/admin-api.service';
+import { AdminApiService } from '../../../core/services/admin-api.service';
+import { PendingUser } from '../../../shared/interfaces/pending-user';
 import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
@@ -34,7 +35,6 @@ export class AdminDashboard implements OnInit {
     this.loading.set(true);
     this.adminApi.getPendingUsers().subscribe({
       next: (users) => {
-        console.log(users);
         this.pendingUsers.set(users);
         this.loading.set(false);
       },

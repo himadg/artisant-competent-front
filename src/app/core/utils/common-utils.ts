@@ -17,28 +17,27 @@ export function normalizeName(name: string): string {
 
 export const capitalize = (str: string): string => `${str.charAt(0).toUpperCase()}${str.slice(1).toLowerCase()}`;
 
-export function evaluatePasswordCriteria(pwd: string) {
-  const safePwd = pwd || '';
+export function evaluatePasswordCriteria(safePwd = '') {
   return {
     length: safePwd.length >= 12,
     lower: /[a-z]/.test(safePwd),
     upper: /[A-Z]/.test(safePwd),
-    number: /[0-9]/.test(safePwd),
+    number: /\d/.test(safePwd),
     special: /[^a-zA-Z0-9]/.test(safePwd),
   };
 }
 
 export function getAffiliateCode(): string | null {
-  if (typeof window === 'undefined') return null;
+  if (globalThis.window === undefined) return null;
   return sessionStorage.getItem('affiliate_ref');
 }
 
 export function setAffiliateCode(code: string): void {
-  if (typeof window === 'undefined') return;
+  if (globalThis.window === undefined) return;
   sessionStorage.setItem('affiliate_ref', code);
 }
 
 export function clearAffiliateCode(): void {
-  if (typeof window === 'undefined') return;
+  if (globalThis.window === undefined) return;
   sessionStorage.removeItem('affiliate_ref');
 }

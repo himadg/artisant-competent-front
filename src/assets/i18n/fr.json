@@ -2328,6 +2328,16 @@
       "rcProIncomplete": "L'assurance RC Pro est partiellement renseignée. Veuillez compléter tous les champs (document, nom, numéro, date d'expiration).",
       "decennialInsuranceIncomplete": "L'assurance décennale est partiellement renseignée. Veuillez compléter tous les champs (document, nom, numéro, date d'expiration).",
       "diplomaRequired": "Veuillez ajouter au moins un diplôme ou justificatif.",
+      "diplomaMissingFile": "Veuillez joindre un fichier pour ce document.",
+      "diplomaIncomplete": "Veuillez renseigner le nom et la date d'expiration du document.",
+      "diplomaExpiryPast": "La date d'expiration ne peut pas être antérieure à aujourd'hui.",
+      "birthDateFuture": "La date de naissance ne peut pas être dans le futur.",
+      "noNumbers": "Ce champ n'autorise pas les nombres.",
+      "descriptionRequired": "Veuillez décrire votre société et mentionner les services que vous proposez.",
+      "tradesRequired": "Veuillez choisir au moins un métier.",
+      "mediatorRequired": "Ce champ est obligatoire.",
+      "trustPhoneInvalid": "Le format du numéro de téléphone est invalide (ex: 06XXXXXXXX).",
+      "yearsMax": "Le nombre d'années d'expérience ne peut pas dépasser 100.",
       "trustedContactIncomplete": "Veuillez renseigner à la fois le nom et le téléphone de la personne de confiance.",
       "apiError": "Une erreur est survenue lors de l'inscription. Veuillez réessayer ultérieurement.",
       "addressError": "Impossible de valider votre adresse. Veuillez vérifier votre saisie.",
@@ -2409,7 +2419,7 @@
     "mediator": {
       "title": "Mon médiateur de la consommation",
       "guideBtn": "Mode d'emploi - Médiateur de la consommation",
-      "description": "Conformément aux dispositions du Code de la consommation, tout professionnel intervenant auprès de consommateurs doit être en mesure d'indiquer les coordonnées de son médiateur de la consommation. Afin de vous accompagner dans cette démarche et de vous permettre de respecter vos obligations légales, la consultation du Mode d'emploi médiateur de la consommation mis à votre disposition est obligatoire.",
+      "description": "En tant que professionnel, vous avez l'obligation légale de désigner un médiateur de la consommation et d'en communiquer les coordonnées à vos clients. Renseignez ci-dessous les informations de votre médiateur. Si vous n'en avez pas encore, consultez le guide ci-dessus pour en choisir un.",
       "name": "Nom du médiateur",
       "namePlaceholder": "Ex. : CM2C, CNPM Médiation Consommation...",
       "address": "Adresse postale",
@@ -2585,7 +2595,8 @@
     },
     "registeredIndividualNotice": "Votre inscription a bien été enregistrée. Vous pouvez désormais vous connecter avec vos identifiants.",
     "registeredProNotice": "Votre inscription a bien été enregistrée et est en attente de validation. Vous recevrez un email de confirmation prochainement.",
-    "registeredProMailFailed": "Votre inscription a été prise en compte. Nous n'avons pas pu vous envoyer d'email de confirmation. Veuillez nous contacter à contact@artisan-competent.com pour valider votre compte."
+    "registeredProMailFailed": "Votre inscription a été prise en compte. Nous n'avons pas pu vous envoyer d'email de confirmation. Veuillez nous contacter à contact@artisan-competent.com pour valider votre compte.",
+    "spamNotice": "Si vous ne voyez pas l'email dans votre boîte de réception, pensez à vérifier vos spams."
   },
   "dashboard": {
     "title": "Mon compte",

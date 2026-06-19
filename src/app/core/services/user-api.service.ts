@@ -1,21 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface DiplomaDoc {
-  key: string;
-  documentName: string;
-  expiryDate: string;
-}
-
-export interface DocumentKeys {
-  photoKey: string;
-  idFrontKey: string;
-  idBackKey: string;
-  diplomas: DiplomaDoc[];
-  companyLogoKey: string;
-  ribKey: string;
-}
+import { DocumentKeys } from '../../shared/interfaces/document-keys';
 
 type OpeningHoursUpdate = {
   days: { day: string; closed: boolean; intervals: { start: string; end: string }[] }[];

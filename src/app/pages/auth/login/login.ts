@@ -1,8 +1,9 @@
 ﻿import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { AuthService } from '../../../core/services/auth.service';
+import { FlashMessageService } from '../../../core/services/flash-message.service';
 
 @Component({
   standalone: true,
@@ -15,7 +16,7 @@ export class LoginPage {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
-  private readonly route = inject(ActivatedRoute);
+  private readonly flashMessageService = inject(FlashMessageService);
 
   readonly form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -26,9 +27,7 @@ export class LoginPage {
   readonly serverError = signal<string | null>(null);
   readonly showPassword = signal(false);
 
-  readonly registeredPro = this.route.snapshot.queryParamMap.get('registeredPro') === 'success';
-  readonly registeredProMailFailed = this.route.snapshot.queryParamMap.get('mailFailed') === '1';
-  readonly registeredIndividual = this.route.snapshot.queryParamMap.get('registeredIndividual') === 'success';
+  readonly flashKey = this.flashMessageService.consume()?.key ?? null;
 
   async submit() {
     if (this.form.invalid) {

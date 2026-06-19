@@ -19,7 +19,6 @@ export class ProCard {
 
   getFullWorkAddress(): string {
     const { additionalInfo, streetNumber, streetName, postalCode, city } = this.proInfo().workAddress;
-    console.log(additionalInfo, streetNumber, streetName, postalCode, city);
     return [additionalInfo, `${streetNumber} ${streetName}`, `${postalCode} ${city}`]
       .filter(Boolean)
       .join(', ');
