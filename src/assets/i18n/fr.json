@@ -3047,7 +3047,8 @@
       "guarantee": {
         "title": "Une garantie sur les fournitures et matériaux avancés",
         "p1": "Sous réserve du respect des règles de traçabilité mises en place sur la plateforme (factures, bons de commande, bons de livraison, photographies et justificatifs), Artisan Compétent garantit à l'artisan le remboursement des fournitures et matériaux qu'il a réellement avancés, achetés et livrés sur le chantier. Cette garantie s'applique y compris lorsqu'un litige est finalement tranché en faveur du client, ou lorsqu'une malfaçon est reconnue à l'encontre du professionnel.",
-        "p2": "Cette garantie ne concerne toutefois que les fournitures, matériaux et équipements effectivement justifiés, traçables et directement affectés au chantier concerné."
+        "p2": "Cette garantie ne concerne toutefois que les fournitures, matériaux et équipements effectivement justifiés, traçables et directement affectés au chantier concerné.",
+        "p3": "Ainsi, lorsqu'il respecte les procédures de la plateforme et ses obligations de traçabilité, le professionnel sait qu'il ne supportera pas seul le coût des fournitures et matériaux réellement engagés pour le chantier, même en cas de désaccord ultérieur avec le client."
       }
     },
     "faq": {
