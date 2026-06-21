@@ -180,15 +180,36 @@
 
           <div class="legal-block">
             <p><strong>{{ 'quotePreview.rcPro' | transloco }}</strong> {{ 'quotePreview.rcProValue' | transloco }}</p>
+            @if (quoteData.legal?.rcProDocumentKey) {
+              <button class="btn-preview-doc" (click)="previewDocument(quoteData.legal.rcProDocumentKey)">
+                {{ 'quotePreview.previewDoc' | transloco }}
+              </button>
+            }
           </div>
           @if (quoteData.legal?.addDecennale) {
             <div class="legal-block">
               <p><strong>{{ 'quotePreview.decennale' | transloco }}</strong> {{ 'quotePreview.rcProValue' | transloco }}</p>
+              @if (quoteData.legal?.decennaleDocumentKey) {
+                <button class="btn-preview-doc" (click)="previewDocument(quoteData.legal.decennaleDocumentKey)">
+                  {{ 'quotePreview.previewDoc' | transloco }}
+                </button>
+              }
             </div>
           }
           @if (quoteData.legal?.addOtherCertifications) {
             <div class="legal-block">
-              <p><strong>{{ 'quotePreview.otherCertifications' | transloco }}</strong> {{ 'quotePreview.otherCertificationsValue' | transloco }}</p>
+              <div>
+                <p style="margin-bottom: 0.25rem;"><strong>{{ 'quotePreview.otherCertifications' | transloco }}</strong> {{ 'quotePreview.otherCertificationsValue' | transloco }}</p>
+                @if (quoteData.legal?.otherCertificationsKeys && quoteData.legal.otherCertificationsKeys.length > 0) {
+                  <div class="certifications-list">
+                    @for (key of quoteData.legal.otherCertificationsKeys; track key; let idx = $index) {
+                      <button class="btn-preview-doc" style="margin-top: 0.25rem; margin-right: 0.5rem;" (click)="previewDocument(key)">
+                        {{ 'quotePreview.previewDoc' | transloco }} #{{ idx + 1 }}
+                      </button>
+                    }
+                  </div>
+                }
+              </div>
             </div>
           }
 

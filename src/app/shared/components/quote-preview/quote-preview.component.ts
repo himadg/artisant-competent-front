@@ -4,6 +4,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 import { QuoteService } from '../../services/quote.service';
 import { firstValueFrom } from 'rxjs';
 import { QuoteCalculationService } from '../../services/quote-calculation.service';
+import { StorageService } from '../../../core/services/storage.service';
 
 @Component({
   selector: 'ac-quote-preview',
@@ -21,10 +22,23 @@ export class QuotePreviewComponent {
 
   private quoteService = inject(QuoteService);
   public calcService = inject(QuoteCalculationService);
+  private storageService = inject(StorageService);
   isGenerating = false;
   isGeneratingSignature = false;
   isInitiatingYousign = false;
   isAccepting = false;
+
+  async previewDocument(key: string): Promise<void> {
+    if (!key) return;
+    try {
+      const blob = await firstValueFrom(this.storageService.getContent(key));
+      const url = window.URL.createObjectURL(blob);
+      window.open(url, '_blank');
+    } catch (err) {
+      console.error('Erreur lors de la prévisualisation du document', err);
+      alert('Impossible de prévisualiser ce document.');
+    }
+  }
 
   get totalHT(): number {
     return this.calcService.getTotalHT(this.quoteData);

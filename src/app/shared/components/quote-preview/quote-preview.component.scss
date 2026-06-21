@@ -250,6 +250,25 @@
     }
     .legal-block {
       margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .btn-preview-doc {
+      background-color: var(--primary-water-green);
+      color: white;
+      border: none;
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-family: sans-serif;
+      transition: background-color 0.2s;
+      &:hover {
+        background-color: var(--secondary-water-green);
+      }
     }
     .agreements {
       margin-top: 1rem;
@@ -392,5 +411,8 @@
   .coordinates-section .jobsite-box,
   .totals-section .totals-box {
     border: 1px solid #000;
+  }
+  .btn-preview-doc {
+    display: none !important;
   }
 }

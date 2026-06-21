@@ -1314,6 +1314,7 @@
   },
   "quotePreview": {
     "title": "Prévisualisation du devis",
+    "previewDoc": "Prévisualiser",
     "docTitle": "Devis",
     "quoteNumber": "Numéro de devis :",
     "placeOfWriting": "Lieu de rédaction :",
