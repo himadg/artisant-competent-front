@@ -945,7 +945,8 @@
         "photo": "Profile photo",
         "idFront": "ID card (front)",
         "idBack": "ID card (back)",
-        "rib": "Bank details (RIB)"
+        "rib": "Bank details (RIB)",
+        "errorReplacementRequired": "Replacement required: you must upload a new document."
       },
       "mobile": {
         "profile": "Account",

@@ -358,6 +358,9 @@
                                             [ngModelOptions]="{ standalone: true }"
                                             (ngModelChange)="onDocChange($any(doc.field), $event)"
                                         ></ac-file-upload>
+                                        @if (docErrors()[doc.field]) {
+                                            <p class="doc-slot-error">{{ docErrors()[doc.field]! | transloco }}</p>
+                                        }
                                     </div>
                                 }
                             </div>

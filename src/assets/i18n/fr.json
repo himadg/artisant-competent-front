@@ -985,7 +985,8 @@
         "photo": "Photo de profil",
         "idFront": "Pièce d'identité (recto)",
         "idBack": "Pièce d'identité (verso)",
-        "rib": "RIB"
+        "rib": "RIB",
+        "errorReplacementRequired": "Remplacement obligatoire : vous devez charger un nouveau document."
       },
       "mobile": {
         "profile": "Compte",

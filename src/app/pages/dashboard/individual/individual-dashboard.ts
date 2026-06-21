@@ -1,4 +1,4 @@
-﻿import { ChangeDetectionStrategy, Component, inject, OnInit, signal, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal, computed } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule, PlatformLocation } from '@angular/common';
@@ -46,6 +46,17 @@ export class IndividualDashboard implements OnInit {
 
   /** Clé du champ document en cours d'enregistrement (feedback UI). */
   readonly docSaving = signal<keyof IndividualDocumentKeys | null>(null);
+
+  /** Erreurs pour chaque champ document (ex : remplacement obligatoire lors d'une suppression). */
+  readonly docErrors = signal<Record<string, string | null>>({});
+
+  /** Liste des documents obligatoires dont la suppression nécessite un remplacement. */
+  readonly mandatoryDocFields: (keyof IndividualDocumentKeys)[] = [
+    'photoKey',
+    'idFrontKey',
+    'idBackKey',
+    'ribKey',
+  ];
 
   readonly affiliationData = signal<AffiliationDashboard | null>(null);
   readonly affiliationLoading = signal(false);
@@ -123,6 +134,22 @@ export class IndividualDashboard implements OnInit {
   onDocChange(field: keyof IndividualDocumentKeys, key: string | null) {
     const d = this.data();
     if (!d) return;
+
+    if (this.mandatoryDocFields.includes(field) && !key) {
+      // Blocage de la suppression sans remplacement
+      this.docErrors.update((prev) => ({
+        ...prev,
+        [field]: 'dashboard.individual.docs.errorReplacementRequired',
+      }));
+      return;
+    }
+
+    // Efface l'erreur si un nouveau fichier valide est envoyé
+    this.docErrors.update((prev) => ({
+      ...prev,
+      [field]: null,
+    }));
+
     this.docSaving.set(field);
     this.userApi.updateIndividualDocuments(d.id, { [field]: key ?? '' }).subscribe({
       next: () => {
