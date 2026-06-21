@@ -336,7 +336,7 @@
         </div>
       }
     </div>
-    <div class="section-totals mt-2 mb-2 p-2" style="background: #f1f5f9; border-radius: 6px; font-weight: 500;">
+    <div class="section-totals mt-2 mb-2 p-2">
       <span>Total HT: {{ totalMaterialsHT | number:'1.2-2' }} €</span> |
       <span>TVA: {{ totalMaterialsTVA | number:'1.2-2' }} €</span> |
       <span style="color: var(--primary-water-green); font-weight: 700;">TTC: {{ totalMaterialsHT + totalMaterialsTVA | number:'1.2-2' }} €</span>
@@ -403,7 +403,7 @@
         </div>
       }
     </div>
-    <div class="section-totals mt-2 mb-2 p-2" style="background: #f1f5f9; border-radius: 6px; font-weight: 500;">
+    <div class="section-totals mt-2 mb-2 p-2">
       <span>Total HT: {{ totalServicesHT | number:'1.2-2' }} €</span> |
       <span>TVA: {{ totalServicesTVA | number:'1.2-2' }} €</span> |
       <span style="color: var(--primary-water-green); font-weight: 700;">TTC: {{ totalServicesHT + totalServicesTVA | number:'1.2-2' }} €</span>
@@ -522,7 +522,7 @@
     <legend>{{ 'quoteForm.sections.remarks' | transloco }}</legend>
     <div class="form-group">
       <label for="remarks">{{ 'quoteForm.fields.remarks' | transloco }}</label>
-      <textarea id="remarks" formControlName="remarks" [placeholder]="'quoteForm.placeholders.remarks' | transloco" rows="4" style="width: 100%; border: 1px solid #ccc; border-radius: 4px; padding: 0.5rem; resize: vertical;" [class.is-invalid]="f.remarks.invalid && (f.remarks.touched || f.remarks.dirty)"></textarea>
+      <textarea id="remarks" formControlName="remarks" [placeholder]="'quoteForm.placeholders.remarks' | transloco" rows="4" [class.is-invalid]="f.remarks.invalid && (f.remarks.touched || f.remarks.dirty)"></textarea>
       <div class="char-count text-muted" style="text-align: right; font-size: 0.85rem; margin-top: 0.2rem;">
         {{ f.remarks.value?.length || 0 }} / 1000
       </div>
@@ -536,7 +536,7 @@
 
   <fieldset formGroupName="agreement">
     <legend>{{ 'quoteForm.sections.agreement' | transloco }}</legend>
-    <div class="legal-mention mb-3" style="border-left: 4px solid var(--primary-water-green); background-color: #f8fafc;">
+    <div class="legal-mention mb-3" style="border-left: 4px solid var(--primary-water-green);">
       <p class="mb-2"><strong>{{ 'quoteForm.importantMentions' | transloco }}</strong></p>
 
       <label [class.text-danger]="f.agreement.controls.confirmFinChantier.invalid && (f.agreement.controls.confirmFinChantier.touched || f.agreement.controls.confirmFinChantier.dirty)" style="margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 0.8rem; font-weight: 500; cursor: pointer; padding: 0.5rem 0;">

@@ -328,4 +328,13 @@ select option {
 .modal-content, .legal-modal {
   transform: scale(1.1);
   transform-origin: center;
+  background-color: var(--primary-beige) !important;
+  color: var(--color) !important;
+  border: 1px solid var(--border-color);
+}
+
+:root.dark .modal-content,
+:root.dark .legal-modal {
+  background-color: var(--primary-brown) !important;
+  color: var(--secondary-beige) !important;
 }
