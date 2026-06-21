@@ -2793,11 +2793,11 @@
   "pro": {
     "meta": {
       "title": "Devenir artisan partenaire | Artisan Compétent",
-      "description": "Rejoignez Artisan Compétent : vous ne payez qu'au devis signé, dans un environnement encadré qui protège aussi les artisans. Inscription vérifiée (SIRET, assurances)."
+      "description": "Rejoignez Artisan Compétent : demandes qualifiées, paiement encadré et inscription gratuite. Commission prélevée uniquement lorsqu'un devis est signé."
     },
     "breadcrumb": {
       "home": "Accueil",
-      "pro": "Professionnels"
+      "pro": "Devenir artisan partenaire"
     },
     "cta": "Créer mon profil professionnel",
     "hero": {
@@ -2879,6 +2879,21 @@
         "de limiter fortement les litiges"
       ]
     },
+    "geo": {
+      "title": "Une géolocalisation intelligente",
+      "intro": "Vous choisissez librement votre secteur d'activité. L'adresse renseignée sur la plateforme n'a pas nécessairement besoin d'être celle de votre siège social.",
+      "listIntro": "Vous pouvez ainsi :",
+      "items": [
+        "vous positionner dans le secteur où vous souhaitez développer votre activité",
+        "tester différents secteurs géographiques",
+        "modifier votre zone d'intervention à tout moment",
+        "adapter votre présence lorsque vous êtes temporairement en déplacement professionnel"
+      ],
+      "outro": "Cette souplesse vous permet d'optimiser votre visibilité et de recevoir davantage de demandes correspondant réellement à votre zone d'activité.",
+      "jobsLinkBefore": "Vous pouvez aussi consulter ",
+      "jobsLink": "les métiers couverts par Artisan Compétent",
+      "jobsLinkAfter": " afin de vérifier que votre activité est représentée."
+    },
     "terrain": {
       "title": "Une plateforme pensée par quelqu'un qui connaît le terrain",
       "problems": {
@@ -2950,22 +2965,10 @@
         ]
       },
       "s5": {
-        "title": "5. Fonctionnement concernant les fournitures",
-        "under2k": {
-          "title": "Jusqu'à 2 000 € TTC",
-          "body": "Pour les devis inférieurs à 2 000 € TTC, les matériaux doivent obligatoirement être avancés par l'artisan et intégrés directement au devis. Cela permet généralement un chantier plus fluide, moins de complications, une meilleure coordination et moins de risques de litiges."
-        },
-        "over2k": {
-          "title": "Pour les chantiers les plus importants",
-          "intro": "Pour les chantiers les plus importants, et afin de ne pas fragiliser la trésorerie des professionnels, notamment des auto-entrepreneurs, Artisan Compétent a fait le choix, pour le moment, de permettre qu'au-delà de 2 000 € de devis, le client puisse régler directement les fournitures chez le fournisseur. Cette organisation permet de faciliter le démarrage des chantiers, de limiter la pression financière sur l'artisan et d'éviter certaines difficultés liées aux délais de démarrage parfois éloignés après signature du devis. Dans ce cas :",
-          "items": [
-            "le client accompagne directement l'artisan chez le fournisseur, ou se rend directement chez le fournisseur au nom de l'artisan, notamment lorsque le professionnel peut faire bénéficier son client de tarifs ou remises professionnelles plus avantageux",
-            "les matériaux sont réglés directement sur place",
-            "l'artisan ne doit pas recevoir directement l'avance des fournitures",
-            "toutes les factures doivent être conservées puis ajoutées dans le suivi digital du chantier"
-          ],
-          "outro": "Ce fonctionnement permet également de conserver une traçabilité complète des achats, de fiabiliser les commandes et de faciliter le suivi du chantier en cas de besoin futur."
-        }
+        "title": "5. Fonctionnement concernant les fournitures et matériaux",
+        "p1": "Lorsqu'un chantier nécessite des fournitures ou des matériaux, ceux-ci sont commandés et financés directement par le professionnel, puis intégrés au devis. Cette organisation simplifie le déroulement du chantier, améliore la coordination et réduit les risques de litige.",
+        "p2": "Avant de signer un devis, chaque artisan vérifie que sa trésorerie, ses capacités de financement ou les délais de paiement accordés par ses fournisseurs lui permettent de mener le chantier à son terme dans de bonnes conditions.",
+        "p3": "Pour assurer une traçabilité complète, toutes les factures, bons de commande et bons de livraison sont conservés puis ajoutés au suivi digital du chantier."
       },
       "s6": {
         "title": "6. Paiement encadré et séquestre",
@@ -2990,10 +2993,10 @@
       "s11": {
         "title": "11. Commissions Artisan Compétent",
         "under2k": {
-          "title": "Jusqu'à 2 000 € TTC : commission de 15 % HT sur le devis total TTC."
+          "title": "Jusqu'à 2 500 € TTC : commission de 15 % HT sur le devis total TTC."
         },
         "over2k": {
-          "title": "Au-delà de 2 000 € TTC : commission de 10 % HT sur le devis total TTC."
+          "title": "Au-delà de 2 500 € TTC : commission de 10 % HT sur le devis total TTC."
         }
       }
     },
@@ -3019,6 +3022,34 @@
       ],
       "outro": "Parce qu'aujourd'hui, les bons artisans méritent mieux que le fonctionnement actuel du marché."
     },
+    "beforeAccept": {
+      "title": "Ce que vous devez savoir avant d'accepter un chantier",
+      "p1": "Artisan Compétent a été conçu pour protéger à la fois les clients et les professionnels. Cette protection repose sur un principe simple : le client règle l'intégralité du montant du devis directement sur la plateforme avant le démarrage du chantier.",
+      "p2": "Les fonds sont ensuite séquestrés auprès du prestataire de paiement jusqu'à la validation du procès-verbal de fin de chantier, ou jusqu'à la résolution d'un éventuel litige. Le professionnel n'est donc pas payé au fur et à mesure de l'avancement des travaux : le paiement intervient après la validation du chantier, conformément aux règles de fonctionnement de la plateforme.",
+      "systemIntro": "Ce système permet notamment :",
+      "systemItems": [
+        "d'éliminer les risques d'impayés",
+        "d'encadrer les paiements",
+        "de rassurer les clients",
+        "de réduire les annulations de dernière minute",
+        "de garantir que les fonds destinés au chantier sont bien disponibles"
+      ],
+      "counterpartIntro": "En contrepartie, chaque professionnel doit s'assurer, avant d'accepter un chantier, qu'il dispose des capacités financières nécessaires à sa bonne réalisation. Il prend notamment en compte :",
+      "counterpartItems": [
+        "le montant des fournitures et matériaux à avancer",
+        "le coût de sa main-d'œuvre",
+        "la durée prévisible du chantier",
+        "ses délais de règlement auprès de ses fournisseurs",
+        "le délai pouvant exister entre la signature du devis et le démarrage effectif des travaux",
+        "les délais prévus par la plateforme avant la libération définitive des fonds"
+      ],
+      "closing": "Un chantier court nécessitant peu d'approvisionnement n'implique pas les mêmes besoins de trésorerie qu'un chantier important s'étalant sur plusieurs semaines ou plusieurs mois. Chaque professionnel reste libre d'accepter les chantiers de son choix, mais demeure seul responsable de l'évaluation de sa capacité à financer et à réaliser correctement les travaux jusqu'à leur achèvement.",
+      "guarantee": {
+        "title": "Une garantie sur les fournitures et matériaux avancés",
+        "p1": "Sous réserve du respect des règles de traçabilité mises en place sur la plateforme (factures, bons de commande, bons de livraison, photographies et justificatifs), Artisan Compétent garantit à l'artisan le remboursement des fournitures et matériaux qu'il a réellement avancés, achetés et livrés sur le chantier. Cette garantie s'applique y compris lorsqu'un litige est finalement tranché en faveur du client, ou lorsqu'une malfaçon est reconnue à l'encontre du professionnel.",
+        "p2": "Cette garantie ne concerne toutefois que les fournitures, matériaux et équipements effectivement justifiés, traçables et directement affectés au chantier concerné."
+      }
+    },
     "faq": {
       "title": "Questions fréquentes",
       "q1": {
@@ -3033,11 +3064,11 @@
         ],
         "how": "Le fonctionnement est simple :",
         "howItems": [
-          "En dessous de 2 000 € TTC : une commission de 15 % HT est prélevée sur le devis total TTC.",
-          "Au-delà de 2 000 € TTC : la commission passe à 10 % HT sur le devis total TTC."
+          "En dessous de 2 500 € TTC : une commission de 15 % HT est prélevée sur le devis total TTC.",
+          "Au-delà de 2 500 € TTC : la commission passe à 10 % HT sur le devis total TTC."
         ],
         "outro": "Cela signifie qu'Artisan Compétent ne gagne de l'argent que lorsque vous gagnez réellement un chantier. L'objectif est donc totalement aligné avec celui des professionnels : vous aider à signer davantage de devis dans un environnement encadré et rassurant pour les clients.",
-        "answerLd": "Oui, Artisan Compétent fonctionne avec une commission prélevée uniquement lorsqu'un devis est réellement signé. Contrairement à de nombreuses plateformes : vous ne payez pas pour recevoir des demandes, vous ne payez pas de crédits de devis, vous ne payez pas d'enchères, vous n'avez pas besoin de dépenser des centaines d'euros en publicité sans garantie de résultat. Le fonctionnement est simple : en dessous de 2 000 € TTC, une commission de 15 % HT est prélevée sur le devis total TTC ; au-delà de 2 000 € TTC, la commission passe à 10 % HT sur le devis total TTC. Cela signifie qu'Artisan Compétent ne gagne de l'argent que lorsque vous gagnez réellement un chantier. L'objectif est donc totalement aligné avec celui des professionnels : vous aider à signer davantage de devis dans un environnement encadré et rassurant pour les clients."
+        "answerLd": "Oui, Artisan Compétent fonctionne avec une commission prélevée uniquement lorsqu'un devis est réellement signé. Contrairement à de nombreuses plateformes : vous ne payez pas pour recevoir des demandes, vous ne payez pas de crédits de devis, vous ne payez pas d'enchères, vous n'avez pas besoin de dépenser des centaines d'euros en publicité sans garantie de résultat. Le fonctionnement est simple : en dessous de 2 500 € TTC, une commission de 15 % HT est prélevée sur le devis total TTC ; au-delà de 2 500 € TTC, la commission passe à 10 % HT sur le devis total TTC. Cela signifie qu'Artisan Compétent ne gagne de l'argent que lorsque vous gagnez réellement un chantier. L'objectif est donc totalement aligné avec celui des professionnels : vous aider à signer davantage de devis dans un environnement encadré et rassurant pour les clients."
       },
       "q2": {
         "question": "Combien de temps peut durer un litige ?",

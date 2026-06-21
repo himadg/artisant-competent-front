@@ -76,6 +76,22 @@
         </ul>
     </section>
 
+    <section id="geolocalisation" class="space-y-4">
+        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'pro.geo.title' | transloco }}</h2>
+        <p>{{ 'pro.geo.intro' | transloco }}</p>
+        <p>{{ 'pro.geo.listIntro' | transloco }}</p>
+        <ul class="pl-5 space-y-2 list-disc">
+            @for (item of $any('pro.geo.items' | transloco); track $index) {
+                <li>{{ item }}</li>
+            }
+        </ul>
+        <p>{{ 'pro.geo.outro' | transloco }}</p>
+        <p>
+            {{ 'pro.geo.jobsLinkBefore' | transloco
+                }}<a [routerLink]="['/jobs']" class="underline">{{ 'pro.geo.jobsLink' | transloco }}</a>{{ 'pro.geo.jobsLinkAfter' | transloco }}
+        </p>
+    </section>
+
     <section id="terrain" class="space-y-4">
         <h2 class="text-2xl font-semibold md:text-3xl">{{ 'pro.terrain.title' | transloco }}</h2>
 
@@ -139,22 +155,11 @@
             </ul>
         </article>
 
-        <article class="space-y-4">
+        <article class="space-y-3">
             <h3 class="text-xl font-semibold md:text-2xl">{{ 'pro.steps.s5.title' | transloco }}</h3>
-            <div class="space-y-2">
-                <h4 class="text-lg font-semibold">{{ 'pro.steps.s5.under2k.title' | transloco }}</h4>
-                <p>{{ 'pro.steps.s5.under2k.body' | transloco }}</p>
-            </div>
-            <div class="space-y-2">
-                <h4 class="text-lg font-semibold">{{ 'pro.steps.s5.over2k.title' | transloco }}</h4>
-                <p>{{ 'pro.steps.s5.over2k.intro' | transloco }}</p>
-                <ul class="pl-5 space-y-2 list-disc">
-                    @for (item of $any('pro.steps.s5.over2k.items' | transloco); track $index) {
-                        <li>{{ item }}</li>
-                    }
-                </ul>
-                <p>{{ 'pro.steps.s5.over2k.outro' | transloco }}</p>
-            </div>
+            <p>{{ 'pro.steps.s5.p1' | transloco }}</p>
+            <p>{{ 'pro.steps.s5.p2' | transloco }}</p>
+            <p>{{ 'pro.steps.s5.p3' | transloco }}</p>
         </article>
 
         <article class="space-y-3">
@@ -213,6 +218,30 @@
             }
         </ul>
         <p>{{ 'pro.goal.outro' | transloco }}</p>
+    </section>
+
+    <section id="avant-accepter" class="space-y-4">
+        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'pro.beforeAccept.title' | transloco }}</h2>
+        <p>{{ 'pro.beforeAccept.p1' | transloco }}</p>
+        <p>{{ 'pro.beforeAccept.p2' | transloco }}</p>
+        <p>{{ 'pro.beforeAccept.systemIntro' | transloco }}</p>
+        <ul class="pl-5 space-y-2 list-disc">
+            @for (item of $any('pro.beforeAccept.systemItems' | transloco); track $index) {
+                <li>{{ item }}</li>
+            }
+        </ul>
+        <p>{{ 'pro.beforeAccept.counterpartIntro' | transloco }}</p>
+        <ul class="pl-5 space-y-2 list-disc">
+            @for (item of $any('pro.beforeAccept.counterpartItems' | transloco); track $index) {
+                <li>{{ item }}</li>
+            }
+        </ul>
+        <p>{{ 'pro.beforeAccept.closing' | transloco }}</p>
+        <div class="space-y-3">
+            <h3 class="text-xl font-semibold md:text-2xl">{{ 'pro.beforeAccept.guarantee.title' | transloco }}</h3>
+            <p>{{ 'pro.beforeAccept.guarantee.p1' | transloco }}</p>
+            <p>{{ 'pro.beforeAccept.guarantee.p2' | transloco }}</p>
+        </div>
     </section>
 
     <section id="faq" class="space-y-4">
