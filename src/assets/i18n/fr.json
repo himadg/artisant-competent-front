@@ -1038,7 +1038,8 @@
         "rib": "RIB",
         "logo": "Logo entreprise",
         "download": "Télécharger",
-        "missing": "Non fourni"
+        "missing": "Non fourni",
+        "errorReplacementRequired": "Remplacement obligatoire : vous devez charger un nouveau document."
       },
       "mobile": {
         "profile": "Compte",

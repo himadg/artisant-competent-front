@@ -55,6 +55,20 @@ export class ProfessionalDashboard implements OnInit {
   /** Clé du champ document en cours d'enregistrement (pour feedback UI). */
   readonly docSaving = signal<keyof DocumentKeys | null>(null);
 
+  /** Erreurs pour chaque champ document (ex : remplacement obligatoire lors d'une suppression). */
+  readonly docErrors = signal<Record<string, string | null>>({});
+
+  /** Liste des documents obligatoires dont la suppression nécessite un remplacement. */
+  readonly mandatoryDocFields: (keyof DocumentKeys)[] = [
+    'photoKey',
+    'companyLogoKey',
+    'idFrontKey',
+    'idBackKey',
+    'insuranceDocKey',
+    'diplomaDocKey',
+    'ribKey',
+  ];
+
   readonly affiliationData = signal<AffiliationDashboard | null>(null);
   readonly affiliationLoading = signal(false);
   readonly codeCopied = signal(false);
@@ -255,13 +269,29 @@ export class ProfessionalDashboard implements OnInit {
 
   /**
    * Persiste un changement de document (ajout/remplacement/suppression) émis par
-   * un `ac-file-upload`. `key` vaut `null` quand le fichier est retiré : on envoie
-   * alors une chaîne vide au backend (suppression de l'emplacement). On met à jour
-   * le signal `data()` localement pour refléter la nouvelle clé sans recharger.
+   * un `ac-file-upload`. Si le document est obligatoire, on bloque la suppression
+   * définitive (on ne transmet pas une clé vide au backend). L'utilisateur doit
+   * obligatoirement en téléverser un nouveau pour le remplacer.
    */
   onDocChange(field: keyof DocumentKeys, key: string | null) {
     const pro = this.data();
     if (!pro) return;
+
+    if (this.mandatoryDocFields.includes(field) && !key) {
+      // Blocage de la suppression sans remplacement
+      this.docErrors.update((prev) => ({
+        ...prev,
+        [field]: 'dashboard.pro.docs.errorReplacementRequired',
+      }));
+      return;
+    }
+
+    // Efface l'erreur si un nouveau fichier valide est envoyé
+    this.docErrors.update((prev) => ({
+      ...prev,
+      [field]: null,
+    }));
+
     this.docSaving.set(field);
     this.userApi.updateProfessionalDocuments(pro.id, { [field]: key ?? '' }).subscribe({
       next: () => {

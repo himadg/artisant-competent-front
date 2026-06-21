@@ -998,7 +998,8 @@
         "rib": "Bank details (RIB)",
         "logo": "Company logo",
         "download": "Download",
-        "missing": "Not provided"
+        "missing": "Not provided",
+        "errorReplacementRequired": "Replacement required: you must upload a new document."
       },
       "mobile": {
         "profile": "Profile",
