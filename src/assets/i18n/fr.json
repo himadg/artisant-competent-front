@@ -1329,6 +1329,7 @@
     "service": "Prestation",
     "serviceSub": "(main-d’œuvre)",
     "reconditioned": "Reconditionné",
+    "new": "Neuf",
     "customSupply": "Sur mesure",
     "nightIntervention": "Intervention de nuit (20h-7h)",
     "providedByClient": "Fourni par le client",
@@ -1344,6 +1345,7 @@
     "suppliers": "Fournisseurs :",
     "totalHT": "Total HT :",
     "totalToPay": "TOTAL À PAYER TTC :",
+    "remarks": "Remarques :",
     "legalInfo": "Informations Légales & Conditions",
     "estimatedDelays": "Délais estimés :",
     "from": "du",
@@ -1361,6 +1363,7 @@
     "importantMentions": "Mentions importantes :",
     "mention1": "Il est nécessaire d'établir un procès-verbal de fin de chantier pour la validation des travaux.",
     "mention2": "Un délai de 48h est appliqué avant validation automatique et libération des fonds.",
+    "mention3": "L'utilisation de la plateforme implique l'acceptation des CGU et CGV ainsi que des modalités de séquestres et de libérations des fonds.",
     "insuranceVerified": "✓ Le client est prié de vérifier la validité de l'assurance avant la signature.",
     "waiveRetraction": "✓ Le client reconnaît renoncer à son droit de rétractation de 14 jours.",
     "arbitration": "✓ Autorisation d'arbitrage par la plateforme Artisan-Compétent en cas de nécessité accordée.",
@@ -1386,6 +1389,7 @@
     "copyClientAddress": "Copier l'adresse du client",
     "providedByClient": "Fourni par le client",
     "reconditioned": "Reconditionné",
+    "isNew": "Neuf",
     "isCustomSupply": "Fourniture sur mesure",
     "customSupplyInfo": "Cochez cette case si ce matériau/fourniture est réalisé sur mesure.",
     "paidBy": "Payé par :",
@@ -1407,6 +1411,7 @@
     "importantMentions": "Mentions importantes :",
     "mention1": "Il est nécessaire d'établir un procès-verbal de fin de chantier pour la validation des travaux.",
     "mention2": "Un délai de 48h est appliqué avant validation automatique et libération des fonds.",
+    "mention3": "L'utilisation de la plateforme implique l'acceptation des CGU et CGV ainsi que des modalités de séquestres et de libérations des fonds.",
     "insuranceVerified": "Le client est prié de vérifier la validité de l'assurance avant la signature.",
     "waiveRetraction": "Je reconnais renoncer à mon droit de rétractation de 14 jours.",
     "arbitration": "J'autorise la plateforme à arbitrer et libérer les fonds en cas de nécessité.",
@@ -1425,6 +1430,7 @@
       "services": "Prestation (main-d’œuvre)",
       "logistics": "Logistique et frais annexes",
       "planning": "Planification",
+      "remarks": "Remarques",
       "agreement": "Accord et Validation"
     },
     "serviceType": {
@@ -1453,7 +1459,8 @@
       "dateOfWriting": "Date de rédaction",
       "validityDate": "Date de validité",
       "estimatedStartDate": "Date de début estimée",
-      "estimatedEndDate": "Date de fin estimée"
+      "estimatedEndDate": "Date de fin estimée",
+      "remarks": "Remarques ou consignes particulières (facultatif)"
     },
     "placeholders": {
       "streetNumber": "Ex: 123",
@@ -1462,7 +1469,8 @@
       "materialDescription": "Description détaillée",
       "serviceDescription": "Description de la prestation",
       "supplierName": "Nom du fournisseur",
-      "city": "Ville"
+      "city": "Ville",
+      "remarks": "Saisissez vos remarques ou consignes particulières pour ce devis..."
     },
     "legal": {
       "documentsFromProfile": "Les assurances (RC Pro, décennale) et certifications proviennent de votre profil professionnel et sont jointes automatiquement lors de la signature.",
@@ -1505,7 +1513,8 @@
       "startRange": "La date de début estimée doit être supérieure ou égale à la date de rédaction.",
       "endDateRequired": "Date de fin requise.",
       "endRange": "La date de fin doit être supérieure ou égale à la date de début.",
-      "mustAccept": "Vous devez accepter cette condition."
+      "mustAccept": "Vous devez accepter cette condition.",
+      "remarksMaxLength": "Les remarques ne peuvent dépasser 1000 caractères."
     }
   }
 }

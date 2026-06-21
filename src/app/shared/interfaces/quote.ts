@@ -38,6 +38,7 @@ export interface QuotePayload {
     tva: number;
     providedByClient: boolean;
     isReconditioned: boolean;
+    isNew?: boolean;
     paidByArtisan: boolean;
     isCustomSupply?: boolean;
   }[];
@@ -74,5 +75,9 @@ export interface QuotePayload {
     waiveRetractionRights: boolean;
     arbitrationAgreement: boolean;
     acceptSplitPayment: boolean;
+    confirmFinChantier: boolean;
+    confirmReleaseDelay: boolean;
+    confirmPlatformRules: boolean;
   };
+  remarks?: string | null;
 }

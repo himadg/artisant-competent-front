@@ -112,7 +112,7 @@ export class QuoteFormComponent implements OnInit {
         status: ['Auto-entrepreneur', Validators.required]
       })
     }),
-    materials: this.fb.array<FormGroup<{ description: FormControl<string>; amountHT: FormControl<number>; tva: FormControl<number>; providedByClient: FormControl<boolean>; isReconditioned: FormControl<boolean>; paidByArtisan: FormControl<boolean>; isCustomSupply: FormControl<boolean>; }>>([]),
+    materials: this.fb.array<FormGroup<{ description: FormControl<string>; amountHT: FormControl<number>; tva: FormControl<number>; providedByClient: FormControl<boolean>; isReconditioned: FormControl<boolean>; isNew: FormControl<boolean>; paidByArtisan: FormControl<boolean>; isCustomSupply: FormControl<boolean>; }>>([]),
     services: this.fb.array<FormGroup<{ description: FormControl<string>; type: FormControl<string>; amountHT: FormControl<number>; tva: FormControl<number>; isNightIntervention: FormControl<boolean>; }>>([]),
     logistics: this.fb.nonNullable.group({
       suppliers: this.fb.array<FormControl<string>>([this.fb.nonNullable.control('', Validators.required)]),
@@ -136,8 +136,12 @@ export class QuoteFormComponent implements OnInit {
       insuranceVerified: [false, Validators.requiredTrue],
       waiveRetractionRights: [false, Validators.requiredTrue],
       arbitrationAgreement: [false, Validators.requiredTrue],
-      acceptSplitPayment: [false, Validators.requiredTrue]
-    })
+      acceptSplitPayment: [false, Validators.requiredTrue],
+      confirmFinChantier: [false, Validators.requiredTrue],
+      confirmReleaseDelay: [false, Validators.requiredTrue],
+      confirmPlatformRules: [false, Validators.requiredTrue]
+    }),
+    remarks: this.fb.control<string | null>('', [Validators.maxLength(1000)])
   });
 
   @Input() mission?: any | null = null;
@@ -282,6 +286,7 @@ export class QuoteFormComponent implements OnInit {
         tva: [m.tva ?? 20, [Validators.required, Validators.min(0)]],
         providedByClient: [m.providedByClient ?? false],
         isReconditioned: [m.isReconditioned ?? false],
+        isNew: [m.isNew ?? false],
         paidByArtisan: [m.paidByArtisan ?? true],
         isCustomSupply: [m.isCustomSupply ?? false],
       }));
@@ -356,7 +361,7 @@ export class QuoteFormComponent implements OnInit {
   }
 
   get materials() { return this.f.materials; }
-  addMaterial(): void { this.materials.push(this.fb.nonNullable.group({ description: ['', [Validators.required, Validators.maxLength(255)]], amountHT: [0, [Validators.required, Validators.min(0)]], tva: [20, [Validators.required, Validators.min(0)]], providedByClient: [false], isReconditioned: [false], paidByArtisan: [true], isCustomSupply: [false] })); }
+  addMaterial(): void { this.materials.push(this.fb.nonNullable.group({ description: ['', [Validators.required, Validators.maxLength(255)]], amountHT: [0, [Validators.required, Validators.min(0)]], tva: [20, [Validators.required, Validators.min(0)]], providedByClient: [false], isReconditioned: [false], isNew: [false], paidByArtisan: [true], isCustomSupply: [false] })); }
   removeMaterial(index: number): void { this.materials.removeAt(index); }
 
   get services() { return this.f.services; }

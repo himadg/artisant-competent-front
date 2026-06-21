@@ -80,6 +80,9 @@
                   <tr>
                     <td>
                       {{ material.description || ('quotePreview.notProvidedF' | transloco) }}
+                      @if (material.isNew) {
+                        <span class="badge badge-new">{{ 'quotePreview.new' | transloco }}</span>
+                      }
                       @if (material.isReconditioned) {
                         <span class="badge badge-reconditioned">{{ 'quotePreview.reconditioned' | transloco }}</span>
                       }
@@ -164,6 +167,13 @@
           </div>
         </div>
 
+        @if (quoteData.remarks) {
+          <div class="details-section remarks-summary" style="margin-bottom: 20px;">
+            <h3>{{ 'quotePreview.remarks' | transloco }}</h3>
+            <p style="white-space: pre-line; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 1rem; color: #334155; line-height: 1.5;">{{ quoteData.remarks }}</p>
+          </div>
+        }
+
         <div class="legal-section">
           <h3>{{ 'quotePreview.legalInfo' | transloco }}</h3>
           <p><strong>{{ 'quotePreview.estimatedDelays' | transloco }}</strong> {{ 'quotePreview.from' | transloco }} {{ (quoteData.planning?.estimatedStartDate | date:'dd/MM/yyyy') || ('quotePreview.notProvided' | transloco) }} {{ 'quotePreview.to' | transloco }} {{ (quoteData.planning?.estimatedEndDate | date:'dd/MM/yyyy') || ('quotePreview.notProvided' | transloco) }} <br><em>{{ 'quotePreview.delayNote' | transloco }}</em></p>
@@ -197,10 +207,15 @@
 
           <div class="agreements">
             <p><strong>{{ 'quotePreview.importantMentions' | transloco }}</strong></p>
-            <ul>
-              <li>{{ 'quotePreview.mention1' | transloco }}</li>
-              <li>{{ 'quotePreview.mention2' | transloco }}</li>
-            </ul>
+            @if (quoteData.agreement?.confirmFinChantier === undefined || quoteData.agreement?.confirmFinChantier) {
+              <p>{{ quoteData.agreement?.confirmFinChantier ? '✓ ' : '' }}{{ 'quotePreview.mention1' | transloco }}</p>
+            }
+            @if (quoteData.agreement?.confirmReleaseDelay === undefined || quoteData.agreement?.confirmReleaseDelay) {
+              <p>{{ quoteData.agreement?.confirmReleaseDelay ? '✓ ' : '' }}{{ 'quotePreview.mention2' | transloco }}</p>
+            }
+            @if (quoteData.agreement?.confirmPlatformRules === undefined || quoteData.agreement?.confirmPlatformRules) {
+              <p>{{ quoteData.agreement?.confirmPlatformRules ? '✓ ' : '' }}{{ 'quotePreview.mention3' | transloco }}</p>
+            }
             <br>
             @if (quoteData.agreement?.insuranceVerified) {
               <p>{{ 'quotePreview.insuranceVerified' | transloco }}</p>

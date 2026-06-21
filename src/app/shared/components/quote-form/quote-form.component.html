@@ -322,6 +322,7 @@
           </div>
           <span class="mt-2">TTC: {{ calcService.calculateItemTTC(material.controls.amountHT.value, material.controls.tva.value, legalControls.applyTvaExemption.value) | number:'1.2-2' }} €</span>
           <label class="mt-2"><input type="checkbox" formControlName="providedByClient"> {{ 'quoteForm.providedByClient' | transloco }}</label>
+          <label class="mt-2"><input type="checkbox" formControlName="isNew"> {{ 'quoteForm.isNew' | transloco }}</label>
           <label class="mt-2"><input type="checkbox" formControlName="isReconditioned"> {{ 'quoteForm.reconditioned' | transloco }}</label>
           <label class="mt-2">
             <input type="checkbox" formControlName="isCustomSupply">
@@ -517,14 +518,50 @@
     <p class="legal-mention mt-2">{{ 'quoteForm.delayNote' | transloco }}</p>
   </fieldset>
 
+  <fieldset>
+    <legend>{{ 'quoteForm.sections.remarks' | transloco }}</legend>
+    <div class="form-group">
+      <label for="remarks">{{ 'quoteForm.fields.remarks' | transloco }}</label>
+      <textarea id="remarks" formControlName="remarks" [placeholder]="'quoteForm.placeholders.remarks' | transloco" rows="4" style="width: 100%; border: 1px solid #ccc; border-radius: 4px; padding: 0.5rem; resize: vertical;" [class.is-invalid]="f.remarks.invalid && (f.remarks.touched || f.remarks.dirty)"></textarea>
+      <div class="char-count text-muted" style="text-align: right; font-size: 0.85rem; margin-top: 0.2rem;">
+        {{ f.remarks.value?.length || 0 }} / 1000
+      </div>
+      @if (f.remarks.invalid && (f.remarks.touched || f.remarks.dirty)) {
+        <div class="error-feedback">
+          @if (f.remarks.errors?.['maxlength']) { <span>{{ 'quoteForm.errors.remarksMaxLength' | transloco }}</span> }
+        </div>
+      }
+    </div>
+  </fieldset>
+
   <fieldset formGroupName="agreement">
     <legend>{{ 'quoteForm.sections.agreement' | transloco }}</legend>
-    <div class="legal-mention mb-3">
-      <p><strong>{{ 'quoteForm.importantMentions' | transloco }}</strong></p>
-      <ul style="margin-top: 0.5rem; margin-bottom: 0;">
-        <li>{{ 'quoteForm.mention1' | transloco }}</li>
-        <li>{{ 'quoteForm.mention2' | transloco }}</li>
-      </ul>
+    <div class="legal-mention mb-3" style="border-left: 4px solid var(--primary-water-green); background-color: #f8fafc;">
+      <p class="mb-2"><strong>{{ 'quoteForm.importantMentions' | transloco }}</strong></p>
+
+      <label [class.text-danger]="f.agreement.controls.confirmFinChantier.invalid && (f.agreement.controls.confirmFinChantier.touched || f.agreement.controls.confirmFinChantier.dirty)" style="margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 0.8rem; font-weight: 500; cursor: pointer; padding: 0.5rem 0;">
+        <input type="checkbox" formControlName="confirmFinChantier" style="width: 1.2rem; height: 1.2rem; margin: 0.1rem 0 0 0; flex-shrink: 0; cursor: pointer; accent-color: var(--primary-water-green);">
+        {{ 'quoteForm.mention1' | transloco }}
+      </label>
+      @if (f.agreement.controls.confirmFinChantier.invalid && (f.agreement.controls.confirmFinChantier.touched || f.agreement.controls.confirmFinChantier.dirty)) {
+        <div class="error-feedback mb-2" style="margin-top: 0.2rem;">{{ 'quoteForm.errors.mustAccept' | transloco }}</div>
+      }
+
+      <label [class.text-danger]="f.agreement.controls.confirmReleaseDelay.invalid && (f.agreement.controls.confirmReleaseDelay.touched || f.agreement.controls.confirmReleaseDelay.dirty)" style="display: flex; align-items: flex-start; gap: 0.8rem; font-weight: 500; cursor: pointer; padding: 0.5rem 0;">
+        <input type="checkbox" formControlName="confirmReleaseDelay" style="width: 1.2rem; height: 1.2rem; margin: 0.1rem 0 0 0; flex-shrink: 0; cursor: pointer; accent-color: var(--primary-water-green);">
+        {{ 'quoteForm.mention2' | transloco }}
+      </label>
+      @if (f.agreement.controls.confirmReleaseDelay.invalid && (f.agreement.controls.confirmReleaseDelay.touched || f.agreement.controls.confirmReleaseDelay.dirty)) {
+        <div class="error-feedback mb-2" style="margin-top: 0.2rem;">{{ 'quoteForm.errors.mustAccept' | transloco }}</div>
+      }
+
+      <label [class.text-danger]="f.agreement.controls.confirmPlatformRules.invalid && (f.agreement.controls.confirmPlatformRules.touched || f.agreement.controls.confirmPlatformRules.dirty)" style="margin-top: 0.5rem; display: flex; align-items: flex-start; gap: 0.8rem; font-weight: 500; cursor: pointer; padding: 0.5rem 0;">
+        <input type="checkbox" formControlName="confirmPlatformRules" style="width: 1.2rem; height: 1.2rem; margin: 0.1rem 0 0 0; flex-shrink: 0; cursor: pointer; accent-color: var(--primary-water-green);">
+        {{ 'quoteForm.mention3' | transloco }}
+      </label>
+      @if (f.agreement.controls.confirmPlatformRules.invalid && (f.agreement.controls.confirmPlatformRules.touched || f.agreement.controls.confirmPlatformRules.dirty)) {
+        <div class="error-feedback mb-2" style="margin-top: 0.2rem;">{{ 'quoteForm.errors.mustAccept' | transloco }}</div>
+      }
     </div>
 
     <label [class.text-danger]="f.agreement.controls.insuranceVerified.invalid && (f.agreement.controls.insuranceVerified.touched || f.agreement.controls.insuranceVerified.dirty)">

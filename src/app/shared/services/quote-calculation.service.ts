@@ -21,7 +21,7 @@ export interface QuoteData {
     };
     artisan?: any;
   };
-  materials: { amountHT: number; tva: number; providedByClient: boolean; isReconditioned: boolean; description: string; isCustomSupply?: boolean }[];
+  materials: { amountHT: number; tva: number; providedByClient: boolean; isReconditioned: boolean; isNew?: boolean; description: string; isCustomSupply?: boolean }[];
   services: { amountHT: number; tva: number; description: string; type: string; isNightIntervention?: boolean }[];
   logistics: { travelCostHT: number; suppliers: string[]; wasteManagement: { hasWaste: boolean; cerfaSigned: boolean } };
   legal: {
@@ -30,7 +30,7 @@ export interface QuoteData {
     addDecennale?: boolean;
     addOtherCertifications?: boolean;
   };
-  agreement?: { insuranceVerified: boolean; waiveRetractionRights: boolean; arbitrationAgreement: boolean; acceptSplitPayment: boolean };
+  agreement?: { insuranceVerified: boolean; waiveRetractionRights: boolean; arbitrationAgreement: boolean; acceptSplitPayment: boolean; confirmFinChantier: boolean; confirmReleaseDelay: boolean; confirmPlatformRules: boolean };
   quoteNumber?: string;
   planning?: {
     placeOfWriting?: string;
@@ -39,6 +39,7 @@ export interface QuoteData {
     estimatedStartDate?: string;
     estimatedEndDate?: string;
   };
+  remarks?: string | null;
 }
 
 @Injectable({

@@ -1329,6 +1329,7 @@
     "service": "Service",
     "serviceSub": "(labor)",
     "reconditioned": "Reconditioned",
+    "new": "New",
     "customSupply": "Bespoke",
     "nightIntervention": "Night intervention (8 PM - 7 AM)",
     "providedByClient": "Provided by the client",
@@ -1344,6 +1345,7 @@
     "suppliers": "Suppliers:",
     "totalHT": "Total excl. VAT:",
     "totalToPay": "TOTAL TO PAY incl. VAT:",
+    "remarks": "Remarks:",
     "legalInfo": "Legal Information & Terms",
     "estimatedDelays": "Estimated timeframe:",
     "from": "from",
@@ -1361,6 +1363,7 @@
     "importantMentions": "Important mentions:",
     "mention1": "A site completion report must be drawn up to validate the works.",
     "mention2": "A 48-hour period applies before automatic validation and release of funds.",
+    "mention3": "Use of the platform implies acceptance of the T&Cs and the escrow and fund release terms.",
     "insuranceVerified": "✓ The client is asked to verify the validity of the insurance before signing.",
     "waiveRetraction": "✓ The client acknowledges waiving their 14-day right of withdrawal.",
     "arbitration": "✓ Authorization for arbitration by the Artisan-Compétent platform granted if needed.",
@@ -1386,6 +1389,7 @@
     "copyClientAddress": "Copy client address",
     "providedByClient": "Provided by the client",
     "reconditioned": "Reconditioned",
+    "isNew": "New",
     "isCustomSupply": "Bespoke supply",
     "customSupplyInfo": "Check this box if this material/supply is custom-made/bespoke.",
     "paidBy": "Paid by:",
@@ -1407,6 +1411,7 @@
     "importantMentions": "Important mentions:",
     "mention1": "A site completion report must be drawn up to validate the works.",
     "mention2": "A 48-hour period applies before automatic validation and release of funds.",
+    "mention3": "Use of the platform implies acceptance of the T&Cs and the escrow and fund release terms.",
     "insuranceVerified": "The client is asked to verify the validity of the insurance before signing.",
     "waiveRetraction": "I acknowledge waiving my 14-day right of withdrawal.",
     "arbitration": "I authorize the platform to arbitrate and release the funds if needed.",
@@ -1425,6 +1430,7 @@
       "services": "Service (labor)",
       "logistics": "Logistics and additional costs",
       "planning": "Planning",
+      "remarks": "Remarks",
       "agreement": "Agreement and Validation"
     },
     "serviceType": {
@@ -1453,7 +1459,8 @@
       "dateOfWriting": "Date of writing",
       "validityDate": "Validity date",
       "estimatedStartDate": "Estimated start date",
-      "estimatedEndDate": "Estimated end date"
+      "estimatedEndDate": "Estimated end date",
+      "remarks": "Remarks or special instructions (optional)"
     },
     "placeholders": {
       "streetNumber": "E.g. 123",
@@ -1462,7 +1469,8 @@
       "materialDescription": "Detailed description",
       "serviceDescription": "Service description",
       "supplierName": "Supplier name",
-      "city": "City"
+      "city": "City",
+      "remarks": "Enter your remarks or special instructions for this quote..."
     },
     "legal": {
       "documentsFromProfile": "Insurance (professional liability, ten-year warranty) and certifications come from your professional profile and are attached automatically when signing.",
@@ -1505,7 +1513,8 @@
       "startRange": "The estimated start date must be greater than or equal to the date of writing.",
       "endDateRequired": "End date required.",
       "endRange": "The end date must be greater than or equal to the start date.",
-      "mustAccept": "You must accept this condition."
+      "mustAccept": "You must accept this condition.",
+      "remarksMaxLength": "Remarks cannot exceed 1000 characters."
     }
   }
 }
