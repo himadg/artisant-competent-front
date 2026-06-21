@@ -37,8 +37,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  border-bottom: 1px solid #eee;
-  background-color: #f8f9fa;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--primary-beige);
+  color: var(--color);
+
+  :host-context(.dark) & {
+    background-color: var(--primary-brown);
+    color: var(--secondary-beige);
+    border-color: var(--border-color);
+  }
 
   h2 {
     margin: 0;
@@ -51,12 +58,17 @@
   border: none;
   font-size: 2rem;
   line-height: 1;
-  color: #666;
+  color: var(--color);
+  opacity: 0.6;
   cursor: pointer;
   padding: 0;
 
+  :host-context(.dark) & {
+    color: var(--secondary-beige);
+  }
+
   &:hover {
-    color: #000;
+    opacity: 1;
   }
 }
 
@@ -248,13 +260,18 @@
 
 .modal-footer {
   padding: 1rem 1.5rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--border-color);
   text-align: right;
-  background-color: #f8f9fa;
+  background-color: var(--primary-beige);
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
   flex-wrap: wrap;
+
+  :host-context(.dark) & {
+    background-color: var(--primary-brown);
+    border-color: var(--border-color);
+  }
 
   button {
     &:disabled {
@@ -264,7 +281,7 @@
   }
 
   .btn-primary {
-    background-color: #007bff;
+    background-color: var(--primary-water-green);
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -273,7 +290,7 @@
     transition: background-color 0.2s;
 
     &:hover:not(:disabled) {
-      background-color: #0056b3;
+      background-color: var(--secondary-water-green);
     }
   }
 
@@ -292,20 +309,6 @@
     }
   }
 
-  .btn-secondary {
-    background-color: #6c757d;
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-
-    &:hover:not(:disabled) {
-      background-color: #5a6268;
-    }
-  }
-
   .btn-yousign {
     background-color: #0c1a96; // Couleur Yousign
     color: white;
@@ -318,6 +321,29 @@
 
     &:hover:not(:disabled) {
       background-color: #071063;
+    }
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--color);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover:not(:disabled) {
+      background-color: var(--secondary-beige);
+    }
+
+    :host-context(.dark) & {
+      color: var(--secondary-beige);
+      border-color: var(--border-color);
+
+      &:hover:not(:disabled) {
+        background-color: var(--secondary-brown);
+      }
     }
   }
 }
