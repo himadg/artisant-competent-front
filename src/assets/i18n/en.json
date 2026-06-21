@@ -2793,11 +2793,11 @@
   "pro": {
     "meta": {
       "title": "Become a partner professional | Artisan Compétent",
-      "description": "Join Artisan Compétent: you only pay on signed quotes, in a structured environment that also protects professionals. Verified signup (SIRET, insurance)."
+      "description": "Join Artisan Compétent: qualified requests, structured payment and free signup. Commission charged only when a quote is signed."
     },
     "breadcrumb": {
       "home": "Home",
-      "pro": "Professionals"
+      "pro": "Become a partner professional"
     },
     "cta": "Create my professional profile",
     "hero": {
@@ -2879,6 +2879,21 @@
         "strongly limit disputes"
       ]
     },
+    "geo": {
+      "title": "Smart geolocation",
+      "intro": "You freely choose your area of activity. The address provided on the platform does not necessarily have to be that of your registered office.",
+      "listIntro": "This allows you to:",
+      "items": [
+        "position yourself in the area where you want to grow your business",
+        "test different geographic areas",
+        "change your service area at any time",
+        "adjust your presence when you are temporarily travelling for work"
+      ],
+      "outro": "This flexibility lets you optimise your visibility and receive more requests that genuinely match your service area.",
+      "jobsLinkBefore": "You can also browse ",
+      "jobsLink": "the trades covered by Artisan Compétent",
+      "jobsLinkAfter": " to check that your activity is represented."
+    },
     "terrain": {
       "title": "A platform designed by someone who knows the field",
       "problems": {
@@ -2950,22 +2965,10 @@
         ]
       },
       "s5": {
-        "title": "5. How supplies are handled",
-        "under2k": {
-          "title": "Up to €2,000 incl. VAT",
-          "body": "For quotes below €2,000 incl. VAT, materials must be advanced by the professional and integrated directly into the quote. This generally allows for a smoother project, fewer complications, better coordination, and less risk of disputes."
-        },
-        "over2k": {
-          "title": "For larger projects",
-          "intro": "For larger projects, and in order not to weaken the cash flow of professionals, especially self-employed workers, Artisan Compétent has chosen, for the moment, to allow that beyond €2,000 of quote, the client may pay for supplies directly at the supplier. This setup makes it easier to start projects, limits the financial pressure on the professional, and avoids certain difficulties linked to start times that are sometimes far from the signing of the quote. In this case:",
-          "items": [
-            "the client accompanies the professional directly to the supplier, or goes directly to the supplier on behalf of the professional, in particular when the professional can offer the client more favourable professional rates or discounts",
-            "the materials are paid for directly on the spot",
-            "the professional must not directly receive the advance for supplies",
-            "all invoices must be kept and then added to the digital tracking of the project"
-          ],
-          "outro": "This setup also keeps full traceability of purchases, makes orders more reliable, and facilitates project tracking if needed in the future."
-        }
+        "title": "5. How supplies and materials are handled",
+        "p1": "When a project requires supplies or materials, they are ordered and paid for directly by the professional, then included in the quote. This setup simplifies how the project runs, improves coordination and reduces the risk of disputes.",
+        "p2": "Before signing a quote, each professional checks that their cash flow, financing capacity or the payment terms granted by their suppliers allow them to carry the project through to completion in good conditions.",
+        "p3": "To ensure full traceability, all invoices, purchase orders and delivery notes are kept and then added to the project's digital tracking."
       },
       "s6": {
         "title": "6. Structured payment and escrow",
@@ -2990,10 +2993,10 @@
       "s11": {
         "title": "11. Artisan Compétent commissions",
         "under2k": {
-          "title": "Up to €2,000 incl. VAT: commission of 15% excl. VAT on the total quote incl. VAT."
+          "title": "Up to €2,500 incl. VAT: commission of 15% excl. VAT on the total quote incl. VAT."
         },
         "over2k": {
-          "title": "Above €2,000 incl. VAT: commission of 10% excl. VAT on the total quote incl. VAT."
+          "title": "Above €2,500 incl. VAT: commission of 10% excl. VAT on the total quote incl. VAT."
         }
       }
     },
@@ -3019,6 +3022,34 @@
       ],
       "outro": "Because today, good professionals deserve better than the current functioning of the market."
     },
+    "beforeAccept": {
+      "title": "What you should know before accepting a project",
+      "p1": "Artisan Compétent was designed to protect both clients and professionals. This protection rests on a simple principle: the client pays the full quote amount directly on the platform before the project starts.",
+      "p2": "The funds are then held in escrow with the payment provider until the final acceptance report is validated, or until any dispute is resolved. The professional is therefore not paid as the work progresses: payment is made after the project is validated, in accordance with the platform's operating rules.",
+      "systemIntro": "In particular, this system makes it possible to:",
+      "systemItems": [
+        "eliminate the risk of unpaid invoices",
+        "keep payments within a clear framework",
+        "reassure clients",
+        "reduce last-minute cancellations",
+        "ensure that the funds intended for the project are actually available"
+      ],
+      "counterpartIntro": "In return, before accepting a project, each professional must ensure they have the financial capacity needed to carry it out properly. In particular, they take into account:",
+      "counterpartItems": [
+        "the amount of supplies and materials to advance",
+        "the cost of their labor",
+        "the expected duration of the project",
+        "their payment terms with their suppliers",
+        "the possible delay between signing the quote and the actual start of the work",
+        "the time set by the platform before the funds are finally released"
+      ],
+      "closing": "A short project requiring few supplies does not involve the same cash flow needs as a large project spread over several weeks or several months. Each professional remains free to accept the projects of their choice, but remains solely responsible for assessing their ability to finance and properly complete the work through to its end.",
+      "guarantee": {
+        "title": "A guarantee on advanced supplies and materials",
+        "p1": "Subject to compliance with the traceability rules set up on the platform (invoices, purchase orders, delivery notes, photographs and supporting documents), Artisan Compétent guarantees the professional reimbursement for the supplies and materials they have actually advanced, purchased and delivered to the project. This guarantee applies even when a dispute is ultimately settled in the client's favour, or when a defect is recognised against the professional.",
+        "p2": "However, this guarantee only covers supplies, materials and equipment that are duly documented, traceable and directly assigned to the project concerned."
+      }
+    },
     "faq": {
       "title": "Frequently asked questions",
       "q1": {
@@ -3033,11 +3064,11 @@
         ],
         "how": "How it works is simple:",
         "howItems": [
-          "Up to €2,000 incl. VAT: a commission of 15% excl. VAT is charged on the total quote incl. VAT.",
-          "Above €2,000 incl. VAT: the commission drops to 10% excl. VAT on the total quote incl. VAT."
+          "Up to €2,500 incl. VAT: a commission of 15% excl. VAT is charged on the total quote incl. VAT.",
+          "Above €2,500 incl. VAT: the commission drops to 10% excl. VAT on the total quote incl. VAT."
         ],
         "outro": "This means that Artisan Compétent only earns money when you actually win a project. Our objective is therefore fully aligned with that of professionals: helping you sign more quotes in a structured environment that reassures clients.",
-        "answerLd": "Yes, Artisan Compétent operates with a commission charged only when a quote is actually signed. Unlike many platforms: you do not pay to receive requests, you do not pay quote credits, you do not pay bidding fees, you do not need to spend hundreds of euros on advertising with no guarantee of results. How it works is simple: up to €2,000 incl. VAT, a commission of 15% excl. VAT is charged on the total quote incl. VAT; above €2,000 incl. VAT, the commission drops to 10% excl. VAT on the total quote incl. VAT. This means that Artisan Compétent only earns money when you actually win a project. Our objective is therefore fully aligned with that of professionals: helping you sign more quotes in a structured environment that reassures clients."
+        "answerLd": "Yes, Artisan Compétent operates with a commission charged only when a quote is actually signed. Unlike many platforms: you do not pay to receive requests, you do not pay quote credits, you do not pay bidding fees, you do not need to spend hundreds of euros on advertising with no guarantee of results. How it works is simple: up to €2,500 incl. VAT, a commission of 15% excl. VAT is charged on the total quote incl. VAT; above €2,500 incl. VAT, the commission drops to 10% excl. VAT on the total quote incl. VAT. This means that Artisan Compétent only earns money when you actually win a project. Our objective is therefore fully aligned with that of professionals: helping you sign more quotes in a structured environment that reassures clients."
       },
       "q2": {
         "question": "How long can a dispute last?",
