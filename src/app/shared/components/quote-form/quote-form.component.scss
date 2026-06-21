@@ -445,4 +445,13 @@
       }
     }
   }
+
+  .info-icon {
+    display: inline-block;
+    margin-left: 4px;
+    color: var(--primary-water-green);
+    cursor: help;
+    font-size: 0.9rem;
+    font-weight: normal;
+  }
 }

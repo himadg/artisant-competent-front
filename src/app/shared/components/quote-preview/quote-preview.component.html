@@ -83,6 +83,9 @@
                       @if (material.isReconditioned) {
                         <span class="badge badge-reconditioned">{{ 'quotePreview.reconditioned' | transloco }}</span>
                       }
+                      @if (material.isCustomSupply) {
+                        <span class="badge badge-custom-supply">{{ 'quotePreview.customSupply' | transloco }}</span>
+                      }
                     </td>
                     <td>{{ material.providedByClient ? ('quotePreview.providedByClient' | transloco) : ('quotePreview.providedByArtisan' | transloco) }}</td>
                     <td>{{ material.providedByClient ? '0.00' : (material.amountHT | number:'1.2-2') }} €</td>
@@ -113,7 +116,12 @@
               <tbody>
                 @for (service of quoteData.services; track service) {
                   <tr>
-                    <td>{{ service.description || ('quotePreview.notProvidedF' | transloco) }}</td>
+                    <td>
+                      {{ service.description || ('quotePreview.notProvidedF' | transloco) }}
+                      @if (service.isNightIntervention) {
+                        <span class="badge badge-night-intervention">{{ 'quotePreview.nightIntervention' | transloco }}</span>
+                      }
+                    </td>
                     <td>{{ service.type || ('quotePreview.notProvided' | transloco) }}</td>
                     <td>{{ service.amountHT | number:'1.2-2' }} €</td>
                     <td>{{ quoteData.legal?.applyTvaExemption ? 0 : service.tva }} %</td>
@@ -202,6 +210,9 @@
             }
             @if (quoteData.agreement?.arbitrationAgreement) {
               <p>{{ 'quotePreview.arbitration' | transloco }}</p>
+            }
+            @if (quoteData.agreement?.acceptSplitPayment) {
+              <p>{{ 'quotePreview.acceptSplitPayment' | transloco }}</p>
             }
           </div>
         </div>

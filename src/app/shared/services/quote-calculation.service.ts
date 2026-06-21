@@ -21,8 +21,8 @@ export interface QuoteData {
     };
     artisan?: any;
   };
-  materials: { amountHT: number; tva: number; providedByClient: boolean; isReconditioned: boolean; description: string }[];
-  services: { amountHT: number; tva: number; description: string; type: string }[];
+  materials: { amountHT: number; tva: number; providedByClient: boolean; isReconditioned: boolean; description: string; isCustomSupply?: boolean }[];
+  services: { amountHT: number; tva: number; description: string; type: string; isNightIntervention?: boolean }[];
   logistics: { travelCostHT: number; suppliers: string[]; wasteManagement: { hasWaste: boolean; cerfaSigned: boolean } };
   legal: {
     applyTvaExemption: boolean;
@@ -30,7 +30,7 @@ export interface QuoteData {
     addDecennale?: boolean;
     addOtherCertifications?: boolean;
   };
-  agreement?: { insuranceVerified: boolean; waiveRetractionRights: boolean; arbitrationAgreement: boolean };
+  agreement?: { insuranceVerified: boolean; waiveRetractionRights: boolean; arbitrationAgreement: boolean; acceptSplitPayment: boolean };
   quoteNumber?: string;
   planning?: {
     placeOfWriting?: string;

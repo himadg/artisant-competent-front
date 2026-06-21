@@ -112,8 +112,8 @@ export class QuoteFormComponent implements OnInit {
         status: ['Auto-entrepreneur', Validators.required]
       })
     }),
-    materials: this.fb.array<FormGroup<{ description: FormControl<string>; amountHT: FormControl<number>; tva: FormControl<number>; providedByClient: FormControl<boolean>; isReconditioned: FormControl<boolean>; paidByArtisan: FormControl<boolean>; }>>([]),
-    services: this.fb.array<FormGroup<{ description: FormControl<string>; type: FormControl<string>; amountHT: FormControl<number>; tva: FormControl<number>; }>>([]),
+    materials: this.fb.array<FormGroup<{ description: FormControl<string>; amountHT: FormControl<number>; tva: FormControl<number>; providedByClient: FormControl<boolean>; isReconditioned: FormControl<boolean>; paidByArtisan: FormControl<boolean>; isCustomSupply: FormControl<boolean>; }>>([]),
+    services: this.fb.array<FormGroup<{ description: FormControl<string>; type: FormControl<string>; amountHT: FormControl<number>; tva: FormControl<number>; isNightIntervention: FormControl<boolean>; }>>([]),
     logistics: this.fb.nonNullable.group({
       suppliers: this.fb.array<FormControl<string>>([this.fb.nonNullable.control('', Validators.required)]),
       travelCostHT: [0, [Validators.required, Validators.min(0)]],
@@ -135,7 +135,8 @@ export class QuoteFormComponent implements OnInit {
     agreement: this.fb.nonNullable.group({
       insuranceVerified: [false, Validators.requiredTrue],
       waiveRetractionRights: [false, Validators.requiredTrue],
-      arbitrationAgreement: [false, Validators.requiredTrue]
+      arbitrationAgreement: [false, Validators.requiredTrue],
+      acceptSplitPayment: [false, Validators.requiredTrue]
     })
   });
 
@@ -282,6 +283,7 @@ export class QuoteFormComponent implements OnInit {
         providedByClient: [m.providedByClient ?? false],
         isReconditioned: [m.isReconditioned ?? false],
         paidByArtisan: [m.paidByArtisan ?? true],
+        isCustomSupply: [m.isCustomSupply ?? false],
       }));
     });
   }
@@ -294,6 +296,7 @@ export class QuoteFormComponent implements OnInit {
         type: [s.type ?? 'Principale', Validators.required],
         amountHT: [s.amountHT ?? 0, [Validators.required, Validators.min(0)]],
         tva: [s.tva ?? 20, [Validators.required, Validators.min(0)]],
+        isNightIntervention: [s.isNightIntervention ?? false],
       }));
     });
   }
@@ -353,11 +356,11 @@ export class QuoteFormComponent implements OnInit {
   }
 
   get materials() { return this.f.materials; }
-  addMaterial(): void { this.materials.push(this.fb.nonNullable.group({ description: ['', [Validators.required, Validators.maxLength(255)]], amountHT: [0, [Validators.required, Validators.min(0)]], tva: [20, [Validators.required, Validators.min(0)]], providedByClient: [false], isReconditioned: [false], paidByArtisan: [true] })); }
+  addMaterial(): void { this.materials.push(this.fb.nonNullable.group({ description: ['', [Validators.required, Validators.maxLength(255)]], amountHT: [0, [Validators.required, Validators.min(0)]], tva: [20, [Validators.required, Validators.min(0)]], providedByClient: [false], isReconditioned: [false], paidByArtisan: [true], isCustomSupply: [false] })); }
   removeMaterial(index: number): void { this.materials.removeAt(index); }
 
   get services() { return this.f.services; }
-  addService(): void { this.services.push(this.fb.nonNullable.group({ description: ['', [Validators.required, Validators.maxLength(255)]], type: ['Principale', Validators.required], amountHT: [0, [Validators.required, Validators.min(0)]], tva: [20, [Validators.required, Validators.min(0)]] })); }
+  addService(): void { this.services.push(this.fb.nonNullable.group({ description: ['', [Validators.required, Validators.maxLength(255)]], type: ['Principale', Validators.required], amountHT: [0, [Validators.required, Validators.min(0)]], tva: [20, [Validators.required, Validators.min(0)]], isNightIntervention: [false] })); }
   removeService(index: number): void { this.services.removeAt(index); }
 
   get suppliers(): FormArray<FormControl<string>> { return this.f.logistics.controls.suppliers; }

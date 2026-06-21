@@ -39,12 +39,14 @@ export interface QuotePayload {
     providedByClient: boolean;
     isReconditioned: boolean;
     paidByArtisan: boolean;
+    isCustomSupply?: boolean;
   }[];
   services: {
     description: string;
     type: string;
     amountHT: number;
     tva: number;
+    isNightIntervention?: boolean;
   }[];
   logistics: {
     suppliers: string[];
@@ -71,5 +73,6 @@ export interface QuotePayload {
     insuranceVerified: boolean;
     waiveRetractionRights: boolean;
     arbitrationAgreement: boolean;
+    acceptSplitPayment: boolean;
   };
 }
