@@ -100,11 +100,13 @@
                     </div>
                     <div class="flex flex-col gap-1">
                         <label for="bd-day-pro" class="text-sm text-gray-500">{{ 'register.birthDate' | transloco }} *</label>
-                        <div class="flex w-full">
+                        <div class="flex w-full rounded"
+                            [class.ring-2]="form.get('user.birthDate')?.invalid && form.get('user.birthDate')?.touched"
+                            [class.ring-red-400]="form.get('user.birthDate')?.invalid && form.get('user.birthDate')?.touched"
+                        >
                             <select
                                 id="bd-day-pro"
                                 class="px-2 py-2 border rounded-l text-sm bg-[var(--background-color)] text-[var(--color)] focus:outline-none focus:ring-1 focus:ring-[var(--primary-water-green)]"
-                                [class.border-red-400]="form.get('user.birthDate')?.invalid && form.get('user.birthDate')?.touched"
                                 [value]="bdDay"
                                 (change)="onBdDayChange($event)"
                             >
@@ -115,7 +117,6 @@
                             </select>
                             <select
                                 class="px-2 py-2 border border-l-0 flex-1 min-w-0 text-sm bg-[var(--background-color)] text-[var(--color)] focus:outline-none focus:ring-1 focus:ring-[var(--primary-water-green)]"
-                                [class.border-red-400]="form.get('user.birthDate')?.invalid && form.get('user.birthDate')?.touched"
                                 [value]="bdMonth"
                                 (change)="onBdMonthChange($event)"
                             >
@@ -126,7 +127,6 @@
                             </select>
                             <select
                                 class="px-2 py-2 border border-l-0 rounded-r text-sm bg-[var(--background-color)] text-[var(--color)] focus:outline-none focus:ring-1 focus:ring-[var(--primary-water-green)]"
-                                [class.border-red-400]="form.get('user.birthDate')?.invalid && form.get('user.birthDate')?.touched"
                                 [value]="bdYear"
                                 (change)="onBdYearChange($event)"
                             >
@@ -662,8 +662,10 @@
                             [class.border-red-400]="form.get('professionalProfile.mediatorName')?.invalid && form.get('professionalProfile.mediatorName')?.touched"
                             placeholder="{{ 'professional.mediator.namePlaceholder' | transloco }}"
                         />
-                        @if (form.get('professionalProfile.mediatorName')?.invalid && form.get('professionalProfile.mediatorName')?.touched) {
+                        @if (form.get('professionalProfile.mediatorName')?.errors?.['required'] && form.get('professionalProfile.mediatorName')?.touched) {
                             <p class="text-xs text-red-500">{{ 'professional.errors.mediatorRequired' | transloco }}</p>
+                        } @else if (form.get('professionalProfile.mediatorName')?.errors?.['pattern'] && form.get('professionalProfile.mediatorName')?.touched) {
+                            <p class="text-xs text-red-500">{{ 'professional.errors.noNumbers' | transloco }}</p>
                         }
                     </div>
                     <div class="flex flex-col gap-1">
@@ -675,8 +677,10 @@
                             [class.border-red-400]="form.get('professionalProfile.mediatorAddress')?.invalid && form.get('professionalProfile.mediatorAddress')?.touched"
                             placeholder="{{ 'professional.mediator.addressPlaceholder' | transloco }}"
                         />
-                        @if (form.get('professionalProfile.mediatorAddress')?.invalid && form.get('professionalProfile.mediatorAddress')?.touched) {
+                        @if (form.get('professionalProfile.mediatorAddress')?.errors?.['required'] && form.get('professionalProfile.mediatorAddress')?.touched) {
                             <p class="text-xs text-red-500">{{ 'professional.errors.mediatorRequired' | transloco }}</p>
+                        } @else if (form.get('professionalProfile.mediatorAddress')?.errors?.['invalidAddress'] && form.get('professionalProfile.mediatorAddress')?.touched) {
+                            <p class="text-xs text-red-500">{{ 'professional.errors.invalidAddress' | transloco }}</p>
                         }
                     </div>
                     <div class="flex flex-col gap-1">
@@ -688,8 +692,10 @@
                             [class.border-red-400]="form.get('professionalProfile.mediatorWebsite')?.invalid && form.get('professionalProfile.mediatorWebsite')?.touched"
                             placeholder="{{ 'professional.mediator.websitePlaceholder' | transloco }}"
                         />
-                        @if (form.get('professionalProfile.mediatorWebsite')?.invalid && form.get('professionalProfile.mediatorWebsite')?.touched) {
+                        @if (form.get('professionalProfile.mediatorWebsite')?.errors?.['required'] && form.get('professionalProfile.mediatorWebsite')?.touched) {
                             <p class="text-xs text-red-500">{{ 'professional.errors.mediatorRequired' | transloco }}</p>
+                        } @else if (form.get('professionalProfile.mediatorWebsite')?.errors?.['pattern'] && form.get('professionalProfile.mediatorWebsite')?.touched) {
+                            <p class="text-xs text-red-500">{{ 'professional.errors.invalidUrl' | transloco }}</p>
                         }
                     </div>
                     <div class="flex flex-col gap-1">

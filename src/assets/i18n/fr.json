@@ -2336,6 +2336,8 @@
       "descriptionRequired": "Veuillez décrire votre société et mentionner les services que vous proposez.",
       "tradesRequired": "Veuillez choisir au moins un métier.",
       "mediatorRequired": "Ce champ est obligatoire.",
+      "invalidAddress": "Veuillez saisir une adresse valide (ex : 12 rue de la Paix, 75001 Paris).",
+      "invalidUrl": "Veuillez saisir une URL valide commençant par http:// ou https://.",
       "trustPhoneInvalid": "Le format du numéro de téléphone est invalide (ex: 06XXXXXXXX).",
       "yearsMax": "Le nombre d'années d'expérience ne peut pas dépasser 100.",
       "trustedContactIncomplete": "Veuillez renseigner à la fois le nom et le téléphone de la personne de confiance.",
@@ -2593,8 +2595,8 @@
       "show": "Afficher le mot de passe",
       "hide": "Masquer le mot de passe"
     },
-    "registeredIndividualNotice": "Votre inscription a bien été enregistrée. Vous pouvez désormais vous connecter avec vos identifiants.",
-    "registeredProNotice": "Votre inscription a bien été enregistrée et est en attente de validation. Vous recevrez un email de confirmation prochainement.",
+    "registeredIndividualSuccess": "Votre inscription a bien été enregistrée. Vous pouvez désormais vous connecter avec vos identifiants.",
+    "registeredProSuccess": "Votre inscription a bien été enregistrée et est en attente de validation. Vous recevrez un email de confirmation prochainement.",
     "registeredProMailFailed": "Votre inscription a été prise en compte. Nous n'avons pas pu vous envoyer d'email de confirmation. Veuillez nous contacter à contact@artisan-competent.com pour valider votre compte.",
     "spamNotice": "Si vous ne voyez pas l'email dans votre boîte de réception, pensez à vérifier vos spams."
   },

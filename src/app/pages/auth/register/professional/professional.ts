@@ -10,7 +10,7 @@ import {
 } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
 import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, forkJoin, of, takeUntil } from 'rxjs';
-import { hourValidator, openingAtLeastOne, trustedContactValidator, optionalEmailValidator, optionalPhoneValidator, pastDateValidator } from '../../../../core/utils/validators';
+import { hourValidator, openingAtLeastOne, trustedContactValidator, optionalEmailValidator, optionalPhoneValidator, pastDateValidator, urlValidator, addressValidator, nameValidator } from '../../../../core/utils/validators';
 import { capitalize, normalizeName, evaluatePasswordCriteria, getAffiliateCode, clearAffiliateCode } from '../../../../core/utils/common-utils';
 import { TradeApiService } from '../../../../core/services/trade-api.service';
 import { Trade } from '../../../../shared/interfaces/trade';
@@ -24,6 +24,7 @@ import { AddressSuggestion } from '../../../../shared/interfaces/address-suggest
 import { SiretService } from '../../../../core/services/siret.service';
 import { UploadService } from '../../../../core/services/upload.service';
 import {
+  ADDRESS_REGEXP,
   NAME_REGEXP,
   PASSWORD_STRONG_REGEXP,
   PHONE_FR_REGEXP,
@@ -243,7 +244,7 @@ export class RegisterProfessional implements OnDestroy {
       companyName: ['', Validators.required],
       workAddress: this.fb.group({
         streetNumber: ['', [Validators.required, Validators.pattern(STREET_NUMBER_REGEXP)]],
-        streetName: ['', Validators.required],
+        streetName: ['', [Validators.required, Validators.pattern(ADDRESS_REGEXP)]],
         additionalInfo: [''],
         postalCode: ['', [Validators.required, Validators.pattern(POSTAL_CODE_REGEXP)]],
         city: ['', [Validators.required, Validators.pattern(NAME_REGEXP)]],
@@ -266,9 +267,9 @@ export class RegisterProfessional implements OnDestroy {
       trustName: [''],
       trustPhone: ['', optionalPhoneValidator],
       suppliers: new FormControl<string[]>([], { nonNullable: true, validators: [Validators.required] }),
-      mediatorName: [''],
-      mediatorAddress: [''],
-      mediatorWebsite: [''],
+      mediatorName: ['', nameValidator],
+      mediatorAddress: ['', addressValidator],
+      mediatorWebsite: ['', urlValidator],
       mediatorContactMethod: [''],
       mediatorAdditionalInfo: ['', Validators.maxLength(500)],
       additionalRemarks: ['', Validators.maxLength(500)],

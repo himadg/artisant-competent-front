@@ -2298,6 +2298,8 @@
       "descriptionRequired": "Please describe your company and mention the services you offer.",
       "tradesRequired": "Please select at least one trade.",
       "mediatorRequired": "This field is required.",
+      "invalidAddress": "Please enter a valid address (e.g. 12 rue de la Paix, 75001 Paris).",
+      "invalidUrl": "Please enter a valid URL starting with http:// or https://.",
       "trustPhoneInvalid": "Invalid phone number format (e.g. 06XXXXXXXX).",
       "yearsMax": "Years of experience cannot exceed 100.",
       "trustedContactIncomplete": "Please fill in both the name and phone number of the trusted contact.",
@@ -2553,8 +2555,8 @@
       "show": "Show password",
       "hide": "Hide password"
     },
-    "registeredIndividualNotice": "Your registration has been successfully recorded. You can now log in with your credentials.",
-    "registeredProNotice": "Your registration has been received and is pending validation. You will receive a confirmation email shortly.",
+    "registeredIndividualSuccess": "Your registration has been successfully recorded. You can now log in with your credentials.",
+    "registeredProSuccess": "Your registration has been received and is pending validation. You will receive a confirmation email shortly.",
     "registeredProMailFailed": "Your registration has been recorded. We were unable to send you a confirmation email. Please contact us at contact@artisan-competent.com to validate your account.",
     "spamNotice": "If you don't see the email in your inbox, please check your spam folder."
   },
