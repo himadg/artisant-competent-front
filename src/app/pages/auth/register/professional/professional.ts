@@ -1,17 +1,35 @@
-import { Component, signal, inject, OnDestroy, ViewChild, computed, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import {
-  ReactiveFormsModule,
-  FormBuilder,
-  FormControl,
-  Validators,
-  FormArray,
-  AbstractControl,
-} from '@angular/forms';
+  Component,
+  signal,
+  inject,
+  OnDestroy,
+  ViewChild,
+  computed,
+  ChangeDetectionStrategy,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ReactiveFormsModule, FormBuilder, FormControl, Validators, FormArray, AbstractControl } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
 import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, forkJoin, of, takeUntil } from 'rxjs';
-import { hourValidator, openingAtLeastOne, trustedContactValidator, optionalEmailValidator, optionalPhoneValidator, pastDateValidator, urlValidator, addressValidator, nameValidator } from '../../../../core/utils/validators';
-import { capitalize, normalizeName, evaluatePasswordCriteria, getAffiliateCode, clearAffiliateCode } from '../../../../core/utils/common-utils';
+import {
+  hourValidator,
+  openingAtLeastOne,
+  trustedContactValidator,
+  optionalEmailValidator,
+  optionalPhoneValidator,
+  pastDateValidator,
+  urlValidator,
+  addressValidator,
+  nameValidator,
+} from '../../../../core/utils/validators';
+import {
+  capitalize,
+  normalizeName,
+  evaluatePasswordCriteria,
+  getAffiliateCode,
+  clearAffiliateCode,
+} from '../../../../core/utils/common-utils';
 import { TradeApiService } from '../../../../core/services/trade-api.service';
 import { Trade } from '../../../../shared/interfaces/trade';
 import { TurnstileComponent } from '../../../../shared/components/turnstile/turnstile';
@@ -76,25 +94,28 @@ export class RegisterProfessional implements OnDestroy {
   readonly ribName = signal<string | null>(null);
 
   // Multiple diplomas
-  readonly diplomaFiles = signal<DiplomaEntry[]>([{ file: null, preview: null, fileName: null, documentName: '', expiryDate: '' }]);
+  readonly diplomaFiles = signal<DiplomaEntry[]>([
+    { file: null, preview: null, fileName: null, documentName: '', expiryDate: '' },
+  ]);
   readonly diplomaTouched = signal(false);
   readonly hoursTouched = signal(false);
 
   readonly diplomaEntryErrors = computed(() =>
-    this.diplomaFiles().map(d => {
+    this.diplomaFiles().map((d) => {
       if (!d.file && !d.documentName.trim() && !d.expiryDate) return null;
       const missingFile = !d.file;
       const missingName = !d.documentName.trim();
       const expiryPast = !!d.expiryDate && d.expiryDate < this.today;
       const missingExpiry = !d.expiryDate;
-      if (missingFile || missingName || expiryPast || missingExpiry) return { missingFile, missingName, expiryPast, missingExpiry };
+      if (missingFile || missingName || expiryPast || missingExpiry)
+        return { missingFile, missingName, expiryPast, missingExpiry };
       return null;
-    })
+    }),
   );
 
   readonly diplomasValid = computed(() => {
     const entries = this.diplomaFiles();
-    const hasAtLeastOne = entries.some(d => d.file !== null);
+    const hasAtLeastOne = entries.some((d) => d.file !== null);
     if (!hasAtLeastOne) return false;
     return this.diplomaEntryErrors().every((err, i) => {
       if (!entries[i].file && !entries[i].documentName.trim() && !entries[i].expiryDate) return true;
@@ -120,7 +141,7 @@ export class RegisterProfessional implements OnDestroy {
   bdDay = 0;
   bdMonth = 0;
   bdYear = 0;
-  readonly BD_MONTHS = [1,2,3,4,5,6,7,8,9,10,11,12];
+  readonly BD_MONTHS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   readonly BD_YEARS = Array.from({ length: 101 }, (_, i) => new Date().getFullYear() - i);
 
   get bdDaysInMonth(): number {
@@ -193,22 +214,26 @@ export class RegisterProfessional implements OnDestroy {
   @ViewChild(TurnstileComponent) private readonly turnstile!: TurnstileComponent;
 
   constructor() {
-    this.tradeApi.getAll().subscribe(trades => this.trades.set(trades));
+    this.tradeApi.getAll().subscribe((trades) => this.trades.set(trades));
 
-    this.personalAddressSearch$.pipe(
-      distinctUntilChanged(),
-      filter(query => query.length >= 3),
-      switchMap(query => this.geocodingService.search(query)),
-      takeUntil(this.destroy$),
-    ).subscribe(suggestions => this.personalAddressSuggestions.set(suggestions));
+    this.personalAddressSearch$
+      .pipe(
+        distinctUntilChanged(),
+        filter((query) => query.length >= 3),
+        switchMap((query) => this.geocodingService.search(query)),
+        takeUntil(this.destroy$),
+      )
+      .subscribe((suggestions) => this.personalAddressSuggestions.set(suggestions));
 
-    this.workAddressSearch$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      filter(query => query.length >= 3),
-      switchMap(query => this.geocodingService.search(query)),
-      takeUntil(this.destroy$),
-    ).subscribe(suggestions => this.workAddressSuggestions.set(suggestions));
+    this.workAddressSearch$
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        filter((query) => query.length >= 3),
+        switchMap((query) => this.geocodingService.search(query)),
+        takeUntil(this.destroy$),
+      )
+      .subscribe((suggestions) => this.workAddressSuggestions.set(suggestions));
   }
 
   ngOnDestroy() {
@@ -233,68 +258,68 @@ export class RegisterProfessional implements OnDestroy {
         city: ['', [Validators.required, Validators.pattern(NAME_REGEXP)]],
       }),
     }),
-    professionalProfile: this.fb.group({
-      managerPhone: ['', [Validators.required, Validators.pattern(PHONE_FR_REGEXP)]],
-      professionalEmail: ['', optionalEmailValidator],
-      photo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
-      idFront: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
-      idBack: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
-      logo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
-      rib: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
-      companyName: ['', Validators.required],
-      workAddress: this.fb.group({
-        streetNumber: ['', [Validators.required, Validators.pattern(STREET_NUMBER_REGEXP)]],
-        streetName: ['', [Validators.required, Validators.pattern(ADDRESS_REGEXP)]],
-        additionalInfo: [''],
-        postalCode: ['', [Validators.required, Validators.pattern(POSTAL_CODE_REGEXP)]],
-        city: ['', [Validators.required, Validators.pattern(NAME_REGEXP)]],
-      }),
-      siret: ['', [Validators.required, Validators.pattern(SIRET_REGEXP)]],
-      companyStatus: ['', Validators.required],
-      trades: [<string[]>[], [Validators.required]],
-      yearsExperience: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
-      onCall: [false],
-      hours: this.fb.array(
-        this.days.map((day) =>
-          this.fb.group(
-            { day, openHour: '', openMinute: '', closeHour: '', closeMinute: '', closed: false, onCallDay: false },
-            { validators: [Validators.required, hourValidator] },
+    professionalProfile: this.fb.group(
+      {
+        managerPhone: ['', [Validators.required, Validators.pattern(PHONE_FR_REGEXP)]],
+        professionalEmail: ['', optionalEmailValidator],
+        photo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
+        idFront: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
+        idBack: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
+        logo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
+        rib: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
+        companyName: ['', Validators.required],
+        workAddress: this.fb.group({
+          streetNumber: ['', [Validators.required, Validators.pattern(STREET_NUMBER_REGEXP)]],
+          streetName: ['', [Validators.required, Validators.pattern(ADDRESS_REGEXP)]],
+          additionalInfo: [''],
+          postalCode: ['', [Validators.required, Validators.pattern(POSTAL_CODE_REGEXP)]],
+          city: ['', [Validators.required, Validators.pattern(NAME_REGEXP)]],
+        }),
+        siret: ['', [Validators.required, Validators.pattern(SIRET_REGEXP)]],
+        companyStatus: ['', Validators.required],
+        trades: [<string[]>[], [Validators.required]],
+        yearsExperience: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
+        onCall: [false],
+        hours: this.fb.array(
+          this.days.map((day) =>
+            this.fb.group(
+              { day, openHour: '', openMinute: '', closeHour: '', closeMinute: '', closed: false, onCallDay: false },
+              { validators: [Validators.required, hourValidator] },
+            ),
           ),
+          { validators: [openingAtLeastOne] },
         ),
-        { validators: [openingAtLeastOne] }
-      ),
-      description: ['', [Validators.required, Validators.maxLength(1000)]],
-      trustName: [''],
-      trustPhone: ['', optionalPhoneValidator],
-      suppliers: new FormControl<string[]>([], { nonNullable: true, validators: [Validators.required] }),
-      mediatorName: ['', nameValidator],
-      mediatorAddress: ['', addressValidator],
-      mediatorWebsite: ['', urlValidator],
-      mediatorContactMethod: [''],
-      mediatorAdditionalInfo: ['', Validators.maxLength(500)],
-      additionalRemarks: ['', Validators.maxLength(500)],
-      companyRemarks: ['', Validators.maxLength(500)],
-    }, { validators: [trustedContactValidator] }),
+        description: ['', [Validators.required, Validators.maxLength(1000)]],
+        trustName: [''],
+        trustPhone: ['', optionalPhoneValidator],
+        suppliers: new FormControl<string[]>([], { nonNullable: true, validators: [Validators.required] }),
+        mediatorName: ['', nameValidator],
+        mediatorAddress: ['', addressValidator],
+        mediatorWebsite: ['', urlValidator],
+        mediatorContactMethod: [''],
+        mediatorAdditionalInfo: ['', Validators.maxLength(500)],
+        additionalRemarks: ['', Validators.maxLength(500)],
+        companyRemarks: ['', Validators.maxLength(500)],
+      },
+      { validators: [trustedContactValidator] },
+    ),
     captcha: [false, Validators.requiredTrue],
     terms: [false, Validators.requiredTrue],
   });
 
-  readonly onCall = toSignal(
-    this.form.get('professionalProfile.onCall')!.valueChanges,
-    { initialValue: this.form.get('professionalProfile.onCall')!.value },
-  );
+  readonly onCall = toSignal(this.form.get('professionalProfile.onCall')!.valueChanges, {
+    initialValue: this.form.get('professionalProfile.onCall')!.value,
+  });
 
-  readonly passwordValue = toSignal(
-    this.form.get('user.password')!.valueChanges,
-    { initialValue: this.form.get('user.password')!.value }
-  );
+  readonly passwordValue = toSignal(this.form.get('user.password')!.valueChanges, {
+    initialValue: this.form.get('user.password')!.value,
+  });
 
   readonly passwordCriteria = computed(() => evaluatePasswordCriteria(this.passwordValue() as string));
 
-  readonly yearsExperienceValue = toSignal(
-    this.form.get('professionalProfile.yearsExperience')!.valueChanges,
-    { initialValue: this.form.get('professionalProfile.yearsExperience')!.value }
-  );
+  readonly yearsExperienceValue = toSignal(this.form.get('professionalProfile.yearsExperience')!.valueChanges, {
+    initialValue: this.form.get('professionalProfile.yearsExperience')!.value,
+  });
 
   readonly showCmod = computed(() => {
     const years = Number(this.yearsExperienceValue());
@@ -324,7 +349,7 @@ export class RegisterProfessional implements OnDestroy {
   private scrollToFirstError(): void {
     setTimeout(() => {
       const firstError = document.querySelector<HTMLElement>(
-        'input.ng-invalid.ng-touched, select.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched, .force-invalid'
+        'input.ng-invalid.ng-touched, select.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched, .force-invalid',
       );
       if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 100);
@@ -332,15 +357,15 @@ export class RegisterProfessional implements OnDestroy {
 
   nextStep() {
     this.diplomaTouched.set(true);
-    this.step1ControlPaths.forEach(path => this.form.get(path)?.markAllAsTouched());
+    this.step1ControlPaths.forEach((path) => this.form.get(path)?.markAllAsTouched());
     this.form.get('professionalProfile')?.markAsTouched();
 
     const user = this.form.value.user;
     const step1Invalid =
-      this.step1ControlPaths.some(path => this.form.get(path)?.invalid)
-      || !this.diplomasValid()
-      || !!this.form.get('professionalProfile')?.errors?.['trustedContactIncomplete']
-      || user?.password !== user?.confirmPassword;
+      this.step1ControlPaths.some((path) => this.form.get(path)?.invalid) ||
+      !this.diplomasValid() ||
+      !!this.form.get('professionalProfile')?.errors?.['trustedContactIncomplete'] ||
+      user?.password !== user?.confirmPassword;
 
     if (step1Invalid) {
       this.scrollToFirstError();
@@ -351,12 +376,17 @@ export class RegisterProfessional implements OnDestroy {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  backStep() { this.step.set(1); }
+  backStep() {
+    this.step.set(1);
+  }
 
   // --- Address autocomplete ---
   onPersonalAddressSearch(event: Event) {
     const query = (event.target as HTMLInputElement).value;
-    if (query.length < 3) { this.personalAddressSuggestions.set([]); return; }
+    if (query.length < 3) {
+      this.personalAddressSuggestions.set([]);
+      return;
+    }
     this.personalAddressSearch$.next(query);
   }
 
@@ -366,22 +396,35 @@ export class RegisterProfessional implements OnDestroy {
     const group = this.form.get('user.address')!;
     const currentNumber = (group.get('streetNumber')!.value ?? '') as string;
     if (address.streetNumber && !/^\d/.test(currentNumber)) group.get('streetNumber')!.setValue(address.streetNumber);
-    group.patchValue({ streetName: address.streetName, additionalInfo: null, postalCode: address.postalCode, city: address.city } as any);
+    group.patchValue({
+      streetName: address.streetName,
+      additionalInfo: null,
+      postalCode: address.postalCode,
+      city: address.city,
+    } as any);
   }
 
-  closePersonalAddressSuggestions() { setTimeout(() => this.personalAddressOpen.set(false), 150); }
+  closePersonalAddressSuggestions() {
+    setTimeout(() => this.personalAddressOpen.set(false), 150);
+  }
 
   onPersonalPostalCodeInput(event: Event) {
     const code = (event.target as HTMLInputElement).value;
     if (code.length !== 5) return;
-    this.geocodingService.lookupCity(code).pipe(takeUntil(this.destroy$)).subscribe(city => {
-      if (city) this.form.get('user.address.city')!.setValue(city);
-    });
+    this.geocodingService
+      .lookupCity(code)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((city) => {
+        if (city) this.form.get('user.address.city')!.setValue(city);
+      });
   }
 
   onWorkAddressSearch(event: Event) {
     const query = (event.target as HTMLInputElement).value;
-    if (query.length < 3) { this.workAddressSuggestions.set([]); return; }
+    if (query.length < 3) {
+      this.workAddressSuggestions.set([]);
+      return;
+    }
     this.workAddressSearch$.next(query);
   }
 
@@ -390,17 +433,27 @@ export class RegisterProfessional implements OnDestroy {
     this.workAddressOpen.set(false);
     const group = this.form.get('professionalProfile.workAddress')!;
     if (adress.streetNumber) group.get('streetNumber')!.setValue(adress.streetNumber);
-    group.patchValue({ streetName: adress.streetName, additionalInfo: null, postalCode: adress.postalCode, city: adress.city } as any);
+    group.patchValue({
+      streetName: adress.streetName,
+      additionalInfo: null,
+      postalCode: adress.postalCode,
+      city: adress.city,
+    } as any);
   }
 
-  closeWorkAddressSuggestions() { setTimeout(() => this.workAddressOpen.set(false), 150); }
+  closeWorkAddressSuggestions() {
+    setTimeout(() => this.workAddressOpen.set(false), 150);
+  }
 
   onWorkPostalCodeInput(event: Event) {
     const code = (event.target as HTMLInputElement).value;
     if (code.length !== 5) return;
-    this.geocodingService.lookupCity(code).pipe(takeUntil(this.destroy$)).subscribe(city => {
-      if (city) this.form.get('professionalProfile.workAddress.city')!.setValue(city);
-    });
+    this.geocodingService
+      .lookupCity(code)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((city) => {
+        if (city) this.form.get('professionalProfile.workAddress.city')!.setValue(city);
+      });
   }
 
   // --- Captcha ---
@@ -434,19 +487,22 @@ export class RegisterProfessional implements OnDestroy {
     const siret = this.form.get('professionalProfile.siret')?.value ?? '';
     if (!SIRET_REGEXP.test(siret)) return;
     this.siretStatus.set('loading');
-    this.siretService.verify(siret).pipe(takeUntil(this.destroy$)).subscribe(result => {
-      if (result.valid) {
-        this.siretStatus.set('valid');
-        this.siretCompanyName.set(result.companyName ?? null);
-        const companyCtrl = this.form.get('professionalProfile.companyName');
-        if (result.companyName) companyCtrl?.setValue(result.companyName);
-        this.validateCompanyNameMatch();
-      } else if (result.closed) {
-        this.siretStatus.set('closed');
-      } else {
-        this.siretStatus.set('invalid');
-      }
-    });
+    this.siretService
+      .verify(siret)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((result) => {
+        if (result.valid) {
+          this.siretStatus.set('valid');
+          this.siretCompanyName.set(result.companyName ?? null);
+          const companyCtrl = this.form.get('professionalProfile.companyName');
+          if (result.companyName) companyCtrl?.setValue(result.companyName);
+          this.validateCompanyNameMatch();
+        } else if (result.closed) {
+          this.siretStatus.set('closed');
+        } else {
+          this.siretStatus.set('invalid');
+        }
+      });
   }
 
   onCompanyNameBlur() {
@@ -499,41 +555,56 @@ export class RegisterProfessional implements OnDestroy {
 
   // --- Diplomas (multiple) ---
   addDiplomaSlot() {
-    this.diplomaFiles.update(list => [...list, { file: null, preview: null, fileName: null, documentName: '', expiryDate: '' }]);
+    this.diplomaFiles.update((list) => [
+      ...list,
+      { file: null, preview: null, fileName: null, documentName: '', expiryDate: '' },
+    ]);
   }
 
   removeDiplomaSlot(index: number) {
     if (this.diplomaFiles().length < 2) return;
-    this.diplomaFiles.update(list => list.filter((_, i) => i !== index));
+    this.diplomaFiles.update((list) => list.filter((_, i) => i !== index));
   }
 
   updateDiplomaDocumentName(index: number, value: string) {
-    this.diplomaFiles.update(list => list.map((entry, i) => i === index ? { ...entry, documentName: value } : entry));
+    this.diplomaFiles.update((list) =>
+      list.map((entry, i) => (i === index ? { ...entry, documentName: value } : entry)),
+    );
   }
 
   updateDiplomaExpiry(index: number, value: string) {
-    this.diplomaFiles.update(list => list.map((entry, i) => i === index ? { ...entry, expiryDate: value } : entry));
+    this.diplomaFiles.update((list) => list.map((entry, i) => (i === index ? { ...entry, expiryDate: value } : entry)));
   }
 
   onDiplomaFileChange(index: number, e: Event) {
     const file = (e.target as HTMLInputElement).files?.[0] ?? null;
     if (!file) {
-      this.diplomaFiles.update(list => list.map((entry, i) => i === index ? { ...entry, file: null, preview: null, fileName: null } : entry));
+      this.diplomaFiles.update((list) =>
+        list.map((entry, i) => (i === index ? { ...entry, file: null, preview: null, fileName: null } : entry)),
+      );
       return;
     }
     if (file.type.startsWith('image/')) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.diplomaFiles.update(list => list.map((entry, i) => i === index ? { ...entry, file, preview: reader.result as string, fileName: file.name } : entry));
+        this.diplomaFiles.update((list) =>
+          list.map((entry, i) =>
+            i === index ? { ...entry, file, preview: reader.result as string, fileName: file.name } : entry,
+          ),
+        );
       };
       reader.readAsDataURL(file);
     } else {
-      this.diplomaFiles.update(list => list.map((entry, i) => i === index ? { ...entry, file, preview: null, fileName: file.name } : entry));
+      this.diplomaFiles.update((list) =>
+        list.map((entry, i) => (i === index ? { ...entry, file, preview: null, fileName: file.name } : entry)),
+      );
     }
   }
 
   removeDiplomaFile(index: number) {
-    this.diplomaFiles.update(list => list.map((entry, i) => i === index ? { ...entry, file: null, preview: null, fileName: null } : entry));
+    this.diplomaFiles.update((list) =>
+      list.map((entry, i) => (i === index ? { ...entry, file: null, preview: null, fileName: null } : entry)),
+    );
   }
 
   // --- Opening hours ---
@@ -575,12 +646,12 @@ export class RegisterProfessional implements OnDestroy {
   toggleTrade(id: string) {
     const prof = this.form.get('professionalProfile')!;
     const trades = (prof.value.trades as string[]) ?? [];
-    const next = trades.includes(id) ? trades.filter(tradeId => tradeId !== id) : [...trades, id];
+    const next = trades.includes(id) ? trades.filter((tradeId) => tradeId !== id) : [...trades, id];
     prof.patchValue({ trades: next } as any);
   }
 
   isOnCallTradeSelected() {
-    return this.trades().some(trade => trade.isOnCall && this.isTradeSelected(trade.id));
+    return this.trades().some((trade) => trade.isOnCall && this.isTradeSelected(trade.id));
   }
 
   // --- Suppliers ---
@@ -629,7 +700,7 @@ export class RegisterProfessional implements OnDestroy {
       'professionalProfile.companyRemarks',
       'captcha',
       'terms',
-    ].forEach(path => this.form.get(path)?.markAllAsTouched());
+    ].forEach((path) => this.form.get(path)?.markAllAsTouched());
 
     this.validateCompanyNameMatch();
 
@@ -657,22 +728,26 @@ export class RegisterProfessional implements OnDestroy {
     this.form.value.user!.firstName = capitalize(this.form.value.user!.firstName!.trim());
 
     const raw = this.form.value;
-    const rawHours = ((raw.professionalProfile?.hours ?? []) as {
+    const rawHours = (raw.professionalProfile?.hours ?? []) as {
       day: string;
-      openHour: string; openMinute: string;
-      closeHour: string; closeMinute: string;
+      openHour: string;
+      openMinute: string;
+      closeHour: string;
+      closeMinute: string;
       closed: boolean;
       onCallDay: boolean;
-    }[]);
+    }[];
 
     const openingHours = {
-      days: rawHours.map(h => {
-        const start = !h.closed && h.openHour && h.openMinute
-          ? `${h.openHour.padStart(2, '0')}:${h.openMinute.padStart(2, '0')}`
-          : null;
-        const end = !h.closed && h.closeHour && h.closeMinute
-          ? `${h.closeHour.padStart(2, '0')}:${h.closeMinute.padStart(2, '0')}`
-          : null;
+      days: rawHours.map((h) => {
+        const start =
+          !h.closed && h.openHour && h.openMinute
+            ? `${h.openHour.padStart(2, '0')}:${h.openMinute.padStart(2, '0')}`
+            : null;
+        const end =
+          !h.closed && h.closeHour && h.closeMinute
+            ? `${h.closeHour.padStart(2, '0')}:${h.closeMinute.padStart(2, '0')}`
+            : null;
         return {
           day: h.day,
           closed: h.closed,
@@ -682,12 +757,32 @@ export class RegisterProfessional implements OnDestroy {
       }),
     };
 
-    const { hours: _h, trustName, trustPhone, suppliers, photo, idFront, idBack, logo, rib, additionalRemarks, companyRemarks, ...profRest } =
-      raw.professionalProfile as Record<string, unknown> & {
-        hours: unknown; trustName: string; trustPhone: string; suppliers: string[];
-        photo: File | null; idFront: File | null; idBack: File | null;
-        logo: File | null; rib: File | null; additionalRemarks: string; companyRemarks: string;
-      };
+    const {
+      hours: _h,
+      trustName,
+      trustPhone,
+      suppliers,
+      photo,
+      idFront,
+      idBack,
+      logo,
+      rib,
+      additionalRemarks,
+      companyRemarks,
+      ...profRest
+    } = raw.professionalProfile as Record<string, unknown> & {
+      hours: unknown;
+      trustName: string;
+      trustPhone: string;
+      suppliers: string[];
+      photo: File | null;
+      idFront: File | null;
+      idBack: File | null;
+      logo: File | null;
+      rib: File | null;
+      additionalRemarks: string;
+      companyRemarks: string;
+    };
 
     const { confirmPassword: _cp, ...userFields } = raw.user as Record<string, unknown> & { confirmPassword: unknown };
 
@@ -707,43 +802,40 @@ export class RegisterProfessional implements OnDestroy {
       ...(referralCode ? { referralCode } : {}),
     };
 
-    const upload = (file: File | null) => file ? this.uploadService.upload(file) : of('');
+    const upload = (file: File | null) => (file ? this.uploadService.upload(file) : of(''));
 
-    const diplomaEntries = this.diplomaFiles().filter(d => d.file !== null);
-    const diplomaUploads$ = diplomaEntries.length > 0
-      ? forkJoin(diplomaEntries.map(d => upload(d.file)))
-      : of<string[]>([]);
+    const diplomaEntries = this.diplomaFiles().filter((d) => d.file !== null);
+    const diplomaUploads$ =
+      diplomaEntries.length > 0 ? forkJoin(diplomaEntries.map((d) => upload(d.file))) : of<string[]>([]);
 
     let mailSent = true;
 
     this.submitting.set(true);
-    this.userApi.registerProfessional(payload, captchaToken)
+    this.userApi
+      .registerProfessional(payload, captchaToken)
       .pipe(
         switchMap(({ userId, accessToken, mailSent: ms }) => {
           mailSent = ms;
           this.authService.setTempToken(accessToken);
           clearAffiliateCode();
-          return forkJoin([
-            upload(photo),
-            upload(idFront),
-            upload(idBack),
-            upload(logo),
-            upload(rib),
-          ]).pipe(
+          return forkJoin([upload(photo), upload(idFront), upload(idBack), upload(logo), upload(rib)]).pipe(
             switchMap(([photoKey, idFrontKey, idBackKey, companyLogoKey, ribKey]) =>
               diplomaUploads$.pipe(
                 switchMap((diplomaKeys) =>
                   this.userApi.createProfessionalDocuments(userId, {
-                    photoKey, idFrontKey, idBackKey,
+                    photoKey,
+                    idFrontKey,
+                    idBackKey,
                     diplomas: diplomaKeys.map((key, i) => ({
                       key,
                       documentName: diplomaEntries[i].documentName,
                       expiryDate: diplomaEntries[i].expiryDate,
                     })),
-                    companyLogoKey, ribKey,
+                    companyLogoKey,
+                    ribKey,
                   }),
                 ),
-              )
+              ),
             ),
           );
         }),

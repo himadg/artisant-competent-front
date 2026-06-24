@@ -2435,7 +2435,6 @@
       "contactMethodBoth": "Les deux",
       "contactMethodHint": "Indiquer comment le consommateur peut faire appel à votre médiateur : par courrier, via un formulaire en ligne ou les deux.",
       "additionalInfo": "Informations complémentaires",
-      "additionalInfoOptional": "(facultatif)",
       "additionalInfoPlaceholder": "Précisez toute information utile pour joindre votre médiateur"
     },
     "additionalRemarks": {

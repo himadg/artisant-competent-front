@@ -2395,7 +2395,6 @@
       "contactMethodBoth": "Both",
       "contactMethodHint": "Indicate how the consumer can reach your mediator: by post, via an online form, or both.",
       "additionalInfo": "Additional information",
-      "additionalInfoOptional": "(optional)",
       "additionalInfoPlaceholder": "Specify any useful information to contact your mediator"
     },
     "additionalRemarks": {
