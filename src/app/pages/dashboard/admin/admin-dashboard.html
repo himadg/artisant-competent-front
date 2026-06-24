@@ -196,7 +196,7 @@
                                             <dt class="mb-1 text-gray-500">{{ 'dashboard.admin.trades' | transloco }} ({{ pro.trades.length }})</dt>
                                             <dd class="flex flex-wrap gap-2">
                                                 @for (trade of pro.trades; track trade.id) {
-                                                    <span class="px-2 py-1 text-blue-700 bg-blue-50 rounded-md">{{ trade.name }}</span>
+                                                    <span class="px-2 py-1 text-blue-700 bg-blue-50 rounded-md">{{ `jobs.list.${trade.name}.name` | transloco }}</span>
                                                 }
                                                 @if (!pro.trades.length) { <span class="italic text-gray-400">{{ 'dashboard.admin.notProvidedPlural' | transloco }}</span> }
                                             </dd>

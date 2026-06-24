@@ -14,8 +14,9 @@ import { AuthService } from '../../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { capitalize, evaluatePasswordCriteria, getAffiliateCode, clearAffiliateCode } from '../../../../core/utils/common-utils';
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
-import { PASSWORD_STRONG_REGEXP } from '../../../../core/utils/regexp';
+import { NAME_REGEXP, PASSWORD_STRONG_REGEXP, PHONE_FR_REGEXP, POSTAL_CODE_REGEXP, STREET_NUMBER_REGEXP } from '../../../../core/utils/regexp';
 import { LangService } from '../../../../core/services/lang.service';
+import { pastDateValidator } from '../../../../core/utils/validators';
 
 @Component({
   selector: 'register-individual',
@@ -99,19 +100,19 @@ export class RegisterIndividual implements OnDestroy {
   readonly form = this.fb.group({
     photo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
     gender: ['', Validators.required],
-    lastName: ['', Validators.required],
-    firstName: ['', Validators.required],
-    birthDate: ['', Validators.required],
+    lastName: ['', [Validators.required, Validators.pattern(NAME_REGEXP)]],
+    firstName: ['', [Validators.required, Validators.pattern(NAME_REGEXP)]],
+    birthDate: ['', [Validators.required, pastDateValidator]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.pattern(PASSWORD_STRONG_REGEXP)]],
     confirmPassword: ['', Validators.required],
-    phone: ['', Validators.required],
+    phone: ['', [Validators.required, Validators.pattern(PHONE_FR_REGEXP)]],
     address: this.fb.group({
-      streetNumber: ['', Validators.required],
+      streetNumber: ['', [Validators.required, Validators.pattern(STREET_NUMBER_REGEXP)]],
       streetName: ['', Validators.required],
       additionalInfo: [''],
-      postalCode: ['', Validators.required],
-      city: ['', Validators.required],
+      postalCode: ['', [Validators.required, Validators.pattern(POSTAL_CODE_REGEXP)]],
+      city: ['', [Validators.required, Validators.pattern(NAME_REGEXP)]],
     }),
     captcha: [false, Validators.requiredTrue],
     terms: [false, Validators.requiredTrue],
@@ -154,7 +155,7 @@ export class RegisterIndividual implements OnDestroy {
     this.addressSuggestions.set([]);
     this.addressOpen.set(false);
     const group = this.form.get('address')!;
-    const currentNumber = (group.get('streetNumber')!.value ?? '') as string;
+    const currentNumber = (group.get('streetNumber')!.value ?? '');
     if (address.streetNumber && !/^\d/.test(currentNumber)) group.get('streetNumber')!.setValue(address.streetNumber);
     group.patchValue({
       streetName: address.streetName,
