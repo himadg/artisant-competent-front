@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard, adminGuard } from './core/guards/auth.guard';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -70,6 +70,16 @@ export const routes: Routes = [
   {
     path: 'search-pro-results',
     loadComponent: () => import('./pages/search-pro-results/search-pro-results').then((p) => p.SearchProResultsPage),
+  },
+  {
+    path: 'blog',
+    title: 'blog.title',
+    loadComponent: () => import('./pages/blog/blog').then((p) => p.BlogPage),
+  },
+  {
+    path: 'faq',
+    title: 'home.faq.title',
+    loadComponent: () => import('./pages/faq/faq-page').then((p) => p.FaqPage),
   },
   {
     path: 'contact',

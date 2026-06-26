@@ -6,7 +6,7 @@
     }
   },
   "prelaunch": {
-    "banner": "Plateforme en pré-lancement · Les inscriptions sont ouvertes. Toutes les autres fonctionnalités seront disponibles à partir du 1er août 2026."
+    "banner": "Plateforme en pré-lancement · Les inscriptions sont ouvertes. Toutes les autres fonctionnalités seront disponibles à partir du 1er septembre 2026."
   },
   "home": {
     "meta": {
@@ -15,24 +15,27 @@
       "ogDescription": "Ne validez le paiement qu'une fois l'intervention terminée. Séquestre de fonds, artisans vérifiés, suivi digital."
     },
     "hero": {
-      "h1": "Vos petits travaux et intervention d'urgence encadrés de A à Z, finis les arnaques !",
+      "h1": "Vos petits travaux et interventions d'urgence encadrées de A à Z, finis les arnaques !",
       "args": [
         "Artisans vérifiés : SIRET, assurances et certifications contrôlés avant intégration.",
         "Paiement sécurisé : vos fonds restent séquestrés jusqu'à validation du chantier.",
         "Notre promesse : soit le chantier est terminé, soit l'argent est rendu.",
         "Suivi digital complet : devis, photos, échanges et preuves centralisés dans une seule plateforme.",
         "Protection contre les abandons de chantier, acomptes perdus et interventions non terminées.",
-        "48h de protection après travaux avant libération automatique des fonds.",
+        "96h de protection après travaux avant libération automatique des fonds.",
         "Interventions d'urgence encadrées 24h/24 et 7j/7 : plomberie, serrurerie, électricité et débouchage.",
         "Une plateforme pensée pour protéger à la fois les clients… et les artisans honnêtes."
       ],
-      "ctaRegister": "Inscrivez-vous"
+      "ctaRegister": "Inscrivez-vous",
+      "promise": "Notre promesse, personne ne disparaîtra avec votre argent !",
+      "ctaFindArtisan": "Inscrivez-vous pour trouver votre artisan",
+      "digitalProcedure": "Procédure 100% digitale de A à Z, rapide et simple"
     },
     "presentation": {
       "title": "Qu'est-ce qu'Artisan Compétent ? La plateforme qui encadre vos travaux",
       "intro": "Artisan Compétent est une web app française spécialisée dans la mise en relation encadrée entre particuliers et professionnels du bâtiment.",
       "accordionTitle": "Découvrir Artisan Compétent en détail",
-      "accordeon_content": "<p>Contrairement à un simple annuaire ou à une plateforme classique, Artisan Compétent ne se contente pas d'afficher des artisans.</p><p>La plateforme met en place un véritable système d'encadrement numérique du chantier pour protéger à la fois :</p><ul><li>les clients,</li><li>les vrais artisans,</li><li>et l'argent des travaux.</li></ul><p>L'objectif est simple :</p><ul><li>empêcher les abandons de chantier,</li><li>limiter les escroqueries,</li><li>éviter les acomptes perdus,</li><li>et rétablir la confiance dans le bâtiment.</li></ul><hr><h3>LE PROBLÈME QUE RÉSOUT ARTISAN COMPÉTENT</h3><p>Aujourd'hui, trouver un artisan est devenu facile.</p><p>Mais savoir à qui faire confiance est devenu extrêmement compliqué.</p><p>Sur Google, les réseaux sociaux ou les moteurs de recherche :</p><ul><li>n'importe qui peut apparaître en premier,</li><li>les avis peuvent être faux ou manipulés,</li><li>les recommandations de l'entourage ne garantissent rien,</li><li>et surtout : personne ne protège réellement l'argent du client.</li></ul><p>Résultat :</p><ul><li>acomptes perdus,</li><li>chantiers abandonnés,</li><li>surfacturations,</li><li>litiges,</li><li>artisans introuvables,</li><li>clients laissés seuls.</li></ul><p>Artisan Compétent a été créé pour résoudre ce problème.</p><hr><h3>COMMENT FONCTIONNE ARTISAN COMPÉTENT ?</h3><h4>1. Des artisans vérifiés</h4><p>Les professionnels présents sur la plateforme sont contrôlés avant intégration :</p><ul><li>Kbis,</li><li>assurances.</li></ul><p>L'objectif :<br>filtrer les profils problématiques avant même qu'ils puissent travailler sur la plateforme.</p><hr><h4>2. Un suivi digital du chantier</h4><p>Tout passe par la plateforme :</p><ul><li>devis,</li><li>échanges,</li><li>commentaires,</li><li>photos,</li><li>suivi du chantier.</li></ul><p>Chaque étape peut être documentée.</p><p>Le client comme le professionnel peuvent ajouter :</p><ul><li>des photos,</li><li>des preuves,</li><li>des commentaires,</li><li>des observations.</li></ul><p>Tout devient traçable.</p><hr><h4>3. L'argent est séquestré</h4><p>C'est le cœur du système.</p><p>Contrairement aux méthodes classiques :<br>le client ne paie pas directement l'artisan.</p><p>L'argent est encadré via Stripe sur un compte séquestre jusqu'à validation du chantier.</p><ul><li>L'artisan ne peut donc pas disparaître avec l'argent avant la fin des travaux.</li><li>Et le client ne peut pas non plus bloquer abusivement le paiement sans justification.</li></ul><p>Artisan Compétent agit comme tiers de confiance et arbitre en cas de litige selon les preuves disponibles.</p><hr><h4>4. Un procès-verbal digital de fin de chantier</h4><p>Lorsque les travaux sont terminés :<br>le professionnel envoie un PV digital de réception de chantier.</p><p>Le client dispose alors de 48 heures pour :</p><ul><li>vérifier les travaux,</li><li>signaler un problème,</li><li>demander une correction si nécessaire.</li></ul><p>Ce délai protège énormément les clients.</p><p>Car dans le système classique :<br>une fois payé, certains artisans ne reviennent plus.</p><p>Avec Artisan Compétent :<br>les fonds restent bloqués jusqu'à validation finale.</p><hr><h4>5. Des interventions d'urgence encadrées</h4><p>Artisan Compétent propose également des interventions d'urgence 24h/24 et 7j/7 pour certains métiers sensibles :</p><ul><li>plomberie,</li><li>électricité,</li><li>serrurerie,</li><li>débouchage de canalisations.</li></ul><p>L'objectif :<br>éviter les abus, les surfacturations nocturnes et les arnaques d'urgence.</p><hr><h4>6. Un système pensé aussi pour les vrais artisans</h4><p>Artisan Compétent ne protège pas seulement les clients.</p><p>La plateforme protège aussi les professionnels honnêtes :</p><ul><li>contre les impayés,</li><li>contre les faux litiges,</li><li>contre les clients malveillants,</li><li>et contre la mauvaise image du secteur.</li></ul><p>Les vrais artisans ont enfin un système qui valorise le sérieux et la transparence.</p><hr><h3>LE CMOD : CONSEILLER MAÎTRE D'OUVRAGE DIGITAL</h3><p>Artisan Compétent propose aussi un service unique :<br>le CMOD.</p><p>Le CMOD est un professionnel expérimenté du bâtiment qui accompagne le client à distance.</p><p>Son rôle :</p><ul><li>rassurer,</li><li>expliquer,</li><li>aider à comprendre un devis,</li><li>conseiller pendant le chantier.</li></ul><p>C'est une option facultative qui apporte encore plus de sécurité.</p><hr><h3>POURQUOI ARTISAN COMPÉTENT EST DIFFÉRENT ?</h3><p>Parce que la plateforme ne vend pas simplement des contacts.</p><p>Elle crée un cadre.</p><p>Un encadrement numérique inspiré des méthodes professionnelles du BTP :</p><ul><li>suivi,</li><li>preuves,</li><li>arbitrage,</li><li>traçabilité,</li><li>encadrement des fonds.</li></ul><p>Aujourd'hui :<br>Google peut afficher un artisan.</p><p>Mais Google ne protège pas votre argent.</p><p>Les moteurs de recherche peuvent recommander un professionnel.</p><p>Mais ils ne suivent pas votre chantier.</p><p>Artisan Compétent, oui.</p><hr><h3>POUR QUI ?</h3><h4>Pour les particuliers</h4><p>Qui veulent :</p><ul><li>éviter les arnaques,</li><li>encadrer leur argent,</li><li>trouver des artisans sérieux,</li><li>suivre leurs travaux correctement.</li></ul><h4>Pour les artisans honnêtes</h4><p>Qui veulent :</p><ul><li>travailler avec des clients sérieux,</li><li>être payés correctement,</li><li>rassurer leurs clients,</li><li>se différencier des mauvais professionnels.</li></ul><h4>Pour les affiliés et partenaires</h4><p>Qui veulent recommander une solution utile, concrète et encadrée.</p><p>Recommander Artisan Compétent est totalement différent de recommander \"un artisan qu'on connaît\".</p><p>Parce que le système lui-même est conçu pour empêcher les abus.</p><hr><h3>OBJECTIF D'ARTISAN COMPÉTENT</h3><p>Créer progressivement un nouveau standard de confiance dans le bâtiment.</p><p>Un système plus transparent.<br>Plus encadré.<br>Plus professionnel.</p><p>Et surtout :<br>un système où personne ne disparaît avec l'argent des clients.</p>"
+      "accordeon_content": "<p>Contrairement à un simple annuaire ou à une plateforme classique, Artisan Compétent ne se contente pas d'afficher des artisans.</p><p>La plateforme met en place un véritable système d'encadrement numérique du chantier pour protéger à la fois :</p><ul><li>les clients,</li><li>les vrais artisans,</li><li>et l'argent des travaux.</li></ul><p>L'objectif est simple :</p><ul><li>empêcher les abandons de chantier,</li><li>limiter les escroqueries,</li><li>éviter les acomptes perdus,</li><li>et rétablir la confiance dans le bâtiment.</li></ul><hr><h3>LE PROBLÈME QUE RÉSOUT ARTISAN COMPÉTENT</h3><p>Aujourd'hui, trouver un artisan est devenu facile.</p><p>Mais savoir à qui faire confiance est devenu extrêmement compliqué.</p><p>Sur Google, les réseaux sociaux ou les moteurs de recherche :</p><ul><li>n'importe qui peut apparaître en premier,</li><li>les avis peuvent être faux ou manipulés,</li><li>les recommandations de l'entourage ne garantissent rien,</li><li>et surtout : personne ne protège réellement l'argent du client.</li></ul><p>Résultat :</p><ul><li>acomptes perdus,</li><li>chantiers abandonnés,</li><li>surfacturations,</li><li>litiges,</li><li>artisans introuvables,</li><li>clients laissés seuls.</li></ul><p>Artisan Compétent a été créé pour résoudre ce problème.</p><hr><h3>COMMENT FONCTIONNE ARTISAN COMPÉTENT ?</h3><h4>1. Des artisans vérifiés</h4><p>Les professionnels présents sur la plateforme sont contrôlés avant intégration :</p><ul><li>Kbis,</li><li>assurances.</li></ul><p>L'objectif :<br>filtrer les profils problématiques avant même qu'ils puissent travailler sur la plateforme.</p><hr><h4>2. Un suivi digital du chantier</h4><p>Tout passe par la plateforme :</p><ul><li>devis,</li><li>échanges,</li><li>commentaires,</li><li>photos,</li><li>suivi du chantier.</li></ul><p>Chaque étape peut être documentée.</p><p>Le client comme le professionnel peuvent ajouter :</p><ul><li>des photos,</li><li>des preuves,</li><li>des commentaires,</li><li>des observations.</li></ul><p>Tout devient traçable.</p><hr><h4>3. L'argent est séquestré</h4><p>C'est le cœur du système.</p><p>Contrairement aux méthodes classiques :<br>le client ne paie pas directement l'artisan.</p><p>L'argent est encadré via Stripe sur un compte séquestre jusqu'à validation du chantier.</p><ul><li>L'artisan ne peut donc pas disparaître avec l'argent avant la fin des travaux.</li><li>Et le client ne peut pas non plus bloquer abusivement le paiement sans justification.</li></ul><p>Artisan Compétent agit comme tiers de confiance et arbitre en cas de litige selon les preuves disponibles.</p><hr><h4>4. Un procès-verbal digital de fin de chantier</h4><p>Lorsque les travaux sont terminés :<br>le professionnel envoie un PV digital de réception de chantier.</p><p>Le client dispose alors de 96 heures pour :</p><ul><li>vérifier les travaux,</li><li>signaler un problème,</li><li>demander une correction si nécessaire.</li></ul><p>Ce délai protège énormément les clients.</p><p>Car dans le système classique :<br>une fois payé, certains artisans ne reviennent plus.</p><p>Avec Artisan Compétent :<br>les fonds restent bloqués jusqu'à validation finale.</p><hr><h4>5. Des interventions d'urgence encadrées</h4><p>Artisan Compétent propose également des interventions d'urgence 24h/24 et 7j/7 pour certains métiers sensibles :</p><ul><li>plomberie,</li><li>électricité,</li><li>serrurerie,</li><li>débouchage de canalisations.</li></ul><p>L'objectif :<br>éviter les abus, les surfacturations nocturnes et les arnaques d'urgence.</p><hr><h4>6. Un système pensé aussi pour les vrais artisans</h4><p>Artisan Compétent ne protège pas seulement les clients.</p><p>La plateforme protège aussi les professionnels honnêtes :</p><ul><li>contre les impayés,</li><li>contre les faux litiges,</li><li>contre les clients malveillants,</li><li>et contre la mauvaise image du secteur.</li></ul><p>Les vrais artisans ont enfin un système qui valorise le sérieux et la transparence.</p><hr><h3>LE CMOD : CONSEILLER MAÎTRE D'OUVRAGE DIGITAL</h3><p>Artisan Compétent propose aussi un service unique :<br>le CMOD.</p><p>Le CMOD est un professionnel expérimenté du bâtiment qui accompagne le client à distance.</p><p>Son rôle :</p><ul><li>rassurer,</li><li>expliquer,</li><li>aider à comprendre un devis,</li><li>conseiller pendant le chantier.</li></ul><p>C'est une option facultative qui apporte encore plus de sécurité.</p><hr><h3>POURQUOI ARTISAN COMPÉTENT EST DIFFÉRENT ?</h3><p>Parce que la plateforme ne vend pas simplement des contacts.</p><p>Elle crée un cadre.</p><p>Un encadrement numérique inspiré des méthodes professionnelles du BTP :</p><ul><li>suivi,</li><li>preuves,</li><li>arbitrage,</li><li>traçabilité,</li><li>encadrement des fonds.</li></ul><p>Aujourd'hui :<br>Google peut afficher un artisan.</p><p>Mais Google ne protège pas votre argent.</p><p>Les moteurs de recherche peuvent recommander un professionnel.</p><p>Mais ils ne suivent pas votre chantier.</p><p>Artisan Compétent, oui.</p><hr><h3>POUR QUI ?</h3><h4>Pour les particuliers</h4><p>Qui veulent :</p><ul><li>éviter les arnaques,</li><li>encadrer leur argent,</li><li>trouver des artisans sérieux,</li><li>suivre leurs travaux correctement.</li></ul><h4>Pour les artisans honnêtes</h4><p>Qui veulent :</p><ul><li>travailler avec des clients sérieux,</li><li>être payés correctement,</li><li>rassurer leurs clients,</li><li>se différencier des mauvais professionnels.</li></ul><h4>Pour les affiliés et partenaires</h4><p>Qui veulent recommander une solution utile, concrète et encadrée.</p><p>Recommander Artisan Compétent est totalement différent de recommander \"un artisan qu'on connaît\".</p><p>Parce que le système lui-même est conçu pour empêcher les abus.</p><hr><h3>OBJECTIF D'ARTISAN COMPÉTENT</h3><p>Créer progressivement un nouveau standard de confiance dans le bâtiment.</p><p>Un système plus transparent.<br>Plus encadré.<br>Plus professionnel.</p><p>Et surtout :<br>un système où personne ne disparaît avec l'argent des clients.</p>"
     },
     "protection": {
       "title": "L'encadrement Artisan Compétent en détail",
@@ -48,7 +51,7 @@
       },
       "validation": {
         "title": "Validation des travaux et libération des fonds",
-        "body": "<p>Une fois le chantier terminé, le professionnel vous transmet un procès-verbal digital de fin de chantier.</p><p>Vous disposez alors d'un délai pouvant aller jusqu'à 48 heures pour :</p><ul><li>valider le procès-verbal ou émettre une réserve si nécessaire.</li></ul><p>Pendant ce délai, les fonds restent sécurisés et ne sont pas versés au professionnel.</p><p>Si aucun problème n'est signalé dans le délai prévu, les fonds sont automatiquement libérés conformément aux conditions prévues dans les CGU et le procès-verbal est considéré comme validé sans réserve.</p><p>En cas de litige, les fonds restent bloqués le temps qu'Artisan Compétent analyse les éléments enregistrés dans le suivi digital afin de faciliter un arbitrage basé sur des preuves concrètes.</p>"
+        "body": "<p>Une fois le chantier terminé, le professionnel vous transmet un procès-verbal digital de fin de chantier.</p><p>Vous disposez alors d'un délai pouvant aller jusqu'à 96 heures pour :</p><ul><li>valider le procès-verbal ou émettre une réserve si nécessaire.</li></ul><p>Pendant ce délai, les fonds restent sécurisés et ne sont pas versés au professionnel.</p><p>Si aucun problème n'est signalé dans le délai prévu, les fonds sont automatiquement libérés conformément aux conditions prévues dans les CGU et le procès-verbal est considéré comme validé sans réserve.</p><p>En cas de litige, les fonds restent bloqués le temps qu'Artisan Compétent analyse les éléments enregistrés dans le suivi digital afin de faciliter un arbitrage basé sur des preuves concrètes.</p>"
       },
       "klarna": {
         "title": "Paiement en plusieurs fois via Klarna",
@@ -111,7 +114,7 @@
         ],
         "p5": "Vous ne validez le paiement qu'une fois l'intervention terminée.",
         "p6": "Les fonds restent sécurisés jusqu'à validation du procès-verbal de fin d'intervention.",
-        "p7": "Et la règle des 48h pour réagir prend encore plus d'importance dans les situations d'urgence, où les abus manifestement excessifs et les surfacturations nocturnes sont malheureusement les plus fréquents.",
+        "p7": "Et la règle des 96h pour réagir prend encore plus d'importance dans les situations d'urgence, où les abus manifestement excessifs et les surfacturations nocturnes sont malheureusement les plus fréquents.",
         "p8": "Les tarifs restent libres et définis par chaque professionnel, mais Artisan Compétent met en place des outils de suivi, de transparence et d'arbitrage pour éviter les dérives les plus abusives.",
         "p9": "Il est important de préciser que les procédures liées aux abus manifestement excessifs sur les prix concernent principalement les interventions d'urgence immédiates, notamment de nuit ou dans des situations où le client dispose de très peu de temps pour comparer, réfléchir ou négocier sereinement.",
         "p10": "Pour les devis classiques ou les chantiers avec délai de réflexion normal, les prix restent totalement libres et relèvent de la négociation entre le client et le professionnel.",
@@ -206,7 +209,7 @@
       },
       "etape4": {
         "title": "Réception des travaux, libération des fonds, avis et clôture du chantier",
-        "body": "<h4>Réception des travaux</h4><p>À la fin du chantier, le professionnel envoie un procès-verbal digital de réception directement via la plateforme Artisan Compétent.</p><p>À partir de ce moment-là, le client dispose d'un délai pouvant aller jusqu'à 48 heures pour :</p><ul><li>vérifier les travaux réalisés,</li><li>contrôler les finitions,</li><li>signaler une éventuelle malfaçon,</li><li>demander une correction si nécessaire,</li><li>ou valider définitivement le chantier.</li></ul><p>Le client peut également valider le procès-verbal immédiatement s'il estime que les travaux sont conformes.</p><p>Pendant toute cette période, les fonds restent encadrés sur le compte séquestre Stripe.</p><p>Huit heures avant la fin du délai des 48 heures, un email de rappel automatique est envoyé au client. Cet email fait également office de mise en demeure afin d'informer le client que :</p><ul><li>soit il doit émettre une réserve ou un signalement s'il constate un problème,</li><li>soit les fonds seront automatiquement libérés à l'issue du délai prévu.</li></ul><p>À défaut de réserve ou de contestation dans le délai imparti, le procès-verbal est automatiquement considéré comme validé conformément aux CGU et CGV de la plateforme.</p><h4>Libération des fonds</h4><p>Une fois le procès-verbal validé, manuellement ou automatiquement après expiration du délai prévu sans réserve, les fonds séquestrés sont immédiatement libérés vers le professionnel.</p><p>Les fonds ne transitent jamais par le compte bancaire d'Artisan Compétent. Ils restent encadrés dans le protocole Stripe jusqu'à leur libération finale.</p><p>En cas de réserve, de malfaçon signalée ou de litige déclaré dans le délai prévu :</p><ul><li>les fonds restent bloqués,</li><li>une analyse du dossier peut être effectuée,</li><li>un échange amiable est privilégié,</li><li>et un arbitrage peut être engagé si nécessaire sur la base des éléments enregistrés dans le suivi digital.</li></ul><p>Selon la situation :</p><ul><li>une correction peut être demandée,</li><li>un remboursement partiel peut être effectué,</li><li>ou les fonds peuvent être ajustés au prorata des travaux réellement réalisés.</li></ul><h4>Après la réception : garanties et suivi</h4><p>Même après validation du procès-verbal, les professionnels présents sur Artisan Compétent restent soumis à leurs obligations légales.</p><p>Comme tout professionnel du bâtiment sérieux, ils restent tenus d'intervenir en cas de problème relevant :</p><ul><li>de la garantie de parfait achèvement,</li><li>de la garantie biennale lorsque nécessaire,</li><li>ou de la garantie décennale selon la nature des travaux réalisés.</li></ul><p>Le système Artisan Compétent ne remplace pas les garanties légales existantes, mais ajoute un cadre de sécurité et de traçabilité supplémentaire pendant toute la durée du chantier.</p><h4>Avis et clôture du chantier</h4><p>Une fois le chantier terminé, le client peut laisser un avis sur le professionnel.</p><p>Les avis ont pour objectif de rester :</p><ul><li>transparents,</li><li>constructifs,</li><li>utiles à la communauté,</li><li>et basés sur une expérience réelle vécue via la plateforme.</li></ul><p>L'objectif d'Artisan Compétent n'est pas de créer une simple plateforme d'avis, mais un environnement de confiance basé sur des chantiers réellement suivis et documentés.</p><p>Une fois le procès-verbal validé, Artisan Compétent invite également le client et le professionnel à télécharger et conserver l'ensemble des documents, échanges, photos, devis, procès-verbaux et éléments présents dans leur dashboard.</p><p>Ces documents peuvent être utiles ultérieurement en cas :</p><ul><li>de garantie à faire valoir,</li><li>de malfaçon apparaissant après réception,</li><li>de litige futur,</li><li>ou simplement pour conserver un historique complet du chantier.</li></ul><p>La plateforme Artisan Compétent conserve les données pendant une durée limitée conformément à sa politique de gestion et de protection des données. Il appartient donc au client et au professionnel de conserver leurs propres copies des éléments importants du chantier.</p><p>Une fois cette étape terminée, le chantier est officiellement clôturé dans la plateforme.</p>"
+        "body": "<h4>Réception des travaux</h4><p>À la fin du chantier, le professionnel envoie un procès-verbal digital de réception directement via la plateforme Artisan Compétent.</p><p>À partir de ce moment-là, le client dispose d'un délai pouvant aller jusqu'à 96 heures pour :</p><ul><li>vérifier les travaux réalisés,</li><li>contrôler les finitions,</li><li>signaler une éventuelle malfaçon,</li><li>demander une correction si nécessaire,</li><li>ou valider définitivement le chantier.</li></ul><p>Le client peut également valider le procès-verbal immédiatement s'il estime que les travaux sont conformes.</p><p>Pendant toute cette période, les fonds restent encadrés sur le compte séquestre Stripe.</p><p>Huit heures avant la fin du délai des 96 heures, un email de rappel automatique est envoyé au client. Cet email fait également office de mise en demeure afin d'informer le client que :</p><ul><li>soit il doit émettre une réserve ou un signalement s'il constate un problème,</li><li>soit les fonds seront automatiquement libérés à l'issue du délai prévu.</li></ul><p>À défaut de réserve ou de contestation dans le délai imparti, le procès-verbal est automatiquement considéré comme validé conformément aux CGU et CGV de la plateforme.</p><h4>Libération des fonds</h4><p>Une fois le procès-verbal validé, manuellement ou automatiquement après expiration du délai prévu sans réserve, les fonds séquestrés sont immédiatement libérés vers le professionnel.</p><p>Les fonds ne transitent jamais par le compte bancaire d'Artisan Compétent. Ils restent encadrés dans le protocole Stripe jusqu'à leur libération finale.</p><p>En cas de réserve, de malfaçon signalée ou de litige déclaré dans le délai prévu :</p><ul><li>les fonds restent bloqués,</li><li>une analyse du dossier peut être effectuée,</li><li>un échange amiable est privilégié,</li><li>et un arbitrage peut être engagé si nécessaire sur la base des éléments enregistrés dans le suivi digital.</li></ul><p>Selon la situation :</p><ul><li>une correction peut être demandée,</li><li>un remboursement partiel peut être effectué,</li><li>ou les fonds peuvent être ajustés au prorata des travaux réellement réalisés.</li></ul><h4>Après la réception : garanties et suivi</h4><p>Même après validation du procès-verbal, les professionnels présents sur Artisan Compétent restent soumis à leurs obligations légales.</p><p>Comme tout professionnel du bâtiment sérieux, ils restent tenus d'intervenir en cas de problème relevant :</p><ul><li>de la garantie de parfait achèvement,</li><li>de la garantie biennale lorsque nécessaire,</li><li>ou de la garantie décennale selon la nature des travaux réalisés.</li></ul><p>Le système Artisan Compétent ne remplace pas les garanties légales existantes, mais ajoute un cadre de sécurité et de traçabilité supplémentaire pendant toute la durée du chantier.</p><h4>Avis et clôture du chantier</h4><p>Une fois le chantier terminé, le client peut laisser un avis sur le professionnel.</p><p>Les avis ont pour objectif de rester :</p><ul><li>transparents,</li><li>constructifs,</li><li>utiles à la communauté,</li><li>et basés sur une expérience réelle vécue via la plateforme.</li></ul><p>L'objectif d'Artisan Compétent n'est pas de créer une simple plateforme d'avis, mais un environnement de confiance basé sur des chantiers réellement suivis et documentés.</p><p>Une fois le procès-verbal validé, Artisan Compétent invite également le client et le professionnel à télécharger et conserver l'ensemble des documents, échanges, photos, devis, procès-verbaux et éléments présents dans leur dashboard.</p><p>Ces documents peuvent être utiles ultérieurement en cas :</p><ul><li>de garantie à faire valoir,</li><li>de malfaçon apparaissant après réception,</li><li>de litige futur,</li><li>ou simplement pour conserver un historique complet du chantier.</li></ul><p>La plateforme Artisan Compétent conserve les données pendant une durée limitée conformément à sa politique de gestion et de protection des données. Il appartient donc au client et au professionnel de conserver leurs propres copies des éléments importants du chantier.</p><p>Une fois cette étape terminée, le chantier est officiellement clôturé dans la plateforme.</p>"
       }
     },
     "faq": {
@@ -233,18 +236,18 @@
       },
       "q5": {
         "question": "Que faire si je ne suis pas d'accord avec le devis ou le travail rendu ?",
-        "summary": "Privilégiez d'abord le dialogue avec l'artisan : la plupart des situations se règlent à l'amiable. Pour les devis abusifs en urgence ou de nuit, vous pouvez signaler depuis votre dashboard dans les 48h. Pendant l'analyse, les fonds restent en séquestre et une médiation amiable est privilégiée avant toute mesure.",
-        "body": "<p>La première chose à faire est d'en parler directement avec l'artisan.</p><p>La très grande majorité des situations se règlent à l'amiable. Un artisan sérieux acceptera de discuter, d'expliquer un point technique, ou de revenir corriger une finition si nécessaire.</p><p>Il est fortement conseillé de prendre le temps de cet échange avant tout signalement.</p><p>Concernant les devis jugés abusifs, Artisan Compétent intervient uniquement dans certains cas très spécifiques d'urgence immédiates ou de nuit, lorsque le client n'a pas réellement le temps de comparer les prix ou de prendre du recul avant l'acceptation.</p><p>En cas d'abus manifestement excessif constaté sur ce type d'intervention, un signalement peut être effectué depuis le dashboard client dans les 48 heures suivant la fin des travaux.</p><p>Pendant ce délai :</p><ul><li>les fonds restent bloqués en séquestre,</li><li>une analyse du dossier peut être réalisée,</li><li>et une médiation amiable est privilégiée.</li></ul><p>En cas d'abus manifeste confirmé et de refus persistant du professionnel de trouver une solution amiable, Artisan Compétent peut appliquer les mesures prévues dans ses CGU et CGV, pouvant aller jusqu'à :</p><ul><li>la suspension ou suppression du compte du professionnel,</li><li>l'application de frais de dossier de suspension pouvant aller jusqu'à un montant donné.</li></ul><p>Ces frais peuvent être prélevés directement sur la somme séquestrée lorsque l'abus est clairement établi et sont reversés au client concerné conformément au fonctionnement prévu par la plateforme.</p><p>Ce mécanisme reste exceptionnel et concerne principalement les rares situations d'abus très importants sur des interventions d'urgence.</p><p>Pour les chantiers classiques et devis non urgents, les prix restent libres.</p><p>Le client dispose généralement du temps nécessaire pour comparer plusieurs devis, poser ses questions et accepter ou refuser la proposition avant signature.</p>"
+        "summary": "Privilégiez d'abord le dialogue avec l'artisan : la plupart des situations se règlent à l'amiable. Pour les devis abusifs en urgence ou de nuit, vous pouvez signaler depuis votre dashboard dans les 96h. Pendant l'analyse, les fonds restent en séquestre et une médiation amiable est privilégiée avant toute mesure.",
+        "body": "<p>La première chose à faire est d'en parler directement avec l'artisan.</p><p>La très grande majorité des situations se règlent à l'amiable. Un artisan sérieux acceptera de discuter, d'expliquer un point technique, ou de revenir corriger une finition si nécessaire.</p><p>Il est fortement conseillé de prendre le temps de cet échange avant tout signalement.</p><p>Concernant les devis jugés abusifs, Artisan Compétent intervient uniquement dans certains cas très spécifiques d'urgence immédiates ou de nuit, lorsque le client n'a pas réellement le temps de comparer les prix ou de prendre du recul avant l'acceptation.</p><p>En cas d'abus manifestement excessif constaté sur ce type d'intervention, un signalement peut être effectué depuis le dashboard client dans les 96 heures suivant la fin des travaux.</p><p>Pendant ce délai :</p><ul><li>les fonds restent bloqués en séquestre,</li><li>une analyse du dossier peut être réalisée,</li><li>et une médiation amiable est privilégiée.</li></ul><p>En cas d'abus manifeste confirmé et de refus persistant du professionnel de trouver une solution amiable, Artisan Compétent peut appliquer les mesures prévues dans ses CGU et CGV, pouvant aller jusqu'à :</p><ul><li>la suspension ou suppression du compte du professionnel,</li><li>l'application de frais de dossier de suspension pouvant aller jusqu'à un montant donné.</li></ul><p>Ces frais peuvent être prélevés directement sur la somme séquestrée lorsque l'abus est clairement établi et sont reversés au client concerné conformément au fonctionnement prévu par la plateforme.</p><p>Ce mécanisme reste exceptionnel et concerne principalement les rares situations d'abus très importants sur des interventions d'urgence.</p><p>Pour les chantiers classiques et devis non urgents, les prix restent libres.</p><p>Le client dispose généralement du temps nécessaire pour comparer plusieurs devis, poser ses questions et accepter ou refuser la proposition avant signature.</p>"
       },
       "q6": {
-        "question": "Qu'est-ce qui se passe si je ne valide pas le procès-verbal dans les 48h ?",
-        "summary": "Après l'envoi du procès-verbal de fin de chantier, vous disposez de 48 heures pour valider, contester ou signaler un problème. Un email de rappel est envoyé 8 heures avant la fin du délai. Sans action de votre part dans les 48h, le procès-verbal est automatiquement validé et les fonds sont libérés vers le professionnel.",
-        "body": "<p>Une fois le procès-verbal de fin de chantier envoyé par le professionnel, les fonds restent bloqués en séquestre pendant un délai pouvant aller jusqu'à 48 heures.</p><p>Cette période permet au client :</p><ul><li>de vérifier les travaux réalisés,</li><li>ou de demander une correction si nécessaire.</li></ul><p>Huit heures avant la fin du délai, un email automatique de rappel est envoyé au client afin de lui rappeler qu'il doit soit valider le procès-verbal, soit signaler un éventuel problème avant expiration du délai.</p><p>Sans réserve, contestation ou signalement effectué dans les 48 heures, le procès-verbal est automatiquement considéré comme validé conformément aux CGU et CGV de la plateforme.</p><p>Les fonds séquestrés sont alors automatiquement libérés vers le professionnel.</p><p>Une fois le procès-verbal validé, les garanties légales du bâtiment restent bien entendu applicables selon la nature des travaux réalisés :</p><ul><li>garantie de parfait achèvement,</li><li>garantie biennale,</li><li>ou garantie décennale lorsque celle-ci est requise.</li></ul>"
+        "question": "Qu'est-ce qui se passe si je ne valide pas le procès-verbal dans les 96h ?",
+        "summary": "Après l'envoi du procès-verbal de fin de chantier, vous disposez de 96 heures pour valider, contester ou signaler un problème. Un email de rappel est envoyé 8 heures avant la fin du délai. Sans action de votre part dans les 96h, le procès-verbal est automatiquement validé et les fonds sont libérés vers le professionnel.",
+        "body": "<p>Une fois le procès-verbal de fin de chantier envoyé par le professionnel, les fonds restent bloqués en séquestre pendant un délai pouvant aller jusqu'à 96 heures.</p><p>Cette période permet au client :</p><ul><li>de vérifier les travaux réalisés,</li><li>ou de demander une correction si nécessaire.</li></ul><p>Huit heures avant la fin du délai, un email automatique de rappel est envoyé au client afin de lui rappeler qu'il doit soit valider le procès-verbal, soit signaler un éventuel problème avant expiration du délai.</p><p>Sans réserve, contestation ou signalement effectué dans les 96 heures, le procès-verbal est automatiquement considéré comme validé conformément aux CGU et CGV de la plateforme.</p><p>Les fonds séquestrés sont alors automatiquement libérés vers le professionnel.</p><p>Une fois le procès-verbal validé, les garanties légales du bâtiment restent bien entendu applicables selon la nature des travaux réalisés :</p><ul><li>garantie de parfait achèvement,</li><li>garantie biennale,</li><li>ou garantie décennale lorsque celle-ci est requise.</li></ul>"
       },
       "q7": {
         "question": "Que se passe-t-il si les travaux sont mal faits ?",
-        "summary": "D'abord, discutez avec l'artisan : la majorité des malfaçons se règlent rapidement par le dialogue. Si le problème persiste, ne validez pas le procès-verbal et signalez depuis votre tableau de bord dans les 48h, les fonds restent en séquestre. Un échange avec un CMOD peut être organisé, et les garanties légales (parfait achèvement, biennale, décennale) s'appliquent ensuite selon les travaux.",
-        "body": "<p>La première étape est toujours d'en discuter directement avec l'artisan.</p><p>La majorité des malfaçons ou problèmes de finition se règlent rapidement lorsqu'ils sont signalés correctement.</p><p>Si le problème persiste :</p><ul><li>ne validez pas le procès-verbal de fin de chantier,</li><li>signalez la situation depuis votre tableau de bord dans les 48h,</li><li>et expliquez précisément le problème rencontré.</li></ul><p>Pendant ce délai, les fonds restent bloqués en séquestre.</p><p>L'équipe Artisan Compétent peut alors analyser la situation à partir du suivi digital déjà présent dans la plateforme :</p><ul><li>photos,</li><li>échanges,</li><li>et éléments transmis pendant les travaux.</li></ul><p>Si nécessaire, un échange avec un CMOD (Conseiller Maître d'Ouvrage Digital) peut également être organisé afin d'aider à mieux comprendre la situation et favoriser une résolution amiable.</p><p>Si le procès-verbal a déjà été signé, les artisans sérieux présents sur la plateforme restent tenus d'intervenir pour corriger une éventuelle malfaçon relevant de leur responsabilité.</p><p>Et dans tous les cas, les garanties légales continuent ensuite de s'appliquer selon les travaux réalisés :</p><ul><li>garantie de parfait achèvement,</li><li>garantie biennale,</li><li>ou garantie décennale.</li></ul>"
+        "summary": "D'abord, discutez avec l'artisan : la majorité des malfaçons se règlent rapidement par le dialogue. Si le problème persiste, ne validez pas le procès-verbal et signalez depuis votre tableau de bord dans les 96h, les fonds restent en séquestre. Un échange avec un CMOD peut être organisé, et les garanties légales (parfait achèvement, biennale, décennale) s'appliquent ensuite selon les travaux.",
+        "body": "<p>La première étape est toujours d'en discuter directement avec l'artisan.</p><p>La majorité des malfaçons ou problèmes de finition se règlent rapidement lorsqu'ils sont signalés correctement.</p><p>Si le problème persiste :</p><ul><li>ne validez pas le procès-verbal de fin de chantier,</li><li>signalez la situation depuis votre tableau de bord dans les 96h,</li><li>et expliquez précisément le problème rencontré.</li></ul><p>Pendant ce délai, les fonds restent bloqués en séquestre.</p><p>L'équipe Artisan Compétent peut alors analyser la situation à partir du suivi digital déjà présent dans la plateforme :</p><ul><li>photos,</li><li>échanges,</li><li>et éléments transmis pendant les travaux.</li></ul><p>Si nécessaire, un échange avec un CMOD (Conseiller Maître d'Ouvrage Digital) peut également être organisé afin d'aider à mieux comprendre la situation et favoriser une résolution amiable.</p><p>Si le procès-verbal a déjà été signé, les artisans sérieux présents sur la plateforme restent tenus d'intervenir pour corriger une éventuelle malfaçon relevant de leur responsabilité.</p><p>Et dans tous les cas, les garanties légales continuent ensuite de s'appliquer selon les travaux réalisés :</p><ul><li>garantie de parfait achèvement,</li><li>garantie biennale,</li><li>ou garantie décennale.</li></ul>"
       },
       "q8": {
         "question": "Comment éviter les arnaques quand on cherche un artisan ?",
@@ -273,14 +276,215 @@
       },
       "q13": {
         "question": "Que faire en cas d'urgence : fuite d'eau, panne de chauffage, porte claquée ?",
-        "summary": "Artisan Compétent met à votre disposition des artisans d'urgence 24h/24 et 7j/7 en plomberie, chauffage, serrurerie, électricité et débouchage. Même en urgence, le séquestre de fonds s'applique : vous ne validez le paiement qu'une fois l'intervention terminée, et la règle des 48 heures pour réagir reste valable. Consultez la page de chaque métier d'urgence pour les détails.",
-        "body": "<p>Les urgences n'attendent pas. Fuite d'eau, panne de chauffage, porte claquée, coupure électrique, canalisation bouchée : Artisan Compétent met à votre disposition des artisans d'urgence disponibles 24 heures sur 24 et 7 jours sur 7.</p><p>Les 5 métiers d'urgence couverts :</p><ul><li>Plombier urgence (fuite, dégât des eaux),</li><li>Chauffagiste urgence (panne chaudière, plus de chauffage),</li><li>Serrurier urgence (porte claquée, serrure cassée),</li><li>Électricien urgence (coupure, court-circuit),</li><li>Déboucheur urgence (canalisation bouchée, refoulement).</li></ul><p>Même en situation d'urgence, l'encadrement de la plateforme s'applique :</p><ul><li>les échanges passent par la plateforme,</li><li>le séquestre de fonds Stripe continue de s'appliquer,</li><li>vous ne validez le paiement qu'une fois l'intervention terminée,</li><li>vous disposez de 48 heures pour réagir, signaler une réserve ou contester le procès-verbal.</li></ul><p>C'est précisément dans les situations d'urgence que les surfacturations nocturnes et abus tarifaires manifestement excessifs sont les plus fréquents. Le système d'arbitrage d'Artisan Compétent est calibré pour traiter en priorité ces situations.</p><p>Pour chaque métier d'urgence, une page dédiée détaille les interventions couvertes, les délais d'intervention et les précautions à connaître avant d'accepter un devis. Consultez la page du métier concerné pour plus de précisions.</p>"
+        "summary": "Artisan Compétent met à votre disposition des artisans d'urgence 24h/24 et 7j/7 en plomberie, chauffage, serrurerie, électricité et débouchage. Même en urgence, le séquestre de fonds s'applique : vous ne validez le paiement qu'une fois l'intervention terminée, et la règle des 96 heures pour réagir reste valable. Consultez la page de chaque métier d'urgence pour les détails.",
+        "body": "<p>Les urgences n'attendent pas. Fuite d'eau, panne de chauffage, porte claquée, coupure électrique, canalisation bouchée : Artisan Compétent met à votre disposition des artisans d'urgence disponibles 24 heures sur 24 et 7 jours sur 7.</p><p>Les 5 métiers d'urgence couverts :</p><ul><li>Plombier urgence (fuite, dégât des eaux),</li><li>Chauffagiste urgence (panne chaudière, plus de chauffage),</li><li>Serrurier urgence (porte claquée, serrure cassée),</li><li>Électricien urgence (coupure, court-circuit),</li><li>Déboucheur urgence (canalisation bouchée, refoulement).</li></ul><p>Même en situation d'urgence, l'encadrement de la plateforme s'applique :</p><ul><li>les échanges passent par la plateforme,</li><li>le séquestre de fonds Stripe continue de s'appliquer,</li><li>vous ne validez le paiement qu'une fois l'intervention terminée,</li><li>vous disposez de 96 heures pour réagir, signaler une réserve ou contester le procès-verbal.</li></ul><p>C'est précisément dans les situations d'urgence que les surfacturations nocturnes et abus tarifaires manifestement excessifs sont les plus fréquents. Le système d'arbitrage d'Artisan Compétent est calibré pour traiter en priorité ces situations.</p><p>Pour chaque métier d'urgence, une page dédiée détaille les interventions couvertes, les délais d'intervention et les précautions à connaître avant d'accepter un devis. Consultez la page du métier concerné pour plus de précisions.</p>"
       },
       "affiliation": {
         "question": "Comment fonctionne le programme d'affiliation Artisan Compétent ?",
         "summary": "Inscription gratuite, sans condition de taille d'audience. Vous touchez jusqu'à 25 % de commission sur la marge Artisan Compétent quand votre filleul signe son procès-verbal de fin de chantier : 20 % la première année côté client, 5 % par artisan amené pendant 3 mois. Seule règle pour rester actif : publier au moins un contenu par semaine.",
         "body": "<p>Inscrivez-vous gratuitement en 2 minutes, sans condition de taille d'audience, et recevez un lien d'affiliation unique rattaché à votre compte partenaire pour tracer vos recommandations.</p><p>Vous touchez jusqu'à 25 % de commission sur la marge Artisan Compétent : 20 % les 6 premiers mois après l'inscription d'un client (puis 10 % les 6 mois suivants) et 5 % par artisan amené pendant 3 mois.</p><p>Les commissions sont validées une fois le procès-verbal de fin de chantier signé, puis versées par virement trimestriel avec justificatif PDF dans votre espace partenaire.</p><p>Seule règle pour rester actif : publier au moins un contenu par semaine. Sans publication pendant 14 jours, votre lien est désactivé, mais les filleuls déjà rattachés continuent de générer des commissions.</p>",
         "linkLabel": "Découvrir le programme d'affiliation"
+      }
+    },
+    "trustFeatures": {
+      "verified": {
+        "label": "Artisans vérifiés **",
+        "desc": "Identité, assurance, siret"
+      },
+      "payment": {
+        "label": "Paiement sécurisé",
+        "desc": "Argent séquestré jusqu'à la fin des travaux"
+      },
+      "tracking": {
+        "label": "Suivi digital du chantier",
+        "desc": "Avancement en temps réel et échanges centralisés"
+      },
+      "pv": {
+        "label": "Procès-verbal numérique",
+        "desc": "Validation en ligne à la fin du chantier"
+      },
+      "clientProtection": {
+        "label": "Protection du client",
+        "desc": "96 heures de protection après travaux, 96 heures pour émettre une réserve, 96 heures pour valider le procès-verbal de fin de chantier"
+      },
+      "artisanProtection": {
+        "label": "Protection de l'artisan",
+        "desc": "Paiement garanti si le travail est conforme"
+      }
+    },
+    "centralization": {
+      "text": "Du premier contact jusqu'à la validation du procès-verbal, toutes les étapes sont centralisées sur Artisans Compétents."
+    },
+    "howItWorks": {
+      "h2": "COMMENT ÇA MARCHE ?",
+      "steps": [
+        {
+          "title": "Trouvez votre artisan",
+          "desc": "Recherchez un artisan vérifié près de chez vous."
+        },
+        {
+          "title": "Validez le devis",
+          "desc": "Choisissez votre artisan et validez le devis en ligne."
+        },
+        {
+          "title": "Argent sécurisé",
+          "desc": "Votre paiement est sécurisé sur notre compte séquestre stripe."
+        },
+        {
+          "title": "Réalisation des travaux",
+          "desc": "L'artisan réalise les travaux. Suivi digital du chantier."
+        },
+        {
+          "title": "Validation du procès-verbal",
+          "desc": "Vous validez le procès-verbal de fin de chantier en ligne."
+        },
+        {
+          "title": "Paiement libéré",
+          "desc": "L'argent est libéré à l'artisan après votre validation."
+        }
+      ],
+      "banner": {
+        "line1": "Si le travail est conforme, l'artisan reçoit l'intégralité de son paiement.",
+        "line2": "En cas de désaccord, le client reste protégé jusqu'à résolution du dossier."
+      }
+    },
+    "urgences": {
+      "h2": "UNE URGENCE ? ON GÈRE, MÊME À 3H DU MATIN.",
+      "subtitle": "Nos métiers d'urgence sont disponibles 24h/24 et 7j/7 selon la disponibilité des artisans partenaires dans votre secteur.",
+      "badge247": "(24/7)",
+      "tradeLink": "En savoir plus",
+      "trades": [
+        {
+          "slug": "electrician",
+          "name": "Électricité & appareils connectés",
+          "desc": "Panne, coupure, court-circuit..."
+        },
+        {
+          "slug": "locksmith",
+          "name": "Serrurerie",
+          "desc": "Porte claquée, serrure cassée..."
+        },
+        {
+          "slug": "plumber-sanitary",
+          "name": "Plombier sanitaire",
+          "desc": "Fuite d'eau, dégât des eaux..."
+        },
+        {
+          "slug": "drain-unblocker",
+          "name": "Déboucheur de canalisation",
+          "desc": "Canalisation bouchée, refoulement..."
+        },
+        {
+          "slug": "heating",
+          "name": "Chauffagiste",
+          "desc": "Chaudière, chauffage, pompe à chaleur..."
+        }
+      ],
+      "cta": {
+        "urgent": "Besoin d'une intervention urgente",
+        "pro": "Professionnels, rejoignez-nous",
+        "moreInfo": "En savoir plus sur les interventions d'urgence"
+      }
+    },
+    "petitsTravaux": {
+      "h2": "TOUS LES PETITS TRAVAUX, UNE SEULE PLATEFORME DE CONFIANCE.",
+      "subtitle": "En plus des urgences, nos artisans vous accompagnent pour tous vos petits travaux, dès les délais courts, chantier planifié, ou projet plus important :",
+      "subtitleBold": "8 métiers à votre service",
+      "subtitleEnd": ", on s'occupe de tout.",
+      "tradeLink": "Détails du métier",
+      "trades": [
+        {
+          "slug": "electrician",
+          "name": "Électricité & appareils connectés"
+        },
+        {
+          "slug": "locksmith",
+          "name": "Serrurerie"
+        },
+        {
+          "slug": "plumber-sanitary",
+          "name": "Plombier sanitaire"
+        },
+        {
+          "slug": "heating",
+          "name": "Chauffagiste, VMC & pompe à chaleur"
+        },
+        {
+          "slug": "drain-unblocker",
+          "name": "Déboucheur de canalisation"
+        },
+        {
+          "slug": "hvac",
+          "name": "Technicien climatisation & frigoriste"
+        },
+        {
+          "slug": "glazier",
+          "name": "Vitrerie & miroiterie"
+        },
+        {
+          "slug": "pest-control",
+          "name": "Traitement anti-nuisibles (rongeurs, punaises...)"
+        }
+      ],
+      "ctaJobs": "Voir tous nos métiers",
+      "ctaRegister": "Inscrivez-vous"
+    },
+    "blocInfo": {
+      "cards": [
+        {
+          "title": "L'encadrement Artisan Compétent en détail",
+          "desc": "Découvrez comment nous sélectionnons, vérifions et accompagnons nos artisans pour garantir votre sécurité."
+        },
+        {
+          "title": "Les étapes pour utiliser Artisan Compétent",
+          "desc": "Suivez chaque étape, de votre recherche d'artisan jusqu'à la validation du procès-verbal et à la libération des fonds."
+        },
+        {
+          "title": "Professionnels\nPourquoi devriez-vous nous rejoindre ?",
+          "desc": "Demandes qualifiées, paiement sécurisé, suivi digital complet et protection contre les impayés."
+        },
+        {
+          "title": "Qu'est-ce qu'artisan compétent ? La plateforme qui encadre vos travaux.",
+          "desc": "Artisan compétent est une webapp française spécialisée dans la mise en relation encadrée entre particuliers et professionnels du bâtiment."
+        }
+      ],
+      "protection": {
+        "title": "Avec Artisan Compétent, tout le monde est protégé.",
+        "particuliers": "Particuliers : plus aucune arnaque, que ce soit pour une urgence ou des travaux plus longs.",
+        "artisans": "Artisans : plus d'excuses bidons pour ne pas être payés.",
+        "tagline": "Travail terminé, procès-verbal validé, paiement envoyé.",
+        "ctaRegister": "Inscrivez-vous",
+        "particuliersLabel": "Particuliers",
+        "particuliersText": "plus aucune arnaque, que ce soit pour une urgence ou des travaux plus longs.",
+        "artisansLabel": "Artisans",
+        "artisansText": "plus d'excuses bidons pour ne pas être payés."
+      }
+    },
+    "paiement": {
+      "items": [
+        {
+          "title": "Paiement en totalité et encadré par Stripe",
+          "desc": "Sécurisé et libéré uniquement après validation du procès-verbal."
+        },
+        {
+          "title": "Paiement en 3 fois sans frais via Klarna *",
+          "desc": "Sous conditions Klarna, pour des montants jusqu'à 1 500 € voire plus selon votre solvabilité et si l'artisan accepte cette facilité de paiement."
+        },
+        {
+          "title": "Suivi digital inaltérable",
+          "desc": "Toutes les étapes sont tracées et ne peuvent pas être supprimées."
+        }
+      ],
+      "protection": {
+        "title": "Avec Artisan Compétent, tout le monde est protégé.",
+        "particuliers": "Particuliers : plus aucune arnaque, que ce soit pour une urgence ou des travaux plus longs.",
+        "artisans": "Artisans : plus d'excuses bidons pour ne pas être payés.",
+        "tagline": "Travail terminé, procès-verbal validé, paiement envoyé.",
+        "ctaRegister": "Inscrivez-vous",
+        "particuliersLabel": "Particuliers",
+        "particuliersText": "plus aucune arnaque, que ce soit pour une urgence ou des travaux plus longs.",
+        "artisansLabel": "Artisans",
+        "artisansText": "plus d'excuses bidons pour ne pas être payés."
       }
     }
   },
@@ -301,20 +505,29 @@
       "title": "Navigation",
       "home": "Accueil",
       "trades": "Nos métiers",
-      "cities": "Nos villes"
+      "cities": "Nos villes",
+      "emergency": "Dépannage d'urgence",
+      "blog": "Blog",
+      "affiliation": "Affiliation",
+      "faq": "FAQ"
     },
     "howItWorks": {
       "title": "Comment ça marche",
       "cmod": "CMOD",
       "payment": "Facilités de paiement",
       "escrow": "Séquestre Stripe",
-      "defect": "Procédure si malfaçon"
+      "defect": "Procédure si malfaçon",
+      "encadrement": "L'encadrement Artisan Compétent en détail"
     },
     "contact": {
       "title": "Contact",
       "address": "66 avenue des Champs-Élysées\n75008 Paris",
       "phone": "+33 7 69 61 97 90",
-      "phoneNote": "Nous ne prenons pas d'appels. Pour le suivi de vos demandes, contactez-nous via le formulaire."
+      "phoneNote": "Nous ne prenons pas d'appels. Pour le suivi de vos demandes, contactez-nous via le formulaire.",
+      "noCall": "Nous ne prenons pas d'appels pour le moment.",
+      "formDesc": "Afin de garantir un suivi structuré et traçable de chaque demande, utilisez notre formulaire de contact.",
+      "formLink": "Formulaire de contact",
+      "formBtn": "Accéder au formulaire de contact"
     },
     "social": {
       "title": "Suivez-nous",
@@ -327,7 +540,11 @@
       "cgu": "CGU",
       "cgv": "CGV",
       "cookies": "Politique de cookies",
-      "contactForm": "Formulaire de contact"
+      "contactForm": "Formulaire de contact",
+      "cgucgv": "CGU/CGV",
+      "mediateur": "Médiateur de la consommation",
+      "artisansNote": "** Artisans vérifiés : Lors de l'inscription, Artisan Compétent réalise une vérification administrative des informations transmises par le professionnel (identité, SIRET, assurances et documents déclarés). Cette vérification ne dispense pas le client d'effectuer ses propres contrôles concernant les assurances, certifications et qualifications nécessaires aux travaux concernés, conformément aux CGU. Les vérifications peuvent être réalisées avant la signature du devis ou, en cas d'urgence, dans le délai de 96 heures précédant la validation définitive du chantier.",
+      "cancellation": "Politique d'annulation"
     },
     "copyright": "© 2026 Artisan Compétent. Tous droits réservés."
   },
@@ -423,8 +640,8 @@
       "electrician": {
         "title": "Électricien vérifié, du devis à la mise sous tension encadrée",
         "name": "Électricité & Appareils connectés (24/7)",
-        "tagline": "Cette page liste les interventions traitées par les électriciens vérifiés d'Artisan Compétent, y compris la domotique, les bornes de recharge et les mises aux normes NF C 15-100, et le mécanisme qui encadre votre paiement de la signature du devis à la libération des fonds 48h après la fin du chantier.",
-        "verifiedBadge": "En bref, un électricien vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, son habilitation électrique selon NF C 18-510 pour les interventions sous tension, sa qualification IRVE pour les bornes de recharge et la qualification Qualifelec affichée si déclarée. Process encadré par séquestre Stripe : 48h après la fin du chantier pour signaler un abus. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
+        "tagline": "Cette page liste les interventions traitées par les électriciens vérifiés d'Artisan Compétent, y compris la domotique, les bornes de recharge et les mises aux normes NF C 15-100, et le mécanisme qui encadre votre paiement de la signature du devis à la libération des fonds 96h après la fin du chantier.",
+        "verifiedBadge": "En bref, un électricien vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, son habilitation électrique selon NF C 18-510 pour les interventions sous tension, sa qualification IRVE pour les bornes de recharge et la qualification Qualifelec affichée si déclarée. Process encadré par séquestre Stripe : 96h après la fin du chantier pour signaler un abus. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
         "description": {
           "p1": "Avec Artisan-Compétent, trouver un électricien compétent n'a jamais été aussi simple. En quelques secondes, vous décrivez votre problème en audio, vidéo ou photo, et notre solution vous met directement en relation avec des électriciens qualifiés près de chez vous — qu'il s'agisse d'une installation classique ou d'appareils connectés et de domotique.",
           "p2": "Plus besoin de formulaires compliqués ou d'attendre un rappel: vous comparez les propositions reçues, choisissez l'artisan qui vous inspire confiance et bénéficiez d'une intervention rapide et sécurisée.",
@@ -449,7 +666,7 @@
         },
         "whyUs": {
           "title": "Pourquoi passer par Artisan Compétent pour vos travaux d'électricité",
-          "lead": "Artisan Compétent vérifie l'électricien en amont, encadre votre paiement par séquestre Stripe et vous laisse 48h pour valider la conformité du chantier avant toute libération des fonds.",
+          "lead": "Artisan Compétent vérifie l'électricien en amont, encadre votre paiement par séquestre Stripe et vous laisse 96h pour valider la conformité du chantier avant toute libération des fonds.",
           "blocks": [
             {
               "title": "Chaque électricien référencé sur Artisan Compétent voit son SIRET contrôlé sur les bases publiques (Annuaire des Entreprises, INSEE/SIRENE) et ses assurances vérifiées avant validation du compte sur la plate-forme.",
@@ -457,11 +674,11 @@
             },
             {
               "title": "Le séquestre de fonds est un compte tiers géré via Stripe qui encadre tout le process, du devis à la libération des fonds.",
-              "body": "Le paiement quitte votre compte au moment où vous validez le devis de l'électricien, mais reste bloqué sur un compte séquestre Stripe. Les fonds sont libérés à l'artisan 48h après la fin du chantier, sans contestation."
+              "body": "Le paiement quitte votre compte au moment où vous validez le devis de l'électricien, mais reste bloqué sur un compte séquestre Stripe. Les fonds sont libérés à l'artisan 96h après la fin du chantier, sans contestation."
             },
             {
-              "title": "Le déclenchement des 48h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
-              "body": "Concrètement, le délai des 48h ne court pas dans le vide. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme. Ce PV ouvre la fenêtre de 48h pendant laquelle vous pouvez émettre des réserves : malfaçon constatée, non-conformité au devis, finition manquante, document promis non remis. 8h avant la fin du délai, un mail de notification (qui vaut mise en demeure d'examiner le chantier) vous est envoyé pour éviter une libération par simple oubli. Sans réserve émise au terme des 48h, les fonds sont libérés automatiquement à l'artisan. Avec réserve, le séquestre reste actif jusqu'au traitement contradictoire de la contestation."
+              "title": "Le déclenchement des 96h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
+              "body": "Concrètement, le délai des 96h ne court pas dans le vide. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme. Ce PV ouvre la fenêtre de 96h pendant laquelle vous pouvez émettre des réserves : malfaçon constatée, non-conformité au devis, finition manquante, document promis non remis. 8h avant la fin du délai, un mail de notification (qui vaut mise en demeure d'examiner le chantier) vous est envoyé pour éviter une libération par simple oubli. Sans réserve émise au terme des 96h, les fonds sont libérés automatiquement à l'artisan. Avec réserve, le séquestre reste actif jusqu'au traitement contradictoire de la contestation."
             },
             {
               "title": "CMOD est un service payant et optionnel d'accompagnement par un conseiller maître d'ouvrage à distance. Deux appels offerts dans des conditions précises.",
@@ -508,13 +725,13 @@
               "Paiement encadré",
               "Variable",
               "Aucun",
-              "Séquestre de fonds Stripe, libération à 48h"
+              "Séquestre de fonds Stripe, libération à 96h"
             ],
             [
               "Recours en cas d'abus",
               "Limité",
               "Aucun",
-              "Retenue jusqu'à 250 € sur signalement < 48h"
+              "Retenue jusqu'à 250 € sur signalement < 96h"
             ],
             [
               "Conformité NF C 15-100 et Consuel",
@@ -552,7 +769,7 @@
           "title": "Votre rôle dans le suivi du chantier",
           "lead": "La protection séquestre s'appuie sur un contradictoire écrit. Votre participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier.",
           "body": "Pour les chantiers de plus d'un jour (rénovation de tableau, mise aux normes complète, pose de borne IRVE), l'artisan dépose chaque jour des photos d'avancement dans le tableau de bord partagé client · artisan. Vous commentez, vous validez ou vous signalez dans le même espace, ce qui établit un contradictoire écrit en cas de litige ultérieur. Documentez aussi de votre côté : photos du tableau avant intervention, photos du matériel livré sur site (étiquettes, références), photos à la fin de chaque journée.",
-          "footer": "En cas de signalement d'abus dans les 48h suivant la fin du chantier (matériel non conforme, installation dangereuse, devis non respecté)."
+          "footer": "En cas de signalement d'abus dans les 96h suivant la fin du chantier (matériel non conforme, installation dangereuse, devis non respecté)."
         },
         "insurance": {
           "title": "Assurance habitation et remboursement",
@@ -562,22 +779,22 @@
         },
         "howItWorks": {
           "title": "Comment ça marche en 3 étapes",
-          "lead": "Le parcours sur Artisan Compétent compte trois étapes : description du besoin, validation du devis avec paiement en séquestre, intervention et libération des fonds après 48h.",
+          "lead": "Le parcours sur Artisan Compétent compte trois étapes : description du besoin, validation du devis avec paiement en séquestre, intervention et libération des fonds après 96h.",
           "steps": [
             "Vous décrivez votre besoin (dépannage, mise aux normes, rénovation, pose IRVE, domotique) sur Artisan Compétent et recevez un devis détaillé d'un électricien vérifié de votre zone.",
             "Vous validez le devis, le paiement part en séquestre via Stripe, l'intervention est planifiée.",
-            "L'électricien intervient. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme : il ouvre une fenêtre de 48h pendant laquelle vous pouvez émettre des réserves sur la conformité, la mise en sécurité ou le non-respect du devis. Un mail de notification vous est envoyé 8h avant la fin du délai. Sans réserve, les fonds sont libérés automatiquement à l'artisan."
+            "L'électricien intervient. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme : il ouvre une fenêtre de 96h pendant laquelle vous pouvez émettre des réserves sur la conformité, la mise en sécurité ou le non-respect du devis. Un mail de notification vous est envoyé 8h avant la fin du délai. Sans réserve, les fonds sont libérés automatiquement à l'artisan."
           ]
         },
         "emergency": {
           "title": "Électricien d'urgence 24h/24, 7j/7",
-          "lead": "Artisan Compétent couvre l'électricité en urgence 24h/24 et 7j/7 sur l'ensemble des zones desservies. La règle des 48h pour signaler un abus reste applicable même en sortie nocturne.",
-          "body": "L'électricien fait partie des cinq métiers couverts en urgence permanente sur Artisan Compétent, avec le plombier, le serrurier, le chauffagiste et le déboucheur de canalisations. Une panne générale qui ne se rétablit pas, un disjoncteur qui ne se réarme pas, une odeur de brûlé au tableau : ces situations imposent une intervention immédiate. Le protocole reste identique en sortie nocturne : devis chiffré, paiement en séquestre via Stripe, intervention, fenêtre de 48h pour signaler un abus."
+          "lead": "Artisan Compétent couvre l'électricité en urgence 24h/24 et 7j/7 sur l'ensemble des zones desservies. La règle des 96h pour signaler un abus reste applicable même en sortie nocturne.",
+          "body": "L'électricien fait partie des cinq métiers couverts en urgence permanente sur Artisan Compétent, avec le plombier, le serrurier, le chauffagiste et le déboucheur de canalisations. Une panne générale qui ne se rétablit pas, un disjoncteur qui ne se réarme pas, une odeur de brûlé au tableau : ces situations imposent une intervention immédiate. Le protocole reste identique en sortie nocturne : devis chiffré, paiement en séquestre via Stripe, intervention, fenêtre de 96h pour signaler un abus."
         },
         "klarna": {
           "title": "Klarna : comment ça marche",
           "p1": "Klarna est un service de paiement échelonné en 3 fois sans frais. Artisan Compétent met cet outil à disposition dans le parcours de paiement. Son activation se négocie entre le client et l'artisan : ce n'est pas automatique.",
-          "p2": "Si l'artisan accepte de proposer Klarna sur votre devis, le mécanisme du séquestre de fonds reste actif et le paiement reste protégé jusqu'à validation du chantier à 48h. Pour les chantiers plus importants (rénovation complète de tableau, pose de borne IRVE avec génie civil)."
+          "p2": "Si l'artisan accepte de proposer Klarna sur votre devis, le mécanisme du séquestre de fonds reste actif et le paiement reste protégé jusqu'à validation du chantier à 96h. Pour les chantiers plus importants (rénovation complète de tableau, pose de borne IRVE avec génie civil)."
         },
         "faq": {
           "title": "Questions fréquentes",
@@ -601,7 +818,7 @@
             },
             {
               "q": "Klarna 3 fois sans frais est-il disponible pour une rénovation électrique ?",
-              "a": "Klarna 3 fois sans frais peut être proposé par l'artisan dans le respect des plafonds Klarna en vigueur. L'activation n'est pas automatique : elle se négocie entre vous et l'artisan. Le séquestre de fonds reste actif : le paiement échelonné est tout de même protégé jusqu'à validation du chantier à 48h."
+              "a": "Klarna 3 fois sans frais peut être proposé par l'artisan dans le respect des plafonds Klarna en vigueur. L'activation n'est pas automatique : elle se négocie entre vous et l'artisan. Le séquestre de fonds reste actif : le paiement échelonné est tout de même protégé jusqu'à validation du chantier à 96h."
             },
             {
               "q": "Mon assurance habitation peut-elle rembourser des travaux électriques d'urgence ?",
@@ -621,11 +838,11 @@
       "locksmith": {
         "title": "Serrurier vérifié, sans subir le devis nocturne",
         "name": "Serrurier (24/7)",
-        "tagline": "Cette page liste les interventions traitées par les serruriers et métalliers vérifiés d’Artisan Compétent et le mécanisme anti-arnaque qui encadre votre paiement, du devis signé à la libération des fonds 48h après l’intervention.",
-        "verifiedBadge": "En bref, un serrurier vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, et remet un devis chiffré préalable comme l’impose le Code de la consommation pour toute intervention au-delà de 150 €. Process encadré par séquestre via Stripe, 48h pour signaler un abus. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
+        "tagline": "Cette page liste les interventions traitées par les serruriers et métalliers vérifiés d’Artisan Compétent et le mécanisme anti-arnaque qui encadre votre paiement, du devis signé à la libération des fonds 96h après l’intervention.",
+        "verifiedBadge": "En bref, un serrurier vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, et remet un devis chiffré préalable comme l’impose le Code de la consommation pour toute intervention au-delà de 150 €. Process encadré par séquestre via Stripe, 96h pour signaler un abus. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
         "description": {
-          "p1": "En une phrase, sur Artisan Compétent, un serrurier vérifié remet un devis chiffré avant intervention (obligatoire au-delà de 150 € à domicile) et tout son chantier est encadré par un séquestre de fonds Stripe qui retient le paiement jusqu’à 48h après la fin de l’intervention. C’est la réponse opérationnelle à la première source d’arnaque en BTP : la sortie nocturne avec devis verbal et paiement comptant.",
-          "p2": "La serrurerie en urgence est le secteur le plus exposé aux pratiques abusives. Un serrurier vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, et accepte le devis chiffré préalable imposé par l’article L. 111-1 du Code de la consommation pour toute intervention à domicile au-delà de 150 €. Tout le process est encadré par un séquestre de fonds Stripe : il reste bloqué jusqu’à 48h après l’intervention, fenêtre pendant laquelle vous pouvez signaler un devis non respecté."
+          "p1": "En une phrase, sur Artisan Compétent, un serrurier vérifié remet un devis chiffré avant intervention (obligatoire au-delà de 150 € à domicile) et tout son chantier est encadré par un séquestre de fonds Stripe qui retient le paiement jusqu’à 96h après la fin de l’intervention. C’est la réponse opérationnelle à la première source d’arnaque en BTP : la sortie nocturne avec devis verbal et paiement comptant.",
+          "p2": "La serrurerie en urgence est le secteur le plus exposé aux pratiques abusives. Un serrurier vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, et accepte le devis chiffré préalable imposé par l’article L. 111-1 du Code de la consommation pour toute intervention à domicile au-delà de 150 €. Tout le process est encadré par un séquestre de fonds Stripe : il reste bloqué jusqu’à 96h après l’intervention, fenêtre pendant laquelle vous pouvez signaler un devis non respecté."
         },
         "whenToCall": {
           "title": "Quand faire appel à un serrurier vérifié",
@@ -645,7 +862,7 @@
         },
         "whyUs": {
           "title": "Pourquoi passer par Artisan Compétent pour vos travaux de serrurerie et de métallerie",
-          "lead": "Artisan Compétent vérifie le serrurier en amont, impose le devis préalable obligatoire et encadre votre paiement par séquestre Stripe avec une fenêtre de 48h pour signaler un abus.",
+          "lead": "Artisan Compétent vérifie le serrurier en amont, impose le devis préalable obligatoire et encadre votre paiement par séquestre Stripe avec une fenêtre de 96h pour signaler un abus.",
           "blocks": [
             {
               "title": "Chaque serrurier référencé sur Artisan Compétent voit son SIRET contrôlé sur les bases publiques (Annuaire des Entreprises, INSEE/SIRENE, répertoire des métiers) et son assurance RC pro vérifiée avant validation.",
@@ -653,11 +870,11 @@
             },
             {
               "title": "Le séquestre de fonds est un compte tiers géré via Stripe qui encadre tout le process, du devis à la libération des fonds.",
-              "body": "C’est en serrurerie que le séquestre joue son rôle anti-arnaque le plus visible. Au moment où vous validez le devis du serrurier, le paiement quitte votre compte mais n’arrive pas chez l’artisan : il reste bloqué sur un compte séquestre Stripe. Les fonds sont libérés 48h après l’intervention, sans contestation. Cette mise en attente neutralise la pratique du paiement comptant exigé sur place après une intervention nocturne surfacturée. Si le serrurier a percé un cylindre alors qu’une ouverture fine était possible, ou facturé un cylindre standard au prix d’un A2P, vous avez 48h pour le signaler."
+              "body": "C’est en serrurerie que le séquestre joue son rôle anti-arnaque le plus visible. Au moment où vous validez le devis du serrurier, le paiement quitte votre compte mais n’arrive pas chez l’artisan : il reste bloqué sur un compte séquestre Stripe. Les fonds sont libérés 96h après l’intervention, sans contestation. Cette mise en attente neutralise la pratique du paiement comptant exigé sur place après une intervention nocturne surfacturée. Si le serrurier a percé un cylindre alors qu’une ouverture fine était possible, ou facturé un cylindre standard au prix d’un A2P, vous avez 96h pour le signaler."
             },
             {
-              "title": "Le déclenchement des 48h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
-              "body": "Concrètement, le délai des 48h ne court pas dans le vide. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme. Ce PV ouvre la fenêtre de 48h pendant laquelle vous pouvez émettre des réserves : malfaçon constatée, non-conformité au devis, finition manquante, document promis non remis. 8h avant la fin du délai, un mail de notification (qui vaut mise en demeure d’examiner le chantier) vous est envoyé pour éviter une libération par simple oubli. Sans réserve émise au terme des 48h, les fonds sont libérés automatiquement à l’artisan. Avec réserve, le séquestre reste actif jusqu’au traitement contradictoire de la contestation."
+              "title": "Le déclenchement des 96h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
+              "body": "Concrètement, le délai des 96h ne court pas dans le vide. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme. Ce PV ouvre la fenêtre de 96h pendant laquelle vous pouvez émettre des réserves : malfaçon constatée, non-conformité au devis, finition manquante, document promis non remis. 8h avant la fin du délai, un mail de notification (qui vaut mise en demeure d’examiner le chantier) vous est envoyé pour éviter une libération par simple oubli. Sans réserve émise au terme des 96h, les fonds sont libérés automatiquement à l’artisan. Avec réserve, le séquestre reste actif jusqu’au traitement contradictoire de la contestation."
             },
             {
               "title": "Le CMOD peut être déclenché lorsqu’aucune solution amiable n’a pu être trouvée entre le client et l’artisan dans le cadre d’un litige lié à une intervention réalisée via la plateforme Artisan Compétent.",
@@ -710,13 +927,13 @@
               "Paiement encadré",
               "Variable",
               "Non",
-              "Séquestre de fonds Stripe, libération à 48h"
+              "Séquestre de fonds Stripe, libération à 96h"
             ],
             [
               "Recours en cas d’abus",
               "Limité",
               "Aucun",
-              "Retenue jusqu’à 250 € sur signalement < 48h"
+              "Retenue jusqu’à 250 € sur signalement < 96h"
             ],
             [
               "Devis chiffré préalable",
@@ -754,7 +971,7 @@
           "title": "Votre rôle dans le suivi du chantier",
           "lead": "La protection séquestre s’appuie sur un contradictoire écrit. Votre participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier.",
           "body": "Pour les chantiers structurants (pose d’une porte blindée, installation d’un coffre, travaux de métallerie), l’artisan dépose des photos d’avancement dans le tableau de bord partagé client · artisan. Vous commentez, vous validez ou vous signalez dans le même espace. Sur les interventions d’urgence courte (ouverture, remplacement de cylindre), demandez systématiquement une photo du matériel posé (poinçon A2P, étiquette fabricant, référence cylindre) avant de valider la fin de chantier.",
-          "footer": "En cas de signalement d’abus dans les 48h suivant l’intervention (cylindre standard facturé en A2P, perçage non justifié, devis non respecté), Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU et CGV. Pour les abus avérés en sortie nocturne, cette retenue est une protection concrète et un précédent dissuasif pour l’artisan."
+          "footer": "En cas de signalement d’abus dans les 96h suivant l’intervention (cylindre standard facturé en A2P, perçage non justifié, devis non respecté), Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU et CGV. Pour les abus avérés en sortie nocturne, cette retenue est une protection concrète et un précédent dissuasif pour l’artisan."
         },
         "insurance": {
           "title": "Assurance habitation et remboursement",
@@ -764,22 +981,22 @@
         },
         "howItWorks": {
           "title": "Comment ça marche en 3 étapes",
-          "lead": "Le parcours sur Artisan Compétent compte trois étapes : description du besoin, validation du devis avec paiement en séquestre, intervention et libération des fonds après 48h.",
+          "lead": "Le parcours sur Artisan Compétent compte trois étapes : description du besoin, validation du devis avec paiement en séquestre, intervention et libération des fonds après 96h.",
           "steps": [
             "Vous décrivez votre besoin (ouverture, remplacement de serrure, pose blindée, métallerie) sur Artisan Compétent et recevez un devis détaillé d’un serrurier vérifié de votre zone.",
             "Vous validez le devis, le paiement part en séquestre via Stripe, l’intervention est planifiée.",
-            "Le serrurier intervient. À la fin de l’intervention, un procès-verbal de réception est émis sur la plateforme : il ouvre une fenêtre de 48h pendant laquelle vous pouvez émettre des réserves (porte mal posée, cylindre non conforme au devis, matériel facturé non remis). Un mail de notification vous est envoyé 8h avant la fin du délai. Sans réserve, les fonds sont libérés automatiquement à l’artisan."
+            "Le serrurier intervient. À la fin de l’intervention, un procès-verbal de réception est émis sur la plateforme : il ouvre une fenêtre de 96h pendant laquelle vous pouvez émettre des réserves (porte mal posée, cylindre non conforme au devis, matériel facturé non remis). Un mail de notification vous est envoyé 8h avant la fin du délai. Sans réserve, les fonds sont libérés automatiquement à l’artisan."
           ]
         },
         "emergency": {
           "title": "Serrurier d’urgence 24h/24, 7j/7",
           "lead": "Artisan Compétent couvre la serrurerie en urgence 24h/24 et 7j/7 dans les zones desservies. C’est le métier où le séquestre de fonds est le plus protecteur, parce que c’est celui où les abus sont les plus fréquents.",
-          "body": "Le serrurier fait partie des cinq métiers couverts en urgence permanente sur Artisan Compétent, avec le plombier, l’électricien, le chauffagiste et le déboucheur de canalisations. Une porte claquée à 2h du matin, une serrure bloquée après tentative d’effraction, une perte de clés un dimanche : ces situations sont précisément celles où la pression pousse à accepter n’importe quel prix. Le protocole reste identique en sortie nocturne : devis chiffré transmis avant action, paiement en séquestre via Stripe, intervention, fenêtre de 48h pour signaler un abus."
+          "body": "Le serrurier fait partie des cinq métiers couverts en urgence permanente sur Artisan Compétent, avec le plombier, l’électricien, le chauffagiste et le déboucheur de canalisations. Une porte claquée à 2h du matin, une serrure bloquée après tentative d’effraction, une perte de clés un dimanche : ces situations sont précisément celles où la pression pousse à accepter n’importe quel prix. Le protocole reste identique en sortie nocturne : devis chiffré transmis avant action, paiement en séquestre via Stripe, intervention, fenêtre de 96h pour signaler un abus."
         },
         "klarna": {
           "title": "Klarna : comment ça marche",
           "p1": "Klarna est un service de paiement échelonné en 3 fois sans frais. Artisan Compétent met cet outil à disposition dans le parcours de paiement. Son activation se négocie entre le client et l’artisan : ce n’est pas automatique.",
-          "p2": "Si l’artisan accepte de proposer Klarna (essentiellement sur des chantiers programmés mais aussi en urgence : pose de porte blindée, métallerie), le mécanisme du séquestre de fonds reste actif et le paiement reste protégé jusqu’à validation du chantier à 48h."
+          "p2": "Si l’artisan accepte de proposer Klarna (essentiellement sur des chantiers programmés mais aussi en urgence : pose de porte blindée, métallerie), le mécanisme du séquestre de fonds reste actif et le paiement reste protégé jusqu’à validation du chantier à 96h."
         },
         "faq": {
           "title": "Questions fréquentes",
@@ -791,7 +1008,7 @@
             },
             {
               "q": "Un serrurier peut-il intervenir 24h/24, et la nuit ?",
-              "a": "Oui. Le serrurier vérifié sur Artisan Compétent est disponible 24h/24 et 7j/7 pour les ouvertures de porte claquée, blocages de serrure et tentatives d’effraction. La règle des 48h pour signaler un abus reste applicable même en sortie nocturne. Le séquestre de fonds est particulièrement précieux en urgence : c’est la situation où la pression psychologique pousse le plus à accepter des prix anormaux."
+              "a": "Oui. Le serrurier vérifié sur Artisan Compétent est disponible 24h/24 et 7j/7 pour les ouvertures de porte claquée, blocages de serrure et tentatives d’effraction. La règle des 96h pour signaler un abus reste applicable même en sortie nocturne. Le séquestre de fonds est particulièrement précieux en urgence : c’est la situation où la pression psychologique pousse le plus à accepter des prix anormaux."
             },
             {
               "q": "Mon assurance habitation rembourse-t-elle un serrurier après effraction ?",
@@ -807,7 +1024,7 @@
             },
             {
               "q": "Comment fonctionne le séquestre de fonds pour une intervention en urgence ?",
-              "a": "Le séquestre de fonds est un compte tiers géré via Stripe. Quand vous validez le devis, le paiement quitte votre compte mais reste bloqué sur le séquestre. Les fonds sont libérés 48h après l’intervention, sans contestation. Cette fenêtre vous laisse le temps de vérifier le matériel posé (poinçon A2P, référence du cylindre, qualité de la pose) et de signaler un abus. En cas de signalement d’abus dans les 48h, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement."
+              "a": "Le séquestre de fonds est un compte tiers géré via Stripe. Quand vous validez le devis, le paiement quitte votre compte mais reste bloqué sur le séquestre. Les fonds sont libérés 96h après l’intervention, sans contestation. Cette fenêtre vous laisse le temps de vérifier le matériel posé (poinçon A2P, référence du cylindre, qualité de la pose) et de signaler un abus. En cas de signalement d’abus dans les 96h, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement."
             },
             {
               "q": "Klarna 3 fois sans frais est-il disponible pour un chantier serrurerie ?",
@@ -819,7 +1036,7 @@
             },
             {
               "q": "Que faire si le serrurier a percé alors qu’une ouverture fine était possible ?",
-              "a": "Vous signalez l’abus dans les 48h suivant l’intervention, via le tableau de bord partagé. Les fonds restent bloqués en séquestre tant que cette fenêtre court. Artisan Compétent demande les éléments factuels (devis signé, photos du cylindre percé, témoignages éventuels) et peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation. Le devis du serrurier vérifié doit toujours mentionner la méthode d’ouverture envisagée et expliquer pourquoi un perçage est nécessaire si c’est le cas."
+              "a": "Vous signalez l’abus dans les 96h suivant l’intervention, via le tableau de bord partagé. Les fonds restent bloqués en séquestre tant que cette fenêtre court. Artisan Compétent demande les éléments factuels (devis signé, photos du cylindre percé, témoignages éventuels) et peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation. Le devis du serrurier vérifié doit toujours mentionner la méthode d’ouverture envisagée et expliquer pourquoi un perçage est nécessaire si c’est le cas."
             },
             {
               "q": "Quelles villes sont couvertes par Artisan Compétent pour la serrurerie ?",
@@ -829,17 +1046,17 @@
         },
         "conclusion": {
           "title": "Pour aller plus loin",
-          "body": "Une porte claquée à 2h du matin, une tentative d’effraction à sécuriser le lendemain, un déménagement qui impose un changement de cylindre, une porte blindée à poser, un coffre A2P à installer : dans chacun de ces cas, l’enjeu est d’éviter le devis verbal et le paiement comptant exigé sur place. Artisan Compétent encadre la vérification du serrurier en amont et tout votre process par séquestre jusqu’à 48h après l’intervention.",
+          "body": "Une porte claquée à 2h du matin, une tentative d’effraction à sécuriser le lendemain, un déménagement qui impose un changement de cylindre, une porte blindée à poser, un coffre A2P à installer : dans chacun de ces cas, l’enjeu est d’éviter le devis verbal et le paiement comptant exigé sur place. Artisan Compétent encadre la vérification du serrurier en amont et tout votre process par séquestre jusqu’à 96h après l’intervention.",
           "footer": "Serrurier vérifié SIRET et RC pro. Devis chiffré préalable obligatoire. Process encadré par séquestre Stripe. Retenue jusqu’à 250 € en cas de signalement d’abus. Recours assurance habitation systématique après effraction."
         }
       },
       "plumberSanitary": {
         "title": "Plombier sanitaire vérifié, du devis à la libération des fonds encadrée",
         "name": "Plombier sanitaire (24/7)",
-        "tagline": "Cette page liste les interventions traitées par les plombiers vérifiés d'Artisan Compétent et le mécanisme qui encadre votre paiement de bout en bout, du devis chiffré à la libération des fonds 48h après la fin du chantier.",
-        "verifiedBadge": "En, bref, un plombier vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, sa qualification PG pour les interventions gaz et, le cas échéant, sa qualification RGE pour les pompes à chaleur et la climatisation éligibles aux aides publiques. Tout le process est encadré par un séquestre de fonds via Stripe : devis, intervention, libération des fonds 48h après la fin du chantier. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
+        "tagline": "Cette page liste les interventions traitées par les plombiers vérifiés d'Artisan Compétent et le mécanisme qui encadre votre paiement de bout en bout, du devis chiffré à la libération des fonds 96h après la fin du chantier.",
+        "verifiedBadge": "En, bref, un plombier vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, sa qualification PG pour les interventions gaz et, le cas échéant, sa qualification RGE pour les pompes à chaleur et la climatisation éligibles aux aides publiques. Tout le process est encadré par un séquestre de fonds via Stripe : devis, intervention, libération des fonds 96h après la fin du chantier. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
         "description": {
-          "p1": "Un plombier vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, et la qualification PG si son activité touche au gaz. Le séquestre de fonds Stripe encadre la totalité du processus : le paiement quitte votre compte à la validation du devis, reste bloqué pendant l’intervention, puis 48h supplémentaires après la fin du chantier. C’est ce délai de 48h qui vous laisse signaler une malfaçon, un abus ou un non-respect du devis avant que les fonds soient libérés au plombier."
+          "p1": "Un plombier vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, et la qualification PG si son activité touche au gaz. Le séquestre de fonds Stripe encadre la totalité du processus : le paiement quitte votre compte à la validation du devis, reste bloqué pendant l’intervention, puis 96h supplémentaires après la fin du chantier. C’est ce délai de 96h qui vous laisse signaler une malfaçon, un abus ou un non-respect du devis avant que les fonds soient libérés au plombier."
         },
         "whenToCall": {
           "title": "Quand faire appel à un plombier vérifié",
@@ -859,7 +1076,7 @@
         },
         "whyUs": {
           "title": "Pourquoi passer par Artisan Compétent pour vos travaux de plomberie",
-          "lead": "Artisan Compétent vérifie le plombier en amont, encadre votre paiement par séquestre Stripe et vous laisse 48h pour valider le chantier avant toute libération des fonds.",
+          "lead": "Artisan Compétent vérifie le plombier en amont, encadre votre paiement par séquestre Stripe et vous laisse 96h pour valider le chantier avant toute libération des fonds.",
           "blocks": [
             {
               "title": "Chaque plombier référencé sur Artisan Compétent voit son SIRET contrôlé sur les bases publiques (Annuaire des Entreprises, INSEE/SIRENE) et ses assurances vérifiées avant validation.",
@@ -867,11 +1084,11 @@
             },
             {
               "title": "Le séquestre de fonds est un compte tiers géré via Stripe qui encadre tout le process, du devis à la libération des fonds.",
-              "body": "Quand vous validez le devis du plombier, le paiement quitte votre compte mais n’arrive pas sur celui de l’artisan : il reste bloqué sur un compte séquestre Stripe. Cette mise en attente dure jusqu’à la fin de l’intervention, plus un délai de 48h pendant lequel vous pouvez signaler un abus, un défaut de qualité ou un non-respect du devis. Sans contestation, les fonds sont libérés au plombier au terme de ces 48h. Pendant la fenêtre de 48h, le séquestre joue son rôle de levier : c’est la motivation la plus efficace pour qu’un artisan termine proprement son chantier."
+              "body": "Quand vous validez le devis du plombier, le paiement quitte votre compte mais n’arrive pas sur celui de l’artisan : il reste bloqué sur un compte séquestre Stripe. Cette mise en attente dure jusqu’à la fin de l’intervention, plus un délai de 96h pendant lequel vous pouvez signaler un abus, un défaut de qualité ou un non-respect du devis. Sans contestation, les fonds sont libérés au plombier au terme de ces 96h. Pendant la fenêtre de 96h, le séquestre joue son rôle de levier : c’est la motivation la plus efficace pour qu’un artisan termine proprement son chantier."
             },
             {
-              "title": "Le déclenchement des 48h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
-              "body": "Concrètement, le délai des 48h ne court pas dans le vide. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme. Ce PV ouvre la fenêtre de 48h pendant laquelle vous pouvez émettre des réserves : malfaçon constatée, non-conformité au devis, finition manquante, document promis non remis. 8h avant la fin du délai, un mail de notification (qui vaut mise en demeure d’examiner le chantier) vous est envoyé pour éviter une libération par simple oubli. Sans réserve émise au terme des 48h, les fonds sont libérés automatiquement à l’artisan. Avec réserve, le séquestre reste actif jusqu’au traitement contradictoire de la contestation."
+              "title": "Le déclenchement des 96h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
+              "body": "Concrètement, le délai des 96h ne court pas dans le vide. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme. Ce PV ouvre la fenêtre de 96h pendant laquelle vous pouvez émettre des réserves : malfaçon constatée, non-conformité au devis, finition manquante, document promis non remis. 8h avant la fin du délai, un mail de notification (qui vaut mise en demeure d’examiner le chantier) vous est envoyé pour éviter une libération par simple oubli. Sans réserve émise au terme des 96h, les fonds sont libérés automatiquement à l’artisan. Avec réserve, le séquestre reste actif jusqu’au traitement contradictoire de la contestation."
             },
             {
               "title": "Le CMOD peut être déclenché lorsqu’aucune solution amiable n’a pu être trouvée entre le client et l’artisan dans le cadre d’un litige lié à une intervention réalisée via la plateforme Artisan Compétent.",
@@ -918,13 +1135,13 @@
               "Paiement encadré",
               "Variable",
               "Non",
-              "Séquestre de fonds Stripe, libération à 48h"
+              "Séquestre de fonds Stripe, libération à 96h"
             ],
             [
               "Recours en cas d’abus",
               "Limité",
               "Aucun",
-              "Retenue jusqu’à 250 € sur signalement < 48h"
+              "Retenue jusqu’à 250 € sur signalement < 96h"
             ],
             [
               "Tarif horaire transparent",
@@ -962,7 +1179,7 @@
           "title": "Votre rôle dans le suivi du chantier",
           "lead": "La protection séquestre est puissante mais elle s’appuie sur un contradictoire écrit. Votre participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier.",
           "body": "Pour les chantiers de plus d’un jour, l’artisan dépose chaque jour des photos d’avancement dans le tableau de bord partagé client · artisan. Vous commentez, vous validez ou vous signalez dans le même espace, ce qui établit un contradictoire écrit en cas de litige ultérieur. De votre côté, documentez aussi : photos de la zone avant intervention, photos à la fin de chaque journée, observations écrites courtes mais datées.",
-          "footer": "En cas de signalement d’abus dans les 48h suivant la fin du chantier, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU et CGV. Cette retenue couvre les cas de malfaçon avérée ou de non-respect du devis signé. Au-delà des 48h, les garanties légales prennent le relais (garantie de parfait achèvement à un an, biennale sur les équipements, décennale sur les installations durables)."
+          "footer": "En cas de signalement d’abus dans les 96h suivant la fin du chantier, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU et CGV. Cette retenue couvre les cas de malfaçon avérée ou de non-respect du devis signé. Au-delà des 96h, les garanties légales prennent le relais (garantie de parfait achèvement à un an, biennale sur les équipements, décennale sur les installations durables)."
         },
         "insurance": {
           "title": "Assurance habitation et remboursement",
@@ -972,22 +1189,22 @@
         },
         "howItWorks": {
           "title": "Comment ça marche en 3 étapes",
-          "lead": "Le parcours sur Artisan Compétent compte trois étapes : description du besoin, validation du devis avec paiement en séquestre, intervention et libération des fonds après 48h.",
+          "lead": "Le parcours sur Artisan Compétent compte trois étapes : description du besoin, validation du devis avec paiement en séquestre, intervention et libération des fonds après 96h.",
           "steps": [
             "Étape 1. Vous décrivez votre besoin (panne, dépannage ou chantier complet) sur Artisan Compétent et recevez un devis détaillé d’un plombier vérifié de votre zone.",
             "Étape 2. Vous validez le devis, le paiement part en séquestre via Stripe, l’intervention est planifiée.",
-            "Étape 3. Le plombier intervient. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme : il ouvre une fenêtre de 48h pendant laquelle vous pouvez émettre des réserves. Un mail de notification vous est envoyé 8h avant la fin du délai pour vous rappeler l’échéance. Sans réserve, les fonds sont libérés automatiquement à l’artisan."
+            "Étape 3. Le plombier intervient. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme : il ouvre une fenêtre de 96h pendant laquelle vous pouvez émettre des réserves. Un mail de notification vous est envoyé 8h avant la fin du délai pour vous rappeler l’échéance. Sans réserve, les fonds sont libérés automatiquement à l’artisan."
           ]
         },
         "emergency": {
           "title": "Plombier d’urgence 24h/24, 7j/7",
-          "lead": "Artisan Compétent couvre la plomberie en urgence 24h/24 et 7j/7 sur l’ensemble des zones desservies. La règle des 48h pour signaler un abus reste applicable même en sortie nocturne.",
-          "body": "Le plombier sanitaire fait partie des cinq métiers couverts en urgence permanente sur Artisan Compétent, avec l’électricien, le serrurier, le chauffagiste et le déboucheur de canalisations. Une fuite active, un chauffe-eau hors service en plein hiver ou une rupture de canalisation ne peuvent pas attendre le lendemain matin. L’intervention nocturne suit le même protocole que l’intervention de jour : devis chiffré, paiement en séquestre via Stripe, intervention, validation sous 48h. Le séquestre de fonds est particulièrement protecteur dans ces situations où la pression de l’urgence pousse certains professionnels à surfacturer."
+          "lead": "Artisan Compétent couvre la plomberie en urgence 24h/24 et 7j/7 sur l’ensemble des zones desservies. La règle des 96h pour signaler un abus reste applicable même en sortie nocturne.",
+          "body": "Le plombier sanitaire fait partie des cinq métiers couverts en urgence permanente sur Artisan Compétent, avec l’électricien, le serrurier, le chauffagiste et le déboucheur de canalisations. Une fuite active, un chauffe-eau hors service en plein hiver ou une rupture de canalisation ne peuvent pas attendre le lendemain matin. L’intervention nocturne suit le même protocole que l’intervention de jour : devis chiffré, paiement en séquestre via Stripe, intervention, validation sous 96h. Le séquestre de fonds est particulièrement protecteur dans ces situations où la pression de l’urgence pousse certains professionnels à surfacturer."
         },
         "klarna": {
           "title": "Klarna : comment ça marche",
           "p1": "Klarna est un service de paiement échelonné en 3 fois sans frais. Artisan Compétent met cet outil à disposition dans le parcours de paiement. Son activation se négocie entre le client et l’artisan : ce n’est pas automatique.",
-          "p2": "Si l’artisan accepte de proposer Klarna, le mécanisme du séquestre de fonds reste actif et le paiement reste protégé jusqu’à validation du chantier à 48h. Sur des chantiers plus importants (rénovation salle de bain complète)."
+          "p2": "Si l’artisan accepte de proposer Klarna, le mécanisme du séquestre de fonds reste actif et le paiement reste protégé jusqu’à validation du chantier à 96h. Sur des chantiers plus importants (rénovation salle de bain complète)."
         },
         "faq": {
           "title": "Questions fréquentes",
@@ -995,7 +1212,7 @@
           "items": [
             {
               "q": "Quel est le délai d’intervention d’un plombier en urgence à Paris ou en région ?",
-              "a": "Un plombier vérifié sur Artisan Compétent peut intervenir 24h/24 et 7j/7 pour les pannes critiques : fuite d’eau active, rupture de canalisation, panne de chauffe-eau bloquante. Le délai dépend de la disponibilité réelle des artisans de la zone et n’est jamais promis à l’avance sans confirmation. La règle des 48h pour signaler un abus reste applicable même en intervention nocturne."
+              "a": "Un plombier vérifié sur Artisan Compétent peut intervenir 24h/24 et 7j/7 pour les pannes critiques : fuite d’eau active, rupture de canalisation, panne de chauffe-eau bloquante. Le délai dépend de la disponibilité réelle des artisans de la zone et n’est jamais promis à l’avance sans confirmation. La règle des 96h pour signaler un abus reste applicable même en intervention nocturne."
             },
             {
               "q": "Comment vérifier qu’un plombier est sérieux avant de signer un devis ?",
@@ -1003,11 +1220,11 @@
             },
             {
               "q": "Comment fonctionne le séquestre de fonds quand on fait appel à un plombier ?",
-              "a": "Le séquestre de fonds est un compte tiers géré via Stripe. Lorsque le client valide le devis, le paiement part en séquestre et reste bloqué tant que le chantier n’est pas terminé. Une fois l’intervention finie, le client dispose de 48h pour valider le travail ou signaler un abus. Sans contestation, les fonds sont libérés au plombier."
+              "a": "Le séquestre de fonds est un compte tiers géré via Stripe. Lorsque le client valide le devis, le paiement part en séquestre et reste bloqué tant que le chantier n’est pas terminé. Une fois l’intervention finie, le client dispose de 96h pour valider le travail ou signaler un abus. Sans contestation, les fonds sont libérés au plombier."
             },
             {
               "q": "Puis-je payer une intervention plombier en plusieurs fois avec Klarna ?",
-              "a": "Klarna 3 fois sans frais peut être proposé par l’artisan dans le respect des plafonds Klarna en vigueur. L’activation n’est pas automatique : elle se négocie entre vous et l’artisan. Le mécanisme du séquestre de fonds reste actif : le paiement est protégé jusqu’à la validation finale du chantier à 48h."
+              "a": "Klarna 3 fois sans frais peut être proposé par l’artisan dans le respect des plafonds Klarna en vigueur. L’activation n’est pas automatique : elle se négocie entre vous et l’artisan. Le mécanisme du séquestre de fonds reste actif : le paiement est protégé jusqu’à la validation finale du chantier à 96h."
             },
             {
               "q": "À quoi sert le service CMOD pour un chantier de plomberie ?",
@@ -1019,7 +1236,7 @@
             },
             {
               "q": "Que se passe-t-il si le plombier ne respecte pas le devis signé ?",
-              "a": "Vous signalez l’abus dans les 48h suivant la fin du chantier, via le tableau de bord partagé. Tant que ce délai court, les fonds restent en séquestre et ne sont pas libérés au plombier. Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation, conformément aux CGU et CGV. Les photos quotidiennes du chantier, déposées par l’artisan et complétées par vos propres observations, servent de contradictoire écrit."
+              "a": "Vous signalez l’abus dans les 96h suivant la fin du chantier, via le tableau de bord partagé. Tant que ce délai court, les fonds restent en séquestre et ne sont pas libérés au plombier. Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation, conformément aux CGU et CGV. Les photos quotidiennes du chantier, déposées par l’artisan et complétées par vos propres observations, servent de contradictoire écrit."
             },
             {
               "q": "Un plombier peut-il aussi installer une climatisation ou une pompe à chaleur ?",
@@ -1039,11 +1256,11 @@
       "drainUnblocker": {
         "title": "Déboucheur de canalisations vérifié, du devis à la libération encadrée",
         "name": "Déboucheur de canalisations (24/7)",
-        "tagline": "Cette page liste les interventions de débouchage et d'assainissement traitées par les artisans vérifiés d'Artisan Compétent et le mécanisme qui encadre votre paiement, du devis chiffré à la libération des fonds 48h après l'intervention.",
-        "verifiedBadge": "En bref, un déboucheur de canalisations vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, l’agrément préfectoral pour l’évacuation des matières de vidange si son activité touche aux fosses septiques, et son matériel (caméra d’inspection, hydrocureur) tracé au tableau de bord. Process encadré par séquestre via Stripe, 48h pour signaler un abus. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
+        "tagline": "Cette page liste les interventions de débouchage et d'assainissement traitées par les artisans vérifiés d'Artisan Compétent et le mécanisme qui encadre votre paiement, du devis chiffré à la libération des fonds 96h après l'intervention.",
+        "verifiedBadge": "En bref, un déboucheur de canalisations vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, l’agrément préfectoral pour l’évacuation des matières de vidange si son activité touche aux fosses septiques, et son matériel (caméra d’inspection, hydrocureur) tracé au tableau de bord. Process encadré par séquestre via Stripe, 96h pour signaler un abus. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
         "description": {
-          "p1": "En une phrase, sur Artisan Compétent, un déboucheur vérifié a son SIRET, son assurance RC pro et son agrément préfectoral (pour les fosses septiques) contrôlés en amont, et son matériel (caméra d’inspection, hydrocureur) est tracé au tableau de bord. Tout le chantier est encadré par un séquestre de fonds Stripe qui retient le paiement jusqu’à 48h après l’intervention, fenêtre pendant laquelle vous pouvez signaler une canalisation qui se rebouche immédiatement ou un forfait gonflé sans détail des moyens utilisés.",
-          "p2": "Un déboucheur de canalisations vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, et l’agrément préfectoral requis pour l’évacuation des matières de vidange quand son activité inclut la fosse septique. Le débouchage en urgence est l’un des secteurs où la pratique du forfait gonflé sans détail des moyens utilisés est la plus fréquente : le séquestre de fonds Stripe et la fenêtre de 48h sont la réponse opérationnelle à ces abus."
+          "p1": "En une phrase, sur Artisan Compétent, un déboucheur vérifié a son SIRET, son assurance RC pro et son agrément préfectoral (pour les fosses septiques) contrôlés en amont, et son matériel (caméra d’inspection, hydrocureur) est tracé au tableau de bord. Tout le chantier est encadré par un séquestre de fonds Stripe qui retient le paiement jusqu’à 96h après l’intervention, fenêtre pendant laquelle vous pouvez signaler une canalisation qui se rebouche immédiatement ou un forfait gonflé sans détail des moyens utilisés.",
+          "p2": "Un déboucheur de canalisations vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, et l’agrément préfectoral requis pour l’évacuation des matières de vidange quand son activité inclut la fosse septique. Le débouchage en urgence est l’un des secteurs où la pratique du forfait gonflé sans détail des moyens utilisés est la plus fréquente : le séquestre de fonds Stripe et la fenêtre de 96h sont la réponse opérationnelle à ces abus."
         },
         "whenToCall": {
           "title": "Quand faire appel à un déboucheur vérifié",
@@ -1063,7 +1280,7 @@
         },
         "whyUs": {
           "title": "Pourquoi passer par Artisan Compétent pour vos travaux de débouchage et d’assainissement",
-          "lead": "Artisan Compétent vérifie le déboucheur en amont, encadre votre paiement par séquestre Stripe et vous laisse 48h pour valider l’intervention avant toute libération des fonds.",
+          "lead": "Artisan Compétent vérifie le déboucheur en amont, encadre votre paiement par séquestre Stripe et vous laisse 96h pour valider l’intervention avant toute libération des fonds.",
           "blocks": [
             {
               "title": "Chaque déboucheur de canalisations référencé sur Artisan Compétent voit son SIRET contrôlé sur les bases publiques (Annuaire des Entreprises, INSEE/SIRENE) et son assurance RC pro vérifiée avant validation.",
@@ -1071,11 +1288,11 @@
             },
             {
               "title": "Le séquestre de fonds est un compte tiers géré via Stripe qui encadre tout le process, du devis à la libération des fonds.",
-              "body": "Le paiement quitte votre compte au moment où vous validez le devis du déboucheur, mais reste bloqué sur un compte séquestre Stripe. Les fonds sont libérés à l’artisan 48h après la fin de l’intervention, sans contestation. C’est cette fenêtre qui change tout en débouchage : si la canalisation se rebouche dans les deux jours, vous pouvez signaler un travail incomplet avant la libération des fonds. Le séquestre rend également inopérante la pratique du forfait verbal exigé sur place après une intervention nocturne."
+              "body": "Le paiement quitte votre compte au moment où vous validez le devis du déboucheur, mais reste bloqué sur un compte séquestre Stripe. Les fonds sont libérés à l’artisan 96h après la fin de l’intervention, sans contestation. C’est cette fenêtre qui change tout en débouchage : si la canalisation se rebouche dans les deux jours, vous pouvez signaler un travail incomplet avant la libération des fonds. Le séquestre rend également inopérante la pratique du forfait verbal exigé sur place après une intervention nocturne."
             },
             {
-              "title": "Le déclenchement des 48h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
-              "body": "Concrètement, le délai des 48h ne court pas dans le vide. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme. Ce PV ouvre la fenêtre de 48h pendant laquelle vous pouvez émettre des réserves : malfaçon constatée, non-conformité au devis, document promis non remis. 8h avant la fin du délai, un mail de notification (qui vaut mise en demeure d’examiner le chantier) vous est envoyé pour éviter une libération par simple oubli. Sans réserve émise au terme des 48h, les fonds sont libérés automatiquement à l’artisan. Avec réserve, le séquestre reste actif jusqu’au traitement contradictoire de la contestation."
+              "title": "Le déclenchement des 96h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
+              "body": "Concrètement, le délai des 96h ne court pas dans le vide. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme. Ce PV ouvre la fenêtre de 96h pendant laquelle vous pouvez émettre des réserves : malfaçon constatée, non-conformité au devis, document promis non remis. 8h avant la fin du délai, un mail de notification (qui vaut mise en demeure d’examiner le chantier) vous est envoyé pour éviter une libération par simple oubli. Sans réserve émise au terme des 96h, les fonds sont libérés automatiquement à l’artisan. Avec réserve, le séquestre reste actif jusqu’au traitement contradictoire de la contestation."
             }
           ]
         },
@@ -1118,10 +1335,10 @@
               "Paiement encadré",
               "Non",
               "Non",
-              "Séquestre de fonds Stripe, libération à 48h"
+              "Séquestre de fonds Stripe, libération à 96h"
             ],
             [
-              "Recours en cas de canalisation reboucher sous 48h",
+              "Recours en cas de canalisation reboucher sous 96h",
               "Limité",
               "Aucun",
               "Fonds bloqués jusqu’à validation effective"
@@ -1130,7 +1347,7 @@
               "Recours en cas d’abus",
               "Limité",
               "Aucun",
-              "Retenue jusqu’à 250 € sur signalement < 48h"
+              "Retenue jusqu’à 250 € sur signalement < 96h"
             ],
             [
               "Tarification cadrée sur référence du marché",
@@ -1168,7 +1385,7 @@
           "title": "Votre rôle dans le suivi du chantier",
           "lead": "La protection séquestre s’appuie sur un contradictoire écrit via votre tableau de bord. Votre participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier.",
           "body": "Pour les interventions de débouchage, demandez systématiquement à l’artisan une photo du dispositif utilisé (furet motorisé, hydrocureur, caméra d’inspection) et, le cas échéant, le rapport d’inspection caméra avec image du bouchon ou de l’obstruction. Pour les chantiers de plus longue durée (réhabilitation de fosse, mise en conformité SPANC, passage caméra complet), l’artisan dépose chaque jour des photos d’avancement dans le tableau de bord partagé. Documentez aussi de votre côté la nature du désordre avant intervention (refoulement, niveau d’eau, traces) pour faciliter un éventuel contradictoire.",
-          "footer": "En cas de signalement d’abus dans les 48h (canalisation rebouchée immédiatement, hydrocurage facturé non réalisé, agrément vidange manquant), Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU et CGV."
+          "footer": "En cas de signalement d’abus dans les 96h (canalisation rebouchée immédiatement, hydrocurage facturé non réalisé, agrément vidange manquant), Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU et CGV."
         },
         "insurance": {
           "title": "Assurance habitation et remboursement",
@@ -1178,17 +1395,17 @@
         },
         "howItWorks": {
           "title": "Comment ça marche en 3 étapes",
-          "lead": "Le parcours sur Artisan Compétent compte trois étapes : description du besoin, validation du devis avec paiement en séquestre, intervention et libération des fonds après 48h.",
+          "lead": "Le parcours sur Artisan Compétent compte trois étapes : description du besoin, validation du devis avec paiement en séquestre, intervention et libération des fonds après 96h.",
           "steps": [
             "Étape 1. Vous décrivez votre besoin (canalisation bouchée, refoulement, vidange, passage caméra) sur Artisan Compétent et recevez un devis détaillé d’un déboucheur vérifié de votre zone.",
             "Étape 2. Vous validez le devis, le paiement part en séquestre via Stripe, l’intervention est planifiée.",
-            "Étape 3. Le déboucheur intervient. À la fin de l’intervention, un procès-verbal de réception est émis sur la plateforme : il ouvre une fenêtre de 48h pendant laquelle vous pouvez émettre des réserves (bouchon non levé, dégradation des canalisations, méthode différente du devis). Un mail de notification vous est envoyé 8h avant la fin du délai. Sans réserve, les fonds sont libérés automatiquement à l’artisan."
+            "Étape 3. Le déboucheur intervient. À la fin de l’intervention, un procès-verbal de réception est émis sur la plateforme : il ouvre une fenêtre de 96h pendant laquelle vous pouvez émettre des réserves (bouchon non levé, dégradation des canalisations, méthode différente du devis). Un mail de notification vous est envoyé 8h avant la fin du délai. Sans réserve, les fonds sont libérés automatiquement à l’artisan."
           ]
         },
         "emergency": {
           "title": "Déboucheur d’urgence 24h/24, 7j/7",
-          "lead": "Artisan Compétent couvre le débouchage en urgence 24h/24 et 7j/7 dans les zones desservies. La règle des 48h pour signaler un abus reste applicable même en sortie nocturne.",
-          "body": "Le déboucheur fait partie des cinq métiers couverts en urgence permanente sur Artisan Compétent, avec le plombier, l’électricien, le serrurier et le chauffagiste. Un WC qui refoule, un évier saturé un dimanche soir, une fosse pleine la veille d’un événement : autant de situations qui imposent une intervention immédiate. Le protocole reste identique en sortie nocturne : devis chiffré, paiement en séquestre via Stripe, intervention, fenêtre de 48h pour signaler un abus."
+          "lead": "Artisan Compétent couvre le débouchage en urgence 24h/24 et 7j/7 dans les zones desservies. La règle des 96h pour signaler un abus reste applicable même en sortie nocturne.",
+          "body": "Le déboucheur fait partie des cinq métiers couverts en urgence permanente sur Artisan Compétent, avec le plombier, l’électricien, le serrurier et le chauffagiste. Un WC qui refoule, un évier saturé un dimanche soir, une fosse pleine la veille d’un événement : autant de situations qui imposent une intervention immédiate. Le protocole reste identique en sortie nocturne : devis chiffré, paiement en séquestre via Stripe, intervention, fenêtre de 96h pour signaler un abus."
         },
         "klarna": {
           "title": "Klarna : comment ça marche",
@@ -1221,7 +1438,7 @@
             },
             {
               "q": "Comment fonctionne le séquestre de fonds quand on appelle un déboucheur ?",
-              "a": "Le séquestre de fonds est un compte tiers géré via Stripe. Quand vous validez le devis, le paiement quitte votre compte mais reste bloqué sur le séquestre. Les fonds sont libérés 48h après l’intervention, sans contestation. Cette fenêtre est particulièrement utile en débouchage : si la canalisation se rebouche dans les deux jours, vous pouvez signaler un travail incomplet avant la libération. En cas de signalement d’abus, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation."
+              "a": "Le séquestre de fonds est un compte tiers géré via Stripe. Quand vous validez le devis, le paiement quitte votre compte mais reste bloqué sur le séquestre. Les fonds sont libérés 96h après l’intervention, sans contestation. Cette fenêtre est particulièrement utile en débouchage : si la canalisation se rebouche dans les deux jours, vous pouvez signaler un travail incomplet avant la libération. En cas de signalement d’abus, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation."
             },
             {
               "q": "Klarna 3 fois sans frais s’applique-t-il à un débouchage ?",
@@ -1233,7 +1450,7 @@
             },
             {
               "q": "Que se passe-t-il si la canalisation se rebouche dans les jours qui suivent ?",
-              "a": "Vous signalez le défaut dans les 48h suivant l’intervention, via le tableau de bord partagé. Tant que ce délai court, les fonds restent en séquestre et ne sont pas libérés au déboucheur. Artisan Compétent peut demander une nouvelle intervention sans facturation complémentaire ou retenir jusqu’à 250 € sur la facturation de l’artisan avant validation. Le rapport d’inspection caméra remis à la première intervention est un élément clé pour distinguer un travail incomplet d’un nouveau problème indépendant."
+              "a": "Vous signalez le défaut dans les 96h suivant l’intervention, via le tableau de bord partagé. Tant que ce délai court, les fonds restent en séquestre et ne sont pas libérés au déboucheur. Artisan Compétent peut demander une nouvelle intervention sans facturation complémentaire ou retenir jusqu’à 250 € sur la facturation de l’artisan avant validation. Le rapport d’inspection caméra remis à la première intervention est un élément clé pour distinguer un travail incomplet d’un nouveau problème indépendant."
             },
             {
               "q": "Quelles villes sont couvertes par Artisan Compétent pour le débouchage ?",
@@ -1243,18 +1460,18 @@
         },
         "conclusion": {
           "title": "Pour aller plus loin",
-          "body": "Un WC qui refoule, une canalisation bouchée résistante au déboucheur chimique, une fosse à vidanger avec bordereau de suivi, un passage caméra à programmer sur un réseau ancien : Artisan Compétent encadre la vérification du déboucheur (SIRET, RC pro, agrément préfectoral, justificatif matériel) et tout votre process par séquestre jusqu’à 48h après l’intervention.",
+          "body": "Un WC qui refoule, une canalisation bouchée résistante au déboucheur chimique, une fosse à vidanger avec bordereau de suivi, un passage caméra à programmer sur un réseau ancien : Artisan Compétent encadre la vérification du déboucheur (SIRET, RC pro, agrément préfectoral, justificatif matériel) et tout votre process par séquestre jusqu’à 96h après l’intervention.",
           "footer": "Déboucheur vérifié SIRET, RC pro et agrément préfectoral pour vidange. Matériel tracé au tableau de bord (caméra d’inspection, hydrocureur). Process encadré par séquestre Stripe. Retenue jusqu’à 250 € en cas de signalement d’abus. Recours assurance habitation systématique après dégât des eaux."
         }
       },
       "heating": {
         "title": "Chauffagiste vérifié, du devis à la mise en chauffe encadrée",
         "name": "Chauffagiste & VMC & Pompe à chaleur",
-        "tagline": "Cette page liste les interventions traitées par les chauffagistes vérifiés d’Artisan Compétent, y compris les VMC simple et double flux, les pompes à chaleur, les installations RGE éligibles aux aides de l’État, et le mécanisme qui encadre votre paiement de la signature du devis à la libération des fonds 48h après la mise en service.",
-        "verifiedBadge": "En bref, un chauffagiste vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, sa qualification PG pour le gaz, et sa qualification RGE (QualiPAC, Qualibois, QualiSol selon l’équipement) affichée pour les aides publiques. Périmètre couvert : chaudière gaz, fioul, condensation, bois, pompes à chaleur air-eau et air-air, plancher chauffant hydraulique, VMC simple et double flux, entretien annuel obligatoire. Process encadré par séquestre Stripe, 48h pour signaler un abus. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
+        "tagline": "Cette page liste les interventions traitées par les chauffagistes vérifiés d’Artisan Compétent, y compris les VMC simple et double flux, les pompes à chaleur, les installations RGE éligibles aux aides de l’État, et le mécanisme qui encadre votre paiement de la signature du devis à la libération des fonds 96h après la mise en service.",
+        "verifiedBadge": "En bref, un chauffagiste vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, sa qualification PG pour le gaz, et sa qualification RGE (QualiPAC, Qualibois, QualiSol selon l’équipement) affichée pour les aides publiques. Périmètre couvert : chaudière gaz, fioul, condensation, bois, pompes à chaleur air-eau et air-air, plancher chauffant hydraulique, VMC simple et double flux, entretien annuel obligatoire. Process encadré par séquestre Stripe, 96h pour signaler un abus. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
         "description": {
-          "p1": "En une phrase, sur Artisan Compétent, un chauffagiste vérifié a son SIRET, ses assurances, sa qualification PG pour le gaz et sa qualification RGE pour les aides publiques contrôlés en amont. Tout le chantier est encadré par un séquestre de fonds Stripe qui retient le paiement jusqu’à 48h après la mise en service, fenêtre pendant laquelle l’attestation de conformité, la remise des notices et l’éligibilité aux aides peuvent être vérifiées.",
-          "p2": "Un chauffagiste vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, sa qualification PG pour toute intervention sur le réseau gaz, et sa qualification RGE quand son activité ouvre droit aux aides publiques MaPrimeRénov’ et CEE. Tout le process est encadré par un séquestre de fonds Stripe : il reste bloqué jusqu’à 48h après la mise en service, fenêtre pendant laquelle vous pouvez signaler un abus, un défaut de mise en service ou un matériel non conforme au devis."
+          "p1": "En une phrase, sur Artisan Compétent, un chauffagiste vérifié a son SIRET, ses assurances, sa qualification PG pour le gaz et sa qualification RGE pour les aides publiques contrôlés en amont. Tout le chantier est encadré par un séquestre de fonds Stripe qui retient le paiement jusqu’à 96h après la mise en service, fenêtre pendant laquelle l’attestation de conformité, la remise des notices et l’éligibilité aux aides peuvent être vérifiées.",
+          "p2": "Un chauffagiste vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, sa qualification PG pour toute intervention sur le réseau gaz, et sa qualification RGE quand son activité ouvre droit aux aides publiques MaPrimeRénov’ et CEE. Tout le process est encadré par un séquestre de fonds Stripe : il reste bloqué jusqu’à 96h après la mise en service, fenêtre pendant laquelle vous pouvez signaler un abus, un défaut de mise en service ou un matériel non conforme au devis."
         },
         "whenToCall": {
           "title": "Quand faire appel à un chauffagiste vérifié",
@@ -1274,7 +1491,7 @@
         },
         "whyUs": {
           "title": "Pourquoi passer par Artisan Compétent pour vos travaux de chauffage",
-          "lead": "Artisan Compétent vérifie le chauffagiste en amont, encadre votre paiement par séquestre Stripe et vous laisse 48h pour valider la mise en service avant toute libération des fonds.",
+          "lead": "Artisan Compétent vérifie le chauffagiste en amont, encadre votre paiement par séquestre Stripe et vous laisse 96h pour valider la mise en service avant toute libération des fonds.",
           "blocks": [
             {
               "title": "Chaque chauffagiste référencé sur Artisan Compétent voit son SIRET contrôlé sur les bases publiques (Annuaire des Entreprises, INSEE/SIRENE) et ses assurances vérifiées avant validation.",
@@ -1282,11 +1499,11 @@
             },
             {
               "title": "Le séquestre de fonds est un compte tiers géré via Stripe qui encadre tout le process, du devis à la libération des fonds.",
-              "body": "Le paiement quitte votre compte au moment où vous validez le devis du chauffagiste, mais reste bloqué sur un compte séquestre Stripe. Les fonds sont libérés à l’artisan 48h après la fin du chantier, sans contestation. Pour un changement de chaudière ou une pose de pompe à chaleur, la fenêtre de 48h permet de vérifier la mise en service réelle, la conformité gaz (attestation Qualigaz si applicable), la remise des notices et l’enregistrement de la garantie constructeur. Pour les chantiers en plusieurs phases (dépose, raccordement, mise en service), le paiement peut être découpé par jalons."
+              "body": "Le paiement quitte votre compte au moment où vous validez le devis du chauffagiste, mais reste bloqué sur un compte séquestre Stripe. Les fonds sont libérés à l’artisan 96h après la fin du chantier, sans contestation. Pour un changement de chaudière ou une pose de pompe à chaleur, la fenêtre de 96h permet de vérifier la mise en service réelle, la conformité gaz (attestation Qualigaz si applicable), la remise des notices et l’enregistrement de la garantie constructeur. Pour les chantiers en plusieurs phases (dépose, raccordement, mise en service), le paiement peut être découpé par jalons."
             },
             {
-              "title": "Le déclenchement des 48h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
-              "body": "Concrètement, le délai des 48h ne court pas dans le vide. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme. Ce PV ouvre la fenêtre de 48h pendant laquelle vous pouvez émettre des réserves : malfaçon constatée, non-conformité au devis, finition manquante, document promis non remis. 8h avant la fin du délai, un mail de notification (qui vaut mise en demeure d’examiner le chantier) vous est envoyé pour éviter une libération par simple oubli. Sans réserve émise au terme des 48h, les fonds sont libérés automatiquement à l’artisan. Avec réserve, le séquestre reste actif jusqu’au traitement contradictoire de la contestation."
+              "title": "Le déclenchement des 96h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
+              "body": "Concrètement, le délai des 96h ne court pas dans le vide. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme. Ce PV ouvre la fenêtre de 96h pendant laquelle vous pouvez émettre des réserves : malfaçon constatée, non-conformité au devis, finition manquante, document promis non remis. 8h avant la fin du délai, un mail de notification (qui vaut mise en demeure d’examiner le chantier) vous est envoyé pour éviter une libération par simple oubli. Sans réserve émise au terme des 96h, les fonds sont libérés automatiquement à l’artisan. Avec réserve, le séquestre reste actif jusqu’au traitement contradictoire de la contestation."
             },
             {
               "title": "Le CMOD peut être déclenché lorsqu’aucune solution amiable n’a pu être trouvée entre le client et l’artisan dans le cadre d’un litige lié à une intervention réalisée via la plateforme Artisan Compétent.",
@@ -1339,13 +1556,13 @@
               "Paiement encadré",
               "Non",
               "Non",
-              "Séquestre de fonds Stripe, libération à 48h"
+              "Séquestre de fonds Stripe, libération à 96h"
             ],
             [
               "Recours en cas d’abus",
               "Limité",
               "Aucun",
-              "Retenue jusqu’à 250 € sur signalement < 48h"
+              "Retenue jusqu’à 250 € sur signalement < 96h"
             ],
             [
               "Attestation Qualigaz à la mise en service",
@@ -1383,7 +1600,7 @@
           "title": "Votre rôle dans le suivi du chantier",
           "lead": "La protection séquestre s’appuie sur un contradictoire écrit. Votre participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier.",
           "body": "Pour les chantiers de plus d’un jour (remplacement de chaudière, pose de pompe à chaleur, pose de VMC double flux), l’artisan dépose chaque jour des photos d’avancement dans le tableau de bord partagé client · artisan. Vous commentez, vous validez ou vous signalez dans le même espace. À la mise en service, demandez les documents systématiquement : attestation Qualigaz pour le gaz, attestation RGE pour les aides, notice fabricant, certificat de garantie enregistré au nom du client, rapport de mise en service signé et verifiez chaqu’un de ces documents fournis.",
-          "footer": "En cas de signalement d’abus dans les 48h suivant la fin du chantier (matériel non conforme au devis, attestation manquante, défaut de mise en service), Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU et CGV. Cette retenue couvre les cas de malfaçon avérée ou de non-respect du devis signé."
+          "footer": "En cas de signalement d’abus dans les 96h suivant la fin du chantier (matériel non conforme au devis, attestation manquante, défaut de mise en service), Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU et CGV. Cette retenue couvre les cas de malfaçon avérée ou de non-respect du devis signé."
         },
         "insurance": {
           "title": "Assurance habitation et remboursement",
@@ -1393,22 +1610,22 @@
         },
         "howItWorks": {
           "title": "Comment ça marche en 3 étapes",
-          "lead": "Le parcours sur Artisan Compétent compte trois étapes : description du besoin, validation du devis avec paiement en séquestre, intervention et libération des fonds après 48h.",
+          "lead": "Le parcours sur Artisan Compétent compte trois étapes : description du besoin, validation du devis avec paiement en séquestre, intervention et libération des fonds après 96h.",
           "steps": [
             "Étape 1. Vous décrivez votre besoin (panne, entretien, remplacement, pompe à chaleur, VMC) sur Artisan Compétent et recevez un devis détaillé d’un chauffagiste vérifié de votre zone.",
             "Étape 2. Vous validez le devis, le paiement part en séquestre via Stripe, l’intervention est planifiée.",
-            "Étape 3. Le chauffagiste intervient. À la mise en service, un procès-verbal de réception est émis sur la plateforme : il ouvre une fenêtre de 48h pendant laquelle vous pouvez émettre des réserves (chaudière mal réglée, attestation Qualigaz manquante, notice ou garantie constructeur non remise). Un mail de notification vous est envoyé 8h avant la fin du délai. Sans réserve, les fonds sont libérés automatiquement à l’artisan."
+            "Étape 3. Le chauffagiste intervient. À la mise en service, un procès-verbal de réception est émis sur la plateforme : il ouvre une fenêtre de 96h pendant laquelle vous pouvez émettre des réserves (chaudière mal réglée, attestation Qualigaz manquante, notice ou garantie constructeur non remise). Un mail de notification vous est envoyé 8h avant la fin du délai. Sans réserve, les fonds sont libérés automatiquement à l’artisan."
           ]
         },
         "emergency": {
           "title": "Chauffagiste d’urgence 24h/24, 7j/7",
-          "lead": "Artisan Compétent couvre le chauffage en urgence 24h/24 et 7j/7 dans les zones desservies. La règle des 48h pour signaler un abus reste applicable même en intervention nocturne en plein hiver.",
-          "body": "Le chauffagiste fait partie des cinq métiers couverts en urgence permanente sur Artisan Compétent, avec le plombier, l’électricien, le serrurier et le déboucheur de canalisations. Une chaudière qui rend l’âme un dimanche soir de janvier, une fuite sur circuit de chauffage, une odeur de gaz suspecte, un chauffe-eau combiné hors service : autant de situations qui ne peuvent pas attendre les heures ouvrées. Le protocole reste identique en sortie nocturne : devis chiffré, paiement en séquestre via Stripe, intervention, fenêtre de 48h pour signaler un abus."
+          "lead": "Artisan Compétent couvre le chauffage en urgence 24h/24 et 7j/7 dans les zones desservies. La règle des 96h pour signaler un abus reste applicable même en intervention nocturne en plein hiver.",
+          "body": "Le chauffagiste fait partie des cinq métiers couverts en urgence permanente sur Artisan Compétent, avec le plombier, l’électricien, le serrurier et le déboucheur de canalisations. Une chaudière qui rend l’âme un dimanche soir de janvier, une fuite sur circuit de chauffage, une odeur de gaz suspecte, un chauffe-eau combiné hors service : autant de situations qui ne peuvent pas attendre les heures ouvrées. Le protocole reste identique en sortie nocturne : devis chiffré, paiement en séquestre via Stripe, intervention, fenêtre de 96h pour signaler un abus."
         },
         "klarna": {
           "title": "Klarna : comment ça marche",
           "p1": "Klarna est un service de paiement échelonné en 3 fois sans frais. Artisan Compétent met cet outil à disposition dans le parcours de paiement. Son activation se négocie entre le client et l’artisan : ce n’est pas automatique.",
-          "p2": "Si l’artisan accepte de proposer Klarna, le mécanisme du séquestre de fonds reste actif et le paiement reste protégé jusqu’à validation du chantier à 48h."
+          "p2": "Si l’artisan accepte de proposer Klarna, le mécanisme du séquestre de fonds reste actif et le paiement reste protégé jusqu’à validation du chantier à 96h."
         },
         "faq": {
           "title": "Questions fréquentes",
@@ -1416,7 +1633,7 @@
           "items": [
             {
               "q": "Mon chauffagiste peut-il intervenir en pleine nuit en plein hiver ?",
-              "a": "Oui. Le chauffagiste fait partie des cinq métiers couverts en urgence 24h/24 et 7j/7 sur Artisan Compétent. Une chaudière hors service en plein hiver, une fuite sur circuit de chauffage ou une fuite de gaz justifient une sortie immédiate. La règle des 48h pour signaler un abus reste applicable même de nuit, et le séquestre de fonds protège du devis nocturne gonflé."
+              "a": "Oui. Le chauffagiste fait partie des cinq métiers couverts en urgence 24h/24 et 7j/7 sur Artisan Compétent. Une chaudière hors service en plein hiver, une fuite sur circuit de chauffage ou une fuite de gaz justifient une sortie immédiate. La règle des 96h pour signaler un abus reste applicable même de nuit, et le séquestre de fonds protège du devis nocturne gonflé."
             },
             {
               "q": "L’entretien annuel de chaudière est-il vraiment obligatoire ?",
@@ -1436,7 +1653,7 @@
             },
             {
               "q": "Comment fonctionne le séquestre de fonds pour un changement de chaudière ?",
-              "a": "Le séquestre de fonds est un compte tiers géré via Stripe. Quand vous validez le devis, le paiement quitte votre compte mais reste bloqué sur le séquestre. Les fonds sont libérés au chauffagiste 48h après la fin de l’intervention. Pour un changement de chaudière, la fenêtre de 48h permet de vérifier la mise en service, l’attestation de conformité gaz si applicable (Qualigaz), la remise des notices et l’enregistrement de la garantie constructeur. En cas de signalement d’abus, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation."
+              "a": "Le séquestre de fonds est un compte tiers géré via Stripe. Quand vous validez le devis, le paiement quitte votre compte mais reste bloqué sur le séquestre. Les fonds sont libérés au chauffagiste 96h après la fin de l’intervention. Pour un changement de chaudière, la fenêtre de 96h permet de vérifier la mise en service, l’attestation de conformité gaz si applicable (Qualigaz), la remise des notices et l’enregistrement de la garantie constructeur. En cas de signalement d’abus, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation."
             },
             {
               "q": "À quoi sert CMOD pour un chantier de chauffage ?",
@@ -1452,24 +1669,24 @@
             },
             {
               "q": "Que faire si la chaudière tombe en panne juste après une intervention ?",
-              "a": "Vous signalez le défaut dans les 48h suivant la fin de l’intervention, via le tableau de bord partagé. Tant que ce délai court, les fonds restent en séquestre. En cas de signalement d’abus, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation. Au-delà de 48h, la garantie de bon fonctionnement légale (article 1792-3 du Code civil) couvre les équipements pendant deux ans, et la garantie décennale couvre les installations durables pendant dix ans."
+              "a": "Vous signalez le défaut dans les 96h suivant la fin de l’intervention, via le tableau de bord partagé. Tant que ce délai court, les fonds restent en séquestre. En cas de signalement d’abus, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation. Au-delà de 96h, la garantie de bon fonctionnement légale (article 1792-3 du Code civil) couvre les équipements pendant deux ans, et la garantie décennale couvre les installations durables pendant dix ans."
             }
           ]
         },
         "conclusion": {
           "title": "Pour aller plus loin",
-          "body": "Une chaudière qui s’arrête en pleine vague de froid, un entretien annuel à programmer pour rester couvert par l’assurance, une pompe à chaleur à installer avec MaPrimeRénov’, une VMC double flux à poser en rénovation énergétique : Artisan Compétent encadre la vérification du chauffagiste (PG, RGE, décennale) et tout votre process par séquestre jusqu’à 48h après la fin du chantier.",
+          "body": "Une chaudière qui s’arrête en pleine vague de froid, un entretien annuel à programmer pour rester couvert par l’assurance, une pompe à chaleur à installer avec MaPrimeRénov’, une VMC double flux à poser en rénovation énergétique : Artisan Compétent encadre la vérification du chauffagiste (PG, RGE, décennale) et tout votre process par séquestre jusqu’à 96h après la fin du chantier.",
           "footer": "Chauffagiste vérifié SIRET, PG et décennale. Qualification RGE contrôlée pour les aides publiques (QualiPAC, Qualibois, QualiSol). Process encadré par séquestre Stripe. Retenue jusqu’à 250 € en cas de signalement d’abus."
         }
       },
       "hvac": {
         "title": "Technicien climatisation vérifié, du devis à la libération des fonds encadrée",
         "name": "Technicien climatisation & Frigoriste",
-        "tagline": "Cette page liste les interventions traitées par les techniciens climatisation vérifiés d'Artisan Compétent et le mécanisme qui encadre votre paiement de bout en bout, du devis chiffré à la libération des fonds 48h après la fin du chantier.",
-        "verifiedBadge": "En bref, un technicien climatisation vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, son attestation de capacité fluides frigorigènes (catégorie I à IV) et sa qualification QualiPAC le cas échéant. Tout le process est encadré par un séquestre de fonds via Stripe : devis, intervention, libération des fonds 48h après la fin du chantier. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
+        "tagline": "Cette page liste les interventions traitées par les techniciens climatisation vérifiés d'Artisan Compétent et le mécanisme qui encadre votre paiement de bout en bout, du devis chiffré à la libération des fonds 96h après la fin du chantier.",
+        "verifiedBadge": "En bref, un technicien climatisation vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, son attestation de capacité fluides frigorigènes (catégorie I à IV) et sa qualification QualiPAC le cas échéant. Tout le process est encadré par un séquestre de fonds via Stripe : devis, intervention, libération des fonds 96h après la fin du chantier. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
         "description": {
-          "p1": "En une phrase, sur Artisan Compétent, un technicien climatisation vérifié a son SIRET, ses assurances et son attestation de capacité fluides frigorigènes contrôlés en amont, et toute son intervention (installation, entretien, dépannage de climatisation ou pompe à chaleur) est encadrée par un séquestre de fonds Stripe qui retient le paiement jusqu’à 48h après la fin du chantier. Vous payez seulement si le travail est conforme au devis signé.",
-          "p2": "Un technicien climatisation vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, son attestation de capacité fluides frigorigènes (catégorie I à IV selon le périmètre d’activité) et, le cas échéant, sa qualification QualiPAC pour les pompes à chaleur. Le séquestre de fonds Stripe encadre la totalité du processus : le paiement quitte votre compte à la validation du devis, reste bloqué pendant l’intervention, puis 48h supplémentaires après la fin du chantier. Ce délai de 48h vous laisse signaler une malfaçon, un défaut de mise en service ou un non-respect du devis avant que les fonds soient libérés à l’artisan."
+          "p1": "En une phrase, sur Artisan Compétent, un technicien climatisation vérifié a son SIRET, ses assurances et son attestation de capacité fluides frigorigènes contrôlés en amont, et toute son intervention (installation, entretien, dépannage de climatisation ou pompe à chaleur) est encadrée par un séquestre de fonds Stripe qui retient le paiement jusqu’à 96h après la fin du chantier. Vous payez seulement si le travail est conforme au devis signé.",
+          "p2": "Un technicien climatisation vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, son attestation de capacité fluides frigorigènes (catégorie I à IV selon le périmètre d’activité) et, le cas échéant, sa qualification QualiPAC pour les pompes à chaleur. Le séquestre de fonds Stripe encadre la totalité du processus : le paiement quitte votre compte à la validation du devis, reste bloqué pendant l’intervention, puis 96h supplémentaires après la fin du chantier. Ce délai de 96h vous laisse signaler une malfaçon, un défaut de mise en service ou un non-respect du devis avant que les fonds soient libérés à l’artisan."
         },
         "nuance": {
           "title": "Technicien climatisation ou frigoriste : la nuance qui change le périmètre",
@@ -1500,7 +1717,7 @@
         },
         "whyUs": {
           "title": "Pourquoi passer par Artisan Compétent pour votre climatisation ou votre pompe à chaleur",
-          "lead": "Artisan Compétent vérifie le technicien climatisation en amont, encadre votre paiement par séquestre Stripe et vous laisse 48h pour valider le chantier avant toute libération des fonds.",
+          "lead": "Artisan Compétent vérifie le technicien climatisation en amont, encadre votre paiement par séquestre Stripe et vous laisse 96h pour valider le chantier avant toute libération des fonds.",
           "blocks": [
             {
               "title": "Chaque technicien climatisation référencé sur Artisan Compétent voit son SIRET contrôlé sur les bases publiques (Annuaire des Entreprises, INSEE/SIRENE), ses assurances vérifiées et son attestation fluides frigorigènes contrôlée avant validation.",
@@ -1508,11 +1725,11 @@
             },
             {
               "title": "Le séquestre de fonds est un compte tiers géré via Stripe qui encadre tout le process, du devis à la libération des fonds.",
-              "body": "Quand vous validez le devis du technicien climatisation, le paiement quitte votre compte mais n’arrive pas sur celui de l’artisan : il reste bloqué sur un compte séquestre Stripe. Cette mise en attente dure jusqu’à la fin de l’intervention, plus un délai de 48h pendant lequel vous pouvez signaler un abus, un défaut de qualité ou un non-respect du devis. Sans contestation, les fonds sont libérés au technicien au terme de ces 48h. Pendant la fenêtre de 48h, le séquestre joue son rôle de levier : c’est la motivation la plus efficace pour qu’un artisan termine proprement la mise en service et remette tous les documents (bordereau de suivi des fluides, attestation d’entretien, garanties constructeur)."
+              "body": "Quand vous validez le devis du technicien climatisation, le paiement quitte votre compte mais n’arrive pas sur celui de l’artisan : il reste bloqué sur un compte séquestre Stripe. Cette mise en attente dure jusqu’à la fin de l’intervention, plus un délai de 96h pendant lequel vous pouvez signaler un abus, un défaut de qualité ou un non-respect du devis. Sans contestation, les fonds sont libérés au technicien au terme de ces 96h. Pendant la fenêtre de 96h, le séquestre joue son rôle de levier : c’est la motivation la plus efficace pour qu’un artisan termine proprement la mise en service et remette tous les documents (bordereau de suivi des fluides, attestation d’entretien, garanties constructeur)."
             },
             {
-              "title": "Le déclenchement des 48h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
-              "body": "Concrètement, le délai des 48h ne court pas dans le vide. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme. Ce PV ouvre la fenêtre de 48h pendant laquelle vous pouvez émettre des réserves : malfaçon constatée, non-conformité au devis, finition manquante, document promis non remis. 8h avant la fin du délai, un mail de notification (qui vaut mise en demeure d’examiner le chantier) vous est envoyé pour éviter une libération par simple oubli. Sans réserve émise au terme des 48h, les fonds sont libérés automatiquement à l’artisan. Avec réserve, le séquestre reste actif jusqu’au traitement contradictoire de la contestation."
+              "title": "Le déclenchement des 96h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
+              "body": "Concrètement, le délai des 96h ne court pas dans le vide. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme. Ce PV ouvre la fenêtre de 96h pendant laquelle vous pouvez émettre des réserves : malfaçon constatée, non-conformité au devis, finition manquante, document promis non remis. 8h avant la fin du délai, un mail de notification (qui vaut mise en demeure d’examiner le chantier) vous est envoyé pour éviter une libération par simple oubli. Sans réserve émise au terme des 96h, les fonds sont libérés automatiquement à l’artisan. Avec réserve, le séquestre reste actif jusqu’au traitement contradictoire de la contestation."
             },
             {
               "title": "Le CMOD peut être déclenché lorsqu’aucune solution amiable n’a pu être trouvée entre le client et l’artisan dans le cadre d’un litige lié à une intervention réalisée via la plateforme Artisan Compétent.",
@@ -1573,13 +1790,13 @@
               "Paiement encadré",
               "Non",
               "Non",
-              "Séquestre de fonds Stripe, libération à 48h"
+              "Séquestre de fonds Stripe, libération à 96h"
             ],
             [
               "Recours en cas de malfaçon",
               "Limité",
               "Aucun",
-              "Retenue jusqu’à 250 € si signalement < 48h"
+              "Retenue jusqu’à 250 € si signalement < 96h"
             ],
             [
               "Conseiller maître d’ouvrage",
@@ -1611,7 +1828,7 @@
           "title": "Votre rôle dans le suivi du chantier",
           "lead": "Sur les chantiers climatisation et pompes à chaleur, votre suivi actif est essentiel pour documenter la conformité de la pose et débloquer un recours rapide en cas de malfaçon. Voici ce que vous faites concrètement, dans le tableau de bord partagé avec l’artisan.",
           "body": "Pour les chantiers de plus d’un jour (multi-splits, gainables, pompes à chaleur), l’artisan dépose chaque jour des photos d’avancement dans le tableau de bord partagé client · artisan : pose des unités intérieures, raccordement frigorifique, raccordement électrique, mise en service, test d’étanchéité. Vous commentez, validez ou signalez dans le même espace, ce qui établit un contradictoire écrit en cas de litige ultérieur. Vous documentez vous aussi : photos de la zone avant intervention (emplacement prévu, état du mur, sortie électrique), photos en fin de journée, photos de la plaque signalétique des équipements posés (marque, série, puissance, classe énergétique).",
-          "footer": "Cette participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier. En cas de signalement d’abus dans les 48h suivant la fin du chantier, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU/CGV. Cette retenue couvre les cas de malfaçon avérée, de non-respect du devis ou de non-remise des documents obligatoires (bordereau fluides, attestation d’entretien, garanties constructeur)."
+          "footer": "Cette participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier. En cas de signalement d’abus dans les 96h suivant la fin du chantier, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU/CGV. Cette retenue couvre les cas de malfaçon avérée, de non-respect du devis ou de non-remise des documents obligatoires (bordereau fluides, attestation d’entretien, garanties constructeur)."
         },
         "insurance": {
           "title": "Assurance habitation et remboursement",
@@ -1624,13 +1841,13 @@
           "steps": [
             "Vous décrivez votre besoin sur Artisan Compétent. Type d’équipement souhaité (clim mono-split, multi-split, gainable, pompe à chaleur), surface à climatiser ou à chauffer, contraintes (copropriété, étage, accès groupe extérieur), urgence le cas échéant. La plateforme met en relation avec un ou plusieurs techniciens vérifiés dans votre zone.",
             "L’artisan envoie un devis détaillé. Vous validez. Le paiement entre en séquestre. Le devis détaille la prestation, le matériel posé, la liaison frigorifique, le coût de la main-d’œuvre, le coût des fluides éventuels, le total TTC et, si éligibilité aux aides, le reste à charge prévisionnel. Quand vous validez, le paiement quitte votre compte mais reste bloqué sur le séquestre Stripe.",
-            "L’artisan intervient, vous recevez les documents, les fonds sont libérés 48h plus tard. Bordereau de suivi des fluides remis, attestation d’entretien le cas échéant, garanties constructeur transférées. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme : il ouvre une fenêtre de 48h pendant laquelle vous pouvez émettre des réserves (abus, malfaçon, non-respect du devis). Un mail de notification vous est envoyé 8h avant la fin du délai. Sans réserve, les fonds sont libérés automatiquement à l’artisan."
+            "L’artisan intervient, vous recevez les documents, les fonds sont libérés 96h plus tard. Bordereau de suivi des fluides remis, attestation d’entretien le cas échéant, garanties constructeur transférées. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme : il ouvre une fenêtre de 96h pendant laquelle vous pouvez émettre des réserves (abus, malfaçon, non-respect du devis). Un mail de notification vous est envoyé 8h avant la fin du délai. Sans réserve, les fonds sont libérés automatiquement à l’artisan."
           ]
         },
         "klarna": {
           "title": "Klarna : comment ça marche",
           "p1": "Klarna est un service de paiement échelonné en 3 fois sans frais. Artisan Compétent met cet outil à disposition dans le parcours de paiement. Son activation se négocie entre le client et l’artisan : ce n’est pas automatique.",
-          "p2": "Pour les chantiers de pose neuve (multi-split, gainable, pompe à chaleur), Klarna 3 fois sans frais peut être proposé par l’artisan dans le respect des plafonds Klarna en vigueur. Si l’artisan accepte, vous bénéficiez d’un paiement étalé sur trois mensualités sans frais supplémentaires. Le mécanisme du séquestre de fonds reste actif : le paiement échelonné est protégé jusqu’à validation du chantier à 48h."
+          "p2": "Pour les chantiers de pose neuve (multi-split, gainable, pompe à chaleur), Klarna 3 fois sans frais peut être proposé par l’artisan dans le respect des plafonds Klarna en vigueur. Si l’artisan accepte, vous bénéficiez d’un paiement étalé sur trois mensualités sans frais supplémentaires. Le mécanisme du séquestre de fonds reste actif : le paiement échelonné est protégé jusqu’à validation du chantier à 96h."
         },
         "faq": {
           "title": "Questions fréquentes",
@@ -1658,11 +1875,11 @@
             },
             {
               "q": "Le séquestre de fonds couvre-t-il aussi l’entretien annuel ?",
-              "a": "Oui. Toute prestation passée par Artisan Compétent (pose, entretien périodique, dépannage) est encadrée par le séquestre de fonds Stripe : devis chiffré, paiement bloqué jusqu’à 48h après la fin de l’intervention, libération après cette fenêtre. Pour les contrats d’entretien annuels, chaque passage est traité comme une prestation distincte, avec son propre cycle de séquestre."
+              "a": "Oui. Toute prestation passée par Artisan Compétent (pose, entretien périodique, dépannage) est encadrée par le séquestre de fonds Stripe : devis chiffré, paiement bloqué jusqu’à 96h après la fin de l’intervention, libération après cette fenêtre. Pour les contrats d’entretien annuels, chaque passage est traité comme une prestation distincte, avec son propre cycle de séquestre."
             },
             {
               "q": "Que se passe-t-il si la clim tombe en panne juste après la pose ?",
-              "a": "Vous signalez le défaut dans les 48h suivant la fin du chantier, via le tableau de bord partagé. Tant que ce délai court, les fonds restent en séquestre et ne sont pas libérés à l’artisan. Artisan Compétent peut demander une intervention de correction sans facturation complémentaire ou retenir jusqu’à 250 € sur la facturation de l’artisan avant validation. Au-delà du délai, la garantie biennale sur l’équipement et la garantie constructeur prennent le relais."
+              "a": "Vous signalez le défaut dans les 96h suivant la fin du chantier, via le tableau de bord partagé. Tant que ce délai court, les fonds restent en séquestre et ne sont pas libérés à l’artisan. Artisan Compétent peut demander une intervention de correction sans facturation complémentaire ou retenir jusqu’à 250 € sur la facturation de l’artisan avant validation. Au-delà du délai, la garantie biennale sur l’équipement et la garantie constructeur prennent le relais."
             },
             {
               "q": "À quoi sert CMOD pour un chantier de climatisation ou de pompe à chaleur ?",
@@ -1676,18 +1893,18 @@
         },
         "conclusion": {
           "title": "Pour aller plus loin",
-          "body": "Une pose neuve de climatisation, une pompe à chaleur éligible à MaPrimeRénov’, un entretien annuel obligatoire, un dépannage en pleine canicule : Artisan Compétent encadre la vérification du technicien climatisation (SIRET, RC pro, décennale, attestation fluides frigorigènes, QualiPAC) et tout votre process par séquestre jusqu’à 48h après l’intervention.",
+          "body": "Une pose neuve de climatisation, une pompe à chaleur éligible à MaPrimeRénov’, un entretien annuel obligatoire, un dépannage en pleine canicule : Artisan Compétent encadre la vérification du technicien climatisation (SIRET, RC pro, décennale, attestation fluides frigorigènes, QualiPAC) et tout votre process par séquestre jusqu’à 96h après l’intervention.",
           "footer": "Technicien climatisation vérifié SIRET, RC pro, décennale et attestation fluides frigorigènes catégorie I à IV. QualiPAC vérifiée pour les pompes à chaleur éligibles aux aides. Process encadré par séquestre Stripe. Retenue jusqu’à 250 € en cas de signalement d’abus. Bordereau de suivi des fluides remis en fin de chantier."
         }
       },
       "glazier": {
         "title": "Vitrier vérifié, du devis à la libération des fonds encadrée",
         "name": "Vitrerie & Miroiterie",
-        "tagline": "Cette page liste les interventions de vitrerie traitées par les vitriers vérifiés d'Artisan Compétent et le mécanisme qui encadre votre paiement de bout en bout, du devis chiffré à la libération des fonds 48h après la fin du chantier.",
-        "verifiedBadge": "En brerf, un vitrier vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, et la certification correspondant aux vitrages techniques posés. Tout le process est encadré par un séquestre de fonds via Stripe : devis, intervention, libération des fonds 48h après la fin du chantier. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville. Périmètre : vitrerie et miroiterie. La menuiserie (encadrement, bâti dormant) n'est pas couverte en V1.",
+        "tagline": "Cette page liste les interventions de vitrerie traitées par les vitriers vérifiés d'Artisan Compétent et le mécanisme qui encadre votre paiement de bout en bout, du devis chiffré à la libération des fonds 96h après la fin du chantier.",
+        "verifiedBadge": "En brerf, un vitrier vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, et la certification correspondant aux vitrages techniques posés. Tout le process est encadré par un séquestre de fonds via Stripe : devis, intervention, libération des fonds 96h après la fin du chantier. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville. Périmètre : vitrerie et miroiterie. La menuiserie (encadrement, bâti dormant) n'est pas couverte en V1.",
         "description": {
-          "p1": "En une phrase, sur Artisan Compétent, un vitrier vérifié a son SIRET et ses assurances contrôlés en amont, et toute son intervention (pose de vitrage, remplacement de double vitrage, dépannage bris de glace, miroirs, vitrines, garde-corps verre) est encadrée par un séquestre de fonds Stripe qui retient le paiement jusqu’à 48h après la fin du chantier. Vous payez seulement si le travail est conforme au devis signé.",
-          "p2": "Un vitrier vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour et, le cas échéant, les certifications spécifiques aux ouvrages techniques (vitrages feuilletés de sécurité, garde-corps en verre soumis à la norme NF P01-013). Le séquestre de fonds Stripe encadre la totalité du processus : le paiement quitte votre compte à la validation du devis, reste bloqué pendant l’intervention, puis 48h supplémentaires après la fin du chantier. C’est ce délai de 48h qui vous laisse signaler une malfaçon (vitrage rayé, joint mal posé, double vitrage qui s’embue) ou un non-respect du devis avant que les fonds soient libérés au vitrier."
+          "p1": "En une phrase, sur Artisan Compétent, un vitrier vérifié a son SIRET et ses assurances contrôlés en amont, et toute son intervention (pose de vitrage, remplacement de double vitrage, dépannage bris de glace, miroirs, vitrines, garde-corps verre) est encadrée par un séquestre de fonds Stripe qui retient le paiement jusqu’à 96h après la fin du chantier. Vous payez seulement si le travail est conforme au devis signé.",
+          "p2": "Un vitrier vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour et, le cas échéant, les certifications spécifiques aux ouvrages techniques (vitrages feuilletés de sécurité, garde-corps en verre soumis à la norme NF P01-013). Le séquestre de fonds Stripe encadre la totalité du processus : le paiement quitte votre compte à la validation du devis, reste bloqué pendant l’intervention, puis 96h supplémentaires après la fin du chantier. C’est ce délai de 96h qui vous laisse signaler une malfaçon (vitrage rayé, joint mal posé, double vitrage qui s’embue) ou un non-respect du devis avant que les fonds soient libérés au vitrier."
         },
         "nuance": {
           "title": "Pourquoi Artisan Compétent ne couvre pas la menuiserie en V1",
@@ -1695,7 +1912,7 @@
           "p2": "Plusieurs raisons concrètes justifient ce choix de périmètre, qu’il est important de poser clairement avant tout devis :",
           "items": [
             "La menuiserie sur mesure implique des délais longs. Entre la prise de mesures, la commande en usine, la fabrication et la pose, plusieurs mois peuvent s’écouler. Sur des fenêtres techniques (bois massif, mixte, sur-mesure non standard), les délais constructeur dépassent souvent les six à huit semaines.",
-            "Le séquestre de fonds est conçu pour des cycles d’intervention courts. Le mécanisme actuel d’Artisan Compétent retient les fonds jusqu’à 48h après la fin du chantier, dans une logique d’intervention en jours ou en semaines. Cette mécanique n’est pas adaptée à une commande dont l’exécution s’étale sur plusieurs mois, avec acompte fabricant et risque d’aléa industriel.",
+            "Le séquestre de fonds est conçu pour des cycles d’intervention courts. Le mécanisme actuel d’Artisan Compétent retient les fonds jusqu’à 96h après la fin du chantier, dans une logique d’intervention en jours ou en semaines. Cette mécanique n’est pas adaptée à une commande dont l’exécution s’étale sur plusieurs mois, avec acompte fabricant et risque d’aléa industriel.",
             "Les délais de la menuiserie sont incompatibles avec le séquestre tel qu’il est calibré aujourd’hui. Maintenir des fonds en séquestre sur plusieurs mois entraînerait des contraintes opérationnelles et juridiques (trésorerie client, blocage de paiement fournisseur, gestion des annulations) qu’Artisan Compétent ne couvre pas en V1.",
             "Des partenariats spécifiques cas par cas sont à l’étude pour de futures versions. L’objectif est d’identifier des fabricants ou poseurs de menuiserie dont la fiabilité de délai et la qualité des engagements permettent d’intégrer un séquestre adapté."
           ],
@@ -1722,7 +1939,7 @@
         },
         "whyUs": {
           "title": "Pourquoi passer par Artisan Compétent pour vos travaux de vitrerie",
-          "lead": "Artisan Compétent vérifie le vitrier en amont, encadre votre paiement par séquestre Stripe et vous laisse 48h pour valider le chantier avant toute libération des fonds.",
+          "lead": "Artisan Compétent vérifie le vitrier en amont, encadre votre paiement par séquestre Stripe et vous laisse 96h pour valider le chantier avant toute libération des fonds.",
           "blocks": [
             {
               "title": "Chaque vitrier référencé sur Artisan Compétent voit son SIRET contrôlé sur les bases publiques (Annuaire des Entreprises, INSEE/SIRENE) et ses assurances vérifiées avant validation.",
@@ -1730,11 +1947,11 @@
             },
             {
               "title": "Le séquestre de fonds est un compte tiers géré via Stripe qui encadre tout le process, du devis à la libération des fonds.",
-              "body": "Quand vous validez le devis du vitrier, le paiement quitte votre compte mais n’arrive pas sur celui de l’artisan : il reste bloqué sur un compte séquestre Stripe. Cette mise en attente dure jusqu’à la fin de l’intervention, plus un délai de 48h pendant lequel vous pouvez signaler un abus, un défaut de qualité (vitrage rayé, joint mal posé) ou un non-respect du devis. Sans contestation, les fonds sont libérés au vitrier au terme de ces 48h. Pendant la fenêtre de 48h, le séquestre joue son rôle de levier : c’est la motivation la plus efficace pour qu’un artisan reprenne un défaut visible à la livraison."
+              "body": "Quand vous validez le devis du vitrier, le paiement quitte votre compte mais n’arrive pas sur celui de l’artisan : il reste bloqué sur un compte séquestre Stripe. Cette mise en attente dure jusqu’à la fin de l’intervention, plus un délai de 96h pendant lequel vous pouvez signaler un abus, un défaut de qualité (vitrage rayé, joint mal posé) ou un non-respect du devis. Sans contestation, les fonds sont libérés au vitrier au terme de ces 96h. Pendant la fenêtre de 96h, le séquestre joue son rôle de levier : c’est la motivation la plus efficace pour qu’un artisan reprenne un défaut visible à la livraison."
             },
             {
-              "title": "Le déclenchement des 48h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
-              "body": "Concrètement, le délai des 48h ne court pas dans le vide. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme. Ce PV ouvre la fenêtre de 48h pendant laquelle vous pouvez émettre des réserves : malfaçon constatée, non-conformité au devis, finition manquante, document promis non remis. 8h avant la fin du délai, un mail de notification (qui vaut mise en demeure d’examiner le chantier) vous est envoyé pour éviter une libération par simple oubli. Sans réserve émise au terme des 48h, les fonds sont libérés automatiquement à l’artisan. Avec réserve, le séquestre reste actif jusqu’au traitement contradictoire de la contestation."
+              "title": "Le déclenchement des 96h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
+              "body": "Concrètement, le délai des 96h ne court pas dans le vide. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme. Ce PV ouvre la fenêtre de 96h pendant laquelle vous pouvez émettre des réserves : malfaçon constatée, non-conformité au devis, finition manquante, document promis non remis. 8h avant la fin du délai, un mail de notification (qui vaut mise en demeure d’examiner le chantier) vous est envoyé pour éviter une libération par simple oubli. Sans réserve émise au terme des 96h, les fonds sont libérés automatiquement à l’artisan. Avec réserve, le séquestre reste actif jusqu’au traitement contradictoire de la contestation."
             },
             {
               "title": "Le CMOD peut être déclenché lorsqu’aucune solution amiable n’a pu être trouvée entre le client et l’artisan dans le cadre d’un litige lié à une intervention réalisée via la plateforme Artisan Compétent.",
@@ -1788,13 +2005,13 @@
               "Paiement encadré",
               "Non",
               "Non",
-              "Séquestre de fonds Stripe, libération à 48h"
+              "Séquestre de fonds Stripe, libération à 96h"
             ],
             [
               "Recours en cas de malfaçon (vitrage rayé, joint défaillant)",
               "Limité",
               "Aucun",
-              "Retenue jusqu’à 250 € si signalement < 48h"
+              "Retenue jusqu’à 250 € si signalement < 96h"
             ],
             [
               "Devis détaillé imposé avant intervention",
@@ -1820,11 +2037,11 @@
             },
             {
               "title": "Piège 2. Le double vitrage qui s’embue six mois après la pose.",
-              "body": "Un double vitrage qui se condense entre les deux verres signe une défaillance d’étanchéité du scellement périphérique : c’est un défaut produit ou de pose, pas un défaut d’usage. Sur Artisan Compétent, ce défaut peut être signalé pendant la fenêtre de 48h après pose (si visible), puis relève de la garantie biennale et de la garantie constructeur (souvent 10 ans sur les doubles vitrages de marque). Le tableau de bord conserve les pièces (devis, marque, série, attestation de pose) pour activer la garantie."
+              "body": "Un double vitrage qui se condense entre les deux verres signe une défaillance d’étanchéité du scellement périphérique : c’est un défaut produit ou de pose, pas un défaut d’usage. Sur Artisan Compétent, ce défaut peut être signalé pendant la fenêtre de 96h après pose (si visible), puis relève de la garantie biennale et de la garantie constructeur (souvent 10 ans sur les doubles vitrages de marque). Le tableau de bord conserve les pièces (devis, marque, série, attestation de pose) pour activer la garantie."
             },
             {
               "title": "Piège 3. La facturation d’urgence opportuniste sur bris de glace.",
-              "body": "Comme pour la serrurerie, le bris de glace en urgence (nuit, week-end, jour férié) est un terrain favorable aux abus tarifaires. Sur Artisan Compétent, le tarif est annoncé avant déplacement, le devis est signé sur place avant intervention, et la décomposition (sécurisation, fourniture, pose, urgence) est imposée. Le séquestre de fonds reste actif même en urgence : le paiement n’est libéré qu’après 48h."
+              "body": "Comme pour la serrurerie, le bris de glace en urgence (nuit, week-end, jour férié) est un terrain favorable aux abus tarifaires. Sur Artisan Compétent, le tarif est annoncé avant déplacement, le devis est signé sur place avant intervention, et la décomposition (sécurisation, fourniture, pose, urgence) est imposée. Le séquestre de fonds reste actif même en urgence : le paiement n’est libéré qu’après 96h."
             }
           ]
         },
@@ -1832,12 +2049,12 @@
           "title": "Votre rôle dans le suivi du chantier",
           "lead": "Sur les chantiers vitrerie, votre suivi actif est essentiel pour documenter la conformité de la pose et débloquer un recours rapide en cas de malfaçon. Voici ce que vous faites concrètement, dans le tableau de bord partagé avec l’artisan.",
           "body": "Pour les chantiers d’un seul jour (remplacement de vitrage standard, dépannage bris de glace), l’artisan dépose à la fin de l’intervention des photos de l’ouvrage posé, le bon de pose et les références produit (marque, dimensions, type de vitrage). Vous validez ou signalez dans le tableau de bord partagé. Pour les chantiers plus longs (pose de plusieurs vitrines, garde-corps verre sur escalier complet, miroiterie sur mesure pour commerce), l’artisan dépose chaque jour des photos d’avancement : pose des fixations, mise en place des vitrages, calfeutrement, contrôles d’étanchéité. Vous commentez, validez ou signalez dans le même espace, ce qui établit un contradictoire écrit en cas de litige ultérieur. Vous documentez aussi : photos de la zone avant intervention (état du cadre existant, joints en place), photos après pose (calfeutrement, étanchéité, propreté de la finition), photos de la plaque signalétique du vitrage posé.",
-          "footer": "Cette participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier. En cas de signalement d’abus dans les 48h suivant la fin du chantier, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU/CGV. Cette retenue couvre les cas de malfaçon avérée (vitrage rayé, joint mal posé, dimension non conforme au devis) ou de non-respect du devis signé."
+          "footer": "Cette participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier. En cas de signalement d’abus dans les 96h suivant la fin du chantier, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU/CGV. Cette retenue couvre les cas de malfaçon avérée (vitrage rayé, joint mal posé, dimension non conforme au devis) ou de non-respect du devis signé."
         },
         "insurance": {
           "title": "Assurance habitation et remboursement (rubrique renforcée pour le bris de glace)",
           "lead": "Le bris de glace fait partie des sinistres les mieux couverts par les assurances habitation. Selon votre contrat, le remplacement de la vitre peut être pris en charge totalement ou partiellement.",
-          "body": "Sur les sinistres impliquant un bris de glace (effraction, choc, casse accidentelle), la quasi-totalité des contrats d’assurance habitation multirisques incluent une garantie \"bris de glaces\" qui couvre tout ou partie du remplacement. Certaines garanties carte bancaire premium remboursent également les bris consécutifs à un cambriolage ou à un acte de vandalisme. La démarche est à votre charge : vous contactez votre assureur dès que possible (et dans les délais prévus au contrat, souvent 5 jours ouvrés, et 48h en cas de vol ou de vandalisme avec dépôt de plainte préalable). Vous transmettez le devis du vitrier vérifié, les photos du sinistre, le cas échéant le procès-verbal de dépôt de plainte. Artisan Compétent n’intervient pas dans la procédure d’indemnisation : l’intervention peut être lancée en parallèle si elle est urgente (sécurisation immédiate puis remplacement), et le remboursement éventuel se traite directement entre vous et votre assureur après facturation."
+          "body": "Sur les sinistres impliquant un bris de glace (effraction, choc, casse accidentelle), la quasi-totalité des contrats d’assurance habitation multirisques incluent une garantie \"bris de glaces\" qui couvre tout ou partie du remplacement. Certaines garanties carte bancaire premium remboursent également les bris consécutifs à un cambriolage ou à un acte de vandalisme. La démarche est à votre charge : vous contactez votre assureur dès que possible (et dans les délais prévus au contrat, souvent 5 jours ouvrés, et 96h en cas de vol ou de vandalisme avec dépôt de plainte préalable). Vous transmettez le devis du vitrier vérifié, les photos du sinistre, le cas échéant le procès-verbal de dépôt de plainte. Artisan Compétent n’intervient pas dans la procédure d’indemnisation : l’intervention peut être lancée en parallèle si elle est urgente (sécurisation immédiate puis remplacement), et le remboursement éventuel se traite directement entre vous et votre assureur après facturation."
         },
         "howItWorks": {
           "title": "Comment ça marche, en 3 étapes",
@@ -1845,7 +2062,7 @@
           "steps": [
             "Vous décrivez votre besoin sur Artisan Compétent. Type d’intervention (remplacement de vitrage, miroir, garde-corps verre, vitrine, dépannage bris de glace), dimensions approximatives, urgence le cas échéant. La plateforme met en relation avec un ou plusieurs vitriers vérifiés dans votre zone.",
             "L’artisan envoie un devis détaillé. Vous validez. Le paiement entre en séquestre. Le devis détaille la prestation, le type de vitrage, la fourniture, le coût de la main-d’œuvre, l’éventuelle majoration d’urgence et le total TTC. Quand vous validez, le paiement quitte votre compte mais reste bloqué sur le séquestre Stripe.",
-            "L’artisan intervient, vous recevez les références produit, les fonds sont libérés 48h plus tard. Photos de l’ouvrage posé, références produit (marque, dimensions, type de vitrage), bon de pose. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme : il ouvre une fenêtre de 48h pendant laquelle vous pouvez émettre des réserves (abus, malfaçon, non-respect du devis). Un mail de notification vous est envoyé 8h avant la fin du délai. Sans réserve, les fonds sont libérés automatiquement à l’artisan."
+            "L’artisan intervient, vous recevez les références produit, les fonds sont libérés 96h plus tard. Photos de l’ouvrage posé, références produit (marque, dimensions, type de vitrage), bon de pose. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme : il ouvre une fenêtre de 96h pendant laquelle vous pouvez émettre des réserves (abus, malfaçon, non-respect du devis). Un mail de notification vous est envoyé 8h avant la fin du délai. Sans réserve, les fonds sont libérés automatiquement à l’artisan."
           ]
         },
         "klarna": {
@@ -1871,7 +2088,7 @@
             },
             {
               "q": "Le double vitrage s’embue après quelques mois, est-ce normal ?",
-              "a": "Non. Un double vitrage qui se condense entre les deux verres signe une défaillance d’étanchéité du scellement périphérique. C’est un défaut produit ou de pose, pas un défaut d’usage. Si la condensation apparaît dans les 48h après pose, vous le signalez dans le tableau de bord et l’artisan doit intervenir. Au-delà, la garantie biennale ou la garantie constructeur (souvent 10 ans sur les doubles vitrages de marque) prennent le relais. Le tableau de bord Artisan Compétent conserve les pièces nécessaires pour activer la garantie."
+              "a": "Non. Un double vitrage qui se condense entre les deux verres signe une défaillance d’étanchéité du scellement périphérique. C’est un défaut produit ou de pose, pas un défaut d’usage. Si la condensation apparaît dans les 96h après pose, vous le signalez dans le tableau de bord et l’artisan doit intervenir. Au-delà, la garantie biennale ou la garantie constructeur (souvent 10 ans sur les doubles vitrages de marque) prennent le relais. Le tableau de bord Artisan Compétent conserve les pièces nécessaires pour activer la garantie."
             },
             {
               "q": "Combien coûte un bris de glace en urgence ?",
@@ -1879,7 +2096,7 @@
             },
             {
               "q": "Le séquestre de fonds couvre-t-il aussi les interventions d’urgence sur bris de glace ?",
-              "a": "Oui. Toute prestation passée par Artisan Compétent, qu’il s’agisse d’un chantier programmé ou d’un dépannage en urgence, est encadrée par le séquestre de fonds Stripe : devis chiffré et signé avant intervention, paiement bloqué jusqu’à 48h après la fin de l’intervention, libération après cette fenêtre. C’est précisément sur les interventions d’urgence que le séquestre apporte le plus de garanties contre les abus tarifaires."
+              "a": "Oui. Toute prestation passée par Artisan Compétent, qu’il s’agisse d’un chantier programmé ou d’un dépannage en urgence, est encadrée par le séquestre de fonds Stripe : devis chiffré et signé avant intervention, paiement bloqué jusqu’à 96h après la fin de l’intervention, libération après cette fenêtre. C’est précisément sur les interventions d’urgence que le séquestre apporte le plus de garanties contre les abus tarifaires."
             },
             {
               "q": "Faut-il une certification pour poser un garde-corps en verre ?",
@@ -1887,7 +2104,7 @@
             },
             {
               "q": "Que se passe-t-il si le vitrage posé est rayé à la livraison ?",
-              "a": "Vous signalez le défaut dans les 48h suivant la fin du chantier, via le tableau de bord partagé, photos à l’appui. Tant que ce délai court, les fonds restent en séquestre et ne sont pas libérés au vitrier. Artisan Compétent peut demander un remplacement sans facturation complémentaire ou retenir jusqu’à 250 € sur la facturation de l’artisan avant validation. La photo de réception est l’élément clé."
+              "a": "Vous signalez le défaut dans les 96h suivant la fin du chantier, via le tableau de bord partagé, photos à l’appui. Tant que ce délai court, les fonds restent en séquestre et ne sont pas libérés au vitrier. Artisan Compétent peut demander un remplacement sans facturation complémentaire ou retenir jusqu’à 250 € sur la facturation de l’artisan avant validation. La photo de réception est l’élément clé."
             },
             {
               "q": "À quoi sert CMOD pour un chantier de vitrerie ?",
@@ -1901,18 +2118,18 @@
         },
         "conclusion": {
           "title": "Pour aller plus loin",
-          "body": "Un bris de glace après effraction, un double vitrage embué à remplacer, une vitrine commerciale endommagée, un garde-corps verre à poser sur un escalier, un miroir sur mesure pour une salle de bain : Artisan Compétent encadre la vérification du vitrier (SIRET, RC pro, décennale, certifications ouvrages techniques) et tout votre process par séquestre jusqu’à 48h après l’intervention.",
+          "body": "Un bris de glace après effraction, un double vitrage embué à remplacer, une vitrine commerciale endommagée, un garde-corps verre à poser sur un escalier, un miroir sur mesure pour une salle de bain : Artisan Compétent encadre la vérification du vitrier (SIRET, RC pro, décennale, certifications ouvrages techniques) et tout votre process par séquestre jusqu’à 96h après l’intervention.",
           "footer": "Vitrier vérifié SIRET, RC pro et décennale. Certifications déposées au tableau de bord (NF P01-013 pour garde-corps verre, vitrages feuilletés de sécurité). Process encadré par séquestre Stripe. Retenue jusqu’à 250 € en cas de signalement d’abus. Périmètre vitrerie miroiterie. Menuiserie hors périmètre en V1."
         }
       },
       "pestControl": {
         "title": "Spécialiste anti-nuisibles vérifié, du devis à la libération des fonds encadrée",
         "name": "Traitement anti-nuisibles (rongeurs, punaises...)",
-        "tagline": "Cette page liste les interventions traitées par les spécialistes anti-nuisibles vérifiés d'Artisan Compétent et le mécanisme qui encadre votre paiement de bout en bout, du devis chiffré à la libération des fonds 48h après la fin du chantier.",
-        "verifiedBadge": "En bref, un spécialiste anti-nuisibles vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, et son certificat Certibiocide en cours de validité. Tout le process est encadré par un séquestre de fonds via Stripe : devis, intervention, visites de contrôle, libération des fonds 48h après la fin du chantier. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
+        "tagline": "Cette page liste les interventions traitées par les spécialistes anti-nuisibles vérifiés d'Artisan Compétent et le mécanisme qui encadre votre paiement de bout en bout, du devis chiffré à la libération des fonds 96h après la fin du chantier.",
+        "verifiedBadge": "En bref, un spécialiste anti-nuisibles vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, et son certificat Certibiocide en cours de validité. Tout le process est encadré par un séquestre de fonds via Stripe : devis, intervention, visites de contrôle, libération des fonds 96h après la fin du chantier. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
         "description": {
-          "p1": "En une phrase, sur Artisan Compétent, un spécialiste anti-nuisibles vérifié a son SIRET, ses assurances et sa certification Certibiocide contrôlés en amont, et toute son intervention (dératisation, désinsectisation, désinfection, traitement de punaises de lit ou de frelons) est encadrée par un séquestre de fonds Stripe qui retient le paiement jusqu’à 48h après la fin du chantier. Vous payez seulement si le traitement est conforme au devis signé.",
-          "p2": "Un spécialiste anti-nuisibles vérifié sur Artisan Compétent a son SIRET contrôlé, son assurances RC pro à jour, et son certificat Certibiocide en cours de validité (obligation réglementaire pour la manipulation des produits biocides à usage professionnel). Le séquestre de fonds Stripe encadre la totalité du processus : le paiement quitte votre compte à la validation du devis, reste bloqué pendant l’intervention, puis 48h supplémentaires après la fin du chantier. Ce délai de 48h vous laisse signaler une efficacité insuffisante, une absence de visite de contrôle ou un non-respect du devis avant que les fonds soient libérés à l’artisan."
+          "p1": "En une phrase, sur Artisan Compétent, un spécialiste anti-nuisibles vérifié a son SIRET, ses assurances et sa certification Certibiocide contrôlés en amont, et toute son intervention (dératisation, désinsectisation, désinfection, traitement de punaises de lit ou de frelons) est encadrée par un séquestre de fonds Stripe qui retient le paiement jusqu’à 96h après la fin du chantier. Vous payez seulement si le traitement est conforme au devis signé.",
+          "p2": "Un spécialiste anti-nuisibles vérifié sur Artisan Compétent a son SIRET contrôlé, son assurances RC pro à jour, et son certificat Certibiocide en cours de validité (obligation réglementaire pour la manipulation des produits biocides à usage professionnel). Le séquestre de fonds Stripe encadre la totalité du processus : le paiement quitte votre compte à la validation du devis, reste bloqué pendant l’intervention, puis 96h supplémentaires après la fin du chantier. Ce délai de 96h vous laisse signaler une efficacité insuffisante, une absence de visite de contrôle ou un non-respect du devis avant que les fonds soient libérés à l’artisan."
         },
         "whenToCall": {
           "title": "Quand faire appel à un spécialiste anti-nuisibles vérifié",
@@ -1932,7 +2149,7 @@
         },
         "whyUs": {
           "title": "Pourquoi passer par Artisan Compétent pour vos travaux de traitement anti-nuisibles",
-          "lead": "Artisan Compétent vérifie le spécialiste anti-nuisibles en amont, encadre votre paiement par séquestre Stripe et vous laisse 48h pour valider le traitement avant toute libération des fonds.",
+          "lead": "Artisan Compétent vérifie le spécialiste anti-nuisibles en amont, encadre votre paiement par séquestre Stripe et vous laisse 96h pour valider le traitement avant toute libération des fonds.",
           "blocks": [
             {
               "title": "Chaque spécialiste anti-nuisibles référencé sur Artisan Compétent voit son SIRET contrôlé sur les bases publiques (Annuaire des Entreprises, INSEE/SIRENE), ses assurances vérifiées et son certificat Certibiocide contrôlé avant validation.",
@@ -1940,11 +2157,11 @@
             },
             {
               "title": "Le séquestre de fonds est un compte tiers géré via Stripe qui encadre tout le process, du devis à la libération des fonds.",
-              "body": "Quand vous validez le devis du spécialiste anti-nuisibles, le paiement quitte votre compte mais n’arrive pas sur celui de l’artisan : il reste bloqué sur un compte séquestre Stripe. Cette mise en attente dure jusqu’à la fin de l’intervention (et de la dernière visite de contrôle pour les traitements en plusieurs passages), plus un délai de 48h pendant lequel vous pouvez signaler un abus, un défaut de qualité ou un non-respect du devis. Sans contestation, les fonds sont libérés au spécialiste au terme de ces 48h. Pendant la fenêtre de 48h, le séquestre joue son rôle de levier : c’est la motivation la plus efficace pour qu’un artisan revienne contrôler l’efficacité du traitement."
+              "body": "Quand vous validez le devis du spécialiste anti-nuisibles, le paiement quitte votre compte mais n’arrive pas sur celui de l’artisan : il reste bloqué sur un compte séquestre Stripe. Cette mise en attente dure jusqu’à la fin de l’intervention (et de la dernière visite de contrôle pour les traitements en plusieurs passages), plus un délai de 96h pendant lequel vous pouvez signaler un abus, un défaut de qualité ou un non-respect du devis. Sans contestation, les fonds sont libérés au spécialiste au terme de ces 96h. Pendant la fenêtre de 96h, le séquestre joue son rôle de levier : c’est la motivation la plus efficace pour qu’un artisan revienne contrôler l’efficacité du traitement."
             },
             {
-              "title": "Le déclenchement des 48h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
-              "body": "Concrètement, le délai des 48h ne court pas dans le vide. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme. Ce PV ouvre la fenêtre de 48h pendant laquelle vous pouvez émettre des réserves : malfaçon constatée, non-conformité au devis, finition manquante, document promis non remis. 8h avant la fin du délai, un mail de notification (qui vaut mise en demeure d’examiner le chantier) vous est envoyé pour éviter une libération par simple oubli. Sans réserve émise au terme des 48h, les fonds sont libérés automatiquement à l’artisan. Avec réserve, le séquestre reste actif jusqu’au traitement contradictoire de la contestation."
+              "title": "Le déclenchement des 96h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
+              "body": "Concrètement, le délai des 96h ne court pas dans le vide. À la fin du chantier, un procès-verbal de réception est émis sur la plateforme. Ce PV ouvre la fenêtre de 96h pendant laquelle vous pouvez émettre des réserves : malfaçon constatée, non-conformité au devis, finition manquante, document promis non remis. 8h avant la fin du délai, un mail de notification (qui vaut mise en demeure d’examiner le chantier) vous est envoyé pour éviter une libération par simple oubli. Sans réserve émise au terme des 96h, les fonds sont libérés automatiquement à l’artisan. Avec réserve, le séquestre reste actif jusqu’au traitement contradictoire de la contestation."
             },
             {
               "title": "Le CMOD peut être déclenché lorsqu’aucune solution amiable n’a pu être trouvée entre le client et l’artisan dans le cadre d’un litige lié à une intervention réalisée via la plateforme Artisan Compétent.",
@@ -2000,13 +2217,13 @@
               "Paiement encadré",
               "Non",
               "Non",
-              "Séquestre de fonds Stripe, libération à 48h"
+              "Séquestre de fonds Stripe, libération à 96h"
             ],
             [
               "Recours en cas d’inefficacité de traitement",
               "Limité",
               "Aucun",
-              "Retenue jusqu’à 250 € si signalement < 48h"
+              "Retenue jusqu’à 250 € si signalement < 96h"
             ],
             [
               "Visites de contrôle documentées",
@@ -2044,7 +2261,7 @@
           "title": "Votre rôle dans le suivi du chantier",
           "lead": "Sur les chantiers anti-nuisibles, votre suivi actif est essentiel pour documenter l’efficacité du traitement et débloquer un recours rapide en cas de retour de l’infestation. Voici ce que vous faites concrètement, dans le tableau de bord partagé avec l’artisan.",
           "body": "Pour les traitements en plusieurs passages (punaises de lit, cafards récurrents, dératisation lourde), l’artisan dépose à chaque passage des photos et un compte-rendu dans le tableau de bord partagé client · artisan : zones traitées, produits utilisés, points de fixation des appâts, pièges posés. Vous documentez en parallèle : photos des nuisibles observés avant l’intervention, observations entre les passages (présence ou absence de retour de l’infestation), photos des éventuelles traces (déjections, dégâts, mues), demande de passage de contrôle anticipé si besoin.",
-          "footer": "Cette participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier. Sur les punaises de lit en particulier, la photographie horodatée des découvertes (sur draps, sous matelas, sur sommier) est la pièce la plus efficace pour démontrer qu’un traitement n’a pas eu l’effet attendu. En cas de signalement d’abus dans les 48h suivant la fin du chantier (ou la fin du dernier passage de contrôle), Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU/CGV. Cette retenue couvre les cas d’inefficacité avérée, de non-respect du protocole prévu ou de non-respect du devis signé."
+          "footer": "Cette participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier. Sur les punaises de lit en particulier, la photographie horodatée des découvertes (sur draps, sous matelas, sur sommier) est la pièce la plus efficace pour démontrer qu’un traitement n’a pas eu l’effet attendu. En cas de signalement d’abus dans les 96h suivant la fin du chantier (ou la fin du dernier passage de contrôle), Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU/CGV. Cette retenue couvre les cas d’inefficacité avérée, de non-respect du protocole prévu ou de non-respect du devis signé."
         },
         "insurance": {
           "title": "Assurance habitation et remboursement",
@@ -2057,7 +2274,7 @@
           "steps": [
             "Vous décrivez votre besoin sur Artisan Compétent. Type de nuisible (rongeur, punaise, cafard, frelon, etc.), surface du logement, niveau d’infestation perçu, présence d’enfants ou d’animaux, urgence éventuelle. La plateforme met en relation avec un ou plusieurs spécialistes vérifiés dans votre zone.",
             "L’artisan envoie un devis détaillé. Vous validez. Le paiement entre en séquestre. Le devis détaille le nuisible visé, la méthode, les produits utilisés, le nombre de passages prévus, le calendrier, le coût de la main-d’œuvre et le total TTC. Quand vous validez, le paiement quitte votre compte mais reste bloqué sur le séquestre Stripe.",
-            "L’artisan intervient (en un ou plusieurs passages), vous validez l’efficacité, les fonds sont libérés 48h plus tard. Compte-rendu et photos à chaque passage dans le tableau de bord. À la dernière visite de contrôle, un procès-verbal de réception est émis sur la plateforme : il ouvre une fenêtre de 48h pendant laquelle vous pouvez émettre des réserves (abus, inefficacité du traitement, non-respect du devis). Un mail de notification vous est envoyé 8h avant la fin du délai. Sans réserve, les fonds sont libérés automatiquement à l’artisan."
+            "L’artisan intervient (en un ou plusieurs passages), vous validez l’efficacité, les fonds sont libérés 96h plus tard. Compte-rendu et photos à chaque passage dans le tableau de bord. À la dernière visite de contrôle, un procès-verbal de réception est émis sur la plateforme : il ouvre une fenêtre de 96h pendant laquelle vous pouvez émettre des réserves (abus, inefficacité du traitement, non-respect du devis). Un mail de notification vous est envoyé 8h avant la fin du délai. Sans réserve, les fonds sont libérés automatiquement à l’artisan."
           ]
         },
         "klarna": {
@@ -2094,7 +2311,7 @@
             },
             {
               "q": "Le séquestre couvre-t-il toutes les visites de contrôle prévues ?",
-              "a": "Oui. Le séquestre Stripe retient l’intégralité du montant TTC du devis signé, y compris les passages de traitement et les visites de contrôle prévues. Le séquestre n’est libéré qu’après la dernière visite et le délai de 48h."
+              "a": "Oui. Le séquestre Stripe retient l’intégralité du montant TTC du devis signé, y compris les passages de traitement et les visites de contrôle prévues. Le séquestre n’est libéré qu’après la dernière visite et le délai de 96h."
             },
             {
               "q": "À quoi sert CMOD pour un chantier anti-nuisibles ?",
@@ -2112,7 +2329,7 @@
         },
         "conclusion": {
           "title": "Pour aller plus loin",
-          "body": "Une infestation de punaises de lit à éradiquer en plusieurs passages, des rongeurs récurrents en cave ou en combles, un nid de frelons asiatiques en façade, une désinfection complète après sinistre : Artisan Compétent encadre la vérification du spécialiste anti-nuisibles (SIRET, RC pro, décennale, Certibiocide) et tout votre process par séquestre jusqu’à 48h après la dernière intervention.",
+          "body": "Une infestation de punaises de lit à éradiquer en plusieurs passages, des rongeurs récurrents en cave ou en combles, un nid de frelons asiatiques en façade, une désinfection complète après sinistre : Artisan Compétent encadre la vérification du spécialiste anti-nuisibles (SIRET, RC pro, décennale, Certibiocide) et tout votre process par séquestre jusqu’à 96h après la dernière intervention.",
           "footer": "Spécialiste anti-nuisibles vérifié SIRET, RC pro, décennale et Certibiocide. Process encadré par séquestre Stripe, visites de contrôle incluses. Compte-rendu et photos à chaque passage. Retenue jusqu’à 250 € en cas de signalement d’abus. Périmètre : rongeurs, insectes rampants, insectes volants, punaises de lit, frelons, désinfection, désinsectisation, dératisation."
         }
       }
@@ -2319,7 +2536,7 @@
       "registerGeneric": "Une erreur est survenue lors de l'inscription, veuillez réessayer.",
       "captchaRequired": "Veuillez cocher cette case",
       "termsRequired": "Veuillez accepter les CGU et CGV",
-      "descriptionMax": "500 caractères maximum",
+      "descriptionMax": "1000 caractères maximum",
       "yearsMin": "Doit être supérieur ou égal à 0",
       "openingAtLeastOne": "Veuillez renseigner au moins un jour avec des horaires d'ouverture et de fermeture",
       "step1Errors": "Vous avez également des erreurs dans la page 1.",
@@ -2925,6 +3142,24 @@
     "cgv": {
       "tab": "CGV",
       "title": "Conditions Générales de Vente"
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "comingSoon": "Le blog Artisan Compétent arrive bientôt !"
+  },
+  "policy": {
+    "annulation": {
+      "tab": "Annulation",
+      "title": "Politique d'annulation"
+    },
+    "confidentialite": {
+      "tab": "Confidentialité",
+      "title": "Politique de confidentialité"
+    },
+    "cookies": {
+      "tab": "Cookies",
+      "title": "Politique des cookies"
     }
   }
 }

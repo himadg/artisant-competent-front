@@ -1,153 +1,209 @@
-<footer class="mt-16 bg-grad-brown text-[var(--primary-beige)]">
-    <!--
-        Bloc newsletter WhatsApp retiré du rendu lors de la refonte du footer.
-        Markup conservé en commentaire pour pouvoir le réactiver plus tard si besoin.
-        (Aucune logique d'envoi n'était branchée : le formulaire était purement statique.)
+<footer class="mt-16 bg-grad-brown text-[var(--primary-beige)] w-[inherit]">
 
-        <div class="px-4 py-10 mx-auto space-y-4 max-w-screen-lg text-center border-b border-[var(--secondary-beige)]">
-            <h2 class="text-lg font-semibold md:text-2xl">{{ 'footer.newsletterTitle' | transloco }}</h2>
-            <p class="text-sm md:text-base">{{ 'footer.newsletterSubtitle' | transloco }}</p>
-            <div class="flex flex-col gap-3 items-center">
-                <input
-                    type="tel"
-                    [placeholder]="'footer.newsletterPhone' | transloco"
-                    class="px-4 py-2 w-full max-w-sm text-black rounded-lg"
-                />
-                <label class="flex gap-2 items-start max-w-sm text-sm text-left">
-                    <input type="checkbox" class="mt-1" />
-                    <span>{{ 'footer.newsletterConsent' | transloco }}</span>
-                </label>
-                <button type="button" class="px-6 py-3 font-semibold rounded-lg bg-[#a97849] text-[var(--primary-beige)]">
-                    {{ 'footer.newsletterButton' | transloco }}
-                </button>
+    <!-- ── Corps du footer : 4 colonnes avec séparateurs verticaux ── -->
+    <div class="px-6 py-12 mx-auto max-w-screen-lg">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-0">
+
+            <!-- COLONNE 1 · Navigation -->
+            <nav class="lg:pr-8 lg:border-r lg:border-[color-mix(in_srgb,var(--primary-beige)_20%,transparent)] space-y-4"
+                [attr.aria-label]="'footer.nav.title' | transloco">
+                <h2 class="text-base font-semibold tracking-wide uppercase">{{ 'footer.nav.title' | transloco }}</h2>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a routerLink="/jobs" class="flex items-center gap-2 no-underline hover:underline">
+                            <iconify-icon icon="lucide:chevron-right" width="14" height="14" aria-hidden="true"></iconify-icon>
+                            {{ 'footer.nav.trades' | transloco }}
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/']" fragment="urgences" class="flex items-center gap-2 no-underline hover:underline">
+                            <iconify-icon icon="lucide:chevron-right" width="14" height="14" aria-hidden="true"></iconify-icon>
+                            {{ 'footer.nav.emergency' | transloco }}
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/cities" class="flex items-center gap-2 no-underline hover:underline">
+                            <iconify-icon icon="lucide:chevron-right" width="14" height="14" aria-hidden="true"></iconify-icon>
+                            {{ 'footer.nav.cities' | transloco }}
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/blog" class="flex items-center gap-2 no-underline hover:underline">
+                            <iconify-icon icon="lucide:chevron-right" width="14" height="14" aria-hidden="true"></iconify-icon>
+                            {{ 'footer.nav.blog' | transloco }}
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/affiliation" class="flex items-center gap-2 no-underline hover:underline">
+                            <iconify-icon icon="lucide:chevron-right" width="14" height="14" aria-hidden="true"></iconify-icon>
+                            {{ 'footer.nav.affiliation' | transloco }}
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/faq" class="flex items-center gap-2 no-underline hover:underline">
+                            <iconify-icon icon="lucide:chevron-right" width="14" height="14" aria-hidden="true"></iconify-icon>
+                            {{ 'footer.nav.faq' | transloco }}
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- COLONNE 2 · Comment ça marche -->
+            <nav class="lg:px-8 lg:border-r lg:border-[color-mix(in_srgb,var(--primary-beige)_20%,transparent)] space-y-4"
+                [attr.aria-label]="'footer.howItWorks.title' | transloco">
+                <h2 class="text-base font-semibold tracking-wide uppercase">{{ 'footer.howItWorks.title' | transloco }}</h2>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a [routerLink]="['/']" fragment="protection"
+                            class="flex items-start gap-2 no-underline hover:underline">
+                            <iconify-icon icon="lucide:chevron-right" width="14" height="14"
+                                class="mt-0.5 shrink-0" aria-hidden="true"></iconify-icon>
+                            {{ 'footer.howItWorks.encadrement' | transloco }}
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- COLONNE 3 · Contact -->
+            <div class="lg:px-8 lg:border-r lg:border-[color-mix(in_srgb,var(--primary-beige)_20%,transparent)] space-y-4">
+                <h2 class="text-base font-semibold tracking-wide uppercase">{{ 'footer.contact.title' | transloco }}</h2>
+                <div class="space-y-3 text-sm">
+                <button type="button" (click)="openContactModal()"
+                        class="flex items-center gap-2 font-semibold underline bg-transparent border-0 text-inherit cursor-pointer p-0 text-sm hover:opacity-80">
+                        <iconify-icon icon="lucide:mail" width="18" height="18"
+                            style="color: var(--tertiary-brown)" aria-hidden="true"></iconify-icon>
+                        {{ 'footer.contact.formLink' | transloco }}
+                    </button>
+                    <p>{{ 'footer.contact.noCall' | transloco }}</p>
+                    <p class="opacity-70 text-xs leading-relaxed">{{ 'footer.contact.formDesc' | transloco }}</p>
+                </div>
+                <!-- <button type="button" (click)="openContactForm()" -->
+                <!-- <button type="button" (click)="openLegalModal()"
+                    class="flex items-center gap-3 w-full px-4 py-3 rounded-lg font-semibold text-sm
+                           bg-[var(--tertiary-brown)] text-[var(--primary-beige)]
+                           hover:brightness-95 transition cursor-pointer border-0">
+                    <iconify-icon icon="lucide:mail" width="18" height="18" aria-hidden="true"></iconify-icon>
+                    <span class="flex-1 text-left">{{ 'footer.contact.formBtn' | transloco }}</span>
+                    <iconify-icon icon="lucide:arrow-right" width="16" height="16" aria-hidden="true"></iconify-icon>
+                </button> -->
             </div>
-        </div>
-    -->
 
-    <!-- Corps du footer : 4 colonnes en desktop, 2 en tablette, 1 en mobile -->
-    <div class="grid gap-10 px-6 py-12 mx-auto max-w-screen-lg sm:grid-cols-2 lg:grid-cols-4">
-        <!-- COLONNE 1 · Navigation principale -->
-        <nav class="space-y-3" [attr.aria-label]="'footer.nav.title' | transloco">
-            <h2 class="text-base font-semibold tracking-wide uppercase">{{ 'footer.nav.title' | transloco }}</h2>
-            <ul class="space-y-2 text-sm">
-                <li><a routerLink="/" class="no-underline hover:underline">{{ 'footer.nav.home' | transloco }}</a></li>
-                <li>
-                    <a routerLink="/jobs" class="no-underline hover:underline">
-                        {{ 'footer.nav.trades' | transloco }}
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="/cities" class="no-underline hover:underline">
-                        {{ 'footer.nav.cities' | transloco }}
-                    </a>
-                </li>
-            </ul>
-        </nav>
+            <!-- COLONNE 4 · Suivez-nous -->
+            <div class="lg:pl-8 space-y-4">
+                <h2 class="text-base font-semibold tracking-wide uppercase">{{ 'footer.social.title' | transloco }}</h2>
+                <ul class="space-y-3 text-sm">
+                    <li>
+                        <a href="#youtube-himad" target="_blank" rel="noopener noreferrer"
+                            class="flex gap-3 items-center no-underline hover:underline">
+                            <iconify-icon icon="lucide:youtube" width="28" height="28" aria-hidden="true"></iconify-icon>
+                            <span>{{ 'footer.social.youtube' | transloco }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-        <!-- COLONNE 2 · Comment ça marche (sous-menu) -->
-        <nav class="space-y-3" [attr.aria-label]="'footer.howItWorks.title' | transloco">
-            <h2 class="text-base font-semibold tracking-wide uppercase">{{ 'footer.howItWorks.title' | transloco }}</h2>
-            <ul class="space-y-2 text-sm">
-                <li>
-                    <a routerLink="/comment-ca-marche" fragment="cmod" class="no-underline hover:underline">
-                        {{ 'footer.howItWorks.cmod' | transloco }}
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="/comment-ca-marche" fragment="klarna" class="no-underline hover:underline">
-                        {{ 'footer.howItWorks.payment' | transloco }}
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="/comment-ca-marche" fragment="sequestre" class="no-underline hover:underline">
-                        {{ 'footer.howItWorks.escrow' | transloco }}
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="/comment-ca-marche" fragment="malfacon" class="no-underline hover:underline">
-                        {{ 'footer.howItWorks.defect' | transloco }}
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        <!-- COLONNE 3 · Contact et infos -->
-        <div class="space-y-3">
-            <h2 class="text-base font-semibold tracking-wide uppercase">{{ 'footer.contact.title' | transloco }}</h2>
-            <!-- TODO_HIMAD: adresse officielle à confirmer -->
-            <address class="text-sm not-italic whitespace-pre-line">{{ 'footer.contact.address' | transloco }}</address>
-            <a
-                href="tel:+33769619790"
-                class="block text-sm font-semibold no-underline hover:underline"
-            >
-                {{ 'footer.contact.phone' | transloco }}
-            </a>
-            <p class="text-xs opacity-70">{{ 'footer.contact.phoneNote' | transloco }}</p>
-        </div>
-
-        <!-- COLONNE 4 · Suivez-nous -->
-        <div class="space-y-3">
-            <h2 class="text-base font-semibold tracking-wide uppercase">{{ 'footer.social.title' | transloco }}</h2>
-            <ul class="space-y-3 text-sm">
-                <li>
-                    <!-- TODO_HIMAD: remplacer #youtube-himad par l'URL YouTube réelle de la chaîne Artisan Compétent. -->
-                    <a
-                        href="#youtube-himad"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="flex gap-3 items-center no-underline hover:underline"
-                    >
-                        <iconify-icon icon="lucide:youtube" width="28" height="28" aria-hidden="true"></iconify-icon>
-                        <span>{{ 'footer.social.youtube' | transloco }}</span>
-                    </a>
-                </li>
-                <li>
-                    <!-- TODO_HIMAD: remplacer #linkedin-himad par l'URL LinkedIn réelle de la page entreprise. -->
-                    <a
-                        href="#linkedin-himad"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="flex gap-3 items-center no-underline hover:underline"
-                    >
-                        <iconify-icon icon="lucide:linkedin" width="28" height="28" aria-hidden="true"></iconify-icon>
-                        <span>{{ 'footer.social.linkedin' | transloco }}</span>
-                    </a>
-                </li>
-            </ul>
         </div>
     </div>
 
-    <!-- Barre légale -->
-    <div class="px-6 py-8 mx-auto space-y-6 max-w-screen-lg border-t border-[var(--secondary-beige)]">
-        <nav class="flex flex-wrap gap-x-6 gap-y-2 justify-center text-sm" [attr.aria-label]="'footer.legal.notice' | transloco">
-            <a routerLink="/mentions-legales" class="no-underline hover:underline">
+    <!-- ── Note artisans vérifiés ** ── -->
+    <div class="px-6 pb-6 mx-auto max-w-screen-lg">
+        <p class="text-xs opacity-60 leading-relaxed">
+            {{ 'footer.legal.artisansNote' | transloco }}
+        </p>
+    </div>
+
+    <!-- ── Barre légale ── -->
+    <div class="pb-1 mx-auto max-w-screen-lg">
+        <nav class="px-6 py-6 mb-2 flex flex-wrap items-center gap-y-2 justify-center text-sm border-t border-b border-[color-mix(in_srgb,var(--primary-beige)_20%,transparent)]"
+            [attr.aria-label]="'footer.legal.notice' | transloco">
+            <a routerLink="/mentions-legales" class="no-underline hover:underline px-2">
                 {{ 'footer.legal.notice' | transloco }}
             </a>
-            <a routerLink="/politique-confidentialite" class="no-underline hover:underline">
+            <span class="opacity-30 select-none">|</span>
+            <button type="button" (click)="openConfidentialiteModal()"
+                class="hover:underline hover:opacity-80 bg-transparent border-0 text-inherit cursor-pointer text-sm px-2">
                 {{ 'footer.legal.privacy' | transloco }}
-            </a>
-            <a routerLink="/cgu" class="no-underline hover:underline">{{ 'footer.legal.cgu' | transloco }}</a>
-            <a routerLink="/cgv" class="no-underline hover:underline">{{ 'footer.legal.cgv' | transloco }}</a>
-            <a routerLink="/politique-cookies" class="no-underline hover:underline">
+            </button>
+            <span class="opacity-30 select-none">|</span>
+            <button type="button" (click)="openLegalModal()"
+                class="hover:underline hover:opacity-80 bg-transparent border-0 text-inherit cursor-pointer text-sm px-2">
+                {{ 'footer.legal.cgu' | transloco }} / {{ 'footer.legal.cgv' | transloco }}
+            </button>
+            <span class="opacity-30 select-none">|</span>
+            <button type="button" (click)="openCookiesModal()"
+                class="hover:underline hover:opacity-80 bg-transparent border-0 text-inherit cursor-pointer text-sm px-2">
                 {{ 'footer.legal.cookies' | transloco }}
+            </button>
+            <span class="opacity-30 select-none">|</span>
+            <button type="button" (click)="openAnnulationModal()"
+                class="hover:underline hover:opacity-80 bg-transparent border-0 text-inherit cursor-pointer text-sm px-2">
+                {{ 'footer.legal.cancellation' | transloco }}
+            </button>
+            <span class="opacity-30 select-none">|</span>
+            <a routerLink="/mediateur-consommation"
+                class="flex items-center gap-1 no-underline hover:underline hover:opacity-80 px-2">
+                {{ 'footer.legal.mediateur' | transloco }}
             </a>
         </nav>
-
-        <!-- Formulaire de contact universel, multi-motifs, indépendant du CMOD.
-            Accordéon fermé par défaut, peut être ouvert à la demande via ContactFormService.requestOpen(). -->
-        <div id="footer-contact-form" class="mx-auto max-w-md">
-            <accordion
-                [title]="'footer.legal.contactForm' | transloco"
-                variant="section"
-                [isOpen]="contactForm.openRequested()"
-            >
-                <app-contact-form source="footer"></app-contact-form>
-            </accordion>
-        </div>
     </div>
 
-    <!-- Copyright -->
-    <div class="px-6 py-6 mx-auto max-w-screen-lg border-t border-[var(--secondary-beige)]">
+    <!-- ── Formulaire de contact (accordéon piloté par ContactFormService) ── -->
+    <!-- <div id="footer-contact-form" class="px-6 pb-6 mx-auto max-w-md">
+        <accordion
+            [title]="'footer.legal.contactForm' | transloco"
+            variant="section"
+            [isOpen]="contactForm.openRequested()"
+        >
+            <app-contact-form source="footer"></app-contact-form>
+        </accordion>
+    </div> -->
+
+    <!-- ── Copyright ── -->
+    <!-- <div class="px-6 py-6 mx-auto max-w-screen-lg border-t border-[color-mix(in_srgb,var(--primary-beige)_20%,transparent)]">
         <small class="block text-center">{{ 'footer.copyright' | transloco }}</small>
-    </div>
+    </div> -->
+
+    <!-- ── Modale CGU/CGV ── -->
+    @if (legalModalOpen()) {
+        <legal-modal [modal]="true" (closed)="closeLegalModal()"></legal-modal>
+    }
+
+    <!-- ── Modales politiques ── -->
+    @if (annulationModalOpen()) {
+        <policy-modal [modal]="true" tab="annulation" (closed)="closeAnnulationModal()"></policy-modal>
+    }
+    @if (confidentialiteModalOpen()) {
+        <policy-modal [modal]="true" tab="confidentialite" (closed)="closeConfidentialiteModal()"></policy-modal>
+    }
+    @if (cookiesModalOpen()) {
+        <policy-modal [modal]="true" tab="cookies" (closed)="closeCookiesModal()"></policy-modal>
+    }
+
+    <!-- ── Modale formulaire de contact ── -->
+    @if (contactModalOpen()) {
+        <div
+            class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            (click)="closeContactModal()"
+            (keydown.escape)="closeContactModal()"
+        >
+            <dialog
+                open
+                class="relative w-full max-w-lg bg-white text-[var(--primary-dark)] rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto m-0 p-0 border-0"
+                (click)="$event.stopPropagation()"
+                (keydown)="$event.stopPropagation()"
+            >
+                <button
+                    type="button"
+                    (click)="closeContactModal()"
+                    class="absolute top-4 right-4 p-1 rounded-full hover:bg-gray-100 transition border-0 bg-transparent cursor-pointer"
+                    aria-label="Fermer"
+                >
+                    <iconify-icon icon="lucide:x" width="20" height="20"></iconify-icon>
+                </button>
+                <div class="p-6 pt-12">
+                    <app-contact-form source="footer" (submitted)="closeContactModal()"></app-contact-form>
+                </div>
+            </dialog>
+        </div>
+    }
 </footer>

@@ -1,0 +1,129 @@
+ol, ul, menu {
+  list-style-type: revert;
+  margin: revert;
+  padding: revert;
+}
+
+.legal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  padding: 1rem;
+}
+
+dialog.legal-modal {
+  padding: 0;
+  border: none;
+}
+
+.legal-modal {
+  background: var(--surface, #fff);
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 760px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  color: var(--secondary-water-green);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border, #e5e7eb);
+    flex-shrink: 0;
+  }
+
+  &__tabs {
+    display: flex;
+    gap: 0.5rem;
+    flex: 1;
+    flex-wrap: wrap;
+  }
+
+  &__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    transition: background 0.15s, color 0.15s;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    flex-shrink: 0;
+  }
+
+  &__body {
+    padding: 1.5rem 1.75rem;
+    overflow-y: auto;
+    flex: 1;
+    line-height: 1.7;
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-top: 1.25rem;
+      margin-bottom: 0.4rem;
+    }
+
+    h4 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    p {
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.legal-tab {
+  padding: 0.45rem 1.1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  background: transparent;
+  border: none;
+
+  &--active {
+    color: var(--primary-beige);
+    background: var(--v-grad-water-green);
+  }
+}
+
+@media (max-width: 640px) {
+  .legal-modal {
+    max-height: 95vh;
+    border-radius: 0.75rem;
+
+    &__body {
+      padding: 1.25rem 1rem;
+    }
+  }
+
+  .legal-tab {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+}

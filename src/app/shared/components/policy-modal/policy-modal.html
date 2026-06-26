@@ -1,0 +1,335 @@
+<ng-template #bodyTpl>
+    <div class="legal-modal__body">
+
+        <!-- ── POLITIQUE D'ANNULATION ── -->
+        @if (tab() === 'annulation') {
+            <h2>{{ 'policy.annulation.title' | transloco }}</h2>
+
+            <h3>1. Champ d'application</h3>
+            <p>La présente Politique d'annulation s'applique à l'ensemble des Utilisateurs de la Plateforme, à savoir les Artisans et les Particuliers, dès lors qu'un Devis a été signé entre les parties via la Plateforme.</p>
+            <p>Elle fait partie intégrante des Conditions Générales d'Utilisation (CGU).</p>
+
+            <h3>2. Rôle de la Politique</h3>
+            <p>Toute demande d'annulation d'une prestation après signature du Devis est soumise aux conditions prévues par la présente Politique.</p>
+            <p>Cette politique s'applique indistinctement à l'Artisan et au Particulier, sauf dispositions spécifiques liées au droit de rétractation.</p>
+
+            <h3>3. Droit de rétractation</h3>
+            <p>Conformément aux dispositions des articles L.221-18 et suivants du Code de la consommation, le Particulier bénéficie, en qualité de consommateur et que le contrat est conclu à distance ou hors établissement, d'un délai de rétractation de quatorze (14) jours à compter de la conclusion du contrat.</p>
+            <p>L'exercice du droit de rétractation :</p>
+            <ul>
+                <li>n'emporte aucun frais d'annulation ;</li>
+                <li>mais donne lieu à la retenue des frais de transaction et de service, lesquels ne sont pas remboursables, conformément aux CGU.</li>
+            </ul>
+            <p>En cas de demande expresse de commencement d'exécution avant la fin du délai de rétractation :</p>
+            <ul>
+                <li>le Particulier peut être tenu de payer les prestations déjà exécutées ;</li>
+                <li>et peut perdre son droit de rétractation en cas d'exécution complète avec renonciation expresse.</li>
+            </ul>
+
+            <h3>4. Annulation après expiration ou renonciation au droit de rétractation</h3>
+            <p>À l'expiration du délai de rétractation ou en cas de renonciation expresse à celui-ci, toute annulation entraîne l'application des conditions ci-dessous.</p>
+
+            <h3>5. Frais d'annulation applicables</h3>
+            <h4>5.1 Frais de gestion</h4>
+            <p>Des frais de gestion forfaitaires d'un montant de 100 €, correspondant aux coûts de traitement et de gestion supportés par la Plateforme, sont appliqués à la charge de la partie à l'origine de l'annulation de la prestation.</p>
+
+            <h4>5.2 Frais de transaction</h4>
+            <ul>
+                <li>1,5 % du montant de la transaction en cas de paiement via Stripe</li>
+                <li>4,9 % du montant de la transaction en cas de paiement via Klarna</li>
+            </ul>
+
+            <h3>6. Modalités d'annulation</h3>
+            <p>Toute demande d'annulation doit :</p>
+            <ul>
+                <li>être effectuée via la Plateforme ;</li>
+                <li>être motivée ;</li>
+                <li>intervenir avant la validation de la Réception des travaux.</li>
+            </ul>
+
+            <h3>7. Annulation en cours de prestation</h3>
+            <h4>7.1 Annulation à l'initiative ou du fait de l'Artisan</h4>
+            <p><strong>a) En cas de force majeure</strong></p>
+            <p>En cas d'annulation en cours de prestation par l'Artisan en raison d'un événement de force majeure, au sens de l'article 1218 du Code civil :</p>
+            <ul>
+                <li>les parties s'engagent à rechercher une solution amiable ;</li>
+                <li>à défaut d'accord, la Plateforme pourra proposer une solution alternative, notamment la mise en relation avec un autre Artisan ;</li>
+            </ul>
+            <p>À défaut de solution alternative, un remboursement total ou proportionnel est effectué au Particulier, en fonction de l'état d'avancement du chantier.</p>
+            <p>L'évaluation de l'état d'avancement des travaux est apprécié par les équipes d'Artisan Compétent à la date de l'annulation, en fonction de l'ensemble des prestations déjà réalisées, facturées ou constatées via les éléments disponibles sur la Plateforme, notamment devis, factures, rapports et preuves photographiques fournis par les parties et, le cas échéant, par tout moyen approprié.</p>
+
+            <p><strong>b) En l'absence de justification légitime</strong></p>
+            <p>En cas d'annulation par l'Artisan sans motif légitime ou du fait de l'Artisan, comme un abandon de chantier, un remboursement total ou proportionnel est effectué au profit du Particulier, en fonction de l'état d'avancement des travaux.</p>
+            <p>L'évaluation de l'état d'avancement des travaux est apprécié par les équipes d'Artisan Compétent à la date de l'annulation, en fonction de l'ensemble des prestations déjà réalisées, facturées ou constatées via les éléments disponibles sur la Plateforme, notamment devis, factures, rapports et preuves photographiques fournis par les parties et, le cas échéant, par tout moyen approprié.</p>
+            <p>La Plateforme pourra, le cas échéant, prendre des mesures à l'encontre de l'Artisan (suspension, résiliation du Compte, etc.).</p>
+
+            <h4>7.2 Annulation à l'initiative ou du fait du Particulier</h4>
+            <p><strong>a) Après expiration ou renonciation au droit de rétractation</strong></p>
+            <p>En cas d'annulation en cours de prestation par le Particulier, les parties sont invitées à rechercher une solution amiable. A défaut, il est procédé à une évaluation de l'état d'avancement des travaux.</p>
+            <p>Dans ce cadre :</p>
+            <ul>
+                <li>les sommes correspondant aux prestations déjà exécutées restent dues à l'Artisan ;</li>
+                <li>un remboursement partiel peut être effectué au Particulier pour les prestations non réalisées ;</li>
+            </ul>
+            <p>L'évaluation de l'état d'avancement des travaux est apprécié par les équipes d'Artisan Compétent à la date de l'annulation, en fonction de l'ensemble des prestations déjà réalisées, facturées ou constatées via les éléments disponibles sur la Plateforme, notamment devis, factures, rapports et preuves photographiques fournis par les parties et, le cas échéant, par tout moyen approprié.</p>
+
+            <p><strong>b) En cas de force majeure</strong></p>
+            <p>En cas d'annulation en cours de prestation par le Particulier en raison d'un événement de force majeure :</p>
+            <ul>
+                <li>les parties sont invitées à rechercher une solution amiable ;</li>
+                <li>à défaut, il est procédé à une évaluation de l'état d'avancement des travaux.</li>
+            </ul>
+            <p>Dans ce cadre :</p>
+            <ul>
+                <li>les sommes correspondant aux prestations déjà exécutées restent dues à l'Artisan ;</li>
+                <li>un remboursement total ou proportionnel peut être effectué au profit du Particulier pour les prestations non réalisées, au regard de l'état d'avancement du chantier ;</li>
+                <li>les frais d'annulation sont à la charge du Particulier et sont déduits du montant remboursé, le cas échéant.</li>
+            </ul>
+            <p>L'évaluation de l'état d'avancement des travaux est apprécié par les équipes d'Artisan Compétent à la date de l'annulation, en fonction de l'ensemble des prestations déjà réalisées, facturées ou constatées via les éléments disponibles sur la Plateforme, notamment devis, factures, rapports et preuves photographiques fournis par les parties et, le cas échéant, par tout moyen approprié.</p>
+
+            <p><strong>c) En l'absence de justification légitime</strong></p>
+            <p>En cas d'annulation en cours de prestation par le Particulier sans motif légitime ou du fait du Particulier :</p>
+            <ul>
+                <li>les parties sont invitées à rechercher une solution amiable ;</li>
+                <li>à défaut, il est procédé à une évaluation de l'état d'avancement des travaux.</li>
+            </ul>
+            <p>Dans ce cadre :</p>
+            <ul>
+                <li>les sommes correspondant aux prestations déjà exécutées restent dues à l'Artisan ;</li>
+                <li>un remboursement total ou proportionnel peut être effectué au profit du Particulier pour les prestations non réalisées, au regard de l'état d'avancement du chantier ;</li>
+                <li>les frais d'annulation sont à la charge du Particulier et sont déduits du montant remboursé, le cas échéant.</li>
+            </ul>
+            <p>L'évaluation de l'état d'avancement des travaux est apprécié par les équipes d'Artisan Compétent à la date de l'annulation, en fonction de l'ensemble des prestations déjà réalisées, facturées ou constatées via les éléments disponibles sur la Plateforme, notamment devis, factures, rapports et preuves photographiques fournis par les parties et, le cas échéant, par tout moyen approprié.</p>
+
+            <h3>8. Effets de l'annulation</h3>
+            <p>L'annulation prend effet à la date de validation sur la Plateforme, après confirmation par les parties ou, à défaut, après constat par les équipes d'Artisan Compétent dans le cadre de la procédure de litige.</p>
+            <p>Les remboursements sont effectués selon les modalités prévues ci-dessus. Les remboursements sont effectués dans un délai raisonnable ne pouvant excéder 14 jours à compter de la validation de l'annulation.</p>
+            <p>Les Frais, notamment les frais de services et frais de transaction restent acquis à la Plateforme, conformément aux CGU.</p>
+
+            <h3>9. Articulation avec les CGU</h3>
+            <p>La procédure de gestion des litiges prévue dans les CGU s'applique cumulativement avec la présente Politique d'annulation, qui précise les modalités applicables à ces situations. L'application de l'ensemble de ces règles s'effectue par les équipes d'Artisan Compétent dans le cadre de la procédure de gestion des litiges.</p>
+            <p>Les présentes dispositions n'affectent pas les garanties légales applicables, notamment la responsabilité contractuelle et les assurances obligatoires de l'Artisan, comme indiqué dans les CGU.</p>
+        }
+
+        <!-- ── POLITIQUE DE CONFIDENTIALITÉ ── -->
+        @if (tab() === 'confidentialite') {
+            <h2>{{ 'policy.confidentialite.title' | transloco }}</h2>
+            <p><em>Version du 21 avril 2026</em></p>
+            <p>La présente Politique de confidentialité a pour objet de vous informer de manière transparente sur la manière dont vos données personnelles sont traitées par Artisan Compétent, comment et pourquoi.</p>
+            <p>Vous y trouverez également un rappel des droits dont vous disposez sur vos données ainsi que toutes les informations utiles pour les exercer.</p>
+            <p>Dans le cadre de l'utilisation de nos services, notamment de la Plateforme, Artisan Compétent agit en qualité de responsable du traitement des données personnelles collectées pour les traitements décrits ci-dessous.</p>
+
+            <h3>I - Quelles données personnelles traitons-nous ?</h3>
+            <p>Dans le cadre de l'utilisation de nos services, nous pouvons collecter les catégories de données suivantes :</p>
+            <ul>
+                <li>Données d'identification et coordonnées</li>
+                <li>Données de connexion</li>
+                <li>Données techniques</li>
+                <li>Données de communication (messages, tickets support)</li>
+                <li>Données relatives aux prestations (devis, informations travaux, factures, photos, procès-verbaux)</li>
+                <li>Données relatives à l'identité, aux obligations et aux justificatifs professionnelle : (assurances, qualifications, justificatifs d'identité...)</li>
+                <li>Données bancaires et de transaction (IBAN, historique des prestations, montants, factures...)</li>
+            </ul>
+            <p>Ces données sont collectées directement auprès de vous, notamment lors de la création de votre compte, de vos échanges sur la plateforme, de la soumission d'un formulaire de contact, et plus généralement lors de l'utilisation de la Plateforme.</p>
+
+            <h3>II - Quelle utilisation faisons-nous de vos données personnelles ?</h3>
+            <p>Nous utilisons vos données personnelles de manière responsable, pour des finalités précises, déterminées et légitimes.</p>
+            <p>Nous utilisons vos données pour les finalités suivantes :</p>
+
+            <h4>Exécuter les contrats et mesures pré-contractuelles</h4>
+            <p>Ces traitements sont nécessaires à l'exécution du contrat conclu avec les utilisateurs ou à l'exécution de mesures pré-contractuelles prises à leur demande, et conditionnent l'accès et l'utilisation des services proposés sur la plateforme.</p>
+
+            <p><strong>Gestion des comptes utilisateurs</strong></p>
+            <ul>
+                <li>Création et gestion du compte</li>
+                <li>Authentification et accès aux services</li>
+                <li>Transmission et stockage des documents relatifs à l'identité, aux obligations légales et aux justificatifs</li>
+            </ul>
+
+            <p><strong>Mise en relation entre utilisateurs</strong></p>
+            <ul>
+                <li>Publication d'annonces</li>
+                <li>Mise en relation entre les Utilisateurs via Matching</li>
+                <li>Messagerie</li>
+            </ul>
+
+            <p><strong>Gestion des prestations</strong></p>
+            <ul>
+                <li>Suivi des prestations</li>
+                <li>Échanges lié à la prestation</li>
+                <li>Transmission et stockage de documents (justificatifs, photos, informations travaux)</li>
+            </ul>
+
+            <p><strong>Gestion contractuelle</strong></p>
+            <ul>
+                <li>Signature électronique des devis</li>
+                <li>Signature des procès-verbaux de réception</li>
+                <li>Stockages des documents contractuels</li>
+            </ul>
+
+            <p><strong>Gestion des transactions</strong></p>
+            <ul>
+                <li>Paiement</li>
+                <li>Facturation</li>
+                <li>Suivi de la transaction</li>
+                <li>Lutte contre la fraude liée aux transactions</li>
+            </ul>
+
+            <p><strong>Support client</strong></p>
+            <ul>
+                <li>Traitement des demandes d'assistance</li>
+                <li>Gestion des réclamations et des litiges</li>
+            </ul>
+
+            <h4>Fluidifier, sécuriser et développer notre activité en poursuivant nos intérêts légitimes</h4>
+            <p>Ces traitements visent à garantir la sécurité de la plateforme et à prévenir les comportements abusifs.</p>
+            <p><strong>Sécurité de la plateforme</strong></p>
+            <ul>
+                <li>Sécurisation des accès et des réseaux</li>
+                <li>Authentification et préventions des accès non autorisés</li>
+                <li>Prévention et détection de la fraude</li>
+            </ul>
+
+            <h4>Effectuer des communications commerciales sur la base de notre intérêt légitime ou de votre consentement</h4>
+            <p>Ces traitements ont pour finalité de vous informer, de promouvoir nos services et d'améliorer notre offre, sur la base de notre intérêt légitime ou de votre consentement selon les cas.</p>
+            <p><strong>Marketing</strong></p>
+            <ul>
+                <li>Newsletter via Plateforme et par courriel</li>
+                <li>Prospection commerciale et promotionnelle</li>
+                <li>Transmission d'information à des partenaires commerciaux</li>
+                <li>Réalisation d'études statistiques et enquête de satisfaction</li>
+                <li>Affiliation</li>
+                <li>Cookies traceurs</li>
+            </ul>
+
+            <h3>III - Combien de temps conservons-nous vos données personnelles ?</h3>
+            <p>La durée de conservation de vos données personnelles varie en fonction de la finalité de leurs collectes :</p>
+            <ul>
+                <li>Les données relatives à la gestion de votre compte utilisateur (données d'identification, coordonnées, données de connexion, données relatives à l'identité, aux obligations légales et aux justificatifs professionnels) sont conservées pendant toute la durée d'activation du compte, puis supprimées après une période d'inactivité de 3 ans ;</li>
+                <li>Les données relatives à la mise en relation entre utilisateurs (profil, informations de mise en relation, annonces) sont conservées pendant la durée d'activation du compte utilisateur, puis supprimées après une période d'inactivité de 3 ans ;</li>
+                <li>Les données relatives à la gestion des prestations (informations sur les travaux, devis, photos de chantier, procès-verbaux de réception, échanges) sont conservées pendant la durée de la relation contractuelle, puis archivées pendant une durée pouvant aller jusqu'à 10 ans, notamment à des fins de preuve au regard des garanties légales applicables ;</li>
+                <li>Les données relatives à la gestion contractuelle (documents contractuels, signatures électroniques, éléments de preuve) sont conservées pendant la durée de la relation contractuelle, puis archivées pendant une durée de 5 à 10 ans à des fins de preuve au regard des garanties légales applicables ;</li>
+                <li>Les données relatives à la gestion des transactions (historique des prestations, montants, factures) sont conservées pendant 10 ans à compter de la clôture de l'exercice comptable, conformément aux obligations légales ;</li>
+                <li>Les données relatives à la sécurité de la plateforme (logs de connexion, adresses IP, données techniques) sont conservées pendant une durée maximale de 6 mois à 1 an, selon leur nature et, le cas échéant, un archivage en cas d'incident de sécurité ;</li>
+                <li>Les données relatives au support client sont conservées pendant la durée de traitement de la demande, puis archivées pendant une durée de 5 ans à des fins de preuve en cas de litige (prescription civile) ;</li>
+                <li>Les données utilisées à des fins de marketing, notamment de prospection commerciale et de newsletter sont conservées pendant une durée de 3 ans à compter du dernier contact ou à compter de l'opposition ou du retrait du consentement.</li>
+            </ul>
+
+            <h3>IV - Qui peut accéder à vos données ?</h3>
+            <p>Nous ne communiquons vos données qu'aux personnes dûment autorisées à les utiliser pour vous fournir notre service.</p>
+
+            <p><strong>Services internes</strong></p>
+            <p>Vos données personnelles peuvent être accessibles aux services internes habilitées d'ARTISAN COMPÉTENT, uniquement dans la limite de leurs missions, notamment de support client, de comptabilité et de sécurité informatique.</p>
+
+            <p><strong>Utilisateurs</strong></p>
+            <p>Elles peuvent également être communiquées aux utilisateurs de la plateforme, notamment dans le cadre de la mise en relation ou lorsque cela est nécessaire à la réalisation des prestations.</p>
+
+            <p><strong>Partenaires commerciaux</strong></p>
+            <p>Vos données personnelles peuvent être communiquées à nos partenaires commerciaux à des fins de prospection commerciales.</p>
+            <p>Nous ne partageons pas vos données personnelles avec nos partenaires tiers sans votre consentement.</p>
+
+            <p><strong>Prestataires</strong></p>
+            <p>Les données que nous recueillons peuvent être communiquées à nos prestataires de services, agissant en qualité de sous-traitants, qui concourent à la réalisation des finalités visées ci-dessus (prestataire d'hébergement, prestataire de service de paiement, prestataire publicitaire…). Ils ont un accès aux seules données personnelles nécessaires à la réalisation de leur mission.</p>
+            <p>Certains prestataires techniques ou outils pouvant être localisés hors de l'Union européenne, des transferts hors UE peuvent intervenir. Dans ce cas, nous nous assurons que ces transferts sont encadrés par des garanties appropriées conformément à la réglementation applicable.</p>
+
+            <p><strong>Autorités administratives et judiciaires</strong></p>
+            <p>Afin de respecter nos obligations légales, vos données personnelles peuvent être transmises à tout tiers autorisé, par exemple les autorités administratives et judiciaires autorisées, en cas de réquisition judiciaire.</p>
+
+            <h3>V - Quels sont vos droits et comment les faire valoir ?</h3>
+            <p>Vous disposez, dans les conditions prévues par la réglementation, des droits suivants :</p>
+            <ul>
+                <li>Droit d'accès.</li>
+                <li>Droit de rectification.</li>
+                <li>Droit d'effacement.</li>
+                <li>Droit à la limitation du traitement.</li>
+                <li>Droit d'opposition à l'utilisation de vos données personnelles lorsque leur traitement repose sur notre intérêt légitime, notamment à la prospection lorsqu'il s'agit de professionnels.</li>
+                <li>Droit à la portabilité, lorsque applicable.</li>
+                <li>Droit de retirer votre consentement à tout moment, lorsque le traitement repose sur le consentement. Cela concerne notamment la prospection commerciale lorsqu'il s'agit d'un consommateur.</li>
+                <li>Un droit à définir des instructions concernant la conservation, l'effacement et la communication de vos données personnelles, après votre décès.</li>
+                <li>Un droit de réclamation auprès de la CNIL.</li>
+            </ul>
+            <p>Pour exercer l'ensemble de vos droits mentionnés ci-avant, ou pour toute question relative aux traitements de vos données, vous pouvez vous adresser au Délégué à la Protection des Données (DPD) d'Artisan Compétent, par mail : dpd&#64;artisancompétent.com</p>
+
+            <h3>VI - Comment protégeons-nous vos données ?</h3>
+            <p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées afin de protéger vos données contre la perte, l'accès non autorisé, l'altération ou la divulgation.</p>
+            <p>À ce titre, nous utilisons notamment des mesures telles que le chiffrement des données via HTTPS, un mot de passe robuste, une protection contre les bots, le hashage des mots de passe ainsi que l'usage d'un token utilisateur.</p>
+
+            <h3>Modification de la politique</h3>
+            <p>Nous sommes susceptibles de modifier notre politique de confidentialité à tout moment pour l'adapter aux nouvelles exigences légales ainsi qu'aux nouveaux traitements que nous pourrions mettre en œuvre dans le futur.</p>
+        }
+
+        <!-- ── POLITIQUE DES COOKIES ── -->
+        @if (tab() === 'cookies') {
+            <h2>{{ 'policy.cookies.title' | transloco }}</h2>
+
+            <h3>Bandeau Cookies</h3>
+            <p>Afin de vous offrir la meilleure expérience possible, nous, Artisan Compétent et nos partenaires, utilisons des cookies ou traceurs.</p>
+            <p>Pour vous garantir le bon fonctionnement de notre site et l'utilisation sécurisée de nos services, certains cookies ou traceurs sont indispensables et déposés automatiquement.</p>
+            <p>D'autres cookies ou traceurs sont utiles mais facultatifs, afin de diffuser des publicités personnalisées, réaliser des mesures d'audience, personnaliser le contenu et les communications et améliorer les produits et l'expérience utilisateur.</p>
+            <p>En cliquant sur « Accepter », vous consentez à l'utilisation de cookies pour l'ensemble des finalités ci-dessus. Vous pouvez également configurer vos choix finalité par finalité en cliquant sur « Paramétrer vos choix » ou refuser en cliquant sur « Refuser ».</p>
+            <p>Vos choix sont exclusivement valables sur le navigateur que vous utilisez actuellement. Si vous supprimez vos cookies, nous ne serons plus en mesure de connaître vos choix et vous solliciterons à nouveau. Pour en savoir plus sur l'utilisation des cookies lors de votre utilisation du service, consultez notre Politique Cookies.</p>
+
+            <h3>Politique Cookies</h3>
+            <p>Nous et nos partenaires utilisons des traceurs dont des cookies pour faire fonctionner le site internet ou l'application mobile, personnaliser votre navigation, réaliser des mesures d'audience et pour vous proposer des contenus et des publicités personnalisés.</p>
+            <p>Cette politique a pour objectif de vous informer :</p>
+            <ul>
+                <li>sur l'utilisation que nous et nos partenaires faisons des cookies ou traceurs que nous déposons,</li>
+                <li>sur la manière dont vous pouvez exprimer vos préférences.</li>
+            </ul>
+
+            <h4>Qu'est-ce qu'un cookie/traceur ?</h4>
+            <p>La notion de traceur englobe les outils permettant la lecture et/ou l'écriture sur le terminal de l'utilisateur.</p>
+            <p>Le cookie est un petit fichier texte qui est transmis à votre navigateur web (Chrome, Safari, Firefox par exemple…) et est stocké par celui-ci lorsque vous consultez des sites internet ou une application mobile et ce, quel que soit le type de terminal utilisé (ordinateur, smartphone, tablette, etc.). Ce fichier permet de conserver une trace de votre navigation et de vous proposer notamment des contenus et des publicités personnalisés.</p>
+            <p>Un cookie a une durée de validité limitée. Son dépôt et son stockage sur votre terminal se font dans le respect de la législation applicable et sous réserve des choix que vous avez exprimés et que vous pouvez modifier à tout moment.</p>
+
+            <h4>Quels sont les cookies déposés ou traceurs utilisés lors de votre navigation ?</h4>
+            <p>Les cookies ou traceurs poursuivent des finalités différentes.</p>
+
+            <p><strong>Les cookies ou traceurs essentiels au fonctionnement du site</strong></p>
+            <p>Ces cookies sont indispensables aux fonctionnalités essentielles du service et ne peuvent pas être désactivés.</p>
+
+            <p><strong>Les cookies ou traceurs de mesure d'audience</strong></p>
+            <p>Ces cookies servent à réaliser des statistiques pour mesurer et analyser l'audience de notre site et de nos applications (ex. fréquentation du site, nombre de pages vues, temps moyen par visite, etc.) et nous aident ainsi à améliorer la qualité de nos services.</p>
+            <p>L'utilisation de ces cookies ou traceurs ne peut se faire qu'avec votre consentement. Le refus de ces cookies ou traceurs n'a pas d'impact sur l'utilisation de notre site internet. Sachez que vous pouvez à tout moment modifier vos préférences sur le dépôt et l'utilisation des cookies ou traceurs par le biais de votre navigateur.</p>
+
+            <p><strong>Les cookies ou traceurs de personnalisation du contenu et des communications marketing</strong></p>
+            <p>Ces cookies vous permettent de bénéficier de communications et/ou d'offres promotionnelles adaptées à votre profil, votre navigation et vos usages de notre service.</p>
+            <p>L'utilisation de ces cookies ou traceurs ne peut se faire qu'avec votre consentement. Le refus de ces cookies ou traceurs n'a pas d'impact sur l'utilisation de notre site internet. Sachez que vous pouvez à tout moment modifier vos préférences sur le dépôt et l'utilisation des cookies ou traceurs par le biais de votre navigateur.</p>
+
+            <p><strong>Les cookies ou traceurs d'optimisation de l'expérience utilisateur</strong></p>
+            <p>Ces cookies vous permettent de bénéficier d'une meilleure expérience sur notre site.</p>
+            <p>L'utilisation de ces cookies ou traceurs ne peut se faire qu'avec votre consentement. Le refus de ces cookies ou traceurs n'a pas d'impact sur l'utilisation de notre site internet. Sachez que vous pouvez à tout moment modifier vos préférences sur le dépôt et l'utilisation des cookies ou traceurs par le biais de votre navigateur.</p>
+
+            <p><strong>Les cookies ou traceurs publicitaires</strong></p>
+            <p>Les cookies ou traceurs publicitaires sont utilisés pour vous proposer des publicités personnalisées adaptées à votre profil, vos centres d'intérêt et vos usages de notre service.</p>
+            <p>L'utilisation de ces cookies ou traceurs ne peut se faire qu'avec votre consentement. Le refus de ces cookies ou traceurs n'a pas d'impact sur l'utilisation de notre site internet. Cependant le fait de les refuser n'entraînera pas l'arrêt de la publicité. Cela aura seulement pour effet d'afficher une publicité qui ne tiendra pas compte de vos centres d'intérêt.</p>
+            <p>Sachez que vous pouvez à tout moment modifier vos préférences sur le dépôt et l'utilisation des cookies ou traceurs par le biais de votre navigateur.</p>
+
+            <p><strong>Les cookies ou traceurs d'affiliation</strong></p>
+            <p>Ces cookies permettent d'assurer le suivi de l'activité des utilisateurs lorsqu'ils accèdent à la plateforme via des sites ou partenaires affiliés. Lorsqu'un utilisateur clique sur un lien d'affiliation, un identifiant unique est enregistré dans un cookie, permettant d'identifier l'origine de la visite et d'associer les actions réalisées sur la plateforme (inscription, demande de mise en relation, commande, etc.) au partenaire affilié concerné.</p>
+            <p>L'utilisation de ces cookies ou traceurs ne peut se faire qu'avec votre consentement. Le refus de ces cookies ou traceurs n'a pas d'impact sur l'utilisation de notre site internet. Sachez que vous pouvez à tout moment modifier vos préférences sur le dépôt et l'utilisation des cookies ou traceurs par le biais de votre navigateur.</p>
+        }
+
+    </div>
+</ng-template>
+
+<!-- ── Mode overlay ── -->
+@if (modal()) {
+    <div class="legal-overlay" (click)="onOverlayClick($event)" (keydown.escape)="close()">
+        <dialog open class="legal-modal" (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
+            <div class="legal-modal__header">
+                <h2 class="text-base font-semibold m-0">
+                    @if (tab() === 'annulation') { {{ 'policy.annulation.title' | transloco }} }
+                    @if (tab() === 'confidentialite') { {{ 'policy.confidentialite.title' | transloco }} }
+                    @if (tab() === 'cookies') { {{ 'policy.cookies.title' | transloco }} }
+                </h2>
+                <button class="legal-modal__close" (click)="close()" type="button" aria-label="Fermer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <ng-container *ngTemplateOutlet="bodyTpl" />
+        </dialog>
+    </div>
+}
