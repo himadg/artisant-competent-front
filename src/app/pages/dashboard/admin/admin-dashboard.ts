@@ -53,7 +53,7 @@ export class AdminDashboard implements OnInit {
   }
 
   approveUser(id: string) {
-    if (!confirm('Êtes-vous sûr de vouloir valider cet artisan ? Il sera modal publiquement.')) return;
+    if (!confirm('Êtes-vous sûr de vouloir valider cet artisan ? Il sera visible publiquement.')) return;
     this.adminApi.updateUserStatus(id, 'ACTIVE').subscribe({
       next: () => {
         this.selectedUser.set(null);

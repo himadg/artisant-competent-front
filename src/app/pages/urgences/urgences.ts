@@ -7,9 +7,9 @@ import { TRADES, TradeInfo } from '../../data/trades';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoModule, RouterModule],
-  templateUrl: './jobs.html',
-  styleUrl: './jobs.scss',
+  templateUrl: './urgences.html',
+  styleUrl: './urgences.scss',
 })
-export class JobsPage {
-  readonly trades: TradeInfo[] = TRADES;
+export class UrgencesPage {
+  readonly trades: TradeInfo[] = TRADES.filter((t) => t.isOnCall);
 }
