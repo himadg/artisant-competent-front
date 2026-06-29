@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, DestroyRef, OnInit, inject, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, DestroyRef, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Meta } from '@angular/platform-browser';
@@ -16,7 +16,6 @@ import { Accordion } from '../../shared/components/accordion';
 })
 export class HomePage implements OnInit {
   readonly reviewsEnabled = false;
-  readonly urgencesDetailOpen = signal(false);
 
   private readonly meta = inject(Meta);
   private readonly transloco = inject(TranslocoService);

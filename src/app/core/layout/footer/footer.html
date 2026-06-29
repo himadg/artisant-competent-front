@@ -182,20 +182,20 @@
     <!-- ── Modale formulaire de contact ── -->
     @if (contactModalOpen()) {
         <div
-            class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm mt-[var(--top-banners-h)]"
             (click)="closeContactModal()"
             (keydown.escape)="closeContactModal()"
         >
             <dialog
                 open
-                class="relative w-full max-w-lg bg-white text-[var(--primary-dark)] rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto m-0 p-0 border-0"
+                class="relative w-full max-w-lg bg-white text-[var(--primary-dark)] rounded-2xl shadow-2xl h-[100%] overflow-y-auto m-0 p-0 border-0"
                 (click)="$event.stopPropagation()"
                 (keydown)="$event.stopPropagation()"
             >
                 <button
                     type="button"
                     (click)="closeContactModal()"
-                    class="absolute top-4 right-4 p-1 rounded-full hover:bg-gray-100 transition border-0 bg-transparent cursor-pointer"
+                    class="absolute top-4 right-4 p-1 border-0 bg-transparent cursor-pointer text-[var(--color)]"
                     aria-label="Fermer"
                 >
                     <iconify-icon icon="lucide:x" width="20" height="20"></iconify-icon>
