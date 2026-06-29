@@ -1,8 +1,8 @@
 {
   "banner": {
     "klarna": {
-      "textBefore": "Pay in 3 instalments with",
-      "textAfter": ", subject to conditions"
+      "textBefore": "Pay in 3 instalments with no fees with",
+      "textAfter": ", subject to conditions *"
     }
   },
   "prelaunch": {
@@ -467,8 +467,8 @@
           "desc": "Secured and released only after validation of the acceptance report."
         },
         {
-          "title": "Pay in 3 instalments free of charge via Klarna *",
-          "desc": "Under Klarna conditions, for amounts up to €1,500 or more depending on your creditworthiness and if the craftsman accepts this payment facility."
+          "title": "Pay in 3 instalments free of charge via Klarna",
+          "desc": "* Under Klarna conditions, for amounts up to €1,500 or more depending on your creditworthiness and if the craftsman accepts this payment facility."
         },
         {
           "title": "Unalterable digital tracking",

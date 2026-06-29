@@ -21,4 +21,31 @@
             </a>
         }
     </div>
+
+    <!-- Détails des interventions d'urgence -->
+    <div class="border rounded-lg p-6 space-y-4">
+        <p>{{ 'home.emergency.description.p1' | transloco }}</p>
+        <p>{{ 'home.emergency.description.p2' | transloco }}</p>
+        <p>{{ 'home.emergency.description.p3' | transloco }}</p>
+        <p>{{ 'home.emergency.description.p4' | transloco }}</p>
+        <ul class="pl-6 space-y-1 list-disc">
+            @for (item of $any('home.emergency.description.list1' | transloco); track $index) {
+                <li>{{ item }}</li>
+            }
+        </ul>
+        <p>{{ 'home.emergency.description.p5' | transloco }}</p>
+        <p>{{ 'home.emergency.description.p6' | transloco }}</p>
+        <p>{{ 'home.emergency.description.p7' | transloco }}</p>
+        <p>{{ 'home.emergency.description.p8' | transloco }}</p>
+        <p>{{ 'home.emergency.description.p9' | transloco }}</p>
+        <p>{{ 'home.emergency.description.p10' | transloco }}</p>
+        <p>{{ 'home.emergency.description.p11' | transloco }}</p>
+        <p>{{ 'home.emergency.description.p12' | transloco }}</p>
+        <ul class="pl-6 space-y-1 list-disc">
+            @for (item of $any('home.emergency.description.list2' | transloco); track $index) {
+                <li>{{ item }}</li>
+            }
+        </ul>
+        <p>{{ 'home.emergency.description.p13' | transloco }}</p>
+    </div>
 </section>

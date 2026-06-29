@@ -1,8 +1,8 @@
 {
   "banner": {
     "klarna": {
-      "textBefore": "Payez en 3 fois avec",
-      "textAfter": ", sous conditions"
+      "textBefore": "Payez en 3 fois sans frais avec",
+      "textAfter": ", sous conditions *"
     }
   },
   "prelaunch": {
@@ -388,7 +388,7 @@
     },
     "petitsTravaux": {
       "h2": "TOUS LES PETITS TRAVAUX, UNE SEULE PLATEFORME DE CONFIANCE.",
-      "subtitle": "En plus des urgences, nos artisans vous accompagnent pour tous vos petits travaux, dès les délais courts, chantier planifié, ou projet plus important :",
+      "subtitle": "En plus des urgences, nos artisans vous accompagnent pour tous vos petits travaux, délais courts, chantier planifié, ou projet plus important :",
       "subtitleBold": "8 métiers à votre service",
       "subtitleEnd": ", on s'occupe de tout.",
       "tradeLink": "Détails du métier",
@@ -467,8 +467,8 @@
           "desc": "Sécurisé et libéré uniquement après validation du procès-verbal."
         },
         {
-          "title": "Paiement en 3 fois sans frais via Klarna *",
-          "desc": "Sous conditions Klarna, pour des montants jusqu'à 1 500 € voire plus selon votre solvabilité et si l'artisan accepte cette facilité de paiement."
+          "title": "Paiement en 3 fois sans frais via Klarna",
+          "desc": "* Sous conditions Klarna, pour des montants jusqu'à 1 500 € voire plus selon votre solvabilité et si l'artisan accepte cette facilité de paiement."
         },
         {
           "title": "Suivi digital inaltérable",

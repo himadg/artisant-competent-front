@@ -413,7 +413,7 @@
                         }
                     }
                     <p class="text-xs font-semibold md:text-sm">{{ step.title }}</p>
-                    <p class="text-xs hidden md:block">{{ step.desc }}</p>
+                    <p class="text-xs">{{ step.desc }}</p>
                 </li>
             }
         </ol>
@@ -548,47 +548,14 @@
                 <iconify-icon icon="lucide:users" width="18" height="18" aria-hidden="true"></iconify-icon>
                 {{ 'home.urgences.cta.pro' | transloco }}
             </a>
-            <button
-                type="button"
-                (click)="urgencesDetailOpen.set(!urgencesDetailOpen())"
-                class="flex items-center justify-center gap-2 px-5 py-3 rounded-lg font-semibold cursor-pointer bg-[var(--tertiary-brown)] text-[var(--primary-beige)] border-0"
+            <a
+                routerLink="/urgences"
+                class="flex items-center justify-center gap-2 px-5 py-3 rounded-lg font-semibold no-underline bg-[var(--tertiary-brown)] text-[var(--primary-beige)]"
             >
                 <iconify-icon icon="lucide:info" width="18" height="18" aria-hidden="true"></iconify-icon>
                 {{ 'home.urgences.cta.moreInfo' | transloco }}
-                <iconify-icon
-                    [attr.icon]="urgencesDetailOpen() ? 'lucide:chevron-up' : 'lucide:chevron-down'"
-                    width="16" height="16" aria-hidden="true"
-                ></iconify-icon>
-            </button>
+            </a>
         </div>
-
-        @if (urgencesDetailOpen()) {
-            <div class="border rounded-lg p-4 space-y-3">
-                <p>{{ 'home.emergency.description.p1' | transloco }}</p>
-                <p>{{ 'home.emergency.description.p2' | transloco }}</p>
-                <p>{{ 'home.emergency.description.p3' | transloco }}</p>
-                <p>{{ 'home.emergency.description.p4' | transloco }}</p>
-                <ul class="pl-6 space-y-1 list-disc">
-                    @for (item of $any('home.emergency.description.list1' | transloco); track $index) {
-                        <li>{{ item }}</li>
-                    }
-                </ul>
-                <p>{{ 'home.emergency.description.p5' | transloco }}</p>
-                <p>{{ 'home.emergency.description.p6' | transloco }}</p>
-                <p>{{ 'home.emergency.description.p7' | transloco }}</p>
-                <p>{{ 'home.emergency.description.p8' | transloco }}</p>
-                <p>{{ 'home.emergency.description.p9' | transloco }}</p>
-                <p>{{ 'home.emergency.description.p10' | transloco }}</p>
-                <p>{{ 'home.emergency.description.p11' | transloco }}</p>
-                <p>{{ 'home.emergency.description.p12' | transloco }}</p>
-                <ul class="pl-6 space-y-1 list-disc">
-                    @for (item of $any('home.emergency.description.list2' | transloco); track $index) {
-                        <li>{{ item }}</li>
-                    }
-                </ul>
-                <p>{{ 'home.emergency.description.p13' | transloco }}</p>
-            </div>
-        }
     </section>
 
     <!-- ══════════════════════════════════════════════════
