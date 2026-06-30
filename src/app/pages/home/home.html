@@ -717,73 +717,101 @@
     <section id="bloc-info" class="!mt-12 space-y-6">
         <!-- 4 cartes — 2 colonnes sur mobile -->
         <ul class="grid grid-cols-1 md:grid-cols-4 gap-4 list-none p-0 m-0">
-            @for (card of $any('home.blocInfo.cards' | transloco); track $index) {
-                <li>
-                    <a
-                        [routerLink]="$index === 2 ? ['/auth/register'] : ['/']"
-                        [queryParams]="$index === 2 ? { t: 'professional' } : undefined"
-                        [fragment]="$index === 0 ? 'protection' : $index === 1 ? 'comment-ca-marche' : undefined"
-                        class="flex flex-col items-center text-center gap-3 p-4 rounded-xl border no-underline hover:shadow-md transition h-full"
-                    >
-                        <div class="flex flex-col items-center gap-2 md:min-h-[8.5rem]">
-                            @switch ($index) {
-                                @case (0) {
-                                    <iconify-icon
-                                        icon="lucide:file-badge"
-                                        width="44"
-                                        height="44"
-                                        style="color: var(--tertiary-brown)"
-                                        aria-hidden="true"
-                                    ></iconify-icon>
-                                }
-                                @case (1) {
-                                    <iconify-icon
-                                        icon="lucide:clipboard-list"
-                                        width="44"
-                                        height="44"
-                                        style="color: var(--tertiary-brown)"
-                                        aria-hidden="true"
-                                    ></iconify-icon>
-                                }
-                                @case (2) {
-                                    <iconify-icon
-                                        icon="lucide:hard-hat"
-                                        width="44"
-                                        height="44"
-                                        style="color: var(--tertiary-brown)"
-                                        aria-hidden="true"
-                                    ></iconify-icon>
-                                }
-                                @case (3) {
-                                    <img
-                                        class="text-center size-[44px]"
-                                        src="assets/img/logo.webp"
-                                        alt="Artisan Competent"
-                                    />
-                                }
-                            }
-                            <p class="text-xs font-bold md:text-sm" style="white-space: pre-line">{{ card.title }}</p>
-                        </div>
 
-                        <!-- vertical séparator -->
-                        <div
-                            class="w-24 md:w-12 h-[2px] md:h-[3px] bg-[var(--tertiary-brown)] rounded mx-auto shrink-0"
-                        ></div>
+            <!-- Carte 1 — L'encadrement en détail -->
+            <li>
+                <a
+                    routerLink="/guidance"
+                    class="flex flex-col items-center text-center gap-3 p-4 rounded-xl border no-underline hover:shadow-md transition h-full"
+                >
+                    <div class="flex flex-col items-center gap-2 md:min-h-[8.5rem]">
+                        <iconify-icon
+                            icon="lucide:file-badge"
+                            width="44"
+                            height="44"
+                            style="color: var(--tertiary-brown)"
+                            aria-hidden="true"
+                        ></iconify-icon>
+                        <p class="text-xs font-bold md:text-sm">{{ 'home.blocInfo.card1.title' | transloco }}</p>
+                    </div>
+                    <div class="w-24 md:w-12 h-[2px] md:h-[3px] bg-[var(--tertiary-brown)] rounded mx-auto shrink-0"></div>
+                    <p class="text-xs">{{ 'home.blocInfo.card1.desc' | transloco }}</p>
+                    <span class="mt-auto flex items-center justify-center w-9 h-9 rounded-full shrink-0 bg-[var(--tertiary-brown)] text-[var(--primary-beige)]">
+                        <iconify-icon icon="lucide:chevron-right" width="20" height="20" aria-hidden="true"></iconify-icon>
+                    </span>
+                </a>
+            </li>
 
-                        <p class="text-xs">{{ card.desc }}</p>
-                        <span
-                            class="mt-auto flex items-center justify-center w-9 h-9 rounded-full shrink-0 bg-[var(--tertiary-brown)] text-[var(--primary-beige)]"
-                        >
-                            <iconify-icon
-                                icon="lucide:chevron-right"
-                                width="20"
-                                height="20"
-                                aria-hidden="true"
-                            ></iconify-icon>
-                        </span>
-                    </a>
-                </li>
-            }
+            <!-- Carte 2 — Les étapes -->
+            <li>
+                <a
+                    routerLink="/steps"
+                    class="flex flex-col items-center text-center gap-3 p-4 rounded-xl border no-underline hover:shadow-md transition h-full"
+                >
+                    <div class="flex flex-col items-center gap-2 md:min-h-[8.5rem]">
+                        <iconify-icon
+                            icon="lucide:clipboard-list"
+                            width="44"
+                            height="44"
+                            style="color: var(--tertiary-brown)"
+                            aria-hidden="true"
+                        ></iconify-icon>
+                        <p class="text-xs font-bold md:text-sm">{{ 'home.blocInfo.card2.title' | transloco }}</p>
+                    </div>
+                    <div class="w-24 md:w-12 h-[2px] md:h-[3px] bg-[var(--tertiary-brown)] rounded mx-auto shrink-0"></div>
+                    <p class="text-xs">{{ 'home.blocInfo.card2.desc' | transloco }}</p>
+                    <span class="mt-auto flex items-center justify-center w-9 h-9 rounded-full shrink-0 bg-[var(--tertiary-brown)] text-[var(--primary-beige)]">
+                        <iconify-icon icon="lucide:chevron-right" width="20" height="20" aria-hidden="true"></iconify-icon>
+                    </span>
+                </a>
+            </li>
+
+            <!-- Carte 3 — Professionnels -->
+            <li>
+                <a
+                    routerLink="/espace-professionnel"
+                    class="flex flex-col items-center text-center gap-3 p-4 rounded-xl border no-underline hover:shadow-md transition h-full"
+                >
+                    <div class="flex flex-col items-center gap-2 md:min-h-[8.5rem]">
+                        <iconify-icon
+                            icon="lucide:hard-hat"
+                            width="44"
+                            height="44"
+                            style="color: var(--tertiary-brown)"
+                            aria-hidden="true"
+                        ></iconify-icon>
+                        <p class="text-xs font-bold md:text-sm" style="white-space: pre-line">{{ 'home.blocInfo.card3.title' | transloco }}</p>
+                    </div>
+                    <div class="w-24 md:w-12 h-[2px] md:h-[3px] bg-[var(--tertiary-brown)] rounded mx-auto shrink-0"></div>
+                    <p class="text-xs">{{ 'home.blocInfo.card3.desc' | transloco }}</p>
+                    <span class="mt-auto flex items-center justify-center w-9 h-9 rounded-full shrink-0 bg-[var(--tertiary-brown)] text-[var(--primary-beige)]">
+                        <iconify-icon icon="lucide:chevron-right" width="20" height="20" aria-hidden="true"></iconify-icon>
+                    </span>
+                </a>
+            </li>
+
+            <!-- Carte 4 — Qu'est-ce qu'Artisan Compétent -->
+            <li>
+                <a
+                    routerLink="/"
+                    class="flex flex-col items-center text-center gap-3 p-4 rounded-xl border no-underline hover:shadow-md transition h-full"
+                >
+                    <div class="flex flex-col items-center gap-2 md:min-h-[8.5rem]">
+                        <img
+                            class="text-center size-[44px]"
+                            src="assets/img/logo.webp"
+                            alt="Artisan Competent"
+                        />
+                        <p class="text-xs font-bold md:text-sm">{{ 'home.blocInfo.card4.title' | transloco }}</p>
+                    </div>
+                    <div class="w-24 md:w-12 h-[2px] md:h-[3px] bg-[var(--tertiary-brown)] rounded mx-auto shrink-0"></div>
+                    <p class="text-xs">{{ 'home.blocInfo.card4.desc' | transloco }}</p>
+                    <span class="mt-auto flex items-center justify-center w-9 h-9 rounded-full shrink-0 bg-[var(--tertiary-brown)] text-[var(--primary-beige)]">
+                        <iconify-icon icon="lucide:chevron-right" width="20" height="20" aria-hidden="true"></iconify-icon>
+                    </span>
+                </a>
+            </li>
+
         </ul>
     </section>
 
@@ -954,28 +982,28 @@
         <!-- Section protection -->
         <div class="p-6 rounded-xl text-center space-y-3 bg-[color-mix(in_srgb,var(--tertiary-brown)_6%,transparent)]">
             <p class="font-semibold text-base md:text-xl">
-                {{ 'home.blocInfo.protection.title' | transloco }}
+                {{ 'home.protection.title' | transloco }}
             </p>
             <p class="text-sm md:text-base">
                 <strong style="color: var(--tertiary-brown)">{{
-                    'home.blocInfo.protection.particuliersLabel' | transloco
+                    'home.protection.particuliersLabel' | transloco
                 }}</strong>
-                {{ ' : ' }}{{ 'home.blocInfo.protection.particuliersText' | transloco }}
+                {{ ' : ' }}{{ 'home.protection.particuliersText' | transloco }}
             </p>
             <p class="text-sm md:text-base">
                 <strong style="color: var(--tertiary-brown)">{{
-                    'home.blocInfo.protection.artisansLabel' | transloco
+                    'home.protection.artisansLabel' | transloco
                 }}</strong>
-                {{ ' : ' }}{{ 'home.blocInfo.protection.artisansText' | transloco }}
+                {{ ' : ' }}{{ 'home.protection.artisansText' | transloco }}
             </p>
-            <p class="text-sm md:text-base">{{ 'home.blocInfo.protection.tagline' | transloco }}</p>
+            <p class="text-sm md:text-base">{{ 'home.protection.tagline' | transloco }}</p>
             <div class="flex justify-center">
                 <a
                     [routerLink]="['/auth/register']"
                     class="flex items-center gap-2 px-6 py-3 rounded-lg font-semibold no-underline bg-[var(--tertiary-brown)] text-[var(--primary-beige)]"
                 >
                     <iconify-icon icon="lucide:user" width="18" height="18" aria-hidden="true"></iconify-icon>
-                    {{ 'home.blocInfo.protection.ctaRegister' | transloco }}
+                    {{ 'home.protection.ctaRegister' | transloco }}
                 </a>
             </div>
         </div>
