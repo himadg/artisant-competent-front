@@ -97,6 +97,16 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/urgences/urgences').then((p) => p.UrgencesPage),
   },
   {
+    path: 'guidance',
+    title: 'guidance.title',
+    loadComponent: () => import('./pages/guidance/guidance').then((p) => p.GuidancePage),
+  },
+  {
+    path: 'steps',
+    title: 'steps.title',
+    loadComponent: () => import('./pages/steps/steps').then((p) => p.StepsPage),
+  },
+  {
     path: 'contact',
     title: 'contact.title',
     loadComponent: () => import('./pages/contact/contact').then((p) => p.ContactPage),

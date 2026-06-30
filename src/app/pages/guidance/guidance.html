@@ -1,0 +1,45 @@
+<section class="px-4 py-10 mx-auto space-y-8 max-w-screen-lg">
+
+    <div class="space-y-2">
+        <h1 class="text-xl font-semibold md:text-3xl title">{{ 'guidance.title' | transloco }}</h1>
+        <p class="text-lg font-semibold md:text-xl">{{ 'guidance.lead' | transloco }}</p>
+    </div>
+
+    <div class="space-y-4">
+
+        <accordion variant="section" [title]="'guidance.fournitures.title' | transloco">
+            <div class="protection-body" [innerHTML]="'guidance.fournitures.content' | transloco"></div>
+        </accordion>
+
+        <accordion variant="section" [title]="'guidance.escrow.title' | transloco">
+            <div class="protection-body" [innerHTML]="'guidance.escrow.body' | transloco"></div>
+        </accordion>
+
+        <accordion variant="section" [title]="'guidance.validation.title' | transloco">
+            <div class="protection-body" [innerHTML]="'guidance.validation.body' | transloco"></div>
+        </accordion>
+
+        <accordion variant="section" [title]="'guidance.klarna.title' | transloco">
+            <div class="protection-body" [innerHTML]="'guidance.klarna.body' | transloco"></div>
+        </accordion>
+
+        <accordion variant="section" [title]="'guidance.malfacon.title' | transloco">
+            <div class="protection-body" [innerHTML]="'guidance.malfacon.body' | transloco"></div>
+        </accordion>
+
+        <accordion variant="section" [title]="'guidance.signed.title' | transloco">
+            <div class="protection-body" [innerHTML]="'guidance.signed.body' | transloco"></div>
+        </accordion>
+
+        <accordion variant="section" [title]="'guidance.cmod.title' | transloco">
+            <div class="protection-body" [innerHTML]="'guidance.cmod.body' | transloco"></div>
+            <div class="flex justify-center mt-4">
+                <a [routerLink]="['/cmod/formule']"
+                    class="inline-block px-6 py-3 font-semibold no-underline rounded-lg bg-[#a97849] text-[var(--primary-beige)] w-fit">
+                    {{ 'guidance.cmod.cta' | transloco }}
+                </a>
+            </div>
+        </accordion>
+
+    </div>
+</section>
