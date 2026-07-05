@@ -5,6 +5,8 @@ import { DashboardDataService } from '../../../core/services/dashboard-data.serv
 import { UserApiService } from '../../../core/services/user-api.service';
 import { AffiliationApiService } from '../../../core/services/affiliation-api.service';
 import { DemandService } from '../../../core/services/demand.service';
+import { StoryApiService, Story } from '../../../core/services/story-api.service';
+import { UploadService } from '../../../core/services/upload.service';
 import { ProfessionalDashboardData, OpeningHoursDay } from '../../../shared/interfaces/professional-dashboard';
 import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
 import { DemandDetail, DemandSummary } from '../../../shared/interfaces/demand';
@@ -50,6 +52,8 @@ export class ProfessionalDashboardStateService {
   private readonly userApi = inject(UserApiService);
   private readonly affiliationApi = inject(AffiliationApiService);
   private readonly demandService = inject(DemandService);
+  private readonly storyApi = inject(StoryApiService);
+  private readonly uploadService = inject(UploadService);
   private readonly transloco = inject(TranslocoService);
 
   readonly data = signal<ProfessionalDashboardData | null>(null);
@@ -80,6 +84,76 @@ export class ProfessionalDashboardStateService {
     this.docToPreview.set({ url, title: this.transloco.translate(labelKey) });
   }
 
+  // ── Stories ──────────────────────────────────────────────────────────────
+  // Le cercle bleu (photo) déclenche la story "Présentation", le cercle blanc (logo) la story "Tips".
+  readonly myStories = signal<Story[]>([]);
+  readonly uploadingStoryType = signal<'PRESENTATION' | 'TIPS' | null>(null);
+  readonly storyUploadError = signal<string | null>(null);
+
+  readonly presentationStory = computed(() => this.myStories().find((s) => s.type === 'PRESENTATION') ?? null);
+  readonly tipsStory = computed(() => this.myStories().find((s) => s.type === 'TIPS') ?? null);
+
+  readonly viewingStory = signal<Story | null>(null);
+  readonly viewingStoryUrl = signal<string | null>(null);
+
+  loadStories(): void {
+    this.storyApi.getMine().subscribe({ next: (stories) => this.myStories.set(stories) });
+  }
+
+  onStoryCircleClick(type: 'PRESENTATION' | 'TIPS', fileInput: HTMLInputElement): void {
+    const existing = type === 'PRESENTATION' ? this.presentationStory() : this.tipsStory();
+    if (existing) {
+      this.openStoryViewer(existing);
+    } else {
+      fileInput.click();
+    }
+  }
+
+  openStoryViewer(story: Story): void {
+    this.viewingStory.set(story);
+    this.viewingStoryUrl.set(null);
+    this.uploadService.getSignedUrl(story.videoKey).subscribe({
+      next: (url) => this.viewingStoryUrl.set(url),
+    });
+  }
+
+  closeStoryViewer(): void {
+    this.viewingStory.set(null);
+    this.viewingStoryUrl.set(null);
+  }
+
+  deleteViewingStory(): void {
+    const story = this.viewingStory();
+    if (!story) return;
+    this.deleteStory(story.id);
+    this.closeStoryViewer();
+  }
+
+  onStoryFileSelected(event: Event, type: 'PRESENTATION' | 'TIPS'): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    if (!file) return;
+
+    this.uploadingStoryType.set(type);
+    this.storyUploadError.set(null);
+    this.storyApi.upload(file, type).subscribe({
+      next: () => {
+        this.uploadingStoryType.set(null);
+        input.value = '';
+        this.loadStories();
+      },
+      error: (err) => {
+        this.uploadingStoryType.set(null);
+        input.value = '';
+        this.storyUploadError.set(err?.error?.message ?? "Erreur lors de l'envoi de la vidéo");
+      },
+    });
+  }
+
+  deleteStory(id: string): void {
+    this.storyApi.delete(id).subscribe({ next: () => this.loadStories() });
+  }
+
   readonly workCity = computed(() => {
     const professional = this.data()?.professionalProfile;
     if (!professional) return '';
@@ -88,9 +162,17 @@ export class ProfessionalDashboardStateService {
   });
 
   load(): void {
-    this.dashboardData.loadOwn<ProfessionalDashboardData>()
-      .then((data) => { this.data.set(data); this.loading.set(false); })
-      .catch(() => { this.error.set('dashboard.errors.load'); this.loading.set(false); });
+    this.dashboardData
+      .loadOwn<ProfessionalDashboardData>()
+      .then((data) => {
+        this.data.set(data);
+        this.loading.set(false);
+        this.loadStories();
+      })
+      .catch(() => {
+        this.error.set('dashboard.errors.load');
+        this.loading.set(false);
+      });
   }
 
   loadDemands(): void {
@@ -105,9 +187,11 @@ export class ProfessionalDashboardStateService {
 
   onDemandUpdated(updated: DemandDetail): void {
     const merge = (list: DemandSummary[]) =>
-      list.map((d) => (d.id === updated.id
-        ? { ...d, description: updated.description, status: updated.status, photoKeys: updated.photoKeys }
-        : d));
+      list.map((d) =>
+        d.id === updated.id
+          ? { ...d, description: updated.description, status: updated.status, photoKeys: updated.photoKeys }
+          : d,
+      );
     this.myDemands.update((list) => (list ? merge(list) : list));
     this.receivedDemands.update((list) => (list ? merge(list) : list));
   }
@@ -115,7 +199,10 @@ export class ProfessionalDashboardStateService {
   loadAffiliationDashboard(): void {
     this.affiliationLoading.set(true);
     this.affiliationApi.getDashboard().subscribe({
-      next: (data) => { this.affiliationData.set(data); this.affiliationLoading.set(false); },
+      next: (data) => {
+        this.affiliationData.set(data);
+        this.affiliationLoading.set(false);
+      },
       error: () => this.affiliationLoading.set(false),
     });
   }
@@ -130,37 +217,54 @@ export class ProfessionalDashboardStateService {
     const d = this.data();
     if (!d) return;
     await firstValueFrom(this.userApi.updateProfessional(d.id, { description }));
-    this.data.update((prev) => prev ? { ...prev, professionalProfile: { ...prev.professionalProfile, description } } : prev);
+    this.data.update((prev) =>
+      prev ? { ...prev, professionalProfile: { ...prev.professionalProfile, description } } : prev,
+    );
   }
 
   async saveTrades(tradeIds: string[], allTrades: { id: string; name: string }[]): Promise<void> {
     const d = this.data();
     if (!d) return;
     await firstValueFrom(this.userApi.updateProfessional(d.id, { tradeIds }));
-    this.data.update((prev) => prev ? {
-      ...prev,
-      professionalProfile: { ...prev.professionalProfile, trades: allTrades.filter((t) => tradeIds.includes(t.id)) },
-    } : prev);
+    this.data.update((prev) =>
+      prev
+        ? {
+            ...prev,
+            professionalProfile: {
+              ...prev.professionalProfile,
+              trades: allTrades.filter((t) => tradeIds.includes(t.id)),
+            },
+          }
+        : prev,
+    );
   }
 
   async saveHours(days: OpeningHoursDay[]): Promise<void> {
     const d = this.data();
     if (!d) return;
     await firstValueFrom(this.userApi.updateProfessional(d.id, { openingHours: { days } }));
-    this.data.update((prev) => prev ? {
-      ...prev,
-      professionalProfile: { ...prev.professionalProfile, openingHours: { days } },
-    } : prev);
+    this.data.update((prev) =>
+      prev
+        ? {
+            ...prev,
+            professionalProfile: { ...prev.professionalProfile, openingHours: { days } },
+          }
+        : prev,
+    );
   }
 
   async savePartners(suppliers: string[]): Promise<void> {
     const d = this.data();
     if (!d) return;
     await firstValueFrom(this.userApi.updateProfessional(d.id, { suppliers }));
-    this.data.update((prev) => prev ? {
-      ...prev,
-      professionalProfile: { ...prev.professionalProfile, suppliers: [...suppliers] },
-    } : prev);
+    this.data.update((prev) =>
+      prev
+        ? {
+            ...prev,
+            professionalProfile: { ...prev.professionalProfile, suppliers: [...suppliers] },
+          }
+        : prev,
+    );
   }
 
   async savePersonalInfo(fields: PersonalInfoEditFields): Promise<void> {
@@ -174,21 +278,39 @@ export class ProfessionalDashboardStateService {
       postalCode: address.postalCode,
       city: address.city,
     };
-    await firstValueFrom(this.userApi.updateUser(d.id, { gender, lastName, firstName, birthDate, email, address: addressPayload }));
-    await firstValueFrom(this.userApi.updateProfessional(d.id, { managerPhone, professionalEmail: professionalEmail || null }));
-    this.data.update((prev) => prev ? {
-      ...prev,
-      gender, lastName, firstName, birthDate, email,
-      address: prev.address ? {
-        ...prev.address,
-        streetNumber: addressPayload.streetNumber,
-        streetName: addressPayload.streetName,
-        additionalInfo: addressPayload.additionalInfo ?? undefined,
-        postalCode: Number(addressPayload.postalCode) || prev.address.postalCode,
-        city: addressPayload.city,
-      } : prev.address,
-      professionalProfile: { ...prev.professionalProfile, managerPhone, professionalEmail: professionalEmail || null },
-    } : prev);
+    await firstValueFrom(
+      this.userApi.updateUser(d.id, { gender, lastName, firstName, birthDate, email, address: addressPayload }),
+    );
+    await firstValueFrom(
+      this.userApi.updateProfessional(d.id, { managerPhone, professionalEmail: professionalEmail || null }),
+    );
+    this.data.update((prev) =>
+      prev
+        ? {
+            ...prev,
+            gender,
+            lastName,
+            firstName,
+            birthDate,
+            email,
+            address: prev.address
+              ? {
+                  ...prev.address,
+                  streetNumber: addressPayload.streetNumber,
+                  streetName: addressPayload.streetName,
+                  additionalInfo: addressPayload.additionalInfo ?? undefined,
+                  postalCode: Number(addressPayload.postalCode) || prev.address.postalCode,
+                  city: addressPayload.city,
+                }
+              : prev.address,
+            professionalProfile: {
+              ...prev.professionalProfile,
+              managerPhone,
+              professionalEmail: professionalEmail || null,
+            },
+          }
+        : prev,
+    );
   }
 
   async saveMediator(fields: MediatorEditFields): Promise<void> {
@@ -203,20 +325,28 @@ export class ProfessionalDashboardStateService {
       mediatorAdditionalInfo: mediatorAdditionalInfo || null,
     };
     await firstValueFrom(this.userApi.updateProfessional(d.id, payload));
-    this.data.update((prev) => prev ? {
-      ...prev,
-      professionalProfile: { ...prev.professionalProfile, ...payload },
-    } : prev);
+    this.data.update((prev) =>
+      prev
+        ? {
+            ...prev,
+            professionalProfile: { ...prev.professionalProfile, ...payload },
+          }
+        : prev,
+    );
   }
 
   async saveAdditionalRemarks(text: string): Promise<void> {
     const d = this.data();
     if (!d) return;
     await firstValueFrom(this.userApi.updateProfessional(d.id, { additionalRemarks: text || null }));
-    this.data.update((prev) => prev ? {
-      ...prev,
-      professionalProfile: { ...prev.professionalProfile, additionalRemarks: text || null },
-    } : prev);
+    this.data.update((prev) =>
+      prev
+        ? {
+            ...prev,
+            professionalProfile: { ...prev.professionalProfile, additionalRemarks: text || null },
+          }
+        : prev,
+    );
   }
 
   async saveCompanyExtra(fields: CompanyExtraEditFields): Promise<void> {
@@ -230,32 +360,47 @@ export class ProfessionalDashboardStateService {
       postalCode: workAddress.postalCode,
       city: workAddress.city,
     };
-    await firstValueFrom(this.userApi.updateProfessional(d.id, { yearsExperience, onCall, workAddress: workAddressPayload }));
-    this.data.update((prev) => prev ? {
-      ...prev,
-      professionalProfile: {
-        ...prev.professionalProfile,
-        yearsExperience, onCall, isCmod: yearsExperience >= 3,
-        workAddress: prev.professionalProfile.workAddress ? {
-          ...prev.professionalProfile.workAddress,
-          streetNumber: workAddressPayload.streetNumber,
-          streetName: workAddressPayload.streetName,
-          additionalInfo: workAddressPayload.additionalInfo ?? undefined,
-          postalCode: Number(workAddressPayload.postalCode) || prev.professionalProfile.workAddress.postalCode,
-          city: workAddressPayload.city,
-        } : prev.professionalProfile.workAddress,
-      },
-    } : prev);
+    await firstValueFrom(
+      this.userApi.updateProfessional(d.id, { yearsExperience, onCall, workAddress: workAddressPayload }),
+    );
+    this.data.update((prev) =>
+      prev
+        ? {
+            ...prev,
+            professionalProfile: {
+              ...prev.professionalProfile,
+              yearsExperience,
+              onCall,
+              isCmod: yearsExperience >= 3,
+              workAddress: prev.professionalProfile.workAddress
+                ? {
+                    ...prev.professionalProfile.workAddress,
+                    streetNumber: workAddressPayload.streetNumber,
+                    streetName: workAddressPayload.streetName,
+                    additionalInfo: workAddressPayload.additionalInfo ?? undefined,
+                    postalCode:
+                      Number(workAddressPayload.postalCode) || prev.professionalProfile.workAddress.postalCode,
+                    city: workAddressPayload.city,
+                  }
+                : prev.professionalProfile.workAddress,
+            },
+          }
+        : prev,
+    );
   }
 
   async saveCompanyRemarks(text: string): Promise<void> {
     const d = this.data();
     if (!d) return;
     await firstValueFrom(this.userApi.updateProfessional(d.id, { companyRemarks: text || null }));
-    this.data.update((prev) => prev ? {
-      ...prev,
-      professionalProfile: { ...prev.professionalProfile, companyRemarks: text || null },
-    } : prev);
+    this.data.update((prev) =>
+      prev
+        ? {
+            ...prev,
+            professionalProfile: { ...prev.professionalProfile, companyRemarks: text || null },
+          }
+        : prev,
+    );
   }
 
   async saveTrustedContact(name: string, phone: string): Promise<void> {
@@ -263,9 +408,13 @@ export class ProfessionalDashboardStateService {
     if (!d) return;
     const payload = { trustedContactName: name || null, trustedContactPhone: phone || null };
     await firstValueFrom(this.userApi.updateProfessional(d.id, payload));
-    this.data.update((prev) => prev ? {
-      ...prev,
-      professionalProfile: { ...prev.professionalProfile, ...payload },
-    } : prev);
+    this.data.update((prev) =>
+      prev
+        ? {
+            ...prev,
+            professionalProfile: { ...prev.professionalProfile, ...payload },
+          }
+        : prev,
+    );
   }
 }
