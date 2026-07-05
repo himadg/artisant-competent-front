@@ -120,6 +120,10 @@
       "accordionTitle": "Learn more about our coverage",
       "discoverAll": "Discover all our cities"
     },
+    "stories": {
+      "h2": "Near you right now",
+      "subtitle": "Watch tradespeople's daily life within 50 km of you."
+    },
     "pro": {
       "h2": "Are you a tradesperson? Join the platform for free.",
       "accordionTitle": "Learn more about the platform",

@@ -1,0 +1,32 @@
+@if (groups().length > 0) {
+    <div class="story-bar">
+        <ul class="story-bar-list">
+            @for (group of groups(); track group.professionalProfileId; let i = $index) {
+                <li>
+                    <button type="button" class="story-circle" (click)="openGroup(i)">
+                        <span class="story-avatar story-avatar--tips">
+                            @if (group.avatarUrl) {
+                                <img [src]="group.avatarUrl" [alt]="group.companyName" />
+                            } @else {
+                                <span class="story-avatar-placeholder">{{ group.companyName.charAt(0) }}</span>
+                            }
+                        </span>
+                        <span class="story-name">{{ group.companyName }}</span>
+                    </button>
+                </li>
+            }
+        </ul>
+    </div>
+}
+
+<story-viewer
+    [story]="viewingStory()"
+    [videoUrl]="viewingStory()?.videoUrl ?? null"
+    [label]="viewingStory()?.companyName ?? null"
+    [allowDelete]="false"
+    [hasPrev]="hasPrev()"
+    [hasNext]="hasNext()"
+    (closeModal)="closeViewer()"
+    (prevRequested)="prevStory()"
+    (nextRequested)="nextStory()"
+/>

@@ -29,6 +29,22 @@
   padding: 0.75rem 1rem;
 }
 
+.modal-header-info {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.modal-label {
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .modal-time-ago {
   color: #fff;
   font-size: 0.85rem;
