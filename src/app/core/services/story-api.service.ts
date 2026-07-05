@@ -18,6 +18,7 @@ export interface Story {
 export interface StoryFeedItem {
   id: string;
   type: StoryType;
+  createdAt: string;
   professionalProfileId: string;
   companyName: string;
   videoUrl: string;
