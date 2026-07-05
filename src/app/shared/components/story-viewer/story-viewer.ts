@@ -13,8 +13,12 @@ import { Story } from '../../../core/services/story-api.service';
 export class StoryViewer {
   story = input<Story | null>(null);
   videoUrl = input<string | null>(null);
+  hasPrev = input(false);
+  hasNext = input(false);
   closeModal = output<void>();
   deleteRequested = output<void>();
+  prevRequested = output<void>();
+  nextRequested = output<void>();
 
   timeAgo = computed(() => {
     const story = this.story();
