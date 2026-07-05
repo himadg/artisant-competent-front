@@ -1,0 +1,65 @@
+<div class="modal-overlay" (click)="close()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+            @if (recording()) {
+                <span class="modal-timer">{{ elapsedSeconds() }}s / 120s</span>
+            } @else {
+                <span></span>
+            }
+            <button class="close-btn" (click)="close()" aria-label="Fermer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            @if (cameraError() && !previewUrl()) {
+                <p class="camera-error">{{ cameraError() }}</p>
+            }
+
+            <video
+                #liveVideo
+                class="story-video"
+                [class.hidden]="previewUrl()"
+                autoplay
+                muted
+                playsinline
+            ></video>
+
+            <video
+                #previewVideo
+                class="story-video"
+                [class.hidden]="!previewUrl()"
+                controls
+                autoplay
+                loop
+            ></video>
+        </div>
+
+        <div class="modal-footer">
+            @if (previewUrl()) {
+                <button class="secondary-btn" type="button" (click)="retake()">Recommencer</button>
+                <button class="primary-btn" type="button" (click)="confirm()">Envoyer</button>
+            } @else {
+                <label class="import-btn" title="Importer un fichier">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <circle cx="9" cy="9" r="2" />
+                        <path d="m21 15-5-5L5 21" />
+                    </svg>
+                    <input type="file" accept="video/mp4,video/webm,video/quicktime" hidden (change)="onFileChosen($event)" />
+                </label>
+
+                @if (!recording()) {
+                    <button class="record-btn" type="button" (click)="startRecording()" [disabled]="!!cameraError()" aria-label="Enregistrer"></button>
+                } @else {
+                    <button class="record-btn record-btn--active" type="button" (click)="stopRecording()" aria-label="Arrêter"></button>
+                }
+
+                <span class="spacer"></span>
+            }
+        </div>
+    </div>
+</div>
