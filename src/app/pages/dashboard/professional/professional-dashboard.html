@@ -207,15 +207,15 @@
                                     [src]="pro.professionalProfile.photoUrl"
                                     [alt]="pro.professionalProfile.companyName"
                                     class="pro-photo pro-story-trigger"
-                                    [class.pro-photo--story-presentation]="!!presentationStory()"
-                                    [title]="presentationStory() ? ('dashboard.pro.storyViewHint' | transloco) : ('dashboard.pro.storyAddPresentationHint' | transloco)"
+                                    [class.pro-photo--story-presentation]="presentationStories().length > 0"
+                                    [title]="presentationStories().length ? ('dashboard.pro.storyViewHint' | transloco) : ('dashboard.pro.storyAddPresentationHint' | transloco)"
                                     (click)="onStoryCircleClick('PRESENTATION')"
                                 />
                             } @else {
                                 <div
                                     class="pro-photo pro-photo--placeholder pro-story-trigger"
-                                    [class.pro-photo--story-presentation]="!!presentationStory()"
-                                    [title]="presentationStory() ? ('dashboard.pro.storyViewHint' | transloco) : ('dashboard.pro.storyAddPresentationHint' | transloco)"
+                                    [class.pro-photo--story-presentation]="presentationStories().length > 0"
+                                    [title]="presentationStories().length ? ('dashboard.pro.storyViewHint' | transloco) : ('dashboard.pro.storyAddPresentationHint' | transloco)"
                                     (click)="onStoryCircleClick('PRESENTATION')"
                                 >
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -227,12 +227,22 @@
                             @if (uploadingStoryType() === 'PRESENTATION') {
                                 <div class="pro-story-uploading-overlay"><span class="pro-spinner-sm"></span></div>
                             }
+                            @if (presentationStories().length > 0) {
+                                <button
+                                    type="button"
+                                    class="pro-story-add-btn pro-story-add-btn--presentation"
+                                    [title]="'dashboard.pro.storyAddPresentationHint' | transloco"
+                                    (click)="onAddStoryClick($event, 'PRESENTATION')"
+                                >
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+                                </button>
+                            }
 
                             @if (pro.professionalProfile.isCmod) {
                                 <div
                                     class="pro-badge-company pro-story-trigger"
-                                    [class.pro-badge-company--story-tips]="!!tipsStory()"
-                                    [title]="tipsStory() ? ('dashboard.pro.storyViewHint' | transloco) : ('dashboard.pro.storyAddTipsHint' | transloco)"
+                                    [class.pro-badge-company--story-tips]="tipsStories().length > 0"
+                                    [title]="tipsStories().length ? ('dashboard.pro.storyViewHint' | transloco) : ('dashboard.pro.storyAddTipsHint' | transloco)"
                                     (click)="onStoryCircleClick('TIPS')"
                                 >
                                     @if (pro.professionalProfile.logoUrl) {
@@ -249,6 +259,16 @@
                                     }
                                     @if (uploadingStoryType() === 'TIPS') {
                                         <div class="pro-story-uploading-overlay"><span class="pro-spinner-sm"></span></div>
+                                    }
+                                    @if (tipsStories().length > 0) {
+                                        <button
+                                            type="button"
+                                            class="pro-story-add-btn pro-story-add-btn--tips"
+                                            [title]="'dashboard.pro.storyAddTipsHint' | transloco"
+                                            (click)="onAddStoryClick($event, 'TIPS')"
+                                        >
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+                                        </button>
                                     }
                                 </div>
                             }
@@ -1395,8 +1415,12 @@
 <story-viewer
     [story]="viewingStory()"
     [videoUrl]="viewingStoryUrl()"
+    [hasPrev]="hasPrevStory()"
+    [hasNext]="hasNextStory()"
     (closeModal)="closeStoryViewer()"
     (deleteRequested)="deleteViewingStory()"
+    (prevRequested)="prevStory()"
+    (nextRequested)="nextStory()"
 />
 
 @if (recordingStoryType()) {

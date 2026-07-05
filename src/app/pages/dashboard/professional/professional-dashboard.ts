@@ -80,24 +80,34 @@ export class ProfessionalDashboard implements OnInit {
   readonly uploadingStoryType = signal<'PRESENTATION' | 'TIPS' | null>(null);
   readonly storyUploadError = signal<string | null>(null);
 
-  readonly presentationStory = computed(() => this.myStories().find((s) => s.type === 'PRESENTATION') ?? null);
-  readonly tipsStory = computed(() => this.myStories().find((s) => s.type === 'TIPS') ?? null);
+  readonly presentationStories = computed(() => this.myStories().filter((s) => s.type === 'PRESENTATION'));
+  readonly tipsStories = computed(() => this.myStories().filter((s) => s.type === 'TIPS'));
 
-  readonly viewingStory = signal<Story | null>(null);
+  readonly viewingStories = signal<Story[]>([]);
+  readonly viewingIndex = signal(0);
   readonly viewingStoryUrl = signal<string | null>(null);
   readonly recordingStoryType = signal<'PRESENTATION' | 'TIPS' | null>(null);
+
+  readonly viewingStory = computed<Story | null>(() => this.viewingStories()[this.viewingIndex()] ?? null);
+  readonly hasPrevStory = computed(() => this.viewingIndex() > 0);
+  readonly hasNextStory = computed(() => this.viewingIndex() < this.viewingStories().length - 1);
 
   loadStories() {
     this.storyApi.getMine().subscribe({ next: (stories) => this.myStories.set(stories) });
   }
 
   onStoryCircleClick(type: 'PRESENTATION' | 'TIPS') {
-    const existing = type === 'PRESENTATION' ? this.presentationStory() : this.tipsStory();
-    if (existing) {
-      this.openStoryViewer(existing);
+    const stories = type === 'PRESENTATION' ? this.presentationStories() : this.tipsStories();
+    if (stories.length > 0) {
+      this.openStoryViewer(stories, 0);
     } else {
       this.recordingStoryType.set(type);
     }
+  }
+
+  onAddStoryClick(event: Event, type: 'PRESENTATION' | 'TIPS') {
+    event.stopPropagation();
+    this.recordingStoryType.set(type);
   }
 
   closeRecorder() {
@@ -111,24 +121,54 @@ export class ProfessionalDashboard implements OnInit {
     this.uploadStoryFile(file, type);
   }
 
-  openStoryViewer(story: Story) {
-    this.viewingStory.set(story);
+  openStoryViewer(stories: Story[], startIndex: number) {
+    this.viewingStories.set(stories);
+    this.viewingIndex.set(startIndex);
+    this.loadViewingUrl();
+  }
+
+  private loadViewingUrl() {
     this.viewingStoryUrl.set(null);
+    const story = this.viewingStory();
+    if (!story) return;
     this.uploadService.getSignedUrl(story.videoKey).subscribe({
       next: (url) => this.viewingStoryUrl.set(url),
     });
   }
 
+  nextStory() {
+    if (!this.hasNextStory()) return;
+    this.viewingIndex.update((i) => i + 1);
+    this.loadViewingUrl();
+  }
+
+  prevStory() {
+    if (!this.hasPrevStory()) return;
+    this.viewingIndex.update((i) => i - 1);
+    this.loadViewingUrl();
+  }
+
   closeStoryViewer() {
-    this.viewingStory.set(null);
+    this.viewingStories.set([]);
     this.viewingStoryUrl.set(null);
   }
 
   deleteViewingStory() {
     const story = this.viewingStory();
     if (!story) return;
-    this.deleteStory(story.id);
-    this.closeStoryViewer();
+    this.storyApi.delete(story.id).subscribe({
+      next: () => {
+        this.loadStories();
+        const remaining = this.viewingStories().filter((s) => s.id !== story.id);
+        if (remaining.length === 0) {
+          this.closeStoryViewer();
+          return;
+        }
+        this.viewingStories.set(remaining);
+        this.viewingIndex.set(Math.min(this.viewingIndex(), remaining.length - 1));
+        this.loadViewingUrl();
+      },
+    });
   }
 
   private uploadStoryFile(file: File, type: 'PRESENTATION' | 'TIPS') {
