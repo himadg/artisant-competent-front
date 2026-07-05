@@ -6,10 +6,11 @@ import { RouterModule } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { SearchProForm } from '../../shared/components/search-pro-form/search-pro-form';
 import { Accordion } from '../../shared/components/accordion';
+import { StoryBar } from '../../shared/components/story-bar/story-bar';
 @Component({
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TranslocoModule, RouterModule, SearchProForm, Accordion],
+  imports: [TranslocoModule, RouterModule, SearchProForm, Accordion, StoryBar],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

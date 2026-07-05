@@ -1,6 +1,9 @@
 import { Component, input, output, computed, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Story } from '../../../core/services/story-api.service';
+
+export interface StoryViewerItem {
+  createdAt: string;
+}
 
 @Component({
   selector: 'story-viewer',
@@ -11,10 +14,12 @@ import { Story } from '../../../core/services/story-api.service';
   styleUrl: './story-viewer.scss',
 })
 export class StoryViewer {
-  story = input<Story | null>(null);
+  story = input<StoryViewerItem | null>(null);
   videoUrl = input<string | null>(null);
   hasPrev = input(false);
   hasNext = input(false);
+  allowDelete = input(true);
+  label = input<string | null>(null);
   closeModal = output<void>();
   deleteRequested = output<void>();
   prevRequested = output<void>();
