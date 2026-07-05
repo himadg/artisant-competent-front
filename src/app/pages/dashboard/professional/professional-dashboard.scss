@@ -264,6 +264,35 @@
   border-radius: 50%;
 }
 
+/* Stories : les cercles bleu (photo) et blanc (logo) déclenchent l'upload/suppression */
+.pro-story-trigger {
+  cursor: pointer;
+  transition: filter 0.15s;
+
+  &:hover {
+    filter: brightness(0.93);
+  }
+}
+
+.pro-photo--story-presentation {
+  border-color: #2563eb;
+}
+
+.pro-badge-company--story-tips {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px #ffffff;
+}
+
+.pro-story-uploading-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .pro-user-info {
   display: flex;
   flex-direction: column;
@@ -731,6 +760,17 @@
   opacity: 0.45;
   padding: 2rem 0;
   margin: 0;
+}
+
+.pro-story-error {
+  font-size: 0.8rem;
+  color: #ef4444;
+  margin: 0.5rem 0 0;
+
+  &--header {
+    text-align: center;
+    margin: 0 0 0.5rem;
+  }
 }
 
 /* ── Documents ── */

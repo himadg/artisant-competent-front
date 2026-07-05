@@ -11,6 +11,7 @@ import { DashboardApiService } from '../../../core/services/dashboard-api.servic
 import { AuthService } from '../../../core/services/auth.service';
 import { UserApiService } from '../../../core/services/user-api.service';
 import { AffiliationApiService } from '../../../core/services/affiliation-api.service';
+import { StoryApiService, Story } from '../../../core/services/story-api.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProfessionalDashboardData, OpeningHoursDay } from '../../../shared/interfaces/professional-dashboard';
 import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
@@ -18,7 +19,9 @@ import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
 import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
 import { DocModal } from '../../../shared/components/doc-modal/doc-modal';
+import { StoryViewer } from '../../../shared/components/story-viewer/story-viewer';
 import { PreviewDocument } from '../../../shared/interfaces/preview-document';
+import { UploadService } from '../../../core/services/upload.service';
 
 export type ProSection = 'requests' | 'quotes' | 'invoices' | 'profile' | 'legal' | 'practices' | 'affiliation';
 export type ProTab = 'presentation' | 'missions' | 'reviews' | 'documents';
@@ -29,7 +32,7 @@ const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'satu
   selector: 'dashboard-professional',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FormsModule, RouterLink, TranslocoModule, LangToggle, ThemeToggle, LegalModal, DocModal],
+  imports: [CommonModule, FormsModule, RouterLink, TranslocoModule, LangToggle, ThemeToggle, LegalModal, DocModal, StoryViewer],
   templateUrl: './professional-dashboard.html',
   styleUrl: './professional-dashboard.scss',
 })
@@ -39,6 +42,8 @@ export class ProfessionalDashboard implements OnInit {
   private readonly dashboardApi = inject(DashboardApiService);
   private readonly userApi = inject(UserApiService);
   private readonly affiliationApi = inject(AffiliationApiService);
+  private readonly storyApi = inject(StoryApiService);
+  private readonly uploadService = inject(UploadService);
   private readonly route = inject(ActivatedRoute);
   private readonly platformLocation = inject(PlatformLocation);
   private readonly transloco = inject(TranslocoService);
@@ -68,6 +73,76 @@ export class ProfessionalDashboard implements OnInit {
       ${professional.workAddress.streetName}, ${professional.workAddress.postalCode} ${professional.workAddress.city}`;
   });
 
+  // ── Stories ────────────────────────────────────────────────────────────────
+  // Le cercle bleu (photo) déclenche la story "Présentation", le cercle blanc (logo) la story "Tips".
+  readonly myStories = signal<Story[]>([]);
+  readonly uploadingStoryType = signal<'PRESENTATION' | 'TIPS' | null>(null);
+  readonly storyUploadError = signal<string | null>(null);
+
+  readonly presentationStory = computed(() => this.myStories().find((s) => s.type === 'PRESENTATION') ?? null);
+  readonly tipsStory = computed(() => this.myStories().find((s) => s.type === 'TIPS') ?? null);
+
+  readonly viewingStory = signal<Story | null>(null);
+  readonly viewingStoryUrl = signal<string | null>(null);
+
+  loadStories() {
+    this.storyApi.getMine().subscribe({ next: (stories) => this.myStories.set(stories) });
+  }
+
+  onStoryCircleClick(type: 'PRESENTATION' | 'TIPS', fileInput: HTMLInputElement) {
+    const existing = type === 'PRESENTATION' ? this.presentationStory() : this.tipsStory();
+    if (existing) {
+      this.openStoryViewer(existing);
+    } else {
+      fileInput.click();
+    }
+  }
+
+  openStoryViewer(story: Story) {
+    this.viewingStory.set(story);
+    this.viewingStoryUrl.set(null);
+    this.uploadService.getSignedUrl(story.videoKey).subscribe({
+      next: (url) => this.viewingStoryUrl.set(url),
+    });
+  }
+
+  closeStoryViewer() {
+    this.viewingStory.set(null);
+    this.viewingStoryUrl.set(null);
+  }
+
+  deleteViewingStory() {
+    const story = this.viewingStory();
+    if (!story) return;
+    this.deleteStory(story.id);
+    this.closeStoryViewer();
+  }
+
+  onStoryFileSelected(event: Event, type: 'PRESENTATION' | 'TIPS') {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    if (!file) return;
+
+    this.uploadingStoryType.set(type);
+    this.storyUploadError.set(null);
+    this.storyApi.upload(file, type).subscribe({
+      next: () => {
+        this.uploadingStoryType.set(null);
+        input.value = '';
+        this.loadStories();
+      },
+      error: (err) => {
+        this.uploadingStoryType.set(null);
+        input.value = '';
+        this.storyUploadError.set(err?.error?.message ?? "Erreur lors de l'envoi de la vidéo");
+      },
+    });
+  }
+
+  deleteStory(id: string) {
+    this.storyApi.delete(id).subscribe({ next: () => this.loadStories() });
+  }
+
   readonly moreMenuOpen = signal(false);
   readonly moreMenuContentDisplayed = signal(false);
 
@@ -88,6 +163,7 @@ export class ProfessionalDashboard implements OnInit {
       next: (data) => {
         this.data.set(data);
         this.loading.set(false);
+        if (!userId) this.loadStories();
       },
       error: () => {
         this.error.set('dashboard.errors.load');

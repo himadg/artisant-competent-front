@@ -3309,7 +3309,10 @@
       "onCallNo": "No",
       "companyRemarks": "Company remarks",
       "noneProvided": "Not provided",
-      "expiresOn": "Expires on"
+      "expiresOn": "Expires on",
+      "storyAddPresentationHint": "Add a presentation video (2 min max)",
+      "storyAddTipsHint": "Add a tips / daily life video (2 min max)",
+      "storyViewHint": "View the story"
     },
     "empty": {
       "requests": "No requests yet",

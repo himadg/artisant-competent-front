@@ -201,23 +201,43 @@
                 <!-- En-tête profil -->
                 <div class="w-[100%] mb-4 rounded-lg border border-solid pro-header">
                     <div class="pro-user">
+                        <input #presentationFileInput type="file" accept="video/mp4,video/webm,video/quicktime" hidden (change)="onStoryFileSelected($event, 'PRESENTATION')" />
+                        <input #tipsFileInput type="file" accept="video/mp4,video/webm,video/quicktime" hidden (change)="onStoryFileSelected($event, 'TIPS')" />
+
                         <div class="pro-photo-wrap">
                             @if (pro.professionalProfile.photoUrl) {
                                 <img
                                     [src]="pro.professionalProfile.photoUrl"
                                     [alt]="pro.professionalProfile.companyName"
-                                    class="pro-photo"
+                                    class="pro-photo pro-story-trigger"
+                                    [class.pro-photo--story-presentation]="!!presentationStory()"
+                                    [title]="presentationStory() ? ('dashboard.pro.storyViewHint' | transloco) : ('dashboard.pro.storyAddPresentationHint' | transloco)"
+                                    (click)="onStoryCircleClick('PRESENTATION', presentationFileInput)"
                                 />
                             } @else {
-                                <div class="pro-photo pro-photo--placeholder">
+                                <div
+                                    class="pro-photo pro-photo--placeholder pro-story-trigger"
+                                    [class.pro-photo--story-presentation]="!!presentationStory()"
+                                    [title]="presentationStory() ? ('dashboard.pro.storyViewHint' | transloco) : ('dashboard.pro.storyAddPresentationHint' | transloco)"
+                                    (click)="onStoryCircleClick('PRESENTATION', presentationFileInput)"
+                                >
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                         <circle cx="12" cy="8" r="4" />
                                         <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
                                     </svg>
                                 </div>
                             }
+                            @if (uploadingStoryType() === 'PRESENTATION') {
+                                <div class="pro-story-uploading-overlay"><span class="pro-spinner-sm"></span></div>
+                            }
+
                             @if (pro.professionalProfile.isCmod) {
-                                <div class="pro-badge-company">
+                                <div
+                                    class="pro-badge-company pro-story-trigger"
+                                    [class.pro-badge-company--story-tips]="!!tipsStory()"
+                                    [title]="tipsStory() ? ('dashboard.pro.storyViewHint' | transloco) : ('dashboard.pro.storyAddTipsHint' | transloco)"
+                                    (click)="onStoryCircleClick('TIPS', tipsFileInput)"
+                                >
                                     @if (pro.professionalProfile.logoUrl) {
                                         <img
                                             [src]="pro.professionalProfile.logoUrl"
@@ -229,6 +249,9 @@
                                             <span>Artisan</span>
                                             <strong>COMPÉTENT</strong>
                                         </small>
+                                    }
+                                    @if (uploadingStoryType() === 'TIPS') {
+                                        <div class="pro-story-uploading-overlay"><span class="pro-spinner-sm"></span></div>
                                     }
                                 </div>
                             }
@@ -271,6 +294,10 @@
                             </div>
                         </div>
                     </div>
+
+                    @if (storyUploadError()) {
+                        <p class="pro-story-error pro-story-error--header">{{ storyUploadError() }}</p>
+                    }
 
                     <!-- Onglets -->
                     @if (activeSection() === 'profile' && !moreMenuContentDisplayed()) {
@@ -1367,3 +1394,10 @@
 @if (docToPreview()) {
     <doc-modal [document]="docToPreview()" (closeModal)="docToPreview.set(null)" />
 }
+
+<story-viewer
+    [story]="viewingStory()"
+    [videoUrl]="viewingStoryUrl()"
+    (closeModal)="closeStoryViewer()"
+    (deleteRequested)="deleteViewingStory()"
+/>
