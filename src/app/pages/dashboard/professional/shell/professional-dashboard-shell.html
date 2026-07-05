@@ -56,10 +56,18 @@
                 </a>
                 <div class="pro-topbar-actions">
                     <notification-bell></notification-bell>
-                    <button class="topbar-icon-btn" [attr.aria-label]="'common.messages' | transloco" routerLink="/dashboard/messages">
+                    <button
+                        class="topbar-icon-btn"
+                        [attr.aria-label]="'common.messages' | transloco"
+                        routerLink="/dashboard/messages"
+                    >
                         <iconify-icon icon="lucide:mail"></iconify-icon>
                         @if (chatService.unreadConversationsCount() > 0) {
-                            <span class="badge">{{ chatService.unreadConversationsCount() > 9 ? '9+' : chatService.unreadConversationsCount() }}</span>
+                            <span class="badge">{{
+                                chatService.unreadConversationsCount() > 9
+                                    ? '9+'
+                                    : chatService.unreadConversationsCount()
+                            }}</span>
                         }
                     </button>
                     <div class="topbar-user">
@@ -121,86 +129,155 @@
 
             <!-- ═══════════════ CONTENU PRINCIPAL ═══════════════ -->
             <main class="pro-main w-full max-md:p-0">
-            <div class="pro-content w-full h-full lg:w-[52rem] md:py-8">
-                <!-- En-tête profil -->
-                <div class="w-[100%] mb-4 rounded-lg border border-solid pro-header">
-                    <div class="pro-user">
-                        <div class="pro-photo-wrap">
-                            <user-avatar
-                                [photoUrl]="pro.professionalProfile.photoUrl"
-                                [alt]="pro.firstName[0] + pro.lastName[0]"
-                                class="pro-photo"
-                                style="--avatar-size: 9rem"
+                <div class="pro-content w-full h-full lg:w-[52rem] md:py-8">
+                    <!-- En-tête profil -->
+                    <div class="w-[100%] mb-4 rounded-lg border border-solid pro-header">
+                        <div class="pro-user">
+                            <input
+                                #presentationFileInput
+                                type="file"
+                                accept="video/mp4,video/webm,video/quicktime"
+                                hidden
+                                (change)="onStoryFileSelected($event, 'PRESENTATION')"
                             />
-                            @if (pro.professionalProfile.logoUrl) {
-                                <div class="pro-badge-company">
-                                    @if (pro.professionalProfile.logoUrl) {
-                                        <img
-                                            [src]="pro.professionalProfile.logoUrl"
-                                            [alt]="'common.logo' | transloco"
-                                            class="pro-badge-logo"
-                                        />
-                                    } @else {
-                                        <small>
-                                            <p>Artisan</p>
-                                            <strong>COMPÉTENT</strong>
-                                        </small>
-                                    }
-                                </div>
-                            }
-                        </div>
+                            <input
+                                #tipsFileInput
+                                type="file"
+                                accept="video/mp4,video/webm,video/quicktime"
+                                hidden
+                                (change)="onStoryFileSelected($event, 'TIPS')"
+                            />
 
-                        <div class="pro-user-info">
-                            <h2 class="pro-company-name">{{ pro.professionalProfile.companyName }}</h2>
-                            <p class="pro-address">
-                                <iconify-icon icon="lucide:map-pin" class="inline-icon"></iconify-icon>
-                                {{ workCity() }}
-                            </p>
-                            <div class="pro-since-badge">
-                                <span class="pro-since">
-                                    <iconify-icon icon="lucide:calendar" class="inline-icon"></iconify-icon>
-                                    {{ 'dashboard.pro.since' | transloco }} {{ inscriptionDate() }}
-                                </span>
-                                @if (pro.professionalProfile.isCmod) {
-                                    <span class="pro-badge-amod">{{ 'dashboard.pro.amod' | transloco }}</span>
+                            <div class="pro-photo-wrap">
+                                <user-avatar
+                                    [photoUrl]="pro.professionalProfile.photoUrl"
+                                    [alt]="pro.firstName[0] + pro.lastName[0]"
+                                    class="pro-photo pro-story-trigger"
+                                    [class.pro-photo--story-presentation]="!!presentationStory()"
+                                    [title]="
+                                        presentationStory()
+                                            ? ('dashboard.pro.storyViewHint' | transloco)
+                                            : ('dashboard.pro.storyAddPresentationHint' | transloco)
+                                    "
+                                    style="--avatar-size: 9rem"
+                                    (click)="onStoryCircleClick('PRESENTATION', presentationFileInput)"
+                                />
+                                @if (uploadingStoryType() === 'PRESENTATION') {
+                                    <div class="pro-story-uploading-overlay"><span class="pro-spinner-sm"></span></div>
+                                }
+                                @if (pro.professionalProfile.logoUrl) {
+                                    <div
+                                        class="pro-badge-company pro-story-trigger"
+                                        [class.pro-badge-company--story-tips]="!!tipsStory()"
+                                        [title]="
+                                            tipsStory()
+                                                ? ('dashboard.pro.storyViewHint' | transloco)
+                                                : ('dashboard.pro.storyAddTipsHint' | transloco)
+                                        "
+                                        (click)="onStoryCircleClick('TIPS', tipsFileInput)"
+                                    >
+                                        @if (pro.professionalProfile.logoUrl) {
+                                            <img
+                                                [src]="pro.professionalProfile.logoUrl"
+                                                [alt]="'common.logo' | transloco"
+                                                class="pro-badge-logo"
+                                            />
+                                        } @else {
+                                            <small>
+                                                <p>Artisan</p>
+                                                <strong>COMPÉTENT</strong>
+                                            </small>
+                                        }
+                                        @if (uploadingStoryType() === 'TIPS') {
+                                            <div class="pro-story-uploading-overlay">
+                                                <span class="pro-spinner-sm"></span>
+                                            </div>
+                                        }
+                                    </div>
                                 }
                             </div>
+
+                            <div class="pro-user-info">
+                                <h2 class="pro-company-name">{{ pro.professionalProfile.companyName }}</h2>
+                                <p class="pro-address">
+                                    <iconify-icon icon="lucide:map-pin" class="inline-icon"></iconify-icon>
+                                    {{ workCity() }}
+                                </p>
+                                <div class="pro-since-badge">
+                                    <span class="pro-since">
+                                        <iconify-icon icon="lucide:calendar" class="inline-icon"></iconify-icon>
+                                        {{ 'dashboard.pro.since' | transloco }} {{ inscriptionDate() }}
+                                    </span>
+                                    @if (pro.professionalProfile.isCmod) {
+                                        <span class="pro-badge-amod">{{ 'dashboard.pro.amod' | transloco }}</span>
+                                    }
+                                </div>
+                            </div>
                         </div>
+
+                        @if (storyUploadError()) {
+                            <p class="pro-story-error pro-story-error--header">{{ storyUploadError() }}</p>
+                        }
+
+                        <!-- Onglets -->
+                        @if (isProfileSection() && !moreMenuContentDisplayed()) {
+                            <div class="pro-tabs mx-0 justify-start lg:px-4">
+                                <button
+                                    class="pro-tab"
+                                    [class.active]="activeTab() === 'presentation'"
+                                    (click)="setTab('presentation')"
+                                >
+                                    {{ 'dashboard.pro.tabs.presentation' | transloco }}
+                                </button>
+                                <button
+                                    class="pro-tab"
+                                    [class.active]="activeTab() === 'missions'"
+                                    (click)="setTab('missions')"
+                                >
+                                    {{ 'dashboard.pro.tabs.missions' | transloco }}
+                                </button>
+                                <button
+                                    class="pro-tab"
+                                    [class.active]="activeTab() === 'reviews'"
+                                    (click)="setTab('reviews')"
+                                >
+                                    {{ 'dashboard.pro.tabs.reviews' | transloco }}
+                                </button>
+                                <button
+                                    class="pro-tab"
+                                    [class.active]="activeTab() === 'documents'"
+                                    (click)="setTab('documents')"
+                                >
+                                    {{ 'dashboard.pro.tabs.documents' | transloco }}
+                                </button>
+                            </div>
+                        }
                     </div>
 
-                    <!-- Onglets -->
-                    @if (isProfileSection() && !moreMenuContentDisplayed()) {
-                        <div class="pro-tabs mx-0 justify-start lg:px-4">
-                            <button class="pro-tab" [class.active]="activeTab() === 'presentation'" (click)="setTab('presentation')">
-                                {{ 'dashboard.pro.tabs.presentation' | transloco }}
-                            </button>
-                            <button class="pro-tab" [class.active]="activeTab() === 'missions'" (click)="setTab('missions')">
-                                {{ 'dashboard.pro.tabs.missions' | transloco }}
-                            </button>
-                            <button class="pro-tab" [class.active]="activeTab() === 'reviews'" (click)="setTab('reviews')">
-                                {{ 'dashboard.pro.tabs.reviews' | transloco }}
-                            </button>
-                            <button class="pro-tab" [class.active]="activeTab() === 'documents'" (click)="setTab('documents')">
-                                {{ 'dashboard.pro.tabs.documents' | transloco }}
-                            </button>
-                        </div>
-                    }
+                    <!-- Contenu de la section active -->
+                    <div class="w-[100%] rounded-lg border border-solid pro-section-content">
+                        <router-outlet />
+                    </div>
                 </div>
-
-                <!-- Contenu de la section active -->
-                <div class="w-[100%] rounded-lg border border-solid pro-section-content">
-                    <router-outlet />
-                </div>
-            </div>
             </main>
 
             <!-- ═══════════════ BOTTOM NAV (mobile) ═══════════════ -->
             <nav class="pro-bottom-nav" [attr.aria-label]="'common.bottomNavigation' | transloco">
-                <button class="bottom-nav-item" routerLink="/dashboard/profile" routerLinkActive="active" (click)="moreMenuContentDisplayed.set(false)">
+                <button
+                    class="bottom-nav-item"
+                    routerLink="/dashboard/profile"
+                    routerLinkActive="active"
+                    (click)="moreMenuContentDisplayed.set(false)"
+                >
                     <iconify-icon icon="lucide:user"></iconify-icon>
                     <span>{{ 'dashboard.pro.mobile.profile' | transloco }}</span>
                 </button>
-                <button class="bottom-nav-item" routerLink="/dashboard/requests" routerLinkActive="active" (click)="moreMenuContentDisplayed.set(false)">
+                <button
+                    class="bottom-nav-item"
+                    routerLink="/dashboard/requests"
+                    routerLinkActive="active"
+                    (click)="moreMenuContentDisplayed.set(false)"
+                >
                     <iconify-icon icon="lucide:clipboard-list"></iconify-icon>
                     <span>{{ 'dashboard.pro.mobile.requests' | transloco }}</span>
                 </button>
@@ -208,11 +285,20 @@
                     <img src="assets/img/logo.webp" [alt]="'common.logo' | transloco" class="bottom-nav-logo" />
                     <span>{{ 'common.home' | transloco }}</span>
                 </button>
-                <button class="bottom-nav-item" routerLink="/dashboard/messages" routerLinkActive="active" (click)="moreMenuContentDisplayed.set(false)">
+                <button
+                    class="bottom-nav-item"
+                    routerLink="/dashboard/messages"
+                    routerLinkActive="active"
+                    (click)="moreMenuContentDisplayed.set(false)"
+                >
                     <span class="bottom-nav-icon-wrap">
                         <iconify-icon icon="lucide:mail"></iconify-icon>
                         @if (chatService.unreadConversationsCount() > 0) {
-                            <span class="badge">{{ chatService.unreadConversationsCount() > 9 ? '9+' : chatService.unreadConversationsCount() }}</span>
+                            <span class="badge">{{
+                                chatService.unreadConversationsCount() > 9
+                                    ? '9+'
+                                    : chatService.unreadConversationsCount()
+                            }}</span>
                         }
                     </span>
                     <span>{{ 'common.messages' | transloco }}</span>
@@ -285,3 +371,10 @@
         (messageStarted)="onMessageStarted($event)"
     />
 }
+
+<story-viewer
+    [story]="viewingStory()"
+    [videoUrl]="viewingStoryUrl()"
+    (closeModal)="closeStoryViewer()"
+    (deleteRequested)="deleteViewingStory()"
+/>

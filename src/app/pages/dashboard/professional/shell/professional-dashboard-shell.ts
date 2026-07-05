@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, DestroyRef, OnInit, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  DestroyRef,
+  OnInit,
+  inject,
+  signal,
+} from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { filter, map } from 'rxjs';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -17,6 +25,7 @@ import { NotificationBell } from '../../../../shared/components/notification-bel
 import { UserAvatar } from '../../../../shared/components/user-avatar/user-avatar';
 import { DocModal } from '../../../../shared/components/doc-modal/doc-modal';
 import { DemandDetailsModal } from '../../../../shared/components/demand-details-modal/demand-details-modal';
+import { StoryViewer } from '../../../../shared/components/story-viewer/story-viewer';
 
 @Component({
   selector: 'dashboard-professional-shell',
@@ -35,6 +44,7 @@ import { DemandDetailsModal } from '../../../../shared/components/demand-details
     UserAvatar,
     DocModal,
     DemandDetailsModal,
+    StoryViewer,
   ],
   templateUrl: './professional-dashboard-shell.html',
   styleUrl: './professional-dashboard-shell.scss',
@@ -58,6 +68,13 @@ export class ProfessionalDashboardShell implements OnInit {
   readonly workCity = this.state.workCity;
 
   readonly docToPreview = this.state.docToPreview;
+
+  readonly presentationStory = this.state.presentationStory;
+  readonly tipsStory = this.state.tipsStory;
+  readonly uploadingStoryType = this.state.uploadingStoryType;
+  readonly storyUploadError = this.state.storyUploadError;
+  readonly viewingStory = this.state.viewingStory;
+  readonly viewingStoryUrl = this.state.viewingStoryUrl;
 
   readonly moreMenuOpen = signal(false);
   readonly moreMenuContentDisplayed = signal(false);
@@ -89,7 +106,12 @@ export class ProfessionalDashboardShell implements OnInit {
       this.selectedDemandId.set(demandId);
       this.state.selectedDemandEditable.set(false);
       this.state.requestsTab.set('received');
-      this.router.navigate([], { relativeTo: this.route, queryParams: { d: null }, queryParamsHandling: 'merge', replaceUrl: true });
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { d: null },
+        queryParamsHandling: 'merge',
+        replaceUrl: true,
+      });
     });
   }
 
@@ -119,7 +141,29 @@ export class ProfessionalDashboardShell implements OnInit {
     this.router.navigate(['/dashboard', 'messages']);
   }
 
-  toggleMoreMenu(): void { this.moreMenuOpen.update((v) => !v); }
-  toggleMoreMenuContent(): void { this.moreMenuContentDisplayed.update((v) => !v); }
-  closeMoreMenu(): void { this.moreMenuOpen.set(false); }
+  toggleMoreMenu(): void {
+    this.moreMenuOpen.update((v) => !v);
+  }
+  toggleMoreMenuContent(): void {
+    this.moreMenuContentDisplayed.update((v) => !v);
+  }
+  closeMoreMenu(): void {
+    this.moreMenuOpen.set(false);
+  }
+
+  onStoryCircleClick(type: 'PRESENTATION' | 'TIPS', fileInput: HTMLInputElement): void {
+    this.state.onStoryCircleClick(type, fileInput);
+  }
+
+  onStoryFileSelected(event: Event, type: 'PRESENTATION' | 'TIPS'): void {
+    this.state.onStoryFileSelected(event, type);
+  }
+
+  closeStoryViewer(): void {
+    this.state.closeStoryViewer();
+  }
+
+  deleteViewingStory(): void {
+    this.state.deleteViewingStory();
+  }
 }
