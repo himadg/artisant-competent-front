@@ -201,9 +201,6 @@
                 <!-- En-tête profil -->
                 <div class="w-[100%] mb-4 rounded-lg border border-solid pro-header">
                     <div class="pro-user">
-                        <input #presentationFileInput type="file" accept="video/mp4,video/webm,video/quicktime" hidden (change)="onStoryFileSelected($event, 'PRESENTATION')" />
-                        <input #tipsFileInput type="file" accept="video/mp4,video/webm,video/quicktime" hidden (change)="onStoryFileSelected($event, 'TIPS')" />
-
                         <div class="pro-photo-wrap">
                             @if (pro.professionalProfile.photoUrl) {
                                 <img
@@ -212,14 +209,14 @@
                                     class="pro-photo pro-story-trigger"
                                     [class.pro-photo--story-presentation]="!!presentationStory()"
                                     [title]="presentationStory() ? ('dashboard.pro.storyViewHint' | transloco) : ('dashboard.pro.storyAddPresentationHint' | transloco)"
-                                    (click)="onStoryCircleClick('PRESENTATION', presentationFileInput)"
+                                    (click)="onStoryCircleClick('PRESENTATION')"
                                 />
                             } @else {
                                 <div
                                     class="pro-photo pro-photo--placeholder pro-story-trigger"
                                     [class.pro-photo--story-presentation]="!!presentationStory()"
                                     [title]="presentationStory() ? ('dashboard.pro.storyViewHint' | transloco) : ('dashboard.pro.storyAddPresentationHint' | transloco)"
-                                    (click)="onStoryCircleClick('PRESENTATION', presentationFileInput)"
+                                    (click)="onStoryCircleClick('PRESENTATION')"
                                 >
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                         <circle cx="12" cy="8" r="4" />
@@ -236,7 +233,7 @@
                                     class="pro-badge-company pro-story-trigger"
                                     [class.pro-badge-company--story-tips]="!!tipsStory()"
                                     [title]="tipsStory() ? ('dashboard.pro.storyViewHint' | transloco) : ('dashboard.pro.storyAddTipsHint' | transloco)"
-                                    (click)="onStoryCircleClick('TIPS', tipsFileInput)"
+                                    (click)="onStoryCircleClick('TIPS')"
                                 >
                                     @if (pro.professionalProfile.logoUrl) {
                                         <img
@@ -1401,3 +1398,7 @@
     (closeModal)="closeStoryViewer()"
     (deleteRequested)="deleteViewingStory()"
 />
+
+@if (recordingStoryType()) {
+    <story-recorder (closeModal)="closeRecorder()" (fileReady)="onStoryFileReady($event)" />
+}

@@ -20,6 +20,7 @@ import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggl
 import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
 import { DocModal } from '../../../shared/components/doc-modal/doc-modal';
 import { StoryViewer } from '../../../shared/components/story-viewer/story-viewer';
+import { StoryRecorder } from '../../../shared/components/story-recorder/story-recorder';
 import { PreviewDocument } from '../../../shared/interfaces/preview-document';
 import { UploadService } from '../../../core/services/upload.service';
 
@@ -32,7 +33,7 @@ const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'satu
   selector: 'dashboard-professional',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FormsModule, RouterLink, TranslocoModule, LangToggle, ThemeToggle, LegalModal, DocModal, StoryViewer],
+  imports: [CommonModule, FormsModule, RouterLink, TranslocoModule, LangToggle, ThemeToggle, LegalModal, DocModal, StoryViewer, StoryRecorder],
   templateUrl: './professional-dashboard.html',
   styleUrl: './professional-dashboard.scss',
 })
@@ -84,18 +85,30 @@ export class ProfessionalDashboard implements OnInit {
 
   readonly viewingStory = signal<Story | null>(null);
   readonly viewingStoryUrl = signal<string | null>(null);
+  readonly recordingStoryType = signal<'PRESENTATION' | 'TIPS' | null>(null);
 
   loadStories() {
     this.storyApi.getMine().subscribe({ next: (stories) => this.myStories.set(stories) });
   }
 
-  onStoryCircleClick(type: 'PRESENTATION' | 'TIPS', fileInput: HTMLInputElement) {
+  onStoryCircleClick(type: 'PRESENTATION' | 'TIPS') {
     const existing = type === 'PRESENTATION' ? this.presentationStory() : this.tipsStory();
     if (existing) {
       this.openStoryViewer(existing);
     } else {
-      fileInput.click();
+      this.recordingStoryType.set(type);
     }
+  }
+
+  closeRecorder() {
+    this.recordingStoryType.set(null);
+  }
+
+  onStoryFileReady(file: File) {
+    const type = this.recordingStoryType();
+    if (!type) return;
+    this.recordingStoryType.set(null);
+    this.uploadStoryFile(file, type);
   }
 
   openStoryViewer(story: Story) {
@@ -118,22 +131,16 @@ export class ProfessionalDashboard implements OnInit {
     this.closeStoryViewer();
   }
 
-  onStoryFileSelected(event: Event, type: 'PRESENTATION' | 'TIPS') {
-    const input = event.target as HTMLInputElement;
-    const file = input.files?.[0];
-    if (!file) return;
-
+  private uploadStoryFile(file: File, type: 'PRESENTATION' | 'TIPS') {
     this.uploadingStoryType.set(type);
     this.storyUploadError.set(null);
     this.storyApi.upload(file, type).subscribe({
       next: () => {
         this.uploadingStoryType.set(null);
-        input.value = '';
         this.loadStories();
       },
       error: (err) => {
         this.uploadingStoryType.set(null);
-        input.value = '';
         this.storyUploadError.set(err?.error?.message ?? "Erreur lors de l'envoi de la vidéo");
       },
     });
