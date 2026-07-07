@@ -2878,13 +2878,11 @@
         "title": "1. Creating the professional profile",
         "intro": "Before validating the account, Artisan Compétent notably verifies:",
         "items": [
-          "your SIRET",
-          "your insurance policies",
-          "your public liability insurance (RC Pro)",
-          "your ten-year warranty (décennale) when necessary",
-          "all the professional certifications you hold, up to date, corresponding to your trade and to the work you offer (RGE, Qualibat, QualiPAC, etc.)"
+          "votre numéro SIRET ;",
+          "vos assurances professionnelles obligatoires, notamment votre RC Pro et, lorsque votre activité l'exige, votre assurance décennale ;",
+          "vos certifications, qualifications et labels professionnels en cours de validité, adaptés à votre métier et aux prestations proposées (RGE, Qualibat, QualiPAC, etc.)."
         ],
-        "outro": "The goal is to maintain a minimum level of seriousness on the platform."
+        "outro": "L'objectif est de maintenir un niveau élevé de sérieux, de fiabilité et de confiance sur la plateforme."
       },
       "s2": {
         "title": "2. Receiving client requests",
