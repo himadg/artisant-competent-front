@@ -576,7 +576,9 @@
   },
   "urgencesPage": {
     "title": "Métiers d'urgence",
-    "description": "Nos artisans d'urgence interviennent 24h/24 et 7j/7 pour répondre à vos besoins les plus pressants."
+    "description": "Nos artisans d'urgence interviennent 24h/24 et 7j/7 pour répondre à vos besoins les plus pressants.",
+    "cta": "Trouver un artisan d'urgence",
+    "bottomCtaText": "Une fuite, une panne, une porte claquée ? Ne choisissez pas au hasard. Trouvez un artisan d'urgence disponible près de chez vous, avec un paiement encadré par Artisan Compétent."
   },
   "jobs": {
     "title": "Nos métiers",
