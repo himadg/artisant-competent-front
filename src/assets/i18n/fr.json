@@ -2878,13 +2878,11 @@
         "title": "1. Création du profil professionnel",
         "intro": "Avant validation du compte, Artisan Compétent vérifie notamment :",
         "items": [
-          "votre SIRET",
-          "vos assurances",
-          "votre RC Pro",
-          "votre décennale lorsque nécessaire",
-          "toutes les certifications professionnelles en votre possession, à jour, correspondant à votre métier et aux interventions que vous proposez (RGE, Qualibat, QualiPAC, etc.)"
+          "votre numéro SIRET ;",
+          "vos assurances professionnelles obligatoires, notamment votre RC Pro et, lorsque votre activité l'exige, votre assurance décennale ;",
+          "vos certifications, qualifications et labels professionnels en cours de validité, adaptés à votre métier et aux prestations proposées (RGE, Qualibat, QualiPAC, etc.)."
         ],
-        "outro": "L'objectif est de maintenir un niveau minimum de sérieux sur la plateforme."
+        "outro": "L'objectif est de maintenir un niveau élevé de sérieux, de fiabilité et de confiance sur la plateforme."
       },
       "s2": {
         "title": "2. Réception des demandes clients",
