@@ -576,7 +576,9 @@
   },
   "urgencesPage": {
     "title": "Emergency trades",
-    "description": "Our emergency tradespeople are available 24/7 to respond to your most urgent needs."
+    "description": "Our emergency tradespeople are available 24/7 to respond to your most urgent needs.",
+    "cta": "Trouver un artisan d'urgence",
+    "bottomCtaText": "Une fuite, une panne, une porte claquée ? Ne choisissez pas au hasard. Trouvez un artisan d'urgence disponible près de chez vous, avec un paiement encadré par Artisan Compétent."
   },
   "jobs": {
     "title": "Our jobs",
