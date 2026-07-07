@@ -3578,7 +3578,7 @@
     },
     "validation": {
       "title": "Validation des travaux et libération des fonds",
-      "body": "<p>Une fois le chantier terminé, le professionnel vous transmet un procès-verbal digital de fin de chantier.</p><p>Vous disposez alors d'un délai pouvant aller jusqu'à 48 heures pour :</p><ul><li>valider le procès-verbal ou émettre une réserve si nécessaire.</li></ul><p>Pendant ce délai, les fonds restent sécurisés et ne sont pas versés au professionnel.</p><p>Si aucun problème n'est signalé dans le délai prévu, les fonds sont automatiquement libérés conformément aux conditions prévues dans les CGU et le procès-verbal est considéré comme validé sans réserve.</p><p>En cas de litige, les fonds restent bloqués le temps qu'Artisan Compétent analyse les éléments enregistrés dans le suivi digital afin de faciliter un arbitrage basé sur des preuves concrètes.</p>"
+      "body": "<p>Une fois le chantier terminé, le professionnel vous transmet un procès-verbal digital de fin de chantier.</p><p>Vous disposez alors d'un délai pouvant aller jusqu'à 96 heures pour :</p><ul><li>valider le procès-verbal ou émettre une réserve si nécessaire.</li></ul><p>Pendant ce délai, les fonds restent sécurisés et ne sont pas versés au professionnel.</p><p>Si aucun problème n'est signalé dans le délai prévu, les fonds sont automatiquement libérés conformément aux conditions prévues dans les CGU et le procès-verbal est considéré comme validé sans réserve.</p><p>En cas de litige, les fonds restent bloqués le temps qu'Artisan Compétent analyse les éléments enregistrés dans le suivi digital afin de faciliter un arbitrage basé sur des preuves concrètes.</p>"
     },
     "klarna": {
       "title": "Paiement en plusieurs fois via Klarna",

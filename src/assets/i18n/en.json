@@ -3578,7 +3578,7 @@
     },
     "validation": {
       "title": "Work validation and release of funds",
-      "body": "<p>Once the project is finished, the professional sends you a digital completion report.</p><p>You then have up to 48 hours to:</p><ul><li>validate the report or raise a reservation if necessary.</li></ul><p>During this period, the funds stay secured and are not paid to the professional.</p><p>If no problem is reported within the set period, the funds are released automatically in line with the conditions set out in the Terms of Use, and the report is deemed validated without reservation.</p><p>In the event of a dispute, the funds stay held while Artisan Compétent analyses the records in the digital tracking, to support arbitration based on concrete evidence.</p>"
+      "body": "<p>Once the project is finished, the professional sends you a digital completion report.</p><p>You then have up to 96 hours to:</p><ul><li>validate the report or raise a reservation if necessary.</li></ul><p>During this period, the funds stay secured and are not paid to the professional.</p><p>If no problem is reported within the set period, the funds are released automatically in line with the conditions set out in the Terms of Use, and the report is deemed validated without reservation.</p><p>In the event of a dispute, the funds stay held while Artisan Compétent analyses the records in the digital tracking, to support arbitration based on concrete evidence.</p>"
     },
     "klarna": {
       "title": "Payment in instalments via Klarna",
