@@ -107,6 +107,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/steps/steps').then((p) => p.StepsPage),
   },
   {
+    path: 'a-propos',
+    title: 'home.presentation.title',
+    loadComponent: () => import('./pages/a-propos/a-propos').then((p) => p.AProposPage),
+  },
+  {
     path: 'contact',
     title: 'contact.title',
     loadComponent: () => import('./pages/contact/contact').then((p) => p.ContactPage),
