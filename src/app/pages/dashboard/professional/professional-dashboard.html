@@ -21,11 +21,10 @@
                         <line x1="12" y1="8" x2="12" y2="12" />
                         <line x1="12" y1="16" x2="12.01" y2="16" />
                     </svg>
-                    Profil en cours de vérification
+                    {{ 'dashboard.pro.status.pendingTitle' | transloco }}
                 </h4>
                 <p class="mt-1 text-sm">
-                    Votre profil est actuellement en cours d'examen par notre équipe. Il sera modal par les clients
-                    une fois validé.
+                    {{ 'dashboard.pro.status.pendingBody' | transloco }}
                 </p>
             </div>
         </div>
@@ -45,10 +44,10 @@
                         <line x1="15" y1="9" x2="9" y2="15" />
                         <line x1="9" y1="9" x2="15" y2="15" />
                     </svg>
-                    Inscription refusée
+                    {{ 'dashboard.pro.status.rejectedTitle' | transloco }}
                 </h4>
                 <p class="mt-1 text-sm">
-                    Votre profil n'a pas pu être validé. Veuillez vérifier vos documents ou contacter le support.
+                    {{ 'dashboard.pro.status.rejectedBody' | transloco }}
                 </p>
             </div>
         </div>

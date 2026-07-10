@@ -1,13 +1,14 @@
 import { Component, input, output, inject, computed, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { TranslocoModule } from '@jsverse/transloco';
 import { PreviewDocument } from '../../interfaces/preview-document';
 
 @Component({
   selector: 'doc-modal',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslocoModule],
   templateUrl: './doc-modal.html',
   styleUrl: './doc-modal.scss'
 })
