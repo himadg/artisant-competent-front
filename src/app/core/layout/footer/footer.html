@@ -196,7 +196,7 @@
                     type="button"
                     (click)="closeContactModal()"
                     class="absolute top-4 right-4 p-1 border-0 bg-transparent cursor-pointer text-[var(--color)]"
-                    aria-label="Fermer"
+                    [attr.aria-label]="'common.close' | transloco"
                 >
                     <iconify-icon icon="lucide:x" width="20" height="20"></iconify-icon>
                 </button>

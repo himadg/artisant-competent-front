@@ -11,10 +11,10 @@ export const TRADES: TradeInfo[] = [
     image: 'assets/img/electricien.jpg',
     metaTitle: (city) => `Électricien vérifié à ${city} — SIRET, NF C 18-510, séquestre Stripe | Artisan Compétent`,
     metaDescription: (city) =>
-      `Électricien vérifié à ${city} : SIRET contrôlé, RC pro et décennale à jour, habilitation NF C 18-510, qualification IRVE pour bornes de recharge. Paiement encadré par séquestre Stripe — fonds libérés 48h après le chantier.`,
+      `Électricien vérifié à ${city} : SIRET contrôlé, RC pro et décennale à jour, habilitation NF C 18-510, qualification IRVE pour bornes de recharge. Paiement encadré par séquestre Stripe — fonds libérés 96h après le chantier.`,
     h1: (city) => `Électricien vérifié à ${city} — du devis à la mise sous tension encadrée`,
     intro: (city) =>
-      `Les électriciens référencés sur Artisan Compétent à ${city} ont leur SIRET contrôlé, leurs assurances RC pro et décennale vérifiées, leur habilitation électrique NF C 18-510 pour les interventions sous tension et leur qualification IRVE pour la pose de bornes de recharge. Dépannage, tableau électrique, mise aux normes NF C 15-100, domotique, bornes IRVE : décrivez votre besoin et recevez un devis détaillé d'un professionnel vérifié de votre zone. Le paiement est encadré par séquestre Stripe — les fonds sont libérés 48h après la fin du chantier, sans réserve de votre part.`,
+      `Les électriciens référencés sur Artisan Compétent à ${city} ont leur SIRET contrôlé, leurs assurances RC pro et décennale vérifiées, leur habilitation électrique NF C 18-510 pour les interventions sous tension et leur qualification IRVE pour la pose de bornes de recharge. Dépannage, tableau électrique, mise aux normes NF C 15-100, domotique, bornes IRVE : décrivez votre besoin et recevez un devis détaillé d'un professionnel vérifié de votre zone. Le paiement est encadré par séquestre Stripe — les fonds sont libérés 96h après la fin du chantier, sans réserve de votre part.`,
     keywords: (city) =>
       `électricien vérifié ${city}, habilitation NF C 18-510 ${city}, borne recharge IRVE ${city}, domotique ${city}, mise aux normes NF C 15-100 ${city}`,
   },
@@ -128,7 +128,7 @@ export const TRADES: TradeInfo[] = [
   },
 ];
 
-export const TRADES_MAP = new Map<string, TradeInfo>(TRADES.map(t => [t.slug, t]));
+export const TRADES_MAP = new Map<string, TradeInfo>(TRADES.map((t) => [t.slug, t]));
 
 export function getTrade(slug: string): TradeInfo | undefined {
   return TRADES_MAP.get(slug);

@@ -1410,7 +1410,7 @@
                 class="absolute top-2 right-3 text-2xl text-gray-500 hover:text-gray-800"
                 (click)="workingAddressModalOpen.set(false)"
             >×</button>
-            <img src="assets/img/help-working-address.jpeg" alt="Mode d'emploi adresse de géolocalisation" class="w-full h-auto" />
+            <img src="assets/img/help-working-address.jpeg" [attr.alt]="'register.workingAddressHelpAlt' | transloco" class="w-full h-auto" />
         </div>
     </div>
 }

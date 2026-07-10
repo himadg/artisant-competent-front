@@ -2,11 +2,13 @@
   "banner": {
     "klarna": {
       "textBefore": "Payez en 3 fois sans frais avec",
-      "textAfter": ", sous conditions *"
+      "textAfter": ", sous conditions *",
+      "ariaLabel": "Annonce paiement Klarna"
     }
   },
   "prelaunch": {
-    "banner": "Plateforme en pré-lancement · Les inscriptions sont ouvertes. Toutes les autres fonctionnalités seront disponibles à partir du 1er septembre 2026."
+    "banner": "Plateforme en pré-lancement · Les inscriptions sont ouvertes. Toutes les autres fonctionnalités seront disponibles à partir du 1er septembre 2026.",
+    "bannerAriaLabel": "Annonce pré-lancement"
   },
   "home": {
     "meta": {
@@ -433,7 +435,16 @@
     "jobs": "Métiers",
     "affiliation": "Affiliation",
     "professionals": "Professionnels",
-    "loading": "Chargement..."
+    "loading": "Chargement...",
+    "close": "Fermer"
+  },
+  "docModal": {
+    "defaultTitle": "Aperçu du document",
+    "defaultAlt": "Aperçu",
+    "pdfUnsupported": "Votre navigateur ne supporte pas la prévisualisation de PDF.",
+    "downloadPdf": "Télécharger le PDF",
+    "previewUnavailable": "Aperçu non disponible pour ce type de fichier.",
+    "openDocument": "Ouvrir le document"
   },
   "footer": {
     "newsletterTitle": "Recevez nos conseils anti-arnaque et nos bons plans travaux directement sur WhatsApp.",
@@ -582,12 +593,13 @@
     "title": "Nos métiers",
     "description": "Découvrez les métiers et compétences disponibles sur la plateforme.",
     "nearbyCities": "dans les villes proches de {{ city }}",
+    "nameAtCity": "{{ name }} à {{ city }}",
     "list": {
       "electrician": {
         "title": "Électricien vérifié, du devis à la mise sous tension encadrée",
         "name": "Électricité & Appareils connectés (24/7)",
         "tagline": "Cette page liste les interventions traitées par les électriciens vérifiés d'Artisan Compétent, y compris la domotique, les bornes de recharge et les mises aux normes NF C 15-100, et le mécanisme qui encadre votre paiement de la signature du devis à la libération des fonds 96h après la fin du chantier.",
-        "verifiedBadge": "En bref, un électricien vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, son habilitation électrique selon NF C 18-510 pour les interventions sous tension, sa qualification IRVE pour les bornes de recharge et la qualification Qualifelec affichée si déclarée. Process encadré par séquestre Stripe : 96h après la fin du chantier pour signaler un abus. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
+        "verifiedBadge": "En bref, un électricien vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, son habilitation électrique selon NF C 18-510 pour les interventions sous tension, sa qualification IRVE pour les bornes de recharge et la qualification Qualifelec affichée si déclarée. Process encadré par séquestre Stripe : 96h après la fin du chantier pour signaler un abus. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 50 km par ville.",
         "description": {
           "p1": "Avec Artisan-Compétent, trouver un électricien compétent n'a jamais été aussi simple. En quelques secondes, vous décrivez votre problème en audio, vidéo ou photo, et notre solution vous met directement en relation avec des électriciens qualifiés près de chez vous — qu'il s'agisse d'une installation classique ou d'appareils connectés et de domotique.",
           "p2": "Plus besoin de formulaires compliqués ou d'attendre un rappel: vous comparez les propositions reçues, choisissez l'artisan qui vous inspire confiance et bénéficiez d'une intervention rapide et sécurisée.",
@@ -772,7 +784,7 @@
             },
             {
               "q": "Quelles villes sont couvertes par Artisan Compétent pour l'électricité ?",
-              "a": "Artisan Compétent ambitionne de couvrir la France métropolitaine, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d'intervention de 30 km autour de chaque ville référencée. Les grandes métropoles (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) sont couvertes ainsi que de nombreuses villes moyennes."
+              "a": "Artisan Compétent ambitionne de couvrir la France métropolitaine, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d'intervention de 50 km autour de chaque ville référencée. Les grandes métropoles (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) sont couvertes ainsi que de nombreuses villes moyennes."
             },
             {
               "q": "Faut-il une attestation Qualifelec pour un simple dépannage électrique ?",
@@ -785,7 +797,7 @@
         "title": "Serrurier vérifié, sans subir le devis nocturne",
         "name": "Serrurier (24/7)",
         "tagline": "Cette page liste les interventions traitées par les serruriers et métalliers vérifiés d’Artisan Compétent et le mécanisme anti-arnaque qui encadre votre paiement, du devis signé à la libération des fonds 96h après l’intervention.",
-        "verifiedBadge": "En bref, un serrurier vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, et remet un devis chiffré préalable comme l’impose le Code de la consommation pour toute intervention au-delà de 150 €. Process encadré par séquestre via Stripe, 96h pour signaler un abus. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
+        "verifiedBadge": "En bref, un serrurier vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, et remet un devis chiffré préalable comme l’impose le Code de la consommation pour toute intervention au-delà de 150 €. Process encadré par séquestre via Stripe, 96h pour signaler un abus. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 50 km par ville.",
         "description": {
           "p1": "En une phrase, sur Artisan Compétent, un serrurier vérifié remet un devis chiffré avant intervention (obligatoire au-delà de 150 € à domicile) et tout son chantier est encadré par un séquestre de fonds Stripe qui retient le paiement jusqu’à 96h après la fin de l’intervention. C’est la réponse opérationnelle à la première source d’arnaque en BTP : la sortie nocturne avec devis verbal et paiement comptant.",
           "p2": "La serrurerie en urgence est le secteur le plus exposé aux pratiques abusives. Un serrurier vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, et accepte le devis chiffré préalable imposé par l’article L. 111-1 du Code de la consommation pour toute intervention à domicile au-delà de 150 €. Tout le process est encadré par un séquestre de fonds Stripe : il reste bloqué jusqu’à 96h après l’intervention, fenêtre pendant laquelle vous pouvez signaler un devis non respecté."
@@ -986,7 +998,7 @@
             },
             {
               "q": "Quelles villes sont couvertes par Artisan Compétent pour la serrurerie ?",
-              "a": "Artisan Compétent ambitionne de couvrir la France métropolitaine, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d’intervention de 30 km autour de chaque ville référencée. Toutes les grandes métropoles sont couvertes (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) avec une disponibilité 24h/24 en sortie nocturne dans les zones urbaines denses."
+              "a": "Artisan Compétent ambitionne de couvrir la France métropolitaine, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d’intervention de 50 km autour de chaque ville référencée. Toutes les grandes métropoles sont couvertes (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) avec une disponibilité 24h/24 en sortie nocturne dans les zones urbaines denses."
             }
           ]
         },
@@ -1000,7 +1012,7 @@
         "title": "Plombier sanitaire vérifié, du devis à la libération des fonds encadrée",
         "name": "Plombier sanitaire (24/7)",
         "tagline": "Cette page liste les interventions traitées par les plombiers vérifiés d'Artisan Compétent et le mécanisme qui encadre votre paiement de bout en bout, du devis chiffré à la libération des fonds 96h après la fin du chantier.",
-        "verifiedBadge": "En, bref, un plombier vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, sa qualification PG pour les interventions gaz et, le cas échéant, sa qualification RGE pour les pompes à chaleur et la climatisation éligibles aux aides publiques. Tout le process est encadré par un séquestre de fonds via Stripe : devis, intervention, libération des fonds 96h après la fin du chantier. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
+        "verifiedBadge": "En, bref, un plombier vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, sa qualification PG pour les interventions gaz et, le cas échéant, sa qualification RGE pour les pompes à chaleur et la climatisation éligibles aux aides publiques. Tout le process est encadré par un séquestre de fonds via Stripe : devis, intervention, libération des fonds 96h après la fin du chantier. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 50 km par ville.",
         "description": {
           "p1": "Un plombier vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, et la qualification PG si son activité touche au gaz. Le séquestre de fonds Stripe encadre la totalité du processus : le paiement quitte votre compte à la validation du devis, reste bloqué pendant l’intervention, puis 96h supplémentaires après la fin du chantier. C’est ce délai de 96h qui vous laisse signaler une malfaçon, un abus ou un non-respect du devis avant que les fonds soient libérés au plombier."
         },
@@ -1190,7 +1202,7 @@
             },
             {
               "q": "Quelles villes sont couvertes par Artisan Compétent pour la plomberie ?",
-              "a": "Artisan Compétent ambitionne de couvrir la France métropolitaine, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d’intervention de 30 km autour de chaque ville référencée. Toutes les grandes métropoles sont couvertes (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) ainsi qu’un maillage régional étendu."
+              "a": "Artisan Compétent ambitionne de couvrir la France métropolitaine, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d’intervention de 50 km autour de chaque ville référencée. Toutes les grandes métropoles sont couvertes (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) ainsi qu’un maillage régional étendu."
             },
             {
               "q": "Faut-il une qualification spéciale pour un plombier qui intervient sur le gaz ?",
@@ -1203,7 +1215,7 @@
         "title": "Déboucheur de canalisations vérifié, du devis à la libération encadrée",
         "name": "Déboucheur de canalisations (24/7)",
         "tagline": "Cette page liste les interventions de débouchage et d'assainissement traitées par les artisans vérifiés d'Artisan Compétent et le mécanisme qui encadre votre paiement, du devis chiffré à la libération des fonds 96h après l'intervention.",
-        "verifiedBadge": "En bref, un déboucheur de canalisations vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, l’agrément préfectoral pour l’évacuation des matières de vidange si son activité touche aux fosses septiques, et son matériel (caméra d’inspection, hydrocureur) tracé au tableau de bord. Process encadré par séquestre via Stripe, 96h pour signaler un abus. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
+        "verifiedBadge": "En bref, un déboucheur de canalisations vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, l’agrément préfectoral pour l’évacuation des matières de vidange si son activité touche aux fosses septiques, et son matériel (caméra d’inspection, hydrocureur) tracé au tableau de bord. Process encadré par séquestre via Stripe, 96h pour signaler un abus. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 50 km par ville.",
         "description": {
           "p1": "En une phrase, sur Artisan Compétent, un déboucheur vérifié a son SIRET, son assurance RC pro et son agrément préfectoral (pour les fosses septiques) contrôlés en amont, et son matériel (caméra d’inspection, hydrocureur) est tracé au tableau de bord. Tout le chantier est encadré par un séquestre de fonds Stripe qui retient le paiement jusqu’à 96h après l’intervention, fenêtre pendant laquelle vous pouvez signaler une canalisation qui se rebouche immédiatement ou un forfait gonflé sans détail des moyens utilisés.",
           "p2": "Un déboucheur de canalisations vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, et l’agrément préfectoral requis pour l’évacuation des matières de vidange quand son activité inclut la fosse septique. Le débouchage en urgence est l’un des secteurs où la pratique du forfait gonflé sans détail des moyens utilisés est la plus fréquente : le séquestre de fonds Stripe et la fenêtre de 96h sont la réponse opérationnelle à ces abus."
@@ -1400,7 +1412,7 @@
             },
             {
               "q": "Quelles villes sont couvertes par Artisan Compétent pour le débouchage ?",
-              "a": "Artisan Compétent ambitionne de couvrir la France métropolitaine, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d’intervention de 30 km autour de chaque ville référencée. Toutes les grandes métropoles sont couvertes (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) avec une disponibilité 24h/24 en urgence dans les zones urbaines denses."
+              "a": "Artisan Compétent ambitionne de couvrir la France métropolitaine, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d’intervention de 50 km autour de chaque ville référencée. Toutes les grandes métropoles sont couvertes (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) avec une disponibilité 24h/24 en urgence dans les zones urbaines denses."
             }
           ]
         },
@@ -1412,9 +1424,9 @@
       },
       "heating": {
         "title": "Chauffagiste vérifié, du devis à la mise en chauffe encadrée",
-        "name": "Chauffagiste & VMC & Pompe à chaleur",
+        "name": "Chauffagiste & VMC & Pompe à chaleur (24/7)",
         "tagline": "Cette page liste les interventions traitées par les chauffagistes vérifiés d’Artisan Compétent, y compris les VMC simple et double flux, les pompes à chaleur, les installations RGE éligibles aux aides de l’État, et le mécanisme qui encadre votre paiement de la signature du devis à la libération des fonds 96h après la mise en service.",
-        "verifiedBadge": "En bref, un chauffagiste vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, sa qualification PG pour le gaz, et sa qualification RGE (QualiPAC, Qualibois, QualiSol selon l’équipement) affichée pour les aides publiques. Périmètre couvert : chaudière gaz, fioul, condensation, bois, pompes à chaleur air-eau et air-air, plancher chauffant hydraulique, VMC simple et double flux, entretien annuel obligatoire. Process encadré par séquestre Stripe, 96h pour signaler un abus. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
+        "verifiedBadge": "En bref, un chauffagiste vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, sa qualification PG pour le gaz, et sa qualification RGE (QualiPAC, Qualibois, QualiSol selon l’équipement) affichée pour les aides publiques. Périmètre couvert : chaudière gaz, fioul, condensation, bois, pompes à chaleur air-eau et air-air, plancher chauffant hydraulique, VMC simple et double flux, entretien annuel obligatoire. Process encadré par séquestre Stripe, 96h pour signaler un abus. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 50 km par ville.",
         "description": {
           "p1": "En une phrase, sur Artisan Compétent, un chauffagiste vérifié a son SIRET, ses assurances, sa qualification PG pour le gaz et sa qualification RGE pour les aides publiques contrôlés en amont. Tout le chantier est encadré par un séquestre de fonds Stripe qui retient le paiement jusqu’à 96h après la mise en service, fenêtre pendant laquelle l’attestation de conformité, la remise des notices et l’éligibilité aux aides peuvent être vérifiées.",
           "p2": "Un chauffagiste vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, sa qualification PG pour toute intervention sur le réseau gaz, et sa qualification RGE quand son activité ouvre droit aux aides publiques MaPrimeRénov’ et CEE. Tout le process est encadré par un séquestre de fonds Stripe : il reste bloqué jusqu’à 96h après la mise en service, fenêtre pendant laquelle vous pouvez signaler un abus, un défaut de mise en service ou un matériel non conforme au devis."
@@ -1629,7 +1641,7 @@
         "title": "Technicien climatisation vérifié, du devis à la libération des fonds encadrée",
         "name": "Technicien climatisation & Frigoriste",
         "tagline": "Cette page liste les interventions traitées par les techniciens climatisation vérifiés d'Artisan Compétent et le mécanisme qui encadre votre paiement de bout en bout, du devis chiffré à la libération des fonds 96h après la fin du chantier.",
-        "verifiedBadge": "En bref, un technicien climatisation vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, son attestation de capacité fluides frigorigènes (catégorie I à IV) et sa qualification QualiPAC le cas échéant. Tout le process est encadré par un séquestre de fonds via Stripe : devis, intervention, libération des fonds 96h après la fin du chantier. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
+        "verifiedBadge": "En bref, un technicien climatisation vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, son attestation de capacité fluides frigorigènes (catégorie I à IV) et sa qualification QualiPAC le cas échéant. Tout le process est encadré par un séquestre de fonds via Stripe : devis, intervention, libération des fonds 96h après la fin du chantier. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 50 km par ville.",
         "description": {
           "p1": "En une phrase, sur Artisan Compétent, un technicien climatisation vérifié a son SIRET, ses assurances et son attestation de capacité fluides frigorigènes contrôlés en amont, et toute son intervention (installation, entretien, dépannage de climatisation ou pompe à chaleur) est encadrée par un séquestre de fonds Stripe qui retient le paiement jusqu’à 96h après la fin du chantier. Vous payez seulement si le travail est conforme au devis signé.",
           "p2": "Un technicien climatisation vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, son attestation de capacité fluides frigorigènes (catégorie I à IV selon le périmètre d’activité) et, le cas échéant, sa qualification QualiPAC pour les pompes à chaleur. Le séquestre de fonds Stripe encadre la totalité du processus : le paiement quitte votre compte à la validation du devis, reste bloqué pendant l’intervention, puis 96h supplémentaires après la fin du chantier. Ce délai de 96h vous laisse signaler une malfaçon, un défaut de mise en service ou un non-respect du devis avant que les fonds soient libérés à l’artisan."
@@ -1833,7 +1845,7 @@
             },
             {
               "q": "Quelles villes sont couvertes par Artisan Compétent pour la climatisation ?",
-              "a": "Artisan Compétent ambitionne de couvrir la France métropolitaine, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d’intervention de 30 km autour de chaque ville référencée. Toutes les grandes métropoles sont couvertes (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille)."
+              "a": "Artisan Compétent ambitionne de couvrir la France métropolitaine, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d’intervention de 50 km autour de chaque ville référencée. Toutes les grandes métropoles sont couvertes (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille)."
             }
           ]
         },
@@ -1847,7 +1859,7 @@
         "title": "Vitrier vérifié, du devis à la libération des fonds encadrée",
         "name": "Vitrerie & Miroiterie",
         "tagline": "Cette page liste les interventions de vitrerie traitées par les vitriers vérifiés d'Artisan Compétent et le mécanisme qui encadre votre paiement de bout en bout, du devis chiffré à la libération des fonds 96h après la fin du chantier.",
-        "verifiedBadge": "En brerf, un vitrier vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, et la certification correspondant aux vitrages techniques posés. Tout le process est encadré par un séquestre de fonds via Stripe : devis, intervention, libération des fonds 96h après la fin du chantier. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville. Périmètre : vitrerie et miroiterie. La menuiserie (encadrement, bâti dormant) n'est pas couverte en V1.",
+        "verifiedBadge": "En brerf, un vitrier vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour, et la certification correspondant aux vitrages techniques posés. Tout le process est encadré par un séquestre de fonds via Stripe : devis, intervention, libération des fonds 96h après la fin du chantier. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 50 km par ville. Périmètre : vitrerie et miroiterie. La menuiserie (encadrement, bâti dormant) n'est pas couverte en V1.",
         "description": {
           "p1": "En une phrase, sur Artisan Compétent, un vitrier vérifié a son SIRET et ses assurances contrôlés en amont, et toute son intervention (pose de vitrage, remplacement de double vitrage, dépannage bris de glace, miroirs, vitrines, garde-corps verre) est encadrée par un séquestre de fonds Stripe qui retient le paiement jusqu’à 96h après la fin du chantier. Vous payez seulement si le travail est conforme au devis signé.",
           "p2": "Un vitrier vérifié sur Artisan Compétent a son SIRET contrôlé, ses assurances RC pro et décennale à jour et, le cas échéant, les certifications spécifiques aux ouvrages techniques (vitrages feuilletés de sécurité, garde-corps en verre soumis à la norme NF P01-013). Le séquestre de fonds Stripe encadre la totalité du processus : le paiement quitte votre compte à la validation du devis, reste bloqué pendant l’intervention, puis 96h supplémentaires après la fin du chantier. C’est ce délai de 96h qui vous laisse signaler une malfaçon (vitrage rayé, joint mal posé, double vitrage qui s’embue) ou un non-respect du devis avant que les fonds soient libérés au vitrier."
@@ -2058,7 +2070,7 @@
             },
             {
               "q": "Quelles villes sont couvertes par Artisan Compétent pour la vitrerie ?",
-              "a": "Artisan Compétent ambitionne de couvrir la France métropolitaine, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d’intervention de 30 km autour de chaque ville référencée. Toutes les grandes métropoles sont couvertes (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) avec une disponibilité 24h/24 en urgence sur les zones urbaines denses."
+              "a": "Artisan Compétent ambitionne de couvrir la France métropolitaine, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d’intervention de 50 km autour de chaque ville référencée. Toutes les grandes métropoles sont couvertes (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) avec une disponibilité 24h/24 en urgence sur les zones urbaines denses."
             }
           ]
         },
@@ -2072,7 +2084,7 @@
         "title": "Spécialiste anti-nuisibles vérifié, du devis à la libération des fonds encadrée",
         "name": "Traitement anti-nuisibles (rongeurs, punaises...)",
         "tagline": "Cette page liste les interventions traitées par les spécialistes anti-nuisibles vérifiés d'Artisan Compétent et le mécanisme qui encadre votre paiement de bout en bout, du devis chiffré à la libération des fonds 96h après la fin du chantier.",
-        "verifiedBadge": "En bref, un spécialiste anti-nuisibles vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, et son certificat Certibiocide en cours de validité. Tout le process est encadré par un séquestre de fonds via Stripe : devis, intervention, visites de contrôle, libération des fonds 96h après la fin du chantier. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 30 km par ville.",
+        "verifiedBadge": "En bref, un spécialiste anti-nuisibles vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, et son certificat Certibiocide en cours de validité. Tout le process est encadré par un séquestre de fonds via Stripe : devis, intervention, visites de contrôle, libération des fonds 96h après la fin du chantier. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 50 km par ville.",
         "description": {
           "p1": "En une phrase, sur Artisan Compétent, un spécialiste anti-nuisibles vérifié a son SIRET, ses assurances et sa certification Certibiocide contrôlés en amont, et toute son intervention (dératisation, désinsectisation, désinfection, traitement de punaises de lit ou de frelons) est encadrée par un séquestre de fonds Stripe qui retient le paiement jusqu’à 96h après la fin du chantier. Vous payez seulement si le traitement est conforme au devis signé.",
           "p2": "Un spécialiste anti-nuisibles vérifié sur Artisan Compétent a son SIRET contrôlé, son assurances RC pro à jour, et son certificat Certibiocide en cours de validité (obligation réglementaire pour la manipulation des produits biocides à usage professionnel). Le séquestre de fonds Stripe encadre la totalité du processus : le paiement quitte votre compte à la validation du devis, reste bloqué pendant l’intervention, puis 96h supplémentaires après la fin du chantier. Ce délai de 96h vous laisse signaler une efficacité insuffisante, une absence de visite de contrôle ou un non-respect du devis avant que les fonds soient libérés à l’artisan."
@@ -2269,7 +2281,7 @@
             },
             {
               "q": "Quelles villes sont couvertes par Artisan Compétent pour l’anti-nuisibles ?",
-              "a": "Artisan Compétent ambitionne de couvrir la France métropolitaine, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d’intervention de 30 km autour de chaque ville référencée. Toutes les grandes métropoles sont couvertes (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille)."
+              "a": "Artisan Compétent ambitionne de couvrir la France métropolitaine, les DOM-TOM et la Corse, soit 38 zones, avec un rayon d’intervention de 50 km autour de chaque ville référencée. Toutes les grandes métropoles sont couvertes (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille)."
             }
           ]
         },
@@ -2300,6 +2312,7 @@
   "register": {
     "chooseType": "Quel type de compte souhaitez-vous créer ?",
     "title": "Inscription du particulier",
+    "workingAddressHelpAlt": "Mode d'emploi adresse de géolocalisation",
     "addPhoto": "Ajouter une photo",
     "addId": "Ajouter une carte d'identité",
     "addRib": "Ajouter un RIB",
@@ -2632,6 +2645,8 @@
   },
   "affiliation": {
     "title": "Programme partenaire",
+    "backButton": "Retour",
+    "backAriaLabel": "Retour à la page précédente",
     "meta": {
       "title": "Programme Partenaire Artisan Compétent | 20 % de commission",
       "description": "Recommandez Artisan Compétent à votre audience et touchez 20 % de commission la première année. Inscription gratuite, sans engagement, sans avancer un centime."
@@ -2655,20 +2670,23 @@
     },
     "commissions": {
       "title": "C'est simple. Vraiment.",
+      "intro": "Vous percevez une commission calculée sur la commission d'intermédiation effectivement acquise par Artisan Compétent au titre des chantiers réalisés grâce à vos recommandations.",
+      "introDetail": "20 % pendant les six premiers mois pour les clients que vous apportez (puis 10 % pendant les six mois suivants) et 5 % pendant trois mois pour chaque artisan que vous avez invité sur la plateforme.",
       "summaryTitle": "En trois lignes",
       "summaryClient": "Vous ramenez un client : 20 % les 6 premiers mois, 10 % les 6 mois suivants.",
       "summaryArtisan": "Vous ramenez un artisan : 5 % pendant 3 mois.",
-      "summaryBoth": "Vous faites les deux : vous cumulez, jusqu'à 25 %.",
+      "summaryBoth": "Vous faites les deux : vous cumulez les deux commissions.",
       "detailsTitle": "Le détail si besoin",
-      "detailClient": "Client particulier : 20 % de commission sur la marge Artisan Compétent les 6 premiers mois après l'inscription du client, 10 % les 6 mois suivants. Au-delà de 12 mois, la commission s'arrête.",
-      "detailArtisan": "Artisan recommandé : 5 % sur la marge générée par les chantiers signés de cet artisan, pendant 3 mois après son inscription sur la plateforme.",
-      "detailCumul": "Cumul : si vous ramenez à la fois un client et un artisan, vous touchez sur les deux. Une même personne peut donc gagner jusqu'à 25 % sur un même chantier (20 % côté client + 5 % côté artisan).",
+      "detailClient": "Client particulier : 20 % de commission sur la commission d'intermédiation acquise par Artisan Compétent les 6 premiers mois après l'inscription du client, 10 % les 6 mois suivants. Au-delà de 12 mois, la commission s'arrête.",
+      "detailArtisan": "Artisan recommandé : 5 % sur la commission d'intermédiation générée par les chantiers signés de cet artisan, pendant 3 mois après son inscription sur la plateforme.",
+      "detailCumul": "Cumul : si vous ramenez à la fois un client et un artisan, vous touchez sur les deux (20 % côté client + 5 % côté artisan).",
       "conditionsTitle": "Conditions communes",
       "condition1": "Cookie d'attribution valable 15 jours après le premier clic sur votre lien. Il se renouvelle à chaque nouveau clic d'un visiteur via votre lien. Donc en pratique, tant que vous publiez régulièrement, le cookie reste actif.",
       "condition2": "En complément du cookie, votre filleul est rattaché à votre compte partenaire au moment de son inscription. Vous touchez vos commissions pendant les 12 mois qui suivent son inscription (3 mois pour tout artisan amené).",
       "condition3": "Vous devez publier au moins un contenu par semaine pour rester actif. Au bout de 7 jours sans publication, vous recevez une alerte. Au bout de 14 jours, votre lien est désactivé. Tous les filleuls déjà rattachés à votre compte continuent de générer des commissions normalement.",
-      "condition4": "Les commissions portent uniquement sur la marge d'Artisan Compétent. Jamais sur les matériaux, jamais sur la main d'œuvre brute facturée par l'artisan.",
-      "condition5": "Versement trimestriel par virement bancaire, à compter du procès-verbal de réception signé par le client. Pas de versement sur devis signé seul, parce qu'un devis peut encore être annulé en cours de chantier."
+      "condition4": "Les commissions portent uniquement sur la commission d'intermédiation acquise par Artisan Compétent. Jamais sur les matériaux, jamais sur la main d'œuvre brute facturée par l'artisan.",
+      "condition5": "Les commissions d'affiliation sont validées une fois le procès-verbal de réception définitivement validé et après encaissement effectif par Artisan Compétent de la commission d'intermédiation correspondante. Elles sont ensuite versées par virement trimestriel, accompagnées d'un justificatif disponible dans votre espace partenaire.",
+      "basisNote": "Les commissions sont calculées conformément aux Conditions Générales d'Utilisation et uniquement sur les commissions d'intermédiation définitivement acquises par Artisan Compétent. Les coûts techniques, administratifs, les remboursements, annulations ou ajustements éventuels ne sont pas pris en compte dans l'assiette de calcul des commissions d'affiliation."
     },
     "whyRecommend": {
       "title": "Vous ne vendez pas un produit. Vous vendez une protection. Et vous renforcez votre image.",
@@ -2724,7 +2742,7 @@
     "legal": {
       "title": "Mentions légales et conditions du programme",
       "item1": "Le programme partenaire est ouvert aux personnes physiques majeures et aux personnes morales établies en France ou dans l'Union européenne.",
-      "item2": "Les commissions sont calculées sur la marge nette d'Artisan Compétent et versées trimestriellement, sous réserve de la signature du procès-verbal de réception par le filleul.",
+      "item2": "Les commissions sont calculées sur la commission d'intermédiation définitivement acquise par Artisan Compétent et versées trimestriellement, sous réserve de la signature du procès-verbal de réception par le filleul.",
       "item3": "La durée d'attribution du cookie est de 15 jours, en accord avec les recommandations CNIL. Le rattachement au compte partenaire permet d'étendre la rémunération au-delà du cookie : 12 mois pour un client recommandé, 3 mois pour un artisan recommandé.",
       "item4": "Artisan Compétent se réserve le droit de suspendre ou résilier l'accès au programme en cas de manquement aux règles d'usage (fraude, spam, contenu inapproprié, non-respect de la réglementation).",
       "item5": "Les modifications de la grille de commission s'appliquent uniquement aux nouvelles inscriptions ; les conversions déjà enregistrées restent rémunérées selon les conditions en vigueur au moment du clic d'origine.",
@@ -2919,7 +2937,7 @@
       },
       "s8": {
         "title": "8. Procès-verbal de fin de chantier",
-        "body": "Lorsque les travaux sont terminés, vous envoyez un procès-verbal digital. Le client dispose alors de 48 heures pour vérifier les travaux, signaler un problème ou demander une correction si nécessaire. Huit heures avant la fin du délai, le client reçoit automatiquement un email de rappel. En l'absence de réserve, le procès-verbal est validé automatiquement et les fonds sont libérés."
+        "body": "Lorsque les travaux sont terminés, vous envoyez un procès-verbal digital. Le client dispose alors de 96 heures pour vérifier les travaux, signaler un problème ou demander une correction si nécessaire. Huit heures avant la fin du délai, le client reçoit automatiquement un email de rappel. En l'absence de réserve, le procès-verbal est validé automatiquement et les fonds sont libérés."
       },
       "s9": {
         "title": "9. En cas de litige",
@@ -3108,6 +3126,7 @@
   },
   "dashboard": {
     "title": "Mon compte",
+    "currentRole": "Rôle actuel : {{ role }}",
     "nav": {
       "requests": "Mes demandes",
       "quotes": "Mes devis",
@@ -3235,6 +3254,12 @@
       "empty": {
         "missions": "Aucune mission pour le moment.",
         "reviews": "Aucun avis pour le moment."
+      },
+      "status": {
+        "pendingTitle": "Profil en cours de vérification",
+        "pendingBody": "Votre profil est actuellement en cours d'examen par notre équipe. Il sera visible par les clients une fois validé.",
+        "rejectedTitle": "Inscription refusée",
+        "rejectedBody": "Votre profil n'a pas pu être validé. Veuillez vérifier vos documents ou contacter le support."
       },
       "docs": {
         "idFront": "Pièce d'identité (recto)",
@@ -3614,7 +3639,7 @@
     },
     "step4": {
       "title": "Réception des travaux, libération des fonds, avis et clôture du chantier",
-      "body": "<h4>Réception des travaux</h4><p>À la fin du chantier, le professionnel envoie un procès-verbal digital de réception directement via la plateforme Artisan Compétent.</p><p>À partir de ce moment-là, le client dispose d'un délai pouvant aller jusqu'à 48 heures pour :</p><ul><li>vérifier les travaux réalisés,</li><li>contrôler les finitions,</li><li>signaler une éventuelle malfaçon,</li><li>demander une correction si nécessaire,</li><li>ou valider définitivement le chantier.</li></ul><p>Le client peut également valider le procès-verbal immédiatement s'il estime que les travaux sont conformes.</p><p>Pendant toute cette période, les fonds restent encadrés sur le compte séquestre Stripe.</p><p>Huit heures avant la fin du délai des 48 heures, un email de rappel automatique est envoyé au client. Cet email fait également office de mise en demeure afin d'informer le client que :</p><ul><li>soit il doit émettre une réserve ou un signalement s'il constate un problème,</li><li>soit les fonds seront automatiquement libérés à l'issue du délai prévu.</li></ul><p>À défaut de réserve ou de contestation dans le délai imparti, le procès-verbal est automatiquement considéré comme validé conformément aux CGU et CGV de la plateforme.</p><h4>Libération des fonds</h4><p>Une fois le procès-verbal validé, manuellement ou automatiquement après expiration du délai prévu sans réserve, les fonds séquestrés sont immédiatement libérés vers le professionnel.</p><p>Les fonds ne transitent jamais par le compte bancaire d'Artisan Compétent. Ils restent encadrés dans le protocole Stripe jusqu'à leur libération finale.</p><p>En cas de réserve, de malfaçon signalée ou de litige déclaré dans le délai prévu :</p><ul><li>les fonds restent bloqués,</li><li>une analyse du dossier peut être effectuée,</li><li>un échange amiable est privilégié,</li><li>et un arbitrage peut être engagé si nécessaire sur la base des éléments enregistrés dans le suivi digital.</li></ul><p>Selon la situation :</p><ul><li>une correction peut être demandée,</li><li>un remboursement partiel peut être effectué,</li><li>ou les fonds peuvent être ajustés au prorata des travaux réellement réalisés.</li></ul><h4>Après la réception : garanties et suivi</h4><p>Même après validation du procès-verbal, les professionnels présents sur Artisan Compétent restent soumis à leurs obligations légales.</p><p>Comme tout professionnel du bâtiment sérieux, ils restent tenus d'intervenir en cas de problème relevant :</p><ul><li>de la garantie de parfait achèvement,</li><li>de la garantie biennale lorsque nécessaire,</li><li>ou de la garantie décennale selon la nature des travaux réalisés.</li></ul><p>Le système Artisan Compétent ne remplace pas les garanties légales existantes, mais ajoute un cadre de sécurité et de traçabilité supplémentaire pendant toute la durée du chantier.</p><h4>Avis et clôture du chantier</h4><p>Une fois le chantier terminé, le client peut laisser un avis sur le professionnel.</p><p>Les avis ont pour objectif de rester :</p><ul><li>transparents,</li><li>constructifs,</li><li>utiles à la communauté,</li><li>et basés sur une expérience réelle vécue via la plateforme.</li></ul><p>L'objectif d'Artisan Compétent n'est pas de créer une simple plateforme d'avis, mais un environnement de confiance basé sur des chantiers réellement suivis et documentés.</p><p>Une fois le procès-verbal validé, Artisan Compétent invite également le client et le professionnel à télécharger et conserver l'ensemble des documents, échanges, photos, devis, procès-verbaux et éléments présents dans leur dashboard.</p><p>Ces documents peuvent être utiles ultérieurement en cas :</p><ul><li>de garantie à faire valoir,</li><li>de malfaçon apparaissant après réception,</li><li>de litige futur,</li><li>ou simplement pour conserver un historique complet du chantier.</li></ul><p>La plateforme Artisan Compétent conserve les données pendant une durée limitée conformément à sa politique de gestion et de protection des données. Il appartient donc au client et au professionnel de conserver leurs propres copies des éléments importants du chantier.</p><p>Une fois cette étape terminée, le chantier est officiellement clôturé dans la plateforme.</p>"
+      "body": "<h4>Réception des travaux</h4><p>À la fin du chantier, le professionnel envoie un procès-verbal digital de réception directement via la plateforme Artisan Compétent.</p><p>À partir de ce moment-là, le client dispose d'un délai pouvant aller jusqu'à 96 heures pour :</p><ul><li>vérifier les travaux réalisés,</li><li>contrôler les finitions,</li><li>signaler une éventuelle malfaçon,</li><li>demander une correction si nécessaire,</li><li>ou valider définitivement le chantier.</li></ul><p>Le client peut également valider le procès-verbal immédiatement s'il estime que les travaux sont conformes.</p><p>Pendant toute cette période, les fonds restent encadrés sur le compte séquestre Stripe.</p><p>Huit heures avant la fin du délai des 96 heures, un email de rappel automatique est envoyé au client. Cet email fait également office de mise en demeure afin d'informer le client que :</p><ul><li>soit il doit émettre une réserve ou un signalement s'il constate un problème,</li><li>soit les fonds seront automatiquement libérés à l'issue du délai prévu.</li></ul><p>À défaut de réserve ou de contestation dans le délai imparti, le procès-verbal est automatiquement considéré comme validé conformément aux CGU et CGV de la plateforme.</p><h4>Libération des fonds</h4><p>Une fois le procès-verbal validé, manuellement ou automatiquement après expiration du délai prévu sans réserve, les fonds séquestrés sont immédiatement libérés vers le professionnel.</p><p>Les fonds ne transitent jamais par le compte bancaire d'Artisan Compétent. Ils restent encadrés dans le protocole Stripe jusqu'à leur libération finale.</p><p>En cas de réserve, de malfaçon signalée ou de litige déclaré dans le délai prévu :</p><ul><li>les fonds restent bloqués,</li><li>une analyse du dossier peut être effectuée,</li><li>un échange amiable est privilégié,</li><li>et un arbitrage peut être engagé si nécessaire sur la base des éléments enregistrés dans le suivi digital.</li></ul><p>Selon la situation :</p><ul><li>une correction peut être demandée,</li><li>un remboursement partiel peut être effectué,</li><li>ou les fonds peuvent être ajustés au prorata des travaux réellement réalisés.</li></ul><h4>Après la réception : garanties et suivi</h4><p>Même après validation du procès-verbal, les professionnels présents sur Artisan Compétent restent soumis à leurs obligations légales.</p><p>Comme tout professionnel du bâtiment sérieux, ils restent tenus d'intervenir en cas de problème relevant :</p><ul><li>de la garantie de parfait achèvement,</li><li>de la garantie biennale lorsque nécessaire,</li><li>ou de la garantie décennale selon la nature des travaux réalisés.</li></ul><p>Le système Artisan Compétent ne remplace pas les garanties légales existantes, mais ajoute un cadre de sécurité et de traçabilité supplémentaire pendant toute la durée du chantier.</p><h4>Avis et clôture du chantier</h4><p>Une fois le chantier terminé, le client peut laisser un avis sur le professionnel.</p><p>Les avis ont pour objectif de rester :</p><ul><li>transparents,</li><li>constructifs,</li><li>utiles à la communauté,</li><li>et basés sur une expérience réelle vécue via la plateforme.</li></ul><p>L'objectif d'Artisan Compétent n'est pas de créer une simple plateforme d'avis, mais un environnement de confiance basé sur des chantiers réellement suivis et documentés.</p><p>Une fois le procès-verbal validé, Artisan Compétent invite également le client et le professionnel à télécharger et conserver l'ensemble des documents, échanges, photos, devis, procès-verbaux et éléments présents dans leur dashboard.</p><p>Ces documents peuvent être utiles ultérieurement en cas :</p><ul><li>de garantie à faire valoir,</li><li>de malfaçon apparaissant après réception,</li><li>de litige futur,</li><li>ou simplement pour conserver un historique complet du chantier.</li></ul><p>La plateforme Artisan Compétent conserve les données pendant une durée limitée conformément à sa politique de gestion et de protection des données. Il appartient donc au client et au professionnel de conserver leurs propres copies des éléments importants du chantier.</p><p>Une fois cette étape terminée, le chantier est officiellement clôturé dans la plateforme.</p>"
     }
   }
 }
