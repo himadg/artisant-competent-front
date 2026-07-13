@@ -55,6 +55,9 @@
         <div class="h-dvh pro-layout">
             <!-- ═══════════════ TOPBAR ═══════════════ -->
             <div class="pro-topbar">
+                <a routerLink="/" class="flex self-stretch items-center">
+                    <img src="assets/img/banner.png" alt="Artisan competent banner" class="h-[60%]">
+                </a>
                 <div class="pro-topbar-actions">
                     <button class="topbar-icon-btn" aria-label="Notifications">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -919,9 +922,9 @@
                                             @if (editPartnerList().length) {
                                                 <ul class="pro-list">
                                                     @for (name of editPartnerList(); track name) {
-                                                        <li class="pro-service-edit-item">
+                                                        <li class="pro-partner-edit-item">
                                                             <span>{{ name }}</span>
-                                                            <button class="pro-service-remove" type="button" (click)="removePartnerFromEdit(name)">
+                                                            <button class="pro-partner-remove" type="button" (click)="removePartnerFromEdit(name)">
                                                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                                                                     <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
                                                                 </svg>

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { EMPTY, switchMap } from 'rxjs';
 import { ProfessionalService } from '../../core/services/professional.service';
@@ -11,12 +11,13 @@ import { SearchPro } from '../../shared/components/search-pro/search-pro';
 @Component({
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, TranslocoModule, ProCard, SearchPro],
+  imports: [RouterModule, TranslocoModule, ProCard, SearchPro],
   templateUrl: './search-pro-results.html',
   styleUrl: './search-pro-results.scss',
 })
 export class SearchProResultsPage implements OnInit {
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   private readonly professionalService = inject(ProfessionalService);
   private readonly destroyRef = inject(DestroyRef);
 
@@ -30,12 +31,13 @@ export class SearchProResultsPage implements OnInit {
   radius = 0;
 
   ngOnInit(): void {
-    this.route.queryParamMap.pipe(
+    this.route.queryParamMap
+      .pipe(
       takeUntilDestroyed(this.destroyRef),
-      switchMap(params => {
-        const lat = parseFloat(params.get('lat') ?? '');
-        const lng = parseFloat(params.get('lng') ?? '');
-        this.radius = parseFloat(params.get('radius') ?? '0');
+        switchMap((params) => {
+        const lat = Number.parseFloat(params.get('lat') ?? '');
+        const lng = Number.parseFloat(params.get('lng') ?? '');
+        this.radius = Number.parseFloat(params.get('radius') ?? '0');
         this.trade = params.get('trade') ?? '';
         this.address = params.get('address') ?? '';
 
@@ -43,7 +45,7 @@ export class SearchProResultsPage implements OnInit {
         this.error.set(false);
         this.selectedIds.set(new Set());
 
-        if (isNaN(lat) || isNaN(lng) || !this.trade) {
+        if (Number.isNaN(lat) || Number.isNaN(lng) || !this.trade) {
           this.loading.set(false);
           this.error.set(true);
           return EMPTY;
@@ -51,8 +53,9 @@ export class SearchProResultsPage implements OnInit {
 
         return this.professionalService.searchNearby(lat, lng, this.radius, this.trade);
       }),
-    ).subscribe({
-      next: results => {
+      )
+      .subscribe({
+        next: (results) => {
         this.results.set(results);
         this.loading.set(false);
       },
@@ -64,7 +67,7 @@ export class SearchProResultsPage implements OnInit {
   }
 
   toggleSelection(id: string): void {
-    this.selectedIds.update(set => {
+    this.selectedIds.update((set) => {
       const next = new Set(set);
       next.has(id) ? next.delete(id) : next.add(id);
       return next;

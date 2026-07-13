@@ -35,7 +35,9 @@
     },
     "presentation": {
       "title": "What is Artisan Compétent? The platform that oversees your projects",
-      "body": "<p>Artisan Compétent is a French webapp specialising in overseen connections between individuals and building trade professionals.</p><p>Unlike classic matchmaking platforms, Artisan Compétent supports every stage of the project in order to strengthen security, transparency and trust between the client and the tradesperson.</p><p>The platform notably enables:</p><ul><li>verification of the tradesperson's professional information before registration;</li><li>a structured, detailed quote;</li><li>tamper-proof digital tracking of the project with photos, videos, comments and a completion report;</li><li>secure, escrowed payment via Stripe, released only under the conditions set out by the platform;</li><li>the possibility, when the tradesperson accepts and subject to eligibility, of paying in instalments via Klarna;</li><li>support in the event of disagreement thanks to the intervention of a CMOD (Digital Project Owner Advisor) and, if necessary, case analysis by the Artisan Compétent team in accordance with the Terms of Use and Terms of Sale.</li></ul><p>Artisan Compétent's goal is to protect both individuals and professionals by fostering transparent exchanges, rigorous project tracking and secure payment management.</p>"
+      "intro": "Artisan Compétent is a French web app dedicated to overseen connections between individuals and construction professionals.",
+      "accordionTitle": "Discover Artisan Compétent in detail",
+      "accordeonContent": "<p>Unlike a simple directory or a traditional platform, Artisan Compétent does not just display tradespeople.</p><p>The platform sets up a genuine digital oversight system for the project, protecting all at once:</p><ul><li>clients,</li><li>honest tradespeople,</li><li>and the money tied to the works.</li></ul><p>The goal is simple:</p><ul><li>prevent abandoned projects,</li><li>limit scams,</li><li>avoid lost deposits,</li><li>and restore trust in the construction industry.</li></ul><hr><h3>THE PROBLEM ARTISAN COMPÉTENT SOLVES</h3><p>Today, finding a tradesperson has become easy.</p><p>But knowing who to trust has become extremely complicated.</p><p>On Google, social media or search engines:</p><ul><li>anyone can appear first,</li><li>reviews can be fake or manipulated,</li><li>recommendations from people around you guarantee nothing,</li><li>and above all: no one really protects the client's money.</li></ul><p>The result:</p><ul><li>lost deposits,</li><li>abandoned projects,</li><li>overcharging,</li><li>disputes,</li><li>unreachable tradespeople,</li><li>clients left alone.</li></ul><p>Artisan Compétent was created to solve this problem.</p><hr><h3>HOW DOES ARTISAN COMPÉTENT WORK?</h3><h4>1. Verified tradespeople</h4><p>Professionals on the platform are checked before joining:</p><ul><li>business registration (Kbis),</li><li>insurance policies.</li></ul><p>The goal:<br>filter out problematic profiles before they can even work on the platform.</p><hr><h4>2. Digital project tracking</h4><p>Everything goes through the platform:</p><ul><li>quotes,</li><li>messages,</li><li>comments,</li><li>photos,</li><li>project tracking.</li></ul><p>Every step can be documented.</p><p>The client and the professional can both add:</p><ul><li>photos,</li><li>proof,</li><li>comments,</li><li>observations.</li></ul><p>Everything becomes traceable.</p><hr><h4>3. The money is held in escrow</h4><p>This is the heart of the system.</p><p>Unlike traditional methods:<br>the client does not pay the tradesperson directly.</p><p>The money is overseen via Stripe in an escrow account until the project is validated.</p><ul><li>The tradesperson cannot disappear with the money before the works are finished.</li><li>And the client cannot abusively block the payment without justification either.</li></ul><p>Artisan Compétent acts as a trusted third party and arbitrates in case of dispute based on the available evidence.</p><hr><h4>4. A digital project handover report</h4><p>When the works are finished:<br>the professional sends a digital project handover report.</p><p>The client then has 48 hours to:</p><ul><li>check the works,</li><li>report a problem,</li><li>request a correction if necessary.</li></ul><p>This period strongly protects clients.</p><p>Because in the traditional system:<br>once paid, some tradespeople never come back.</p><p>With Artisan Compétent:<br>the funds remain overseen until final validation.</p><hr><h4>5. Overseen emergency call-outs</h4><p>Artisan Compétent also offers emergency call-outs 24/7 for certain sensitive trades:</p><ul><li>plumbing,</li><li>electricity,</li><li>locksmithing,</li><li>drain unblocking.</li></ul><p>The goal:<br>avoid abuse, night-time overcharging and emergency scams.</p><hr><h4>6. A system also designed for honest tradespeople</h4><p>Artisan Compétent doesn't only protect clients.</p><p>The platform also protects honest professionals:</p><ul><li>against unpaid invoices,</li><li>against false disputes,</li><li>against malicious clients,</li><li>and against the poor image of the industry.</li></ul><p>Honest tradespeople finally have a system that rewards seriousness and transparency.</p><hr><h3>CMOD: DIGITAL CLIENT PROJECT ADVISOR</h3><p>Artisan Compétent also offers a unique service:<br>the CMOD.</p><p>The CMOD is an experienced construction professional who supports the client remotely.</p><p>Their role:</p><ul><li>reassure,</li><li>explain,</li><li>help understand a quote,</li><li>advise during the project.</li></ul><p>It is an optional add-on that brings even more peace of mind.</p><hr><h3>WHY ARTISAN COMPÉTENT IS DIFFERENT</h3><p>Because the platform does not just sell contacts.</p><p>It creates a framework.</p><p>A digital oversight inspired by professional construction industry methods:</p><ul><li>tracking,</li><li>proof,</li><li>arbitration,</li><li>traceability,</li><li>fund oversight.</li></ul><p>Today:<br>Google can display a tradesperson.</p><p>But Google does not protect your money.</p><p>Search engines can recommend a professional.</p><p>But they do not track your project.</p><p>Artisan Compétent does.</p><hr><h3>FOR WHOM?</h3><h4>For individuals</h4><p>Who want to:</p><ul><li>avoid scams,</li><li>oversee their money,</li><li>find serious tradespeople,</li><li>track their works properly.</li></ul><h4>For honest tradespeople</h4><p>Who want to:</p><ul><li>work with serious clients,</li><li>be paid properly,</li><li>reassure their clients,</li><li>stand out from bad professionals.</li></ul><h4>For affiliates and partners</h4><p>Who want to recommend a useful, concrete and overseen solution.</p><p>Recommending Artisan Compétent is completely different from recommending \"a tradesperson we know\".</p><p>Because the system itself is designed to prevent abuse.</p><hr><h3>ARTISAN COMPÉTENT'S MISSION</h3><p>To gradually build a new standard of trust in construction.</p><p>A more transparent system.<br>More overseen.<br>More professional.</p><p>And above all:<br>a system where no one disappears with clients' money.</p>"
     },
     "reviews": {
       "h2": "They trusted Artisan Compétent",
@@ -436,7 +438,8 @@
     "affiliation": "Membership",
     "professionals": "Professionals",
     "loading": "Loading...",
-    "close": "Close"
+    "close": "Close",
+    "dashboard": "My space"
   },
   "docModal": {
     "defaultTitle": "Document preview",
@@ -444,7 +447,9 @@
     "pdfUnsupported": "Your browser does not support PDF preview.",
     "downloadPdf": "Download the PDF",
     "previewUnavailable": "Preview unavailable for this file type.",
-    "openDocument": "Open document"
+    "openDocument": "Open document",
+    "cancel": "Cancel",
+    "dashboard": "My space"
   },
   "footer": {
     "newsletterTitle": "Get our anti-scam tips and renovation deals directly on WhatsApp.",
@@ -459,6 +464,7 @@
       "cities": "Our cities",
       "emergency": "Emergency repairs",
       "blog": "Blog",
+      "seoBatiment": "Construction SEO",
       "affiliation": "Affiliation",
       "faq": "FAQ"
     },
@@ -468,7 +474,8 @@
       "payment": "Payment options",
       "escrow": "Stripe escrow",
       "defect": "Defect procedure",
-      "encadrement": "Artisan Compétent supervision in detail"
+      "encadrement": "Artisan Compétent supervision in detail",
+      "proWhyJoinUs": "Professionals, why join us ?"
     },
     "contact": {
       "title": "Contact",
@@ -598,6 +605,9 @@
       "electrician": {
         "title": "Verified electrician, from quote to supervised live work",
         "name": "Electricity & Connected Devices (24/7)",
+        "metaTitle": "Verified electrician in {{ city }} — SIRET, NF C 18-510, Stripe escrow | Artisan Compétent",
+        "metaDescription": "Verified electrician in {{ city }}: checked SIRET, up-to-date RC pro and decennial insurance, NF C 18-510 certification, IRVE qualification for charging stations. Payment overseen by Stripe escrow — funds released 96h after the job.",
+        "metaKeywords": "verified electrician {{ city }}, NF C 18-510 certification {{ city }}, IRVE charging station {{ city }}, home automation {{ city }}, NF C 15-100 compliance {{ city }}",
         "tagline": "This page lists the interventions handled by verified electricians on Artisan Compétent, including home automation, EV charging stations and NF C 15-100 compliance upgrades, as well as the escrow mechanism that governs your payment from quote signing to fund release 96h after completion.",
         "verifiedBadge": "In brief, a verified electrician on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, NF C 18-510 electrical certification for live work, IRVE qualification for EV charging stations, and Qualifelec certification displayed when held. Escrow process via Stripe: 96h after job completion to report an issue. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 50 km radius per city.",
         "description": {
@@ -796,6 +806,9 @@
       "locksmith": {
         "title": "Verified locksmith, without suffering the night quote",
         "name": "Locksmith (24/7)",
+        "metaTitle": "Locksmith in {{ city }} — 24/7 emergency | Artisan Compétent",
+        "metaDescription": "Locksmith available 24/7 in {{ city }}. Slammed door, forced lock, lock replacement: fast intervention at a fair price. Secure payment on Artisan Compétent.",
+        "metaKeywords": "locksmith {{ city }}, emergency locksmith {{ city }}, slammed door {{ city }}, lock replacement {{ city }}",
         "tagline": "This page lists the interventions handled by verified locksmiths and metalworkers on Artisan Compétent and the anti-scam mechanism that governs your payment, from the signed quote to fund release 96h after the intervention.",
         "verifiedBadge": "In short, a verified locksmith on Artisan Compétent has their SIRET checked, their RC pro insurance up to date, and provides a prior itemized quote as required by the Consumer Code for any intervention over €150. Process governed by Stripe escrow, 96h to report an abuse. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 50 km radius per city.",
         "description": {
@@ -1011,6 +1024,9 @@
       "plumberSanitary": {
         "title": "Verified Sanitary Plumber, from quote to overseen fund release",
         "name": "Plumber Sanitary (24/7)",
+        "metaTitle": "Plumber in {{ city }} — Emergency repair | Artisan Compétent",
+        "metaDescription": "Find a qualified plumber in {{ city }} for a leak, a sanitary installation or an emergency repair. Free quote, secure payment, available 24/7.",
+        "metaKeywords": "plumber {{ city }}, plumbing repair {{ city }}, water leak {{ city }}, emergency plumber {{ city }}",
         "tagline": "This page lists the interventions handled by verified plumbers on Artisan Compétent and the mechanism that oversees your payment from start to finish, from the detailed quote to fund release 96h after job completion.",
         "verifiedBadge": "In short, a verified plumber on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, PG qualification for gas interventions, and, if applicable, RGE qualification for heat pumps and air conditioning eligible for public grants. The entire process is overseen by a Stripe escrow: quote, intervention, fund release 96h after the job is completed. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 50 km radius per city.",
         "description": {
@@ -1214,6 +1230,9 @@
       "drainUnblocker": {
         "title": "Verified drain unblocker, from quote to overseen release",
         "name": "Drain Unblocker (24/7)",
+        "metaTitle": "Drain unblocking in {{ city }} — Urgent | Artisan Compétent",
+        "metaDescription": "Blocked drain in {{ city }}? Urgent intervention from a qualified drain specialist. Sink, toilet, clogged pipes: resolved quickly with secure payment.",
+        "metaKeywords": "drain unblocking {{ city }}, drain plumber {{ city }}, blocked drain {{ city }}, blocked toilet {{ city }}",
         "tagline": "This page lists the drain unblocking and sanitation interventions handled by verified tradespeople on Artisan Compétent and the mechanism that oversees your payment, from the detailed quote to fund release 96h after the intervention.",
         "verifiedBadge": "In short, a verified drain unblocker on Artisan Compétent has their SIRET checked, RC pro insurance up to date, prefectural approval for the evacuation of sewage if their activity involves septic tanks, and their equipment (inspection camera, hydro-jetting machine) tracked on the dashboard. Process overseen by Stripe escrow, 96h to report an issue. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 50 km radius per city.",
         "description": {
@@ -1425,6 +1444,9 @@
       "heating": {
         "title": "Verified heating engineer, from quote to overseen start-up",
         "name": "Heating & VMC & Heat Pump",
+        "metaTitle": "Heating engineer, ventilation & heat pump in {{ city }} | Artisan Compétent",
+        "metaDescription": "Qualified heating engineer in {{ city }} for the installation, maintenance or repair of your boiler, ventilation system or heat pump. Free quote and secure payment.",
+        "metaKeywords": "heating engineer {{ city }}, ventilation {{ city }}, heat pump {{ city }}, boiler maintenance {{ city }}",
         "tagline": "This page lists the interventions handled by verified heating engineers on Artisan Compétent, including single and double flow VMC, heat pumps, RGE installations eligible for state aid, and the mechanism that oversees your payment from quote signing to fund release 96h after start-up.",
         "verifiedBadge": "In short, a verified heating engineer on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, PG qualification for gas, and RGE qualification (QualiPAC, Qualibois, QualiSol depending on the equipment) displayed for public aid. Covered scope: gas, oil, condensing, and wood boilers, air-to-water and air-to-air heat pumps, hydraulic underfloor heating, single and double flow VMC, mandatory annual maintenance. Process overseen by Stripe escrow, 96h to report an issue. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 50 km radius per city.",
         "description": {
@@ -1640,6 +1662,9 @@
       "hvac": {
         "title": "Verified HVAC technician, from quote to overseen fund release",
         "name": "HVAC Technician & Refrigeration Engineer",
+        "metaTitle": "Air conditioning technician & refrigeration engineer in {{ city }} | Artisan Compétent",
+        "metaDescription": "Air conditioning technician and refrigeration engineer in {{ city }}. Installation, maintenance and repair of air conditioning. Free quote, certified tradespeople, secure payment.",
+        "metaKeywords": "air conditioning technician {{ city }}, refrigeration engineer {{ city }}, air conditioning installation {{ city }}, air conditioning repair {{ city }}",
         "tagline": "This page lists the interventions handled by verified HVAC technicians on Artisan Compétent and the mechanism that oversees your payment from start to finish, from the detailed quote to fund release 96h after job completion.",
         "verifiedBadge": "In short, a verified HVAC technician on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, refrigerant handling certificate (categories I to IV) and QualiPAC qualification if applicable. The entire process is overseen by a Stripe escrow: quote, intervention, fund release 96h after job completion. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 50 km radius per city.",
         "description": {
@@ -1858,6 +1883,9 @@
       "glazier": {
         "title": "Verified glazier, from quote to overseen fund release",
         "name": "Glazing & Mirror Work",
+        "metaTitle": "Glazing & mirror work in {{ city }} — Free quote | Artisan Compétent",
+        "metaDescription": "Qualified glazier and mirror maker in {{ city }} for your glazing, mirrors, windows and glass roofs. Free quote, secure payment on Artisan Compétent.",
+        "metaKeywords": "glazier {{ city }}, mirror maker {{ city }}, glazing replacement {{ city }}, mirror installation {{ city }}",
         "tagline": "This page lists the glazing interventions handled by verified glaziers on Artisan Compétent and the mechanism that oversees your payment from start to finish, from the detailed quote to fund release 96h after job completion.",
         "verifiedBadge": "In short, a verified glazier on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, and the certification corresponding to the technical glazing installed. The entire process is overseen by a Stripe escrow: quote, intervention, fund release 96h after job completion. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 50 km radius per city. Scope: glazing and mirror work. Carpentry (frames, fixed frames) is not covered in V1.",
         "description": {
@@ -2083,6 +2111,9 @@
       "pestControl": {
         "title": "Verified pest control specialist, from quote to overseen fund release",
         "name": "Pest Control (rodents, bedbugs, etc.)",
+        "metaTitle": "Pest control in {{ city }} — Rodents, bed bugs | Artisan Compétent",
+        "metaDescription": "Pest control specialist in {{ city }}. Rodents, bed bugs, cockroaches, wasps: fast and effective intervention. Secure payment on Artisan Compétent.",
+        "metaKeywords": "pest control {{ city }}, rodent control {{ city }}, bed bugs {{ city }}, insect control {{ city }}",
         "tagline": "This page lists the interventions handled by verified pest control specialists on Artisan Compétent and the mechanism that oversees your payment from start to finish, from the detailed quote to fund release 96h after job completion.",
         "verifiedBadge": "In short, a verified pest control specialist on Artisan Compétent has their SIRET checked, their RC pro insurance up to date, and a valid Certibiocide certificate. The entire process is overseen by a Stripe escrow: quote, intervention, follow-up visits, fund release 96h after job completion. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 50 km radius per city.",
         "description": {
@@ -2631,6 +2662,19 @@
     "experience": "{{ years }} year(s) of experience",
     "tradesTitle": "Trades",
     "servicesTitle": "Services",
+    "descriptionTitle": "Description",
+    "openingHoursTitle": "Opening hours",
+    "closed": "Closed",
+    "onCallHours": "On call",
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    },
     "noDescription": "No description available.",
     "yearsLabel": "yrs exp.",
     "tradesLabel": "trade(s)",
@@ -3139,6 +3183,8 @@
     },
     "admin": {
       "title": "Administration",
+      "confirmApprove": "Are you sure you want to approve this tradesperson? They will be publicly visible.",
+      "confirmReject": "Are you sure you want to reject this tradesperson?",
       "pendingValidation": "Pending validation",
       "noPendingProfiles": "No pending profiles",
       "registeredOn": "Registered on",
@@ -3439,6 +3485,7 @@
   },
   "search": {
     "title": "{{ trade }} in {{ address }}",
+    "pageTitle": "Search results",
     "subtitle": "{{ count }} result(s) within a {{ radius }} km radius",
     "error": "An error occurred. Please try again.",
     "empty": "No professional found in this area.",

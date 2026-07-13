@@ -5,6 +5,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoModule],
-  templateUrl: './a-propos.html',
+  templateUrl: './about-us.html',
+  styleUrl: './about-us.scss',
 })
-export class AProposPage {}
+export class AboutUsPage {}
