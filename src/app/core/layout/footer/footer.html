@@ -1,4 +1,4 @@
-<footer class="mt-16 bg-grad-brown text-[var(--primary-beige)] w-[inherit]">
+<footer class="bg-grad-brown text-[var(--primary-beige)] w-[inherit]">
 
     <!-- ── Corps du footer : 4 colonnes avec séparateurs verticaux ── -->
     <div class="px-6 py-12 mx-auto max-w-screen-lg">
@@ -9,6 +9,12 @@
                 [attr.aria-label]="'footer.nav.title' | transloco">
                 <h2 class="text-base font-semibold tracking-wide uppercase">{{ 'footer.nav.title' | transloco }}</h2>
                 <ul class="space-y-2 text-sm">
+                    <li>
+                        <a routerLink="/affiliation" class="flex items-center gap-2 no-underline hover:underline">
+                            <iconify-icon icon="lucide:chevron-right" width="14" height="14" aria-hidden="true"></iconify-icon>
+                            {{ 'footer.nav.affiliation' | transloco }}
+                        </a>
+                    </li>
                     <li>
                         <a routerLink="/jobs" class="flex items-center gap-2 no-underline hover:underline">
                             <iconify-icon icon="lucide:chevron-right" width="14" height="14" aria-hidden="true"></iconify-icon>
@@ -34,15 +40,15 @@
                         </a>
                     </li>
                     <li>
-                        <a routerLink="/affiliation" class="flex items-center gap-2 no-underline hover:underline">
-                            <iconify-icon icon="lucide:chevron-right" width="14" height="14" aria-hidden="true"></iconify-icon>
-                            {{ 'footer.nav.affiliation' | transloco }}
-                        </a>
-                    </li>
-                    <li>
                         <a routerLink="/faq" class="flex items-center gap-2 no-underline hover:underline">
                             <iconify-icon icon="lucide:chevron-right" width="14" height="14" aria-hidden="true"></iconify-icon>
                             {{ 'footer.nav.faq' | transloco }}
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/seo-batiment" class="flex items-center gap-2 no-underline hover:underline">
+                            <iconify-icon icon="lucide:chevron-right" width="14" height="14" aria-hidden="true"></iconify-icon>
+                            {{ 'footer.nav.seoBatiment' | transloco }}
                         </a>
                     </li>
                 </ul>
@@ -54,11 +60,17 @@
                 <h2 class="text-base font-semibold tracking-wide uppercase">{{ 'footer.howItWorks.title' | transloco }}</h2>
                 <ul class="space-y-2 text-sm">
                     <li>
-                        <a [routerLink]="['/']" fragment="protection"
-                            class="flex items-start gap-2 no-underline hover:underline">
+                        <a routerLink="/guidance" class="flex items-start gap-2 no-underline hover:underline">
                             <iconify-icon icon="lucide:chevron-right" width="14" height="14"
                                 class="mt-0.5 shrink-0" aria-hidden="true"></iconify-icon>
                             {{ 'footer.howItWorks.encadrement' | transloco }}
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/pro-why-join-us" class="flex items-start gap-2 no-underline hover:underline">
+                            <iconify-icon icon="lucide:chevron-right" width="14" height="14"
+                                class="mt-0.5 shrink-0" aria-hidden="true"></iconify-icon>
+                            {{ 'footer.howItWorks.proWhyJoinUs' | transloco }}
                         </a>
                     </li>
                 </ul>

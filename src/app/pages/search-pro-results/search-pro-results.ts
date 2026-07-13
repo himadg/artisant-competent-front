@@ -33,9 +33,9 @@ export class SearchProResultsPage implements OnInit {
     this.route.queryParamMap.pipe(
       takeUntilDestroyed(this.destroyRef),
       switchMap(params => {
-        const lat = parseFloat(params.get('lat') ?? '');
-        const lng = parseFloat(params.get('lng') ?? '');
-        this.radius = parseFloat(params.get('radius') ?? '0');
+        const lat = Number.parseFloat(params.get('lat') ?? '');
+        const lng = Number.parseFloat(params.get('lng') ?? '');
+        this.radius = Number.parseFloat(params.get('radius') ?? '0');
         this.trade = params.get('trade') ?? '';
         this.address = params.get('address') ?? '';
 
@@ -43,7 +43,7 @@ export class SearchProResultsPage implements OnInit {
         this.error.set(false);
         this.selectedIds.set(new Set());
 
-        if (isNaN(lat) || isNaN(lng) || !this.trade) {
+        if (Number.isNaN(lat) || Number.isNaN(lng) || !this.trade) {
           this.loading.set(false);
           this.error.set(true);
           return EMPTY;

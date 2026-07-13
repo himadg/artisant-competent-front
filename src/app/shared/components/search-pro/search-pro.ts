@@ -28,7 +28,7 @@ export class SearchPro {
   readonly trades = signal<Trade[]>([]);
   readonly addressSuggestions = signal<AddressSuggestion[]>([]);
   readonly addressOpen = signal(false);
-  readonly ranges = [5, 10, 15, 20, 25, 50];
+  readonly ranges = [5, 10, 15, 20, 30, 50];
 
   address = '';
   selectedAddress: AddressSuggestion | null = null;

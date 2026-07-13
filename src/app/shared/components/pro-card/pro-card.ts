@@ -1,4 +1,4 @@
-import { Component, input, OnInit, output, signal } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -22,5 +22,13 @@ export class ProCard {
     return [additionalInfo, `${streetNumber} ${streetName}`, `${postalCode} ${city}`]
       .filter(Boolean)
       .join(', ');
+  }
+
+  get openingHoursDays() {
+    return this.proInfo().openingHours?.days ?? [];
+  }
+
+  formatIntervals(intervals: { start: string; end: string }[]): string {
+    return intervals.map(i => `${i.start} – ${i.end}`).join(', ');
   }
 }

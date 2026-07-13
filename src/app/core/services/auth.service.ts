@@ -38,10 +38,11 @@ export class AuthService {
     this.router.navigate(['/']);
   }
 
-  async loadCurrentUser(): Promise<void> {
+  async loadCurrentUser(cookieHeader?: string): Promise<void> {
     try {
+      const options = cookieHeader ? { headers: { Cookie: cookieHeader } } : {};
       const { accessToken, user } = await firstValueFrom(
-        this.http.post<{ accessToken: string; user: User }>('/auth/refresh', {}),
+        this.http.post<{ accessToken: string; user: User }>('/auth/refresh', {}, options),
       );
       this._accessToken = accessToken;
       this._currentUser.set(user);
