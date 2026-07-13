@@ -5,7 +5,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
-const CANONICAL_URL = 'https://artisan-competent.com/espace-professionnel';
+const CANONICAL_URL = 'https://artisan-competent.com/pro-why-join-us';
 const BREADCRUMB_LD_ID = 'pro-breadcrumb-jsonld';
 const FAQ_LD_ID = 'pro-faq-jsonld';
 const FAQ_ENTRIES: ReadonlyArray<{ q: string; a: string }> = [
@@ -20,10 +20,10 @@ const FAQ_ENTRIES: ReadonlyArray<{ q: string; a: string }> = [
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoModule, RouterModule],
-  templateUrl: './professionnels.html',
-  styleUrl: './professionnels.scss',
+  templateUrl: './pro-why-join-us.html',
+  styleUrl: './pro-why-join-us.scss',
 })
-export class ProfessionnelsPageComponent implements OnInit {
+export class ProWhyJoinUsPageComponent implements OnInit {
   private readonly titleService = inject(Title);
   private readonly metaService = inject(Meta);
   private readonly transloco = inject(TranslocoService);

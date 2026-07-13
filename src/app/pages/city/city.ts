@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslocoModule } from '@jsverse/transloco';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { getCity, City, CITIES_MAP } from '../../data/cities';
 import { TRADES } from '../../data/trades';
 import { TradeInfo } from '../../shared/interfaces/trade-info';
@@ -18,6 +18,7 @@ export class CityPage implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly meta = inject(Meta);
   private readonly titleService = inject(Title);
+  private readonly transloco = inject(TranslocoService);
   private readonly cdr = inject(ChangeDetectorRef);
   private paramsSub?: Subscription;
 
@@ -41,10 +42,13 @@ export class CityPage implements OnInit, OnDestroy {
         .map(slug => CITIES_MAP.get(slug))
         .filter((c): c is City => !!c);
 
-      this.titleService.setTitle(`Artisans à ${city.name} — Artisan Compétent`);
-      this.meta.updateTag({ name: 'description', content: `Trouvez un artisan compétent à ${city.name} : électricien, plombier, serrurier et plus. Devis gratuit, paiement sécurisé.` });
-      this.meta.updateTag({ property: 'og:title', content: `Artisans à ${city.name} — Artisan Compétent` });
-      this.meta.updateTag({ property: 'og:description', content: `Trouvez un artisan compétent à ${city.name} : électricien, plombier, serrurier et plus.` });
+      const title = this.transloco.translate<string>('city.title', { city: city.name });
+      const description = this.transloco.translate<string>('city.description', { city: city.name });
+
+      this.titleService.setTitle(title);
+      this.meta.updateTag({ name: 'description', content: description });
+      this.meta.updateTag({ property: 'og:title', content: title });
+      this.meta.updateTag({ property: 'og:description', content: description });
       this.meta.updateTag({ name: 'robots', content: 'index, follow' });
 
       this.cdr.markForCheck();

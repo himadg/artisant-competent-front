@@ -36,7 +36,7 @@
                 <span class="block mb-1 text-sm">{{ 'searchPro.kilometersLabel' | transloco }}</span>
                 <div class="relative mx-auto range-wrap w-[90%] md:w-[95%] md:w-42">
                     <input [(ngModel)]="kilometersIndex" name="kilometersIndex" type="range" min="0" max="5" step="1"
-                        class="w-full range" />
+                        class="w-full range cursor-pointer" />
                     <div class="-translate-x-1/2 -translate-y-1/2 cursor-pointer thumb-value w-7 h-7 md:w-6 md:h-6"
                         [style.left.%]="sliderPercent">
                         {{ kilometers }}

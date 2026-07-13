@@ -14,6 +14,12 @@ export const routes: Routes = [
     title: 'dashboard.title',
     canActivate: [authGuard],
     loadComponent: () => import('./pages/dashboard/dashboard').then((p) => p.DashboardPage),
+    data: { showHeader: false, showFooter: false }
+  },
+  {
+    path: 'about-us',
+    title: 'home.presentation.title',
+    loadComponent: () => import('./pages/about-us/about-us').then((p) => p.AboutUsPage),
   },
   {
     path: 'affiliation',
@@ -21,9 +27,9 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/affiliation/affiliation').then((p) => p.AffiliationPage),
   },
   {
-    path: 'espace-professionnel',
+    path: 'pro-why-join-us',
     title: 'pro.meta.title',
-    loadComponent: () => import('./pages/professionnels/professionnels').then((p) => p.ProfessionnelsPageComponent),
+    loadComponent: () => import('./pages/pro-why-join-us/pro-why-join-us').then((p) => p.ProWhyJoinUsPageComponent),
   },
   {
     path: 'seo-batiment',
@@ -105,11 +111,6 @@ export const routes: Routes = [
     path: 'steps',
     title: 'steps.title',
     loadComponent: () => import('./pages/steps/steps').then((p) => p.StepsPage),
-  },
-  {
-    path: 'a-propos',
-    title: 'home.presentation.title',
-    loadComponent: () => import('./pages/a-propos/a-propos').then((p) => p.AProposPage),
   },
   {
     path: 'contact',

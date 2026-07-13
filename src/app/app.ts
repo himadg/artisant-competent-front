@@ -1,11 +1,12 @@
-﻿import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject, ChangeDetectionStrategy, computed } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { AnnouncementBanner } from './core/layout/announcement-banner/announcement-banner';
 import { PrelaunchBanner } from './core/layout/prelaunch-banner/prelaunch-banner';
 import { Header } from './core/layout/header/header';
 import { Footer } from './core/layout/footer/footer';
-import { AuthService } from './core/services/auth.service';
+import { filter, map } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-root',
@@ -16,5 +17,20 @@ import { AuthService } from './core/services/auth.service';
   styleUrl: './app.scss',
 })
 export class App {
-  readonly isAuthenticated = inject(AuthService).isAuthenticated;
+  private readonly router = inject(Router);
+  private readonly activatedRoute = inject(ActivatedRoute);
+
+  private readonly routeData = toSignal(
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => {
+        let route = this.activatedRoute;
+        while (route.firstChild) route = route.firstChild;
+        return route.snapshot.data;
+      }),
+    ),
+  );
+
+  readonly showHeader = computed(() => this.routeData()?.['showHeader'] ?? true);
+  readonly showFooter = computed(() => this.routeData()?.['showFooter'] ?? true);
 }

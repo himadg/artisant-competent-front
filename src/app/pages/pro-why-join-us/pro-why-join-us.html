@@ -1,13 +1,13 @@
 <article class="px-4 py-12 mx-auto max-w-screen-lg space-y-16 professionnels-page">
-    <section id="hero" class="text-center space-y-6">
-        <h1 class="text-3xl font-extrabold md:text-5xl">{{ 'pro.hero.title' | transloco }}</h1>
-        <p class="text-base md:text-xl">{{ 'pro.hero.subtitleIntro' | transloco }}</p>
-        <ul class="pl-5 space-y-2 list-disc text-left max-w-2xl mx-auto text-base md:text-xl">
+    <section id="hero" class="space-y-4">
+        <h1 class="text-xl md:text-3xl font-semibold title">{{ 'pro.hero.title' | transloco }}</h1>
+        <p>{{ 'pro.hero.subtitleIntro' | transloco }}</p>
+        <ul class="pl-5 space-y-2 list-disc text-left max-w-2xl mx-auto">
             @for (item of $any('pro.hero.subtitleItems' | transloco); track $index) {
                 <li>{{ item }}</li>
             }
         </ul>
-        <p class="text-base md:text-xl">{{ 'pro.hero.subtitleOutro' | transloco }}</p>
+        <p>{{ 'pro.hero.subtitleOutro' | transloco }}</p>
         <div class="flex flex-wrap gap-4 justify-center">
             <a
                 [routerLink]="['/auth/register']"
@@ -20,7 +20,7 @@
     </section>
 
     <section id="paiement-devis-signe" class="space-y-4">
-        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'pro.paySigned.title' | transloco }}</h2>
+        <h2 class="text-xl font-semibold md:text-3xl">{{ 'pro.paySigned.title' | transloco }}</h2>
         <p>{{ 'pro.paySigned.intro' | transloco }}</p>
         <ul class="pl-5 space-y-2 list-disc">
             @for (item of $any('pro.paySigned.items' | transloco); track $index) {
@@ -31,7 +31,7 @@
     </section>
 
     <section id="protection-pros" class="space-y-4">
-        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'pro.protection.title' | transloco }}</h2>
+        <h2 class="text-xl font-semibold md:text-3xl">{{ 'pro.protection.title' | transloco }}</h2>
         <p>{{ 'pro.protection.intro' | transloco }}</p>
         <ul class="pl-5 space-y-2 list-disc">
             @for (item of $any('pro.protection.items' | transloco); track $index) {
@@ -42,7 +42,7 @@
     </section>
 
     <section id="image-pro" class="space-y-4">
-        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'pro.image.title' | transloco }}</h2>
+        <h2 class="text-xl font-semibold md:text-3xl">{{ 'pro.image.title' | transloco }}</h2>
 
         <p>{{ 'pro.image.suffering.intro' | transloco }}</p>
         <ul class="pl-5 space-y-2 list-disc">
@@ -67,7 +67,7 @@
     </section>
 
     <section id="valorisation" class="space-y-4">
-        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'pro.valorisation.title' | transloco }}</h2>
+        <h2 class="text-xl font-semibold md:text-3xl">{{ 'pro.valorisation.title' | transloco }}</h2>
         <p>{{ 'pro.valorisation.intro' | transloco }}</p>
         <ul class="pl-5 space-y-2 list-disc">
             @for (item of $any('pro.valorisation.items' | transloco); track $index) {
@@ -77,7 +77,7 @@
     </section>
 
     <section id="geolocalisation" class="space-y-4">
-        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'pro.geo.title' | transloco }}</h2>
+        <h2 class="text-xl font-semibold md:text-3xl">{{ 'pro.geo.title' | transloco }}</h2>
         <p>{{ 'pro.geo.intro' | transloco }}</p>
         <p>{{ 'pro.geo.listIntro' | transloco }}</p>
         <ul class="pl-5 space-y-2 list-disc">
@@ -93,7 +93,7 @@
     </section>
 
     <section id="terrain" class="space-y-4">
-        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'pro.terrain.title' | transloco }}</h2>
+        <h2 class="text-xl font-semibold md:text-3xl">{{ 'pro.terrain.title' | transloco }}</h2>
 
         <p>{{ 'pro.terrain.problems.intro' | transloco }}</p>
         <ul class="pl-5 space-y-2 list-disc">
@@ -111,7 +111,7 @@
     </section>
 
     <section id="apprecie-clients" class="space-y-4">
-        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'pro.clientsLove.title' | transloco }}</h2>
+        <h2 class="text-xl font-semibold md:text-3xl">{{ 'pro.clientsLove.title' | transloco }}</h2>
         <p>{{ 'pro.clientsLove.intro' | transloco }}</p>
         <ul class="pl-5 space-y-2 list-disc">
             @for (item of $any('pro.clientsLove.items' | transloco); track $index) {
@@ -121,11 +121,11 @@
         <p>{{ 'pro.clientsLove.outro' | transloco }}</p>
     </section>
 
-    <section id="comment-ca-marche" class="space-y-8">
-        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'pro.steps.title' | transloco }}</h2>
+    <section id="comment-ca-marche" class="space-y-4">
+        <h2 class="text-xl font-semibold md:text-3xl">{{ 'pro.steps.title' | transloco }}</h2>
 
         <article class="space-y-3">
-            <h3 class="text-xl font-semibold md:text-2xl">{{ 'pro.steps.s1.title' | transloco }}</h3>
+            <h3 class="text-lg font-semibold md:text-2xl">{{ 'pro.steps.s1.title' | transloco }}</h3>
             <p>{{ 'pro.steps.s1.intro' | transloco }}</p>
             <ul class="pl-5 space-y-2 list-disc">
                 @for (item of $any('pro.steps.s1.items' | transloco); track $index) {
@@ -136,17 +136,17 @@
         </article>
 
         <article class="space-y-3">
-            <h3 class="text-xl font-semibold md:text-2xl">{{ 'pro.steps.s2.title' | transloco }}</h3>
+            <h3 class="text-lg font-semibold md:text-2xl">{{ 'pro.steps.s2.title' | transloco }}</h3>
             <p>{{ 'pro.steps.s2.body' | transloco }}</p>
         </article>
 
         <article class="space-y-3">
-            <h3 class="text-xl font-semibold md:text-2xl">{{ 'pro.steps.s3.title' | transloco }}</h3>
+            <h3 class="text-lg font-semibold md:text-2xl">{{ 'pro.steps.s3.title' | transloco }}</h3>
             <p>{{ 'pro.steps.s3.body' | transloco }}</p>
         </article>
 
         <article class="space-y-3">
-            <h3 class="text-xl font-semibold md:text-2xl">{{ 'pro.steps.s4.title' | transloco }}</h3>
+            <h3 class="text-lg font-semibold md:text-2xl">{{ 'pro.steps.s4.title' | transloco }}</h3>
             <p>{{ 'pro.steps.s4.intro' | transloco }}</p>
             <ul class="pl-5 space-y-2 list-disc">
                 @for (item of $any('pro.steps.s4.items' | transloco); track $index) {
@@ -156,39 +156,39 @@
         </article>
 
         <article class="space-y-3">
-            <h3 class="text-xl font-semibold md:text-2xl">{{ 'pro.steps.s5.title' | transloco }}</h3>
+            <h3 class="text-lg font-semibold md:text-2xl">{{ 'pro.steps.s5.title' | transloco }}</h3>
             <p>{{ 'pro.steps.s5.p1' | transloco }}</p>
             <p>{{ 'pro.steps.s5.p2' | transloco }}</p>
             <p>{{ 'pro.steps.s5.p3' | transloco }}</p>
         </article>
 
         <article class="space-y-3">
-            <h3 class="text-xl font-semibold md:text-2xl">{{ 'pro.steps.s6.title' | transloco }}</h3>
+            <h3 class="text-lg font-semibold md:text-2xl">{{ 'pro.steps.s6.title' | transloco }}</h3>
             <p>{{ 'pro.steps.s6.body' | transloco }}</p>
         </article>
 
         <article class="space-y-3">
-            <h3 class="text-xl font-semibold md:text-2xl">{{ 'pro.steps.s7.title' | transloco }}</h3>
+            <h3 class="text-lg font-semibold md:text-2xl">{{ 'pro.steps.s7.title' | transloco }}</h3>
             <p>{{ 'pro.steps.s7.body' | transloco }}</p>
         </article>
 
         <article class="space-y-3">
-            <h3 class="text-xl font-semibold md:text-2xl">{{ 'pro.steps.s8.title' | transloco }}</h3>
+            <h3 class="text-lg font-semibold md:text-2xl">{{ 'pro.steps.s8.title' | transloco }}</h3>
             <p>{{ 'pro.steps.s8.body' | transloco }}</p>
         </article>
 
         <article class="space-y-3">
-            <h3 class="text-xl font-semibold md:text-2xl">{{ 'pro.steps.s9.title' | transloco }}</h3>
+            <h3 class="text-lg font-semibold md:text-2xl">{{ 'pro.steps.s9.title' | transloco }}</h3>
             <p>{{ 'pro.steps.s9.body' | transloco }}</p>
         </article>
 
         <article class="space-y-3">
-            <h3 class="text-xl font-semibold md:text-2xl">{{ 'pro.steps.s10.title' | transloco }}</h3>
+            <h3 class="text-lg font-semibold md:text-2xl">{{ 'pro.steps.s10.title' | transloco }}</h3>
             <p>{{ 'pro.steps.s10.body' | transloco }}</p>
         </article>
 
         <article class="space-y-3">
-            <h3 class="text-xl font-semibold md:text-2xl">{{ 'pro.steps.s11.title' | transloco }}</h3>
+            <h3 class="text-lg font-semibold md:text-2xl">{{ 'pro.steps.s11.title' | transloco }}</h3>
             <ul class="pl-5 space-y-2 list-disc">
                 <li>
                     <h4 class="inline text-base font-semibold">{{ 'pro.steps.s11.under2k.title' | transloco }}</h4>
@@ -201,7 +201,7 @@
     </section>
 
     <section id="attentes" class="space-y-4">
-        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'pro.expectations.title' | transloco }}</h2>
+        <h2 class="text-xl font-semibold md:text-3xl">{{ 'pro.expectations.title' | transloco }}</h2>
         <ul class="pl-5 space-y-2 list-disc">
             @for (item of $any('pro.expectations.items' | transloco); track $index) {
                 <li>{{ item }}</li>
@@ -210,7 +210,7 @@
     </section>
 
     <section id="objectif" class="space-y-4">
-        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'pro.goal.title' | transloco }}</h2>
+        <h2 class="text-xl font-semibold md:text-3xl">{{ 'pro.goal.title' | transloco }}</h2>
         <p>{{ 'pro.goal.intro' | transloco }}</p>
         <ul class="pl-5 space-y-2 list-disc">
             @for (item of $any('pro.goal.items' | transloco); track $index) {
@@ -221,7 +221,7 @@
     </section>
 
     <section id="avant-accepter" class="space-y-4">
-        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'pro.beforeAccept.title' | transloco }}</h2>
+        <h2 class="text-xl font-semibold md:text-3xl">{{ 'pro.beforeAccept.title' | transloco }}</h2>
         <p>{{ 'pro.beforeAccept.p1' | transloco }}</p>
         <p>{{ 'pro.beforeAccept.p2' | transloco }}</p>
         <p>{{ 'pro.beforeAccept.systemIntro' | transloco }}</p>
@@ -238,7 +238,7 @@
         </ul>
         <p>{{ 'pro.beforeAccept.closing' | transloco }}</p>
         <div class="space-y-3">
-            <h3 class="text-xl font-semibold md:text-2xl">{{ 'pro.beforeAccept.guarantee.title' | transloco }}</h3>
+            <h3 class="text-xl font-semibold md:text-xl">{{ 'pro.beforeAccept.guarantee.title' | transloco }}</h3>
             <p>{{ 'pro.beforeAccept.guarantee.p1' | transloco }}</p>
             <p>{{ 'pro.beforeAccept.guarantee.p2' | transloco }}</p>
             <p>{{ 'pro.beforeAccept.guarantee.p3' | transloco }}</p>
@@ -246,7 +246,7 @@
     </section>
 
     <section id="faq" class="space-y-4">
-        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'pro.faq.title' | transloco }}</h2>
+        <h2 class="text-xl font-semibold md:text-3xl">{{ 'pro.faq.title' | transloco }}</h2>
 
         <details class="p-4 rounded-lg border">
             <summary class="font-semibold cursor-pointer">
@@ -348,7 +348,7 @@
     </section>
 
     <section id="cta-final" class="text-center space-y-4 p-8 rounded-lg border">
-        <h2 class="text-2xl font-semibold md:text-3xl">{{ 'pro.ctaFinal.title' | transloco }}</h2>
+        <h2 class="text-xl font-semibold md:text-3xl">{{ 'pro.ctaFinal.title' | transloco }}</h2>
         <p>{{ 'pro.ctaFinal.body' | transloco }}</p>
         <div class="flex flex-wrap gap-4 justify-center">
             <a

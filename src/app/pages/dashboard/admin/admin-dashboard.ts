@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@ang
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { TranslocoModule } from '@jsverse/transloco';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { AdminApiService } from '../../../core/services/admin-api.service';
 import { PendingUser } from '../../../shared/interfaces/pending-user';
 import { AuthService } from '../../../core/services/auth.service';
@@ -18,6 +18,7 @@ import { AuthService } from '../../../core/services/auth.service';
 export class AdminDashboard implements OnInit {
   private readonly adminApi = inject(AdminApiService);
   private readonly sanitizer = inject(DomSanitizer);
+  private readonly transloco = inject(TranslocoService);
   readonly authService = inject(AuthService);
 
   readonly pendingUsers = signal<PendingUser[]>([]);
@@ -53,7 +54,7 @@ export class AdminDashboard implements OnInit {
   }
 
   approveUser(id: string) {
-    if (!confirm('Êtes-vous sûr de vouloir valider cet artisan ? Il sera visible publiquement.')) return;
+    if (!confirm(this.transloco.translate('dashboard.admin.confirmApprove'))) return;
     this.adminApi.updateUserStatus(id, 'ACTIVE').subscribe({
       next: () => {
         this.selectedUser.set(null);
@@ -63,7 +64,7 @@ export class AdminDashboard implements OnInit {
   }
 
   rejectUser(id: string) {
-    if (!confirm('Êtes-vous sûr de vouloir refuser cet artisan ?')) return;
+    if (!confirm(this.transloco.translate('dashboard.admin.confirmReject'))) return;
     this.adminApi.updateUserStatus(id, 'REJECTED').subscribe({
       next: () => {
         this.selectedUser.set(null);

@@ -23,9 +23,6 @@
     <div class="flex items-center gap-2 text-xs">
         <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--primary-water-green)]"></span>
         {{ 'search.distance' | transloco: { km: proInfo().distance | number: '1.0-1' } }}
-        @if (proInfo().isCmod) {
-            <span class="ml-auto px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[var(--primary-water-green)]/10 text-[var(--primary-water-green)]">CMOD</span>
-        }
     </div>
 
     @if (proInfo().description) {
@@ -85,25 +82,14 @@
                         <p class="text-[11px] mt-0.5">{{ 'proCard.tradesLabel' | transloco }}</p>
                     </div>
                 }
-                @if (proInfo().services.length) {
-                    <div class="flex-1 py-3 text-center">
-                        <p class="text-sm font-bold text-[var(--secondary-water-green)]">{{ proInfo().services.length }}</p>
-                        <p class="text-[11px] mt-0.5">{{ 'proCard.servicesLabel' | transloco }}</p>
-                    </div>
-                }
             </div>
 
             <!-- Corps scrollable -->
             <div class="flex flex-col gap-5 p-6 bg-white overflow-y-auto max-h-[45vh]">
 
                 <!-- Badges statut -->
-                @if (proInfo().isCmod || proInfo().onCall) {
+                @if (proInfo().onCall) {
                     <div class="flex flex-wrap gap-2">
-                        @if (proInfo().isCmod) {
-                            <span class="px-3 py-1.5 text-xs font-semibold rounded-full bg-[var(--primary-water-green)]/10 text-[var(--primary-water-green)] ring-1 ring-[var(--primary-water-green)]/20">
-                                {{ 'proCard.cmodBadge' | transloco }}
-                            </span>
-                        }
                         @if (proInfo().onCall) {
                             <span class="px-3 py-1.5 text-xs font-semibold rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200">
                                 {{ 'proCard.onCallBadge' | transloco }}
@@ -113,11 +99,14 @@
                 }
 
                 <!-- Description -->
+                <div>
+                    <p class="mb-2 text-[11px] font-semibold uppercase tracking-wider text-gray-400">{{ 'proCard.descriptionTitle' | transloco }}</p>
                 @if (proInfo().description) {
-                    <p class="text-sm text-gray-600 leading-relaxed">{{ proInfo().description }}</p>
+                        <p class="text-sm leading-relaxed">{{ proInfo().description }}</p>
                 } @else {
-                    <p class="text-sm text-gray-400 italic">{{ 'proCard.noDescription' | transloco }}</p>
+                        <p class="text-sm italic">{{ 'proCard.noDescription' | transloco }}</p>
                 }
+                </div>
 
                 <!-- Métiers -->
                 @if (proInfo().trades.length) {
@@ -133,28 +122,26 @@
                     </div>
                 }
 
-                <!-- Services -->
-                @if (proInfo().services.length) {
+                <!-- Horaires d'ouverture -->
+                @if (openingHoursDays.length) {
                     <div>
-                        <p class="mb-2 text-[11px] font-semibold uppercase tracking-wider text-gray-400">{{ 'proCard.servicesTitle' | transloco }}</p>
-                        <ul class="flex flex-col gap-2">
-                            @for (service of proInfo().services; track service.id) {
-                                <li class="flex items-start gap-2 text-sm text-gray-600">
-                                    <span class="mt-0.5 w-4 h-4 shrink-0 rounded-full bg-[var(--primary-water-green)]/10 flex items-center justify-center text-[var(--primary-water-green)] text-[10px] font-bold">✓</span>
-                                    {{ service.description }}
+                        <p class="mb-2 text-[11px] font-semibold uppercase tracking-wider text-gray-400">{{ 'proCard.openingHoursTitle' | transloco }}</p>
+                        <ul class="space-y-1">
+                            @for (day of openingHoursDays; track day.day) {
+                                <li class="flex justify-between text-sm">
+                                    <span class="font-medium w-24 shrink-0">{{ ('proCard.days.' + day.day) | transloco }}</span>
+                                    @if (day.closed) {
+                                        <span class="text-gray-400 italic">{{ 'proCard.closed' | transloco }}</span>
+                                    } @else if (day.onCall) {
+                                        <span class="text-emerald-600 font-medium">{{ 'proCard.onCallHours' | transloco }}</span>
+                                    } @else {
+                                        <span class="text-gray-600">{{ formatIntervals(day.intervals) }}</span>
+                                    }
                                 </li>
                             }
                         </ul>
                     </div>
                 }
-            </div>
-
-            <!-- Pied fixe -->
-            <div class="p-4 bg-white border-t border-gray-100">
-                <a [routerLink]="['/dashboard/individual', proInfo().id]" (click)="showDetails.set(false)"
-                    class="block text-sm text-center px-4 py-3 rounded-full bg-grad-water-green text-[var(--primary-beige)] font-medium">
-                    {{ 'search.contact' | transloco }}
-                </a>
             </div>
         </div>
     </div>
