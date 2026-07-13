@@ -22,7 +22,11 @@ const serverConfig: ApplicationConfig = {
 
       // apiUrl peut être vide côté serveur (config.json a apiUrl="") :
       // on dérive depuis le Host entrant (ex: 192.168.1.138:4200 → :3000) ou on tombe sur localhost:3000.
-      const apiUrl = configService.get('apiUrl');
+      const configApiUrl = configService.get('apiUrl');
+      const host = request?.headers.get('host') ?? '';
+      const apiUrl = configApiUrl || (host
+        ? `${request?.headers.get('x-forwarded-proto') ?? 'http'}://${host.replace(/:\d+$/, ':3000')}`
+        : 'http://localhost:3000');
 
       // Utilise fetch natif (hors HttpClient) pour ne pas créer de PendingTask Zone.js
       if (cookieHeader && apiUrl) {

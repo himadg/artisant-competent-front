@@ -3,11 +3,12 @@ import { DecimalPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { ProfessionalSearchResult } from '../../../shared/interfaces/professional-profile';
+import { ImageSkeleton } from '../image-skeleton/image-skeleton';
 
 @Component({
   selector: 'pro-card',
   standalone: true,
-  imports: [DecimalPipe, RouterModule, TranslocoModule],
+  imports: [DecimalPipe, RouterModule, TranslocoModule, ImageSkeleton],
   templateUrl: './pro-card.html',
   styleUrl: './pro-card.scss',
 })
@@ -16,6 +17,7 @@ export class ProCard {
   readonly selected = input(false);
   readonly selectedChange = output<boolean>();
   readonly showDetails = signal(false);
+  readonly logoLoaded = signal(false);
 
   getFullWorkAddress(): string {
     const { additionalInfo, streetNumber, streetName, postalCode, city } = this.proInfo().workAddress;

@@ -1,0 +1,127 @@
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60" (click)="closed.emit()">
+    <div
+        class="modal-content w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl"
+        (click)="$event.stopPropagation()"
+    >
+        <!-- Header -->
+        <div class="relative bg-grad-water-green px-6 pt-7 pb-8 text-center">
+            <button
+                (click)="closed.emit()"
+                class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 text-white/70 hover:bg-white/20 hover:text-white transition-colors text-sm"
+            >
+                ✕
+            </button>
+            <h2 class="text-xl font-bold text-[var(--primary-beige)]">
+                {{ 'demand.modal.title' | transloco }}
+            </h2>
+            <p class="mt-1 text-sm text-white/70">
+                {{ 'demand.modal.subtitle' | transloco: { count: professionalCount() } }}
+            </p>
+        </div>
+
+        <!-- Formulaire -->
+        <form [formGroup]="form" (ngSubmit)="submit()" class="flex flex-col gap-5 p-6 bg-white">
+            <!-- Description -->
+            <div class="flex flex-col gap-1.5">
+                <label class="text-sm font-medium text-gray-700">
+                    {{ 'demand.modal.descriptionLabel' | transloco }}
+                    <span class="ml-0.5">*</span>
+                </label>
+                <textarea
+                    formControlName="description"
+                    rows="5"
+                    class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[var(--primary-water-green)]/40 focus:border-[var(--primary-water-green)] transition"
+                    [placeholder]="'demand.modal.descriptionPlaceholder' | transloco"
+                >
+                </textarea>
+                @if (descriptionControl.touched && descriptionControl.invalid) {
+                    @if (descriptionControl.errors?.['required']) {
+                        <p class="text-xs text-red-500">{{ 'demand.modal.errorRequired' | transloco }}</p>
+                    } @else if (descriptionControl.errors?.['minlength']) {
+                        <p class="text-xs text-red-500">{{ 'demand.modal.errorMinLength' | transloco }}</p>
+                    }
+                }
+                <p class="text-xs text-gray-400 text-right">{{ descriptionControl.value?.length ?? 0 }} / 2000</p>
+            </div>
+
+            <!-- Photos -->
+            <div class="flex flex-col gap-2">
+                <label class="text-sm font-medium text-gray-700">
+                    {{ 'demand.modal.photosLabel' | transloco }}
+                    <span class="text-xs font-normal text-gray-400 ml-1">{{
+                        'demand.modal.photosOptional' | transloco
+                    }}</span>
+                </label>
+
+                @if (selectedFiles().length < 3) {
+                    <label
+                        class="flex items-center gap-3 cursor-pointer rounded-xl border-2 border-dashed border-gray-200 px-4 py-3 hover:border-[var(--primary-water-green)] transition-colors"
+                    >
+                        <iconify-icon
+                            icon="lucide:image-plus"
+                            width="20"
+                            height="20"
+                            class="text-gray-400 shrink-0"
+                        ></iconify-icon>
+                        <span class="text-sm text-gray-500">{{ 'demand.modal.photosPlaceholder' | transloco }}</span>
+                        <input type="file" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" class="hidden" (change)="onFilesChange($event)" />
+                    </label>
+                }
+
+                @if (showFormatError()) {
+                    <p
+                        class="text-xs text-red-500 transition-opacity duration-500"
+                        [class.opacity-0]="fadingFormatError()"
+                    >{{ 'demand.modal.errorInvalidFormat' | transloco }}</p>
+                }
+
+                @if (selectedFiles().length > 0) {
+                    <ul class="flex flex-wrap gap-2 mt-1">
+                        @for (file of selectedFiles(); track file.name; let i = $index) {
+                            <li class="flex items-center gap-1.5 text-xs bg-gray-100 rounded-lg px-2.5 py-1.5">
+                                <iconify-icon
+                                    icon="lucide:image"
+                                    width="14"
+                                    height="14"
+                                    class="text-gray-400 shrink-0"
+                                ></iconify-icon>
+                                <span class="max-w-[120px] truncate">{{ file.name }}</span>
+                                <button
+                                    type="button"
+                                    (click)="removeFile(i)"
+                                    class="text-gray-400 hover:text-red-500 transition-colors ml-0.5"
+                                >
+                                    ✕
+                                </button>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+
+            <!-- Actions -->
+            <div class="flex gap-3 pt-1">
+                <button
+                    type="button"
+                    (click)="closed.emit()"
+                    class="flex-1 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+                >
+                    {{ 'common.cancel' | transloco }}
+                </button>
+                <button
+                    type="submit"
+                    [disabled]="loading()"
+                    class="flex-1 py-2.5 rounded-xl bg-[var(--secondary-water-green)] text-white text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+                >
+                    @if (loading()) {
+                        <span
+                            class="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"
+                        ></span>
+                    } @else {
+                        {{ 'demand.modal.submit' | transloco }}
+                    }
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

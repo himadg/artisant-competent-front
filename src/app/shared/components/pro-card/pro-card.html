@@ -7,7 +7,14 @@
     <div class="flex gap-3 items-center">
         <div class="overflow-hidden w-12 h-12 rounded-full border-2 border-[var(--border-color)] shrink-0">
             @if (proInfo().companyLogoKey) {
-                <img [src]="proInfo().companyLogoKey" [alt]="proInfo().companyName" class="object-cover w-full h-full" />
+                @if (!logoLoaded()) {
+                    <image-skeleton />
+                }
+                <img [src]="proInfo().companyLogoKey" [alt]="proInfo().companyName"
+                     class="object-cover w-full h-full"
+                     [class.hidden]="!logoLoaded()"
+                     (load)="logoLoaded.set(true)"
+                     (error)="logoLoaded.set(true)" />
             } @else {
                 <div class="flex justify-center items-center w-full h-full text-lg font-semibold bg-[var(--primary-water-green)]/10 text-[var(--primary-water-green)]">
                     {{ proInfo().companyName[0] }}
@@ -53,7 +60,12 @@
 
                 <div class="w-24 h-24 rounded-full border-4 border-white/30 overflow-hidden mb-4 shrink-0">
                     @if (proInfo().companyLogoKey) {
-                        <img [src]="proInfo().companyLogoKey" [alt]="proInfo().companyName" class="object-cover w-full h-full" />
+                        @if (!logoLoaded()) {
+                            <image-skeleton />
+                        }
+                        <img [src]="proInfo().companyLogoKey" [alt]="proInfo().companyName"
+                             class="object-cover w-full h-full"
+                             [class.hidden]="!logoLoaded()" />
                     } @else {
                         <div class="flex justify-center items-center w-full h-full text-3xl font-bold bg-white/10 text-white">
                             {{ proInfo().companyName[0] }}
@@ -101,11 +113,11 @@
                 <!-- Description -->
                 <div>
                     <p class="mb-2 text-[11px] font-semibold uppercase tracking-wider text-gray-400">{{ 'proCard.descriptionTitle' | transloco }}</p>
-                @if (proInfo().description) {
+                    @if (proInfo().description) {
                         <p class="text-sm leading-relaxed">{{ proInfo().description }}</p>
-                } @else {
+                    } @else {
                         <p class="text-sm italic">{{ 'proCard.noDescription' | transloco }}</p>
-                }
+                    }
                 </div>
 
                 <!-- Métiers -->

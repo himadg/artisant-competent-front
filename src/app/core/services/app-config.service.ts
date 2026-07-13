@@ -17,7 +17,12 @@ export class AppConfigService {
     }
     await fetch('/assets/config/config.json')
       .then(res => res.json())
-      .then(cfg => { this.config = cfg; });
+      .then(cfg => {
+        this.config = {
+          ...cfg,
+          apiUrl: cfg.apiUrl || `${globalThis.location.protocol}//${globalThis.location.hostname}:3000`,
+        }
+      });
   }
 
   get(key: string): string {

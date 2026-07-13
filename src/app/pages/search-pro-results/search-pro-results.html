@@ -19,10 +19,10 @@
         } @else {
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 @for (proInfo of results(); track proInfo.id) {
-                        <pro-card
-                            [proInfo]="proInfo"
-                            [selected]="selectedIds().has(proInfo.id)"
-                            (selectedChange)="toggleSelection(proInfo.id)" />
+                    <pro-card
+                        [proInfo]="proInfo"
+                        [selected]="selectedIds().has(proInfo.id)"
+                        (selectedChange)="toggleSelection(proInfo.id)" />
                 }
             </div>
         }
@@ -41,8 +41,15 @@
             {{ 'search.clearSelection' | transloco }}
         </button>
         <button
-            class="text-xs text-center font-medium px-4 py-1.5 rounded-full bg-[var(--primary-beige)] text-[var(--secondary-water-green)] hover:bg-white transition-colors">
+            class="text-xs text-center font-medium px-4 py-1.5 rounded-full bg-[var(--primary-beige)] text-[var(--secondary-water-green)] hover:bg-white transition-colors"
+            (click)="openDemandModal()">
             {{ 'search.contactSelected' | transloco }}
         </button>
     </div>
+}
+
+<!-- Modal demande -->
+@if (showDemandModal()) {
+<demand-modal [professionalCount]="selectedIds().size" [loading]="demandLoading()" (closed)="showDemandModal.set(false)"
+    (submitted)="submit($event)" />
 }

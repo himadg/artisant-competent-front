@@ -11,7 +11,7 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, FormBuilder, FormControl, Validators, FormArray, AbstractControl } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, forkJoin, of, takeUntil } from 'rxjs';
+import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs';
 import {
   hourValidator,
   openingAtLeastOne,
@@ -40,7 +40,6 @@ import { FlashMessageService } from '../../../../core/services/flash-message.ser
 import { GeocodingService } from '../../../../core/services/geocoding.service';
 import { AddressSuggestion } from '../../../../shared/interfaces/address-suggestion';
 import { SiretService } from '../../../../core/services/siret.service';
-import { UploadService } from '../../../../core/services/upload.service';
 import {
   ADDRESS_REGEXP,
   NAME_REGEXP,
@@ -72,7 +71,6 @@ export class RegisterProfessional implements OnDestroy {
   private readonly userApi = inject(UserApiService);
   private readonly geocodingService = inject(GeocodingService);
   private readonly siretService = inject(SiretService);
-  private readonly uploadService = inject(UploadService);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly langService = inject(LangService);
@@ -802,11 +800,7 @@ export class RegisterProfessional implements OnDestroy {
       ...(referralCode ? { referralCode } : {}),
     };
 
-    const upload = (file: File | null) => (file ? this.uploadService.upload(file) : of(''));
-
     const diplomaEntries = this.diplomaFiles().filter((d) => d.file !== null);
-    const diplomaUploads$ =
-      diplomaEntries.length > 0 ? forkJoin(diplomaEntries.map((d) => upload(d.file))) : of<string[]>([]);
 
     let mailSent = true;
 
@@ -814,30 +808,25 @@ export class RegisterProfessional implements OnDestroy {
     this.userApi
       .registerProfessional(payload, captchaToken)
       .pipe(
-        switchMap(({ userId, accessToken, mailSent: ms }) => {
+        switchMap(({ userId, accessToken, mailSent: ms, profileId: _profileId }) => {
           mailSent = ms;
           this.authService.setTempToken(accessToken);
           clearAffiliateCode();
-          return forkJoin([upload(photo), upload(idFront), upload(idBack), upload(logo), upload(rib)]).pipe(
-            switchMap(([photoKey, idFrontKey, idBackKey, companyLogoKey, ribKey]) =>
-              diplomaUploads$.pipe(
-                switchMap((diplomaKeys) =>
-                  this.userApi.createProfessionalDocuments(userId, {
-                    photoKey,
-                    idFrontKey,
-                    idBackKey,
-                    diplomas: diplomaKeys.map((key, i) => ({
-                      key,
-                      documentName: diplomaEntries[i].documentName,
-                      expiryDate: diplomaEntries[i].expiryDate,
-                    })),
-                    companyLogoKey,
-                    ribKey,
-                  }),
-                ),
-              ),
-            ),
-          );
+
+          const formData = new FormData();
+          if (photo) formData.append('photo', photo);
+          if (idFront) formData.append('idFront', idFront);
+          if (idBack) formData.append('idBack', idBack);
+          if (logo) formData.append('logo', logo);
+          if (rib) formData.append('rib', rib);
+          for (const entry of diplomaEntries) {
+            if (entry.file) formData.append('diplomas', entry.file);
+          }
+          formData.append('diplomasMeta', JSON.stringify(
+            diplomaEntries.map(d => ({ documentName: d.documentName, expiryDate: d.expiryDate })),
+          ));
+
+          return this.userApi.createProfessionalDocuments(userId, formData);
         }),
         takeUntil(this.destroy$),
       )
