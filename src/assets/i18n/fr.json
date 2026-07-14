@@ -14,6 +14,9 @@
       "description": "Ne validez le paiement qu'une fois les travaux terminés. Artisan Compétent encadre vos chantiers avec le séquestre de fonds, des artisans vérifiés et un suivi digital. Devis gratuit.",
       "ogDescription": "Ne validez le paiement qu'une fois l'intervention terminée. Séquestre de fonds, artisans vérifiés, suivi digital."
     },
+    "storyBar": {
+      "nearby": "Artisans près de chez vous"
+    },
     "hero": {
       "h1": "Vos petits travaux et interventions d'urgence encadrées de A à Z, finis les arnaques !",
       "args": [
@@ -2633,6 +2636,9 @@
     "tradeLabel": "Choisir un métier",
     "kilometersLabel": "Rayon (km)",
     "button": "Rechercher"
+  },
+  "storyViewer": {
+    "seePresentation": "Voir la vidéo de présentation"
   },
   "affiliation": {
     "title": "Programme partenaire",

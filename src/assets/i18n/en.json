@@ -14,6 +14,9 @@
       "description": "Only release payment once the work is done. Artisan Compétent oversees your projects with fund escrow, verified tradespeople and digital tracking. Free quote.",
       "ogDescription": "Only release payment once the job is done. Fund escrow, verified tradespeople, digital tracking."
     },
+    "storyBar": {
+      "nearby": "Craftsmen near you"
+    },
     "hero": {
       "h1": "Your small jobs and emergency interventions handled from A to Z, no more scams!",
       "args": [
@@ -2633,6 +2636,9 @@
     "tradeLabel": "Select a trade",
     "kilometersLabel": "Radius (km)",
     "button": "Search"
+  },
+  "storyViewer": {
+    "seePresentation": "See presentation video"
   },
   "affiliation": {
     "title": "Partner program",

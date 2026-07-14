@@ -1,15 +1,18 @@
 @if (groups().length > 0) {
     <div class="story-bar">
+        <span class="story-bar-label">{{ 'home.storyBar.nearby' | transloco }}</span>
         <ul class="story-bar-list">
             @for (group of groups(); track group.professionalProfileId; let i = $index) {
                 <li>
                     <button type="button" class="story-circle" (click)="openGroup(i)">
-                        <span class="story-avatar story-avatar--tips">
-                            @if (group.avatarUrl) {
-                                <img [src]="group.avatarUrl" [alt]="group.companyName" />
-                            } @else {
-                                <span class="story-avatar-placeholder">{{ group.companyName.charAt(0) }}</span>
-                            }
+                        <span class="story-ring">
+                            <span class="story-avatar">
+                                @if (group.avatarUrl) {
+                                    <img [src]="group.avatarUrl" [alt]="group.companyName" loading="lazy" />
+                                } @else {
+                                    <span class="story-avatar-placeholder">{{ group.companyName.charAt(0) }}</span>
+                                }
+                            </span>
                         </span>
                         <span class="story-name">{{ group.companyName }}</span>
                     </button>
@@ -20,13 +23,15 @@
 }
 
 <story-viewer
-    [story]="viewingStory()"
-    [videoUrl]="viewingStory()?.videoUrl ?? null"
-    [label]="viewingStory()?.companyName ?? null"
+    [story]="displayStory()"
+    [videoUrl]="displayStory()?.videoUrl ?? null"
+    [label]="displayLabel()"
     [allowDelete]="false"
-    [hasPrev]="hasPrev()"
-    [hasNext]="hasNext()"
+    [hasPrev]="displayHasPrev()"
+    [hasNext]="displayHasNext()"
+    [showProfileLink]="!viewingPresentation()"
     (closeModal)="closeViewer()"
     (prevRequested)="prevStory()"
     (nextRequested)="nextStory()"
+    (profileRequested)="showPresentation()"
 />

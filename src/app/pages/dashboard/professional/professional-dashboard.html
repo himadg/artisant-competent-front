@@ -225,9 +225,9 @@
                                 </div>
                             }
                             @if (uploadingStoryType() === 'PRESENTATION') {
-                                <div class="pro-story-uploading-overlay"><span class="pro-spinner-sm"></span></div>
+                                <div class="pro-story-uploading-ring pro-story-uploading-ring--photo"></div>
                             }
-                            @if (presentationStories().length > 0) {
+                            @if (canAddPresentationStory()) {
                                 <button
                                     type="button"
                                     class="pro-story-add-btn pro-story-add-btn--presentation"
@@ -258,9 +258,9 @@
                                         </small>
                                     }
                                     @if (uploadingStoryType() === 'TIPS') {
-                                        <div class="pro-story-uploading-overlay"><span class="pro-spinner-sm"></span></div>
+                                        <div class="pro-story-uploading-ring"></div>
                                     }
-                                    @if (tipsStories().length > 0) {
+                                    @if (canAddTipsStory()) {
                                         <button
                                             type="button"
                                             class="pro-story-add-btn pro-story-add-btn--tips"
@@ -1417,6 +1417,8 @@
     [videoUrl]="viewingStoryUrl()"
     [hasPrev]="hasPrevStory()"
     [hasNext]="hasNextStory()"
+    [currentIndex]="viewingIndex()"
+    [total]="viewingStories().length"
     (closeModal)="closeStoryViewer()"
     (deleteRequested)="deleteViewingStory()"
     (prevRequested)="prevStory()"

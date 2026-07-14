@@ -29,6 +29,12 @@ export type ProTab = 'presentation' | 'missions' | 'reviews' | 'documents';
 
 const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as const;
 
+// 1 PRESENTATION story per professional, unlimited TIPS stories
+const MAX_STORIES_PER_TYPE: Record<'PRESENTATION' | 'TIPS', number> = {
+  PRESENTATION: 1,
+  TIPS: Infinity,
+};
+
 @Component({
   selector: 'dashboard-professional',
   standalone: true,
@@ -74,14 +80,16 @@ export class ProfessionalDashboard implements OnInit {
       ${professional.workAddress.streetName}, ${professional.workAddress.postalCode} ${professional.workAddress.city}`;
   });
 
-  // ── Stories ────────────────────────────────────────────────────────────────
-  // Le cercle bleu (photo) déclenche la story "Présentation", le cercle blanc (logo) la story "Tips".
+  // Bleu cercle for "Présentation" story, white cercle for "Tips" story.
   readonly myStories = signal<Story[]>([]);
   readonly uploadingStoryType = signal<'PRESENTATION' | 'TIPS' | null>(null);
   readonly storyUploadError = signal<string | null>(null);
 
   readonly presentationStories = computed(() => this.myStories().filter((s) => s.type === 'PRESENTATION'));
   readonly tipsStories = computed(() => this.myStories().filter((s) => s.type === 'TIPS'));
+
+  readonly canAddPresentationStory = computed(() => this.presentationStories().length < MAX_STORIES_PER_TYPE.PRESENTATION);
+  readonly canAddTipsStory = computed(() => this.tipsStories().length < MAX_STORIES_PER_TYPE.TIPS);
 
   readonly viewingStories = signal<Story[]>([]);
   readonly viewingIndex = signal(0);
@@ -107,6 +115,8 @@ export class ProfessionalDashboard implements OnInit {
 
   onAddStoryClick(event: Event, type: 'PRESENTATION' | 'TIPS') {
     event.stopPropagation();
+    const canAdd = type === 'PRESENTATION' ? this.canAddPresentationStory() : this.canAddTipsStory();
+    if (!canAdd) return;
     this.recordingStoryType.set(type);
   }
 

@@ -51,4 +51,8 @@ export class StoryApiService {
     if (limit) params['limit'] = String(limit);
     return this.http.get<StoryFeedItem[]>('/stories/feed', { params });
   }
+
+  getPresentation(professionalProfileId: string): Observable<StoryFeedItem | null> {
+    return this.http.get<StoryFeedItem | null>(`/stories/professional/${professionalProfileId}/presentation`);
+  }
 }
