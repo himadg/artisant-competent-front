@@ -1,13 +1,16 @@
-@if (story()) {
-    <div class="modal-overlay" (click)="closeModal.emit()">
-        <div class="modal-content" (click)="$event.stopPropagation()">
+@if (viewerState(); as v) {
+    <div class="modal-overlay" [class.closing]="closing()" (click)="closeModal.emit()">
+        <div class="modal-content" [class.closing]="closing()" (click)="$event.stopPropagation()">
             <div class="modal-header">
                 <span class="modal-header-info">
-                    @if (label()) {
-                        <span class="modal-label">{{ label() }}</span>
+                    @if (v.label) {
+                        <span class="modal-label">{{ v.label }}</span>
                     }
                     <span class="modal-time-ago">{{ timeAgo() }}</span>
                 </span>
+                @if (showCounter()) {
+                    <span class="modal-counter">{{ v.currentIndex + 1 }}/{{ v.total }}</span>
+                }
                 <button class="close-btn" (click)="closeModal.emit()" aria-label="Fermer">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="18" y1="6" x2="6" y2="18" />
@@ -16,23 +19,23 @@
                 </button>
             </div>
             <div class="modal-body">
-                @if (hasPrev()) {
+                @if (v.hasPrev) {
                     <button class="nav-btn nav-btn--prev" (click)="prevRequested.emit()" aria-label="Précédent">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6" /></svg>
                     </button>
                 }
-                @if (videoUrl()) {
-                    <video [src]="videoUrl()" controls autoplay muted class="story-video"></video>
+                @if (v.videoUrl) {
+                    <video [src]="v.videoUrl" controls autoplay muted class="story-video"></video>
                 } @else {
                     <span class="spinner"></span>
                 }
-                @if (hasNext()) {
+                @if (v.hasNext) {
                     <button class="nav-btn nav-btn--next" (click)="nextRequested.emit()" aria-label="Suivant">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6" /></svg>
                     </button>
                 }
             </div>
-            @if (allowDelete()) {
+            @if (v.allowDelete) {
                 <div class="modal-footer">
                     <button class="delete-btn" (click)="deleteRequested.emit()" aria-label="Supprimer">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -42,6 +45,16 @@
                             <path d="M14 11v6" />
                             <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
                         </svg>
+                    </button>
+                </div>
+            } @else if (v.showProfileLink) {
+                <div class="modal-footer">
+                    <button type="button" class="presentation-btn" (click)="profileRequested.emit()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none" />
+                        </svg>
+                        {{ 'storyViewer.seePresentation' | transloco }}
                     </button>
                 </div>
             }
