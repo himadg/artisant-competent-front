@@ -2,16 +2,22 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { CreateDemandResponse, DemandDetail, DemandSummary } from '../../shared/interfaces/demand';
+import { LangService } from './lang.service';
 
 const BASE_URL = '/demands';
 
 @Injectable({ providedIn: 'root' })
 export class DemandService {
   private readonly http = inject(HttpClient);
+  private readonly langService = inject(LangService);
 
   create(description: string, professionalsId: string[]): Promise<CreateDemandResponse> {
     return firstValueFrom(
-      this.http.post<CreateDemandResponse>(BASE_URL, { description, professionalsId }),
+      this.http.post<CreateDemandResponse>(BASE_URL, {
+        description,
+        professionalsId,
+        lang: this.langService.lang(),
+      }),
     );
   }
 
