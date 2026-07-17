@@ -1,0 +1,27 @@
+<div class="stripe-payments">
+    @if (loading()) {
+        <div class="pay-loading">
+            <span class="spinner"></span>
+            <p>{{ 'dashboard.pro.payments.loading' | transloco }}</p>
+        </div>
+    } @else if (error()) {
+        <div class="pay-error">
+            <p>{{ 'dashboard.pro.payments.error' | transloco }}</p>
+            <button class="pay-retry" (click)="init()">{{ 'dashboard.pro.payments.retry' | transloco }}</button>
+        </div>
+    } @else if (!onboarded()) {
+        <p class="pay-intro">{{ 'dashboard.pro.payments.onboardingIntro' | transloco }}</p>
+        <div #onboardingContainer class="pay-embed"></div>
+    } @else {
+        <div #bannerContainer class="pay-embed"></div>
+
+        <h4 class="pay-subtitle">{{ 'dashboard.pro.payments.balances' | transloco }}</h4>
+        <div #balancesContainer class="pay-embed"></div>
+
+        <h4 class="pay-subtitle">{{ 'dashboard.pro.payments.payouts' | transloco }}</h4>
+        <div #payoutsContainer class="pay-embed"></div>
+
+        <h4 class="pay-subtitle">{{ 'dashboard.pro.payments.management' | transloco }}</h4>
+        <div #managementContainer class="pay-embed"></div>
+    }
+</div>

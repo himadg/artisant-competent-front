@@ -41,6 +41,10 @@ export interface ProfessionalProfile {
   mediatorAdditionalInfo?: string | null;
   additionalRemarks?: string | null;
   companyRemarks?: string | null;
+  stripeAccountId?: string | null;
+  stripeDetailsSubmitted?: boolean;
+  stripeTransfersEnabled?: boolean;
+  stripePayoutsEnabled?: boolean;
 }
 
 export interface ProfessionalDashboardData {
