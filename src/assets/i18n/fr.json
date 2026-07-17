@@ -3383,11 +3383,27 @@
         "requests": "Mes demandes",
         "quotes": "Mes devis",
         "invoices": "Mes factures",
+        "payments": "Paiements",
         "profile": "Infos personnelles",
         "legal": "Informations légales",
         "practices": "Bonnes pratiques",
         "affiliation": "Affiliation",
         "messages": "Messages"
+      },
+      "payments": {
+        "loading": "Chargement de votre espace paiements…",
+        "error": "Impossible de charger votre espace paiements. Veuillez réessayer.",
+        "retry": "Réessayer",
+        "onboardingIntro": "Pour recevoir vos virements, complétez la configuration de votre compte de paiement. Vos informations sont vérifiées de manière sécurisée par notre partenaire de paiement Stripe.",
+        "balances": "Solde",
+        "payouts": "Virements reçus",
+        "management": "Informations du compte",
+        "setupBannerTitle": "Configurez vos paiements",
+        "setupBannerBody": "Pour pouvoir recevoir des missions et être payé, vous devez configurer votre compte de paiement.",
+        "setupBannerCta": "Configurer mes paiements",
+        "actionBannerTitle": "Action requise sur vos paiements",
+        "actionBannerBody": "Des informations complémentaires sont nécessaires pour continuer à recevoir vos virements.",
+        "actionBannerCta": "Voir ce qui est requis"
       },
       "tabs": {
         "presentation": "Présentation",
