@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 import { capitalize, evaluatePasswordCriteria, getAffiliateCode, clearAffiliateCode } from '../../../../core/utils/common-utils';
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
 import { NAME_REGEXP, PASSWORD_STRONG_REGEXP, PHONE_FR_REGEXP, POSTAL_CODE_REGEXP, STREET_NUMBER_REGEXP } from '../../../../core/utils/regexp';
-import { LangService } from '../../../../core/services/lang.service';
 import { pastDateValidator } from '../../../../core/utils/validators';
 
 @Component({
@@ -32,7 +31,6 @@ export class RegisterIndividual implements OnDestroy {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly flashMessage = inject(FlashMessageService);
-  private readonly langService = inject(LangService);
   private readonly destroy$ = new Subject<void>();
   private readonly addressSearch$ = new Subject<string>();
 
@@ -232,7 +230,6 @@ export class RegisterIndividual implements OnDestroy {
 
     const referralCode = getAffiliateCode();
     const payload: Record<string, unknown> = {
-      lang: this.langService.lang(),
       user: {
         gender,
         lastName: lastName!.toUpperCase(),
