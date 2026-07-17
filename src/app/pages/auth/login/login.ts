@@ -1,6 +1,6 @@
 ﻿import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { AuthService } from '../../../core/services/auth.service';
 import { FlashMessageService } from '../../../core/services/flash-message.service';
@@ -16,6 +16,7 @@ export class LoginPage {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
   private readonly flashMessageService = inject(FlashMessageService);
 
   readonly form = this.fb.group({
@@ -42,7 +43,8 @@ export class LoginPage {
 
     try {
       await this.authService.login(email!, password!);
-      this.router.navigate(['/dashboard']);
+      const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') ?? '/dashboard';
+      await this.router.navigateByUrl(returnUrl);
     } catch {
       this.serverError.set('login.errors.invalid');
     } finally {

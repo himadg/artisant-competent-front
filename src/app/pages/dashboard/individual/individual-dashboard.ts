@@ -8,11 +8,14 @@ import { DashboardApiService } from '../../../core/services/dashboard-api.servic
 import { AuthService } from '../../../core/services/auth.service';
 import { UserApiService } from '../../../core/services/user-api.service';
 import { AffiliationApiService } from '../../../core/services/affiliation-api.service';
+import { DemandService } from '../../../core/services/demand.service';
 import { IndividualDashboardData } from '../../../shared/interfaces/individual-dashboard';
 import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
+import { DemandDetail, DemandSummary } from '../../../shared/interfaces/demand';
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
 import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
+import { DemandDetailsModal } from '../../../shared/components/demand-details-modal/demand-details-modal';
 import { RouterLink } from "@angular/router";
 
 export type IndividualSection = 'profile' | 'requests' | 'quotes' | 'invoices' | 'legal' | 'practices' | 'affiliation';
@@ -21,7 +24,7 @@ export type IndividualSection = 'profile' | 'requests' | 'quotes' | 'invoices' |
   selector: 'dashboard-individual',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FormsModule, TranslocoModule, LangToggle, ThemeToggle, LegalModal, RouterLink],
+  imports: [CommonModule, FormsModule, TranslocoModule, LangToggle, ThemeToggle, LegalModal, RouterLink, DemandDetailsModal],
   templateUrl: './individual-dashboard.html',
   styleUrl: './individual-dashboard.scss',
 })
@@ -29,6 +32,7 @@ export class IndividualDashboard implements OnInit {
   private readonly dashboardApi = inject(DashboardApiService);
   private readonly userApi = inject(UserApiService);
   private readonly affiliationApi = inject(AffiliationApiService);
+  private readonly demandService = inject(DemandService);
   private readonly platformLocation = inject(PlatformLocation);
   readonly authService = inject(AuthService);
 
@@ -41,6 +45,10 @@ export class IndividualDashboard implements OnInit {
   readonly affiliationData = signal<AffiliationDashboard | null>(null);
   readonly affiliationLoading = signal(false);
   readonly codeCopied = signal(false);
+
+  readonly myDemands = signal<DemandSummary[] | null>(null);
+  readonly demandsLoading = signal(false);
+  readonly selectedDemandId = signal<string | null>(null);
 
   readonly editMode = signal(false);
   readonly saving = signal(false);
@@ -84,6 +92,24 @@ export class IndividualDashboard implements OnInit {
     if (section === 'affiliation' && !this.affiliationData()) {
       this.loadAffiliationDashboard();
     }
+    if (section === 'requests') {
+      this.loadDemands();
+    }
+  }
+
+  loadDemands() {
+    this.demandsLoading.set(true);
+    this.demandService.getMine()
+      .then((mine) => this.myDemands.set(mine))
+      .finally(() => this.demandsLoading.set(false));
+  }
+
+  onDemandUpdated(updated: DemandDetail) {
+    this.myDemands.update((list) => (list
+      ? list.map((d) => (d.id === updated.id
+          ? { ...d, description: updated.description, status: updated.status, photoKeys: updated.photoKeys }
+          : d))
+      : list));
   }
 
   loadAffiliationDashboard() {

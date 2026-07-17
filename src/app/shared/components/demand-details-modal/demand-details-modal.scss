@@ -1,0 +1,203 @@
+.modal-content {
+  max-height: 90dvh;
+  overflow-y: auto;
+}
+
+.demand-status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor 10%, transparent);
+  opacity: 0.7;
+
+  &--available {
+    background: color-mix(in srgb, var(--primary-water-green) 15%, transparent);
+    color: var(--primary-water-green);
+    opacity: 1;
+  }
+
+  &--cancelled {
+    background: color-mix(in srgb, #dc2626 15%, transparent);
+    color: #dc2626;
+    opacity: 1;
+  }
+}
+
+/* ── En-têtes de section éditables ── */
+.detail-section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.detail-edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: none;
+  border: none;
+  color: inherit;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity 0.15s;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.detail-edit-actions {
+  display: flex;
+  gap: 0.4rem;
+  margin-left: 0.3rem;
+}
+
+.detail-cancel-btn,
+.detail-save-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  svg {
+    width: 0.95rem;
+    height: 0.95rem;
+  }
+}
+
+.detail-cancel-btn {
+  color: #ef4444;
+}
+
+.detail-save-btn {
+  color: #22c55e;
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+.detail-spinner-sm {
+  display: inline-block;
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 2px solid color-mix(in srgb, #22c55e 35%, transparent);
+  border-top-color: #22c55e;
+  border-radius: 50%;
+  animation: detail-spin 0.7s linear infinite;
+
+  &--danger {
+    border-color: color-mix(in srgb, #dc2626 35%, transparent);
+    border-top-color: #dc2626;
+  }
+}
+
+@keyframes detail-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.detail-edit-textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: inherit;
+  padding: 0.5rem;
+  margin: -0.5rem 0 0 -0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  resize: none;
+  background: none;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-water-green);
+  }
+}
+
+/* ── Photos ── */
+.photo-tile {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+
+  &--add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: dashed;
+    color: var(--primary-water-green);
+    font-size: 1.5rem;
+
+    input {
+      display: none;
+    }
+  }
+}
+
+.photo-remove-btn {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 0.65rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* ── Annulation de la demande ── */
+.detail-cancel-demand-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.55rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #dc2626;
+  background: none;
+  border: 1px solid #dc2626;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, #dc2626 8%, transparent);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}

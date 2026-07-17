@@ -11,17 +11,21 @@ import { DashboardApiService } from '../../../core/services/dashboard-api.servic
 import { AuthService } from '../../../core/services/auth.service';
 import { UserApiService } from '../../../core/services/user-api.service';
 import { AffiliationApiService } from '../../../core/services/affiliation-api.service';
+import { DemandService } from '../../../core/services/demand.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProfessionalDashboardData, OpeningHoursDay } from '../../../shared/interfaces/professional-dashboard';
 import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
+import { DemandDetail, DemandSummary } from '../../../shared/interfaces/demand';
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
 import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
 import { DocModal } from '../../../shared/components/doc-modal/doc-modal';
+import { DemandDetailsModal } from '../../../shared/components/demand-details-modal/demand-details-modal';
 import { PreviewDocument } from '../../../shared/interfaces/preview-document';
 
 export type ProSection = 'requests' | 'quotes' | 'invoices' | 'profile' | 'legal' | 'practices' | 'affiliation';
 export type ProTab = 'presentation' | 'missions' | 'reviews' | 'documents';
+export type RequestsTab = 'mine' | 'received';
 
 const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as const;
 
@@ -29,7 +33,17 @@ const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'satu
   selector: 'dashboard-professional',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FormsModule, RouterLink, TranslocoModule, LangToggle, ThemeToggle, LegalModal, DocModal],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterLink,
+    TranslocoModule,
+    LangToggle,
+    ThemeToggle,
+    LegalModal,
+    DocModal,
+    DemandDetailsModal,
+  ],
   templateUrl: './professional-dashboard.html',
   styleUrl: './professional-dashboard.scss',
 })
@@ -39,6 +53,7 @@ export class ProfessionalDashboard implements OnInit {
   private readonly dashboardApi = inject(DashboardApiService);
   private readonly userApi = inject(UserApiService);
   private readonly affiliationApi = inject(AffiliationApiService);
+  private readonly demandService = inject(DemandService);
   private readonly route = inject(ActivatedRoute);
   private readonly platformLocation = inject(PlatformLocation);
   private readonly transloco = inject(TranslocoService);
@@ -54,6 +69,13 @@ export class ProfessionalDashboard implements OnInit {
   readonly affiliationData = signal<AffiliationDashboard | null>(null);
   readonly affiliationLoading = signal(false);
   readonly codeCopied = signal(false);
+
+  readonly requestsTab = signal<RequestsTab>('mine');
+  readonly myDemands = signal<DemandSummary[] | null>(null);
+  readonly receivedDemands = signal<DemandSummary[] | null>(null);
+  readonly demandsLoading = signal(false);
+  readonly selectedDemandId = signal<string | null>(null);
+  readonly selectedDemandEditable = signal(false);
 
   readonly inscriptionDate = computed(() => {
     const data = this.data();
@@ -189,6 +211,32 @@ export class ProfessionalDashboard implements OnInit {
     if (section === 'affiliation' && !this.affiliationData()) {
       this.loadAffiliationDashboard();
     }
+    if (section === 'requests') {
+      this.loadDemands();
+    }
+  }
+
+  setRequestsTab(tab: RequestsTab) {
+    this.requestsTab.set(tab);
+  }
+
+  loadDemands() {
+    this.demandsLoading.set(true);
+    Promise.all([this.demandService.getMine(), this.demandService.getReceived()])
+      .then(([mine, received]) => {
+        this.myDemands.set(mine);
+        this.receivedDemands.set(received);
+      })
+      .finally(() => this.demandsLoading.set(false));
+  }
+
+  onDemandUpdated(updated: DemandDetail) {
+    const merge = (list: DemandSummary[]) =>
+      list.map((d) => (d.id === updated.id
+        ? { ...d, description: updated.description, status: updated.status, photoKeys: updated.photoKeys }
+        : d));
+    this.myDemands.update((list) => (list ? merge(list) : list));
+    this.receivedDemands.update((list) => (list ? merge(list) : list));
   }
 
   loadAffiliationDashboard() {

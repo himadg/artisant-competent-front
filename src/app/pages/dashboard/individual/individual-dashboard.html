@@ -318,7 +318,34 @@
                         </div>
                     }
                     @case ('requests') {
-                        <p class="ind-empty">{{ 'dashboard.empty.requests' | transloco }}</p>
+                        @if (demandsLoading()) {
+                            <div class="aff-loading">
+                                <span class="spinner"></span>
+                            </div>
+                        } @else {
+                            <div class="demand-list">
+                                @for (demand of myDemands(); track demand.id) {
+                                    <button type="button" class="demand-card" (click)="selectedDemandId.set(demand.id)">
+                                        <div class="demand-card-header">
+                                            <span
+                                                class="demand-status"
+                                                [class.demand-status--available]="demand.status === 'AVAILABLE'"
+                                                            [class.demand-status--cancelled]="demand.status === 'CANCELLED'"
+                                            >
+                                                {{ ('dashboard.requests.status.' + demand.status) | transloco }}
+                                            </span>
+                                            <span class="demand-date">{{ demand.createdAt | date: 'dd/MM/yyyy' }}</span>
+                                        </div>
+                                        <p class="demand-description">{{ demand.description }}</p>
+                                        <p class="demand-meta">
+                                            {{ 'dashboard.requests.filesCount' | transloco: { count: demand.photoKeys.length } }}
+                                        </p>
+                                    </button>
+                                } @empty {
+                                    <p class="ind-empty">{{ 'dashboard.empty.requests' | transloco }}</p>
+                                }
+                            </div>
+                        }
                     }
                     @case ('quotes') {
                         <p class="ind-empty">{{ 'dashboard.empty.quotes' | transloco }}</p>
@@ -567,4 +594,13 @@
             </div>
         }
     </div>
+}
+
+@if (selectedDemandId(); as demandId) {
+    <demand-details-modal
+        [demandId]="demandId"
+        [canEdit]="true"
+        (closed)="selectedDemandId.set(null)"
+        (updated)="onDemandUpdated($event)"
+    />
 }

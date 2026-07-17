@@ -448,8 +448,36 @@
     "downloadPdf": "Télécharger le PDF",
     "previewUnavailable": "Aperçu non disponible pour ce type de fichier.",
     "openDocument": "Ouvrir le document",
-    "cancel": "Annuler",
-    "dashboard": "Mon espace"
+    "cancel": "Annuler"
+  },
+  "demand": {
+    "modal": {
+      "title": "Créer une demande",
+      "subtitle": "Votre demande sera envoyée à {{ count }} professionnel(s)",
+      "descriptionLabel": "Décrivez vos travaux",
+      "descriptionPlaceholder": "Ex : Je souhaite rénover ma salle de bain, refaire la plomberie et les carrelages...",
+      "errorRequired": "Veuillez décrire vos travaux.",
+      "errorMinLength": "La description doit faire au moins 10 caractères.",
+      "photosLabel": "Photos",
+      "photosOptional": "(optionnel, max 3)",
+      "photosPlaceholder": "Ajouter des photos",
+      "errorInvalidFormat": "Format invalide. Seuls les fichiers JPEG, PNG et WebP sont acceptés.",
+      "submit": "Envoyer la demande",
+      "successTitle": "Demande envoyée !",
+      "successMessage": "Les professionnels sélectionnés ont bien reçu votre demande.",
+      "error": "Une erreur est survenue. Veuillez réessayer."
+    },
+    "createSuccess": "Votre demande a bien été envoyée aux professionnels.",
+    "photosUploadFailed": "Votre demande a été créée mais les photos n'ont pas pu être envoyées. Vous pouvez les ajouter depuis votre espace.",
+    "detail": {
+      "title": "Détails de la demande",
+      "descriptionTitle": "Description",
+      "photos": "{{ count }} photo(s)",
+      "photoAlt": "Photo {{ index }}",
+      "contacted": "Professionnels contactés ({{ count }})",
+      "cancelDemand": "Annuler la demande",
+      "cancelConfirm": "Êtes-vous sûr de vouloir annuler cette demande ? Cette action est irréversible."
+    }
   },
   "footer": {
     "newsletterTitle": "Recevez nos conseils anti-arnaque et nos bons plans travaux directement sur WhatsApp.",
@@ -3171,6 +3199,18 @@
   "dashboard": {
     "title": "Mon compte",
     "currentRole": "Rôle actuel : {{ role }}",
+    "requests": {
+      "tabs": {
+        "mine": "Mes demandes",
+        "received": "Demandes reçues"
+      },
+      "status": {
+        "AVAILABLE": "Disponible",
+        "UNAVAILABLE": "Indisponible",
+        "CANCELLED": "Annulée"
+      },
+      "filesCount": "{{ count }} fichier(s) joint(s)"
+    },
     "nav": {
       "requests": "Mes demandes",
       "quotes": "Mes devis",
@@ -3382,6 +3422,7 @@
     },
     "empty": {
       "requests": "Aucune demande pour le moment",
+      "requestsReceived": "Aucune demande reçue pour le moment",
       "quotes": "Aucun devis pour le moment",
       "invoices": "Aucune facture pour le moment",
       "legal": "Aucune information légale disponible",
@@ -3688,5 +3729,13 @@
       "title": "Réception des travaux, libération des fonds, avis et clôture du chantier",
       "body": "<h4>Réception des travaux</h4><p>À la fin du chantier, le professionnel envoie un procès-verbal digital de réception directement via la plateforme Artisan Compétent.</p><p>À partir de ce moment-là, le client dispose d'un délai pouvant aller jusqu'à 96 heures pour :</p><ul><li>vérifier les travaux réalisés,</li><li>contrôler les finitions,</li><li>signaler une éventuelle malfaçon,</li><li>demander une correction si nécessaire,</li><li>ou valider définitivement le chantier.</li></ul><p>Le client peut également valider le procès-verbal immédiatement s'il estime que les travaux sont conformes.</p><p>Pendant toute cette période, les fonds restent encadrés sur le compte séquestre Stripe.</p><p>Huit heures avant la fin du délai des 96 heures, un email de rappel automatique est envoyé au client. Cet email fait également office de mise en demeure afin d'informer le client que :</p><ul><li>soit il doit émettre une réserve ou un signalement s'il constate un problème,</li><li>soit les fonds seront automatiquement libérés à l'issue du délai prévu.</li></ul><p>À défaut de réserve ou de contestation dans le délai imparti, le procès-verbal est automatiquement considéré comme validé conformément aux CGU et CGV de la plateforme.</p><h4>Libération des fonds</h4><p>Une fois le procès-verbal validé, manuellement ou automatiquement après expiration du délai prévu sans réserve, les fonds séquestrés sont immédiatement libérés vers le professionnel.</p><p>Les fonds ne transitent jamais par le compte bancaire d'Artisan Compétent. Ils restent encadrés dans le protocole Stripe jusqu'à leur libération finale.</p><p>En cas de réserve, de malfaçon signalée ou de litige déclaré dans le délai prévu :</p><ul><li>les fonds restent bloqués,</li><li>une analyse du dossier peut être effectuée,</li><li>un échange amiable est privilégié,</li><li>et un arbitrage peut être engagé si nécessaire sur la base des éléments enregistrés dans le suivi digital.</li></ul><p>Selon la situation :</p><ul><li>une correction peut être demandée,</li><li>un remboursement partiel peut être effectué,</li><li>ou les fonds peuvent être ajustés au prorata des travaux réellement réalisés.</li></ul><h4>Après la réception : garanties et suivi</h4><p>Même après validation du procès-verbal, les professionnels présents sur Artisan Compétent restent soumis à leurs obligations légales.</p><p>Comme tout professionnel du bâtiment sérieux, ils restent tenus d'intervenir en cas de problème relevant :</p><ul><li>de la garantie de parfait achèvement,</li><li>de la garantie biennale lorsque nécessaire,</li><li>ou de la garantie décennale selon la nature des travaux réalisés.</li></ul><p>Le système Artisan Compétent ne remplace pas les garanties légales existantes, mais ajoute un cadre de sécurité et de traçabilité supplémentaire pendant toute la durée du chantier.</p><h4>Avis et clôture du chantier</h4><p>Une fois le chantier terminé, le client peut laisser un avis sur le professionnel.</p><p>Les avis ont pour objectif de rester :</p><ul><li>transparents,</li><li>constructifs,</li><li>utiles à la communauté,</li><li>et basés sur une expérience réelle vécue via la plateforme.</li></ul><p>L'objectif d'Artisan Compétent n'est pas de créer une simple plateforme d'avis, mais un environnement de confiance basé sur des chantiers réellement suivis et documentés.</p><p>Une fois le procès-verbal validé, Artisan Compétent invite également le client et le professionnel à télécharger et conserver l'ensemble des documents, échanges, photos, devis, procès-verbaux et éléments présents dans leur dashboard.</p><p>Ces documents peuvent être utiles ultérieurement en cas :</p><ul><li>de garantie à faire valoir,</li><li>de malfaçon apparaissant après réception,</li><li>de litige futur,</li><li>ou simplement pour conserver un historique complet du chantier.</li></ul><p>La plateforme Artisan Compétent conserve les données pendant une durée limitée conformément à sa politique de gestion et de protection des données. Il appartient donc au client et au professionnel de conserver leurs propres copies des éléments importants du chantier.</p><p>Une fois cette étape terminée, le chantier est officiellement clôturé dans la plateforme.</p>"
     }
+  },
+  "errors": {
+    "network": "Impossible de contacter le serveur. Vérifiez votre connexion.",
+    "badRequest": "La requête est invalide. Vérifiez les données saisies.",
+    "forbidden": "Vous n'avez pas les droits pour effectuer cette action.",
+    "notFound": "La ressource demandée est introuvable.",
+    "server": "Une erreur est survenue côté serveur. Veuillez réessayer.",
+    "unknown": "Une erreur inattendue est survenue. Veuillez réessayer."
   }
 }
