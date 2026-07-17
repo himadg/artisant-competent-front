@@ -85,6 +85,7 @@ export const routes: Routes = [
   },
   {
     path: 'search-pro-results',
+    title: 'search.pageTitle',
     loadComponent: () => import('./pages/search-pro-results/search-pro-results').then((p) => p.SearchProResultsPage),
   },
   {

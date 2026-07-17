@@ -7,6 +7,7 @@ import { provideRouter, withInMemoryScrolling, TitleStrategy } from '@angular/ro
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { apiUrlInterceptor } from './core/interceptors/api-url.interceptor';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { httpErrorInterceptor } from './core/interceptors/http-error.interceptor';
 import localeFr from '@angular/common/locales/fr';
 import { routes } from './app.routes';
 
@@ -25,7 +26,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: 'top', anchorScrolling: 'enabled' })),
-    provideHttpClient(withFetch(), withInterceptors([authInterceptor, apiUrlInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([httpErrorInterceptor, authInterceptor, apiUrlInterceptor])),
     provideTransloco(translocoConfig),
     { provide: TitleStrategy, useClass: TranslocoTitleStrategy },
     { provide: LOCALE_ID, useValue: 'fr' },

@@ -21,7 +21,7 @@
     ></div>
 
     <div
-        class="fixed top-0 right-0 h-screen w-8/12 max-w-[320px] p-4 flex flex-col gap-2 bg-grad-brown border-l border-[var(--secondary-beige)] transition-transform duration-700 ease-in-out z-50 pt-[calc(1rem_+_var(--top-banners-h))] lg:pt-[calc(var(--top-banners-h))]"
+        class="fixed top-0 right-0 h-screen w-8/12 max-w-[320px] p-4 flex flex-col gap-2 bg-grad-brown border-l border-[var(--secondary-beige)] transition-transform duration-700 ease-in-out z-50 pt-[calc(1rem_+_var(--top-banners-h))] lg:pt-[calc(var(--top-banners-h))] overflow-y-auto"
         [class.translate-x-full]="!mobileNavOpen()"
         [class.translate-x-0]="mobileNavOpen()"
     >
@@ -69,48 +69,56 @@
                 {{ 'common.dashboard' | transloco }}
             </a>
         } @else {
-            <button
-                type="button"
-                class="flex justify-between items-center p-2 no-underline"
-                (click)="toggleMobileNavRegister()"
-                [attr.aria-expanded]="mobileNavRegisterOpen()"
-            >
-                <span>{{ 'auth.register' | transloco }}</span>
-                <span class="" [class.rotate-180]="mobileNavRegisterOpen()">▾</span>
-            </button>
-            <div
-                class="overflow-hidden transition-all duration-700 ease-in-out"
-                [class.max-h-0]="!mobileNavRegisterOpen()"
-                [class.max-h-40]="mobileNavRegisterOpen()"
-                [class.border-t]="mobileNavRegisterOpen()"
-                [class.border-b]="mobileNavRegisterOpen()"
-                [class.py-2]="mobileNavRegisterOpen()"
-            >
-                <a
-                    [routerLink]="['/auth/register']"
-                    [queryParams]="{ t: 'individual' }"
-                    class="block p-2 pl-6 no-underline rounded-lg hover:bg-grad-water-green"
+            <div class="flex flex-col">
+                <button
+                    type="button"
+                    class="flex justify-between items-center p-2 no-underline"
+                    (click)="toggleMobileNavRegister()"
+                    [attr.aria-expanded]="mobileNavRegisterOpen()"
                 >
-                    {{ 'auth.roles.individual' | transloco }}
-                </a>
-                <a
-                    [routerLink]="['/auth/register']"
-                    [queryParams]="{ t: 'professional' }"
-                    class="block p-2 pl-6 no-underline rounded-lg hover:bg-grad-water-green"
+                    <span>{{ 'auth.register' | transloco }}</span>
+                    <span class="" [class.rotate-180]="mobileNavRegisterOpen()">▾</span>
+                </button>
+                <div
+                    class="grid min-h-0 transition-[grid-template-rows] duration-700 ease-in-out"
+                    [class.grid-rows-[0fr]]="!mobileNavRegisterOpen()"
+                    [class.grid-rows-[1fr]]="mobileNavRegisterOpen()"
                 >
-                    {{ 'auth.roles.professional' | transloco }}
-                </a>
+                    <div class="overflow-hidden min-h-0">
+                        <div
+                            class="border-t border-b py-2 transition-colors duration-700 ease-in-out"
+                            [class.border-transparent]="!mobileNavRegisterOpen()"
+                            [class.border-[var(--secondary-beige)]]="mobileNavRegisterOpen()"
+                        >
+                            <a
+                                [routerLink]="['/auth/register']"
+                                [queryParams]="{ t: 'individual' }"
+                                class="block p-2 pl-6 no-underline rounded-lg hover:bg-grad-water-green"
+                            >
+                                {{ 'auth.roles.individual' | transloco }}
+                            </a>
+                            <a
+                                [routerLink]="['/auth/register']"
+                                [queryParams]="{ t: 'professional' }"
+                                class="block p-2 pl-6 no-underline rounded-lg hover:bg-grad-water-green"
+                            >
+                                {{ 'auth.roles.professional' | transloco }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <a
-                [routerLink]="['/auth/login']"
-                class="block p-2 no-underline rounded-lg hover:bg-grad-water-green"
-            >
+            <a [routerLink]="['/auth/login']" class="block p-2 no-underline rounded-lg hover:bg-grad-water-green">
                 {{ 'auth.login' | transloco }}
             </a>
         }
 
-        <a routerLink="/contact" routerLinkActive="active" class="p-2 no-underline rounded-lg hover:bg-grad-water-green">
+        <a
+            routerLink="/contact"
+            routerLinkActive="active"
+            class="p-2 no-underline rounded-lg hover:bg-grad-water-green"
+        >
             {{ 'contact.nav' | transloco }}
         </a>
 

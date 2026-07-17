@@ -448,8 +448,36 @@
     "downloadPdf": "Download the PDF",
     "previewUnavailable": "Preview unavailable for this file type.",
     "openDocument": "Open document",
-    "cancel": "Cancel",
-    "dashboard": "My space"
+    "cancel": "Cancel"
+  },
+  "demand": {
+    "modal": {
+      "title": "Create a request",
+      "subtitle": "Your request will be sent to {{ count }} professional(s)",
+      "descriptionLabel": "Describe your work",
+      "descriptionPlaceholder": "E.g. I would like to renovate my bathroom, redo the plumbing and tiling...",
+      "errorRequired": "Please describe your work.",
+      "errorMinLength": "The description must be at least 10 characters.",
+      "photosLabel": "Photos",
+      "photosOptional": "(optional, max 3)",
+      "photosPlaceholder": "Add photos",
+      "errorInvalidFormat": "Invalid format. Only JPEG, PNG and WebP files are accepted.",
+      "submit": "Send request",
+      "successTitle": "Request sent!",
+      "successMessage": "The selected professionals have received your request.",
+      "error": "An error occurred. Please try again."
+    },
+    "createSuccess": "Your request has been successfully sent to the professionals.",
+    "photosUploadFailed": "Your request was created but the photos could not be uploaded. You can add them from your dashboard.",
+    "detail": {
+      "title": "Request details",
+      "descriptionTitle": "Description",
+      "photos": "{{ count }} photo(s)",
+      "photoAlt": "Photo {{ index }}",
+      "contacted": "Contacted tradespeople ({{ count }})",
+      "cancelDemand": "Cancel request",
+      "cancelConfirm": "Are you sure you want to cancel this request? This action cannot be undone."
+    }
   },
   "footer": {
     "newsletterTitle": "Get our anti-scam tips and renovation deals directly on WhatsApp.",
@@ -3171,6 +3199,18 @@
   "dashboard": {
     "title": "Dashboard",
     "currentRole": "Current role: {{ role }}",
+    "requests": {
+      "tabs": {
+        "mine": "My requests",
+        "received": "Received requests"
+      },
+      "status": {
+        "AVAILABLE": "Available",
+        "UNAVAILABLE": "Unavailable",
+        "CANCELLED": "Cancelled"
+      },
+      "filesCount": "{{ count }} file(s) attached"
+    },
     "nav": {
       "requests": "My requests",
       "quotes": "My quotes",
@@ -3382,6 +3422,7 @@
     },
     "empty": {
       "requests": "No requests yet",
+      "requestsReceived": "No requests received yet",
       "quotes": "No quotes yet",
       "invoices": "No invoices yet",
       "legal": "No legal information available",
@@ -3688,5 +3729,13 @@
       "title": "Project handover, release of funds, reviews and project closure",
       "body": "<h4>Project handover</h4><p>At the end of the project, the professional sends a digital project handover report directly via the Artisan Compétent platform.</p><p>From that moment, the client has up to 96 hours to:</p><ul><li>check the works carried out,</li><li>inspect the finishes,</li><li>report any defect,</li><li>request a correction if necessary,</li><li>or definitively validate the project.</li></ul><p>The client can also validate the handover report immediately if they consider the works compliant.</p><p>Throughout this period, the funds remain overseen in the Stripe escrow account.</p><p>Eight hours before the end of the 96-hour period, an automatic reminder email is sent to the client. This email also serves as a formal notice, informing the client that:</p><ul><li>either they must raise a reservation or a report if they notice a problem,</li><li>or the funds will be automatically released at the end of the set period.</li></ul><p>If no reservation or challenge is raised within the set period, the handover report is automatically deemed validated in accordance with the platform's Terms of Use and Terms of Sale.</p><h4>Funds release</h4><p>Once the handover report is validated, manually or automatically after expiry of the set period without reservation, the escrowed funds are immediately released to the professional.</p><p>The funds never pass through Artisan Compétent's bank account. They remain overseen in the Stripe protocol until their final release.</p><p>In case of reservation, reported defect or declared dispute within the set period:</p><ul><li>the funds remain held,</li><li>an analysis of the case can be performed,</li><li>an amicable exchange is favoured,</li><li>and arbitration can be initiated if necessary based on the items recorded in the digital tracking.</li></ul><p>Depending on the situation:</p><ul><li>a correction can be requested,</li><li>a partial refund can be made,</li><li>or the funds can be adjusted proportionally to the works actually carried out.</li></ul><h4>After handover: warranties and follow-up</h4><p>Even after validation of the handover report, the professionals on Artisan Compétent remain bound by their legal obligations.</p><p>Like any serious construction professional, they remain required to step in for issues falling under:</p><ul><li>the defects (snagging) warranty,</li><li>the two-year warranty when applicable,</li><li>or the ten-year warranty depending on the nature of the works carried out.</li></ul><p>The Artisan Compétent system does not replace the existing legal warranties, but adds an extra layer of safety and traceability throughout the project.</p><h4>Reviews and project closure</h4><p>Once the project is finished, the client can leave a review on the professional.</p><p>Reviews are intended to remain:</p><ul><li>transparent,</li><li>constructive,</li><li>useful to the community,</li><li>and based on a real experience lived via the platform.</li></ul><p>Artisan Compétent's goal is not to create a simple review platform, but a trust environment based on projects actually tracked and documented.</p><p>Once the handover report is validated, Artisan Compétent also invites the client and the professional to download and keep all the documents, exchanges, photos, quotes, handover reports and items present in their dashboard.</p><p>These documents can be useful later in case of:</p><ul><li>a warranty to be invoked,</li><li>a defect appearing after handover,</li><li>a future dispute,</li><li>or simply to keep a full history of the project.</li></ul><p>The Artisan Compétent platform keeps the data for a limited period in accordance with its data management and protection policy. It is therefore up to the client and the professional to keep their own copies of the important items of the project.</p><p>Once this step is complete, the project is officially closed on the platform.</p>"
     }
+  },
+  "errors": {
+    "network": "Unable to reach the server. Please check your connection.",
+    "badRequest": "The request is invalid. Please check the submitted data.",
+    "forbidden": "You do not have permission to perform this action.",
+    "notFound": "The requested resource could not be found.",
+    "server": "A server error occurred. Please try again.",
+    "unknown": "An unexpected error occurred. Please try again."
   }
 }

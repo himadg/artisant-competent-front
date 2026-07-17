@@ -2,13 +2,12 @@ import { Component, signal, inject, OnDestroy, computed, ChangeDetectionStrategy
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, of, takeUntil } from 'rxjs';
+import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs';
 import { GeocodingService } from '../../../../core/services/geocoding.service';
 import { AddressSuggestion } from '../../../../shared/interfaces/address-suggestion';
 import { TurnstileComponent } from '../../../../shared/components/turnstile/turnstile';
 import { LegalModal } from '../../../../shared/components/legal-modal/legal-modal';
 import { AppConfigService } from '../../../../core/services/app-config.service';
-import { UploadService } from '../../../../core/services/upload.service';
 import { UserApiService } from '../../../../core/services/user-api.service';
 import { AuthService } from '../../../../core/services/auth.service';
 import { Router } from '@angular/router';
@@ -29,7 +28,6 @@ import { pastDateValidator } from '../../../../core/utils/validators';
 export class RegisterIndividual implements OnDestroy {
   private readonly fb = inject(FormBuilder);
   private readonly geocodingService = inject(GeocodingService);
-  private readonly uploadService = inject(UploadService);
   private readonly userApi = inject(UserApiService);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
@@ -252,14 +250,13 @@ export class RegisterIndividual implements OnDestroy {
     this.userApi
       .registerIndividual(payload, captchaToken)
       .pipe(
-        switchMap(({ userId, accessToken, user: _user }) => {
+        switchMap(({ userId, accessToken, user: _user, profileId: _profileId }) => {
           this.authService.setTempToken(accessToken);
           clearAffiliateCode();
-          return (photo ? this.uploadService.upload(photo) : of('')).pipe(
-            switchMap((photoKey) =>
-              photoKey ? this.userApi.createIndividualDocuments(userId, photoKey) : of(undefined),
-            ),
-          );
+          if (!photo) return this.userApi.createIndividualDocuments(userId, new FormData());
+          const formData = new FormData();
+          formData.append('photo', photo);
+          return this.userApi.createIndividualDocuments(userId, formData);
         }),
         takeUntil(this.destroy$),
       )

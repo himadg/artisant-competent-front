@@ -1108,7 +1108,85 @@
                             }
                         }
                         @case ('requests') {
-                            <p class="pro-empty">{{ 'dashboard.empty.requests' | transloco }}</p>
+                            <div class="flex gap-1 justify-between">
+                                <button
+                                    class="flex-1 py-1 rounded-lg"
+                                    [class.request-tab-active]="requestsTab() === 'mine'"
+                                    (click)="setRequestsTab('mine')"
+                                >
+                                    {{ 'dashboard.requests.tabs.mine' | transloco }}
+                                </button>
+                                <button
+                                    class="flex-1 py-1 rounded-lg"
+                                    [class.request-tab-active]="requestsTab() === 'received'"
+                                    (click)="setRequestsTab('received')"
+                                >
+                                    {{ 'dashboard.requests.tabs.received' | transloco }}
+                                </button>
+                            </div>
+
+                            @if (demandsLoading()) {
+                                <div class="loading">
+                                    <span class="spinner"></span>
+                                </div>
+                            } @else {
+                                <div class="demand-list">
+                                    @switch (requestsTab()) {
+                                        @case ('mine') {
+                                            @for (demand of myDemands(); track demand.id) {
+                                                <button
+                                                    type="button"
+                                                    class="demand-card"
+                                                    (click)="selectedDemandId.set(demand.id); selectedDemandEditable.set(true)"
+                                                >
+                                                    <div class="demand-card-header">
+                                                        <span
+                                                            class="demand-status"
+                                                            [class.demand-status--available]="demand.status === 'AVAILABLE'"
+                                                            [class.demand-status--cancelled]="demand.status === 'CANCELLED'"
+                                                        >
+                                                            {{ ('dashboard.requests.status.' + demand.status) | transloco }}
+                                                        </span>
+                                                        <span class="demand-date">{{ demand.createdAt | date: 'dd/MM/yyyy' }}</span>
+                                                    </div>
+                                                    <p class="demand-description">{{ demand.description }}</p>
+                                                    <p class="demand-meta">
+                                                        {{ 'dashboard.requests.filesCount' | transloco: { count: demand.photoKeys.length } }}
+                                                    </p>
+                                                </button>
+                                            } @empty {
+                                                <p class="pro-empty">{{ 'dashboard.empty.requests' | transloco }}</p>
+                                            }
+                                        }
+                                        @case ('received') {
+                                            @for (demand of receivedDemands(); track demand.id) {
+                                                <button
+                                                    type="button"
+                                                    class="demand-card"
+                                                    (click)="selectedDemandId.set(demand.id); selectedDemandEditable.set(false)"
+                                                >
+                                                    <div class="demand-card-header">
+                                                        <span
+                                                            class="demand-status"
+                                                            [class.demand-status--available]="demand.status === 'AVAILABLE'"
+                                                            [class.demand-status--cancelled]="demand.status === 'CANCELLED'"
+                                                        >
+                                                            {{ ('dashboard.requests.status.' + demand.status) | transloco }}
+                                                        </span>
+                                                        <span class="demand-date">{{ demand.createdAt | date: 'dd/MM/yyyy' }}</span>
+                                                    </div>
+                                                    <p class="demand-description">{{ demand.description }}</p>
+                                                    <p class="demand-meta">
+                                                        {{ 'dashboard.requests.filesCount' | transloco: { count: demand.photoKeys.length } }}
+                                                    </p>
+                                                </button>
+                                            } @empty {
+                                                <p class="pro-empty">{{ 'dashboard.empty.requestsReceived' | transloco }}</p>
+                                            }
+                                        }
+                                    }
+                                </div>
+                            }
                         }
                         @case ('quotes') {
                             <p class="pro-empty">{{ 'dashboard.empty.quotes' | transloco }}</p>
@@ -1126,7 +1204,7 @@
                             <div class="pro-section">
                                 <h3 class="pro-section-title">{{ 'dashboard.affiliation.title' | transloco }}</h3>
                                 @if (affiliationLoading()) {
-                                    <div class="aff-loading">
+                                    <div class="loading">
                                         <span class="spinner"></span>
                                     </div>
                                 } @else if (affiliationData(); as aff) {
@@ -1368,4 +1446,13 @@
 
 @if (docToPreview()) {
     <doc-modal [document]="docToPreview()" (closeModal)="docToPreview.set(null)" />
+}
+
+@if (selectedDemandId(); as demandId) {
+    <demand-details-modal
+        [demandId]="demandId"
+        [canEdit]="selectedDemandEditable()"
+        (closed)="selectedDemandId.set(null)"
+        (updated)="onDemandUpdated($event)"
+    />
 }
