@@ -3,7 +3,6 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { AuthService } from '../../core/services/auth.service';
-import { LangService } from '../../core/services/lang.service';
 
 @Component({
   selector: 'contact-page',
@@ -17,7 +16,6 @@ export class ContactPage implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly http = inject(HttpClient);
   private readonly authService = inject(AuthService);
-  private readonly langService = inject(LangService);
   private readonly translocoService = inject(TranslocoService);
 
   readonly submitting = signal(false);
@@ -66,7 +64,6 @@ export class ContactPage implements OnInit {
       motif: this.translocoService.translate(`contact.motifs.${raw.motif}`),
       otherDetail: raw.otherDetail || undefined,
       description: raw.description,
-      lang: this.langService.lang(),
     };
 
     this.http.post('/contact', payload).subscribe({

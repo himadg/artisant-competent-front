@@ -50,7 +50,6 @@ import {
   STREET_NUMBER_REGEXP,
 } from '../../../../core/utils/regexp';
 import { AppConfigService } from '../../../../core/services/app-config.service';
-import { LangService } from '../../../../core/services/lang.service';
 import { AuthService } from '../../../../core/services/auth.service';
 import { DiplomaEntry } from '../../../../shared/interfaces/diploma-entry';
 
@@ -73,7 +72,6 @@ export class RegisterProfessional implements OnDestroy {
   private readonly siretService = inject(SiretService);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
-  private readonly langService = inject(LangService);
   private readonly flashMessage = inject(FlashMessageService);
   private readonly destroy$ = new Subject<void>();
 
@@ -786,7 +784,6 @@ export class RegisterProfessional implements OnDestroy {
 
     const referralCode = getAffiliateCode();
     const payload: Record<string, unknown> = {
-      lang: this.langService.lang(),
       user: { ...userFields },
       professionalProfile: {
         ...profRest,
