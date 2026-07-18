@@ -1,0 +1,15 @@
+<div style="padding: 2rem;">
+  <h1>Test appel visio</h1>
+
+  @if (!joined()) {
+    <div>
+      <label>
+        Room ID :
+        <input type="text" [(ngModel)]="roomIdInput" />
+      </label>
+      <button type="button" (click)="join()">Rejoindre</button>
+    </div>
+  } @else {
+    <video-call [roomId]="roomId()" />
+  }
+</div>

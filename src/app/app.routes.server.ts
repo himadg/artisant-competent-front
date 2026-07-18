@@ -5,6 +5,7 @@ import { TRADES } from './data/trades';
 export const serverRoutes: ServerRoute[] = [
   // Routes protégées → CSR
   { path: 'dashboard', renderMode: RenderMode.Client },
+  { path: 'video-call-test', renderMode: RenderMode.Client },
   { path: 'admin/professionals/**', renderMode: RenderMode.Client },
   { path: 'auth/**', renderMode: RenderMode.Client },
 

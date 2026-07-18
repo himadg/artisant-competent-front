@@ -16,6 +16,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/dashboard/dashboard').then((p) => p.DashboardPage),
   },
   {
+    path: 'video-call-test',
+    canActivate: [authGuard],
+    loadComponent: () => import('./pages/video-call-test/video-call-test').then((p) => p.VideoCallTestPage),
+  },
+  {
     path: 'affiliation',
     title: 'affiliation.title',
     loadComponent: () => import('./pages/affiliation/affiliation').then((p) => p.AffiliationPage),

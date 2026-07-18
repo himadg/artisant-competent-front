@@ -1,0 +1,19 @@
+<div class="call-container">
+  @if (callService.errorMessage(); as error) {
+    <p class="call-error">{{ error }}</p>
+  }
+
+  <div class="call-videos">
+    <video #localVideo class="call-video call-video--local" autoplay playsinline muted></video>
+
+    @for (participant of callService.remoteParticipants(); track participant.socketId) {
+      <video class="call-video" [streamSource]="participant.stream" autoplay playsinline></video>
+    }
+  </div>
+
+  <div class="call-controls">
+    <button type="button" (click)="toggleMic()">{{ micEnabled ? 'Couper le micro' : 'Activer le micro' }}</button>
+    <button type="button" (click)="toggleCamera()">{{ cameraEnabled ? 'Couper la caméra' : 'Activer la caméra' }}</button>
+    <button type="button" class="call-controls__hangup" (click)="hangUp()">Raccrocher</button>
+  </div>
+</div>
