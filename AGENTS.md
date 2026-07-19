@@ -34,12 +34,13 @@ npm run ssr          # build + node dist/.../server.mjs
 - Branche de prod : `master` (gérée par l'autre dev). Branches de feature, commits locaux par étape, PR quand l'incrément est testé
 - Style de commit : court, anglais, minuscules, impératif (ex. `add seed.ts to fill db for new devs`, `fix siret control issue`)
 
-## Stripe Connect (en cours — branche `stripe`)
+## Stripe Connect (incrément 1 ✅ livré et testé E2E le 18/07/2026, branche `stripe`)
 
 Onboarding et gestion du compte Stripe Connect de l'artisan via **composants embarqués** (`@stripe/connect-js`), sans jamais quitter la plateforme. Référence : `../docs/Plan Stripe v4.pdf`, `../docs/PLAN-MVP-STRIPE.md`, et `AGENTS.md` du backend (§Stripe).
 
-- Nouvelle section `payments` du dashboard pro : composant `stripe-payments-section` — onboarding embarqué si non finalisé, sinon notification-banner + balances + payouts (lecture seule) + account-management
-- Bandeau « Configurez vos paiements » en haut du dashboard pro si `status === 'ACTIVE' && !stripeDetailsSubmitted` (flags servis par `GET /dashboard`) ; CTA → `setSection('payments')`
-- `stripe-api.service.ts` (create account / account-session / status) + `stripe-connect.service.ts` (singleton `loadConnectAndInitialize`, `fetchClientSecret` → `POST /stripe/connect/account-session`, appearance aux couleurs plateforme, locale fr)
-- `stripePublishableKey` dans la config runtime (4 fichiers, modèle turnstileSiteKey)
-- CSP : `<script src="https://connect-js.stripe.com/v1.0/connect.js" async>` statique dans `index.html` ; vérifier l'allowlist trusted-types à l'exécution
+- Section `payments` du dashboard pro : `professional/stripe-payments/stripe-payments-section` — au 1ᵉʳ affichage : `createAccount()` (lazy, idempotent) → `getStatus()` → montage des composants embarqués via effect/viewChild. Non onboardé : `account-onboarding` seul (`setOnExit` → `getStatus(refresh=true)` → émet `statusChanged` au parent). Onboardé : `notification-banner` + `balances` + `payouts` (lecture seule) + `account-management`
+- Bandeaux en haut du dashboard pro (masqués dans la section payments) : jaune « Configurez vos paiements » si `!stripeDetailsSubmitted`, rouge « Action requise » si onboardé mais `transfersEnabled`/`payoutsEnabled` retombe à false — flags servis par `GET /dashboard` (spread du profil), mis à jour par l'output `statusChanged` ; CTA → `setSection('payments')`
+- `stripe-api.service.ts` (create account / account-session / status) + `stripe-connect.service.ts` (singleton `loadConnectAndInitialize`, `fetchClientSecret` → `POST /stripe/connect/account-session`, appearance `colorPrimary #00637b`, locale suivant Transloco)
+- `stripePublishableKey` dans la config runtime (4 fichiers, modèle turnstileSiteKey ; `config.json` local est gitignoré)
+- CSP : script statique `connect-js.stripe.com/v1.0/connect.js` + `stripe-js` dans l'allowlist trusted-types de `index.html` — validé à l'exécution, aucune violation
+- i18n : clés `dashboard.pro.nav.payments` + `dashboard.pro.payments.*` (fr + en)
