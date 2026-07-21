@@ -6,7 +6,7 @@ import { EMPTY, switchMap } from 'rxjs';
 import { ProfessionalService } from '../../core/services/professional.service';
 import { ProfessionalSearchResult } from '../../shared/interfaces/professional-profile';
 import { ProCard } from '../../shared/components/pro-card/pro-card';
-import { SearchPro } from '../../shared/components/search-pro/search-pro';
+import { SearchProForm } from '../../shared/components/search-pro-form/search-pro-form';
 import { AuthService } from '../../core/services/auth.service';
 import { DemandService } from '../../core/services/demand.service';
 import { FlashMessageService } from '../../core/services/flash-message.service';
@@ -17,11 +17,11 @@ const PENDING_REQUEST_KEY = 'pendingRequest';
 @Component({
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterModule, TranslocoModule, ProCard, SearchPro, DemandModal],
-  templateUrl: './search-pro-results.html',
-  styleUrl: './search-pro-results.scss',
+  imports: [RouterModule, TranslocoModule, ProCard, SearchProForm, DemandModal],
+  templateUrl: './search-pro.html',
+  styleUrl: './search-pro.scss',
 })
-export class SearchProResultsPage implements OnInit {
+export class SearchProPage implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly professionalService = inject(ProfessionalService);
@@ -40,6 +40,8 @@ export class SearchProResultsPage implements OnInit {
   address = '';
   trade = '';
   radius = 0;
+  lat: number | null = null;
+  lng: number | null = null;
 
   ngOnInit(): void {
     this.route.queryParamMap
@@ -48,6 +50,8 @@ export class SearchProResultsPage implements OnInit {
         switchMap((params) => {
           const lat = Number.parseFloat(params.get('lat') ?? '');
           const lng = Number.parseFloat(params.get('lng') ?? '');
+          this.lat = Number.isNaN(lat) ? null : lat;
+          this.lng = Number.isNaN(lng) ? null : lng;
           this.radius = Number.parseFloat(params.get('radius') ?? '0');
           this.trade = params.get('trade') ?? '';
           this.address = params.get('address') ?? '';
@@ -56,13 +60,17 @@ export class SearchProResultsPage implements OnInit {
           this.error.set(false);
           this.selectedIds.set(new Set());
 
-          if (Number.isNaN(lat) || Number.isNaN(lng) || !this.trade) {
+          if (
+            params.keys.length !== 0 &&
+            (Number.isNaN(lat) || Number.isNaN(lng) || Number.isNaN(this.radius) || !this.trade || !this.address)
+          ) {
             this.loading.set(false);
             this.error.set(true);
             return EMPTY;
           }
 
-          return this.professionalService.searchNearby(lat, lng, this.radius, this.trade);
+          const ownProfessionalId = this.authService.currentUser()?.professionalProfile?.id;
+          return this.professionalService.searchNearby(lat, lng, this.radius, this.trade, ownProfessionalId);
         }),
       )
       .subscribe({

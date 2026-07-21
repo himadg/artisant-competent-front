@@ -10,6 +10,7 @@ import { LegalModal } from '../../../../shared/components/legal-modal/legal-moda
 import { AppConfigService } from '../../../../core/services/app-config.service';
 import { UserApiService } from '../../../../core/services/user-api.service';
 import { AuthService } from '../../../../core/services/auth.service';
+import { User } from '../../../../shared/interfaces/user';
 import { Router } from '@angular/router';
 import { capitalize, evaluatePasswordCriteria, getAffiliateCode, clearAffiliateCode } from '../../../../core/utils/common-utils';
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
@@ -243,11 +244,16 @@ export class RegisterIndividual implements OnDestroy {
       ...(referralCode ? { referralCode } : {}),
     };
 
+    let registeredAccessToken = '';
+    let registeredUser!: User;
+
     this.submitting.set(true);
     this.userApi
       .registerIndividual(payload, captchaToken)
       .pipe(
-        switchMap(({ userId, accessToken, user: _user, profileId: _profileId }) => {
+        switchMap(({ userId, accessToken, user, profileId: _profileId }) => {
+          registeredAccessToken = accessToken;
+          registeredUser = user;
           this.authService.setTempToken(accessToken);
           clearAffiliateCode();
           if (!photo) return this.userApi.createIndividualDocuments(userId, new FormData());
@@ -259,8 +265,9 @@ export class RegisterIndividual implements OnDestroy {
       )
       .subscribe({
         next: () => {
+          this.authService.setSession(registeredAccessToken, registeredUser);
           this.flashMessage.set({ type: 'success', key: 'login.registeredIndividualSuccess' });
-          this.router.navigate(['/auth/login']);
+          this.router.navigate(['/dashboard']);
         },
         error: (err) => {
           this.submitting.set(false);

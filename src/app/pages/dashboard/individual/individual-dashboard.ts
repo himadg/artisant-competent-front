@@ -16,6 +16,7 @@ import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
 import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
 import { DemandDetailsModal } from '../../../shared/components/demand-details-modal/demand-details-modal';
+import { NotificationBell } from '../../../shared/components/notification-bell/notification-bell';
 import { RouterLink } from "@angular/router";
 
 export type IndividualSection = 'profile' | 'requests' | 'quotes' | 'invoices' | 'legal' | 'practices' | 'affiliation';
@@ -24,7 +25,7 @@ export type IndividualSection = 'profile' | 'requests' | 'quotes' | 'invoices' |
   selector: 'dashboard-individual',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FormsModule, TranslocoModule, LangToggle, ThemeToggle, LegalModal, RouterLink, DemandDetailsModal],
+  imports: [CommonModule, FormsModule, TranslocoModule, LangToggle, ThemeToggle, LegalModal, RouterLink, DemandDetailsModal, NotificationBell],
   templateUrl: './individual-dashboard.html',
   styleUrl: './individual-dashboard.scss',
 })

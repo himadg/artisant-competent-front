@@ -428,7 +428,8 @@
         "particuliersText": "no more scams, whether for an emergency or longer works.",
         "artisansLabel": "Craftsmen",
         "artisansText": "no more flimsy excuses to avoid payment."
-      }
+      },
+      "vsGoogleAlt": "Artisan Compétent vs Google"
     }
   },
   "common": {
@@ -439,7 +440,16 @@
     "professionals": "Professionals",
     "loading": "Loading...",
     "close": "Close",
-    "dashboard": "My space"
+    "dashboard": "My space",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "No",
+    "menu": "Menu",
+    "messages": "Messages",
+    "logo": "Logo",
+    "sidebarNavigation": "Sidebar navigation",
+    "bottomNavigation": "Bottom navigation",
+    "avatar": "Avatar"
   },
   "docModal": {
     "defaultTitle": "Document preview",
@@ -2350,6 +2360,9 @@
           "footer": "Verified pest control specialist with SIRET, RC pro, decennial, and Certibiocide. Process overseen by Stripe escrow, follow-up visits included. Report and photos at each visit. Withholding of up to €250 in case of reported abuse. Scope: rodents, crawling insects, flying insects, bedbugs, hornets, disinfection, insect control, rat control."
         }
       }
+    },
+    "citiesSection": {
+      "title": "Available in all major cities"
     }
   },
   "not-found": {
@@ -2520,10 +2533,12 @@
       "onCallDay": "On call this day"
     },
     "openingHours": {
-      "guideBtn": "User guide - Hours, holidays & on-call rules"
+      "guideBtn": "User guide - Hours, holidays & on-call rules",
+      "guideAlt": "Opening hours instructions"
     },
     "description": {
-      "guideBtn": "User guide - Tips for selling your services"
+      "guideBtn": "User guide - Tips for selling your services",
+      "guideAlt": "Sales tips instructions"
     },
     "workAddress": {
       "guideBtn": "User guide - Geolocation address"
@@ -2535,7 +2550,8 @@
       "condition1": "Minimum 3 years of experience in your trade",
       "condition2": "Mission paid at 35 € per intervention",
       "condition3": "Intervention only in case of dispute",
-      "condition4": "Advisory opinion, non-binding"
+      "condition4": "Advisory opinion, non-binding",
+      "guideAlt": "CMOD instructions"
     },
     "siret": {
       "checking": "Checking SIRET...",
@@ -2587,7 +2603,8 @@
         "diplomaDocRequired": "Diploma required",
         "logoRequired": "Logo required",
         "ribRequired": "Bank details (RIB) required"
-      }
+      },
+      "addressWorkInvalid": "Unable to validate the company address, please check your entry."
     },
     "manager": {
       "company": "Company",
@@ -3191,7 +3208,7 @@
       "show": "Show password",
       "hide": "Hide password"
     },
-    "registeredIndividualSuccess": "Your registration has been successfully recorded. You can now log in with your credentials.",
+    "registeredIndividualSuccess": "Your registration has been successfully recorded. Welcome to Artisan Compétent!",
     "registeredProSuccess": "Your registration has been received and is pending validation. You will receive a confirmation email shortly.",
     "registeredProMailFailed": "Your registration has been recorded. We were unable to send you a confirmation email. Please contact us at contact@artisan-competent.com to validate your account.",
     "spamNotice": "If you don't see the email in your inbox, please check your spam folder."
@@ -3209,7 +3226,8 @@
         "UNAVAILABLE": "Unavailable",
         "CANCELLED": "Cancelled"
       },
-      "filesCount": "{{ count }} file(s) attached"
+      "filesCount": "{{ count }} file(s) attached",
+      "createDemand": "Create a request"
     },
     "nav": {
       "requests": "My requests",
@@ -3284,7 +3302,9 @@
       "mediatorAddress": "Mediator address",
       "mediatorWebsite": "Website",
       "mediatorContactMethod": "Contact method",
-      "mediatorAdditionalInfo": "Additional information"
+      "mediatorAdditionalInfo": "Additional information",
+      "email": "Email",
+      "dayOnCall": "On call"
     },
     "errors": {
       "load": "Unable to load dashboard",
@@ -3473,7 +3493,8 @@
         "individual": "Referred individual → 20% commission for the first 6 months, then 10% for the next 6.",
         "professional": "Referred professional → 5% commission for 6 months."
       }
-    }
+    },
+    "loading": "Loading dashboard..."
   },
   "cities": {
     "nav": "Cities",
@@ -3737,5 +3758,10 @@
     "notFound": "The requested resource could not be found.",
     "server": "A server error occurred. Please try again.",
     "unknown": "An unexpected error occurred. Please try again."
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "No notifications yet",
+    "markAllRead": "Mark all as read"
   }
 }

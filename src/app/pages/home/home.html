@@ -61,7 +61,7 @@
 
     <!-- Formulaire de recherche (INCHANGÉ — ne pas toucher) -->
     <div class="hero-search-card md:!mt-[7rem]">
-        <search-pro id="hero-search-form"></search-pro>
+        <search-pro-form id="hero-search-form"></search-pro-form>
     </div>
 
     <!-- CTA Inscrivez-vous -->
@@ -972,7 +972,7 @@
             <li class="flex flex-col items-center justify-center p-2 rounded-xl border overflow-hidden">
                 <img
                     src="assets/img/artisan-competent-vs-google.webp"
-                    alt="Artisan Compétent vs Google"
+                    [attr.alt]="'home.paiement.vsGoogleAlt' | transloco"
                     class="w-full rounded-lg object-cover"
                     loading="lazy"
                 />
@@ -1034,76 +1034,4 @@
             </div>
         </section>
     }
-
-    <!-- ══════════════════════════════════════════════════
-         SECTION · CTA INTERMÉDIAIRE
-    ══════════════════════════════════════════════════ -->
-    <!-- <section id="mid-cta" class="px-6 py-12 space-y-6 text-center rounded-2xl mid-cta md:py-16">
-        <h2 class="text-xl font-semibold md:text-3xl">{{ 'home.midCta.title' | transloco }}</h2>
-        <p class="mx-auto max-w-xl text-base md:text-lg">{{ 'home.midCta.lead' | transloco }}</p>
-        <div class="flex flex-col gap-4 justify-center mx-auto w-full max-w-md sm:flex-row sm:max-w-xl">
-            <button type="button" (click)="scrollToSearch()"
-                class="flex-1 basis-0 min-w-0 px-6 py-3 font-semibold text-center rounded-lg cursor-pointer bg-[var(--tertiary-brown)] text-[var(--primary-beige)]">
-                {{ 'home.midCta.primaryBtn' | transloco }}
-            </button>
-            <a routerLink="/auth/register"
-                class="flex-1 basis-0 min-w-0 px-6 py-3 font-semibold text-center no-underline rounded-lg border-2 border text-[var(--tertiary-brown)]">
-                {{ 'home.midCta.secondaryBtn' | transloco }}
-            </a>
-        </div>
-    </section> -->
-
-    <!-- ══════════════════════════════════════════════════
-         SECTION · ENCADREMENT / PROTECTION (accordéons SEO)
-    ══════════════════════════════════════════════════ -->
-    <!-- <section id="protection" class="!mt-12 space-y-4">
-        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.protection.title' | transloco }}</h2>
-        <p class="text-lg font-semibold md:text-xl">{{ 'home.protection.lead' | transloco }}</p>
-        <div class="space-y-4">
-            <accordion variant="section" [title]="'home.encadrement.fournitures.title' | transloco">
-                <div class="protection-body" [innerHTML]="'home.encadrement.fournitures.content' | transloco"></div>
-            </accordion>
-            <accordion variant="section" [title]="'home.protection.escrow.title' | transloco">
-                <div class="protection-body" [innerHTML]="'home.protection.escrow.body' | transloco"></div>
-            </accordion>
-            <accordion variant="section" [title]="'home.protection.validation.title' | transloco">
-                <div class="protection-body" [innerHTML]="'home.protection.validation.body' | transloco"></div>
-            </accordion>
-            <accordion variant="section" [title]="'home.protection.klarna.title' | transloco">
-                <div class="protection-body" [innerHTML]="'home.protection.klarna.body' | transloco"></div>
-            </accordion>
-            <accordion variant="section" [title]="'home.protection.malfacon.title' | transloco">
-                <div class="protection-body" [innerHTML]="'home.protection.malfacon.body' | transloco"></div>
-            </accordion>
-            <accordion variant="section" [title]="'home.protection.signed.title' | transloco">
-                <div class="protection-body" [innerHTML]="'home.protection.signed.body' | transloco"></div>
-            </accordion>
-            <accordion variant="section" [title]="'home.protection.cmod.title' | transloco">
-                <div class="protection-body" [innerHTML]="'home.protection.cmod.body' | transloco"></div>
-                <div class="flex justify-center mt-4">
-                    <a [routerLink]="['/cmod/formule']"
-                        class="inline-block px-6 py-3 font-semibold no-underline rounded-lg bg-[var(--tertiary-brown)] text-[var(--primary-beige)] w-fit">
-                        {{ 'home.protection.cmod.cta' | transloco }}
-                    </a>
-                </div>
-            </accordion>
-        </div>
-    </section> -->
-
-    <!-- ══════════════════════════════════════════════════
-         SECTION · JE SUIS UN PROFESSIONNEL
-    ══════════════════════════════════════════════════ -->
-    <!-- <section id="pro" class="!mt-12 space-y-4">
-        <h2 class="text-xl font-semibold title md:text-3xl">{{ 'home.pro.h2' | transloco }}</h2>
-        <accordion variant="section" [title]="'home.pro.accordionTitle' | transloco">
-            <p>{{ 'home.pro.p1' | transloco }}</p>
-            <p>{{ 'home.pro.p2' | transloco }}</p>
-        </accordion>
-        <div class="flex justify-center">
-            <a [routerLink]="['/auth/register']" [queryParams]="{ t: 'professional' }"
-                class="inline-block px-6 py-3 font-semibold rounded-lg no-underline bg-[var(--tertiary-brown)] text-[var(--primary-beige)] w-fit">
-                {{ 'home.pro.cta' | transloco }}
-            </a>
-        </div>
-    </section> -->
 </div>
