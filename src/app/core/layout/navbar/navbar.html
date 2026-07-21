@@ -3,7 +3,7 @@
         type="button"
         class="grid py-4 place-items-center size-16 rounded-full bg-[var(--tertiary-brown)]"
         (click)="toggleMobileNav()"
-        aria-label="Menu"
+        [attr.aria-label]="'common.menu' | transloco"
         [attr.aria-expanded]="mobileNavOpen()"
     >
         <span class="block w-6 h-0.5 bg-[var(--primary-beige)]"></span>

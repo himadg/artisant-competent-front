@@ -51,6 +51,7 @@ import {
 } from '../../../../core/utils/regexp';
 import { AppConfigService } from '../../../../core/services/app-config.service';
 import { AuthService } from '../../../../core/services/auth.service';
+import { User } from '../../../../shared/interfaces/user';
 import { DiplomaEntry } from '../../../../shared/interfaces/diploma-entry';
 
 type DocTarget = 'photo' | 'idFront' | 'idBack' | 'logo' | 'rib';
@@ -800,13 +801,17 @@ export class RegisterProfessional implements OnDestroy {
     const diplomaEntries = this.diplomaFiles().filter((d) => d.file !== null);
 
     let mailSent = true;
+    let registeredAccessToken = '';
+    let registeredUser!: User;
 
     this.submitting.set(true);
     this.userApi
       .registerProfessional(payload, captchaToken)
       .pipe(
-        switchMap(({ userId, accessToken, mailSent: ms, profileId: _profileId }) => {
+        switchMap(({ userId, accessToken, user, mailSent: ms, profileId: _profileId }) => {
           mailSent = ms;
+          registeredAccessToken = accessToken;
+          registeredUser = user;
           this.authService.setTempToken(accessToken);
           clearAffiliateCode();
 
@@ -829,11 +834,12 @@ export class RegisterProfessional implements OnDestroy {
       )
       .subscribe({
         next: () => {
+          this.authService.setSession(registeredAccessToken, registeredUser);
           this.flashMessage.set({
             type: mailSent ? 'success' : 'warning',
             key: mailSent ? 'login.registeredProSuccess' : 'login.registeredProMailFailed',
           });
-          this.router.navigate(['/auth/login']);
+          this.router.navigate(['/dashboard']);
         },
         error: (err) => {
           this.submitting.set(false);

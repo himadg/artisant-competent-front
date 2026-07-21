@@ -1,0 +1,46 @@
+@if (authService.isAuthenticated()) {
+    <div class="notification-bell" #panel>
+        <button
+            type="button"
+            class="bell-btn"
+            (click)="togglePanel()"
+            [attr.aria-label]="'notifications.title' | transloco"
+            [attr.aria-expanded]="panelOpen()"
+        >
+            <iconify-icon icon="lucide:bell"></iconify-icon>
+            @if (notificationService.unreadCount() > 0) {
+                <span class="badge">{{ notificationService.unreadCount() > 9 ? '9+' : notificationService.unreadCount() }}</span>
+            }
+        </button>
+
+        @if (panelOpen()) {
+            <div class="panel">
+                <div class="panel-header">
+                    <span>{{ 'notifications.title' | transloco }}</span>
+                    @if (notificationService.unreadCount() > 0) {
+                        <button type="button" class="mark-all" (click)="markAllAsRead()">
+                            {{ 'notifications.markAllRead' | transloco }}
+                        </button>
+                    }
+                </div>
+
+                @if (notificationService.notifications().length === 0) {
+                    <p class="empty">{{ 'notifications.empty' | transloco }}</p>
+                } @else {
+                    <ul>
+                        @for (notification of notificationService.notifications(); track notification.id) {
+                            <li [class.unread]="!notification.read" (click)="select(notification)">
+                                <span class="dot"></span>
+                                <div class="content">
+                                    <p class="title" [class.font-extrabold]="!notification.read">{{ notification.title }}</p>
+                                    <p class="body">{{ notification.body }}</p>
+                                    <p class="date">{{ notification.createdAt | date: 'short' }}</p>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        }
+    </div>
+}

@@ -82,7 +82,7 @@
                                     <div class="flex gap-4 items-start mb-4">
                                         @if (pro.photoUrl) {
                                             <button type="button" class="shrink-0 rounded-full" (click)="openDocumentModal(pro.photoUrl, false)">
-                                                <img [src]="pro.photoUrl" class="object-cover w-16 h-16 rounded-full border" alt="Profil">
+                                                <img [src]="pro.photoUrl" class="object-cover w-16 h-16 rounded-full border" [attr.alt]="'common.avatar' | transloco">
                                             </button>
                                         } @else {
                                             <div class="flex justify-center items-center w-16 h-16 rounded-full border bg-gray-100 shrink-0">
@@ -102,7 +102,7 @@
                                     </div>
                                     <dl class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
                                         <div>
-                                            <dt class="text-gray-500">Email</dt>
+                                            <dt class="text-gray-500">{{ 'dashboard.admin.email' | transloco }}</dt>
                                             <dd class="font-medium text-gray-900 break-all">{{ user.email }}</dd>
                                         </div>
                                         <div>
@@ -176,7 +176,7 @@
                                             <div>
                                                 <dt class="text-gray-500">{{ 'dashboard.admin.onCall' | transloco }}</dt>
                                                 <dd class="font-medium text-gray-900">
-                                                    @if (pro.onCall) { <span class="font-bold text-green-600">Oui</span> } @else { Non }
+                                                    @if (pro.onCall) { <span class="font-bold text-green-600">{{ 'common.yes' | transloco }}</span> } @else { {{ 'common.no' | transloco }} }
                                                 </dd>
                                             </div>
                                         </dl>
@@ -212,7 +212,7 @@
                                                                 @if (day.closed) {
                                                                     <span class="italic text-gray-400">{{ 'dashboard.admin.closed' | transloco }}</span>
                                                                 } @else if (day.onCall) {
-                                                                    <span class="text-blue-600">Astreinte</span>
+                                                                    <span class="text-blue-600">{{ 'dashboard.admin.dayOnCall' | transloco }}</span>
                                                                 } @else if (day.intervals[0]) {
                                                                     <span>{{ day.intervals[0].start }} – {{ day.intervals[0].end }}</span>
                                                                 }
@@ -303,7 +303,7 @@
                                         <div class="flex overflow-hidden flex-col rounded-lg border">
                                             <div class="flex justify-center items-center h-32 bg-gray-100 border-b">
                                                 @if (pro.photoUrl) {
-                                                    <img [src]="pro.photoUrl" class="object-contain w-full h-full" alt="Profil">
+                                                    <img [src]="pro.photoUrl" class="object-contain w-full h-full" [attr.alt]="'common.avatar' | transloco">
                                                 } @else {
                                                     <span class="text-sm italic text-gray-400">{{ 'dashboard.admin.missing' | transloco }}</span>
                                                 }
@@ -383,7 +383,7 @@
                                                     @if (pro.companyLogoKey.endsWith('.pdf')) {
                                                         <svg class="w-12 h-12 text-red-500 opacity-80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M10 12v6"/><path d="M8 14h4"/><path d="M14 12v6"/><path d="M12 14h4"/></svg>
                                                     } @else {
-                                                        <img [src]="pro.logoUrl" class="object-contain w-full h-full" alt="Logo">
+                                                        <img [src]="pro.logoUrl" class="object-contain w-full h-full" [attr.alt]="'common.logo' | transloco">
                                                     }
                                                 } @else {
                                                     <span class="text-sm italic text-gray-400">{{ 'dashboard.admin.missing' | transloco }}</span>

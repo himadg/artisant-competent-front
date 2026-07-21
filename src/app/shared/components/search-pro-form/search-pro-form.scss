@@ -1,10 +1,20 @@
 :host ::ng-deep .range {
   -webkit-appearance: none;
   appearance: none;
-  height: 0.25rem;
-  border-radius: 9999px;
-  background: var(--primary-beige);
+  /* Zone de clic/glisser alignée sur la taille du rond visible (.thumb-value),
+     pas seulement sur la fine piste — sinon seul le chiffre au centre est cliquable. */
+  height: 1.75rem;
+  background: transparent;
   outline: none;
+}
+
+:host ::ng-deep .range::-webkit-slider-runnable-track {
+  background: transparent;
+}
+
+:host ::ng-deep .range::-moz-range-track {
+  background: transparent;
+  height: 1.75rem;
 }
 
 :host ::ng-deep .range::-webkit-slider-thumb {
@@ -25,15 +35,21 @@
   cursor: pointer;
 }
 
-:host ::ng-deep .range::-moz-range-track {
-  height: 0.25rem;
-  border-radius: 9999px;
-  background: var(--primary-beige);
-}
-
 :host ::ng-deep .range-wrap {
   position: relative;
-  height: 1.25rem;
+  height: 1.75rem;
+}
+
+:host ::ng-deep .range-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 0.25rem;
+  transform: translateY(-50%);
+  border-radius: 9999px;
+  background: var(--primary-beige);
+  pointer-events: none;
 }
 
 :host ::ng-deep .thumb-value {

@@ -1,5 +1,5 @@
 <section class="pb-20 mx-auto max-w-screen-lg">
-    <h2 class="mb-6 text-xl font-semibold">Disponible dans toutes les grandes villes</h2>
+    <h2 class="mb-6 text-xl font-semibold">{{ 'jobs.citiesSection.title' | transloco }}</h2>
     <div class="flex flex-wrap gap-2">
         @for (city of cities; track city.slug) {
             <a [routerLink]="['/job', tradeSlug(), city.slug]" class="pill-link">

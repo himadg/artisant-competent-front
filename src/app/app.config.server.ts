@@ -19,9 +19,6 @@ const serverConfig: ApplicationConfig = {
       await configService.load();
 
       const cookieHeader = request?.headers.get('cookie') ?? '';
-
-      // apiUrl peut être vide côté serveur (config.json a apiUrl="") :
-      // on dérive depuis le Host entrant (ex: 192.168.1.138:4200 → :3000) ou on tombe sur localhost:3000.
       const apiUrl = configService.get('apiUrl');
 
       // Utilise fetch natif (hors HttpClient) pour ne pas créer de PendingTask Zone.js

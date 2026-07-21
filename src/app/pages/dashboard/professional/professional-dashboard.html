@@ -53,19 +53,18 @@
         </div>
     } @else if (pro.status === 'ACTIVE') {
         <div class="h-dvh pro-layout">
+            <div class="mobile-notification-bell">
+                <notification-bell></notification-bell>
+            </div>
+
             <!-- ═══════════════ TOPBAR ═══════════════ -->
             <div class="pro-topbar">
                 <a routerLink="/" class="flex self-stretch items-center">
-                    <img src="assets/img/banner.png" alt="Artisan competent banner" class="h-[60%]">
+                    <img src="assets/img/banner.png" alt="Artisan competent banner" class="h-[60%]" />
                 </a>
                 <div class="pro-topbar-actions">
-                    <button class="topbar-icon-btn" aria-label="Notifications">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-                        </svg>
-                    </button>
-                    <button class="topbar-icon-btn" aria-label="Messages">
+                    <notification-bell></notification-bell>
+                    <button class="topbar-icon-btn" [attr.aria-label]="'common.messages' | transloco">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                             <rect x="2" y="4" width="20" height="16" rx="2" />
                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
@@ -93,7 +92,7 @@
 
             <!-- ═══════════════ SIDEBAR (desktop/tablet) ═══════════════ -->
             <aside class="pro-sidebar">
-                <nav class="pro-nav" aria-label="Sidebar navigation">
+                <nav class="pro-nav" [attr.aria-label]="'common.sidebarNavigation' | transloco">
                     <button
                         class="nav-item"
                         [class.active]="activeSection() === 'profile'"
@@ -118,31 +117,6 @@
                     </button>
                     <button
                         class="nav-item"
-                        [class.active]="activeSection() === 'quotes'"
-                        (click)="setSection('quotes')"
-                    >
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                            <polyline points="14 2 14 8 20 8" />
-                            <line x1="16" y1="13" x2="8" y2="13" />
-                            <line x1="16" y1="17" x2="8" y2="17" />
-                            <line x1="10" y1="9" x2="8" y2="9" />
-                        </svg>
-                        {{ 'dashboard.pro.nav.quotes' | transloco }}
-                    </button>
-                    <button
-                        class="nav-item"
-                        [class.active]="activeSection() === 'invoices'"
-                        (click)="setSection('invoices')"
-                    >
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <rect x="2" y="3" width="20" height="14" rx="2" />
-                            <path d="M8 21h8M12 17v4" />
-                        </svg>
-                        {{ 'dashboard.pro.nav.invoices' | transloco }}
-                    </button>
-                    <button
-                        class="nav-item"
                         [class.active]="activeSection() === 'practices'"
                         (click)="setSection('practices')"
                     >
@@ -153,11 +127,7 @@
                         </svg>
                         {{ 'dashboard.pro.nav.practices' | transloco }}
                     </button>
-                    <button
-                        class="nav-item"
-                        [class.active]="activeSection() === 'legal'"
-                        (click)="setSection('legal')"
-                    >
+                    <button class="nav-item" [class.active]="activeSection() === 'legal'" (click)="setSection('legal')">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                         </svg>
@@ -291,7 +261,11 @@
                             >
                                 {{ 'dashboard.pro.tabs.missions' | transloco }}
                             </button>
-                            <button class="pro-tab" [class.active]="activeTab() === 'reviews'" (click)="setTab('reviews')">
+                            <button
+                                class="pro-tab"
+                                [class.active]="activeTab() === 'reviews'"
+                                (click)="setTab('reviews')"
+                            >
                                 {{ 'dashboard.pro.tabs.reviews' | transloco }}
                             </button>
                             <button
@@ -316,22 +290,60 @@
                                         <div class="pro-group-header">
                                             <h3>{{ 'dashboard.pro.personalInfo' | transloco }}</h3>
                                             @if (!editPersonalInfoMode()) {
-                                                <button class="pro-edit-btn" type="button" (click)="enterEditPersonalInfo()">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                                <button
+                                                    class="pro-edit-btn"
+                                                    type="button"
+                                                    (click)="enterEditPersonalInfo()"
+                                                >
+                                                    <svg
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="1.8"
+                                                    >
+                                                        <path
+                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                                                        />
+                                                        <path
+                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                                                        />
                                                     </svg>
                                                 </button>
                                             } @else {
                                                 <div class="pro-edit-actions">
-                                                    <button class="pro-cancel-btn" type="button" (click)="cancelEditPersonalInfo()">
-                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                                    <button
+                                                        class="pro-cancel-btn"
+                                                        type="button"
+                                                        (click)="cancelEditPersonalInfo()"
+                                                    >
+                                                        <svg
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-width="2"
+                                                        >
+                                                            <line x1="18" y1="6" x2="6" y2="18" />
+                                                            <line x1="6" y1="6" x2="18" y2="18" />
                                                         </svg>
                                                     </button>
-                                                    <button class="pro-save-btn" type="button" (click)="saveEditPersonalInfo()" [disabled]="savingPersonalInfo()">
-                                                        @if (savingPersonalInfo()) { <span class="pro-spinner-sm"></span> }
-                                                        @else { <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> }
+                                                    <button
+                                                        class="pro-save-btn"
+                                                        type="button"
+                                                        (click)="saveEditPersonalInfo()"
+                                                        [disabled]="savingPersonalInfo()"
+                                                    >
+                                                        @if (savingPersonalInfo()) {
+                                                            <span class="pro-spinner-sm"></span>
+                                                        } @else {
+                                                            <svg
+                                                                viewBox="0 0 24 24"
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                stroke-width="2.5"
+                                                            >
+                                                                <polyline points="20 6 9 17 4 12" />
+                                                            </svg>
+                                                        }
                                                     </button>
                                                 </div>
                                             }
@@ -341,12 +353,23 @@
                                                 <dt>{{ 'dashboard.pro.gender' | transloco }}</dt>
                                                 <dd>
                                                     @if (editPersonalInfoMode()) {
-                                                        <select class="pro-edit-input" [(ngModel)]="editPersonalInfo.gender">
-                                                            <option value="female">{{ 'register.gender.female' | transloco }}</option>
-                                                            <option value="male">{{ 'register.gender.male' | transloco }}</option>
+                                                        <select
+                                                            class="pro-edit-input"
+                                                            [(ngModel)]="editPersonalInfo.gender"
+                                                        >
+                                                            <option value="female">
+                                                                {{ 'register.gender.female' | transloco }}
+                                                            </option>
+                                                            <option value="male">
+                                                                {{ 'register.gender.male' | transloco }}
+                                                            </option>
                                                         </select>
                                                     } @else {
-                                                        {{ pro.gender === 'male' ? ('dashboard.pro.genderMale' | transloco) : ('dashboard.pro.genderFemale' | transloco) }}
+                                                        {{
+                                                            pro.gender === 'male'
+                                                                ? ('dashboard.pro.genderMale' | transloco)
+                                                                : ('dashboard.pro.genderFemale' | transloco)
+                                                        }}
                                                     }
                                                 </dd>
                                             </div>
@@ -354,32 +377,56 @@
                                                 <dt>{{ 'dashboard.pro.lastName' | transloco }}</dt>
                                                 <dd>
                                                     @if (editPersonalInfoMode()) {
-                                                        <input class="pro-edit-input" type="text" [(ngModel)]="editPersonalInfo.lastName"/>
-                                                    } @else { {{ pro.lastName }} }
+                                                        <input
+                                                            class="pro-edit-input"
+                                                            type="text"
+                                                            [(ngModel)]="editPersonalInfo.lastName"
+                                                        />
+                                                    } @else {
+                                                        {{ pro.lastName }}
+                                                    }
                                                 </dd>
                                             </div>
                                             <div class="pro-info-row">
                                                 <dt>{{ 'dashboard.pro.firstName' | transloco }}</dt>
                                                 <dd>
                                                     @if (editPersonalInfoMode()) {
-                                                        <input class="pro-edit-input" type="text" [(ngModel)]="editPersonalInfo.firstName"/>
-                                                    } @else { {{ pro.firstName }} }
+                                                        <input
+                                                            class="pro-edit-input"
+                                                            type="text"
+                                                            [(ngModel)]="editPersonalInfo.firstName"
+                                                        />
+                                                    } @else {
+                                                        {{ pro.firstName }}
+                                                    }
                                                 </dd>
                                             </div>
                                             <div class="pro-info-row">
                                                 <dt>{{ 'dashboard.pro.birthDate' | transloco }}</dt>
                                                 <dd>
                                                     @if (editPersonalInfoMode()) {
-                                                        <input class="pro-edit-input" type="date" [(ngModel)]="editPersonalInfo.birthDate"/>
-                                                    } @else { {{ pro.birthDate | date:'dd/MM/yyyy' }} }
+                                                        <input
+                                                            class="pro-edit-input"
+                                                            type="date"
+                                                            [(ngModel)]="editPersonalInfo.birthDate"
+                                                        />
+                                                    } @else {
+                                                        {{ pro.birthDate | date: 'dd/MM/yyyy' }}
+                                                    }
                                                 </dd>
                                             </div>
                                             <div class="pro-info-row">
                                                 <dt>{{ 'dashboard.pro.email' | transloco }}</dt>
                                                 <dd>
                                                     @if (editPersonalInfoMode()) {
-                                                        <input class="pro-edit-input" type="email" [(ngModel)]="editPersonalInfo.email"/>
-                                                    } @else { {{ pro.email }} }
+                                                        <input
+                                                            class="pro-edit-input"
+                                                            type="email"
+                                                            [(ngModel)]="editPersonalInfo.email"
+                                                        />
+                                                    } @else {
+                                                        {{ pro.email }}
+                                                    }
                                                 </dd>
                                             </div>
                                             @if (editPersonalInfoMode() || pro.professionalProfile.professionalEmail) {
@@ -387,8 +434,14 @@
                                                     <dt>{{ 'dashboard.pro.professionalEmail' | transloco }}</dt>
                                                     <dd>
                                                         @if (editPersonalInfoMode()) {
-                                                            <input class="pro-edit-input" type="email" [(ngModel)]="editPersonalInfo.professionalEmail"/>
-                                                        } @else { {{ pro.professionalProfile.professionalEmail }} }
+                                                            <input
+                                                                class="pro-edit-input"
+                                                                type="email"
+                                                                [(ngModel)]="editPersonalInfo.professionalEmail"
+                                                            />
+                                                        } @else {
+                                                            {{ pro.professionalProfile.professionalEmail }}
+                                                        }
                                                     </dd>
                                                 </div>
                                             }
@@ -396,8 +449,14 @@
                                                 <dt>{{ 'dashboard.pro.managerPhone' | transloco }}</dt>
                                                 <dd>
                                                     @if (editPersonalInfoMode()) {
-                                                        <input class="pro-edit-input" type="tel" [(ngModel)]="editPersonalInfo.managerPhone"/>
-                                                    } @else { {{ pro.professionalProfile.managerPhone }} }
+                                                        <input
+                                                            class="pro-edit-input"
+                                                            type="tel"
+                                                            [(ngModel)]="editPersonalInfo.managerPhone"
+                                                        />
+                                                    } @else {
+                                                        {{ pro.professionalProfile.managerPhone }}
+                                                    }
                                                 </dd>
                                             </div>
                                             <div class="pro-info-row">
@@ -405,19 +464,45 @@
                                                 <dd>
                                                     @if (editPersonalInfoMode()) {
                                                         <div class="flex gap-1">
-                                                            <input class="pro-edit-input" style="width:4.5rem;flex-shrink:0" type="text" [(ngModel)]="editPersonalInfo.address.streetNumber" [placeholder]="'register.fields.address.number' | transloco"/>
+                                                            <input
+                                                                class="pro-edit-input"
+                                                                style="width: 4.5rem; flex-shrink: 0"
+                                                                type="text"
+                                                                [(ngModel)]="editPersonalInfo.address.streetNumber"
+                                                                [placeholder]="
+                                                                    'register.fields.address.number' | transloco
+                                                                "
+                                                            />
                                                             <div class="relative flex-1 min-w-0">
-                                                                <input class="pro-edit-input w-full" type="text" autocomplete="off"
+                                                                <input
+                                                                    class="pro-edit-input w-full"
+                                                                    type="text"
+                                                                    autocomplete="off"
                                                                     [(ngModel)]="editPersonalInfo.address.streetName"
-                                                                    [placeholder]="'register.fields.address.street' | transloco"
+                                                                    [placeholder]="
+                                                                        'register.fields.address.street' | transloco
+                                                                    "
                                                                     (input)="onPersonalAddressSearch($event)"
                                                                     (focus)="personalAddressOpen.set(true)"
                                                                     (blur)="closePersonalAddressSuggestions()"
                                                                 />
-                                                                @if (personalAddressOpen() && personalAddressSuggestions().length) {
-                                                                    <ul class="overflow-y-auto absolute z-10 w-full max-h-48 bg-[var(--background-color)] rounded-b border-b shadow-sm border-x border-[var(--border-color)]">
-                                                                        @for (s of personalAddressSuggestions(); track s.label) {
-                                                                            <li class="px-3 py-2 text-sm cursor-pointer hover:bg-[var(--hover-color)]" (mousedown)="selectPersonalAddress(s)">{{ s.label }}</li>
+                                                                @if (
+                                                                    personalAddressOpen() &&
+                                                                    personalAddressSuggestions().length
+                                                                ) {
+                                                                    <ul
+                                                                        class="overflow-y-auto absolute z-10 w-full max-h-48 bg-[var(--background-color)] rounded-b border-b shadow-sm border-x border-[var(--border-color)]"
+                                                                    >
+                                                                        @for (
+                                                                            s of personalAddressSuggestions();
+                                                                            track s.label
+                                                                        ) {
+                                                                            <li
+                                                                                class="px-3 py-2 text-sm cursor-pointer hover:bg-[var(--hover-color)]"
+                                                                                (mousedown)="selectPersonalAddress(s)"
+                                                                            >
+                                                                                {{ s.label }}
+                                                                            </li>
                                                                         }
                                                                     </ul>
                                                                 }
@@ -433,8 +518,17 @@
                                                     <dt>{{ 'dashboard.pro.addressComplement' | transloco }}</dt>
                                                     <dd>
                                                         @if (editPersonalInfoMode()) {
-                                                            <input class="pro-edit-input" type="text" [(ngModel)]="editPersonalInfo.address.additionalInfo" [placeholder]="'register.fields.address.complement' | transloco"/>
-                                                        } @else { {{ pro.address.additionalInfo }} }
+                                                            <input
+                                                                class="pro-edit-input"
+                                                                type="text"
+                                                                [(ngModel)]="editPersonalInfo.address.additionalInfo"
+                                                                [placeholder]="
+                                                                    'register.fields.address.complement' | transloco
+                                                                "
+                                                            />
+                                                        } @else {
+                                                            {{ pro.address.additionalInfo }}
+                                                        }
                                                     </dd>
                                                 </div>
                                             }
@@ -443,8 +537,24 @@
                                                 <dd>
                                                     @if (editPersonalInfoMode()) {
                                                         <div class="flex gap-1">
-                                                            <input class="pro-edit-input" style="width:5.5rem;flex-shrink:0" type="text" [(ngModel)]="editPersonalInfo.address.postalCode" [placeholder]="'register.fields.address.zip' | transloco" (input)="onPersonalPostalCodeInput($event)"/>
-                                                            <input class="pro-edit-input flex-1 min-w-0" type="text" [(ngModel)]="editPersonalInfo.address.city" [placeholder]="'register.fields.address.city' | transloco"/>
+                                                            <input
+                                                                class="pro-edit-input"
+                                                                style="width: 5.5rem; flex-shrink: 0"
+                                                                type="text"
+                                                                [(ngModel)]="editPersonalInfo.address.postalCode"
+                                                                [placeholder]="
+                                                                    'register.fields.address.zip' | transloco
+                                                                "
+                                                                (input)="onPersonalPostalCodeInput($event)"
+                                                            />
+                                                            <input
+                                                                class="pro-edit-input flex-1 min-w-0"
+                                                                type="text"
+                                                                [(ngModel)]="editPersonalInfo.address.city"
+                                                                [placeholder]="
+                                                                    'register.fields.address.city' | transloco
+                                                                "
+                                                            />
                                                         </div>
                                                     } @else {
                                                         {{ pro.address.postalCode }} {{ pro.address.city }}
@@ -459,22 +569,60 @@
                                         <div class="pro-group-header">
                                             <h3>{{ 'dashboard.pro.mediator' | transloco }}</h3>
                                             @if (!editMediatorMode()) {
-                                                <button class="pro-edit-btn" type="button" (click)="enterEditMediator()">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                                <button
+                                                    class="pro-edit-btn"
+                                                    type="button"
+                                                    (click)="enterEditMediator()"
+                                                >
+                                                    <svg
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="1.8"
+                                                    >
+                                                        <path
+                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                                                        />
+                                                        <path
+                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                                                        />
                                                     </svg>
                                                 </button>
                                             } @else {
                                                 <div class="pro-edit-actions">
-                                                    <button class="pro-cancel-btn" type="button" (click)="cancelEditMediator()">
-                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                                    <button
+                                                        class="pro-cancel-btn"
+                                                        type="button"
+                                                        (click)="cancelEditMediator()"
+                                                    >
+                                                        <svg
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-width="2"
+                                                        >
+                                                            <line x1="18" y1="6" x2="6" y2="18" />
+                                                            <line x1="6" y1="6" x2="18" y2="18" />
                                                         </svg>
                                                     </button>
-                                                    <button class="pro-save-btn" type="button" (click)="saveEditMediator()" [disabled]="savingMediator()">
-                                                        @if (savingMediator()) { <span class="pro-spinner-sm"></span> }
-                                                        @else { <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> }
+                                                    <button
+                                                        class="pro-save-btn"
+                                                        type="button"
+                                                        (click)="saveEditMediator()"
+                                                        [disabled]="savingMediator()"
+                                                    >
+                                                        @if (savingMediator()) {
+                                                            <span class="pro-spinner-sm"></span>
+                                                        } @else {
+                                                            <svg
+                                                                viewBox="0 0 24 24"
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                stroke-width="2.5"
+                                                            >
+                                                                <polyline points="20 6 9 17 4 12" />
+                                                            </svg>
+                                                        }
                                                     </button>
                                                 </div>
                                             }
@@ -487,8 +635,14 @@
                                                     <dt>{{ 'dashboard.pro.mediatorName' | transloco }}</dt>
                                                     <dd>
                                                         @if (editMediatorMode()) {
-                                                            <input class="pro-edit-input" type="text" [(ngModel)]="editMediator.mediatorName"/>
-                                                        } @else { {{ pro.professionalProfile.mediatorName }} }
+                                                            <input
+                                                                class="pro-edit-input"
+                                                                type="text"
+                                                                [(ngModel)]="editMediator.mediatorName"
+                                                            />
+                                                        } @else {
+                                                            {{ pro.professionalProfile.mediatorName }}
+                                                        }
                                                     </dd>
                                                 </div>
                                                 @if (editMediatorMode() || pro.professionalProfile.mediatorAddress) {
@@ -496,8 +650,14 @@
                                                         <dt>{{ 'dashboard.pro.mediatorAddress' | transloco }}</dt>
                                                         <dd>
                                                             @if (editMediatorMode()) {
-                                                                <input class="pro-edit-input" type="text" [(ngModel)]="editMediator.mediatorAddress"/>
-                                                            } @else { {{ pro.professionalProfile.mediatorAddress }} }
+                                                                <input
+                                                                    class="pro-edit-input"
+                                                                    type="text"
+                                                                    [(ngModel)]="editMediator.mediatorAddress"
+                                                                />
+                                                            } @else {
+                                                                {{ pro.professionalProfile.mediatorAddress }}
+                                                            }
                                                         </dd>
                                                     </div>
                                                 }
@@ -506,35 +666,83 @@
                                                         <dt>{{ 'dashboard.pro.mediatorWebsite' | transloco }}</dt>
                                                         <dd>
                                                             @if (editMediatorMode()) {
-                                                                <input class="pro-edit-input" type="url" [(ngModel)]="editMediator.mediatorWebsite"/>
+                                                                <input
+                                                                    class="pro-edit-input"
+                                                                    type="url"
+                                                                    [(ngModel)]="editMediator.mediatorWebsite"
+                                                                />
                                                             } @else {
-                                                                <a [href]="pro.professionalProfile.mediatorWebsite" target="_blank" rel="noopener" class="text-blue-600 underline break-all">{{ pro.professionalProfile.mediatorWebsite }}</a>
+                                                                <a
+                                                                    [href]="pro.professionalProfile.mediatorWebsite"
+                                                                    target="_blank"
+                                                                    rel="noopener"
+                                                                    class="text-blue-600 underline break-all"
+                                                                    >{{ pro.professionalProfile.mediatorWebsite }}</a
+                                                                >
                                                             }
                                                         </dd>
                                                     </div>
                                                 }
-                                                @if (editMediatorMode() || pro.professionalProfile.mediatorContactMethod) {
+                                                @if (
+                                                    editMediatorMode() || pro.professionalProfile.mediatorContactMethod
+                                                ) {
                                                     <div class="pro-info-row">
                                                         <dt>{{ 'dashboard.pro.mediatorContactMethod' | transloco }}</dt>
                                                         <dd>
                                                             @if (editMediatorMode()) {
-                                                                <select class="pro-edit-input" [(ngModel)]="editMediator.mediatorContactMethod">
-                                                                    <option value="">{{ 'professional.mediator.contactMethodSelect' | transloco }}</option>
-                                                                    <option value="courrier">{{ 'professional.mediator.contactMethodMail' | transloco }}</option>
-                                                                    <option value="formulaire">{{ 'professional.mediator.contactMethodForm' | transloco }}</option>
-                                                                    <option value="les deux">{{ 'professional.mediator.contactMethodBoth' | transloco }}</option>
+                                                                <select
+                                                                    class="pro-edit-input"
+                                                                    [(ngModel)]="editMediator.mediatorContactMethod"
+                                                                >
+                                                                    <option value="">
+                                                                        {{
+                                                                            'professional.mediator.contactMethodSelect'
+                                                                                | transloco
+                                                                        }}
+                                                                    </option>
+                                                                    <option value="courrier">
+                                                                        {{
+                                                                            'professional.mediator.contactMethodMail'
+                                                                                | transloco
+                                                                        }}
+                                                                    </option>
+                                                                    <option value="formulaire">
+                                                                        {{
+                                                                            'professional.mediator.contactMethodForm'
+                                                                                | transloco
+                                                                        }}
+                                                                    </option>
+                                                                    <option value="les deux">
+                                                                        {{
+                                                                            'professional.mediator.contactMethodBoth'
+                                                                                | transloco
+                                                                        }}
+                                                                    </option>
                                                                 </select>
-                                                            } @else { {{ pro.professionalProfile.mediatorContactMethod }} }
+                                                            } @else {
+                                                                {{ pro.professionalProfile.mediatorContactMethod }}
+                                                            }
                                                         </dd>
                                                     </div>
                                                 }
-                                                @if (editMediatorMode() || pro.professionalProfile.mediatorAdditionalInfo) {
+                                                @if (
+                                                    editMediatorMode() || pro.professionalProfile.mediatorAdditionalInfo
+                                                ) {
                                                     <div class="pro-info-row">
-                                                        <dt>{{ 'dashboard.pro.mediatorAdditionalInfo' | transloco }}</dt>
+                                                        <dt>
+                                                            {{ 'dashboard.pro.mediatorAdditionalInfo' | transloco }}
+                                                        </dt>
                                                         <dd>
                                                             @if (editMediatorMode()) {
-                                                                <textarea class="pro-edit-input pro-edit-input--textarea" rows="3" maxlength="500" [(ngModel)]="editMediator.mediatorAdditionalInfo"></textarea>
-                                                            } @else { {{ pro.professionalProfile.mediatorAdditionalInfo }} }
+                                                                <textarea
+                                                                    class="pro-edit-input pro-edit-input--textarea"
+                                                                    rows="3"
+                                                                    maxlength="500"
+                                                                    [(ngModel)]="editMediator.mediatorAdditionalInfo"
+                                                                ></textarea>
+                                                            } @else {
+                                                                {{ pro.professionalProfile.mediatorAdditionalInfo }}
+                                                            }
                                                         </dd>
                                                     </div>
                                                 }
@@ -547,32 +755,79 @@
                                         <div class="pro-group-header">
                                             <h3>{{ 'dashboard.pro.additionalRemarks' | transloco }}</h3>
                                             @if (!editAdditionalRemarksMode()) {
-                                                <button class="pro-edit-btn" type="button" (click)="enterEditAdditionalRemarks()">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                                <button
+                                                    class="pro-edit-btn"
+                                                    type="button"
+                                                    (click)="enterEditAdditionalRemarks()"
+                                                >
+                                                    <svg
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="1.8"
+                                                    >
+                                                        <path
+                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                                                        />
+                                                        <path
+                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                                                        />
                                                     </svg>
                                                 </button>
                                             } @else {
                                                 <div class="pro-edit-actions">
-                                                    <button class="pro-cancel-btn" type="button" (click)="cancelEditAdditionalRemarks()">
-                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                                    <button
+                                                        class="pro-cancel-btn"
+                                                        type="button"
+                                                        (click)="cancelEditAdditionalRemarks()"
+                                                    >
+                                                        <svg
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-width="2"
+                                                        >
+                                                            <line x1="18" y1="6" x2="6" y2="18" />
+                                                            <line x1="6" y1="6" x2="18" y2="18" />
                                                         </svg>
                                                     </button>
-                                                    <button class="pro-save-btn" type="button" (click)="saveEditAdditionalRemarks()" [disabled]="savingAdditionalRemarks()">
-                                                        @if (savingAdditionalRemarks()) { <span class="pro-spinner-sm"></span> }
-                                                        @else { <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> }
+                                                    <button
+                                                        class="pro-save-btn"
+                                                        type="button"
+                                                        (click)="saveEditAdditionalRemarks()"
+                                                        [disabled]="savingAdditionalRemarks()"
+                                                    >
+                                                        @if (savingAdditionalRemarks()) {
+                                                            <span class="pro-spinner-sm"></span>
+                                                        } @else {
+                                                            <svg
+                                                                viewBox="0 0 24 24"
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                stroke-width="2.5"
+                                                            >
+                                                                <polyline points="20 6 9 17 4 12" />
+                                                            </svg>
+                                                        }
                                                     </button>
                                                 </div>
                                             }
                                         </div>
                                         @if (editAdditionalRemarksMode()) {
-                                            <textarea class="pro-edit-input pro-edit-input--textarea" rows="4" maxlength="500" [(ngModel)]="editAdditionalRemarksText"></textarea>
+                                            <textarea
+                                                class="pro-edit-input pro-edit-input--textarea"
+                                                rows="4"
+                                                maxlength="500"
+                                                [(ngModel)]="editAdditionalRemarksText"
+                                            ></textarea>
                                         } @else if (pro.professionalProfile.additionalRemarks) {
-                                            <span class="pro-description">{{ pro.professionalProfile.additionalRemarks }}</span>
+                                            <span class="pro-description">{{
+                                                pro.professionalProfile.additionalRemarks
+                                            }}</span>
                                         } @else {
-                                            <span class="pro-empty">{{ 'dashboard.pro.noneProvided' | transloco }}</span>
+                                            <span class="pro-empty">{{
+                                                'dashboard.pro.noneProvided' | transloco
+                                            }}</span>
                                         }
                                     </div>
 
@@ -580,13 +835,13 @@
                                     <div class="pro-block">
                                         <div class="pro-group-header">
                                             <h3>{{ 'dashboard.pro.companyInfo' | transloco }}</h3>
-                                            @if (!editCompanyExtraMode()) {
-                                                <!-- <button class="pro-edit-btn" type="button" (click)="enterEditCompanyExtra()">
+                                            <!-- @if (!editCompanyExtraMode()) {
+                                                <button class="pro-edit-btn" type="button" (click)="enterEditCompanyExtra()">
                                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                                                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
                                                         <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
                                                     </svg>
-                                                </button> -->
+                                                </button>
                                             } @else {
                                                 <div class="pro-edit-actions">
                                                     <button class="pro-cancel-btn" type="button" (click)="cancelEditCompanyExtra()">
@@ -599,43 +854,136 @@
                                                         @else { <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> }
                                                     </button>
                                                 </div>
-                                            }
+                                            } -->
                                         </div>
                                         <p class="pro-block-company">{{ pro.professionalProfile.companyName }}</p>
                                         <!-- description -->
-                                        <div class="pro-group-header" style="margin-top:0.5rem">
-                                            <span></span>
-                                            @if (!editDescriptionMode()) {
-                                                <button class="pro-edit-btn" type="button" (click)="enterEditDescription()">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                        <!-- <div class="pro-group-header" style="margin-top:0.5rem"> -->
+                                        @if (!editDescriptionMode()) {
+                                            <button class="pro-edit-btn" type="button" (click)="enterEditDescription()">
+                                                <svg
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="1.8"
+                                                >
+                                                    <path
+                                                        d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                                                    />
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                                </svg>
+                                            </button>
+                                        } @else {
+                                            <div class="pro-edit-actions">
+                                                <button
+                                                    class="pro-cancel-btn"
+                                                    type="button"
+                                                    (click)="cancelEditDescription()"
+                                                >
+                                                    <svg
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="2"
+                                                    >
+                                                        <line x1="18" y1="6" x2="6" y2="18" />
+                                                        <line x1="6" y1="6" x2="18" y2="18" />
                                                     </svg>
                                                 </button>
-                                            } @else {
-                                                <div class="pro-edit-actions">
-                                                    <button class="pro-cancel-btn" type="button" (click)="cancelEditDescription()">
-                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                                <button
+                                                    class="pro-save-btn"
+                                                    type="button"
+                                                    (click)="saveEditDescription()"
+                                                    [disabled]="savingDescription()"
+                                                >
+                                                    @if (savingDescription()) {
+                                                        <span class="pro-spinner-sm"></span>
+                                                    } @else {
+                                                        <svg
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-width="2.5"
+                                                        >
+                                                            <polyline points="20 6 9 17 4 12" />
                                                         </svg>
-                                                    </button>
-                                                    <button class="pro-save-btn" type="button" (click)="saveEditDescription()" [disabled]="savingDescription()">
-                                                        @if (savingDescription()) { <span class="pro-spinner-sm"></span> }
-                                                        @else { <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> }
-                                                    </button>
-                                                </div>
-                                            }
-                                        </div>
+                                                    }
+                                                </button>
+                                            </div>
+                                        }
+                                        <!-- </div> -->
                                         @if (editDescriptionMode()) {
-                                            <textarea class="pro-edit-input pro-edit-input--textarea" [(ngModel)]="editDescriptionText" rows="8"></textarea>
+                                            <textarea
+                                                class="pro-edit-input pro-edit-input--textarea"
+                                                [(ngModel)]="editDescriptionText"
+                                                rows="8"
+                                            ></textarea>
                                         } @else {
                                             <p class="pro-description">{{ pro.professionalProfile.description }}</p>
+                                        }
+                                        @if (!editCompanyExtraMode()) {
+                                            <button
+                                                class="pro-edit-btn"
+                                                type="button"
+                                                (click)="enterEditCompanyExtra()"
+                                            >
+                                                <svg
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="1.8"
+                                                >
+                                                    <path
+                                                        d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                                                    />
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                                </svg>
+                                            </button>
+                                        } @else {
+                                            <div class="pro-edit-actions">
+                                                <button
+                                                    class="pro-cancel-btn"
+                                                    type="button"
+                                                    (click)="cancelEditCompanyExtra()"
+                                                >
+                                                    <svg
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="2"
+                                                    >
+                                                        <line x1="18" y1="6" x2="6" y2="18" />
+                                                        <line x1="6" y1="6" x2="18" y2="18" />
+                                                    </svg>
+                                                </button>
+                                                <button
+                                                    class="pro-save-btn"
+                                                    type="button"
+                                                    (click)="saveEditCompanyExtra()"
+                                                    [disabled]="savingCompanyExtra()"
+                                                >
+                                                    @if (savingCompanyExtra()) {
+                                                        <span class="pro-spinner-sm"></span>
+                                                    } @else {
+                                                        <svg
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-width="2.5"
+                                                        >
+                                                            <polyline points="20 6 9 17 4 12" />
+                                                        </svg>
+                                                    }
+                                                </button>
+                                            </div>
                                         }
                                         <!-- siret, statut, nom société (infos statiques) -->
                                         <dl class="pro-info-list">
                                             <div class="pro-info-row">
                                                 <dt>{{ 'dashboard.pro.siret' | transloco }}</dt>
-                                                <dd class="font-mono tracking-wider">{{ pro.professionalProfile.siret }}</dd>
+                                                <dd class="font-mono tracking-wider">
+                                                    {{ pro.professionalProfile.siret }}
+                                                </dd>
                                             </div>
                                             <div class="pro-info-row">
                                                 <dt>{{ 'dashboard.pro.companyStatus' | transloco }}</dt>
@@ -656,36 +1004,80 @@
                                                 <dd>
                                                     @if (editCompanyExtraMode()) {
                                                         <div class="flex gap-1">
-                                                            <input class="pro-edit-input" style="width:4.5rem;flex-shrink:0" type="text" [(ngModel)]="editCompanyExtra.workAddress.streetNumber" [placeholder]="'register.fields.workAddress.number' | transloco"/>
+                                                            <input
+                                                                class="pro-edit-input"
+                                                                style="width: 4.5rem; flex-shrink: 0"
+                                                                type="text"
+                                                                [(ngModel)]="editCompanyExtra.workAddress.streetNumber"
+                                                                [placeholder]="
+                                                                    'professional.fields.workAddress.number' | transloco
+                                                                "
+                                                            />
                                                             <div class="relative flex-1 min-w-0">
-                                                                <input class="pro-edit-input w-full" type="text" autocomplete="off"
-                                                                    [(ngModel)]="editCompanyExtra.workAddress.streetName"
-                                                                    [placeholder]="'register.fields.workAddress.street' | transloco"
+                                                                <input
+                                                                    class="pro-edit-input w-full"
+                                                                    type="text"
+                                                                    autocomplete="off"
+                                                                    [(ngModel)]="
+                                                                        editCompanyExtra.workAddress.streetName
+                                                                    "
+                                                                    [placeholder]="
+                                                                        'professional.fields.workAddress.street'
+                                                                            | transloco
+                                                                    "
                                                                     (input)="onWorkAddressSearch($event)"
                                                                     (focus)="workAddressOpen.set(true)"
                                                                     (blur)="closeWorkAddressSuggestions()"
                                                                 />
-                                                                @if (workAddressOpen() && workAddressSuggestions().length) {
-                                                                    <ul class="overflow-y-auto absolute z-10 w-full max-h-48 bg-[var(--background-color)] rounded-b border-b shadow-sm border-x border-[var(--border-color)]">
-                                                                        @for (s of workAddressSuggestions(); track s.label) {
-                                                                            <li class="px-3 py-2 text-sm cursor-pointer hover:bg-[var(--hover-color)]" (mousedown)="selectWorkAddress(s)">{{ s.label }}</li>
+                                                                @if (
+                                                                    workAddressOpen() && workAddressSuggestions().length
+                                                                ) {
+                                                                    <ul
+                                                                        class="overflow-y-auto absolute z-10 w-full max-h-48 bg-[var(--background-color)] rounded-b border-b shadow-sm border-x border-[var(--border-color)]"
+                                                                    >
+                                                                        @for (
+                                                                            s of workAddressSuggestions();
+                                                                            track s.label
+                                                                        ) {
+                                                                            <li
+                                                                                class="px-3 py-2 text-sm cursor-pointer hover:bg-[var(--hover-color)]"
+                                                                                (mousedown)="selectWorkAddress(s)"
+                                                                            >
+                                                                                {{ s.label }}
+                                                                            </li>
                                                                         }
                                                                     </ul>
                                                                 }
                                                             </div>
                                                         </div>
                                                     } @else {
-                                                        {{ pro.professionalProfile.workAddress.streetNumber }} {{ pro.professionalProfile.workAddress.streetName }}
+                                                        {{ pro.professionalProfile.workAddress.streetNumber }}
+                                                        {{ pro.professionalProfile.workAddress.streetName }}
                                                     }
                                                 </dd>
                                             </div>
-                                            @if (editCompanyExtraMode() || pro.professionalProfile.workAddress.additionalInfo) {
+                                            @if (
+                                                editCompanyExtraMode() ||
+                                                pro.professionalProfile.workAddress.additionalInfo
+                                            ) {
                                                 <div class="pro-info-row">
                                                     <dt>{{ 'dashboard.pro.addressComplement' | transloco }}</dt>
                                                     <dd>
                                                         @if (editCompanyExtraMode()) {
-                                                            <input class="pro-edit-input" type="text" [(ngModel)]="editCompanyExtra.workAddress.additionalInfo" [placeholder]="'register.fields.workAddress.complement' | transloco"/>
-                                                        } @else { {{ pro.professionalProfile.workAddress.additionalInfo }} }
+                                                            <input
+                                                                class="pro-edit-input"
+                                                                type="text"
+                                                                [(ngModel)]="
+                                                                    editCompanyExtra.workAddress.additionalInfo
+                                                                "
+                                                                [placeholder]="
+                                                                    'professional.fields.workAddress.complement'
+                                                                        | transloco
+                                                                "
+                                                            />
+                                                        } @else {
+                                                            {{ pro.professionalProfile.workAddress.additionalInfo }}
+                                                        }
                                                     </dd>
                                                 </div>
                                             }
@@ -694,11 +1086,28 @@
                                                 <dd>
                                                     @if (editCompanyExtraMode()) {
                                                         <div class="flex gap-1">
-                                                            <input class="pro-edit-input" style="width:5.5rem;flex-shrink:0" type="text" [(ngModel)]="editCompanyExtra.workAddress.postalCode" [placeholder]="'register.fields.workAddress.zip' | transloco" (input)="onWorkPostalCodeInput($event)"/>
-                                                            <input class="pro-edit-input flex-1 min-w-0" type="text" [(ngModel)]="editCompanyExtra.workAddress.city" [placeholder]="'register.fields.workAddress.city' | transloco"/>
+                                                            <input
+                                                                class="pro-edit-input"
+                                                                style="width: 5.5rem; flex-shrink: 0"
+                                                                type="text"
+                                                                [(ngModel)]="editCompanyExtra.workAddress.postalCode"
+                                                                [placeholder]="
+                                                                    'professional.fields.workAddress.zip' | transloco
+                                                                "
+                                                                (input)="onWorkPostalCodeInput($event)"
+                                                            />
+                                                            <input
+                                                                class="pro-edit-input flex-1 min-w-0"
+                                                                type="text"
+                                                                [(ngModel)]="editCompanyExtra.workAddress.city"
+                                                                [placeholder]="
+                                                                    'professional.fields.workAddress.city' | transloco
+                                                                "
+                                                            />
                                                         </div>
                                                     } @else {
-                                                        {{ pro.professionalProfile.workAddress.postalCode }} {{ pro.professionalProfile.workAddress.city }}
+                                                        {{ pro.professionalProfile.workAddress.postalCode }}
+                                                        {{ pro.professionalProfile.workAddress.city }}
                                                     }
                                                 </dd>
                                             </div>
@@ -709,11 +1118,19 @@
                                                 <dt>{{ 'dashboard.pro.yearsExperience' | transloco }}</dt>
                                                 <dd>
                                                     @if (editCompanyExtraMode()) {
-                                                        <input class="pro-edit-input" type="number" min="0" [(ngModel)]="editCompanyExtra.yearsExperience"/>
+                                                        <input
+                                                            class="pro-edit-input"
+                                                            type="number"
+                                                            min="0"
+                                                            [(ngModel)]="editCompanyExtra.yearsExperience"
+                                                        />
                                                     } @else {
                                                         {{ pro.professionalProfile.yearsExperience }}
                                                         @if (pro.professionalProfile.isCmod) {
-                                                            <span class="inline-block px-2 py-0.5 text-xs font-semibold rounded-full bg-green-100 text-green-800 ml-2">CMOD</span>
+                                                            <span
+                                                                class="inline-block px-2 py-0.5 text-xs font-semibold rounded-full bg-green-100 text-green-800 ml-2"
+                                                                >CMOD</span
+                                                            >
                                                         }
                                                     }
                                                 </dd>
@@ -723,11 +1140,22 @@
                                                 <dd>
                                                     @if (editCompanyExtraMode()) {
                                                         <label class="inline-flex items-center gap-2 cursor-pointer">
-                                                            <input type="checkbox" [(ngModel)]="editCompanyExtra.onCall"/>
-                                                            {{ editCompanyExtra.onCall ? ('dashboard.pro.onCallYes' | transloco) : ('dashboard.pro.onCallNo' | transloco) }}
+                                                            <input
+                                                                type="checkbox"
+                                                                [(ngModel)]="editCompanyExtra.onCall"
+                                                            />
+                                                            {{
+                                                                editCompanyExtra.onCall
+                                                                    ? ('dashboard.pro.onCallYes' | transloco)
+                                                                    : ('dashboard.pro.onCallNo' | transloco)
+                                                            }}
                                                         </label>
                                                     } @else {
-                                                        {{ pro.professionalProfile.onCall ? ('dashboard.pro.onCallYes' | transloco) : ('dashboard.pro.onCallNo' | transloco) }}
+                                                        {{
+                                                            pro.professionalProfile.onCall
+                                                                ? ('dashboard.pro.onCallYes' | transloco)
+                                                                : ('dashboard.pro.onCallNo' | transloco)
+                                                        }}
                                                     }
                                                 </dd>
                                             </div>
@@ -740,21 +1168,55 @@
                                             <h3>{{ 'dashboard.pro.trades' | transloco }}</h3>
                                             @if (!editTradesMode()) {
                                                 <button class="pro-edit-btn" type="button" (click)="enterEditTrades()">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                                    <svg
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="1.8"
+                                                    >
+                                                        <path
+                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                                                        />
+                                                        <path
+                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                                                        />
                                                     </svg>
                                                 </button>
                                             } @else {
                                                 <div class="pro-edit-actions">
-                                                    <button class="pro-cancel-btn" type="button" (click)="cancelEditTrades()">
-                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                                    <button
+                                                        class="pro-cancel-btn"
+                                                        type="button"
+                                                        (click)="cancelEditTrades()"
+                                                    >
+                                                        <svg
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-width="2"
+                                                        >
+                                                            <line x1="18" y1="6" x2="6" y2="18" />
+                                                            <line x1="6" y1="6" x2="18" y2="18" />
                                                         </svg>
                                                     </button>
-                                                    <button class="pro-save-btn" type="button" (click)="saveEditTrades()" [disabled]="savingTrades()">
-                                                        @if (savingTrades()) { <span class="pro-spinner-sm"></span> }
-                                                        @else { <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> }
+                                                    <button
+                                                        class="pro-save-btn"
+                                                        type="button"
+                                                        (click)="saveEditTrades()"
+                                                        [disabled]="savingTrades()"
+                                                    >
+                                                        @if (savingTrades()) {
+                                                            <span class="pro-spinner-sm"></span>
+                                                        } @else {
+                                                            <svg
+                                                                viewBox="0 0 24 24"
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                stroke-width="2.5"
+                                                            >
+                                                                <polyline points="20 6 9 17 4 12" />
+                                                            </svg>
+                                                        }
                                                     </button>
                                                 </div>
                                             }
@@ -765,7 +1227,12 @@
                                             } @else {
                                                 <div class="pro-chips">
                                                     @for (trade of allTrades(); track trade.id) {
-                                                        <button class="pro-chip" type="button" [class.pro-chip--active]="editTradeIds().includes(trade.id)" (click)="toggleTrade(trade.id)">
+                                                        <button
+                                                            class="pro-chip"
+                                                            type="button"
+                                                            [class.pro-chip--active]="editTradeIds().includes(trade.id)"
+                                                            (click)="toggleTrade(trade.id)"
+                                                        >
                                                             {{ `jobs.list.${trade.name}.name` | transloco }}
                                                         </button>
                                                     }
@@ -788,21 +1255,55 @@
                                             <h3>{{ 'dashboard.pro.hours' | transloco }}</h3>
                                             @if (!editHoursMode()) {
                                                 <button class="pro-edit-btn" type="button" (click)="enterEditHours()">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                                    <svg
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="1.8"
+                                                    >
+                                                        <path
+                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                                                        />
+                                                        <path
+                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                                                        />
                                                     </svg>
                                                 </button>
                                             } @else {
                                                 <div class="pro-edit-actions">
-                                                    <button class="pro-cancel-btn" type="button" (click)="cancelEditHours()">
-                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                                    <button
+                                                        class="pro-cancel-btn"
+                                                        type="button"
+                                                        (click)="cancelEditHours()"
+                                                    >
+                                                        <svg
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-width="2"
+                                                        >
+                                                            <line x1="18" y1="6" x2="6" y2="18" />
+                                                            <line x1="6" y1="6" x2="18" y2="18" />
                                                         </svg>
                                                     </button>
-                                                    <button class="pro-save-btn" type="button" (click)="saveEditHours()" [disabled]="savingHours()">
-                                                        @if (savingHours()) { <span class="pro-spinner-sm"></span> }
-                                                        @else { <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> }
+                                                    <button
+                                                        class="pro-save-btn"
+                                                        type="button"
+                                                        (click)="saveEditHours()"
+                                                        [disabled]="savingHours()"
+                                                    >
+                                                        @if (savingHours()) {
+                                                            <span class="pro-spinner-sm"></span>
+                                                        } @else {
+                                                            <svg
+                                                                viewBox="0 0 24 24"
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                stroke-width="2.5"
+                                                            >
+                                                                <polyline points="20 6 9 17 4 12" />
+                                                            </svg>
+                                                        }
                                                     </button>
                                                 </div>
                                             }
@@ -811,19 +1312,43 @@
                                             <div class="pro-hours-editor">
                                                 @for (day of editHours(); track day.day; let i = $index) {
                                                     <div class="pro-hours-row">
-                                                        <span class="hours-day">{{ `supplier.days.${day.day}` | transloco }}</span>
+                                                        <span class="hours-day">{{
+                                                            `supplier.days.${day.day}` | transloco
+                                                        }}</span>
                                                         <label class="pro-day-toggle">
-                                                            <input type="checkbox" [checked]="!day.closed" (change)="toggleDay(i, $event)"/>
-                                                            <span>{{ day.closed ? ('dashboard.pro.closed' | transloco) : ('dashboard.pro.open' | transloco) }}</span>
+                                                            <input
+                                                                type="checkbox"
+                                                                [checked]="!day.closed"
+                                                                (change)="toggleDay(i, $event)"
+                                                            />
+                                                            <span>{{
+                                                                day.closed
+                                                                    ? ('dashboard.pro.closed' | transloco)
+                                                                    : ('dashboard.pro.open' | transloco)
+                                                            }}</span>
                                                         </label>
                                                         @if (!day.closed) {
                                                             @if (!day.onCall) {
-                                                                <input type="time" class="pro-time-input" [value]="day.intervals[0]?.start" (change)="setHourStart(i, $event)"/>
+                                                                <input
+                                                                    type="time"
+                                                                    class="pro-time-input"
+                                                                    [value]="day.intervals[0]?.start"
+                                                                    (change)="setHourStart(i, $event)"
+                                                                />
                                                                 <span class="pro-hours-sep">–</span>
-                                                                <input type="time" class="pro-time-input" [value]="day.intervals[0]?.end" (change)="setHourEnd(i, $event)"/>
+                                                                <input
+                                                                    type="time"
+                                                                    class="pro-time-input"
+                                                                    [value]="day.intervals[0]?.end"
+                                                                    (change)="setHourEnd(i, $event)"
+                                                                />
                                                             }
                                                             <label class="pro-day-toggle">
-                                                                <input type="checkbox" [checked]="day.onCall" (change)="toggleOnCall(i, $event)"/>
+                                                                <input
+                                                                    type="checkbox"
+                                                                    [checked]="day.onCall"
+                                                                    (change)="toggleOnCall(i, $event)"
+                                                                />
                                                                 <span>{{ 'dashboard.pro.onCallDay' | transloco }}</span>
                                                             </label>
                                                         }
@@ -832,17 +1357,31 @@
                                             </div>
                                         } @else if (pro.professionalProfile.openingHours?.days?.length) {
                                             <ul class="hours-list">
-                                                @for (day of pro.professionalProfile.openingHours!.days; track day.day) {
+                                                @for (
+                                                    day of pro.professionalProfile.openingHours!.days;
+                                                    track day.day
+                                                ) {
                                                     <li class="hours-item">
-                                                        <span class="hours-day">{{ `supplier.days.${day.day}` | transloco }}</span>
+                                                        <span class="hours-day">{{
+                                                            `supplier.days.${day.day}` | transloco
+                                                        }}</span>
                                                         @if (day.closed) {
-                                                            <span class="hours-closed">{{ 'dashboard.pro.closed' | transloco }}</span>
+                                                            <span class="hours-closed">{{
+                                                                'dashboard.pro.closed' | transloco
+                                                            }}</span>
                                                         } @else if (day.onCall) {
-                                                            <span class="hours-oncall">{{ 'dashboard.pro.onCallDay' | transloco }}</span>
+                                                            <span class="hours-oncall">{{
+                                                                'dashboard.pro.onCallDay' | transloco
+                                                            }}</span>
                                                         } @else if (day.intervals[0]) {
-                                                            <span class="hours-value">{{ day.intervals[0].start }} – {{ day.intervals[0].end }}</span>
+                                                            <span class="hours-value"
+                                                                >{{ day.intervals[0].start }} –
+                                                                {{ day.intervals[0].end }}</span
+                                                            >
                                                         } @else {
-                                                            <span class="hours-closed">{{ 'dashboard.pro.open' | transloco }}</span>
+                                                            <span class="hours-closed">{{
+                                                                'dashboard.pro.open' | transloco
+                                                            }}</span>
                                                         }
                                                     </li>
                                                 }
@@ -857,38 +1396,92 @@
                                         <div class="pro-group-header">
                                             <h3>{{ 'dashboard.pro.trustedContact' | transloco }}</h3>
                                             @if (!editTrustedContactMode()) {
-                                                <button class="pro-edit-btn" type="button" (click)="enterEditTrustedContact()">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                                <button
+                                                    class="pro-edit-btn"
+                                                    type="button"
+                                                    (click)="enterEditTrustedContact()"
+                                                >
+                                                    <svg
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="1.8"
+                                                    >
+                                                        <path
+                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                                                        />
+                                                        <path
+                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                                                        />
                                                     </svg>
                                                 </button>
                                             } @else {
                                                 <div class="pro-edit-actions">
-                                                    <button class="pro-cancel-btn" type="button" (click)="cancelEditTrustedContact()">
-                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                                    <button
+                                                        class="pro-cancel-btn"
+                                                        type="button"
+                                                        (click)="cancelEditTrustedContact()"
+                                                    >
+                                                        <svg
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-width="2"
+                                                        >
+                                                            <line x1="18" y1="6" x2="6" y2="18" />
+                                                            <line x1="6" y1="6" x2="18" y2="18" />
                                                         </svg>
                                                     </button>
-                                                    <button class="pro-save-btn" type="button" (click)="saveEditTrustedContact()" [disabled]="savingTrustedContact()">
-                                                        @if (savingTrustedContact()) { <span class="pro-spinner-sm"></span> }
-                                                        @else { <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> }
+                                                    <button
+                                                        class="pro-save-btn"
+                                                        type="button"
+                                                        (click)="saveEditTrustedContact()"
+                                                        [disabled]="savingTrustedContact()"
+                                                    >
+                                                        @if (savingTrustedContact()) {
+                                                            <span class="pro-spinner-sm"></span>
+                                                        } @else {
+                                                            <svg
+                                                                viewBox="0 0 24 24"
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                stroke-width="2.5"
+                                                            >
+                                                                <polyline points="20 6 9 17 4 12" />
+                                                            </svg>
+                                                        }
                                                     </button>
                                                 </div>
                                             }
                                         </div>
                                         @if (editTrustedContactMode()) {
                                             <div class="pro-trusted-edit">
-                                                <input class="pro-edit-input" type="text" [(ngModel)]="editTrustedContact.name" [placeholder]="'professional.fields.trustName' | transloco"/>
-                                                <input class="pro-edit-input" type="tel" [(ngModel)]="editTrustedContact.phone" [placeholder]="'professional.fields.trustPhone' | transloco"/>
+                                                <input
+                                                    class="pro-edit-input"
+                                                    type="text"
+                                                    [(ngModel)]="editTrustedContact.name"
+                                                    [placeholder]="'professional.fields.trustName' | transloco"
+                                                />
+                                                <input
+                                                    class="pro-edit-input"
+                                                    type="tel"
+                                                    [(ngModel)]="editTrustedContact.phone"
+                                                    [placeholder]="'professional.fields.trustPhone' | transloco"
+                                                />
                                             </div>
                                         } @else if (pro.professionalProfile.trustedContactName) {
-                                            <span class="trusted-contact-name">{{ pro.professionalProfile.trustedContactName }}</span>
+                                            <span class="trusted-contact-name">{{
+                                                pro.professionalProfile.trustedContactName
+                                            }}</span>
                                             @if (pro.professionalProfile.trustedContactPhone) {
-                                                <span class="trusted-contact-phone">{{ pro.professionalProfile.trustedContactPhone }}</span>
+                                                <span class="trusted-contact-phone">{{
+                                                    pro.professionalProfile.trustedContactPhone
+                                                }}</span>
                                             }
                                         } @else {
-                                            <p class="pro-empty">{{ 'dashboard.pro.trustedContactNone' | transloco }}</p>
+                                            <p class="pro-empty">
+                                                {{ 'dashboard.pro.trustedContactNone' | transloco }}
+                                            </p>
                                         }
                                     </div>
 
@@ -897,36 +1490,90 @@
                                         <div class="pro-group-header">
                                             <h3>{{ 'dashboard.pro.partners' | transloco }}</h3>
                                             @if (!editPartnersMode()) {
-                                                <button class="pro-edit-btn" type="button" (click)="enterEditPartners()">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                                <button
+                                                    class="pro-edit-btn"
+                                                    type="button"
+                                                    (click)="enterEditPartners()"
+                                                >
+                                                    <svg
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="1.8"
+                                                    >
+                                                        <path
+                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                                                        />
+                                                        <path
+                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                                                        />
                                                     </svg>
                                                 </button>
                                             } @else {
                                                 <div class="pro-edit-actions">
-                                                    <button class="pro-cancel-btn" type="button" (click)="cancelEditPartners()">
-                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                                    <button
+                                                        class="pro-cancel-btn"
+                                                        type="button"
+                                                        (click)="cancelEditPartners()"
+                                                    >
+                                                        <svg
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-width="2"
+                                                        >
+                                                            <line x1="18" y1="6" x2="6" y2="18" />
+                                                            <line x1="6" y1="6" x2="18" y2="18" />
                                                         </svg>
                                                     </button>
-                                                    <button class="pro-save-btn" type="button" (click)="saveEditPartners()" [disabled]="savingPartners()">
-                                                        @if (savingPartners()) { <span class="pro-spinner-sm"></span> }
-                                                        @else { <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> }
+                                                    <button
+                                                        class="pro-save-btn"
+                                                        type="button"
+                                                        (click)="saveEditPartners()"
+                                                        [disabled]="savingPartners()"
+                                                    >
+                                                        @if (savingPartners()) {
+                                                            <span class="pro-spinner-sm"></span>
+                                                        } @else {
+                                                            <svg
+                                                                viewBox="0 0 24 24"
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                stroke-width="2.5"
+                                                            >
+                                                                <polyline points="20 6 9 17 4 12" />
+                                                            </svg>
+                                                        }
                                                     </button>
                                                 </div>
                                             }
                                         </div>
                                         @if (editPartnersMode()) {
-                                            <input class="pro-edit-input" type="text" [(ngModel)]="partnerInput" (keydown)="addPartnerToEdit($event)" [placeholder]="'professional.fields.suppliersAdd' | transloco"/>
+                                            <input
+                                                class="pro-edit-input"
+                                                type="text"
+                                                [(ngModel)]="partnerInput"
+                                                (keydown)="addPartnerToEdit($event)"
+                                                [placeholder]="'professional.fields.suppliersAdd' | transloco"
+                                            />
                                             @if (editPartnerList().length) {
                                                 <ul class="pro-list">
                                                     @for (name of editPartnerList(); track name) {
                                                         <li class="pro-partner-edit-item">
                                                             <span>{{ name }}</span>
-                                                            <button class="pro-partner-remove" type="button" (click)="removePartnerFromEdit(name)">
-                                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                                                                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                                            <button
+                                                                class="pro-partner-remove"
+                                                                type="button"
+                                                                (click)="removePartnerFromEdit(name)"
+                                                            >
+                                                                <svg
+                                                                    viewBox="0 0 24 24"
+                                                                    fill="none"
+                                                                    stroke="currentColor"
+                                                                    stroke-width="2.2"
+                                                                >
+                                                                    <line x1="18" y1="6" x2="6" y2="18" />
+                                                                    <line x1="6" y1="6" x2="18" y2="18" />
                                                                 </svg>
                                                             </button>
                                                         </li>
@@ -949,28 +1596,71 @@
                                         <div class="pro-group-header">
                                             <h3>{{ 'dashboard.pro.companyRemarks' | transloco }}</h3>
                                             @if (!editCompanyRemarksMode()) {
-                                                <button class="pro-edit-btn" type="button" (click)="enterEditCompanyRemarks()">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                                <button
+                                                    class="pro-edit-btn"
+                                                    type="button"
+                                                    (click)="enterEditCompanyRemarks()"
+                                                >
+                                                    <svg
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="1.8"
+                                                    >
+                                                        <path
+                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                                                        />
+                                                        <path
+                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                                                        />
                                                     </svg>
                                                 </button>
                                             } @else {
                                                 <div class="pro-edit-actions">
-                                                    <button class="pro-cancel-btn" type="button" (click)="cancelEditCompanyRemarks()">
-                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                                                    <button
+                                                        class="pro-cancel-btn"
+                                                        type="button"
+                                                        (click)="cancelEditCompanyRemarks()"
+                                                    >
+                                                        <svg
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-width="2"
+                                                        >
+                                                            <line x1="18" y1="6" x2="6" y2="18" />
+                                                            <line x1="6" y1="6" x2="18" y2="18" />
                                                         </svg>
                                                     </button>
-                                                    <button class="pro-save-btn" type="button" (click)="saveEditCompanyRemarks()" [disabled]="savingCompanyRemarks()">
-                                                        @if (savingCompanyRemarks()) { <span class="pro-spinner-sm"></span> }
-                                                        @else { <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> }
+                                                    <button
+                                                        class="pro-save-btn"
+                                                        type="button"
+                                                        (click)="saveEditCompanyRemarks()"
+                                                        [disabled]="savingCompanyRemarks()"
+                                                    >
+                                                        @if (savingCompanyRemarks()) {
+                                                            <span class="pro-spinner-sm"></span>
+                                                        } @else {
+                                                            <svg
+                                                                viewBox="0 0 24 24"
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                stroke-width="2.5"
+                                                            >
+                                                                <polyline points="20 6 9 17 4 12" />
+                                                            </svg>
+                                                        }
                                                     </button>
                                                 </div>
                                             }
                                         </div>
                                         @if (editCompanyRemarksMode()) {
-                                            <textarea class="pro-edit-input pro-edit-input--textarea" rows="4" maxlength="500" [(ngModel)]="editCompanyRemarksText"></textarea>
+                                            <textarea
+                                                class="pro-edit-input pro-edit-input--textarea"
+                                                rows="4"
+                                                maxlength="500"
+                                                [(ngModel)]="editCompanyRemarksText"
+                                            ></textarea>
                                         } @else if (pro.professionalProfile.companyRemarks) {
                                             <p class="pro-description">{{ pro.professionalProfile.companyRemarks }}</p>
                                         } @else {
@@ -1076,29 +1766,56 @@
                                         <!-- Diplômes -->
                                         @for (diploma of pro.professionalProfile.diplomas; track diploma.id) {
                                             <div class="doc-card">
-                                                <div class="doc-card-preview" [style.cursor]="diploma.url ? 'pointer' : 'default'" (click)="openDocModal(diploma.url, 'dashboard.pro.docs.diploma')">
-                                                    <svg class="doc-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                                        <polyline points="14 2 14 8 20 8"/>
-                                                        <line x1="16" y1="13" x2="8" y2="13"/>
+                                                <div
+                                                    class="doc-card-preview"
+                                                    [style.cursor]="diploma.url ? 'pointer' : 'default'"
+                                                    (click)="openDocModal(diploma.url, 'dashboard.pro.docs.diploma')"
+                                                >
+                                                    <svg
+                                                        class="doc-card-icon"
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="1.5"
+                                                    >
+                                                        <path
+                                                            d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                                                        />
+                                                        <polyline points="14 2 14 8 20 8" />
+                                                        <line x1="16" y1="13" x2="8" y2="13" />
                                                     </svg>
                                                 </div>
                                                 <div class="doc-card-body">
                                                     <p class="doc-card-label">{{ diploma.documentName }}</p>
                                                     @if (diploma.expiryDate) {
-                                                        <p class="doc-card-expiry">{{ 'dashboard.pro.expiresOn' | transloco }} {{ diploma.expiryDate | date:'dd/MM/yyyy' }}</p>
+                                                        <p class="doc-card-expiry">
+                                                            {{ 'dashboard.pro.expiresOn' | transloco }}
+                                                            {{ diploma.expiryDate | date: 'dd/MM/yyyy' }}
+                                                        </p>
                                                     }
                                                     @if (diploma.url) {
-                                                        <a [href]="diploma.url" target="_blank" rel="noopener" class="doc-card-btn">
-                                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                                                <polyline points="7 10 12 15 17 10"/>
-                                                                <line x1="12" y1="15" x2="12" y2="3"/>
+                                                        <a
+                                                            [href]="diploma.url"
+                                                            target="_blank"
+                                                            rel="noopener"
+                                                            class="doc-card-btn"
+                                                        >
+                                                            <svg
+                                                                viewBox="0 0 24 24"
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                stroke-width="1.8"
+                                                            >
+                                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                                                <polyline points="7 10 12 15 17 10" />
+                                                                <line x1="12" y1="15" x2="12" y2="3" />
                                                             </svg>
                                                             {{ 'dashboard.pro.docs.download' | transloco }}
                                                         </a>
                                                     } @else {
-                                                        <span class="doc-card-missing">{{ 'dashboard.pro.docs.missing' | transloco }}</span>
+                                                        <span class="doc-card-missing">{{
+                                                            'dashboard.pro.docs.missing' | transloco
+                                                        }}</span>
                                                     }
                                                 </div>
                                             </div>
@@ -1108,6 +1825,10 @@
                             }
                         }
                         @case ('requests') {
+                            <a routerLink="/search-pro" class="block mb-3 py-2 text-center rounded-lg text-[var(--primary-beige)] bg-grad-water-green">
+                                {{ 'dashboard.requests.createDemand' | transloco }}
+                            </a>
+
                             <div class="flex gap-1 justify-between">
                                 <button
                                     class="flex-1 py-1 rounded-lg"
@@ -1137,21 +1858,35 @@
                                                 <button
                                                     type="button"
                                                     class="demand-card"
-                                                    (click)="selectedDemandId.set(demand.id); selectedDemandEditable.set(true)"
+                                                    (click)="
+                                                        selectedDemandId.set(demand.id);
+                                                        selectedDemandEditable.set(true)
+                                                    "
                                                 >
                                                     <div class="demand-card-header">
                                                         <span
                                                             class="demand-status"
-                                                            [class.demand-status--available]="demand.status === 'AVAILABLE'"
-                                                            [class.demand-status--cancelled]="demand.status === 'CANCELLED'"
+                                                            [class.demand-status--available]="
+                                                                demand.status === 'AVAILABLE'
+                                                            "
+                                                            [class.demand-status--cancelled]="
+                                                                demand.status === 'CANCELLED'
+                                                            "
                                                         >
-                                                            {{ ('dashboard.requests.status.' + demand.status) | transloco }}
+                                                            {{
+                                                                'dashboard.requests.status.' + demand.status | transloco
+                                                            }}
                                                         </span>
-                                                        <span class="demand-date">{{ demand.createdAt | date: 'dd/MM/yyyy' }}</span>
+                                                        <span class="demand-date">{{
+                                                            demand.createdAt | date: 'dd/MM/yyyy'
+                                                        }}</span>
                                                     </div>
                                                     <p class="demand-description">{{ demand.description }}</p>
                                                     <p class="demand-meta">
-                                                        {{ 'dashboard.requests.filesCount' | transloco: { count: demand.photoKeys.length } }}
+                                                        {{
+                                                            'dashboard.requests.filesCount'
+                                                                | transloco: { count: demand.photoKeys.length }
+                                                        }}
                                                     </p>
                                                 </button>
                                             } @empty {
@@ -1163,36 +1898,46 @@
                                                 <button
                                                     type="button"
                                                     class="demand-card"
-                                                    (click)="selectedDemandId.set(demand.id); selectedDemandEditable.set(false)"
+                                                    (click)="
+                                                        selectedDemandId.set(demand.id);
+                                                        selectedDemandEditable.set(false)
+                                                    "
                                                 >
                                                     <div class="demand-card-header">
                                                         <span
                                                             class="demand-status"
-                                                            [class.demand-status--available]="demand.status === 'AVAILABLE'"
-                                                            [class.demand-status--cancelled]="demand.status === 'CANCELLED'"
+                                                            [class.demand-status--available]="
+                                                                demand.status === 'AVAILABLE'
+                                                            "
+                                                            [class.demand-status--cancelled]="
+                                                                demand.status === 'CANCELLED'
+                                                            "
                                                         >
-                                                            {{ ('dashboard.requests.status.' + demand.status) | transloco }}
+                                                            {{
+                                                                'dashboard.requests.status.' + demand.status | transloco
+                                                            }}
                                                         </span>
-                                                        <span class="demand-date">{{ demand.createdAt | date: 'dd/MM/yyyy' }}</span>
+                                                        <span class="demand-date">{{
+                                                            demand.createdAt | date: 'dd/MM/yyyy'
+                                                        }}</span>
                                                     </div>
                                                     <p class="demand-description">{{ demand.description }}</p>
                                                     <p class="demand-meta">
-                                                        {{ 'dashboard.requests.filesCount' | transloco: { count: demand.photoKeys.length } }}
+                                                        {{
+                                                            'dashboard.requests.filesCount'
+                                                                | transloco: { count: demand.photoKeys.length }
+                                                        }}
                                                     </p>
                                                 </button>
                                             } @empty {
-                                                <p class="pro-empty">{{ 'dashboard.empty.requestsReceived' | transloco }}</p>
+                                                <p class="pro-empty">
+                                                    {{ 'dashboard.empty.requestsReceived' | transloco }}
+                                                </p>
                                             }
                                         }
                                     }
                                 </div>
                             }
-                        }
-                        @case ('quotes') {
-                            <p class="pro-empty">{{ 'dashboard.empty.quotes' | transloco }}</p>
-                        }
-                        @case ('invoices') {
-                            <p class="pro-empty">{{ 'dashboard.empty.invoices' | transloco }}</p>
                         }
                         @case ('practices') {
                             <p class="pro-empty">{{ 'dashboard.empty.practices' | transloco }}</p>
@@ -1211,35 +1956,75 @@
                                     @if (!aff.affiliateCode) {
                                         <div class="aff-empty-state">
                                             <div class="aff-empty-icon">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                                    <circle cx="9" cy="7" r="4"/>
-                                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                                <svg
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="1.5"
+                                                >
+                                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                                    <circle cx="9" cy="7" r="4" />
+                                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                                                 </svg>
                                             </div>
-                                            <p class="aff-empty-text">{{ 'dashboard.affiliation.noCode' | transloco }}</p>
+                                            <p class="aff-empty-text">
+                                                {{ 'dashboard.affiliation.noCode' | transloco }}
+                                            </p>
                                             <button class="aff-generate-btn" (click)="generateAffiliateCode()">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                    <circle cx="12" cy="12" r="10"/>
-                                                    <line x1="12" y1="8" x2="12" y2="16"/>
-                                                    <line x1="8" y1="12" x2="16" y2="12"/>
+                                                <svg
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                >
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <line x1="12" y1="8" x2="12" y2="16" />
+                                                    <line x1="8" y1="12" x2="16" y2="12" />
                                                 </svg>
                                                 {{ 'dashboard.affiliation.generateCode' | transloco }}
                                             </button>
                                         </div>
                                     } @else {
                                         <div class="aff-code-card">
-                                            <span class="aff-code-label">{{ 'dashboard.affiliation.myCode' | transloco }}</span>
+                                            <span class="aff-code-label">{{
+                                                'dashboard.affiliation.myCode' | transloco
+                                            }}</span>
                                             <div class="aff-code-display">
                                                 <span class="aff-code-value">{{ aff.affiliateCode }}</span>
-                                                <button class="aff-copy-btn" [class.aff-copy-btn--copied]="codeCopied()" (click)="copyAffiliateCode(aff.affiliateCode!)">
+                                                <button
+                                                    class="aff-copy-btn"
+                                                    [class.aff-copy-btn--copied]="codeCopied()"
+                                                    (click)="copyAffiliateCode(aff.affiliateCode!)"
+                                                >
                                                     @if (codeCopied()) {
-                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                                        <svg
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-width="2.5"
+                                                        >
+                                                            <polyline points="20 6 9 17 4 12" />
+                                                        </svg>
                                                     } @else {
-                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                                        <svg
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-width="2"
+                                                        >
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" />
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                                                            />
+                                                        </svg>
                                                     }
-                                                    {{ (codeCopied() ? 'dashboard.affiliation.copied' : 'dashboard.affiliation.copyCode') | transloco }}
+                                                    {{
+                                                        (codeCopied()
+                                                            ? 'dashboard.affiliation.copied'
+                                                            : 'dashboard.affiliation.copyCode'
+                                                        ) | transloco
+                                                    }}
                                                 </button>
                                             </div>
                                         </div>
@@ -1247,38 +2032,76 @@
                                         <div class="aff-stats-grid">
                                             <div class="aff-stat-card">
                                                 <span class="aff-stat-value">{{ aff.totalReferrals }}</span>
-                                                <span class="aff-stat-label">{{ 'dashboard.affiliation.stats.totalReferrals' | transloco }}</span>
+                                                <span class="aff-stat-label">{{
+                                                    'dashboard.affiliation.stats.totalReferrals' | transloco
+                                                }}</span>
                                             </div>
                                             <div class="aff-stat-card aff-stat-card--accent">
                                                 <span class="aff-stat-value">{{ aff.activeReferrals }}</span>
-                                                <span class="aff-stat-label">{{ 'dashboard.affiliation.stats.activeReferrals' | transloco }}</span>
+                                                <span class="aff-stat-label">{{
+                                                    'dashboard.affiliation.stats.activeReferrals' | transloco
+                                                }}</span>
                                             </div>
                                             <div class="aff-stat-card">
-                                                <span class="aff-stat-value">{{ aff.totalEarned | number:'1.2-2' }} €</span>
-                                                <span class="aff-stat-label">{{ 'dashboard.affiliation.stats.totalEarned' | transloco }}</span>
+                                                <span class="aff-stat-value"
+                                                    >{{ aff.totalEarned | number: '1.2-2' }} €</span
+                                                >
+                                                <span class="aff-stat-label">{{
+                                                    'dashboard.affiliation.stats.totalEarned' | transloco
+                                                }}</span>
                                             </div>
                                             <div class="aff-stat-card aff-stat-card--accent">
-                                                <span class="aff-stat-value">{{ aff.pendingEarnings | number:'1.2-2' }} €</span>
-                                                <span class="aff-stat-label">{{ 'dashboard.affiliation.stats.pendingEarnings' | transloco }}</span>
+                                                <span class="aff-stat-value"
+                                                    >{{ aff.pendingEarnings | number: '1.2-2' }} €</span
+                                                >
+                                                <span class="aff-stat-label">{{
+                                                    'dashboard.affiliation.stats.pendingEarnings' | transloco
+                                                }}</span>
                                             </div>
                                         </div>
 
                                         <div class="aff-block">
-                                            <h4 class="aff-sub-title">{{ 'dashboard.affiliation.referrals.title' | transloco }}</h4>
+                                            <h4 class="aff-sub-title">
+                                                {{ 'dashboard.affiliation.referrals.title' | transloco }}
+                                            </h4>
                                             @if (aff.referrals.length === 0) {
-                                                <p class="pro-empty">{{ 'dashboard.affiliation.referrals.empty' | transloco }}</p>
+                                                <p class="pro-empty">
+                                                    {{ 'dashboard.affiliation.referrals.empty' | transloco }}
+                                                </p>
                                             } @else {
                                                 <div class="aff-referrals-list">
                                                     @for (r of aff.referrals; track r.id) {
                                                         <div class="aff-referral-item">
-                                                            <div class="aff-referral-avatar">{{ r.affiliateFirstName[0] }}{{ r.affiliateLastName[0] }}</div>
+                                                            <div class="aff-referral-avatar">
+                                                                {{ r.affiliateFirstName[0]
+                                                                }}{{ r.affiliateLastName[0] }}
+                                                            </div>
                                                             <div class="aff-referral-info">
-                                                                <span class="aff-referral-name">{{ r.affiliateFirstName }} {{ r.affiliateLastName }}</span>
-                                                                <span class="aff-referral-meta">{{ ('dashboard.affiliation.referrals.role.' + r.affiliateRole) | transloco }} · {{ r.createdAt | date:'dd/MM/yyyy' }}</span>
+                                                                <span class="aff-referral-name"
+                                                                    >{{ r.affiliateFirstName }}
+                                                                    {{ r.affiliateLastName }}</span
+                                                                >
+                                                                <span class="aff-referral-meta"
+                                                                    >{{
+                                                                        'dashboard.affiliation.referrals.role.' +
+                                                                            r.affiliateRole | transloco
+                                                                    }}
+                                                                    · {{ r.createdAt | date: 'dd/MM/yyyy' }}</span
+                                                                >
                                                             </div>
                                                             <div class="aff-referral-right">
-                                                                <span class="aff-status-badge aff-status-badge--{{ r.status | lowercase }}">{{ ('dashboard.affiliation.referrals.status.' + r.status) | transloco }}</span>
-                                                                <span class="aff-referral-earnings">{{ r.commissionsTotal | number:'1.2-2' }} €</span>
+                                                                <span
+                                                                    class="aff-status-badge aff-status-badge--{{
+                                                                        r.status | lowercase
+                                                                    }}"
+                                                                    >{{
+                                                                        'dashboard.affiliation.referrals.status.' +
+                                                                            r.status | transloco
+                                                                    }}</span
+                                                                >
+                                                                <span class="aff-referral-earnings"
+                                                                    >{{ r.commissionsTotal | number: '1.2-2' }} €</span
+                                                                >
                                                             </div>
                                                         </div>
                                                     }
@@ -1290,23 +2113,39 @@
 
                                 @if (!affiliationLoading()) {
                                     <div class="aff-block">
-                                        <h4 class="aff-sub-title">{{ 'dashboard.affiliation.myReferrer.title' | transloco }}</h4>
+                                        <h4 class="aff-sub-title">
+                                            {{ 'dashboard.affiliation.myReferrer.title' | transloco }}
+                                        </h4>
                                         @if (affiliationData()?.myReferrer; as referrer) {
                                             <div class="aff-referral-item">
-                                                <div class="aff-referral-avatar">{{ referrer.firstName[0] }}{{ referrer.lastName[0] }}</div>
+                                                <div class="aff-referral-avatar">
+                                                    {{ referrer.firstName[0] }}{{ referrer.lastName[0] }}
+                                                </div>
                                                 <div class="aff-referral-info">
-                                                    <span class="aff-referral-name">{{ referrer.firstName }} {{ referrer.lastName }}</span>
-                                                    <span class="aff-referral-meta">{{ ('dashboard.affiliation.referrals.role.' + referrer.role.code) | transloco }} · {{ referrer.createdAt | date:'dd/MM/yyyy' }}</span>
+                                                    <span class="aff-referral-name"
+                                                        >{{ referrer.firstName }} {{ referrer.lastName }}</span
+                                                    >
+                                                    <span class="aff-referral-meta"
+                                                        >{{
+                                                            'dashboard.affiliation.referrals.role.' + referrer.role.code
+                                                                | transloco
+                                                        }}
+                                                        · {{ referrer.createdAt | date: 'dd/MM/yyyy' }}</span
+                                                    >
                                                 </div>
                                             </div>
                                         } @else {
-                                            <p class="pro-empty">{{ 'dashboard.affiliation.myReferrer.none' | transloco }}</p>
+                                            <p class="pro-empty">
+                                                {{ 'dashboard.affiliation.myReferrer.none' | transloco }}
+                                            </p>
                                         }
                                     </div>
                                 }
 
                                 <div class="aff-how-block">
-                                    <h4 class="aff-sub-title">{{ 'dashboard.affiliation.howItWorks.title' | transloco }}</h4>
+                                    <h4 class="aff-sub-title">
+                                        {{ 'dashboard.affiliation.howItWorks.title' | transloco }}
+                                    </h4>
                                     <div class="aff-how-grid">
                                         <div class="aff-how-step">
                                             <div class="aff-how-num">1</div>
@@ -1325,7 +2164,7 @@
             </main>
 
             <!-- ═══════════════ BOTTOM NAV (mobile) ═══════════════ -->
-            <nav class="pro-bottom-nav" aria-label="Bottom navigation">
+            <nav class="pro-bottom-nav" [attr.aria-label]="'common.bottomNavigation' | transloco">
                 <button
                     class="bottom-nav-item"
                     [class.active]="activeSection() === 'profile'"
@@ -1348,27 +2187,16 @@
                     </svg>
                     <span>{{ 'dashboard.pro.mobile.requests' | transloco }}</span>
                 </button>
-                <button
-                    class="bottom-nav-item"
-                    [class.active]="activeSection() === 'quotes'"
-                    (click)="setSection('quotes'); moreMenuContentDisplayed.set(false)"
-                >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                        <polyline points="14 2 14 8 20 8" />
-                    </svg>
-                    <span>{{ 'dashboard.pro.mobile.quotes' | transloco }}</span>
+                <button class="bottom-nav-item" routerLink="/">
+                    <img src="assets/img/logo.webp" alt="" class="bottom-nav-logo" />
+                    <span>{{ 'common.home' | transloco }}</span>
                 </button>
-                <button
-                    class="bottom-nav-item"
-                    [class.active]="activeSection() === 'invoices'"
-                    (click)="setSection('invoices'); moreMenuContentDisplayed.set(false)"
-                >
+                <button class="bottom-nav-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                        <rect x="2" y="3" width="20" height="14" rx="2" />
-                        <path d="M8 21h8M12 17v4" />
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                     </svg>
-                    <span>{{ 'dashboard.pro.mobile.invoices' | transloco }}</span>
+                    <span>{{ 'common.messages' | transloco }}</span>
                 </button>
                 <button class="bottom-nav-item plus-menu" (click)="toggleMoreMenu()">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
