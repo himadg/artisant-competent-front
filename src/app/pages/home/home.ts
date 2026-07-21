@@ -4,12 +4,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Meta } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { SearchPro } from '../../shared/components/search-pro/search-pro';
+import { SearchProForm } from '../../shared/components/search-pro-form/search-pro-form';
 import { Accordion } from '../../shared/components/accordion';
 @Component({
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TranslocoModule, RouterModule, SearchPro, Accordion],
+  imports: [TranslocoModule, RouterModule, SearchProForm, Accordion],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

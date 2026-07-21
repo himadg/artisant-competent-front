@@ -1,30 +1,37 @@
-<section class="relative mx-auto mt-16 top-0 px-4 pb-8 md:px-6 md:pb-12 lg:px-8 lg:pb-16">
-    <search-pro class="-top-[150px] w-full"></search-pro>
-
-    <h1 class="mt-8 mb-2 text-2xl font-semibold title">
-        {{ 'search.title' | transloco: { trade: `jobs.list.${trade}.name` | transloco, address: address } }}
-    </h1>
+<section class="relative mx-auto top-0 mt-[-3rem] md:min-h-[36svh] px-4 pb-8 md:px-6 md:pb-12 lg:px-8 lg:pb-16">
+    <search-pro-form
+        class="w-full"
+        [initialAddress]="address"
+        [initialLat]="lat"
+        [initialLng]="lng"
+        [initialTrade]="trade"
+        [initialRadius]="radius"
+    ></search-pro-form>
 
     @if (loading()) {
         <div class="flex justify-center items-center mt-16">
             <div class="w-8 h-8 rounded-full border-4 border-[var(--primary-water-green)] border-t-transparent animate-spin"></div>
         </div>
     } @else if (error()) {
-        <p class="text-center">{{ 'search.error' | transloco }}</p>
+        <p class="text-center mt-16">{{ 'search.error' | transloco }}</p>
     } @else {
-        <p class="mb-8 text-sm">{{ 'search.subtitle' | transloco: { count: results().length, radius: radius } }}</p>
+        @if (this.trade) {
+            <h1 class="mt-8 mb-2 text-2xl font-semibold title">
+                {{ 'search.title' | transloco: { trade: `jobs.list.${this.trade}.name` | transloco, address: this.address } }}
+            </h1>
 
-        @if (results().length === 0) {
+            <p class="mb-8 text-sm">{{ 'search.subtitle' | transloco: { count: results().length, radius: radius } }}</p>
+
+            @if (results().length === 0) {
             <p class="py-16 text-center">{{ 'search.empty' | transloco }}</p>
-        } @else {
+            } @else {
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 @for (proInfo of results(); track proInfo.id) {
-                    <pro-card
-                        [proInfo]="proInfo"
-                        [selected]="selectedIds().has(proInfo.id)"
-                        (selectedChange)="toggleSelection(proInfo.id)" />
+                <pro-card [proInfo]="proInfo" [selected]="selectedIds().has(proInfo.id)"
+                    (selectedChange)="toggleSelection(proInfo.id)" />
                 }
             </div>
+            }
         }
     }
 </section>

@@ -12,7 +12,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { UserApiService } from '../../../core/services/user-api.service';
 import { AffiliationApiService } from '../../../core/services/affiliation-api.service';
 import { DemandService } from '../../../core/services/demand.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProfessionalDashboardData, OpeningHoursDay } from '../../../shared/interfaces/professional-dashboard';
 import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
 import { DemandDetail, DemandSummary } from '../../../shared/interfaces/demand';
@@ -21,9 +21,10 @@ import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggl
 import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
 import { DocModal } from '../../../shared/components/doc-modal/doc-modal';
 import { DemandDetailsModal } from '../../../shared/components/demand-details-modal/demand-details-modal';
+import { NotificationBell } from '../../../shared/components/notification-bell/notification-bell';
 import { PreviewDocument } from '../../../shared/interfaces/preview-document';
 
-export type ProSection = 'requests' | 'quotes' | 'invoices' | 'profile' | 'legal' | 'practices' | 'affiliation';
+export type ProSection = 'profile' | 'requests' | 'practices' | 'legal' | 'affiliation';
 export type ProTab = 'presentation' | 'missions' | 'reviews' | 'documents';
 export type RequestsTab = 'mine' | 'received';
 
@@ -43,6 +44,7 @@ const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'satu
     LegalModal,
     DocModal,
     DemandDetailsModal,
+    NotificationBell,
   ],
   templateUrl: './professional-dashboard.html',
   styleUrl: './professional-dashboard.scss',
@@ -55,6 +57,7 @@ export class ProfessionalDashboard implements OnInit {
   private readonly affiliationApi = inject(AffiliationApiService);
   private readonly demandService = inject(DemandService);
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   private readonly platformLocation = inject(PlatformLocation);
   private readonly transloco = inject(TranslocoService);
   readonly authService = inject(AuthService);
@@ -115,6 +118,22 @@ export class ProfessionalDashboard implements OnInit {
         this.error.set('dashboard.errors.load');
         this.loading.set(false);
       },
+    });
+
+    // Deep link depuis une notification (ex: nouvelle demande) : ?tab=requests&demandId=xxx
+    this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
+      const tab = params.get('tab');
+      const demandId = params.get('demandId');
+
+      if (tab === 'requests') {
+        this.setSection('requests');
+        this.requestsTab.set('received');
+      }
+      if (demandId) {
+        this.selectedDemandId.set(demandId);
+        this.selectedDemandEditable.set(false);
+        this.router.navigate([], { relativeTo: this.route, queryParams: { demandId: null }, queryParamsHandling: 'merge', replaceUrl: true });
+      }
     });
   }
 

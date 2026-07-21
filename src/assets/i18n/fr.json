@@ -428,7 +428,8 @@
         "particuliersText": "plus aucune arnaque, que ce soit pour une urgence ou des travaux plus longs.",
         "artisansLabel": "Artisans",
         "artisansText": "plus d'excuses bidons pour ne pas être payés."
-      }
+      },
+      "vsGoogleAlt": "Artisan Compétent vs Google"
     }
   },
   "common": {
@@ -439,7 +440,16 @@
     "professionals": "Professionnels",
     "loading": "Chargement...",
     "close": "Fermer",
-    "dashboard": "Mon espace"
+    "dashboard": "Mon espace",
+    "cancel": "Annuler",
+    "yes": "Oui",
+    "no": "Non",
+    "menu": "Menu",
+    "messages": "Messages",
+    "logo": "Logo",
+    "sidebarNavigation": "Navigation latérale",
+    "bottomNavigation": "Navigation basse",
+    "avatar": "Avatar"
   },
   "docModal": {
     "defaultTitle": "Aperçu du document",
@@ -2350,6 +2360,9 @@
           "footer": "Spécialiste anti-nuisibles vérifié SIRET, RC pro, décennale et Certibiocide. Process encadré par séquestre Stripe, visites de contrôle incluses. Compte-rendu et photos à chaque passage. Retenue jusqu’à 250 € en cas de signalement d’abus. Périmètre : rongeurs, insectes rampants, insectes volants, punaises de lit, frelons, désinfection, désinsectisation, dératisation."
         }
       }
+    },
+    "citiesSection": {
+      "title": "Disponible dans toutes les grandes villes"
     }
   },
   "not-found": {
@@ -2520,10 +2533,12 @@
       "onCallDay": "Astreinte ce jour"
     },
     "openingHours": {
-      "guideBtn": "Mode d'emploi - Règles horaires, congés, astreintes"
+      "guideBtn": "Mode d'emploi - Règles horaires, congés, astreintes",
+      "guideAlt": "Mode d'emploi horaires"
     },
     "description": {
-      "guideBtn": "Mode d'emploi - Conseils pour bien vendre vos services"
+      "guideBtn": "Mode d'emploi - Conseils pour bien vendre vos services",
+      "guideAlt": "Mode d'emploi conseils vente"
     },
     "workAddress": {
       "guideBtn": "Mode d'emploi - Adresse de géolocalisation"
@@ -2535,7 +2550,8 @@
       "condition1": "Minimum 3 ans d'expérience dans votre métier",
       "condition2": "Mission rémunérée 35 € par intervention",
       "condition3": "Intervention uniquement en cas de litige",
-      "condition4": "Avis consultatif, non décisionnel"
+      "condition4": "Avis consultatif, non décisionnel",
+      "guideAlt": "Mode d'emploi CMOD"
     },
     "siret": {
       "checking": "Vérification du SIRET...",
@@ -2587,7 +2603,8 @@
         "diplomaDocRequired": "Diplôme requis",
         "logoRequired": "Logo requis",
         "ribRequired": "RIB requis"
-      }
+      },
+      "addressWorkInvalid": "Impossible de valider l'adresse de l'entreprise, veuillez vérifier votre saisie."
     },
     "manager": {
       "company": "Société",
@@ -3191,7 +3208,7 @@
       "show": "Afficher le mot de passe",
       "hide": "Masquer le mot de passe"
     },
-    "registeredIndividualSuccess": "Votre inscription a bien été enregistrée. Vous pouvez désormais vous connecter avec vos identifiants.",
+    "registeredIndividualSuccess": "Votre inscription a bien été enregistrée. Bienvenue sur Artisan Compétent !",
     "registeredProSuccess": "Votre inscription a bien été enregistrée et est en attente de validation. Vous recevrez un email de confirmation prochainement.",
     "registeredProMailFailed": "Votre inscription a été prise en compte. Nous n'avons pas pu vous envoyer d'email de confirmation. Veuillez nous contacter à contact@artisan-competent.com pour valider votre compte.",
     "spamNotice": "Si vous ne voyez pas l'email dans votre boîte de réception, pensez à vérifier vos spams."
@@ -3209,7 +3226,8 @@
         "UNAVAILABLE": "Indisponible",
         "CANCELLED": "Annulée"
       },
-      "filesCount": "{{ count }} fichier(s) joint(s)"
+      "filesCount": "{{ count }} fichier(s) joint(s)",
+      "createDemand": "Créer une demande"
     },
     "nav": {
       "requests": "Mes demandes",
@@ -3284,7 +3302,9 @@
       "mediatorAddress": "Adresse du médiateur",
       "mediatorWebsite": "Site web",
       "mediatorContactMethod": "Méthode de contact",
-      "mediatorAdditionalInfo": "Informations complémentaires"
+      "mediatorAdditionalInfo": "Informations complémentaires",
+      "email": "Email",
+      "dayOnCall": "Astreinte"
     },
     "errors": {
       "load": "Impossible de charger le dashboard",
@@ -3473,7 +3493,8 @@
         "individual": "Particulier parrainé → 20% de commission les 6 premiers mois, puis 10% les 6 suivants.",
         "professional": "Professionnel parrainé → 5% de commission pendant 6 mois."
       }
-    }
+    },
+    "loading": "Chargement du tableau de bord..."
   },
   "cities": {
     "nav": "Nos villes",
@@ -3737,5 +3758,10 @@
     "notFound": "La ressource demandée est introuvable.",
     "server": "Une erreur est survenue côté serveur. Veuillez réessayer.",
     "unknown": "Une erreur inattendue est survenue. Veuillez réessayer."
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "Aucune notification pour le moment",
+    "markAllRead": "Tout marquer comme lu"
   }
 }
