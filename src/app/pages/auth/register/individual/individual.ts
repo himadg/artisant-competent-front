@@ -16,6 +16,7 @@ import { capitalize, evaluatePasswordCriteria, getAffiliateCode, clearAffiliateC
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
 import { NAME_REGEXP, PASSWORD_STRONG_REGEXP, PHONE_FR_REGEXP, POSTAL_CODE_REGEXP, STREET_NUMBER_REGEXP } from '../../../../core/utils/regexp';
 import { pastDateValidator } from '../../../../core/utils/validators';
+import { ALLOWED_IMAGE_TYPES } from '../../../../core/utils/file-types';
 
 @Component({
   selector: 'register-individual',
@@ -190,7 +191,14 @@ export class RegisterIndividual implements OnDestroy {
 
   // --- Photo ---
   addPhoto(event: Event) {
-    const file = (event.target as HTMLInputElement).files?.[0] ?? null;
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0] ?? null;
+    input.value = '';
+    if (file && !ALLOWED_IMAGE_TYPES.has(file.type)) {
+      this.flashMessage.set({ type: 'error', key: 'errors.invalidImageFormat' });
+      return;
+    }
+
     this.form.get('photo')!.setValue(file);
     if (file) {
       const reader = new FileReader();

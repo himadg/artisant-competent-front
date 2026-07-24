@@ -5,12 +5,13 @@ import { TranslocoModule } from '@jsverse/transloco';
 import { AppNotification } from '../../interfaces/notification';
 import { AuthService } from '../../../core/services/auth.service';
 import { NotificationService } from '../../../core/services/notification.service';
+import { LocalizedDatePipe } from '../../pipes/localized-date.pipe';
 
 @Component({
   selector: 'notification-bell',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, TranslocoModule],
+  imports: [CommonModule, TranslocoModule, LocalizedDatePipe],
   templateUrl: './notification-bell.html',
   styleUrl: './notification-bell.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

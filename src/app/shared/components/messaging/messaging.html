@@ -1,0 +1,20 @@
+<div class="messaging">
+    <div class="messaging-list-pane md:flex-1" [class.pane-hidden]="mobileShowConversation()">
+        <conversation-list [conversations]="conversations()" [selectedId]="selectedConversationId()" (selected)="selectConversation($event)" />
+    </div>
+
+    <div class="messaging-view-pane md:flex-1 lg:flex-[2]" [class.pane-visible]="mobileShowConversation()">
+        @if (selectedConversation(); as conversation) {
+            <conversation-view
+                [conversation]="conversation"
+                [messages]="messages()"
+                (back)="closeConversation()"
+                (sendMessage)="sendMessage($event)"
+                (sendAttachment)="sendAttachment($event)"
+                (openDemand)="openDemand.emit($event)"
+            />
+        } @else {
+            <div class="messaging-empty">{{ 'dashboard.messages.selectPrompt' | transloco }}</div>
+        }
+    </div>
+</div>

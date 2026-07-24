@@ -1,0 +1,7 @@
+@if (photoUrl()) {
+    <img [src]="photoUrl()" [alt]="alt()" class="user-avatar-img" />
+} @else {
+    <div class="user-avatar-placeholder">
+        <iconify-icon icon="lucide:user"></iconify-icon>
+    </div>
+}

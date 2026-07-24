@@ -449,7 +449,8 @@
     "logo": "Logo",
     "sidebarNavigation": "Sidebar navigation",
     "bottomNavigation": "Bottom navigation",
-    "avatar": "Avatar"
+    "avatar": "Avatar",
+    "back": "Back"
   },
   "docModal": {
     "defaultTitle": "Document preview",
@@ -484,9 +485,12 @@
       "descriptionTitle": "Description",
       "photos": "{{ count }} photo(s)",
       "photoAlt": "Photo {{ index }}",
+      "author": "By {{ name }}",
       "contacted": "Contacted tradespeople ({{ count }})",
+      "sendMessage": "Send a message",
       "cancelDemand": "Cancel request",
-      "cancelConfirm": "Are you sure you want to cancel this request? This action cannot be undone."
+      "cancelConfirm": "Are you sure you want to cancel this request? This action cannot be undone.",
+      "errorMaxPhotos": "You have reached the limit of 3 photos."
     }
   },
   "footer": {
@@ -3318,7 +3322,8 @@
         "invoices": "My invoices",
         "legal": "Legal information",
         "practices": "Best practices",
-        "affiliation": "Referral program"
+        "affiliation": "Referral program",
+        "messages": "Messages"
       },
       "mobile": {
         "profile": "Account",
@@ -3348,7 +3353,8 @@
         "profile": "Personal info",
         "legal": "Legal information",
         "practices": "Best practices",
-        "affiliation": "Referral program"
+        "affiliation": "Referral program",
+        "messages": "Messages"
       },
       "tabs": {
         "presentation": "Presentation",
@@ -3494,7 +3500,24 @@
         "professional": "Referred professional → 5% commission for 6 months."
       }
     },
-    "loading": "Loading dashboard..."
+    "loading": "Loading dashboard...",
+    "messages": {
+      "searchPlaceholder": "Search",
+      "empty": "No conversations",
+      "selectPrompt": "Select a conversation to view it here",
+      "inputPlaceholder": "Write your message...",
+      "send": "Send",
+      "demandLabel": "Demand",
+      "attach": "Attach a file",
+      "actions": {
+        "title": "Actions",
+        "decline": "Decline the offer",
+        "quote": "Create a quote",
+        "review": "Leave a review",
+        "dispute": "Report a dispute"
+      },
+      "invalidAttachment": "Unsupported file format. Accepted formats: JPG, JPEG, PNG, WEBP, PDF."
+    }
   },
   "cities": {
     "nav": "Cities",
@@ -3757,7 +3780,9 @@
     "forbidden": "You do not have permission to perform this action.",
     "notFound": "The requested resource could not be found.",
     "server": "A server error occurred. Please try again.",
-    "unknown": "An unexpected error occurred. Please try again."
+    "unknown": "An unexpected error occurred. Please try again.",
+    "invalidImageFormat": "Invalid format. Only JPEG, PNG and WebP files are accepted.",
+    "invalidDocumentFormat": "Invalid format. Only JPEG, PNG, WebP and PDF files are accepted."
   },
   "notifications": {
     "title": "Notifications",

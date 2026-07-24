@@ -33,47 +33,26 @@
                     >
                         {{ ('dashboard.requests.status.' + demand.status) | transloco }}
                     </span>
-                    <span class="text-xs opacity-60">{{ demand.createdAt | date: 'dd/MM/yyyy' }}</span>
+                    <span class="text-xs opacity-60">{{ demand.createdAt | localizedDate:'compact' }}</span>
                 </div>
+
+                <p class="detail-author">
+                    {{ 'demand.detail.author' | transloco: { name: demand.author.firstName + ' ' + demand.author.lastName } }}
+                    <span class="detail-author-role">{{ ('dashboard.affiliation.referrals.role.' + demand.author.role) | transloco }}</span>
+                </p>
 
                 <!-- Description -->
                 <div class="detail-section-header">
                     <h3 class="text-sm font-semibold">{{ 'demand.detail.descriptionTitle' | transloco }}</h3>
                     @if (canEdit() && demand.status !== 'CANCELLED') {
-                        @if (!editDescriptionMode()) {
-                            <button
-                                type="button"
-                                class="detail-edit-btn"
-                                (click)="enterEditDescription(demand.description)"
-                            >
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                </svg>
-                            </button>
-                        } @else {
-                            <div class="detail-edit-actions">
-                                <button type="button" class="detail-cancel-btn" (click)="cancelEditDescription()">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-                                    </svg>
-                                </button>
-                                <button
-                                    type="button"
-                                    class="detail-save-btn"
-                                    (click)="saveDescription()"
-                                    [disabled]="savingDescription() || descriptionDraft().trim().length < 10"
-                                >
-                                    @if (savingDescription()) {
-                                        <span class="detail-spinner-sm"></span>
-                                    } @else {
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                            <polyline points="20 6 9 17 4 12"/>
-                                        </svg>
-                                    }
-                                </button>
-                            </div>
-                        }
+                        <inline-edit-actions
+                            [editing]="editDescriptionMode()"
+                            [saving]="savingDescription()"
+                            [saveDisabled]="descriptionDraft().trim().length < 10"
+                            (edit)="enterEditDescription(demand.description)"
+                            (cancel)="cancelEditDescription()"
+                            (save)="saveDescription()"
+                        />
                     }
                 </div>
                 @if (editDescriptionMode()) {
@@ -98,40 +77,13 @@
                             }}
                         </h3>
                         @if (canEdit() && demand.status !== 'CANCELLED') {
-                            @if (!editPhotosMode()) {
-                                <button
-                                    type="button"
-                                    class="detail-edit-btn"
-                                    (click)="enterEditPhotos(demand.photoKeys, demand.photos)"
-                                >
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                    </svg>
-                                </button>
-                            } @else {
-                                <div class="detail-edit-actions">
-                                    <button type="button" class="detail-cancel-btn" (click)="cancelEditPhotos()">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-                                        </svg>
-                                    </button>
-                                    <button
-                                        type="button"
-                                        class="detail-save-btn"
-                                        (click)="savePhotos()"
-                                        [disabled]="savingPhotos()"
-                                    >
-                                        @if (savingPhotos()) {
-                                            <span class="detail-spinner-sm"></span>
-                                        } @else {
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                                <polyline points="20 6 9 17 4 12"/>
-                                            </svg>
-                                        }
-                                    </button>
-                                </div>
-                            }
+                            <inline-edit-actions
+                                [editing]="editPhotosMode()"
+                                [saving]="savingPhotos()"
+                                (edit)="enterEditPhotos(demand.photoKeys, demand.photos)"
+                                (cancel)="cancelEditPhotos()"
+                                (save)="savePhotos()"
+                            />
                         }
                     </div>
 
@@ -205,6 +157,20 @@
                         </li>
                     }
                 </ul>
+
+                @if (canSendMessage(demand) && demand.status !== 'CANCELLED') {
+                    <button
+                        type="button"
+                        class="detail-message-btn"
+                        [disabled]="startingConversation()"
+                        (click)="sendMessage()"
+                    >
+                        @if (startingConversation()) {
+                            <span class="detail-spinner-sm"></span>
+                        }
+                        {{ 'demand.detail.sendMessage' | transloco }}
+                    </button>
+                }
 
                 @if (canEdit() && demand.status !== 'CANCELLED') {
                     <button

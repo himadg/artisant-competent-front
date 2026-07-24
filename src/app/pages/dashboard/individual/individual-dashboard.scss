@@ -1,3 +1,5 @@
+@use '../shared-styles/dashboard-nav';
+
 /* ── Layout général ── */
 .ind-layout {
   display: grid;
@@ -26,73 +28,22 @@
   flex-direction: column;
   align-items: center;
   padding-top: 2rem;
+  padding-bottom: 1rem;
   border-right: 1px solid var(--border-color);
   height: 100%;
   overflow-y: auto;
+}
+
+.ind-main {
+  overflow-y: auto;
+  min-width: 0;
+  min-height: 0;
 }
 
 .ind-nav {
   display: flex;
   flex-direction: column;
   gap: 0.125rem;
-}
-
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 0.625rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.5rem;
-  font-size: 0.85rem;
-  background: none;
-  border: none;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
-  transition: background 0.15s;
-
-  svg {
-    flex-shrink: 0;
-    width: 1.1rem;
-    height: 1.1rem;
-    display: block;
-  }
-
-  &:hover {
-    color: var(--primary-beige);
-    background: var(--h-grad-water-green);
-  }
-
-  &.active {
-    color: var(--primary-beige);
-    background: var(--h-grad-water-green);
-    border-radius: 0.5rem;
-  }
-}
-
-:host-context(.dark) .nav-item:hover,
-:host-context(.dark) .nav-item.active {
-  background-color: var(--primary-brown);
-}
-
-.nav-divider {
-  width: 75%;
-  border: none;
-  border-top: 1px solid var(--border-color);
-  margin: 0.5rem 0.75rem;
-}
-
-.nav-toggles {
-  display: flex;
-  justify-content: space-evenly;
-  padding: 0.5rem 0.75rem;
-}
-
-.logout {
-  display: flex;
-  justify-content: center;
-  width: min-content;
-  white-space: nowrap;
 }
 
 /* ── Topbar ── */
@@ -118,6 +69,7 @@
 }
 
 .topbar-icon-btn {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,14 +80,27 @@
   border: none;
   cursor: pointer;
   color: var(--color);
-  opacity: 0.65;
-  transition:
-    opacity 0.15s,
-    background 0.15s;
+  transition: opacity 0.15s, background 0.15s;
 
-  svg {
-    width: 1.15rem;
-    height: 1.15rem;
+  .badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    display: grid;
+    place-items: center;
+    border-radius: 9999px;
+    background: #c0392b;
+    color: #fff;
+    font-size: 10px;
+    line-height: 1;
+  }
+
+  svg *,
+  iconify-icon {
+    font-size: 1.5rem;
   }
 
   &:hover {
@@ -144,51 +109,15 @@
   }
 }
 
-.topbar-user {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-left: 0.5rem;
-  padding-left: 0.75rem;
-  border-left: 1px solid var(--border-color);
-}
-
 .topbar-avatar {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  object-fit: cover;
   border: 2px solid var(--border-color);
-
-  &--placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--primary-beige);
-
-    svg {
-      width: 1rem;
-      height: 1rem;
-      opacity: 0.5;
-    }
-  }
-}
-
-.topbar-username {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--color);
-  max-width: 10rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 /* ── Main ── */
-.ind-main {
-  grid-column: 2;
-  grid-row: 2;
-  overflow-y: auto;
+.ind-content {
+  display: flex;
+  flex-direction: column;
+  margin-inline: auto;
 }
 
 /* ── En-tête profil ── */
@@ -206,24 +135,7 @@
 }
 
 .ind-photo {
-  width: 9rem;
-  height: 9rem;
-  border-radius: 50%;
-  object-fit: cover;
   border: 4px solid var(--primary-water-green);
-
-  &--placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--primary-beige);
-
-    svg {
-      width: 5rem;
-      height: 5rem;
-      opacity: 0.7;
-    }
-  }
 }
 
 .ind-user-info {
@@ -261,6 +173,10 @@
 
 /* ── Contenu sections ── */
 .ind-section-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
   padding: 1.75rem 2rem;
 }
 
@@ -339,72 +255,6 @@
   align-items: center;
 }
 
-.ind-edit-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  padding: 0;
-  border-radius: 0.375rem;
-  background: none;
-  border: 1px solid transparent;
-  cursor: pointer;
-  color: var(--color);
-  opacity: 0.4;
-  flex-shrink: 0;
-
-  svg {
-    width: 0.85rem;
-    height: 0.85rem;
-  }
-}
-
-.ind-edit-actions {
-  display: flex;
-  gap: 0.375rem;
-  flex-shrink: 0;
-}
-
-.ind-cancel-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.5rem;
-  height: 1.75rem;
-  padding: 0;
-  background: none;
-  cursor: pointer;
-  color: #ef4444;
-
-  svg {
-    width: 0.85rem;
-    height: 0.85rem;
-  }
-}
-
-.ind-save-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.5rem;
-  height: 1.75rem;
-  padding: 0;
-  background: none;
-  cursor: pointer;
-  color: #22c55e;
-
-  svg {
-    width: 0.85rem;
-    height: 0.85rem;
-  }
-
-  &:disabled {
-    opacity: 0.4;
-    cursor: default;
-  }
-}
-
 .ind-edit-input {
   font-size: 0.875rem;
   font-weight: 500;
@@ -421,16 +271,6 @@
   &:focus {
     box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-water-green) 20%, transparent);
   }
-}
-
-.spinner-sm {
-  display: inline-block;
-  width: 0.75rem;
-  height: 0.75rem;
-  border: 2px solid color-mix(in srgb, #22c55e 30%, transparent);
-  border-top-color: #22c55e;
-  border-radius: 50%;
-  animation: spin 0.6s linear infinite;
 }
 
 .ind-empty {
@@ -537,7 +377,9 @@
 }
 
 /* ── Bottom nav (mobile) ── */
-.ind-bottom-nav, .more-overlay, .more-menu {
+.ind-bottom-nav,
+.more-overlay,
+.more-menu {
   display: none;
 }
 
@@ -570,7 +412,7 @@
     position: fixed;
     top: 1rem;
     right: 1rem;
-    z-index: 30;
+    z-index: 10;
   }
 
   notification-bell {
@@ -647,7 +489,7 @@
     flex: 1;
     min-height: 0;
     overflow-y: auto;
-    padding: 1.5rem 4rem 4rem;
+    padding: 1.5rem 4rem 2rem;
     border: none !important;
     border-radius: 0 !important;
   }
@@ -660,6 +502,7 @@
     dt {
       font-size: 0.75rem;
     }
+
     dd {
       font-size: 0.875rem;
     }
@@ -667,6 +510,7 @@
 
   /* ── Menu "Plus" ── */
   .more-overlay {
+    display: block;
     position: fixed;
     inset: 0;
     z-index: 20;
@@ -705,7 +549,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.4rem 0.5rem;
+    padding: 0.4rem 0.75rem;
     border-radius: 0.5rem;
     border: none;
     background: none;
@@ -714,9 +558,9 @@
     font-size: 0.875rem;
     color: var(--color);
 
-    svg {
-      width: 1rem;
-      height: 1rem;
+    svg,
+    iconify-icon {
+      font-size: 1.1rem;
       flex-shrink: 0;
     }
 
@@ -730,6 +574,7 @@
       opacity: 0;
       transform: translateY(0.5rem);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -767,14 +612,38 @@
     /* ---- Les propriétés anti-flash mobile ---- */
     appearance: none;
     -webkit-appearance: none;
-    -webkit-tap-highlight-color: transparent; /* Supprime le flash bleu/gris natif */
-    outline: none;                            /* Supprime l'anneau de focus (souvent noir/bleu) */
-    user-select: none;                        /* Empêche de sélectionner le texte du bouton en restant appuyé */
+    -webkit-tap-highlight-color: transparent;
+    /* Supprime le flash bleu/gris natif */
+    outline: none;
+    /* Supprime l'anneau de focus (souvent noir/bleu) */
+    user-select: none;
+    /* Empêche de sélectionner le texte du bouton en restant appuyé */
     -webkit-user-select: none;
 
-    svg {
-      width: 1.25rem;
-      height: 1.25rem;
+    svg,
+    iconify-icon {
+      font-size: 1.25rem;
+    }
+
+    .bottom-nav-icon-wrap {
+      position: relative;
+      display: inline-flex;
+
+      .badge {
+        position: absolute;
+        top: -4px;
+        right: -6px;
+        min-width: 16px;
+        height: 16px;
+        padding: 0 4px;
+        display: grid;
+        place-items: center;
+        border-radius: 9999px;
+        background: #c0392b;
+        color: #fff;
+        font-size: 10px;
+        line-height: 1;
+      }
     }
 
     .bottom-nav-logo {
@@ -789,16 +658,23 @@
     }
 
     /* Optionnel : Désactiver explicitement le changement de background au hover/active s'il y en a un hérité */
-    &:active, &:focus, &:hover {
+    &:active,
+    &:focus,
+    &:hover {
       color: var(--primary-beige) !important;
       background-color: var(--primary-water-green) !important;
     }
 
-    &.plus-menu, &.plus-menu:hover, &.plus-menu:focus, &.plus-menu:active {
+    &.plus-menu,
+    &.plus-menu:hover,
+    &.plus-menu:focus,
+    &.plus-menu:active {
       color: var(--primary-water-green) !important;
       background-color: var(--primary-beige) !important;
 
-      & *:hover, & *:focus, & *:active {
+      & *:hover,
+      & *:focus,
+      & *:active {
         color: var(--primary-water-green) !important;
         background-color: var(--primary-beige) !important;
       }
@@ -826,14 +702,14 @@
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--primary-water-green) 12%, transparent);
+  background: color-mix(in srgb, var(--primary-water-green) 15%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;
 
-  svg {
-    width: 1.75rem;
-    height: 1.75rem;
+  svg,
+  iconify-icon {
+    font-size: 2rem;
     color: var(--primary-water-green);
   }
 }
@@ -860,9 +736,10 @@
   cursor: pointer;
   transition: opacity 0.15s;
 
-  svg {
-    width: 1rem;
-    height: 1rem;
+  svg,
+  iconify-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
   }
 
   &:hover {
@@ -918,9 +795,9 @@
   cursor: pointer;
   transition: background 0.15s, color 0.15s, border-color 0.15s;
 
-  svg {
-    width: 0.85rem;
-    height: 0.85rem;
+  svg,
+  iconify-icon {
+    font-size: 1.1rem;
     flex-shrink: 0;
   }
 

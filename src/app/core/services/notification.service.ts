@@ -2,16 +2,16 @@ import { Injectable, PLATFORM_ID, effect, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
-import { io, Socket } from 'socket.io-client';
+import { Socket } from 'socket.io-client';
 import { AppNotification } from '../../shared/interfaces/notification';
-import { AppConfigService } from './app-config.service';
 import { AuthService } from './auth.service';
+import { SocketConnectionService } from './socket-connection.service';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationService {
   private readonly http = inject(HttpClient);
   private readonly authService = inject(AuthService);
-  private readonly appConfig = inject(AppConfigService);
+  private readonly socketConnection = inject(SocketConnectionService);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   private socket: Socket | null = null;
@@ -75,11 +75,8 @@ export class NotificationService {
     void this.refreshUnreadCount();
     void this.loadAll();
 
-    this.socket = io(`${this.appConfig.get('apiUrl')}/notifications`, {
-      // Fonction plutôt qu'objet statique : ré-évalue le token à chaque tentative de connexion,
-      // ce qui couvre nativement le cas d'un token rafraîchi entre deux reconnexions.
-      auth: (cb) => cb({ token: this.authService.accessToken }),
-    });
+    this.socket = this.socketConnection.acquire();
+    if (!this.socket) return;
     this.socket.on('connect', () => void this.refreshUnreadCount());
     this.socket.on('notification', (notification: AppNotification) => {
       this.notifications.update((list) => [notification, ...list]);
@@ -91,8 +88,12 @@ export class NotificationService {
   }
 
   private disconnect(): void {
-    this.socket?.disconnect();
+    if (!this.socket) return;
+    this.socket.off('connect');
+    this.socket.off('notification');
+    this.socket.off('connect_error');
     this.socket = null;
+    this.socketConnection.release();
     this.notifications.set([]);
     this.unreadCount.set(0);
   }

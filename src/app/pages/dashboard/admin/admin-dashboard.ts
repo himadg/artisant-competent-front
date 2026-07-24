@@ -6,12 +6,13 @@ import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { AdminApiService } from '../../../core/services/admin-api.service';
 import { PendingUser } from '../../../shared/interfaces/pending-user';
 import { AuthService } from '../../../core/services/auth.service';
+import { LocalizedDatePipe } from '../../../shared/pipes/localized-date.pipe';
 
 @Component({
   selector: 'dashboard-admin',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, TranslocoModule, RouterModule],
+  imports: [CommonModule, TranslocoModule, RouterModule, LocalizedDatePipe],
   templateUrl: './admin-dashboard.html',
   styleUrl: './admin-dashboard.scss',
 })

@@ -1,0 +1,50 @@
+<div class="conv-list">
+    <div class="conv-search-wrap">
+        <input
+            type="search"
+            class="conv-search"
+            [placeholder]="'dashboard.messages.searchPlaceholder' | transloco"
+            (input)="onSearchInput($event)"
+        />
+    </div>
+
+    <div class="conv-items">
+        @if (filteredConversations().length === 0) {
+            <p class="conv-empty">{{ 'dashboard.messages.empty' | transloco }}</p>
+        } @else {
+            @for (conversation of filteredConversations(); track conversation.id) {
+                <button
+                    type="button"
+                    class="conv-item"
+                    [class.active]="conversation.id === selectedId()"
+                    [class.unread]="conversation.unreadCount > 0"
+                    (click)="selected.emit(conversation.id)"
+                >
+                    <user-avatar
+                        [photoUrl]="conversation.otherParticipant.photoUrl"
+                        [alt]="conversation.otherParticipant.firstName[0] + conversation.otherParticipant.lastName[0]"
+                        class="conv-avatar border"
+                        style="--avatar-size: 2.75rem"
+                    />
+
+                    <div class="conv-content">
+                        <div class="conv-line-top">
+                            <span class="conv-name">
+                                {{ conversation.otherParticipant.firstName }} {{ conversation.otherParticipant.lastName }}
+                            </span>
+                            @if (conversation.lastMessage) {
+                                <span class="conv-time">{{ formatTimestamp(conversation.lastMessage.createdAt) }}</span>
+                            }
+                        </div>
+                        <div class="conv-line-bottom">
+                            <span class="conv-preview">{{ lastMessagePreview(conversation) }}</span>
+                            @if (conversation.unreadCount > 0) {
+                                <span class="conv-badge">{{ conversation.unreadCount > 9 ? '9+' : conversation.unreadCount }}</span>
+                            }
+                        </div>
+                    </div>
+                </button>
+            }
+        }
+    </div>
+</div>
