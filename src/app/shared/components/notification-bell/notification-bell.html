@@ -34,7 +34,7 @@
                                 <div class="content">
                                     <p class="title" [class.font-extrabold]="!notification.read">{{ notification.title }}</p>
                                     <p class="body">{{ notification.body }}</p>
-                                    <p class="date">{{ notification.createdAt | date: 'short' }}</p>
+                                    <p class="date">{{ notification.createdAt | localizedDate:'dateTime' }}</p>
                                 </div>
                             </li>
                         }

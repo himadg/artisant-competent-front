@@ -24,70 +24,29 @@
   }
 }
 
+.detail-author {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.detail-author-role {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary-water-green) 12%, transparent);
+  color: var(--primary-water-green);
+}
+
 /* ── En-têtes de section éditables ── */
 .detail-section-header {
   display: flex;
   align-items: center;
   margin-bottom: 0.5rem;
-}
-
-.detail-edit-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  background: none;
-  border: none;
-  color: inherit;
-  opacity: 0.5;
-  cursor: pointer;
-  transition: opacity 0.15s;
-
-  svg {
-    width: 1rem;
-    height: 1rem;
-  }
-
-  &:hover {
-    opacity: 0.9;
-  }
-}
-
-.detail-edit-actions {
-  display: flex;
-  gap: 0.4rem;
-  margin-left: 0.3rem;
-}
-
-.detail-cancel-btn,
-.detail-save-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.5rem;
-  height: 1.75rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-
-  svg {
-    width: 0.95rem;
-    height: 0.95rem;
-  }
-}
-
-.detail-cancel-btn {
-  color: #ef4444;
-}
-
-.detail-save-btn {
-  color: #22c55e;
-
-  &:disabled {
-    opacity: 0.45;
-    cursor: not-allowed;
-  }
 }
 
 .detail-spinner-sm {
@@ -172,6 +131,34 @@
   font-size: 0.65rem;
   line-height: 1;
   cursor: pointer;
+}
+
+/* ── Envoyer un message ── */
+.detail-message-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.55rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-beige);
+  background: var(--h-grad-water-green);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: opacity 0.15s;
+
+  &:hover:not(:disabled) {
+    opacity: 0.85;
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
 }
 
 /* ── Annulation de la demande ── */

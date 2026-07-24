@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, input, output, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
+import { ALLOWED_IMAGE_TYPES } from '../../../core/utils/file-types';
 
 export interface DemandFormValue {
   description: string;
@@ -36,13 +37,12 @@ export class DemandModal {
     return this.form.controls.description;
   }
 
-  private readonly allowedTypes = new Set(['image/jpeg', 'image/png', 'image/webp']);
   private formatErrorTimer: ReturnType<typeof setTimeout> | null = null;
 
   onFilesChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     const all = Array.from(input.files ?? []);
-    const valid = all.filter(f => this.allowedTypes.has(f.type));
+    const valid = all.filter(f => ALLOWED_IMAGE_TYPES.has(f.type));
 
     if (valid.length < all.length) {
       this.showFormatError.set(true);

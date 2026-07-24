@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, DestroyRef, inject, OnInit, signal, computed } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule, PlatformLocation } from '@angular/common';
@@ -12,6 +12,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { UserApiService } from '../../../core/services/user-api.service';
 import { AffiliationApiService } from '../../../core/services/affiliation-api.service';
 import { DemandService } from '../../../core/services/demand.service';
+import { ChatService } from '../../../core/services/chat.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProfessionalDashboardData, OpeningHoursDay } from '../../../shared/interfaces/professional-dashboard';
 import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
@@ -22,9 +23,15 @@ import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
 import { DocModal } from '../../../shared/components/doc-modal/doc-modal';
 import { DemandDetailsModal } from '../../../shared/components/demand-details-modal/demand-details-modal';
 import { NotificationBell } from '../../../shared/components/notification-bell/notification-bell';
+import { Messaging } from '../../../shared/components/messaging/messaging';
+import { UserAvatar } from '../../../shared/components/user-avatar/user-avatar';
+import { InlineEditActions } from '../../../shared/components/inline-edit-actions/inline-edit-actions';
 import { PreviewDocument } from '../../../shared/interfaces/preview-document';
+import { LocalizedDatePipe } from '../../../shared/pipes/localized-date.pipe';
+import { LangService } from '../../../core/services/lang.service';
+import { DATE_STYLE_MONTH_YEAR, formatLocalizedDate } from '../../../core/utils/date-format';
 
-export type ProSection = 'profile' | 'requests' | 'practices' | 'legal' | 'affiliation';
+export type ProSection = 'profile' | 'requests' | 'messages' | 'practices' | 'legal' | 'affiliation';
 export type ProTab = 'presentation' | 'missions' | 'reviews' | 'documents';
 export type RequestsTab = 'mine' | 'received';
 
@@ -45,9 +52,14 @@ const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'satu
     DocModal,
     DemandDetailsModal,
     NotificationBell,
+    Messaging,
+    UserAvatar,
+    InlineEditActions,
+    LocalizedDatePipe,
   ],
   templateUrl: './professional-dashboard.html',
   styleUrl: './professional-dashboard.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ProfessionalDashboard implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
@@ -60,7 +72,9 @@ export class ProfessionalDashboard implements OnInit {
   private readonly router = inject(Router);
   private readonly platformLocation = inject(PlatformLocation);
   private readonly transloco = inject(TranslocoService);
+  private readonly langService = inject(LangService);
   readonly authService = inject(AuthService);
+  readonly chatService = inject(ChatService);
 
   readonly data = signal<ProfessionalDashboardData | null>(null);
   readonly loading = signal(true);
@@ -79,11 +93,12 @@ export class ProfessionalDashboard implements OnInit {
   readonly demandsLoading = signal(false);
   readonly selectedDemandId = signal<string | null>(null);
   readonly selectedDemandEditable = signal(false);
+  readonly pendingConversationId = signal<string | null>(null);
 
   readonly inscriptionDate = computed(() => {
     const data = this.data();
     if (!data) return '';
-    return new Date(data.createdAt).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+    return formatLocalizedDate(data.createdAt, this.langService.lang(), DATE_STYLE_MONTH_YEAR);
   });
 
   readonly workCity = computed(() => {
@@ -233,6 +248,17 @@ export class ProfessionalDashboard implements OnInit {
     if (section === 'requests') {
       this.loadDemands();
     }
+  }
+
+  onMessageStarted(conversationId: string) {
+    this.selectedDemandId.set(null);
+    this.pendingConversationId.set(conversationId);
+    this.setSection('messages');
+  }
+
+  onOpenDemandFromMessaging(demandId: string) {
+    this.selectedDemandEditable.set(false);
+    this.selectedDemandId.set(demandId);
   }
 
   setRequestsTab(tab: RequestsTab) {
