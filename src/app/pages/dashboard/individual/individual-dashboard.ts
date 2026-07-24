@@ -1,4 +1,4 @@
-﻿import { ChangeDetectionStrategy, Component, inject, OnInit, signal, computed } from '@angular/core';
+﻿import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, signal, computed } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule, PlatformLocation } from '@angular/common';
@@ -9,6 +9,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { UserApiService } from '../../../core/services/user-api.service';
 import { AffiliationApiService } from '../../../core/services/affiliation-api.service';
 import { DemandService } from '../../../core/services/demand.service';
+import { ChatService } from '../../../core/services/chat.service';
 import { IndividualDashboardData } from '../../../shared/interfaces/individual-dashboard';
 import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
 import { DemandDetail, DemandSummary } from '../../../shared/interfaces/demand';
@@ -17,17 +18,24 @@ import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggl
 import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
 import { DemandDetailsModal } from '../../../shared/components/demand-details-modal/demand-details-modal';
 import { NotificationBell } from '../../../shared/components/notification-bell/notification-bell';
+import { Messaging } from '../../../shared/components/messaging/messaging';
+import { UserAvatar } from '../../../shared/components/user-avatar/user-avatar';
+import { InlineEditActions } from '../../../shared/components/inline-edit-actions/inline-edit-actions';
+import { LocalizedDatePipe } from '../../../shared/pipes/localized-date.pipe';
+import { LangService } from '../../../core/services/lang.service';
+import { DATE_STYLE_FULL, DATE_STYLE_MONTH_YEAR, formatLocalizedDate } from '../../../core/utils/date-format';
 import { RouterLink } from "@angular/router";
 
-export type IndividualSection = 'profile' | 'requests' | 'quotes' | 'invoices' | 'legal' | 'practices' | 'affiliation';
+export type IndividualSection = 'profile' | 'requests' | 'messages' | 'quotes' | 'invoices' | 'legal' | 'practices' | 'affiliation';
 
 @Component({
   selector: 'dashboard-individual',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FormsModule, TranslocoModule, LangToggle, ThemeToggle, LegalModal, RouterLink, DemandDetailsModal, NotificationBell],
+  imports: [CommonModule, FormsModule, TranslocoModule, LangToggle, ThemeToggle, LegalModal, RouterLink, DemandDetailsModal, NotificationBell, Messaging, UserAvatar, InlineEditActions, LocalizedDatePipe],
   templateUrl: './individual-dashboard.html',
   styleUrl: './individual-dashboard.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class IndividualDashboard implements OnInit {
   private readonly dashboardApi = inject(DashboardApiService);
@@ -35,7 +43,9 @@ export class IndividualDashboard implements OnInit {
   private readonly affiliationApi = inject(AffiliationApiService);
   private readonly demandService = inject(DemandService);
   private readonly platformLocation = inject(PlatformLocation);
+  private readonly langService = inject(LangService);
   readonly authService = inject(AuthService);
+  readonly chatService = inject(ChatService);
 
   readonly data = signal<IndividualDashboardData | null>(null);
   readonly loading = signal(true);
@@ -58,13 +68,13 @@ export class IndividualDashboard implements OnInit {
   readonly inscriptionDate = computed(() => {
     const data = this.data();
     if (!data) return '';
-    return new Date(data.createdAt).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+    return formatLocalizedDate(data.createdAt, this.langService.lang(), DATE_STYLE_MONTH_YEAR);
   });
 
   readonly birthDate = computed(() => {
     const data = this.data();
     if (!data) return '';
-    return new Date(data.birthDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+    return formatLocalizedDate(data.birthDate, this.langService.lang(), DATE_STYLE_FULL);
   });
 
   readonly homeAddress = computed(() => {
@@ -96,6 +106,10 @@ export class IndividualDashboard implements OnInit {
     if (section === 'requests') {
       this.loadDemands();
     }
+  }
+
+  onOpenDemandFromMessaging(demandId: string) {
+    this.selectedDemandId.set(demandId);
   }
 
   loadDemands() {

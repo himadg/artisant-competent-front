@@ -4,15 +4,24 @@
             <div class="modal-header">
                 <h3 class="modal-title">{{ document()?.title || ('docModal.defaultTitle' | transloco) }}</h3>
                 <button class="close-btn" (click)="closeModal.emit()" [attr.aria-label]="'common.close' | transloco">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="6" x2="6" y2="18" />
-                        <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
+                    <iconify-icon icon="lucide:x"></iconify-icon>
                 </button>
             </div>
             <div class="modal-body">
                 @if (isWebp()) {
-                    <img [src]="document()?.url" [alt]="document()?.title || ('docModal.defaultAlt' | transloco)" class="preview-img" />
+                    <img
+                        [src]="document()?.url"
+                        [alt]="document()?.title || ('docModal.defaultAlt' | transloco)"
+                        class="preview-img"
+                        [class.zoomed]="isZoomed()"
+                        [style.transform]="imageTransform()"
+                        (touchstart)="onImageTouchStart($event)"
+                        (touchmove)="onImageTouchMove($event)"
+                        (touchend)="onImageTouchEnd($event)"
+                        (touchcancel)="onImageTouchEnd($event)"
+                        (wheel)="onImageWheel($event)"
+                        (mousedown)="onImageMouseDown($event)"
+                    />
                 } @else if (isPdf() && safePdfUrl()) {
                     <object [data]="safePdfUrl()" type="application/pdf" class="preview-pdf">
                         <p>

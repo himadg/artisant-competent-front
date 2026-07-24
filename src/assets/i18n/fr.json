@@ -449,7 +449,8 @@
     "logo": "Logo",
     "sidebarNavigation": "Navigation latérale",
     "bottomNavigation": "Navigation basse",
-    "avatar": "Avatar"
+    "avatar": "Avatar",
+    "back": "Retour"
   },
   "docModal": {
     "defaultTitle": "Aperçu du document",
@@ -484,9 +485,12 @@
       "descriptionTitle": "Description",
       "photos": "{{ count }} photo(s)",
       "photoAlt": "Photo {{ index }}",
+      "author": "Par {{ name }}",
       "contacted": "Professionnels contactés ({{ count }})",
+      "sendMessage": "Envoyer un message",
       "cancelDemand": "Annuler la demande",
-      "cancelConfirm": "Êtes-vous sûr de vouloir annuler cette demande ? Cette action est irréversible."
+      "cancelConfirm": "Êtes-vous sûr de vouloir annuler cette demande ? Cette action est irréversible.",
+      "errorMaxPhotos": "Vous avez atteint la limite de 3 photos."
     }
   },
   "footer": {
@@ -3318,7 +3322,8 @@
         "invoices": "Mes factures",
         "legal": "Informations légales",
         "practices": "Bonnes pratiques",
-        "affiliation": "Affiliation"
+        "affiliation": "Affiliation",
+        "messages": "Messages"
       },
       "mobile": {
         "profile": "Compte",
@@ -3348,7 +3353,8 @@
         "profile": "Infos personnelles",
         "legal": "Informations légales",
         "practices": "Bonnes pratiques",
-        "affiliation": "Affiliation"
+        "affiliation": "Affiliation",
+        "messages": "Messages"
       },
       "tabs": {
         "presentation": "Présentation",
@@ -3494,7 +3500,24 @@
         "professional": "Professionnel parrainé → 5% de commission pendant 6 mois."
       }
     },
-    "loading": "Chargement du tableau de bord..."
+    "loading": "Chargement du tableau de bord...",
+    "messages": {
+      "searchPlaceholder": "Rechercher",
+      "empty": "Aucune conversation",
+      "selectPrompt": "Sélectionnez une conversation pour l’afficher ici",
+      "inputPlaceholder": "Écrivez votre message...",
+      "send": "Envoyer",
+      "demandLabel": "Demande",
+      "attach": "Joindre un fichier",
+      "actions": {
+        "title": "Actions",
+        "decline": "Décliner l'offre",
+        "quote": "Créer un devis",
+        "review": "Laisser un avis",
+        "dispute": "Signaler un conflit"
+      },
+      "invalidAttachment": "Format de fichier non supporté. Formats acceptés : JPG, JPEG, PNG, WEBP, PDF."
+    }
   },
   "cities": {
     "nav": "Nos villes",
@@ -3757,7 +3780,9 @@
     "forbidden": "Vous n'avez pas les droits pour effectuer cette action.",
     "notFound": "La ressource demandée est introuvable.",
     "server": "Une erreur est survenue côté serveur. Veuillez réessayer.",
-    "unknown": "Une erreur inattendue est survenue. Veuillez réessayer."
+    "unknown": "Une erreur inattendue est survenue. Veuillez réessayer.",
+    "invalidImageFormat": "Format invalide. Seuls les fichiers JPEG, PNG et WebP sont acceptés.",
+    "invalidDocumentFormat": "Format invalide. Seuls les fichiers JPEG, PNG, WebP et PDF sont acceptés."
   },
   "notifications": {
     "title": "Notifications",

@@ -16,11 +16,7 @@
 
             <div class="w-[500px100lvw] p-4 text-yellow-800 bg-yellow-50 rounded-lg border border-yellow-200">
                 <h4 class="flex gap-2 items-center font-bold">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="12" y1="8" x2="12" y2="12" />
-                        <line x1="12" y1="16" x2="12.01" y2="16" />
-                    </svg>
+                    <iconify-icon icon="lucide:alert-circle" class="w-5 h-5"></iconify-icon>
                     {{ 'dashboard.pro.status.pendingTitle' | transloco }}
                 </h4>
                 <p class="mt-1 text-sm">
@@ -39,11 +35,7 @@
         <div class="flex justify-center m-16 w-auto">
             <div class="w-[100lvw] p-4 text-red-800 bg-red-50 rounded-lg border border-red-200">
                 <h4 class="flex gap-2 items-center font-bold">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="15" y1="9" x2="9" y2="15" />
-                        <line x1="9" y1="9" x2="15" y2="15" />
-                    </svg>
+                    <iconify-icon icon="lucide:x-circle" class="w-5 h-5"></iconify-icon>
                     {{ 'dashboard.pro.status.rejectedTitle' | transloco }}
                 </h4>
                 <p class="mt-1 text-sm">
@@ -60,31 +52,23 @@
             <!-- ═══════════════ TOPBAR ═══════════════ -->
             <div class="pro-topbar">
                 <a routerLink="/" class="flex self-stretch items-center">
-                    <img src="assets/img/banner.png" alt="Artisan competent banner" class="h-[60%]" />
+                    <img src="assets/img/banner.png" alt="AC banner" class="h-[60%]" />
                 </a>
                 <div class="pro-topbar-actions">
                     <notification-bell></notification-bell>
-                    <button class="topbar-icon-btn" [attr.aria-label]="'common.messages' | transloco">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <rect x="2" y="4" width="20" height="16" rx="2" />
-                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                        </svg>
+                    <button class="topbar-icon-btn" [attr.aria-label]="'common.messages' | transloco" (click)="setSection('messages')">
+                        <iconify-icon icon="lucide:mail"></iconify-icon>
+                        @if (chatService.unreadConversationsCount() > 0) {
+                            <span class="badge">{{ chatService.unreadConversationsCount() > 9 ? '9+' : chatService.unreadConversationsCount() }}</span>
+                        }
                     </button>
                     <div class="topbar-user">
-                        @if (pro.professionalProfile.photoUrl) {
-                            <img
-                                [src]="pro.professionalProfile.photoUrl"
-                                [alt]="pro.professionalProfile.companyName"
-                                class="topbar-avatar"
-                            />
-                        } @else {
-                            <div class="topbar-avatar topbar-avatar--placeholder">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                                    <circle cx="12" cy="8" r="4" />
-                                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-                                </svg>
-                            </div>
-                        }
+                        <user-avatar
+                            [photoUrl]="pro.professionalProfile.photoUrl"
+                            [alt]="pro.firstName[0] + pro.lastName[0]"
+                            class="topbar-avatar"
+                            style="--avatar-size: 2rem"
+                        />
                         <span class="topbar-username">{{ pro.firstName }} {{ pro.lastName }}</span>
                     </div>
                 </div>
@@ -98,10 +82,7 @@
                         [class.active]="activeSection() === 'profile'"
                         (click)="setSection('profile')"
                     >
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <circle cx="12" cy="8" r="4" />
-                            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-                        </svg>
+                        <iconify-icon icon="lucide:user"></iconify-icon>
                         {{ 'dashboard.pro.nav.profile' | transloco }}
                     </button>
                     <button
@@ -109,10 +90,7 @@
                         [class.active]="activeSection() === 'requests'"
                         (click)="setSection('requests')"
                     >
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <circle cx="11" cy="11" r="8" />
-                            <path d="m21 21-4.35-4.35" />
-                        </svg>
+                        <iconify-icon icon="lucide:search"></iconify-icon>
                         {{ 'dashboard.pro.nav.requests' | transloco }}
                     </button>
                     <button
@@ -120,17 +98,11 @@
                         [class.active]="activeSection() === 'practices'"
                         (click)="setSection('practices')"
                     >
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <circle cx="12" cy="12" r="10" />
-                            <line x1="12" y1="8" x2="12" y2="12" />
-                            <line x1="12" y1="16" x2="12.01" y2="16" />
-                        </svg>
+                        <iconify-icon icon="lucide:alert-circle"></iconify-icon>
                         {{ 'dashboard.pro.nav.practices' | transloco }}
                     </button>
                     <button class="nav-item" [class.active]="activeSection() === 'legal'" (click)="setSection('legal')">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                        </svg>
+                        <iconify-icon icon="lucide:shield"></iconify-icon>
                         {{ 'dashboard.pro.nav.legal' | transloco }}
                     </button>
                     <button
@@ -138,13 +110,12 @@
                         [class.active]="activeSection() === 'affiliation'"
                         (click)="setSection('affiliation')"
                     >
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                            <circle cx="9" cy="7" r="4" />
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                        </svg>
+                        <iconify-icon icon="lucide:users"></iconify-icon>
                         {{ 'dashboard.pro.nav.affiliation' | transloco }}
+                    </button>
+                    <button class="nav-item" routerLink="/contact">
+                        <iconify-icon icon="lucide:mail"></iconify-icon>
+                        {{ 'contact.nav' | transloco }}
                     </button>
                 </nav>
 
@@ -157,11 +128,7 @@
                     </div>
                     <div class="flex justify-center">
                         <button class="nav-item logout" (click)="authService.logout()">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-                                <polyline points="16 17 21 12 16 7" />
-                                <line x1="21" y1="12" x2="9" y2="12" />
-                            </svg>
+                            <iconify-icon icon="lucide:log-out"></iconify-icon>
                             {{ 'auth.logout' | transloco }}
                         </button>
                     </div>
@@ -169,36 +136,29 @@
             </aside>
 
             <!-- ═══════════════ CONTENU PRINCIPAL ═══════════════ -->
-            <main class="pro-main py-8 md:px-16 lg:px-56 2xl:px-[32rem] max-md:p-0">
+            <main class="pro-main w-full max-md:p-0">
+            <div class="pro-content w-full h-full md:h-auto md:w-[64rem] md:py-8 md:px-6 lg:px-36">
                 <!-- En-tête profil -->
                 <div class="w-[100%] mb-4 rounded-lg border border-solid pro-header">
                     <div class="pro-user">
                         <div class="pro-photo-wrap">
-                            @if (pro.professionalProfile.photoUrl) {
-                                <img
-                                    [src]="pro.professionalProfile.photoUrl"
-                                    [alt]="pro.professionalProfile.companyName"
-                                    class="pro-photo"
-                                />
-                            } @else {
-                                <div class="pro-photo pro-photo--placeholder">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                        <circle cx="12" cy="8" r="4" />
-                                        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-                                    </svg>
-                                </div>
-                            }
-                            @if (pro.professionalProfile.isCmod) {
+                            <user-avatar
+                                [photoUrl]="pro.professionalProfile.photoUrl"
+                                [alt]="pro.firstName[0] + pro.lastName[0]"
+                                class="pro-photo"
+                                style="--avatar-size: 9rem"
+                            />
+                            @if (pro.professionalProfile.logoUrl) {
                                 <div class="pro-badge-company">
                                     @if (pro.professionalProfile.logoUrl) {
                                         <img
                                             [src]="pro.professionalProfile.logoUrl"
-                                            [alt]="pro.professionalProfile.companyName"
+                                            [alt]="'common.logo' | transloco"
                                             class="pro-badge-logo"
                                         />
                                     } @else {
                                         <small>
-                                            <span>Artisan</span>
+                                            <p>Artisan</p>
                                             <strong>COMPÉTENT</strong>
                                         </small>
                                     }
@@ -209,32 +169,12 @@
                         <div class="pro-user-info">
                             <h2 class="pro-company-name">{{ pro.professionalProfile.companyName }}</h2>
                             <p class="pro-address">
-                                <svg
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="1.8"
-                                    class="inline-icon"
-                                >
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                                    <circle cx="12" cy="10" r="3" />
-                                </svg>
+                                <iconify-icon icon="lucide:map-pin" class="inline-icon"></iconify-icon>
                                 {{ workCity() }}
                             </p>
                             <div class="pro-since-badge">
                                 <span class="pro-since">
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="1.8"
-                                        class="inline-icon"
-                                    >
-                                        <rect x="3" y="4" width="18" height="18" rx="2" />
-                                        <line x1="16" y1="2" x2="16" y2="6" />
-                                        <line x1="8" y1="2" x2="8" y2="6" />
-                                        <line x1="3" y1="10" x2="21" y2="10" />
-                                    </svg>
+                                    <iconify-icon icon="lucide:calendar" class="inline-icon"></iconify-icon>
                                     {{ 'dashboard.pro.since' | transloco }} {{ inscriptionDate() }}
                                 </span>
                                 @if (pro.professionalProfile.isCmod) {
@@ -246,7 +186,7 @@
 
                     <!-- Onglets -->
                     @if (activeSection() === 'profile' && !moreMenuContentDisplayed()) {
-                        <div class="justify-between mx-0 pro-tabs sm:justify-normal lg:px-4">
+                        <div class="pro-tabs mx-0 justify-start lg:px-4">
                             <button
                                 class="pro-tab"
                                 [class.active]="activeTab() === 'presentation'"
@@ -289,64 +229,13 @@
                                     <div class="pro-block">
                                         <div class="pro-group-header">
                                             <h3>{{ 'dashboard.pro.personalInfo' | transloco }}</h3>
-                                            @if (!editPersonalInfoMode()) {
-                                                <button
-                                                    class="pro-edit-btn"
-                                                    type="button"
-                                                    (click)="enterEditPersonalInfo()"
-                                                >
-                                                    <svg
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        stroke-width="1.8"
-                                                    >
-                                                        <path
-                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
-                                                        />
-                                                        <path
-                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
-                                                        />
-                                                    </svg>
-                                                </button>
-                                            } @else {
-                                                <div class="pro-edit-actions">
-                                                    <button
-                                                        class="pro-cancel-btn"
-                                                        type="button"
-                                                        (click)="cancelEditPersonalInfo()"
-                                                    >
-                                                        <svg
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            stroke-width="2"
-                                                        >
-                                                            <line x1="18" y1="6" x2="6" y2="18" />
-                                                            <line x1="6" y1="6" x2="18" y2="18" />
-                                                        </svg>
-                                                    </button>
-                                                    <button
-                                                        class="pro-save-btn"
-                                                        type="button"
-                                                        (click)="saveEditPersonalInfo()"
-                                                        [disabled]="savingPersonalInfo()"
-                                                    >
-                                                        @if (savingPersonalInfo()) {
-                                                            <span class="pro-spinner-sm"></span>
-                                                        } @else {
-                                                            <svg
-                                                                viewBox="0 0 24 24"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                stroke-width="2.5"
-                                                            >
-                                                                <polyline points="20 6 9 17 4 12" />
-                                                            </svg>
-                                                        }
-                                                    </button>
-                                                </div>
-                                            }
+                                            <inline-edit-actions
+                                                [editing]="editPersonalInfoMode()"
+                                                [saving]="savingPersonalInfo()"
+                                                (edit)="enterEditPersonalInfo()"
+                                                (cancel)="cancelEditPersonalInfo()"
+                                                (save)="saveEditPersonalInfo()"
+                                            />
                                         </div>
                                         <dl class="pro-info-list">
                                             <div class="pro-info-row">
@@ -411,7 +300,7 @@
                                                             [(ngModel)]="editPersonalInfo.birthDate"
                                                         />
                                                     } @else {
-                                                        {{ pro.birthDate | date: 'dd/MM/yyyy' }}
+                                                        {{ pro.birthDate | localizedDate:'full' }}
                                                     }
                                                 </dd>
                                             </div>
@@ -568,64 +457,13 @@
                                     <div class="pro-block">
                                         <div class="pro-group-header">
                                             <h3>{{ 'dashboard.pro.mediator' | transloco }}</h3>
-                                            @if (!editMediatorMode()) {
-                                                <button
-                                                    class="pro-edit-btn"
-                                                    type="button"
-                                                    (click)="enterEditMediator()"
-                                                >
-                                                    <svg
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        stroke-width="1.8"
-                                                    >
-                                                        <path
-                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
-                                                        />
-                                                        <path
-                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
-                                                        />
-                                                    </svg>
-                                                </button>
-                                            } @else {
-                                                <div class="pro-edit-actions">
-                                                    <button
-                                                        class="pro-cancel-btn"
-                                                        type="button"
-                                                        (click)="cancelEditMediator()"
-                                                    >
-                                                        <svg
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            stroke-width="2"
-                                                        >
-                                                            <line x1="18" y1="6" x2="6" y2="18" />
-                                                            <line x1="6" y1="6" x2="18" y2="18" />
-                                                        </svg>
-                                                    </button>
-                                                    <button
-                                                        class="pro-save-btn"
-                                                        type="button"
-                                                        (click)="saveEditMediator()"
-                                                        [disabled]="savingMediator()"
-                                                    >
-                                                        @if (savingMediator()) {
-                                                            <span class="pro-spinner-sm"></span>
-                                                        } @else {
-                                                            <svg
-                                                                viewBox="0 0 24 24"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                stroke-width="2.5"
-                                                            >
-                                                                <polyline points="20 6 9 17 4 12" />
-                                                            </svg>
-                                                        }
-                                                    </button>
-                                                </div>
-                                            }
+                                            <inline-edit-actions
+                                                [editing]="editMediatorMode()"
+                                                [saving]="savingMediator()"
+                                                (edit)="enterEditMediator()"
+                                                (cancel)="cancelEditMediator()"
+                                                (save)="saveEditMediator()"
+                                            />
                                         </div>
                                         @if (!editMediatorMode() && !pro.professionalProfile.mediatorName) {
                                             <p class="pro-empty">{{ 'dashboard.pro.mediatorNone' | transloco }}</p>
@@ -754,64 +592,13 @@
                                     <div class="pro-block">
                                         <div class="pro-group-header">
                                             <h3>{{ 'dashboard.pro.additionalRemarks' | transloco }}</h3>
-                                            @if (!editAdditionalRemarksMode()) {
-                                                <button
-                                                    class="pro-edit-btn"
-                                                    type="button"
-                                                    (click)="enterEditAdditionalRemarks()"
-                                                >
-                                                    <svg
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        stroke-width="1.8"
-                                                    >
-                                                        <path
-                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
-                                                        />
-                                                        <path
-                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
-                                                        />
-                                                    </svg>
-                                                </button>
-                                            } @else {
-                                                <div class="pro-edit-actions">
-                                                    <button
-                                                        class="pro-cancel-btn"
-                                                        type="button"
-                                                        (click)="cancelEditAdditionalRemarks()"
-                                                    >
-                                                        <svg
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            stroke-width="2"
-                                                        >
-                                                            <line x1="18" y1="6" x2="6" y2="18" />
-                                                            <line x1="6" y1="6" x2="18" y2="18" />
-                                                        </svg>
-                                                    </button>
-                                                    <button
-                                                        class="pro-save-btn"
-                                                        type="button"
-                                                        (click)="saveEditAdditionalRemarks()"
-                                                        [disabled]="savingAdditionalRemarks()"
-                                                    >
-                                                        @if (savingAdditionalRemarks()) {
-                                                            <span class="pro-spinner-sm"></span>
-                                                        } @else {
-                                                            <svg
-                                                                viewBox="0 0 24 24"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                stroke-width="2.5"
-                                                            >
-                                                                <polyline points="20 6 9 17 4 12" />
-                                                            </svg>
-                                                        }
-                                                    </button>
-                                                </div>
-                                            }
+                                            <inline-edit-actions
+                                                [editing]="editAdditionalRemarksMode()"
+                                                [saving]="savingAdditionalRemarks()"
+                                                (edit)="enterEditAdditionalRemarks()"
+                                                (cancel)="cancelEditAdditionalRemarks()"
+                                                (save)="saveEditAdditionalRemarks()"
+                                            />
                                         </div>
                                         @if (editAdditionalRemarksMode()) {
                                             <textarea
@@ -834,84 +621,17 @@
                                     <!-- ── Infos entreprise ── -->
                                     <div class="pro-block">
                                         <div class="pro-group-header">
-                                            <h3>{{ 'dashboard.pro.companyInfo' | transloco }}</h3>
-                                            <!-- @if (!editCompanyExtraMode()) {
-                                                <button class="pro-edit-btn" type="button" (click)="enterEditCompanyExtra()">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                    </svg>
-                                                </button>
-                                            } @else {
-                                                <div class="pro-edit-actions">
-                                                    <button class="pro-cancel-btn" type="button" (click)="cancelEditCompanyExtra()">
-                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-                                                        </svg>
-                                                    </button>
-                                                    <button class="pro-save-btn" type="button" (click)="saveEditCompanyExtra()" [disabled]="savingCompanyExtra()">
-                                                        @if (savingCompanyExtra()) { <span class="pro-spinner-sm"></span> }
-                                                        @else { <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> }
-                                                    </button>
-                                                </div>
-                                            } -->
+                                            <h3>{{ 'dashboard.pro.companyInfo' | transloco }}</h3>                                            
                                         </div>
                                         <p class="pro-block-company">{{ pro.professionalProfile.companyName }}</p>
                                         <!-- description -->
-                                        <!-- <div class="pro-group-header" style="margin-top:0.5rem"> -->
-                                        @if (!editDescriptionMode()) {
-                                            <button class="pro-edit-btn" type="button" (click)="enterEditDescription()">
-                                                <svg
-                                                    viewBox="0 0 24 24"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    stroke-width="1.8"
-                                                >
-                                                    <path
-                                                        d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
-                                                    />
-                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                                                </svg>
-                                            </button>
-                                        } @else {
-                                            <div class="pro-edit-actions">
-                                                <button
-                                                    class="pro-cancel-btn"
-                                                    type="button"
-                                                    (click)="cancelEditDescription()"
-                                                >
-                                                    <svg
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        stroke-width="2"
-                                                    >
-                                                        <line x1="18" y1="6" x2="6" y2="18" />
-                                                        <line x1="6" y1="6" x2="18" y2="18" />
-                                                    </svg>
-                                                </button>
-                                                <button
-                                                    class="pro-save-btn"
-                                                    type="button"
-                                                    (click)="saveEditDescription()"
-                                                    [disabled]="savingDescription()"
-                                                >
-                                                    @if (savingDescription()) {
-                                                        <span class="pro-spinner-sm"></span>
-                                                    } @else {
-                                                        <svg
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            stroke-width="2.5"
-                                                        >
-                                                            <polyline points="20 6 9 17 4 12" />
-                                                        </svg>
-                                                    }
-                                                </button>
-                                            </div>
-                                        }
-                                        <!-- </div> -->
+                                        <inline-edit-actions
+                                            [editing]="editDescriptionMode()"
+                                            [saving]="savingDescription()"
+                                            (edit)="enterEditDescription()"
+                                            (cancel)="cancelEditDescription()"
+                                            (save)="saveEditDescription()"
+                                        />
                                         @if (editDescriptionMode()) {
                                             <textarea
                                                 class="pro-edit-input pro-edit-input--textarea"
@@ -921,62 +641,13 @@
                                         } @else {
                                             <p class="pro-description">{{ pro.professionalProfile.description }}</p>
                                         }
-                                        @if (!editCompanyExtraMode()) {
-                                            <button
-                                                class="pro-edit-btn"
-                                                type="button"
-                                                (click)="enterEditCompanyExtra()"
-                                            >
-                                                <svg
-                                                    viewBox="0 0 24 24"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    stroke-width="1.8"
-                                                >
-                                                    <path
-                                                        d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
-                                                    />
-                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                                                </svg>
-                                            </button>
-                                        } @else {
-                                            <div class="pro-edit-actions">
-                                                <button
-                                                    class="pro-cancel-btn"
-                                                    type="button"
-                                                    (click)="cancelEditCompanyExtra()"
-                                                >
-                                                    <svg
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        stroke-width="2"
-                                                    >
-                                                        <line x1="18" y1="6" x2="6" y2="18" />
-                                                        <line x1="6" y1="6" x2="18" y2="18" />
-                                                    </svg>
-                                                </button>
-                                                <button
-                                                    class="pro-save-btn"
-                                                    type="button"
-                                                    (click)="saveEditCompanyExtra()"
-                                                    [disabled]="savingCompanyExtra()"
-                                                >
-                                                    @if (savingCompanyExtra()) {
-                                                        <span class="pro-spinner-sm"></span>
-                                                    } @else {
-                                                        <svg
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            stroke-width="2.5"
-                                                        >
-                                                            <polyline points="20 6 9 17 4 12" />
-                                                        </svg>
-                                                    }
-                                                </button>
-                                            </div>
-                                        }
+                                        <inline-edit-actions
+                                            [editing]="editCompanyExtraMode()"
+                                            [saving]="savingCompanyExtra()"
+                                            (edit)="enterEditCompanyExtra()"
+                                            (cancel)="cancelEditCompanyExtra()"
+                                            (save)="saveEditCompanyExtra()"
+                                        />
                                         <!-- siret, statut, nom société (infos statiques) -->
                                         <dl class="pro-info-list">
                                             <div class="pro-info-row">
@@ -1166,60 +837,13 @@
                                     <div class="pro-block">
                                         <div class="pro-group-header">
                                             <h3>{{ 'dashboard.pro.trades' | transloco }}</h3>
-                                            @if (!editTradesMode()) {
-                                                <button class="pro-edit-btn" type="button" (click)="enterEditTrades()">
-                                                    <svg
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        stroke-width="1.8"
-                                                    >
-                                                        <path
-                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
-                                                        />
-                                                        <path
-                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
-                                                        />
-                                                    </svg>
-                                                </button>
-                                            } @else {
-                                                <div class="pro-edit-actions">
-                                                    <button
-                                                        class="pro-cancel-btn"
-                                                        type="button"
-                                                        (click)="cancelEditTrades()"
-                                                    >
-                                                        <svg
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            stroke-width="2"
-                                                        >
-                                                            <line x1="18" y1="6" x2="6" y2="18" />
-                                                            <line x1="6" y1="6" x2="18" y2="18" />
-                                                        </svg>
-                                                    </button>
-                                                    <button
-                                                        class="pro-save-btn"
-                                                        type="button"
-                                                        (click)="saveEditTrades()"
-                                                        [disabled]="savingTrades()"
-                                                    >
-                                                        @if (savingTrades()) {
-                                                            <span class="pro-spinner-sm"></span>
-                                                        } @else {
-                                                            <svg
-                                                                viewBox="0 0 24 24"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                stroke-width="2.5"
-                                                            >
-                                                                <polyline points="20 6 9 17 4 12" />
-                                                            </svg>
-                                                        }
-                                                    </button>
-                                                </div>
-                                            }
+                                            <inline-edit-actions
+                                                [editing]="editTradesMode()"
+                                                [saving]="savingTrades()"
+                                                (edit)="enterEditTrades()"
+                                                (cancel)="cancelEditTrades()"
+                                                (save)="saveEditTrades()"
+                                            />
                                         </div>
                                         @if (editTradesMode()) {
                                             @if (loadingTrades()) {
@@ -1253,60 +877,13 @@
                                     <div class="pro-block">
                                         <div class="pro-group-header">
                                             <h3>{{ 'dashboard.pro.hours' | transloco }}</h3>
-                                            @if (!editHoursMode()) {
-                                                <button class="pro-edit-btn" type="button" (click)="enterEditHours()">
-                                                    <svg
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        stroke-width="1.8"
-                                                    >
-                                                        <path
-                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
-                                                        />
-                                                        <path
-                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
-                                                        />
-                                                    </svg>
-                                                </button>
-                                            } @else {
-                                                <div class="pro-edit-actions">
-                                                    <button
-                                                        class="pro-cancel-btn"
-                                                        type="button"
-                                                        (click)="cancelEditHours()"
-                                                    >
-                                                        <svg
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            stroke-width="2"
-                                                        >
-                                                            <line x1="18" y1="6" x2="6" y2="18" />
-                                                            <line x1="6" y1="6" x2="18" y2="18" />
-                                                        </svg>
-                                                    </button>
-                                                    <button
-                                                        class="pro-save-btn"
-                                                        type="button"
-                                                        (click)="saveEditHours()"
-                                                        [disabled]="savingHours()"
-                                                    >
-                                                        @if (savingHours()) {
-                                                            <span class="pro-spinner-sm"></span>
-                                                        } @else {
-                                                            <svg
-                                                                viewBox="0 0 24 24"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                stroke-width="2.5"
-                                                            >
-                                                                <polyline points="20 6 9 17 4 12" />
-                                                            </svg>
-                                                        }
-                                                    </button>
-                                                </div>
-                                            }
+                                            <inline-edit-actions
+                                                [editing]="editHoursMode()"
+                                                [saving]="savingHours()"
+                                                (edit)="enterEditHours()"
+                                                (cancel)="cancelEditHours()"
+                                                (save)="saveEditHours()"
+                                            />
                                         </div>
                                         @if (editHoursMode()) {
                                             <div class="pro-hours-editor">
@@ -1395,64 +972,13 @@
                                     <div class="pro-block">
                                         <div class="pro-group-header">
                                             <h3>{{ 'dashboard.pro.trustedContact' | transloco }}</h3>
-                                            @if (!editTrustedContactMode()) {
-                                                <button
-                                                    class="pro-edit-btn"
-                                                    type="button"
-                                                    (click)="enterEditTrustedContact()"
-                                                >
-                                                    <svg
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        stroke-width="1.8"
-                                                    >
-                                                        <path
-                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
-                                                        />
-                                                        <path
-                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
-                                                        />
-                                                    </svg>
-                                                </button>
-                                            } @else {
-                                                <div class="pro-edit-actions">
-                                                    <button
-                                                        class="pro-cancel-btn"
-                                                        type="button"
-                                                        (click)="cancelEditTrustedContact()"
-                                                    >
-                                                        <svg
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            stroke-width="2"
-                                                        >
-                                                            <line x1="18" y1="6" x2="6" y2="18" />
-                                                            <line x1="6" y1="6" x2="18" y2="18" />
-                                                        </svg>
-                                                    </button>
-                                                    <button
-                                                        class="pro-save-btn"
-                                                        type="button"
-                                                        (click)="saveEditTrustedContact()"
-                                                        [disabled]="savingTrustedContact()"
-                                                    >
-                                                        @if (savingTrustedContact()) {
-                                                            <span class="pro-spinner-sm"></span>
-                                                        } @else {
-                                                            <svg
-                                                                viewBox="0 0 24 24"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                stroke-width="2.5"
-                                                            >
-                                                                <polyline points="20 6 9 17 4 12" />
-                                                            </svg>
-                                                        }
-                                                    </button>
-                                                </div>
-                                            }
+                                            <inline-edit-actions
+                                                [editing]="editTrustedContactMode()"
+                                                [saving]="savingTrustedContact()"
+                                                (edit)="enterEditTrustedContact()"
+                                                (cancel)="cancelEditTrustedContact()"
+                                                (save)="saveEditTrustedContact()"
+                                            />
                                         </div>
                                         @if (editTrustedContactMode()) {
                                             <div class="pro-trusted-edit">
@@ -1489,64 +1015,13 @@
                                     <div class="pro-block">
                                         <div class="pro-group-header">
                                             <h3>{{ 'dashboard.pro.partners' | transloco }}</h3>
-                                            @if (!editPartnersMode()) {
-                                                <button
-                                                    class="pro-edit-btn"
-                                                    type="button"
-                                                    (click)="enterEditPartners()"
-                                                >
-                                                    <svg
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        stroke-width="1.8"
-                                                    >
-                                                        <path
-                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
-                                                        />
-                                                        <path
-                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
-                                                        />
-                                                    </svg>
-                                                </button>
-                                            } @else {
-                                                <div class="pro-edit-actions">
-                                                    <button
-                                                        class="pro-cancel-btn"
-                                                        type="button"
-                                                        (click)="cancelEditPartners()"
-                                                    >
-                                                        <svg
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            stroke-width="2"
-                                                        >
-                                                            <line x1="18" y1="6" x2="6" y2="18" />
-                                                            <line x1="6" y1="6" x2="18" y2="18" />
-                                                        </svg>
-                                                    </button>
-                                                    <button
-                                                        class="pro-save-btn"
-                                                        type="button"
-                                                        (click)="saveEditPartners()"
-                                                        [disabled]="savingPartners()"
-                                                    >
-                                                        @if (savingPartners()) {
-                                                            <span class="pro-spinner-sm"></span>
-                                                        } @else {
-                                                            <svg
-                                                                viewBox="0 0 24 24"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                stroke-width="2.5"
-                                                            >
-                                                                <polyline points="20 6 9 17 4 12" />
-                                                            </svg>
-                                                        }
-                                                    </button>
-                                                </div>
-                                            }
+                                            <inline-edit-actions
+                                                [editing]="editPartnersMode()"
+                                                [saving]="savingPartners()"
+                                                (edit)="enterEditPartners()"
+                                                (cancel)="cancelEditPartners()"
+                                                (save)="saveEditPartners()"
+                                            />
                                         </div>
                                         @if (editPartnersMode()) {
                                             <input
@@ -1566,15 +1041,7 @@
                                                                 type="button"
                                                                 (click)="removePartnerFromEdit(name)"
                                                             >
-                                                                <svg
-                                                                    viewBox="0 0 24 24"
-                                                                    fill="none"
-                                                                    stroke="currentColor"
-                                                                    stroke-width="2.2"
-                                                                >
-                                                                    <line x1="18" y1="6" x2="6" y2="18" />
-                                                                    <line x1="6" y1="6" x2="18" y2="18" />
-                                                                </svg>
+                                                                <iconify-icon icon="lucide:x"></iconify-icon>
                                                             </button>
                                                         </li>
                                                     }
@@ -1595,64 +1062,13 @@
                                     <div class="pro-block">
                                         <div class="pro-group-header">
                                             <h3>{{ 'dashboard.pro.companyRemarks' | transloco }}</h3>
-                                            @if (!editCompanyRemarksMode()) {
-                                                <button
-                                                    class="pro-edit-btn"
-                                                    type="button"
-                                                    (click)="enterEditCompanyRemarks()"
-                                                >
-                                                    <svg
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        stroke-width="1.8"
-                                                    >
-                                                        <path
-                                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
-                                                        />
-                                                        <path
-                                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
-                                                        />
-                                                    </svg>
-                                                </button>
-                                            } @else {
-                                                <div class="pro-edit-actions">
-                                                    <button
-                                                        class="pro-cancel-btn"
-                                                        type="button"
-                                                        (click)="cancelEditCompanyRemarks()"
-                                                    >
-                                                        <svg
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            stroke-width="2"
-                                                        >
-                                                            <line x1="18" y1="6" x2="6" y2="18" />
-                                                            <line x1="6" y1="6" x2="18" y2="18" />
-                                                        </svg>
-                                                    </button>
-                                                    <button
-                                                        class="pro-save-btn"
-                                                        type="button"
-                                                        (click)="saveEditCompanyRemarks()"
-                                                        [disabled]="savingCompanyRemarks()"
-                                                    >
-                                                        @if (savingCompanyRemarks()) {
-                                                            <span class="pro-spinner-sm"></span>
-                                                        } @else {
-                                                            <svg
-                                                                viewBox="0 0 24 24"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                stroke-width="2.5"
-                                                            >
-                                                                <polyline points="20 6 9 17 4 12" />
-                                                            </svg>
-                                                        }
-                                                    </button>
-                                                </div>
-                                            }
+                                            <inline-edit-actions
+                                                [editing]="editCompanyRemarksMode()"
+                                                [saving]="savingCompanyRemarks()"
+                                                (edit)="enterEditCompanyRemarks()"
+                                                (cancel)="cancelEditCompanyRemarks()"
+                                                (save)="saveEditCompanyRemarks()"
+                                            />
                                         </div>
                                         @if (editCompanyRemarksMode()) {
                                             <textarea
@@ -1717,21 +1133,7 @@
                                                             class="doc-card-img"
                                                         />
                                                     } @else {
-                                                        <svg
-                                                            class="doc-card-icon"
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            stroke-width="1.5"
-                                                        >
-                                                            <path
-                                                                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                                                            />
-                                                            <polyline points="14 2 14 8 20 8" />
-                                                            <line x1="16" y1="13" x2="8" y2="13" />
-                                                            <line x1="16" y1="17" x2="8" y2="17" />
-                                                            <line x1="10" y1="9" x2="8" y2="9" />
-                                                        </svg>
+                                                        <iconify-icon icon="lucide:file-text" class="doc-card-icon"></iconify-icon>
                                                     }
                                                 </div>
                                                 <div class="doc-card-body">
@@ -1743,16 +1145,7 @@
                                                             rel="noopener"
                                                             class="doc-card-btn"
                                                         >
-                                                            <svg
-                                                                viewBox="0 0 24 24"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                stroke-width="1.8"
-                                                            >
-                                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                                                                <polyline points="7 10 12 15 17 10" />
-                                                                <line x1="12" y1="15" x2="12" y2="3" />
-                                                            </svg>
+                                                            <iconify-icon icon="lucide:download"></iconify-icon>
                                                             {{ 'dashboard.pro.docs.download' | transloco }}
                                                         </a>
                                                     } @else {
@@ -1771,26 +1164,14 @@
                                                     [style.cursor]="diploma.url ? 'pointer' : 'default'"
                                                     (click)="openDocModal(diploma.url, 'dashboard.pro.docs.diploma')"
                                                 >
-                                                    <svg
-                                                        class="doc-card-icon"
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        stroke-width="1.5"
-                                                    >
-                                                        <path
-                                                            d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                                                        />
-                                                        <polyline points="14 2 14 8 20 8" />
-                                                        <line x1="16" y1="13" x2="8" y2="13" />
-                                                    </svg>
+                                                    <iconify-icon icon="lucide:file-text" class="doc-card-icon"></iconify-icon>
                                                 </div>
                                                 <div class="doc-card-body">
                                                     <p class="doc-card-label">{{ diploma.documentName }}</p>
                                                     @if (diploma.expiryDate) {
                                                         <p class="doc-card-expiry">
                                                             {{ 'dashboard.pro.expiresOn' | transloco }}
-                                                            {{ diploma.expiryDate | date: 'dd/MM/yyyy' }}
+                                                            {{ diploma.expiryDate | localizedDate:'compact' }}
                                                         </p>
                                                     }
                                                     @if (diploma.url) {
@@ -1800,16 +1181,7 @@
                                                             rel="noopener"
                                                             class="doc-card-btn"
                                                         >
-                                                            <svg
-                                                                viewBox="0 0 24 24"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                stroke-width="1.8"
-                                                            >
-                                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                                                                <polyline points="7 10 12 15 17 10" />
-                                                                <line x1="12" y1="15" x2="12" y2="3" />
-                                                            </svg>
+                                                            <iconify-icon icon="lucide:download"></iconify-icon>
                                                             {{ 'dashboard.pro.docs.download' | transloco }}
                                                         </a>
                                                     } @else {
@@ -1878,7 +1250,7 @@
                                                             }}
                                                         </span>
                                                         <span class="demand-date">{{
-                                                            demand.createdAt | date: 'dd/MM/yyyy'
+                                                            demand.createdAt | localizedDate:'compact'
                                                         }}</span>
                                                     </div>
                                                     <p class="demand-description">{{ demand.description }}</p>
@@ -1918,7 +1290,7 @@
                                                             }}
                                                         </span>
                                                         <span class="demand-date">{{
-                                                            demand.createdAt | date: 'dd/MM/yyyy'
+                                                            demand.createdAt | localizedDate:'compact'
                                                         }}</span>
                                                     </div>
                                                     <p class="demand-description">{{ demand.description }}</p>
@@ -1939,6 +1311,12 @@
                                 </div>
                             }
                         }
+                        @case ('messages') {
+                            <messaging
+                                [initialConversationId]="pendingConversationId()"
+                                (openDemand)="onOpenDemandFromMessaging($event)"
+                            ></messaging>
+                        }
                         @case ('practices') {
                             <p class="pro-empty">{{ 'dashboard.empty.practices' | transloco }}</p>
                         }
@@ -1956,32 +1334,13 @@
                                     @if (!aff.affiliateCode) {
                                         <div class="aff-empty-state">
                                             <div class="aff-empty-icon">
-                                                <svg
-                                                    viewBox="0 0 24 24"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    stroke-width="1.5"
-                                                >
-                                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                                                    <circle cx="9" cy="7" r="4" />
-                                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                                                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                                                </svg>
+                                                <iconify-icon icon="lucide:users"></iconify-icon>
                                             </div>
                                             <p class="aff-empty-text">
                                                 {{ 'dashboard.affiliation.noCode' | transloco }}
                                             </p>
                                             <button class="aff-generate-btn" (click)="generateAffiliateCode()">
-                                                <svg
-                                                    viewBox="0 0 24 24"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    stroke-width="2"
-                                                >
-                                                    <circle cx="12" cy="12" r="10" />
-                                                    <line x1="12" y1="8" x2="12" y2="16" />
-                                                    <line x1="8" y1="12" x2="16" y2="12" />
-                                                </svg>
+                                                <iconify-icon icon="lucide:plus-circle"></iconify-icon>
                                                 {{ 'dashboard.affiliation.generateCode' | transloco }}
                                             </button>
                                         </div>
@@ -1998,26 +1357,9 @@
                                                     (click)="copyAffiliateCode(aff.affiliateCode!)"
                                                 >
                                                     @if (codeCopied()) {
-                                                        <svg
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            stroke-width="2.5"
-                                                        >
-                                                            <polyline points="20 6 9 17 4 12" />
-                                                        </svg>
+                                                        <iconify-icon icon="lucide:check"></iconify-icon>
                                                     } @else {
-                                                        <svg
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            stroke-width="2"
-                                                        >
-                                                            <rect x="9" y="9" width="13" height="13" rx="2" />
-                                                            <path
-                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
-                                                            />
-                                                        </svg>
+                                                        <iconify-icon icon="lucide:copy"></iconify-icon>
                                                     }
                                                     {{
                                                         (codeCopied()
@@ -2026,6 +1368,10 @@
                                                         ) | transloco
                                                     }}
                                                 </button>
+                                            </div>
+                                            <div class="aff-share-row">
+                                                <iconify-icon icon="lucide:link" class="aff-share-icon"></iconify-icon>
+                                                <span class="aff-share-url">{{ affiliateShareUrl(aff.affiliateCode!) }}</span>
                                             </div>
                                         </div>
 
@@ -2073,8 +1419,8 @@
                                                     @for (r of aff.referrals; track r.id) {
                                                         <div class="aff-referral-item">
                                                             <div class="aff-referral-avatar">
-                                                                {{ r.affiliateFirstName[0]
-                                                                }}{{ r.affiliateLastName[0] }}
+                                                                {{ r.affiliateFirstName[0] }}
+                                                                {{ r.affiliateLastName[0] }}
                                                             </div>
                                                             <div class="aff-referral-info">
                                                                 <span class="aff-referral-name"
@@ -2086,7 +1432,7 @@
                                                                         'dashboard.affiliation.referrals.role.' +
                                                                             r.affiliateRole | transloco
                                                                     }}
-                                                                    · {{ r.createdAt | date: 'dd/MM/yyyy' }}</span
+                                                                    · {{ r.createdAt | localizedDate:'compact' }}</span
                                                                 >
                                                             </div>
                                                             <div class="aff-referral-right">
@@ -2130,7 +1476,7 @@
                                                             'dashboard.affiliation.referrals.role.' + referrer.role.code
                                                                 | transloco
                                                         }}
-                                                        · {{ referrer.createdAt | date: 'dd/MM/yyyy' }}</span
+                                                        · {{ referrer.createdAt | localizedDate:'compact' }}</span
                                                     >
                                                 </div>
                                             </div>
@@ -2161,6 +1507,7 @@
                         }
                     }
                 </div>
+            </div>
             </main>
 
             <!-- ═══════════════ BOTTOM NAV (mobile) ═══════════════ -->
@@ -2170,10 +1517,7 @@
                     [class.active]="activeSection() === 'profile'"
                     (click)="setSection('profile'); moreMenuContentDisplayed.set(false)"
                 >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                        <circle cx="12" cy="8" r="4" />
-                        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-                    </svg>
+                    <iconify-icon icon="lucide:user"></iconify-icon>
                     <span>{{ 'dashboard.pro.mobile.profile' | transloco }}</span>
                 </button>
                 <button
@@ -2181,29 +1525,28 @@
                     [class.active]="activeSection() === 'requests'"
                     (click)="setSection('requests'); moreMenuContentDisplayed.set(false)"
                 >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-                    </svg>
+                    <iconify-icon icon="lucide:clipboard-list"></iconify-icon>
                     <span>{{ 'dashboard.pro.mobile.requests' | transloco }}</span>
                 </button>
                 <button class="bottom-nav-item" routerLink="/">
-                    <img src="assets/img/logo.webp" alt="" class="bottom-nav-logo" />
+                    <img src="assets/img/logo.webp" [alt]="'common.logo' | transloco" class="bottom-nav-logo" />
                     <span>{{ 'common.home' | transloco }}</span>
                 </button>
-                <button class="bottom-nav-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                        <rect x="2" y="4" width="20" height="16" rx="2" />
-                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                    </svg>
+                <button
+                    class="bottom-nav-item"
+                    [class.active]="activeSection() === 'messages'"
+                    (click)="setSection('messages'); moreMenuContentDisplayed.set(false)"
+                >
+                    <span class="bottom-nav-icon-wrap">
+                        <iconify-icon icon="lucide:mail"></iconify-icon>
+                        @if (chatService.unreadConversationsCount() > 0) {
+                            <span class="badge">{{ chatService.unreadConversationsCount() > 9 ? '9+' : chatService.unreadConversationsCount() }}</span>
+                        }
+                    </span>
                     <span>{{ 'common.messages' | transloco }}</span>
                 </button>
                 <button class="bottom-nav-item plus-menu" (click)="toggleMoreMenu()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                        <circle cx="12" cy="12" r="1" />
-                        <circle cx="19" cy="12" r="1" />
-                        <circle cx="5" cy="12" r="1" />
-                    </svg>
+                    <iconify-icon icon="lucide:more-horizontal"></iconify-icon>
                     <span>{{ 'dashboard.pro.mobile.more' | transloco }}</span>
                 </button>
             </nav>
@@ -2216,11 +1559,7 @@
                         [class.active]="activeSection() === 'practices'"
                         (click)="setSection('practices'); toggleMoreMenu(); moreMenuContentDisplayed.set(true)"
                     >
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <circle cx="12" cy="12" r="10" />
-                            <line x1="12" y1="8" x2="12" y2="12" />
-                            <line x1="12" y1="16" x2="12.01" y2="16" />
-                        </svg>
+                        <iconify-icon icon="lucide:alert-circle"></iconify-icon>
                         {{ 'dashboard.pro.nav.practices' | transloco }}
                     </button>
                     <button
@@ -2228,9 +1567,7 @@
                         [class.active]="activeSection() === 'legal'"
                         (click)="setSection('legal'); toggleMoreMenu(); moreMenuContentDisplayed.set(true)"
                     >
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                        </svg>
+                        <iconify-icon icon="lucide:shield"></iconify-icon>
                         {{ 'dashboard.pro.nav.legal' | transloco }}
                     </button>
                     <button
@@ -2238,19 +1575,11 @@
                         [class.active]="activeSection() === 'affiliation'"
                         (click)="setSection('affiliation'); toggleMoreMenu(); moreMenuContentDisplayed.set(true)"
                     >
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                            <circle cx="9" cy="7" r="4" />
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                        </svg>
+                        <iconify-icon icon="lucide:users"></iconify-icon>
                         {{ 'dashboard.pro.nav.affiliation' | transloco }}
                     </button>
                     <a class="nav-item" routerLink="/contact">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <rect x="2" y="4" width="20" height="16" rx="2" />
-                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                        </svg>
+                        <iconify-icon icon="lucide:mail"></iconify-icon>
                         {{ 'contact.nav' | transloco }}
                     </a>
                     <div class="more-menu-toggles">
@@ -2259,11 +1588,7 @@
                     </div>
                     <hr class="more-menu-divider" />
                     <button class="more-menu-logout" (click)="authService.logout()">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-                            <polyline points="16 17 21 12 16 7" />
-                            <line x1="21" y1="12" x2="9" y2="12" />
-                        </svg>
+                        <iconify-icon icon="lucide:log-out"></iconify-icon>
                         {{ 'auth.logout' | transloco }}
                     </button>
                 </div>
@@ -2282,5 +1607,6 @@
         [canEdit]="selectedDemandEditable()"
         (closed)="selectedDemandId.set(null)"
         (updated)="onDemandUpdated($event)"
+        (messageStarted)="onMessageStarted($event)"
     />
 }

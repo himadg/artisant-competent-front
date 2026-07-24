@@ -64,7 +64,7 @@
                                         <span class="text-xs px-2 ml-2 py-0.5 rounded-full bg-grad-water-green text-[var(--primary-beige)]">CMOD</span>
                                     }
                                 </h2>
-                                <p class="text-gray-500">{{ user.email }} • {{ 'dashboard.admin.registeredOn' | transloco }} {{ user.createdAt | date }}</p>
+                                <p class="text-gray-500">{{ user.email }} • {{ 'dashboard.admin.registeredOn' | transloco }} {{ user.createdAt | localizedDate:'compact' }}</p>
                             </div>
                             <span
                                 class="px-3 py-1 text-xs font-semibold text-yellow-800 bg-yellow-100 rounded-full"
@@ -96,7 +96,7 @@
                                             </div>
                                             <div>
                                                 <dt class="text-gray-500">{{ 'dashboard.admin.birthDate' | transloco }}</dt>
-                                                <dd class="font-medium text-gray-900">{{ user.birthDate | date:'dd/MM/yyyy' }}</dd>
+                                                <dd class="font-medium text-gray-900">{{ user.birthDate | localizedDate:'full' }}</dd>
                                             </div>
                                         </dl>
                                     </div>
@@ -453,7 +453,7 @@
                                                         <div>
                                                             <span class="text-sm font-medium text-gray-700">{{ diploma.documentName }}</span>
                                                             @if (diploma.expiryDate) {
-                                                                <p class="text-xs text-gray-400">Exp. {{ diploma.expiryDate | date:'dd/MM/yyyy' }}</p>
+                                                                <p class="text-xs text-gray-400">Exp. {{ diploma.expiryDate | localizedDate:'compact' }}</p>
                                                             }
                                                         </div>
                                                         @if (diploma.url) {

@@ -1,32 +1,60 @@
-import { ChangeDetectionStrategy, Component, inject, input, output, resource, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, input, output, resource, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { DemandService } from '../../../core/services/demand.service';
+import { ChatService } from '../../../core/services/chat.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { DemandDetail } from '../../interfaces/demand';
 import { PreviewDocument } from '../../interfaces/preview-document';
 import { DocModal } from '../doc-modal/doc-modal';
+import { InlineEditActions } from '../inline-edit-actions/inline-edit-actions';
 import { extractDocNameFromS3 } from '../../../core/utils/common-utils';
+import { LocalizedDatePipe } from '../../pipes/localized-date.pipe';
+import { FlashMessageService } from '../../../core/services/flash-message.service';
+import { ALLOWED_IMAGE_TYPES } from '../../../core/utils/file-types';
 
 const MAX_PHOTOS = 3;
-const ALLOWED_PHOTO_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
 
 @Component({
   selector: 'demand-details-modal',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FormsModule, TranslocoModule, DocModal],
+  imports: [CommonModule, FormsModule, TranslocoModule, DocModal, InlineEditActions, LocalizedDatePipe],
   templateUrl: './demand-details-modal.html',
   styleUrl: './demand-details-modal.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class DemandDetailsModal {
   private readonly demandService = inject(DemandService);
+  private readonly chatService = inject(ChatService);
+  private readonly authService = inject(AuthService);
   private readonly transloco = inject(TranslocoService);
+  private readonly flashMessage = inject(FlashMessageService);
 
   readonly demandId = input.required<string>();
   readonly canEdit = input(false);
+
   readonly closed = output<void>();
   readonly updated = output<DemandDetail>();
+  readonly messageStarted = output<string>();
+
+  readonly startingConversation = signal(false);
+
+  /** Le bouton "envoyer un message" n'a de sens que pour un pro faisant partie des destinataires de la demande. */
+  canSendMessage(demand: DemandDetail | undefined): boolean {
+    if (!demand || this.canEdit() || this.authService.currentUser()?.role?.code !== 'PROFESSIONAL') return false;
+    const professionalProfileId = this.authService.currentUser()?.professionalProfile?.id;
+    return !!professionalProfileId && demand.professionals.some((p) => p.id === professionalProfileId);
+  }
+
+  sendMessage(): void {
+    this.startingConversation.set(true);
+    this.chatService
+      .findOrCreateConversation(this.demandId())
+      .then((conversation) => this.messageStarted.emit(conversation.id))
+      .finally(() => this.startingConversation.set(false));
+  }
 
   readonly docToPreview = signal<PreviewDocument | null>(null);
 
@@ -99,7 +127,16 @@ export class DemandDetailsModal {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
     input.value = '';
-    if (!file || !ALLOWED_PHOTO_TYPES.has(file.type) || this.totalEditedPhotos() >= MAX_PHOTOS) return;
+    if (!file) return;
+
+    if (this.totalEditedPhotos() >= MAX_PHOTOS) {
+      this.flashMessage.set({ type: 'error', key: 'demand.detail.errorMaxPhotos' });
+      return;
+    }
+    if (!ALLOWED_IMAGE_TYPES.has(file.type)) {
+      this.flashMessage.set({ type: 'error', key: 'demand.modal.errorInvalidFormat' });
+      return;
+    }
 
     this.newPhotoFiles.update((files) => [...files, file]);
     this.newPhotoPreviews.update((urls) => [...urls, URL.createObjectURL(file)]);

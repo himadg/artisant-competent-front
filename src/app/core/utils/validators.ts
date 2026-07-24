@@ -1,4 +1,5 @@
 import { AbstractControl, FormArray, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { isAfter, parseISO, startOfDay } from 'date-fns';
 import { NAME_REGEXP, PHONE_FR_REGEXP, URL_REGEXP } from './regexp';
 
 export const hourValidator: ValidatorFn = (group: AbstractControl) => {
@@ -47,7 +48,7 @@ export const optionalPhoneValidator: ValidatorFn = (control: AbstractControl) =>
 export const pastDateValidator: ValidatorFn = (control: AbstractControl) => {
   const value = control.value as string;
   if (!value) return null;
-  return value <= new Date().toLocaleDateString('en-CA') ? null : { futureDate: true };
+  return isAfter(parseISO(value), startOfDay(new Date())) ? { futureDate: true } : null;
 };
 
 export const urlValidator: ValidatorFn = (control: AbstractControl) => {
