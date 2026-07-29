@@ -11,7 +11,7 @@ export const TRADES: TradeInfo[] = [
     image: 'assets/img/electricien.jpg',
     h1: (city) => `Électricien vérifié à ${city} — du devis à la mise sous tension encadrée`,
     intro: (city) =>
-      `Les électriciens référencés sur Artisan Compétent à ${city} ont leur SIRET contrôlé, leurs assurances RC pro et décennale vérifiées, leur habilitation électrique NF C 18-510 pour les interventions sous tension et leur qualification IRVE pour la pose de bornes de recharge. Dépannage, tableau électrique, mise aux normes NF C 15-100, domotique, bornes IRVE : décrivez votre besoin et recevez un devis détaillé d'un professionnel vérifié de votre zone. Le paiement est encadré par séquestre Stripe — les fonds sont libérés 96h après la fin du chantier, sans réserve de votre part.`,
+      `Les électriciens référencés sur Artisan Compétent à ${city} ont leur SIRET contrôlé, leurs assurances RC pro et décennale vérifiées, leur habilitation électrique NF C 18-510 pour les interventions sous tension et leur qualification IRVE pour la pose de bornes de recharge. Dépannage, tableau électrique, mise aux normes NF C 15-100, domotique, bornes IRVE : décrivez votre besoin et recevez un devis détaillé d'un professionnel vérifié de votre zone. Le paiement est encadré et traité par Stripe : le règlement est versé 96h après la fin du chantier, sans réserve de votre part.`,
   },
   {
     slug: 'locksmith',
@@ -33,7 +33,7 @@ export const TRADES: TradeInfo[] = [
     image: 'assets/img/plombier.jpg',
     h1: (city) => `Plombier à ${city} — Dépannage rapide et sécurisé`,
     intro: (city) =>
-      `Une fuite d'eau, un robinet défaillant ou une installation sanitaire à réaliser à ${city} ? Artisan Compétent vous met en relation avec des plombiers qualifiés disponibles rapidement. Comparez les propositions, choisissez le meilleur rapport qualité/prix et bénéficiez de notre paiement séquestré — vous ne payez que si les travaux sont conformes.`,
+      `Une fuite d'eau, un robinet défaillant ou une installation sanitaire à réaliser à ${city} ? Artisan Compétent vous met en relation avec des plombiers qualifiés disponibles rapidement. Comparez les propositions, choisissez le meilleur rapport qualité/prix et bénéficiez de notre paiement encadré : vous ne payez que si les travaux sont conformes.`,
   },
   {
     slug: 'heating',
@@ -44,7 +44,7 @@ export const TRADES: TradeInfo[] = [
     image: 'assets/img/chauffagiste.jpg',
     h1: (city) => `Chauffagiste & VMC & Pompe à chaleur à ${city}`,
     intro: (city) =>
-      `Besoin d'un chauffagiste compétent à ${city} ? Qu'il s'agisse d'installer une nouvelle chaudière, d'entretenir votre VMC, de poser une pompe à chaleur ou de réparer un système de chauffage en panne, Artisan Compétent vous met en contact avec des professionnels certifiés. Intervention rapide, garantie de résultat, paiement séquestré.`,
+      `Besoin d'un chauffagiste compétent à ${city} ? Qu'il s'agisse d'installer une nouvelle chaudière, d'entretenir votre VMC, de poser une pompe à chaleur ou de réparer un système de chauffage en panne, Artisan Compétent vous met en contact avec des professionnels certifiés. Intervention rapide, garantie de résultat, paiement encadré.`,
   },
   {
     slug: 'drain-unblocker',
