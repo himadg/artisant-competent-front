@@ -31,13 +31,13 @@ let nextAccordionId = 0;
  * ```html
  * <accordion
  *   variant="faq"
- *   title="C'est quoi le séquestre de fonds ?"
- *   summary="Votre paiement est bloqué chez Stripe dès l'acceptation du devis. L'artisan
+ *   title="C'est quoi le paiement encadré ?"
+ *   summary="Votre paiement est traité par Stripe dès l'acceptation du devis. L'artisan
  *            n'est payé qu'une fois le chantier validé par vos soins."
  *   (toggled)="onFaqToggled('sequestre', $event)"
  * >
- *   <p>Quand vous acceptez un devis, votre paiement est placé sur un compte séquestre
- *      géré par Stripe. L'argent est bloqué tant que vous n'avez pas validé la fin du chantier...</p>
+ *   <p>Quand vous acceptez un devis, votre paiement est traité par Stripe et le règlement
+ *      du professionnel reste suspendu tant que vous n'avez pas validé la fin du chantier...</p>
  * </accordion>
  * ```
  */
