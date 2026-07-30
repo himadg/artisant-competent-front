@@ -1,0 +1,11 @@
+@use '../../shared/individual-common';
+
+:host {
+  overflow-y: scroll;
+}
+
+@media (max-width: 768px) {
+  :host {
+    margin-inline: -3rem;
+  }
+}

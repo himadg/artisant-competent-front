@@ -1374,10 +1374,12 @@
     <div
         class="flex fixed inset-0 z-50 justify-center items-center bg-black/60 p-4 mt-[calc(var(--top-banners-h))] h-[calc(100lvh_-_var(--top-banners-h))]"
         (click)="goodPracticesModalOpen.set(false)"
+        (keyPress)="goodPracticesModalOpen.set(false)"
     >
         <div
             class="overflow-auto relative max-w-2xl h-[90%] rounded-xl bg-white shadow-xl"
             (click)="$event.stopPropagation()"
+            (keyPress)="$event.stopPropagation()"
         >
             <button
                 type="button"

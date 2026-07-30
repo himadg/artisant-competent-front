@@ -450,7 +450,8 @@
     "sidebarNavigation": "Sidebar navigation",
     "bottomNavigation": "Bottom navigation",
     "avatar": "Avatar",
-    "back": "Back"
+    "back": "Back",
+    "today": "Today"
   },
   "docModal": {
     "defaultTitle": "Document preview",
@@ -3342,7 +3343,21 @@
         "lastName": "Last name",
         "email": "Email",
         "birthDate": "Date of birth",
-        "gender": "Gender"
+        "gender": "Gender",
+        "addressStreet": "Street",
+        "addressComplement": "Additional info",
+        "addressCity": "Postcode / City",
+        "phone": "Phone"
+      },
+      "errors": {
+        "addressIncomplete": "Fill in the full address (number, street, postal code, city) before saving.",
+        "nameInvalid": "First name and last name may only contain letters, apostrophes or hyphens.",
+        "emailInvalid": "The email address is not valid.",
+        "birthDateInvalid": "Birth date is required and cannot be in the future.",
+        "phoneInvalid": "The phone number is not valid.",
+        "streetNumberInvalid": "The street number is not valid.",
+        "postalCodeInvalid": "The postal code must be 5 digits.",
+        "cityInvalid": "The city name is not valid."
       }
     },
     "pro": {
@@ -3444,7 +3459,17 @@
       "onCallNo": "No",
       "companyRemarks": "Company remarks",
       "noneProvided": "Not provided",
-      "expiresOn": "Expires on"
+      "expiresOn": "Expires on",
+      "description": "Description",
+      "noPartnersError": "Add at least one supplier before saving.",
+      "noTradesError": "Select at least one trade before saving.",
+      "personalAddressError": "Fill in the full address (number, street, postal code, city) before saving.",
+      "workAddressError": "Fill in the full company address (number, street, postal code, city) before saving.",
+      "fieldRequiredError": "This field is required.",
+      "mediatorIncompleteError": "If you fill in the mediator, all fields (name, address, website, contact method) are required.",
+      "mediatorNameInvalid": "The mediator name contains invalid characters.",
+      "mediatorAddressInvalid": "The mediator address is not valid.",
+      "mediatorWebsiteInvalid": "The mediator website is not valid."
     },
     "empty": {
       "requests": "No requests yet",
@@ -3517,6 +3542,26 @@
         "dispute": "Report a dispute"
       },
       "invalidAttachment": "Unsupported file format. Accepted formats: JPG, JPEG, PNG, WEBP, PDF."
+    },
+    "sections": {
+      "profile": {
+        "title": "Personal info — My account"
+      },
+      "requests": {
+        "title": "My requests — My account"
+      },
+      "messages": {
+        "title": "Messages — My account"
+      },
+      "practices": {
+        "title": "Best practices — My account"
+      },
+      "legal": {
+        "title": "Legal info — My account"
+      },
+      "affiliation": {
+        "title": "Affiliation — My account"
+      }
     }
   },
   "cities": {
