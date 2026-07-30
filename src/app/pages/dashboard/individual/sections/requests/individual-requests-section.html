@@ -1,0 +1,32 @@
+<a routerLink="/search-pro" class="block mb-3 py-2 text-center rounded-lg text-[var(--primary-beige)] bg-grad-water-green">
+    {{ 'dashboard.requests.createDemand' | transloco }}
+</a>
+
+@if (demandsLoading()) {
+    <div class="aff-loading">
+        <span class="spinner"></span>
+    </div>
+} @else {
+    <div class="demand-list">
+        @for (demand of myDemands(); track demand.id) {
+            <button type="button" class="demand-card" (click)="selectedDemandId.set(demand.id)">
+                <div class="demand-card-header">
+                    <span
+                        class="demand-status"
+                        [class.demand-status--available]="demand.status === 'AVAILABLE'"
+                        [class.demand-status--cancelled]="demand.status === 'CANCELLED'"
+                    >
+                        {{ ('dashboard.requests.status.' + demand.status) | transloco }}
+                    </span>
+                    <span class="demand-date">{{ demand.createdAt | localizedDate:'compact' }}</span>
+                </div>
+                <p class="demand-description">{{ demand.description }}</p>
+                <p class="demand-meta">
+                    {{ 'dashboard.requests.filesCount' | transloco: { count: demand.photoKeys.length } }}
+                </p>
+            </button>
+        } @empty {
+            <p class="ind-empty text-center">{{ 'dashboard.empty.requests' | transloco }}</p>
+        }
+    </div>
+}

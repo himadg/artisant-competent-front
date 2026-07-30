@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
+import { roleMatch } from './core/guards/role-match.guard';
 
 export const routes: Routes = [
   {
@@ -11,10 +12,34 @@ export const routes: Routes = [
   { path: 'auth', loadChildren: () => import('./pages/auth/auth.routes').then((c) => c.authRoutes) },
   {
     path: 'dashboard',
-    title: 'dashboard.title',
+    pathMatch: 'full',
+    redirectTo: '/dashboard/profile',
+  },
+  {
+    path: 'dashboard',
     canActivate: [authGuard],
-    loadComponent: () => import('./pages/dashboard/dashboard').then((p) => p.DashboardPage),
-    data: { showHeader: false, showFooter: false }
+    data: { showHeader: false, showFooter: false },
+    children: [
+      {
+        path: '',
+        canMatch: [roleMatch('PROFESSIONAL')],
+        loadChildren: () => import('./pages/dashboard/professional/professional.routes').then((r) => r.professionalDashboardRoutes),
+      },
+      {
+        path: '',
+        canMatch: [roleMatch('INDIVIDUAL')],
+        loadChildren: () => import('./pages/dashboard/individual/individual.routes').then((r) => r.individualDashboardRoutes),
+      },
+      {
+        path: '',
+        canMatch: [roleMatch('ADMIN')],
+        loadChildren: () => import('./pages/dashboard/admin/admin.routes').then((r) => r.adminDashboardRoutes),
+      },
+      {
+        path: '**',
+        loadComponent: () => import('./pages/dashboard/dashboard-fallback/dashboard-fallback').then((m) => m.DashboardFallback),
+      },
+    ],
   },
   {
     path: 'about-us',
