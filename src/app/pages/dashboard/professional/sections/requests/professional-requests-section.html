@@ -1,0 +1,67 @@
+<a routerLink="/search-pro" class="block mb-3 py-2 text-center rounded-lg text-[var(--primary-beige)] bg-grad-water-green">
+    {{ 'dashboard.requests.createDemand' | transloco }}
+</a>
+
+<div class="flex gap-1 justify-between">
+    <button class="flex-1 py-1 rounded-lg" [class.request-tab-active]="requestsTab() === 'mine'" (click)="setRequestsTab('mine')">
+        {{ 'dashboard.requests.tabs.mine' | transloco }}
+    </button>
+    <button class="flex-1 py-1 rounded-lg" [class.request-tab-active]="requestsTab() === 'received'" (click)="setRequestsTab('received')">
+        {{ 'dashboard.requests.tabs.received' | transloco }}
+    </button>
+</div>
+
+@if (demandsLoading()) {
+    <div class="loading">
+        <span class="spinner"></span>
+    </div>
+} @else {
+    <div class="demand-list">
+        @switch (requestsTab()) {
+            @case ('mine') {
+                @for (demand of myDemands(); track demand.id) {
+                    <button type="button" class="demand-card" (click)="selectMine(demand.id)">
+                        <div class="demand-card-header">
+                            <span
+                                class="demand-status"
+                                [class.demand-status--available]="demand.status === 'AVAILABLE'"
+                                [class.demand-status--cancelled]="demand.status === 'CANCELLED'"
+                            >
+                                {{ 'dashboard.requests.status.' + demand.status | transloco }}
+                            </span>
+                            <span class="demand-date">{{ demand.createdAt | localizedDate:'compact' }}</span>
+                        </div>
+                        <p class="demand-description">{{ demand.description }}</p>
+                        <p class="demand-meta">
+                            {{ 'dashboard.requests.filesCount' | transloco: { count: demand.photoKeys.length } }}
+                        </p>
+                    </button>
+                } @empty {
+                    <p class="pro-empty text-center">{{ 'dashboard.empty.requests' | transloco }}</p>
+                }
+            }
+            @case ('received') {
+                @for (demand of receivedDemands(); track demand.id) {
+                    <button type="button" class="demand-card" (click)="selectReceived(demand.id)">
+                        <div class="demand-card-header">
+                            <span
+                                class="demand-status"
+                                [class.demand-status--available]="demand.status === 'AVAILABLE'"
+                                [class.demand-status--cancelled]="demand.status === 'CANCELLED'"
+                            >
+                                {{ 'dashboard.requests.status.' + demand.status | transloco }}
+                            </span>
+                            <span class="demand-date">{{ demand.createdAt | localizedDate:'compact' }}</span>
+                        </div>
+                        <p class="demand-description">{{ demand.description }}</p>
+                        <p class="demand-meta">
+                            {{ 'dashboard.requests.filesCount' | transloco: { count: demand.photoKeys.length } }}
+                        </p>
+                    </button>
+                } @empty {
+                    <p class="pro-empty text-center">{{ 'dashboard.empty.requestsReceived' | transloco }}</p>
+                }
+            }
+        }
+    </div>
+}

@@ -3,7 +3,7 @@ import { isPlatformBrowser, registerLocaleData } from '@angular/common';
 import { AppConfigService } from './core/services/app-config.service';
 import { AuthService } from './core/services/auth.service';
 import { USER_STATE_KEY, ACCESS_TOKEN_STATE_KEY } from './core/state/auth-transfer';
-import { provideRouter, withInMemoryScrolling, TitleStrategy } from '@angular/router';
+import { provideRouter, withInMemoryScrolling, withRouterConfig, TitleStrategy } from '@angular/router';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { apiUrlInterceptor } from './core/interceptors/api-url.interceptor';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
@@ -25,7 +25,11 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: 'top', anchorScrolling: 'enabled' })),
+    provideRouter(
+      routes,
+      withInMemoryScrolling({ scrollPositionRestoration: 'top', anchorScrolling: 'enabled' }),
+      withRouterConfig({ paramsInheritanceStrategy: 'always' }),
+    ),
     provideHttpClient(withFetch(), withInterceptors([httpErrorInterceptor, authInterceptor, apiUrlInterceptor])),
     provideTransloco(translocoConfig),
     { provide: TitleStrategy, useClass: TranslocoTitleStrategy },

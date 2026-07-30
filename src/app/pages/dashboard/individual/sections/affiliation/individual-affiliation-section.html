@@ -1,0 +1,113 @@
+<div class="ind-section">
+    <h3 class="mb-2">{{ 'dashboard.affiliation.title' | transloco }}</h3>
+    @if (affiliationLoading()) {
+        <div class="aff-loading">
+            <span class="spinner"></span>
+        </div>
+    } @else if (affiliationData(); as aff) {
+        @if (!aff.affiliateCode) {
+            <div class="aff-empty-state">
+                <div class="aff-empty-icon">
+                    <iconify-icon icon="lucide:users"></iconify-icon>
+                </div>
+                <p class="aff-empty-text">{{ 'dashboard.affiliation.noCode' | transloco }}</p>
+                <button class="aff-generate-btn" (click)="generateAffiliateCode()">
+                    <iconify-icon icon="lucide:plus-circle"></iconify-icon>
+                    {{ 'dashboard.affiliation.generateCode' | transloco }}
+                </button>
+            </div>
+        } @else {
+            <div class="aff-code-card">
+                <span class="aff-code-label">{{ 'dashboard.affiliation.myCode' | transloco }}</span>
+                <div class="aff-code-display">
+                    <span class="aff-code-value">{{ aff.affiliateCode }}</span>
+                    <button class="aff-copy-btn" [class.aff-copy-btn--copied]="codeCopied()" (click)="copyAffiliateCode(aff.affiliateCode!)">
+                        @if (codeCopied()) {
+                            <iconify-icon icon="lucide:check"></iconify-icon>
+                        } @else {
+                            <iconify-icon icon="lucide:copy"></iconify-icon>
+                        }
+                        {{ (codeCopied() ? 'dashboard.affiliation.copied' : 'dashboard.affiliation.copyCode') | transloco }}
+                    </button>
+                </div>
+                <div class="aff-share-row">
+                    <iconify-icon icon="lucide:link" class="aff-share-icon"></iconify-icon>
+                    <span class="aff-share-url">{{ affiliateShareUrl(aff.affiliateCode!) }}</span>
+                </div>
+            </div>
+
+            <div class="aff-stats-grid">
+                <div class="aff-stat-card">
+                    <span class="aff-stat-value">{{ aff.totalReferrals }}</span>
+                    <span class="aff-stat-label">{{ 'dashboard.affiliation.stats.totalReferrals' | transloco }}</span>
+                </div>
+                <div class="aff-stat-card aff-stat-card--accent">
+                    <span class="aff-stat-value">{{ aff.activeReferrals }}</span>
+                    <span class="aff-stat-label">{{ 'dashboard.affiliation.stats.activeReferrals' | transloco }}</span>
+                </div>
+                <div class="aff-stat-card">
+                    <span class="aff-stat-value">{{ aff.totalEarned | number:'1.2-2' }} €</span>
+                    <span class="aff-stat-label">{{ 'dashboard.affiliation.stats.totalEarned' | transloco }}</span>
+                </div>
+                <div class="aff-stat-card aff-stat-card--accent">
+                    <span class="aff-stat-value">{{ aff.pendingEarnings | number:'1.2-2' }} €</span>
+                    <span class="aff-stat-label">{{ 'dashboard.affiliation.stats.pendingEarnings' | transloco }}</span>
+                </div>
+            </div>
+
+            <div class="aff-block">
+                <h4 class="aff-sub-title">{{ 'dashboard.affiliation.referrals.title' | transloco }}</h4>
+                @if (aff.referrals.length === 0) {
+                    <p class="ind-empty">{{ 'dashboard.affiliation.referrals.empty' | transloco }}</p>
+                } @else {
+                    <div class="aff-referrals-list">
+                        @for (r of aff.referrals; track r.id) {
+                            <div class="aff-referral-item">
+                                <div class="aff-referral-avatar">{{ r.affiliateFirstName[0] }}{{ r.affiliateLastName[0] }}</div>
+                                <div class="aff-referral-info">
+                                    <span class="aff-referral-name">{{ r.affiliateFirstName }} {{ r.affiliateLastName }}</span>
+                                    <span class="aff-referral-meta">{{ ('dashboard.affiliation.referrals.role.' + r.affiliateRole) | transloco }} · {{ r.createdAt | localizedDate:'compact' }}</span>
+                                </div>
+                                <div class="aff-referral-right">
+                                    <span class="aff-status-badge aff-status-badge--{{ r.status | lowercase }}">{{ ('dashboard.affiliation.referrals.status.' + r.status) | transloco }}</span>
+                                    <span class="aff-referral-earnings">{{ r.commissionsTotal | number:'1.2-2' }} €</span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        }
+    }
+
+    @if (!affiliationLoading()) {
+        <div class="aff-block">
+            <h4 class="aff-sub-title">{{ 'dashboard.affiliation.myReferrer.title' | transloco }}</h4>
+            @if (affiliationData()?.myReferrer; as referrer) {
+                <div class="aff-referral-item">
+                    <div class="aff-referral-avatar">{{ referrer.firstName[0] }}{{ referrer.lastName[0] }}</div>
+                    <div class="aff-referral-info">
+                        <span class="aff-referral-name">{{ referrer.firstName }} {{ referrer.lastName }}</span>
+                        <span class="aff-referral-meta">{{ ('dashboard.affiliation.referrals.role.' + referrer.role.code) | transloco }} · {{ referrer.createdAt | localizedDate:'compact' }}</span>
+                    </div>
+                </div>
+            } @else {
+                <p class="ind-empty">{{ 'dashboard.affiliation.myReferrer.none' | transloco }}</p>
+            }
+        </div>
+    }
+
+    <div class="aff-how-block">
+        <h4 class="aff-sub-title">{{ 'dashboard.affiliation.howItWorks.title' | transloco }}</h4>
+        <div class="aff-how-grid">
+            <div class="aff-how-step">
+                <div class="aff-how-num">1</div>
+                <p>{{ 'dashboard.affiliation.howItWorks.individual' | transloco }}</p>
+            </div>
+            <div class="aff-how-step">
+                <div class="aff-how-num">2</div>
+                <p>{{ 'dashboard.affiliation.howItWorks.professional' | transloco }}</p>
+            </div>
+        </div>
+    </div>
+</div>

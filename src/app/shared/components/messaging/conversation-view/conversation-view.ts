@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild, afterRenderEffect, computed, inject, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, computed, inject, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TranslocoModule } from '@jsverse/transloco';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { ConversationMessage, ConversationSummary } from '../../../interfaces/conversation';
 import { DocModal } from '../../doc-modal/doc-modal';
 import { UserAvatar } from '../../user-avatar/user-avatar';
@@ -9,6 +9,8 @@ import { PreviewDocument } from '../../../interfaces/preview-document';
 import { LocalizedDatePipe } from '../../../pipes/localized-date.pipe';
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
 import { ALLOWED_DOCUMENT_TYPES } from '../../../../core/utils/file-types';
+import { LangService } from '../../../../core/services/lang.service';
+import { DATE_STYLE_COMPACT, formatLocalizedDate, formatLocalizedTime } from '../../../../core/utils/date-format';
 
 @Component({
   selector: 'conversation-view',
@@ -21,6 +23,8 @@ import { ALLOWED_DOCUMENT_TYPES } from '../../../../core/utils/file-types';
 })
 export class ConversationView {
   private readonly flashMessage = inject(FlashMessageService);
+  private readonly langService = inject(LangService);
+  private readonly transloco = inject(TranslocoService);
 
   readonly conversation = input.required<ConversationSummary>();
   readonly messages = input.required<ConversationMessage[]>();
@@ -43,18 +47,20 @@ export class ConversationView {
     return description.length > 100 ? `${description.slice(0, 100)}…` : description;
   });
 
-  @ViewChild('scrollContainer') private readonly scrollContainer?: ElementRef<HTMLDivElement>;
+  /** Affichage façon Messenger : DOM du plus récent au plus ancien, combiné à
+   * `flex-direction: column-reverse` en CSS pour un ancrage naturel en bas (aucun scroll
+   * impératif nécessaire, y compris quand un nouveau message arrive pendant la lecture). */
+  readonly reversedMessages = computed(() => [...this.messages()].reverse());
 
-  constructor() {
-    afterRenderEffect(() => {
-      this.messages();
-      this.scrollToBottom();
-    });
-  }
-
-  scrollToBottom(): void {
-    const el = this.scrollContainer?.nativeElement;
-    if (el) el.scrollTop = el.scrollHeight;
+  formatBubbleTime(iso: string): string {
+    const date = new Date(iso);
+    const now = new Date();
+    const isSameDay =
+      date.getFullYear() === now.getFullYear() && date.getMonth() === now.getMonth() && date.getDate() === now.getDate();
+    const lang = this.langService.lang();
+    const time = formatLocalizedTime(date, lang);
+    const day = isSameDay ? this.transloco.translate('common.today') : formatLocalizedDate(date, lang, DATE_STYLE_COMPACT);
+    return `${day} - ${time}`;
   }
 
   onDraftInput(event: Event): void {

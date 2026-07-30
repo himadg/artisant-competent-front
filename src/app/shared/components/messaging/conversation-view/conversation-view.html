@@ -52,14 +52,19 @@
         {{ demandPreview() }}
     </button>
 
-    <div class="chat-messages" #scrollContainer>
-        @for (message of messages(); track message.id) {
+    <div class="chat-messages">
+        @for (message of reversedMessages(); track message.id) {
             <div class="chat-bubble-row" [class.own]="message.isOwnMessage">
                 <div class="chat-bubble" [class.own]="message.isOwnMessage">
                     @switch (message.type) {
                         @case ('IMAGE') {
-                            <button type="button" class="chat-bubble-image-btn" (click)="openImagePreview(message)">
-                                <img [src]="message.fileUrl" [alt]="message.content" class="chat-bubble-image" (load)="scrollToBottom()" />
+                            <button
+                                type="button"
+                                class="chat-bubble-image-btn"
+                                [class.max-h-[200px]]="message.fileHeight! > 200"
+                                (click)="openImagePreview(message)"
+                            >
+                                <img [src]="message.fileUrl" [alt]="message.content" class="chat-bubble-image" />
                             </button>
                         }
                         @case ('DOCUMENT') {
@@ -72,7 +77,7 @@
                             <p class="chat-bubble-text">{{ message.content }}</p>
                         }
                     }
-                    <span class="chat-bubble-time">{{ message.createdAt | localizedDate:'time' }}</span>
+                    <span class="chat-bubble-time">{{ formatBubbleTime(message.createdAt) }}</span>
                 </div>
             </div>
         }

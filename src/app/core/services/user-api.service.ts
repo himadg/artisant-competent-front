@@ -35,6 +35,12 @@ export class UserApiService {
     return this.http.patch<void>(`/users/${userId}`, data);
   }
 
+  updateIndividualProfile(userId: string, data: Partial<{
+    phone: string;
+  }>): Observable<void> {
+    return this.http.patch<void>(`/individuals/${userId}`, data);
+  }
+
   updateProfessional(userId: string, data: Partial<{
     companyName: string;
     description: string;

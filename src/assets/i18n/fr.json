@@ -450,7 +450,8 @@
     "sidebarNavigation": "Navigation latérale",
     "bottomNavigation": "Navigation basse",
     "avatar": "Avatar",
-    "back": "Retour"
+    "back": "Retour",
+    "today": "Aujourd'hui"
   },
   "docModal": {
     "defaultTitle": "Aperçu du document",
@@ -3342,7 +3343,21 @@
         "lastName": "Nom",
         "email": "Email",
         "birthDate": "Date de naissance",
-        "gender": "Genre"
+        "gender": "Genre",
+        "addressStreet": "N° et rue",
+        "addressComplement": "Complément",
+        "addressCity": "CP / Ville",
+        "phone": "Téléphone"
+      },
+      "errors": {
+        "addressIncomplete": "Renseignez l'adresse complète (numéro, rue, code postal, ville) avant d'enregistrer.",
+        "nameInvalid": "Le prénom et le nom ne doivent contenir que des lettres, apostrophes ou tirets.",
+        "emailInvalid": "L'adresse email n'est pas valide.",
+        "birthDateInvalid": "La date de naissance doit être renseignée et ne peut pas être dans le futur.",
+        "phoneInvalid": "Le numéro de téléphone n'est pas valide.",
+        "streetNumberInvalid": "Le numéro de rue n'est pas valide.",
+        "postalCodeInvalid": "Le code postal doit contenir 5 chiffres.",
+        "cityInvalid": "Le nom de la ville n'est pas valide."
       }
     },
     "pro": {
@@ -3444,7 +3459,17 @@
       "onCallNo": "Non",
       "companyRemarks": "Remarques entreprise",
       "noneProvided": "Non renseigné",
-      "expiresOn": "Expire le"
+      "expiresOn": "Expire le",
+      "description": "Description",
+      "noPartnersError": "Ajoutez au moins un fournisseur avant d'enregistrer.",
+      "noTradesError": "Sélectionnez au moins un métier avant d'enregistrer.",
+      "personalAddressError": "Renseignez l'adresse complète (numéro, rue, code postal, ville) avant d'enregistrer.",
+      "workAddressError": "Renseignez l'adresse complète de l'entreprise (numéro, rue, code postal, ville) avant d'enregistrer.",
+      "fieldRequiredError": "Ce champ est obligatoire.",
+      "mediatorIncompleteError": "Si vous renseignez le médiateur, tous les champs (nom, adresse, site web, mode de contact) sont obligatoires.",
+      "mediatorNameInvalid": "Le nom du médiateur contient des caractères non valides.",
+      "mediatorAddressInvalid": "L'adresse du médiateur n'est pas valide.",
+      "mediatorWebsiteInvalid": "Le site web du médiateur n'est pas valide."
     },
     "empty": {
       "requests": "Aucune demande pour le moment",
@@ -3517,6 +3542,26 @@
         "dispute": "Signaler un conflit"
       },
       "invalidAttachment": "Format de fichier non supporté. Formats acceptés : JPG, JPEG, PNG, WEBP, PDF."
+    },
+    "sections": {
+      "profile": {
+        "title": "Infos personnelles — Mon compte"
+      },
+      "requests": {
+        "title": "Mes demandes — Mon compte"
+      },
+      "messages": {
+        "title": "Messages — Mon compte"
+      },
+      "practices": {
+        "title": "Bonnes pratiques — Mon compte"
+      },
+      "legal": {
+        "title": "Informations légales — Mon compte"
+      },
+      "affiliation": {
+        "title": "Affiliation — Mon compte"
+      }
     }
   },
   "cities": {

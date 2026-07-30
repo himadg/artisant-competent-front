@@ -4,6 +4,7 @@ import { Role } from './user';
 export interface IndividualProfileWithUrls {
   id: string;
   userId: string;
+  phone: string;
   photoKey: string | null;
   idFrontKey: string | null;
   idBackKey: string | null;

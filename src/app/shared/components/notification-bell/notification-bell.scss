@@ -13,8 +13,8 @@
   position: relative;
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   border: 0;
   border-radius: 50%;
   background: var(--bell-bg, transparent);
@@ -24,7 +24,7 @@
 }
 
 .bell-btn:hover {
-  background: color-mix(in srgb, var(--secondary-beige) 30%, transparent);
+  background: var(--secondary-beige);
 }
 
 .badge {

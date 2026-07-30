@@ -1,0 +1,467 @@
+@use '../../shared-styles/dashboard-nav';
+@use '../shared/individual-common';
+
+/* ── Layout général ── */
+.ind-layout {
+  display: grid;
+  grid-template-columns: 13.5rem 1fr;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+}
+
+.ind-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60dvh;
+}
+
+.ind-error {
+  padding: 2rem;
+  color: #ef4444;
+}
+
+/* ── Sidebar ── */
+.ind-sidebar {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  border-right: 1px solid var(--border-color);
+  height: 100%;
+  overflow-y: auto;
+}
+
+.ind-main {
+  overflow-y: auto;
+  min-width: 0;
+  min-height: 0;
+}
+
+.ind-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+/* ── Topbar ── */
+.ind-topbar {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3.75rem;
+  padding: 0 2rem;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  background: var(--background-color);
+  z-index: 10;
+}
+
+.ind-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.topbar-icon-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color);
+  transition: opacity 0.15s, background 0.15s;
+
+  .badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    display: grid;
+    place-items: center;
+    border-radius: 9999px;
+    background: #c0392b;
+    color: #fff;
+    font-size: 10px;
+    line-height: 1;
+  }
+
+  svg *,
+  iconify-icon {
+    flex-shrink: 0;
+    font-size: 1.5rem;
+  }
+
+  &:hover {
+    opacity: 1;
+    background: var(--border-color);
+  }
+}
+
+.topbar-avatar {
+  border: 2px solid var(--border-color);
+}
+
+/* ── Main ── */
+.ind-content {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  margin-inline: auto;
+}
+
+/* ── En-tête profil ── */
+.ind-user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.75rem;
+  padding: 1.5rem 2rem;
+}
+
+.ind-photo-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.ind-photo {
+  border: 4px solid var(--primary-water-green);
+}
+
+.ind-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ind-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color);
+  margin: 0;
+  font-family: inherit;
+  letter-spacing: normal;
+}
+
+.ind-address,
+.ind-since {
+  font-size: 0.875rem;
+  color: var(--color);
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+}
+
+.inline-icon {
+  width: 0.9rem;
+  height: 0.9rem;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+/* ── Contenu section (accueille le router-outlet) ── */
+.ind-section-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 1.75rem 2rem;
+}
+
+/* ── Bottom nav (mobile) ── */
+.ind-bottom-nav,
+.more-overlay,
+.more-menu {
+  display: none;
+}
+
+.mobile-notification-bell {
+  display: none;
+}
+
+/* ══════════════ RESPONSIVE ══════════════ */
+@media (max-width: 768px) {
+  .ind-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    overflow: hidden;
+    padding-bottom: 4rem;
+  }
+
+  .mobile-notification-bell {
+    display: block;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+  }
+
+  notification-bell {
+    --bell-color: var(--background-color);
+  }
+
+  .ind-topbar {
+    display: none;
+  }
+
+  .ind-sidebar {
+    display: none;
+  }
+
+  .ind-main {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    width: 100lvw;
+  }
+
+  /* ── Hero mobile ── */
+  .ind-header {
+    flex-shrink: 0;
+    border: none !important;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .ind-user {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 4rem 0 0;
+    background: var(--v-grad-water-green);
+  }
+
+  .ind-photo-wrap {
+    z-index: 2;
+    top: -20px;
+  }
+
+  .ind-photo {
+    border-width: 3px;
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .ind-user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem 1rem 1rem;
+    background: var(--background-color);
+    width: 100%;
+    margin-top: -2.5rem;
+    position: relative;
+    clip-path: ellipse(70% 60% at 50% 60%);
+  }
+
+  .ind-address,
+  .ind-since {
+    justify-content: center;
+  }
+
+  .ind-name {
+    font-size: 1.3rem;
+  }
+
+  .ind-section-content {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 1.5rem 4rem 2rem;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* ── Menu "Plus" ── */
+  .more-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+  }
+
+  .more-menu {
+    position: fixed;
+    bottom: calc(4.5rem + 0.5rem);
+    right: 1rem;
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 10rem;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.12);
+    animation: slideUp 0.15s ease;
+  }
+
+  .more-menu-toggles {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 0.5rem;
+  }
+
+  .more-menu-divider {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 0;
+  }
+
+  .more-menu-logout {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 0.5rem;
+    border: none;
+    background: none;
+    width: 100%;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: var(--color);
+
+    svg,
+    iconify-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      background: var(--border-color);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(0.5rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ── Bottom nav ── */
+  .ind-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--background-color);
+    border-top: 1px solid var(--border-color);
+    z-index: 20;
+    height: 4rem;
+  }
+
+  .bottom-nav-item {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.2rem;
+    padding: 0.625rem 0.25rem;
+    background: none;
+    border: none;
+    color: var(--color);
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: bolder;
+
+    /* ---- Les propriétés anti-flash mobile ---- */
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    /* Supprime le flash bleu/gris natif */
+    outline: none;
+    /* Supprime l'anneau de focus (souvent noir/bleu) */
+    user-select: none;
+    /* Empêche de sélectionner le texte du bouton en restant appuyé */
+    -webkit-user-select: none;
+
+    svg,
+    iconify-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .bottom-nav-icon-wrap {
+      position: relative;
+      display: inline-flex;
+
+      .badge {
+        position: absolute;
+        top: -4px;
+        right: -6px;
+        min-width: 16px;
+        height: 16px;
+        padding: 0 4px;
+        display: grid;
+        place-items: center;
+        border-radius: 9999px;
+        background: #c0392b;
+        color: #fff;
+        font-size: 10px;
+        line-height: 1;
+      }
+    }
+
+    .bottom-nav-logo {
+      width: 4rem;
+      height: 4rem;
+      object-fit: contain;
+    }
+
+    &.active {
+      color: var(--primary-beige) !important;
+      background-color: var(--primary-water-green) !important;
+    }
+
+    /* Optionnel : Désactiver explicitement le changement de background au hover/active s'il y en a un hérité */
+    &:active,
+    &:focus,
+    &:hover {
+      color: var(--primary-beige) !important;
+      background-color: var(--primary-water-green) !important;
+    }
+
+    &.plus-menu,
+    &.plus-menu:hover,
+    &.plus-menu:focus,
+    &.plus-menu:active {
+      color: var(--primary-water-green) !important;
+      background-color: var(--primary-beige) !important;
+
+      & *:hover,
+      & *:focus,
+      & *:active {
+        color: var(--primary-water-green) !important;
+        background-color: var(--primary-beige) !important;
+      }
+    }
+  }
+}
