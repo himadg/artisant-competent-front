@@ -175,6 +175,19 @@
   gap: 0.5rem;
 }
 
+.chat-messages-sentinel {
+  flex-shrink: 0;
+  height: 1px;
+}
+
+.chat-messages-loading {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  color: var(--text-muted, #888);
+}
+
 .chat-bubble-row {
   display: flex;
   justify-content: flex-start;

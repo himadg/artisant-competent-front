@@ -6,6 +6,8 @@ import { ConversationView } from './conversation-view/conversation-view';
 import { ConversationMessage } from '../../interfaces/conversation';
 import { ChatService } from '../../../core/services/chat.service';
 
+const MESSAGES_PAGE_SIZE = 50;
+
 @Component({
   selector: 'messaging',
   standalone: true,
@@ -26,10 +28,18 @@ export class Messaging {
   readonly mobileShowConversation = signal(false);
   readonly messages = signal<ConversationMessage[]>([]);
   readonly messagesLoading = signal(false);
+  readonly loadingMoreMessages = signal(false);
+  readonly hasMoreMessages = signal(true);
 
   readonly selectedConversation = computed(
     () => this.conversations().find((c) => c.id === this.selectedConversationId()) ?? null,
   );
+
+  // Fenêtre de messages déjà chargée par conversation (historique paginé + arrivées temps réel),
+  // conservée pour la durée de la session : revenir sur une conversation déjà visitée ne doit pas
+  // perdre les pages plus anciennes chargées via loadMoreMessages, ni refaire un aller-retour réseau.
+  private readonly messagesCache = new Map<string, ConversationMessage[]>();
+  private readonly hasMoreCache = new Map<string, boolean>();
 
   constructor() {
     effect(() => {
@@ -39,25 +49,64 @@ export class Messaging {
 
     effect(() => {
       const message = this.chatService.incomingMessage();
-      if (!message || message.conversationId !== this.selectedConversationId()) return;
+      if (message?.conversationId !== this.selectedConversationId()) return;
 
       this.messages.update((list) => (list.some((m) => m.id === message.id) ? list : [...list, message]));
       if (!message.isOwnMessage) void this.chatService.markAsRead(message.conversationId);
     });
+
+    effect(() => {
+      const id = this.selectedConversationId();
+      const messages = this.messages();
+      const hasMore = this.hasMoreMessages();
+      if (!id) return;
+      this.messagesCache.set(id, messages);
+      this.hasMoreCache.set(id, hasMore);
+    });
   }
 
   selectConversation(id: string): void {
+    if (id === this.selectedConversationId()) {
+      this.mobileShowConversation.set(true);
+      return;
+    }
     this.selectedConversationId.set(id);
     this.mobileShowConversation.set(true);
-    this.messagesLoading.set(true);
 
-    this.chatService
-      .loadMessages(id)
-      .then((messages) => this.messages.set(messages))
-      .finally(() => this.messagesLoading.set(false));
+    const cached = this.messagesCache.get(id);
+    if (cached) {
+      this.messages.set(cached);
+      this.hasMoreMessages.set(this.hasMoreCache.get(id) ?? true);
+    } else {
+      this.messagesLoading.set(true);
+      this.hasMoreMessages.set(true);
+
+      this.chatService
+        .loadMessages(id, undefined, MESSAGES_PAGE_SIZE)
+        .then((messages) => {
+          this.messages.set(messages);
+          this.hasMoreMessages.set(messages.length === MESSAGES_PAGE_SIZE);
+        })
+        .finally(() => this.messagesLoading.set(false));
+    }
 
     void this.chatService.loadConversationDetail(id);
     void this.chatService.markAsRead(id);
+  }
+
+  loadMoreMessages(): void {
+    const conversationId = this.selectedConversationId();
+    const oldest = this.messages().at(-1);
+    if (!conversationId || !oldest || this.loadingMoreMessages() || !this.hasMoreMessages()) return;
+
+    this.loadingMoreMessages.set(true);
+    this.chatService
+      .loadMessages(conversationId, oldest.id, MESSAGES_PAGE_SIZE)
+      .then((older) => {
+        this.hasMoreMessages.set(older.length === MESSAGES_PAGE_SIZE);
+        this.messages.update((list) => [...list, ...older]);
+      })
+      .finally(() => this.loadingMoreMessages.set(false));
   }
 
   closeConversation(): void {
