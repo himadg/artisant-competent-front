@@ -1,4 +1,16 @@
-import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, computed, inject, input, output, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ElementRef,
+  computed,
+  effect,
+  inject,
+  input,
+  output,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
@@ -28,6 +40,8 @@ export class ConversationView {
 
   readonly conversation = input.required<ConversationSummary>();
   readonly messages = input.required<ConversationMessage[]>();
+  readonly loadingMore = input(false);
+  readonly hasMore = input(true);
 
   readonly back = output<void>();
   readonly sendMessage = output<string>();
@@ -37,20 +51,61 @@ export class ConversationView {
   readonly reportDispute = output<void>();
   readonly openDemand = output<string>();
   readonly sendAttachment = output<File>();
+  readonly loadMore = output<void>();
+
+  readonly messagesContainer = viewChild<ElementRef<HTMLDivElement>>('messagesContainer');
+  readonly oldestSentinel = viewChild<ElementRef<HTMLDivElement>>('oldestSentinel');
 
   readonly draft = signal('');
   readonly actionsMenuOpen = signal(false);
   readonly docToPreview = signal<PreviewDocument | null>(null);
 
+  // Hauteur de scroll capturée juste avant de déclencher le chargement des messages plus anciens,
+  // pour compenser leur insertion et éviter que la vue ne saute (cf. l'effect ci-dessous).
+  private pendingScrollHeight: number | null = null;
+
+  constructor() {
+    // Sentinelle observée via IntersectionObserver plutôt qu'un calcul de scrollTop : ça évite
+    // toute hypothèse sur le sens réel du scroll induit par column-reverse (cf. .chat-messages).
+    effect((onCleanup) => {
+      const root = this.messagesContainer()?.nativeElement;
+      const sentinel = this.oldestSentinel()?.nativeElement;
+      if (!root || !sentinel) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (!entries[0]?.isIntersecting || this.loadingMore() || !this.hasMore()) return;
+          this.pendingScrollHeight = root.scrollHeight;
+          this.loadMore.emit();
+        },
+        { root, threshold: 0 },
+      );
+      observer.observe(sentinel);
+      onCleanup(() => observer.disconnect());
+    });
+
+    // ResizeObserver plutôt qu'un effect sur messages() : il se déclenche au moment exact où la
+    // hauteur réelle du conteneur change (donc après peinture des nouveaux messages), sans dépendre
+    // du timing de propagation du signal messages() du parent vers cet input.
+    effect((onCleanup) => {
+      const container = this.messagesContainer()?.nativeElement;
+      if (!container) return;
+
+      const resizeObserver = new ResizeObserver(() => {
+        const captured = this.pendingScrollHeight;
+        if (captured === null) return;
+        this.pendingScrollHeight = null;
+        container.scrollTop += container.scrollHeight - captured;
+      });
+      resizeObserver.observe(container);
+      onCleanup(() => resizeObserver.disconnect());
+    });
+  }
+
   readonly demandPreview = computed(() => {
     const description = this.conversation().demandDescription;
     return description.length > 100 ? `${description.slice(0, 100)}…` : description;
   });
-
-  /** Affichage façon Messenger : DOM du plus récent au plus ancien, combiné à
-   * `flex-direction: column-reverse` en CSS pour un ancrage naturel en bas (aucun scroll
-   * impératif nécessaire, y compris quand un nouveau message arrive pendant la lecture). */
-  readonly reversedMessages = computed(() => [...this.messages()].reverse());
 
   formatBubbleTime(iso: string): string {
     const date = new Date(iso);

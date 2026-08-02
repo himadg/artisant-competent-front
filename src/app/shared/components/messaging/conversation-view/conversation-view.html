@@ -52,8 +52,8 @@
         {{ demandPreview() }}
     </button>
 
-    <div class="chat-messages">
-        @for (message of reversedMessages(); track message.id) {
+    <div class="chat-messages" #messagesContainer>
+        @for (message of messages(); track message.id) {
             <div class="chat-bubble-row" [class.own]="message.isOwnMessage">
                 <div class="chat-bubble" [class.own]="message.isOwnMessage">
                     @switch (message.type) {
@@ -79,6 +79,12 @@
                     }
                     <span class="chat-bubble-time">{{ formatBubbleTime(message.createdAt) }}</span>
                 </div>
+            </div>
+        }
+        <div #oldestSentinel class="chat-messages-sentinel"></div>
+        @if (loadingMore()) {
+            <div class="chat-messages-loading">
+                <iconify-icon icon="lucide:loader-circle" class="animate-spin"></iconify-icon>
             </div>
         }
     </div>

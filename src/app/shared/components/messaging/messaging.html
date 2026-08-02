@@ -8,10 +8,13 @@
             <conversation-view
                 [conversation]="conversation"
                 [messages]="messages()"
+                [loadingMore]="loadingMoreMessages()"
+                [hasMore]="hasMoreMessages()"
                 (back)="closeConversation()"
                 (sendMessage)="sendMessage($event)"
                 (sendAttachment)="sendAttachment($event)"
                 (openDemand)="openDemand.emit($event)"
+                (loadMore)="loadMoreMessages()"
             />
         } @else {
             <div class="messaging-empty">{{ 'dashboard.messages.selectPrompt' | transloco }}</div>
