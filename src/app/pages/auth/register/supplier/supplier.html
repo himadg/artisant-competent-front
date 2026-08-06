@@ -8,7 +8,7 @@
                     @if (logoPreview()) {
                         <img
                             [src]="logoPreview()"
-                            alt="Logo"
+                            [attr.alt]="'common.logo' | transloco"
                             class="object-cover w-full h-full cursor-pointer"
                             (click)="removeLogo()"
                         />

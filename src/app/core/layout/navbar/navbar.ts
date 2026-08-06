@@ -5,6 +5,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 import { filter } from 'rxjs/operators';
 import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'ac-navbar',
@@ -17,6 +18,7 @@ import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggl
 export class Navbar implements OnInit {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly router = inject(Router);
+  readonly authService = inject(AuthService);
 
   // Opens the sandwich menu on mobiles
   readonly mobileNavOpen = signal(false);
@@ -62,20 +64,20 @@ export class Navbar implements OnInit {
   }
 
   toggleDesktopRegister() {
-    if (!this.isBrowser || window.matchMedia('(min-width: 1024px)').matches) return;
+    if (!this.isBrowser || globalThis.matchMedia('(min-width: 1024px)').matches) return;
     this.tabletNavLoginOpen.set(false);
     this.tabletNavRegisterOpen.update(v => !v);
   }
 
   toggleDesktopLogin() {
-    if (!this.isBrowser || window.matchMedia('(min-width: 1024px)').matches) return;
+    if (!this.isBrowser || globalThis.matchMedia('(min-width: 1024px)').matches) return;
     this.tabletNavRegisterOpen.set(false);
     this.tabletNavLoginOpen.update(v => !v);
   }
 
   @HostListener('document:pointerdown', ['$event'])
   onDocPointerDown(event: PointerEvent) {
-    if (!this.isBrowser || window.matchMedia('(min-width: 1024px)').matches) return;
+    if (!this.isBrowser || globalThis.matchMedia('(min-width: 1024px)').matches) return;
     const target = event.target as Node;
     if (this.tabletNavRegisterOpen()) {
       const element = this.registerDropdown?.nativeElement;

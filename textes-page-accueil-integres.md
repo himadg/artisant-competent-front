@@ -29,8 +29,8 @@ Source : `src/assets/i18n/fr.json` (namespaces `home.*` et `footer`). La version
 1. Artisans vérifiés : SIRET, assurances et certifications à jour.
 2. Paiement encadré : votre argent bloqué en séquestre jusqu'à validation.
 3. Suivi digital : photos, échanges, preuves. Rien ne s'efface.
-4. 48h pour valider : en cas d'abus, médiation possible.
-5. France et DOM-TOM* : couverture en cours de déploiement partout sur le territoire.
+4. 96h pour valider : en cas d'abus, médiation possible.
+5. France et DOM-TOM\* : couverture en cours de déploiement partout sur le territoire.
 
 **Boutons :** Je suis un professionnel · Je suis un particulier
 **CTA formulaire :** Décrivez votre projet en 2 minutes
@@ -82,11 +82,11 @@ Dès l'acceptation du devis, votre paiement est placé en séquestre. L'artisan 
 
 ---
 
-## 6. La règle des 48h
+## 6. La règle des 96h
 
-- **Titre (H2)** : 48h pour valider. 48h pour réagir.
-- **Intro 1** : Vos travaux sont terminés. L'artisan vous demande de signer le procès-verbal de fin de chantier. Et là, une règle simple vous protège : vous avez jusqu'à 48 heures pour le valider.
-- **Intro 2** : Cette période de 48h s'applique à tous les chantiers, pas seulement aux urgences. Pendant ces 48h, les fonds restent bloqués en séquestre.
+- **Titre (H2)** : 96h pour valider. 96h pour réagir.
+- **Intro 1** : Vos travaux sont terminés. L'artisan vous demande de signer le procès-verbal de fin de chantier. Et là, une règle simple vous protège : vous avez jusqu'à 96 heures pour le valider.
+- **Intro 2** : Cette période de 96h s'applique à tous les chantiers, pas seulement aux urgences. Pendant ces 96h, les fonds restent bloqués en séquestre.
 
 **Vous constatez un abus ou une malfaçon ? La bonne démarche, dans l'ordre :**
 
@@ -97,7 +97,7 @@ Dès l'acceptation du devis, votre paiement est placé en séquestre. L'artisan 
 **Et si vous avez déjà signé le PV ?**
 Pas de panique. Les artisans présents sur Artisan Compétent sont tous des professionnels sérieux et, comme tout bon artisan honnête, ils interviennent pour rattraper une éventuelle malfaçon liée à leur travail. Et dans tous les cas, dès la signature du PV, les garanties légales entrent en jeu, à commencer par la garantie de parfait achèvement (1 an), puis la garantie biennale et, selon la nature des travaux, la garantie décennale.
 
-- **Phrase forte** : Prenez 48h. C'est votre meilleure protection.
+- **Phrase forte** : Prenez 96h. C'est votre meilleure protection.
 
 ---
 
@@ -145,7 +145,7 @@ Sans mécanisme d'encadrement complet, on estime que plus d'un chantier sur deux
 
 - **Titre (H2)** : Une urgence ? On gère, même à 3h du matin.
 - **Paragraphe 1** : Fuite d'eau, panne de chauffage, porte claquée, coupure électrique. Les urgences n'attendent pas. Artisan Compétent met à votre disposition des artisans d'urgence disponibles 24h/24, 7j/7.
-- **Paragraphe 2** : Et même en urgence, le séquestre de fonds s'applique. Vous ne validez le paiement qu'une fois l'intervention terminée. Et la règle des 48h pour réagir en cas d'abus est encore plus précieuse la nuit, quand les devis gonflés sont les plus fréquents.
+- **Paragraphe 2** : Et même en urgence, le séquestre de fonds s'applique. Vous ne validez le paiement qu'une fois l'intervention terminée. Et la règle des 96h pour réagir en cas d'abus est encore plus précieuse la nuit, quand les devis gonflés sont les plus fréquents.
 
 **5 métiers d'urgence :**
 
@@ -162,7 +162,7 @@ Sans mécanisme d'encadrement complet, on estime que plus d'un chantier sur deux
 - **Titre (H2)** : Nos villes d'intervention
 - **Introduction** : Artisan Compétent intervient dans les principales villes de France et, au fil des mois, s'étend vers les communes plus petites dès que des artisans locaux rejoignent la plateforme. Voici les villes couvertes aujourd'hui.
 - **Texte sous la grille** : Votre ville n'est pas dans la liste ? La plateforme s'étend chaque mois. Parlez-en à vos artisans locaux : plus ils sont nombreux à rejoindre Artisan Compétent, plus vite votre zone sera couverte. Et un bon artisan qui n'a rien à se reprocher n'a aucune raison de refuser un système aussi encadré.
-- **Pastille** : Disponible 24/7 *(clé créée, pas encore affichée)*
+- **Pastille** : Disponible 24/7 _(clé créée, pas encore affichée)_
 
 > La grille des 12 villes réutilise les libellés existants du namespace `home.where.cities.*`.
 
@@ -202,13 +202,13 @@ La plateforme est en phase de déploiement progressif. Artisan Compétent couvre
 **Q7 — Que faire si je ne suis pas d'accord avec le devis ou le travail rendu ?**
 La première chose à faire, c'est d'en parler à l'artisan. La grande majorité des situations se règlent à l'amiable : un artisan sérieux acceptera de rediscuter du devis ou de revenir corriger une finition. Prenez le temps de cette discussion avant tout autre signalement.
 
-Si l'artisan refuse d'écouter vos remarques, vous pouvez alors le signaler depuis votre tableau de bord, dans les 48h après la fin des travaux. Pendant ce délai, les fonds restent bloqués en séquestre et la plateforme analyse la situation. Si un abus est avéré, une médiation amiable est engagée, et en cas de refus persistant de l'artisan, des frais de dossier (jusqu'à 250 €) lui sont prélevés au profit du client.
+Si l'artisan refuse d'écouter vos remarques, vous pouvez alors le signaler depuis votre tableau de bord, dans les 96h après la fin des travaux. Pendant ce délai, les fonds restent bloqués en séquestre et la plateforme analyse la situation. Si un abus est avéré, une médiation amiable est engagée, et en cas de refus persistant de l'artisan, des frais de dossier (jusqu'à 250 €) lui sont prélevés au profit du client.
 
-**Q8 — Qu'est-ce qui se passe si je ne valide pas le procès-verbal dans les 48h ?**
+**Q8 — Qu'est-ce qui se passe si je ne valide pas le procès-verbal dans les 96h ?**
 Tant que vous n'avez pas validé le PV, les fonds restent bloqués en séquestre. C'est la fenêtre pour signaler un éventuel problème (après en avoir parlé à l'artisan, voir question précédente). Une fois le PV signé, les fonds sont libérés vers l'artisan et seules les garanties légales restent activables (garantie de parfait achèvement, biennale, décennale selon les travaux).
 
 **Q9 — Que se passe-t-il si les travaux sont mal faits ?**
-Première étape : en discuter avec l'artisan. Beaucoup de malfaçons se corrigent dès qu'on en parle. Si l'artisan refuse d'intervenir, ne signez pas le PV dans les 48h et signalez la situation depuis votre tableau de bord. Les fonds restent bloqués et la plateforme analyse la situation sur la base du suivi digital (photos, échanges, rapports CMOD si activé).
+Première étape : en discuter avec l'artisan. Beaucoup de malfaçons se corrigent dès qu'on en parle. Si l'artisan refuse d'intervenir, ne signez pas le PV dans les 96h et signalez la situation depuis votre tableau de bord. Les fonds restent bloqués et la plateforme analyse la situation sur la base du suivi digital (photos, échanges, rapports CMOD si activé).
 
 Si le PV est déjà signé, les artisans sérieux présents sur la plateforme interviennent spontanément pour corriger une malfaçon. Et dans tous les cas, les garanties légales prennent le relais (parfait achèvement, biennale, décennale).
 

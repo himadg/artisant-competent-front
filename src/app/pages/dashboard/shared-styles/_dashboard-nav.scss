@@ -1,0 +1,82 @@
+// Styles identiques entre individual-dashboard.scss et professional-dashboard.scss
+// pour la nav latérale et le bloc utilisateur de la topbar (desktop/tablette).
+// N'inclut que les règles confirmées strictement identiques entre les deux fichiers —
+// tout ce qui diverge (topbar-icon-btn, more-menu, bottom-nav-item...) reste dans
+// chaque fichier, ces deux dashboards étant volontairement gardés séparés.
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  svg,
+  iconify-icon {
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    display: block;
+  }
+
+  &:hover {
+    color: var(--primary-beige);
+    background: var(--h-grad-water-green);
+  }
+
+  &.active {
+    color: var(--primary-beige);
+    background: var(--h-grad-water-green);
+    border-radius: 0.5rem;
+  }
+}
+
+:host-context(.dark) .nav-item:hover,
+:host-context(.dark) .nav-item.active {
+  background-color: var(--primary-brown);
+}
+
+.nav-divider {
+  width: 75%;
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 0.5rem 0.75rem;
+}
+
+.nav-toggles {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0.5rem 0.75rem;
+}
+
+.logout {
+  display: flex;
+  justify-content: center;
+  width: min-content;
+  white-space: nowrap;
+}
+
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-left: 0.5rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid var(--border-color);
+}
+
+.topbar-username {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color);
+  max-width: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

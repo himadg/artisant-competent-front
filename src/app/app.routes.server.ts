@@ -10,6 +10,8 @@ export const serverRoutes: ServerRoute[] = [
 
   // Pages statiques → prérendu au build
   { path: '', renderMode: RenderMode.Prerender },
+  { path: 'about-us', renderMode: RenderMode.Prerender },
+  { path: 'pro-why-join-us', renderMode: RenderMode.Prerender },
   { path: 'jobs', renderMode: RenderMode.Prerender },
   { path: 'affiliation', renderMode: RenderMode.Prerender },
   { path: 'contact', renderMode: RenderMode.Prerender },
@@ -29,7 +31,7 @@ export const serverRoutes: ServerRoute[] = [
     path: 'city/:city',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
-      return CITIES.map(city => ({ city: city.slug }));
+      return CITIES.map((city) => ({ city: city.slug }));
     },
   },
 
@@ -38,9 +40,7 @@ export const serverRoutes: ServerRoute[] = [
     path: 'job/:trade/:city',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
-      return TRADES.flatMap(trade =>
-        CITIES.map(city => ({ trade: trade.slug, city: city.slug }))
-      );
+      return TRADES.flatMap((trade) => CITIES.map((city) => ({ trade: trade.slug, city: city.slug })));
     },
   },
 

@@ -1,5 +1,22 @@
 import { Address } from './address';
 
+export interface OpeningHoursInterval {
+  start: string;
+  end: string;
+}
+
+export interface OpeningHoursDay {
+  day: 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday';
+  closed: boolean;
+  onCall: boolean;
+  intervals: OpeningHoursInterval[];
+}
+
+export interface OpeningHours {
+  timezone?: string;
+  days: OpeningHoursDay[];
+}
+
 export interface ProfessionalProfile {
   id: string;
   userId: string;
@@ -20,9 +37,8 @@ export interface ProfessionalProfile {
   yearsExperience: number;
   isCmod: boolean;
   onCall: boolean;
-  openingHours: Record<string, unknown>;
+  openingHours: OpeningHours;
   description: string;
-  services: { id: string; description: string }[];
   trustedContactName?: string;
   trustedContactPhone?: string;
   suppliers: string[];

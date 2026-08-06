@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DocumentKeys } from '../../shared/interfaces/document-keys';
+import { User } from '../../shared/interfaces/user';
 
 type OpeningHoursUpdate = {
   days: { day: string; closed: boolean; intervals: { start: string; end: string }[] }[];
@@ -14,14 +14,14 @@ export class UserApiService {
   registerIndividual(
     payload: Record<string, unknown>,
     captchaToken: string,
-  ): Observable<{ userId: string; accessToken: string; user: unknown }> {
-    return this.http.post<{ userId: string; accessToken: string; user: unknown }>('/individuals', payload, {
+  ): Observable<{ userId: string; profileId: string; accessToken: string; user: User }> {
+    return this.http.post<{ userId: string; profileId: string; accessToken: string; user: User }>('/individuals', payload, {
       headers: { 'x-turnstile-token': captchaToken },
     });
   }
 
-  createIndividualDocuments(userId: string, photoKey: string): Observable<void> {
-    return this.http.patch<void>(`/individuals/${userId}/documents`, { photoKey });
+  createIndividualDocuments(userId: string, formData: FormData): Observable<void> {
+    return this.http.patch<void>(`/individuals/${userId}/documents`, formData);
   }
 
   updateUser(userId: string, data: Partial<{
@@ -33,6 +33,12 @@ export class UserApiService {
     address: { streetNumber: string; streetName: string; additionalInfo: string | null; postalCode: string; city: string };
   }>): Observable<void> {
     return this.http.patch<void>(`/users/${userId}`, data);
+  }
+
+  updateIndividualProfile(userId: string, data: Partial<{
+    phone: string;
+  }>): Observable<void> {
+    return this.http.patch<void>(`/individuals/${userId}`, data);
   }
 
   updateProfessional(userId: string, data: Partial<{
@@ -63,14 +69,14 @@ export class UserApiService {
   registerProfessional(
     payload: Record<string, unknown>,
     captchaToken: string,
-  ): Observable<{ userId: string; accessToken: string; user: unknown; mailSent: boolean }> {
-    return this.http.post<{ userId: string; accessToken: string; user: unknown; mailSent: boolean }>('/professionals', payload, {
+  ): Observable<{ userId: string; profileId: string; accessToken: string; user: User; mailSent: boolean }> {
+    return this.http.post<{ userId: string; profileId: string; accessToken: string; user: User; mailSent: boolean }>('/professionals', payload, {
       headers: { 'x-turnstile-token': captchaToken },
     });
   }
 
-  createProfessionalDocuments(userId: string, documents: DocumentKeys): Observable<void> {
-    return this.http.patch<void>(`/professionals/${userId}/documents`, documents);
+  createProfessionalDocuments(userId: string, formData: FormData): Observable<void> {
+    return this.http.patch<void>(`/professionals/${userId}/documents`, formData);
   }
 
   getAllTrades(): Observable<{ id: string; name: string }[]> {
