@@ -11,7 +11,8 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, FormBuilder, FormControl, Validators, FormArray, AbstractControl } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, forkJoin, of, takeUntil } from 'rxjs';
+import { isBefore, parseISO, startOfDay } from 'date-fns';
+import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs';
 import {
   hourValidator,
   openingAtLeastOne,
@@ -37,10 +38,10 @@ import { LegalModal } from '../../../../shared/components/legal-modal/legal-moda
 import { Router } from '@angular/router';
 import { UserApiService } from '../../../../core/services/user-api.service';
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
+import { ALLOWED_IMAGE_TYPES, ALLOWED_DOCUMENT_TYPES, DocTarget, IMAGE_ONLY_TARGETS } from '../../../../core/utils/file-types';
 import { GeocodingService } from '../../../../core/services/geocoding.service';
 import { AddressSuggestion } from '../../../../shared/interfaces/address-suggestion';
 import { SiretService } from '../../../../core/services/siret.service';
-import { UploadService } from '../../../../core/services/upload.service';
 import {
   ADDRESS_REGEXP,
   NAME_REGEXP,
@@ -51,11 +52,9 @@ import {
   STREET_NUMBER_REGEXP,
 } from '../../../../core/utils/regexp';
 import { AppConfigService } from '../../../../core/services/app-config.service';
-import { LangService } from '../../../../core/services/lang.service';
 import { AuthService } from '../../../../core/services/auth.service';
+import { User } from '../../../../shared/interfaces/user';
 import { DiplomaEntry } from '../../../../shared/interfaces/diploma-entry';
-
-type DocTarget = 'photo' | 'idFront' | 'idBack' | 'logo' | 'rib';
 
 @Component({
   selector: 'register-professional',
@@ -72,10 +71,8 @@ export class RegisterProfessional implements OnDestroy {
   private readonly userApi = inject(UserApiService);
   private readonly geocodingService = inject(GeocodingService);
   private readonly siretService = inject(SiretService);
-  private readonly uploadService = inject(UploadService);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
-  private readonly langService = inject(LangService);
   private readonly flashMessage = inject(FlashMessageService);
   private readonly destroy$ = new Subject<void>();
 
@@ -105,7 +102,7 @@ export class RegisterProfessional implements OnDestroy {
       if (!d.file && !d.documentName.trim() && !d.expiryDate) return null;
       const missingFile = !d.file;
       const missingName = !d.documentName.trim();
-      const expiryPast = !!d.expiryDate && d.expiryDate < this.today;
+      const expiryPast = !!d.expiryDate && isBefore(parseISO(d.expiryDate), startOfDay(new Date()));
       const missingExpiry = !d.expiryDate;
       if (missingFile || missingName || expiryPast || missingExpiry)
         return { missingFile, missingName, expiryPast, missingExpiry };
@@ -527,13 +524,23 @@ export class RegisterProfessional implements OnDestroy {
   }
 
   addFile(target: DocTarget, e: Event) {
-    const file = (e.target as HTMLInputElement).files?.[0] ?? null;
+    const input = e.target as HTMLInputElement;
+    const file = input.files?.[0] ?? null;
     if (!file) {
       this.setPreview(target, null);
       this.setName(target, null);
       this.form.get('professionalProfile')!.patchValue({ [target]: null } as any);
       return;
     }
+
+    const allowedTypes = IMAGE_ONLY_TARGETS.has(target) ? ALLOWED_IMAGE_TYPES : ALLOWED_DOCUMENT_TYPES;
+    if (!allowedTypes.has(file.type)) {
+      input.value = '';
+      const key = IMAGE_ONLY_TARGETS.has(target) ? 'errors.invalidImageFormat' : 'errors.invalidDocumentFormat';
+      this.flashMessage.set({ type: 'error', key });
+      return;
+    }
+
     if (file.type.startsWith('image/')) {
       const reader = new FileReader();
       reader.onload = () => this.setPreview(target, reader.result as string);
@@ -577,13 +584,21 @@ export class RegisterProfessional implements OnDestroy {
   }
 
   onDiplomaFileChange(index: number, e: Event) {
-    const file = (e.target as HTMLInputElement).files?.[0] ?? null;
+    const input = e.target as HTMLInputElement;
+    const file = input.files?.[0] ?? null;
     if (!file) {
       this.diplomaFiles.update((list) =>
         list.map((entry, i) => (i === index ? { ...entry, file: null, preview: null, fileName: null } : entry)),
       );
       return;
     }
+
+    if (!ALLOWED_DOCUMENT_TYPES.has(file.type)) {
+      input.value = '';
+      this.flashMessage.set({ type: 'error', key: 'errors.invalidDocumentFormat' });
+      return;
+    }
+
     if (file.type.startsWith('image/')) {
       const reader = new FileReader();
       reader.onload = () => {
@@ -788,7 +803,6 @@ export class RegisterProfessional implements OnDestroy {
 
     const referralCode = getAffiliateCode();
     const payload: Record<string, unknown> = {
-      lang: this.langService.lang(),
       user: { ...userFields },
       professionalProfile: {
         ...profRest,
@@ -802,52 +816,48 @@ export class RegisterProfessional implements OnDestroy {
       ...(referralCode ? { referralCode } : {}),
     };
 
-    const upload = (file: File | null) => (file ? this.uploadService.upload(file) : of(''));
-
     const diplomaEntries = this.diplomaFiles().filter((d) => d.file !== null);
-    const diplomaUploads$ =
-      diplomaEntries.length > 0 ? forkJoin(diplomaEntries.map((d) => upload(d.file))) : of<string[]>([]);
 
     let mailSent = true;
+    let registeredAccessToken = '';
+    let registeredUser!: User;
 
     this.submitting.set(true);
     this.userApi
       .registerProfessional(payload, captchaToken)
       .pipe(
-        switchMap(({ userId, accessToken, mailSent: ms }) => {
+        switchMap(({ userId, accessToken, user, mailSent: ms, profileId: _profileId }) => {
           mailSent = ms;
+          registeredAccessToken = accessToken;
+          registeredUser = user;
           this.authService.setTempToken(accessToken);
           clearAffiliateCode();
-          return forkJoin([upload(photo), upload(idFront), upload(idBack), upload(logo), upload(rib)]).pipe(
-            switchMap(([photoKey, idFrontKey, idBackKey, companyLogoKey, ribKey]) =>
-              diplomaUploads$.pipe(
-                switchMap((diplomaKeys) =>
-                  this.userApi.createProfessionalDocuments(userId, {
-                    photoKey,
-                    idFrontKey,
-                    idBackKey,
-                    diplomas: diplomaKeys.map((key, i) => ({
-                      key,
-                      documentName: diplomaEntries[i].documentName,
-                      expiryDate: diplomaEntries[i].expiryDate,
-                    })),
-                    companyLogoKey,
-                    ribKey,
-                  }),
-                ),
-              ),
-            ),
-          );
+
+          const formData = new FormData();
+          if (photo) formData.append('photo', photo);
+          if (idFront) formData.append('idFront', idFront);
+          if (idBack) formData.append('idBack', idBack);
+          if (logo) formData.append('logo', logo);
+          if (rib) formData.append('rib', rib);
+          for (const entry of diplomaEntries) {
+            if (entry.file) formData.append('diplomas', entry.file);
+          }
+          formData.append('diplomasMeta', JSON.stringify(
+            diplomaEntries.map(d => ({ documentName: d.documentName, expiryDate: d.expiryDate })),
+          ));
+
+          return this.userApi.createProfessionalDocuments(userId, formData);
         }),
         takeUntil(this.destroy$),
       )
       .subscribe({
         next: () => {
+          this.authService.setSession(registeredAccessToken, registeredUser);
           this.flashMessage.set({
             type: mailSent ? 'success' : 'warning',
             key: mailSent ? 'login.registeredProSuccess' : 'login.registeredProMailFailed',
           });
-          this.router.navigate(['/auth/login']);
+          this.router.navigate(['/dashboard']);
         },
         error: (err) => {
           this.submitting.set(false);

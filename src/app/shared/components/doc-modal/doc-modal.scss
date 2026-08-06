@@ -33,9 +33,10 @@
 
 .modal-title {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--color);
+  overflow-x: auto;
 }
 
 .close-btn {
@@ -51,7 +52,10 @@
   transition: background 0.15s;
   opacity: 0.6;
 
-  svg { width: 1.25rem; height: 1.25rem; }
+  svg,
+  iconify-icon {
+    font-size: 1.25rem;
+  }
 
   &:hover {
     opacity: 1;
@@ -75,6 +79,18 @@
   max-height: 75vh;
   object-fit: contain;
   border-radius: 0.5rem;
+  /* Désactive le zoom natif du navigateur (qui zoome toute la page) : le pinch/pan tactile
+     et le zoom Ctrl+molette/trackpad sont gérés manuellement en JS pour rester confinés à l'image. */
+  touch-action: none;
+  cursor: zoom-in;
+
+  &.zoomed {
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
 }
 
 .preview-pdf {

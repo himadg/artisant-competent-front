@@ -1,0 +1,78 @@
+:host {
+  display: block;
+  height: 100%;
+  min-height: 0;
+}
+
+.messaging {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  background: var(--background-color);
+}
+
+.messaging-list-pane,
+.messaging-view-pane {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.messaging-list-pane {
+  width: 320px;
+  border-right: 1px solid var(--border-color);
+}
+
+.messaging-empty {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem;
+  text-align: center;
+  opacity: 0.5;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .messaging {
+    display: block;
+    height: 100%;
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+  }
+
+  .messaging-list-pane,
+  .messaging-view-pane {
+    position: fixed;
+    inset: 0;
+    width: auto;
+    border: none;
+    background: var(--background-color);
+    transition: transform 0.3s ease;
+  }
+
+  /* Même palier que la bottom nav (z-index 20 côté dashboard) : l'ordre du DOM
+     (nav rendue après <main>) garde la nav visible par-dessus la liste. */
+  .messaging-list-pane {
+    z-index: 20;
+    transform: translateX(0);
+
+    &.pane-hidden {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Toujours au-dessus de la bottom nav : en glissant depuis la droite,
+     elle la recouvre progressivement au lieu d'un saut de z-index brutal. */
+  .messaging-view-pane {
+    z-index: 30;
+    transform: translateX(100%);
+
+    &.pane-visible {
+      transform: translateX(0);
+    }
+  }
+}

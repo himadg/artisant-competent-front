@@ -1,0 +1,75 @@
+:host {
+  display: contents;
+}
+
+.inline-edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color);
+  opacity: 0.4;
+  transition: opacity 0.15s, background 0.15s;
+
+  &:hover {
+    opacity: 1;
+    background: var(--border-color);
+  }
+}
+
+.inline-edit-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.inline-cancel-btn,
+.inline-save-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  iconify-icon {
+    flex-shrink: 0;
+    font-size: 1.1rem;
+  }
+}
+
+.inline-cancel-btn {
+  color: #ef4444;
+}
+
+.inline-save-btn {
+  color: #22c55e;
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+.inline-spinner-sm {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 2px solid color-mix(in srgb, #22c55e 30%, transparent);
+  border-top-color: #22c55e;
+  border-radius: 50%;
+  animation: inline-edit-spin 0.6s linear infinite;
+}
+
+@keyframes inline-edit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

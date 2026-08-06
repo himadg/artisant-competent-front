@@ -1,0 +1,120 @@
+<div class="chat">
+    <div class="chat-header">
+        <button type="button" class="chat-back" (click)="back.emit()" [attr.aria-label]="'common.back' | transloco">
+            <iconify-icon icon="lucide:arrow-left"></iconify-icon>
+        </button>
+
+        <user-avatar
+            [photoUrl]="conversation().otherParticipant.photoUrl"
+            [alt]="conversation().otherParticipant.firstName[0] + conversation().otherParticipant.lastName[0]"
+            class="chat-avatar border"
+            style="--avatar-size: 2.5rem"
+        />
+
+        <div class="chat-header-info">
+            <span class="chat-name">{{ conversation().otherParticipant.firstName }} {{ conversation().otherParticipant.lastName }}</span>
+            @if (conversation().otherParticipant.companyName) {
+                <span class="chat-company">{{ conversation().otherParticipant.companyName }}</span>
+            }
+        </div>
+
+        <div class="chat-actions">
+            <button type="button" class="chat-actions-btn" (click)="toggleActionsMenu()" [attr.aria-label]="'dashboard.messages.actions.title' | transloco">
+                <iconify-icon icon="lucide:more-vertical"></iconify-icon>
+            </button>
+
+            @if (actionsMenuOpen()) {
+                <div class="chat-actions-overlay" (click)="closeActionsMenu()"></div>
+                <div class="chat-actions-menu">
+                    <button type="button" (click)="declineOffer.emit(); closeActionsMenu()">
+                        <iconify-icon icon="lucide:x-circle"></iconify-icon>
+                        {{ 'dashboard.messages.actions.decline' | transloco }}
+                    </button>
+                    <button type="button" (click)="createQuote.emit(); closeActionsMenu()">
+                        <iconify-icon icon="lucide:file-plus"></iconify-icon>
+                        {{ 'dashboard.messages.actions.quote' | transloco }}
+                    </button>
+                    <button type="button" (click)="leaveReview.emit(); closeActionsMenu()">
+                        <iconify-icon icon="lucide:star"></iconify-icon>
+                        {{ 'dashboard.messages.actions.review' | transloco }}
+                    </button>
+                    <button type="button" (click)="reportDispute.emit(); closeActionsMenu()">
+                        <iconify-icon icon="lucide:flag"></iconify-icon>
+                        {{ 'dashboard.messages.actions.dispute' | transloco }}
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+
+    <button type="button" class="chat-demand-banner" (click)="openDemand.emit(conversation().demandId)">
+        <p class="chat-demand-banner-label">{{ 'dashboard.messages.demandLabel' | transloco }} • {{ conversation().demandCreatedAt | localizedDate:'compact' }}</p>
+        {{ demandPreview() }}
+    </button>
+
+    <div class="chat-messages" #messagesContainer>
+        @for (message of messages(); track message.id) {
+            <div class="chat-bubble-row" [class.own]="message.isOwnMessage">
+                <div class="chat-bubble" [class.own]="message.isOwnMessage">
+                    @switch (message.type) {
+                        @case ('IMAGE') {
+                            <button
+                                type="button"
+                                class="chat-bubble-image-btn"
+                                [class.max-h-[200px]]="message.fileHeight! > 200"
+                                (click)="openImagePreview(message)"
+                            >
+                                <img [src]="message.fileUrl" [alt]="message.content" class="chat-bubble-image" />
+                            </button>
+                        }
+                        @case ('DOCUMENT') {
+                            <a [href]="message.fileUrl" target="_blank" rel="noopener" class="chat-bubble-document">
+                                <iconify-icon icon="lucide:file-text"></iconify-icon>
+                                <span>{{ message.content }}</span>
+                            </a>
+                        }
+                        @default {
+                            <p class="chat-bubble-text">{{ message.content }}</p>
+                        }
+                    }
+                    <span class="chat-bubble-time">{{ formatBubbleTime(message.createdAt) }}</span>
+                </div>
+            </div>
+        }
+        <div #oldestSentinel class="chat-messages-sentinel"></div>
+        @if (loadingMore()) {
+            <div class="chat-messages-loading">
+                <iconify-icon icon="lucide:loader-circle" class="animate-spin"></iconify-icon>
+            </div>
+        }
+    </div>
+
+    <form class="chat-input-bar" (ngSubmit)="submit()">
+        <div class="chat-input-wrap">
+            <textarea
+                rows="1"
+                class="chat-input"
+                [value]="draft()"
+                [placeholder]="'dashboard.messages.inputPlaceholder' | transloco"
+                (input)="onDraftInput($event)"
+                (keydown)="onKeydown($event)"
+            ></textarea>
+            <label class="chat-attach-btn" [attr.aria-label]="'dashboard.messages.attach' | transloco">
+                <iconify-icon icon="lucide:paperclip"></iconify-icon>
+                <input
+                    type="file"
+                    class="hidden"
+                    accept="image/jpeg,image/png,image/webp,application/pdf"
+                    (change)="onAttachmentSelected($event)"
+                />
+            </label>
+        </div>
+        <button type="submit" class="chat-send-btn" [disabled]="!draft().trim()" [attr.aria-label]="'dashboard.messages.send' | transloco">
+            <iconify-icon icon="lucide:send"></iconify-icon>
+        </button>
+    </form>
+</div>
+
+@if (docToPreview()) {
+    <doc-modal [document]="docToPreview()" (closeModal)="docToPreview.set(null)" />
+}

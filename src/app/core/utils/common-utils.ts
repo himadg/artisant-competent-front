@@ -41,3 +41,9 @@ export function clearAffiliateCode(): void {
   if (globalThis.window === undefined) return;
   sessionStorage.removeItem('affiliate_ref');
 }
+
+/** Extrait un nom de fichier lisible d'une clé S3 du type `folder/abcd1234_mon-fichier.webp`. */
+export function extractDocNameFromS3(key: string): string {
+  const rawName = key.split('/').pop() ?? key;
+  return rawName.replace(/^[0-9a-f]{8}_/, '').replace(/\.[^.]+$/, '');
+}

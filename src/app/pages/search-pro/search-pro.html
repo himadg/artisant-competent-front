@@ -1,0 +1,62 @@
+<section class="relative mx-auto top-0 mt-[-3rem] md:min-h-[36svh] px-4 pb-8 md:px-6 md:pb-12 lg:px-8 lg:pb-16">
+    <search-pro-form
+        class="w-full"
+        [initialAddress]="address"
+        [initialLat]="lat"
+        [initialLng]="lng"
+        [initialTrade]="trade"
+        [initialRadius]="radius"
+    ></search-pro-form>
+
+    @if (loading()) {
+        <div class="flex justify-center items-center mt-16">
+            <div class="w-8 h-8 rounded-full border-4 border-[var(--primary-water-green)] border-t-transparent animate-spin"></div>
+        </div>
+    } @else if (error()) {
+        <p class="text-center mt-16">{{ 'search.error' | transloco }}</p>
+    } @else {
+        @if (this.trade) {
+            <h1 class="mt-8 mb-2 text-2xl font-semibold title">
+                {{ 'search.title' | transloco: { trade: `jobs.list.${this.trade}.name` | transloco, address: this.address } }}
+            </h1>
+
+            <p class="mb-8 text-sm">{{ 'search.subtitle' | transloco: { count: results().length, radius: radius } }}</p>
+
+            @if (results().length === 0) {
+            <p class="py-16 text-center">{{ 'search.empty' | transloco }}</p>
+            } @else {
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                @for (proInfo of results(); track proInfo.id) {
+                <pro-card [proInfo]="proInfo" [selected]="selectedIds().has(proInfo.id)"
+                    (selectedChange)="toggleSelection(proInfo.id)" />
+                }
+            </div>
+            }
+        }
+    }
+</section>
+
+<!-- Barre de sélection sticky -->
+@if (selectedIds().size > 0) {
+    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 flex flex-col md:flex-row justify-center items-center gap-3 px-5 py-3 rounded-2xl bg-[var(--secondary-water-green)] text-[var(--primary-beige)] shadow-xl">
+        <span class="text-sm font-medium">
+            {{ 'search.selected' | transloco: { count: selectedIds().size } }}
+        </span>
+        <div class="w-5/6 h-px md:w-px md:h-4 bg-white/20"></div>
+        <button (click)="clearSelection()"
+            class="text-sm text-white/60 hover:text-white transition-colors">
+            {{ 'search.clearSelection' | transloco }}
+        </button>
+        <button
+            class="text-xs text-center font-medium px-4 py-1.5 rounded-full bg-[var(--primary-beige)] text-[var(--secondary-water-green)] hover:bg-white transition-colors"
+            (click)="openDemandModal()">
+            {{ 'search.contactSelected' | transloco }}
+        </button>
+    </div>
+}
+
+<!-- Modal demande -->
+@if (showDemandModal()) {
+<demand-modal [professionalCount]="selectedIds().size" [loading]="demandLoading()" (closed)="showDemandModal.set(false)"
+    (submitted)="submit($event)" />
+}

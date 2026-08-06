@@ -1,0 +1,343 @@
+@if (loading()) {
+    <div class="pro-loading">
+        <span class="spinner"></span>
+    </div>
+} @else if (error()) {
+    <p class="pro-error">{{ error()! | transloco }}</p>
+} @else if (data(); as pro) {
+    @if (pro.status === 'PENDING_VALIDATION') {
+        <div class="flex justify-center m-16 w-auto">
+            <button
+                (click)="authService.logout()"
+                class="absolute top-4 right-4 px-4 py-2 rounded-lg text-[var(--primary-beige)] bg-grad-water-green"
+            >
+                {{ 'auth.logout' | transloco }}
+            </button>
+
+            <div class="w-[500px100lvw] p-4 text-yellow-800 bg-yellow-50 rounded-lg border border-yellow-200">
+                <h4 class="flex gap-2 items-center font-bold">
+                    <iconify-icon icon="lucide:alert-circle" class="w-5 h-5"></iconify-icon>
+                    {{ 'dashboard.pro.status.pendingTitle' | transloco }}
+                </h4>
+                <p class="mt-1 text-sm">
+                    {{ 'dashboard.pro.status.pendingBody' | transloco }}
+                </p>
+            </div>
+        </div>
+    } @else if (pro.status === 'REJECTED') {
+        <button
+            (click)="authService.logout()"
+            class="absolute top-4 right-4 px-4 py-2 rounded-lg text-[var(--primary-beige)] bg-grad-water-green"
+        >
+            {{ 'auth.logout' | transloco }}
+        </button>
+
+        <div class="flex justify-center m-16 w-auto">
+            <div class="w-[100lvw] p-4 text-red-800 bg-red-50 rounded-lg border border-red-200">
+                <h4 class="flex gap-2 items-center font-bold">
+                    <iconify-icon icon="lucide:x-circle" class="w-5 h-5"></iconify-icon>
+                    {{ 'dashboard.pro.status.rejectedTitle' | transloco }}
+                </h4>
+                <p class="mt-1 text-sm">
+                    {{ 'dashboard.pro.status.rejectedBody' | transloco }}
+                </p>
+            </div>
+        </div>
+    } @else if (pro.status === 'ACTIVE') {
+        <div class="h-dvh pro-layout">
+            <div class="mobile-notification-bell">
+                <notification-bell></notification-bell>
+            </div>
+
+            <!-- ═══════════════ TOPBAR ═══════════════ -->
+            <div class="pro-topbar">
+                <a routerLink="/" class="flex self-stretch items-center">
+                    <img src="assets/img/banner.png" alt="AC banner" class="h-[60%]" />
+                </a>
+                <div class="pro-topbar-actions">
+                    <notification-bell></notification-bell>
+                    <button class="topbar-icon-btn" [attr.aria-label]="'common.messages' | transloco" routerLink="/dashboard/messages">
+                        <iconify-icon icon="lucide:mail"></iconify-icon>
+                        @if (chatService.unreadConversationsCount() > 0) {
+                            <span class="badge">{{ chatService.unreadConversationsCount() > 9 ? '9+' : chatService.unreadConversationsCount() }}</span>
+                        }
+                    </button>
+                    <div class="topbar-user">
+                        <user-avatar
+                            [photoUrl]="pro.professionalProfile.photoUrl"
+                            [alt]="pro.firstName[0] + pro.lastName[0]"
+                            class="topbar-avatar"
+                            style="--avatar-size: 2rem"
+                        />
+                        <span class="topbar-username">{{ pro.firstName }} {{ pro.lastName }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══════════════ SIDEBAR (desktop/tablet) ═══════════════ -->
+            <aside class="pro-sidebar">
+                <nav class="pro-nav" [attr.aria-label]="'common.sidebarNavigation' | transloco">
+                    <button class="nav-item" routerLink="/dashboard/profile" routerLinkActive="active">
+                        <iconify-icon icon="lucide:user"></iconify-icon>
+                        {{ 'dashboard.pro.nav.profile' | transloco }}
+                    </button>
+                    <button class="nav-item" routerLink="/dashboard/requests" routerLinkActive="active">
+                        <iconify-icon icon="lucide:search"></iconify-icon>
+                        {{ 'dashboard.pro.nav.requests' | transloco }}
+                    </button>
+                    <button class="nav-item" routerLink="/dashboard/practices" routerLinkActive="active">
+                        <iconify-icon icon="lucide:alert-circle"></iconify-icon>
+                        {{ 'dashboard.pro.nav.practices' | transloco }}
+                    </button>
+                    <button class="nav-item" routerLink="/dashboard/legal" routerLinkActive="active">
+                        <iconify-icon icon="lucide:shield"></iconify-icon>
+                        {{ 'dashboard.pro.nav.legal' | transloco }}
+                    </button>
+                    <button class="nav-item" routerLink="/dashboard/affiliation" routerLinkActive="active">
+                        <iconify-icon icon="lucide:users"></iconify-icon>
+                        {{ 'dashboard.pro.nav.affiliation' | transloco }}
+                    </button>
+                    <button class="nav-item" routerLink="/contact">
+                        <iconify-icon icon="lucide:mail"></iconify-icon>
+                        {{ 'contact.nav' | transloco }}
+                    </button>
+                </nav>
+
+                <hr class="nav-divider" />
+
+                <div class="w-5/6">
+                    <div class="nav-toggles">
+                        <lang-toggle></lang-toggle>
+                        <theme-toggle></theme-toggle>
+                    </div>
+                    <div class="flex justify-center">
+                        <button class="nav-item logout" (click)="authService.logout()">
+                            <iconify-icon icon="lucide:log-out"></iconify-icon>
+                            {{ 'auth.logout' | transloco }}
+                        </button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- ═══════════════ CONTENU PRINCIPAL ═══════════════ -->
+            <main class="pro-main w-full max-md:p-0">
+            <div class="pro-content w-full h-full lg:w-[52rem] md:py-8">
+                <!-- En-tête profil -->
+                <div class="w-[100%] mb-4 rounded-lg border border-solid pro-header">
+                    <div class="pro-user">
+                        <div class="pro-photo-wrap">
+                            <user-avatar
+                                [photoUrl]="pro.professionalProfile.photoUrl"
+                                [alt]="pro.firstName[0] + pro.lastName[0]"
+                                class="pro-photo pro-story-trigger"
+                                [class.pro-photo--story-presentation]="presentationStories().length > 0"
+                                style="--avatar-size: 9rem"
+                                [title]="presentationStories().length ? ('dashboard.pro.storyViewHint' | transloco) : ('dashboard.pro.storyAddPresentationHint' | transloco)"
+                                (click)="onStoryCircleClick('PRESENTATION')"
+                            />
+                            @if (uploadingStoryType() === 'PRESENTATION') {
+                                <div class="pro-story-uploading-ring pro-story-uploading-ring--photo"></div>
+                            }
+                            @if (canAddPresentationStory()) {
+                                <button
+                                    type="button"
+                                    class="pro-story-add-btn pro-story-add-btn--presentation"
+                                    [title]="'dashboard.pro.storyAddPresentationHint' | transloco"
+                                    (click)="onAddStoryClick($event, 'PRESENTATION')"
+                                >
+                                    <iconify-icon icon="lucide:plus"></iconify-icon>
+                                </button>
+                            }
+
+                            @if (pro.professionalProfile.isCmod) {
+                                <div
+                                    class="pro-badge-company pro-story-trigger"
+                                    [class.pro-badge-company--story-tips]="tipsStories().length > 0"
+                                    [title]="tipsStories().length ? ('dashboard.pro.storyViewHint' | transloco) : ('dashboard.pro.storyAddTipsHint' | transloco)"
+                                    (click)="onStoryCircleClick('TIPS')"
+                                >
+                                    @if (pro.professionalProfile.logoUrl) {
+                                        <img
+                                            [src]="pro.professionalProfile.logoUrl"
+                                            [alt]="'common.logo' | transloco"
+                                            class="pro-badge-logo"
+                                        />
+                                    } @else {
+                                        <small>
+                                            <p>Artisan</p>
+                                            <strong>COMPÉTENT</strong>
+                                        </small>
+                                    }
+                                    @if (uploadingStoryType() === 'TIPS') {
+                                        <div class="pro-story-uploading-ring"></div>
+                                    }
+                                    @if (canAddTipsStory()) {
+                                        <button
+                                            type="button"
+                                            class="pro-story-add-btn pro-story-add-btn--tips"
+                                            [title]="'dashboard.pro.storyAddTipsHint' | transloco"
+                                            (click)="onAddStoryClick($event, 'TIPS')"
+                                        >
+                                            <iconify-icon icon="lucide:plus"></iconify-icon>
+                                        </button>
+                                    }
+                                </div>
+                            }
+                        </div>
+
+                        <div class="pro-user-info">
+                            <h2 class="pro-company-name">{{ pro.professionalProfile.companyName }}</h2>
+                            <p class="pro-address">
+                                <iconify-icon icon="lucide:map-pin" class="inline-icon"></iconify-icon>
+                                {{ workCity() }}
+                            </p>
+                            <div class="pro-since-badge">
+                                <span class="pro-since">
+                                    <iconify-icon icon="lucide:calendar" class="inline-icon"></iconify-icon>
+                                    {{ 'dashboard.pro.since' | transloco }} {{ inscriptionDate() }}
+                                </span>
+                                @if (pro.professionalProfile.isCmod) {
+                                    <span class="pro-badge-amod">{{ 'dashboard.pro.amod' | transloco }}</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (storyUploadError()) {
+                        <p class="pro-story-error pro-story-error--header">{{ storyUploadError() }}</p>
+                    }
+
+                    <!-- Onglets -->
+                    @if (isProfileSection() && !moreMenuContentDisplayed()) {
+                        <div class="pro-tabs mx-0 justify-start lg:px-4">
+                            <button class="pro-tab" [class.active]="activeTab() === 'presentation'" (click)="setTab('presentation')">
+                                {{ 'dashboard.pro.tabs.presentation' | transloco }}
+                            </button>
+                            <button class="pro-tab" [class.active]="activeTab() === 'missions'" (click)="setTab('missions')">
+                                {{ 'dashboard.pro.tabs.missions' | transloco }}
+                            </button>
+                            <button class="pro-tab" [class.active]="activeTab() === 'reviews'" (click)="setTab('reviews')">
+                                {{ 'dashboard.pro.tabs.reviews' | transloco }}
+                            </button>
+                            <button class="pro-tab" [class.active]="activeTab() === 'documents'" (click)="setTab('documents')">
+                                {{ 'dashboard.pro.tabs.documents' | transloco }}
+                            </button>
+                        </div>
+                    }
+                </div>
+
+                <!-- Contenu de la section active -->
+                <div class="w-[100%] rounded-lg border border-solid pro-section-content">
+                    <router-outlet />
+                </div>
+            </div>
+            </main>
+
+            <!-- ═══════════════ BOTTOM NAV (mobile) ═══════════════ -->
+            <nav class="pro-bottom-nav" [attr.aria-label]="'common.bottomNavigation' | transloco">
+                <button class="bottom-nav-item" routerLink="/dashboard/profile" routerLinkActive="active" (click)="moreMenuContentDisplayed.set(false)">
+                    <iconify-icon icon="lucide:user"></iconify-icon>
+                    <span>{{ 'dashboard.pro.mobile.profile' | transloco }}</span>
+                </button>
+                <button class="bottom-nav-item" routerLink="/dashboard/requests" routerLinkActive="active" (click)="moreMenuContentDisplayed.set(false)">
+                    <iconify-icon icon="lucide:clipboard-list"></iconify-icon>
+                    <span>{{ 'dashboard.pro.mobile.requests' | transloco }}</span>
+                </button>
+                <button class="bottom-nav-item" routerLink="/">
+                    <img src="assets/img/logo.webp" [alt]="'common.logo' | transloco" class="bottom-nav-logo" />
+                    <span>{{ 'common.home' | transloco }}</span>
+                </button>
+                <button class="bottom-nav-item" routerLink="/dashboard/messages" routerLinkActive="active" (click)="moreMenuContentDisplayed.set(false)">
+                    <span class="bottom-nav-icon-wrap">
+                        <iconify-icon icon="lucide:mail"></iconify-icon>
+                        @if (chatService.unreadConversationsCount() > 0) {
+                            <span class="badge">{{ chatService.unreadConversationsCount() > 9 ? '9+' : chatService.unreadConversationsCount() }}</span>
+                        }
+                    </span>
+                    <span>{{ 'common.messages' | transloco }}</span>
+                </button>
+                <button class="bottom-nav-item plus-menu" (click)="toggleMoreMenu()">
+                    <iconify-icon icon="lucide:more-horizontal"></iconify-icon>
+                    <span>{{ 'dashboard.pro.mobile.more' | transloco }}</span>
+                </button>
+            </nav>
+
+            @if (moreMenuOpen()) {
+                <div class="more-overlay" (click)="closeMoreMenu()"></div>
+                <div class="more-menu">
+                    <button
+                        class="nav-item"
+                        routerLink="/dashboard/practices"
+                        routerLinkActive="active"
+                        (click)="toggleMoreMenu(); moreMenuContentDisplayed.set(true)"
+                    >
+                        <iconify-icon icon="lucide:alert-circle"></iconify-icon>
+                        {{ 'dashboard.pro.nav.practices' | transloco }}
+                    </button>
+                    <button
+                        class="nav-item"
+                        routerLink="/dashboard/legal"
+                        routerLinkActive="active"
+                        (click)="toggleMoreMenu(); moreMenuContentDisplayed.set(true)"
+                    >
+                        <iconify-icon icon="lucide:shield"></iconify-icon>
+                        {{ 'dashboard.pro.nav.legal' | transloco }}
+                    </button>
+                    <button
+                        class="nav-item"
+                        routerLink="/dashboard/affiliation"
+                        routerLinkActive="active"
+                        (click)="toggleMoreMenu(); moreMenuContentDisplayed.set(true)"
+                    >
+                        <iconify-icon icon="lucide:users"></iconify-icon>
+                        {{ 'dashboard.pro.nav.affiliation' | transloco }}
+                    </button>
+                    <a class="nav-item" routerLink="/contact">
+                        <iconify-icon icon="lucide:mail"></iconify-icon>
+                        {{ 'contact.nav' | transloco }}
+                    </a>
+                    <div class="more-menu-toggles">
+                        <lang-toggle></lang-toggle>
+                        <theme-toggle></theme-toggle>
+                    </div>
+                    <hr class="more-menu-divider" />
+                    <button class="more-menu-logout" (click)="authService.logout()">
+                        <iconify-icon icon="lucide:log-out"></iconify-icon>
+                        {{ 'auth.logout' | transloco }}
+                    </button>
+                </div>
+            }
+        </div>
+    }
+}
+
+@if (docToPreview()) {
+    <doc-modal [document]="docToPreview()" (closeModal)="docToPreview.set(null)" />
+}
+
+@if (selectedDemandId(); as demandId) {
+    <demand-details-modal
+        [demandId]="demandId"
+        [canEdit]="selectedDemandEditable()"
+        (closed)="selectedDemandId.set(null)"
+        (updated)="onDemandUpdated($event)"
+        (messageStarted)="onMessageStarted($event)"
+    />
+}
+
+<story-viewer
+    [story]="viewingStory()"
+    [videoUrl]="viewingStoryUrl()"
+    [hasPrev]="hasPrevStory()"
+    [hasNext]="hasNextStory()"
+    [currentIndex]="viewingIndex()"
+    [total]="viewingStories().length"
+    (closeModal)="closeStoryViewer()"
+    (deleteRequested)="deleteViewingStory()"
+    (prevRequested)="prevStory()"
+    (nextRequested)="nextStory()"
+/>
+
+@if (recordingStoryType()) {
+    <story-recorder (closeModal)="closeRecorder()" (fileReady)="onStoryFileReady($event)" />
+}
