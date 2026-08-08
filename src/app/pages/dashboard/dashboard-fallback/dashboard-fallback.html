@@ -1,0 +1,5 @@
+<div class="flex justify-center items-center h-screen">
+    <p>{{ 'dashboard.loading' | transloco }}</p>
+    <!-- Affiche le rôle pour voir s'il est bien là ou s'il est null -->
+    <p>{{ 'dashboard.currentRole' | transloco: { role: role() } }}</p>
+</div>

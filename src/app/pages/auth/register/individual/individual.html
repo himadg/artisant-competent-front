@@ -11,7 +11,7 @@
                     @if (photoPreview()) {
                         <img
                             [src]="photoPreview()"
-                            alt="Photo"
+                            [attr.alt]="'common.avatar' | transloco"
                             class="object-cover absolute inset-0 w-full h-full cursor-pointer"
                             (click)="removePhoto()"
                         />

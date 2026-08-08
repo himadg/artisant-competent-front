@@ -29,7 +29,7 @@
                         @if (photoPreview()) {
                             <img
                                 [src]="photoPreview()"
-                                alt="Photo"
+                                [attr.alt]="'common.avatar' | transloco"
                                 class="object-cover w-full h-full cursor-pointer"
                                 (click)="removeFile('photo')"
                             />
@@ -809,7 +809,7 @@
                             @if (logoPreview()) {
                                 <img
                                     [src]="logoPreview()"
-                                    alt="Logo"
+                                    [attr.alt]="'common.logo' | transloco"
                                     class="object-cover w-full h-full cursor-pointer"
                                     (click)="removeFile('logo')"
                                 />
@@ -1374,10 +1374,12 @@
     <div
         class="flex fixed inset-0 z-50 justify-center items-center bg-black/60 p-4 mt-[calc(var(--top-banners-h))] h-[calc(100lvh_-_var(--top-banners-h))]"
         (click)="goodPracticesModalOpen.set(false)"
+        (keyPress)="goodPracticesModalOpen.set(false)"
     >
         <div
             class="overflow-auto relative max-w-2xl h-[90%] rounded-xl bg-white shadow-xl"
             (click)="$event.stopPropagation()"
+            (keyPress)="$event.stopPropagation()"
         >
             <button
                 type="button"
@@ -1410,7 +1412,7 @@
                 class="absolute top-2 right-3 text-2xl text-gray-500 hover:text-gray-800"
                 (click)="workingAddressModalOpen.set(false)"
             >×</button>
-            <img src="assets/img/help-working-address.jpeg" alt="Mode d'emploi adresse de géolocalisation" class="w-full h-auto" />
+            <img src="assets/img/help-working-address.jpeg" [attr.alt]="'register.workingAddressHelpAlt' | transloco" class="w-full h-auto" />
         </div>
     </div>
 }
@@ -1430,7 +1432,7 @@
                 class="absolute top-2 right-3 text-2xl text-gray-500 hover:text-gray-800"
                 (click)="cmodModalOpen.set(false)"
             >×</button>
-            <img src="assets/img/help-cmod.jpeg" alt="Mode d'emploi CMOD" class="w-full h-auto" />
+            <img src="assets/img/help-cmod.jpeg" [attr.alt]="'professional.cmod.guideAlt' | transloco" class="w-full h-auto" />
         </div>
     </div>
 }
@@ -1450,7 +1452,7 @@
                 class="absolute top-2 right-3 text-2xl text-gray-500 hover:text-gray-800"
                 (click)="openingHoursModalOpen.set(false)"
             >×</button>
-            <img src="assets/img/help-working-days.jpeg" alt="Mode d'emploi horaires" class="w-full h-auto" />
+            <img src="assets/img/help-working-days.jpeg" [attr.alt]="'professional.openingHours.guideAlt' | transloco" class="w-full h-auto" />
         </div>
     </div>
 }
@@ -1470,7 +1472,7 @@
                 class="absolute top-2 right-3 text-2xl text-gray-500 hover:text-gray-800"
                 (click)="sellingTipsModalOpen.set(false)"
             >×</button>
-            <img src="assets/img/help-company-description.jpeg" alt="Mode d'emploi conseils vente" class="w-full h-auto" />
+            <img src="assets/img/help-company-description.jpeg" [attr.alt]="'professional.description.guideAlt' | transloco" class="w-full h-auto" />
         </div>
     </div>
 }

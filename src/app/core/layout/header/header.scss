@@ -4,4 +4,8 @@
   left: 0;
   right: 0;
   z-index: 20;
+  background: transparent;
+  /* Laisse passer les clics vers le contenu en dessous (utile en fond transparent, ex: home) ;
+     réactivé explicitement sur le logo et la navbar via pointer-events-auto. */
+  pointer-events: none;
 }

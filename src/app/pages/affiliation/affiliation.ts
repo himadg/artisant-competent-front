@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, PlatformLocation } from '@angular/common';
+import { isPlatformBrowser, Location, PlatformLocation } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { setAffiliateCode } from '../../core/utils/common-utils';
 
@@ -18,12 +18,22 @@ export class AffiliationPage implements OnInit {
   private readonly platformLocation = inject(PlatformLocation);
 
   constructor(
-    private titleService: Title,
-    private metaService: Meta,
-    private transloco: TranslocoService,
-    private destroyRef: DestroyRef,
-    private route: ActivatedRoute,
+    private readonly titleService: Title,
+    private readonly metaService: Meta,
+    private readonly transloco: TranslocoService,
+    private readonly destroyRef: DestroyRef,
+    private readonly route: ActivatedRoute,
+    private readonly location: Location,
+    private readonly router: Router,
   ) {}
+
+  goBack(): void {
+    if (isPlatformBrowser(this.platformId) && window.history.length > 1) {
+      this.location.back();
+    } else {
+      void this.router.navigateByUrl('/');
+    }
+  }
 
   ngOnInit(): void {
     const ref = this.route.snapshot.queryParamMap.get('ref');

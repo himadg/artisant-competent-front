@@ -1,0 +1,694 @@
+@if (data(); as pro) {
+    @switch (activeTab()) {
+        @case ('presentation') {
+            <!-- ── Infos personnelles ── -->
+            <div class="pro-block">
+                <div class="pro-group-header">
+                    <h3>{{ 'dashboard.pro.personalInfo' | transloco }}</h3>
+                    <inline-edit-actions
+                        [editing]="editPersonalInfoMode()"
+                        [saving]="savingPersonalInfo()"
+                        (edit)="enterEditPersonalInfo()"
+                        (cancel)="cancelEditPersonalInfo()"
+                        (save)="saveEditPersonalInfo()"
+                    />
+                </div>
+                <dl class="pro-info-list">
+                    <div class="pro-info-row">
+                        <dt>{{ 'dashboard.pro.gender' | transloco }}</dt>
+                        <dd>
+                            @if (editPersonalInfoMode()) {
+                                <select class="pro-edit-input" [(ngModel)]="editPersonalInfo.gender">
+                                    <option value="female">{{ 'register.gender.female' | transloco }}</option>
+                                    <option value="male">{{ 'register.gender.male' | transloco }}</option>
+                                </select>
+                            } @else {
+                                {{ pro.gender === 'male' ? ('dashboard.pro.genderMale' | transloco) : ('dashboard.pro.genderFemale' | transloco) }}
+                            }
+                        </dd>
+                    </div>
+                    <div class="pro-info-row">
+                        <dt>{{ 'dashboard.pro.lastName' | transloco }}</dt>
+                        <dd>
+                            @if (editPersonalInfoMode()) {
+                                <input class="pro-edit-input" type="text" [(ngModel)]="editPersonalInfo.lastName" [placeholder]="'dashboard.pro.lastName' | transloco" />
+                            } @else {
+                                {{ pro.lastName }}
+                            }
+                        </dd>
+                    </div>
+                    <div class="pro-info-row">
+                        <dt>{{ 'dashboard.pro.firstName' | transloco }}</dt>
+                        <dd>
+                            @if (editPersonalInfoMode()) {
+                                <input class="pro-edit-input" type="text" [(ngModel)]="editPersonalInfo.firstName" [placeholder]="'dashboard.pro.firstName' | transloco" />
+                            } @else {
+                                {{ pro.firstName }}
+                            }
+                        </dd>
+                    </div>
+                    <div class="pro-info-row">
+                        <dt>{{ 'dashboard.pro.birthDate' | transloco }}</dt>
+                        <dd>
+                            @if (editPersonalInfoMode()) {
+                                <input class="pro-edit-input" type="date" [(ngModel)]="editPersonalInfo.birthDate" />
+                            } @else {
+                                {{ pro.birthDate | localizedDate:'full' }}
+                            }
+                        </dd>
+                    </div>
+                    <div class="pro-info-row">
+                        <dt>{{ 'dashboard.pro.email' | transloco }}</dt>
+                        <dd>
+                            @if (editPersonalInfoMode()) {
+                                <input class="pro-edit-input" type="email" [(ngModel)]="editPersonalInfo.email" [placeholder]="'dashboard.pro.email' | transloco" />
+                            } @else {
+                                {{ pro.email }}
+                            }
+                        </dd>
+                    </div>
+                    @if (editPersonalInfoMode() || pro.professionalProfile.professionalEmail) {
+                        <div class="pro-info-row">
+                            <dt>{{ 'dashboard.pro.professionalEmail' | transloco }}</dt>
+                            <dd>
+                                @if (editPersonalInfoMode()) {
+                                    <input class="pro-edit-input" type="email" [(ngModel)]="editPersonalInfo.professionalEmail" [placeholder]="'dashboard.pro.professionalEmail' | transloco" />
+                                } @else {
+                                    {{ pro.professionalProfile.professionalEmail }}
+                                }
+                            </dd>
+                        </div>
+                    }
+                    <div class="pro-info-row">
+                        <dt>{{ 'dashboard.pro.managerPhone' | transloco }}</dt>
+                        <dd>
+                            @if (editPersonalInfoMode()) {
+                                <input class="pro-edit-input" type="tel" [(ngModel)]="editPersonalInfo.managerPhone" [placeholder]="'dashboard.pro.managerPhone' | transloco" />
+                            } @else {
+                                {{ pro.professionalProfile.managerPhone }}
+                            }
+                        </dd>
+                    </div>
+                    <div class="pro-info-row">
+                        <dt>{{ 'dashboard.pro.addressStreet' | transloco }}</dt>
+                        <dd>
+                            @if (editPersonalInfoMode()) {
+                                <div class="flex gap-1">
+                                    <input
+                                        class="pro-edit-input"
+                                        style="width: 4.5rem; flex-shrink: 0"
+                                        type="text"
+                                        [(ngModel)]="editPersonalInfo.address.streetNumber"
+                                        [placeholder]="'register.fields.address.number' | transloco"
+                                    />
+                                    <div class="relative flex-1 min-w-0">
+                                        <input
+                                            class="pro-edit-input w-full"
+                                            type="text"
+                                            autocomplete="off"
+                                            [(ngModel)]="editPersonalInfo.address.streetName"
+                                            [placeholder]="'register.fields.address.street' | transloco"
+                                            (input)="onPersonalAddressSearch($event)"
+                                            (focus)="personalAddressOpen.set(true)"
+                                            (blur)="closePersonalAddressSuggestions()"
+                                        />
+                                        @if (personalAddressOpen() && personalAddressSuggestions().length) {
+                                            <ul class="overflow-y-auto absolute z-10 w-full max-h-48 bg-[var(--background-color)] rounded-b border-b shadow-sm border-x border-[var(--border-color)]">
+                                                @for (s of personalAddressSuggestions(); track s.label) {
+                                                    <li class="px-3 py-2 text-sm cursor-pointer hover:bg-[var(--hover-color)]" (mousedown)="selectPersonalAddress(s)">
+                                                        {{ s.label }}
+                                                    </li>
+                                                }
+                                            </ul>
+                                        }
+                                    </div>
+                                </div>
+                            } @else {
+                                {{ pro.address.streetNumber }} {{ pro.address.streetName }}
+                            }
+                        </dd>
+                    </div>
+                    @if (editPersonalInfoMode() || pro.address.additionalInfo) {
+                        <div class="pro-info-row">
+                            <dt>{{ 'dashboard.pro.addressComplement' | transloco }}</dt>
+                            <dd>
+                                @if (editPersonalInfoMode()) {
+                                    <input
+                                        class="pro-edit-input"
+                                        type="text"
+                                        [(ngModel)]="editPersonalInfo.address.additionalInfo"
+                                        [placeholder]="'register.fields.address.complement' | transloco"
+                                    />
+                                } @else {
+                                    {{ pro.address.additionalInfo }}
+                                }
+                            </dd>
+                        </div>
+                    }
+                    <div class="pro-info-row">
+                        <dt>{{ 'dashboard.pro.addressCity' | transloco }}</dt>
+                        <dd>
+                            @if (editPersonalInfoMode()) {
+                                <div class="flex gap-1">
+                                    <input
+                                        class="pro-edit-input"
+                                        style="width: 5.5rem; flex-shrink: 0"
+                                        type="text"
+                                        [(ngModel)]="editPersonalInfo.address.postalCode"
+                                        [placeholder]="'register.fields.address.zip' | transloco"
+                                        (input)="onPersonalPostalCodeInput($event)"
+                                    />
+                                    <input
+                                        class="pro-edit-input flex-1 min-w-0"
+                                        type="text"
+                                        [(ngModel)]="editPersonalInfo.address.city"
+                                        [placeholder]="'register.fields.address.city' | transloco"
+                                    />
+                                </div>
+                            } @else {
+                                {{ pro.address.postalCode }} {{ pro.address.city }}
+                            }
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+
+            <!-- ── Médiateur de la consommation ── -->
+            <div class="pro-block">
+                <div class="pro-group-header">
+                    <h3>{{ 'dashboard.pro.mediator' | transloco }}</h3>
+                    <inline-edit-actions
+                        [editing]="editMediatorMode()"
+                        [saving]="savingMediator()"
+                        (edit)="enterEditMediator()"
+                        (cancel)="cancelEditMediator()"
+                        (save)="saveEditMediator()"
+                    />
+                </div>
+                @if (!editMediatorMode() && !pro.professionalProfile.mediatorName) {
+                    <p class="pro-empty">{{ 'dashboard.pro.mediatorNone' | transloco }}</p>
+                } @else {
+                    <dl class="pro-info-list">
+                        <div class="pro-info-row">
+                            <dt>{{ 'dashboard.pro.mediatorName' | transloco }}</dt>
+                            <dd>
+                                @if (editMediatorMode()) {
+                                    <input class="pro-edit-input" type="text" [(ngModel)]="editMediator.mediatorName" [placeholder]="'dashboard.pro.mediatorName' | transloco" />
+                                } @else {
+                                    {{ pro.professionalProfile.mediatorName }}
+                                }
+                            </dd>
+                        </div>
+                        @if (editMediatorMode() || pro.professionalProfile.mediatorAddress) {
+                            <div class="pro-info-row">
+                                <dt>{{ 'dashboard.pro.mediatorAddress' | transloco }}</dt>
+                                <dd>
+                                    @if (editMediatorMode()) {
+                                        <input class="pro-edit-input" type="text" [(ngModel)]="editMediator.mediatorAddress" [placeholder]="'dashboard.pro.mediatorAddress' | transloco" />
+                                    } @else {
+                                        {{ pro.professionalProfile.mediatorAddress }}
+                                    }
+                                </dd>
+                            </div>
+                        }
+                        @if (editMediatorMode() || pro.professionalProfile.mediatorWebsite) {
+                            <div class="pro-info-row">
+                                <dt>{{ 'dashboard.pro.mediatorWebsite' | transloco }}</dt>
+                                <dd>
+                                    @if (editMediatorMode()) {
+                                        <input class="pro-edit-input" type="url" [(ngModel)]="editMediator.mediatorWebsite" [placeholder]="'dashboard.pro.mediatorWebsite' | transloco" />
+                                    } @else {
+                                        <a [href]="pro.professionalProfile.mediatorWebsite" target="_blank" rel="noopener" class="text-blue-600 underline break-all">{{ pro.professionalProfile.mediatorWebsite }}</a>
+                                    }
+                                </dd>
+                            </div>
+                        }
+                        @if (editMediatorMode() || pro.professionalProfile.mediatorContactMethod) {
+                            <div class="pro-info-row">
+                                <dt>{{ 'dashboard.pro.mediatorContactMethod' | transloco }}</dt>
+                                <dd>
+                                    @if (editMediatorMode()) {
+                                        <select class="pro-edit-input" [(ngModel)]="editMediator.mediatorContactMethod">
+                                            <option value="">{{ 'professional.mediator.contactMethodSelect' | transloco }}</option>
+                                            <option value="courrier">{{ 'professional.mediator.contactMethodMail' | transloco }}</option>
+                                            <option value="formulaire">{{ 'professional.mediator.contactMethodForm' | transloco }}</option>
+                                            <option value="les deux">{{ 'professional.mediator.contactMethodBoth' | transloco }}</option>
+                                        </select>
+                                    } @else {
+                                        {{ pro.professionalProfile.mediatorContactMethod }}
+                                    }
+                                </dd>
+                            </div>
+                        }
+                        @if (editMediatorMode() || pro.professionalProfile.mediatorAdditionalInfo) {
+                            <div class="pro-info-row">
+                                <dt>{{ 'dashboard.pro.mediatorAdditionalInfo' | transloco }}</dt>
+                                <dd>
+                                    @if (editMediatorMode()) {
+                                        <textarea class="pro-edit-input pro-edit-input--textarea" rows="3" maxlength="500" [(ngModel)]="editMediator.mediatorAdditionalInfo" [placeholder]="'dashboard.pro.mediatorAdditionalInfo' | transloco"></textarea>
+                                    } @else {
+                                        {{ pro.professionalProfile.mediatorAdditionalInfo }}
+                                    }
+                                </dd>
+                            </div>
+                        }
+                    </dl>
+                }
+            </div>
+
+            <!-- ── Remarques personnelles ── -->
+            <div class="pro-block">
+                <div class="pro-group-header">
+                    <h3>{{ 'dashboard.pro.additionalRemarks' | transloco }}</h3>
+                    <inline-edit-actions
+                        [editing]="editAdditionalRemarksMode()"
+                        [saving]="savingAdditionalRemarks()"
+                        (edit)="enterEditAdditionalRemarks()"
+                        (cancel)="cancelEditAdditionalRemarks()"
+                        (save)="saveEditAdditionalRemarks()"
+                    />
+                </div>
+                @if (editAdditionalRemarksMode()) {
+                    <textarea class="pro-edit-input pro-edit-input--textarea" rows="4" maxlength="500" [(ngModel)]="editAdditionalRemarksText" [placeholder]="'dashboard.pro.additionalRemarks' | transloco"></textarea>
+                } @else if (pro.professionalProfile.additionalRemarks) {
+                    <span class="pro-description">{{ pro.professionalProfile.additionalRemarks }}</span>
+                } @else {
+                    <p class="pro-empty">{{ 'dashboard.pro.noneProvided' | transloco }}</p>
+                }
+            </div>
+
+            <!-- ── Infos entreprise ── -->
+            <div class="pro-block">
+                <div class="pro-group-header">
+                    <h3>{{ 'dashboard.pro.companyInfo' | transloco }}</h3>
+                </div>
+                <p class="pro-block-company">{{ pro.professionalProfile.companyName }}</p>
+                <inline-edit-actions
+                    [editing]="editDescriptionMode()"
+                    [saving]="savingDescription()"
+                    (edit)="enterEditDescription()"
+                    (cancel)="cancelEditDescription()"
+                    (save)="saveEditDescription()"
+                />
+                @if (editDescriptionMode()) {
+                    <textarea class="pro-edit-input pro-edit-input--textarea" [(ngModel)]="editDescriptionText" rows="8" [placeholder]="'dashboard.pro.description' | transloco"></textarea>
+                } @else {
+                    <p class="pro-description">{{ pro.professionalProfile.description }}</p>
+                }
+                <inline-edit-actions
+                    [editing]="editCompanyExtraMode()"
+                    [saving]="savingCompanyExtra()"
+                    (edit)="enterEditCompanyExtra()"
+                    (cancel)="cancelEditCompanyExtra()"
+                    (save)="saveEditCompanyExtra()"
+                />
+                <dl class="pro-info-list">
+                    <div class="pro-info-row">
+                        <dt>{{ 'dashboard.pro.siret' | transloco }}</dt>
+                        <dd class="font-mono tracking-wider">{{ pro.professionalProfile.siret }}</dd>
+                    </div>
+                    <div class="pro-info-row">
+                        <dt>{{ 'dashboard.pro.companyStatus' | transloco }}</dt>
+                        <dd>
+                            @if (pro.professionalProfile.companyStatus === 'COMPANY') {
+                                {{ 'dashboard.pro.companyStatusCompany' | transloco }}
+                            } @else {
+                                {{ 'dashboard.pro.companyStatusIndividual' | transloco }}
+                            }
+                        </dd>
+                    </div>
+                    <div class="pro-info-row">
+                        <dt>{{ 'dashboard.pro.companyName' | transloco }}</dt>
+                        <dd>{{ pro.professionalProfile.companyName }}</dd>
+                    </div>
+                    <div class="pro-info-row">
+                        <dt>{{ 'dashboard.pro.addressStreet' | transloco }}</dt>
+                        <dd>
+                            @if (editCompanyExtraMode()) {
+                                <div class="flex gap-1">
+                                    <input
+                                        class="pro-edit-input"
+                                        style="width: 4.5rem; flex-shrink: 0"
+                                        type="text"
+                                        [(ngModel)]="editCompanyExtra.workAddress.streetNumber"
+                                        [placeholder]="'professional.fields.workAddress.number' | transloco"
+                                    />
+                                    <div class="relative flex-1 min-w-0">
+                                        <input
+                                            class="pro-edit-input w-full"
+                                            type="text"
+                                            autocomplete="off"
+                                            [(ngModel)]="editCompanyExtra.workAddress.streetName"
+                                            [placeholder]="'professional.fields.workAddress.street' | transloco"
+                                            (input)="onWorkAddressSearch($event)"
+                                            (focus)="workAddressOpen.set(true)"
+                                            (blur)="closeWorkAddressSuggestions()"
+                                        />
+                                        @if (workAddressOpen() && workAddressSuggestions().length) {
+                                            <ul class="overflow-y-auto absolute z-10 w-full max-h-48 bg-[var(--background-color)] rounded-b border-b shadow-sm border-x border-[var(--border-color)]">
+                                                @for (s of workAddressSuggestions(); track s.label) {
+                                                    <li class="px-3 py-2 text-sm cursor-pointer hover:bg-[var(--hover-color)]" (mousedown)="selectWorkAddress(s)">
+                                                        {{ s.label }}
+                                                    </li>
+                                                }
+                                            </ul>
+                                        }
+                                    </div>
+                                </div>
+                            } @else {
+                                {{ pro.professionalProfile.workAddress.streetNumber }} {{ pro.professionalProfile.workAddress.streetName }}
+                            }
+                        </dd>
+                    </div>
+                    @if (editCompanyExtraMode() || pro.professionalProfile.workAddress.additionalInfo) {
+                        <div class="pro-info-row">
+                            <dt>{{ 'dashboard.pro.addressComplement' | transloco }}</dt>
+                            <dd>
+                                @if (editCompanyExtraMode()) {
+                                    <input
+                                        class="pro-edit-input"
+                                        type="text"
+                                        [(ngModel)]="editCompanyExtra.workAddress.additionalInfo"
+                                        [placeholder]="'professional.fields.workAddress.complement' | transloco"
+                                    />
+                                } @else {
+                                    {{ pro.professionalProfile.workAddress.additionalInfo }}
+                                }
+                            </dd>
+                        </div>
+                    }
+                    <div class="pro-info-row">
+                        <dt>{{ 'dashboard.pro.addressCity' | transloco }}</dt>
+                        <dd>
+                            @if (editCompanyExtraMode()) {
+                                <div class="flex gap-1">
+                                    <input
+                                        class="pro-edit-input"
+                                        style="width: 5.5rem; flex-shrink: 0"
+                                        type="text"
+                                        [(ngModel)]="editCompanyExtra.workAddress.postalCode"
+                                        [placeholder]="'professional.fields.workAddress.zip' | transloco"
+                                        (input)="onWorkPostalCodeInput($event)"
+                                    />
+                                    <input
+                                        class="pro-edit-input flex-1 min-w-0"
+                                        type="text"
+                                        [(ngModel)]="editCompanyExtra.workAddress.city"
+                                        [placeholder]="'professional.fields.workAddress.city' | transloco"
+                                    />
+                                </div>
+                            } @else {
+                                {{ pro.professionalProfile.workAddress.postalCode }} {{ pro.professionalProfile.workAddress.city }}
+                            }
+                        </dd>
+                    </div>
+                </dl>
+                <dl class="pro-info-list" style="margin-top: 0.75rem">
+                    <div class="pro-info-row">
+                        <dt>{{ 'dashboard.pro.yearsExperience' | transloco }}</dt>
+                        <dd>
+                            @if (editCompanyExtraMode()) {
+                                <input class="pro-edit-input" type="number" min="0" [(ngModel)]="editCompanyExtra.yearsExperience" [placeholder]="'dashboard.pro.yearsExperience' | transloco" />
+                            } @else {
+                                {{ pro.professionalProfile.yearsExperience }}
+                                @if (pro.professionalProfile.isCmod) {
+                                    <span class="inline-block px-2 py-0.5 text-xs font-semibold rounded-full bg-green-100 text-green-800 ml-2">CMOD</span>
+                                }
+                            }
+                        </dd>
+                    </div>
+                    <div class="pro-info-row">
+                        <dt>{{ 'dashboard.pro.onCall' | transloco }}</dt>
+                        <dd>
+                            @if (editCompanyExtraMode()) {
+                                <label class="inline-flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" [(ngModel)]="editCompanyExtra.onCall" />
+                                    {{ editCompanyExtra.onCall ? ('dashboard.pro.onCallYes' | transloco) : ('dashboard.pro.onCallNo' | transloco) }}
+                                </label>
+                            } @else {
+                                {{ pro.professionalProfile.onCall ? ('dashboard.pro.onCallYes' | transloco) : ('dashboard.pro.onCallNo' | transloco) }}
+                            }
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+
+            <!-- ── Métiers ── -->
+            <div class="pro-block">
+                <div class="pro-group-header">
+                    <h3>{{ 'dashboard.pro.trades' | transloco }}</h3>
+                    <inline-edit-actions
+                        [editing]="editTradesMode()"
+                        [saving]="savingTrades()"
+                        (edit)="enterEditTrades()"
+                        (cancel)="cancelEditTrades()"
+                        (save)="saveEditTrades()"
+                    />
+                </div>
+                @if (editTradesMode()) {
+                    @if (loadingTrades()) {
+                        <span class="pro-spinner-sm"></span>
+                    } @else {
+                        <div class="pro-chips">
+                            @for (trade of allTrades(); track trade.id) {
+                                <button class="pro-chip" type="button" [class.pro-chip--active]="editTradeIds().includes(trade.id)" (click)="toggleTrade(trade.id)">
+                                    {{ `jobs.list.${trade.name}.name` | transloco }}
+                                </button>
+                            }
+                        </div>
+                    }
+                } @else if (pro.professionalProfile.trades.length) {
+                    <ul class="pro-list pro-list--arrow">
+                        @for (trade of pro.professionalProfile.trades; track trade.id) {
+                            <li>{{ `jobs.list.${trade.name}.name` | transloco }}</li>
+                        }
+                    </ul>
+                } @else {
+                    <p class="pro-empty">{{ 'dashboard.pro.noTrades' | transloco }}</p>
+                }
+            </div>
+
+            <!-- ── Horaires ── -->
+            <div class="pro-block">
+                <div class="pro-group-header">
+                    <h3>{{ 'dashboard.pro.hours' | transloco }}</h3>
+                    <inline-edit-actions
+                        [editing]="editHoursMode()"
+                        [saving]="savingHours()"
+                        (edit)="enterEditHours()"
+                        (cancel)="cancelEditHours()"
+                        (save)="saveEditHours()"
+                    />
+                </div>
+                @if (editHoursMode()) {
+                    <div class="pro-hours-editor">
+                        @for (day of editHours(); track day.day; let i = $index) {
+                            <div class="pro-hours-row">
+                                <span class="hours-day">{{ `supplier.days.${day.day}` | transloco }}</span>
+                                <label class="pro-day-toggle">
+                                    <input type="checkbox" [checked]="!day.closed" (change)="toggleDay(i, $event)" />
+                                    <span>{{ day.closed ? ('dashboard.pro.closed' | transloco) : ('dashboard.pro.open' | transloco) }}</span>
+                                </label>
+                                @if (!day.closed) {
+                                    @if (!day.onCall) {
+                                        <input type="time" class="pro-time-input" [value]="day.intervals[0]?.start" (change)="setHourStart(i, $event)" />
+                                        <span class="pro-hours-sep">–</span>
+                                        <input type="time" class="pro-time-input" [value]="day.intervals[0]?.end" (change)="setHourEnd(i, $event)" />
+                                    }
+                                    <label class="pro-day-toggle">
+                                        <input type="checkbox" [checked]="day.onCall" (change)="toggleOnCall(i, $event)" />
+                                        <span>{{ 'dashboard.pro.onCallDay' | transloco }}</span>
+                                    </label>
+                                }
+                            </div>
+                        }
+                    </div>
+                } @else if (pro.professionalProfile.openingHours?.days?.length) {
+                    <ul class="hours-list">
+                        @for (day of pro.professionalProfile.openingHours!.days; track day.day) {
+                            <li class="hours-item">
+                                <span class="hours-day">{{ `supplier.days.${day.day}` | transloco }}</span>
+                                @if (day.closed) {
+                                    <span class="hours-closed">{{ 'dashboard.pro.closed' | transloco }}</span>
+                                } @else if (day.onCall) {
+                                    <span class="hours-oncall">{{ 'dashboard.pro.onCallDay' | transloco }}</span>
+                                } @else if (day.intervals[0]) {
+                                    <span class="hours-value">{{ day.intervals[0].start }} – {{ day.intervals[0].end }}</span>
+                                } @else {
+                                    <span class="hours-closed">{{ 'dashboard.pro.open' | transloco }}</span>
+                                }
+                            </li>
+                        }
+                    </ul>
+                } @else {
+                    <p class="pro-empty">{{ 'dashboard.pro.noHours' | transloco }}</p>
+                }
+            </div>
+
+            <!-- ── Contact de confiance ── -->
+            <div class="pro-block">
+                <div class="pro-group-header">
+                    <h3>{{ 'dashboard.pro.trustedContact' | transloco }}</h3>
+                    <inline-edit-actions
+                        [editing]="editTrustedContactMode()"
+                        [saving]="savingTrustedContact()"
+                        (edit)="enterEditTrustedContact()"
+                        (cancel)="cancelEditTrustedContact()"
+                        (save)="saveEditTrustedContact()"
+                    />
+                </div>
+                @if (editTrustedContactMode()) {
+                    <div class="pro-trusted-edit">
+                        <input class="pro-edit-input" type="text" [(ngModel)]="editTrustedContact.name" [placeholder]="'professional.fields.trustName' | transloco" />
+                        <input class="pro-edit-input" type="tel" [(ngModel)]="editTrustedContact.phone" [placeholder]="'professional.fields.trustPhone' | transloco" />
+                    </div>
+                } @else if (pro.professionalProfile.trustedContactName) {
+                    <span class="trusted-contact-name">{{ pro.professionalProfile.trustedContactName }}</span>
+                    @if (pro.professionalProfile.trustedContactPhone) {
+                        <span class="trusted-contact-phone">{{ pro.professionalProfile.trustedContactPhone }}</span>
+                    }
+                } @else {
+                    <p class="pro-empty">{{ 'dashboard.pro.trustedContactNone' | transloco }}</p>
+                }
+            </div>
+
+            <!-- ── Partenaires ── -->
+            <div class="pro-block">
+                <div class="pro-group-header">
+                    <h3>{{ 'dashboard.pro.partners' | transloco }}</h3>
+                    <inline-edit-actions
+                        [editing]="editPartnersMode()"
+                        [saving]="savingPartners()"
+                        (edit)="enterEditPartners()"
+                        (cancel)="cancelEditPartners()"
+                        (save)="saveEditPartners()"
+                    />
+                </div>
+                @if (editPartnersMode()) {
+                    <div class="flex gap-2" style="margin-bottom: 0.6rem">
+                        <input
+                            class="pro-edit-input"
+                            style="margin-bottom: 0"
+                            type="text"
+                            [(ngModel)]="partnerInput"
+                            (keydown)="addPartnerToEdit($event)"
+                            [placeholder]="'professional.fields.suppliersPlaceholder' | transloco"
+                        />
+                        <button type="button" class="pro-add-btn" (click)="addPartnerFromInput()">
+                            {{ 'professional.fields.suppliersAdd' | transloco }}
+                        </button>
+                    </div>
+                    @if (editPartnerList().length) {
+                        <ul class="pro-list">
+                            @for (name of editPartnerList(); track name) {
+                                <li class="pro-partner-edit-item">
+                                    <span>{{ name }}</span>
+                                    <button class="pro-partner-remove" type="button" (click)="removePartnerFromEdit(name)">
+                                        <iconify-icon icon="lucide:x"></iconify-icon>
+                                    </button>
+                                </li>
+                            }
+                        </ul>
+                    }
+                } @else if (pro.professionalProfile.suppliers.length) {
+                    <ul class="pro-list pro-list--arrow">
+                        @for (s of pro.professionalProfile.suppliers; track s) {
+                            <li>{{ s }}</li>
+                        }
+                    </ul>
+                } @else {
+                    <p class="pro-empty">{{ 'dashboard.pro.noPartners' | transloco }}</p>
+                }
+            </div>
+
+            <!-- ── Remarques entreprise ── -->
+            <div class="pro-block">
+                <div class="pro-group-header">
+                    <h3>{{ 'dashboard.pro.companyRemarks' | transloco }}</h3>
+                    <inline-edit-actions
+                        [editing]="editCompanyRemarksMode()"
+                        [saving]="savingCompanyRemarks()"
+                        (edit)="enterEditCompanyRemarks()"
+                        (cancel)="cancelEditCompanyRemarks()"
+                        (save)="saveEditCompanyRemarks()"
+                    />
+                </div>
+                @if (editCompanyRemarksMode()) {
+                    <textarea class="pro-edit-input pro-edit-input--textarea" rows="4" maxlength="500" [(ngModel)]="editCompanyRemarksText" [placeholder]="'dashboard.pro.companyRemarks' | transloco"></textarea>
+                } @else if (pro.professionalProfile.companyRemarks) {
+                    <p class="pro-description">{{ pro.professionalProfile.companyRemarks }}</p>
+                } @else {
+                    <p class="pro-empty">{{ 'dashboard.pro.noneProvided' | transloco }}</p>
+                }
+            </div>
+        }
+
+        @case ('missions') {
+            <p class="pro-empty">{{ 'dashboard.empty.missions' | transloco }}</p>
+        }
+
+        @case ('reviews') {
+            <p class="pro-empty">{{ 'dashboard.empty.reviews' | transloco }}</p>
+        }
+
+        @case ('documents') {
+            <div class="doc-grid">
+                @for (
+                    doc of [
+                        { key: pro.professionalProfile.idFrontKey, url: pro.professionalProfile.idFrontUrl, label: 'dashboard.pro.docs.idFront' },
+                        { key: pro.professionalProfile.idBackKey, url: pro.professionalProfile.idBackUrl, label: 'dashboard.pro.docs.idBack' },
+                        { key: pro.professionalProfile.ribKey, url: pro.professionalProfile.ribUrl, label: 'dashboard.pro.docs.rib' },
+                        { key: pro.professionalProfile.companyLogoKey, url: pro.professionalProfile.logoUrl, label: 'dashboard.pro.docs.logo' },
+                    ];
+                    track doc.key
+                ) {
+                    <div class="doc-card">
+                        <div class="doc-card-preview" [style.cursor]="doc.url ? 'pointer' : 'default'" (click)="openDocModal(doc.url, doc.label)">
+                            @if (doc.url && doc.key.endsWith('.webp')) {
+                                <img [src]="doc.url" [alt]="doc.label | transloco" class="doc-card-img" />
+                            } @else {
+                                <iconify-icon icon="lucide:file-text" class="doc-card-icon"></iconify-icon>
+                            }
+                        </div>
+                        <div class="doc-card-body">
+                            <p class="doc-card-label">{{ doc.label | transloco }}</p>
+                            @if (doc.url) {
+                                <a [href]="doc.url" target="_blank" rel="noopener" class="doc-card-btn">
+                                    <iconify-icon icon="lucide:download"></iconify-icon>
+                                    {{ 'dashboard.pro.docs.download' | transloco }}
+                                </a>
+                            } @else {
+                                <span class="doc-card-missing">{{ 'dashboard.pro.docs.missing' | transloco }}</span>
+                            }
+                        </div>
+                    </div>
+                }
+                <!-- Diplômes -->
+                @for (diploma of pro.professionalProfile.diplomas; track diploma.id) {
+                    <div class="doc-card">
+                        <div class="doc-card-preview" [style.cursor]="diploma.url ? 'pointer' : 'default'" (click)="openDocModal(diploma.url, 'dashboard.pro.docs.diploma')">
+                            <iconify-icon icon="lucide:file-text" class="doc-card-icon"></iconify-icon>
+                        </div>
+                        <div class="doc-card-body">
+                            <p class="doc-card-label">{{ diploma.documentName }}</p>
+                            @if (diploma.expiryDate) {
+                                <p class="doc-card-expiry">
+                                    {{ 'dashboard.pro.expiresOn' | transloco }}
+                                    {{ diploma.expiryDate | localizedDate:'compact' }}
+                                </p>
+                            }
+                            @if (diploma.url) {
+                                <a [href]="diploma.url" target="_blank" rel="noopener" class="doc-card-btn">
+                                    <iconify-icon icon="lucide:download"></iconify-icon>
+                                    {{ 'dashboard.pro.docs.download' | transloco }}
+                                </a>
+                            } @else {
+                                <span class="doc-card-missing">{{ 'dashboard.pro.docs.missing' | transloco }}</span>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    }
+}

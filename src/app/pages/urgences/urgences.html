@@ -4,13 +4,22 @@
         <p class="text-[var(--text-secondary)]">{{ 'urgencesPage.description' | transloco }}</p>
     </div>
 
+    <div class="flex justify-center">
+        <a
+            [routerLink]="['/auth/register']"
+            class="px-6 py-3 font-semibold rounded-full no-underline bg-[var(--tertiary-brown)] text-[var(--primary-beige)]"
+        >
+            {{ 'urgencesPage.cta' | transloco }}
+        </a>
+    </div>
+
     <div class="grid gap-6 justify-center items-start sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
         @for (trade of trades; track trade.slug) {
             <a class="block w-48 text-center shrink-0 group" [routerLink]="['/job', trade.slug]">
                 <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
                     <img
                         [src]="trade.image"
-                        [alt]="trade.name"
+                        [alt]="'jobs.list.' + trade.i18nKey + '.name' | transloco"
                         class="object-cover w-full h-full border"
                         loading="lazy"
                     />
@@ -47,5 +56,17 @@
             }
         </ul>
         <p>{{ 'home.emergency.description.p13' | transloco }}</p>
+    </div>
+
+    <div class="space-y-4 text-center">
+        <p>{{ 'urgencesPage.bottomCtaText' | transloco }}</p>
+        <div class="flex justify-center">
+            <a
+                [routerLink]="['/auth/register']"
+                class="px-6 py-3 font-semibold rounded-full no-underline bg-[var(--tertiary-brown)] text-[var(--primary-beige)]"
+            >
+                {{ 'urgencesPage.cta' | transloco }}
+            </a>
+        </div>
     </div>
 </section>

@@ -2,21 +2,21 @@ import { Component, signal, inject, OnDestroy, computed, ChangeDetectionStrategy
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, of, takeUntil } from 'rxjs';
+import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs';
 import { GeocodingService } from '../../../../core/services/geocoding.service';
 import { AddressSuggestion } from '../../../../shared/interfaces/address-suggestion';
 import { TurnstileComponent } from '../../../../shared/components/turnstile/turnstile';
 import { LegalModal } from '../../../../shared/components/legal-modal/legal-modal';
 import { AppConfigService } from '../../../../core/services/app-config.service';
-import { UploadService } from '../../../../core/services/upload.service';
 import { UserApiService } from '../../../../core/services/user-api.service';
 import { AuthService } from '../../../../core/services/auth.service';
+import { User } from '../../../../shared/interfaces/user';
 import { Router } from '@angular/router';
 import { capitalize, evaluatePasswordCriteria, getAffiliateCode, clearAffiliateCode } from '../../../../core/utils/common-utils';
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
 import { NAME_REGEXP, PASSWORD_STRONG_REGEXP, PHONE_FR_REGEXP, POSTAL_CODE_REGEXP, STREET_NUMBER_REGEXP } from '../../../../core/utils/regexp';
-import { LangService } from '../../../../core/services/lang.service';
 import { pastDateValidator } from '../../../../core/utils/validators';
+import { ALLOWED_IMAGE_TYPES } from '../../../../core/utils/file-types';
 
 @Component({
   selector: 'register-individual',
@@ -29,12 +29,10 @@ import { pastDateValidator } from '../../../../core/utils/validators';
 export class RegisterIndividual implements OnDestroy {
   private readonly fb = inject(FormBuilder);
   private readonly geocodingService = inject(GeocodingService);
-  private readonly uploadService = inject(UploadService);
   private readonly userApi = inject(UserApiService);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly flashMessage = inject(FlashMessageService);
-  private readonly langService = inject(LangService);
   private readonly destroy$ = new Subject<void>();
   private readonly addressSearch$ = new Subject<string>();
 
@@ -193,7 +191,14 @@ export class RegisterIndividual implements OnDestroy {
 
   // --- Photo ---
   addPhoto(event: Event) {
-    const file = (event.target as HTMLInputElement).files?.[0] ?? null;
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0] ?? null;
+    input.value = '';
+    if (file && !ALLOWED_IMAGE_TYPES.has(file.type)) {
+      this.flashMessage.set({ type: 'error', key: 'errors.invalidImageFormat' });
+      return;
+    }
+
     this.form.get('photo')!.setValue(file);
     if (file) {
       const reader = new FileReader();
@@ -234,7 +239,6 @@ export class RegisterIndividual implements OnDestroy {
 
     const referralCode = getAffiliateCode();
     const payload: Record<string, unknown> = {
-      lang: this.langService.lang(),
       user: {
         gender,
         lastName: lastName!.toUpperCase(),
@@ -248,25 +252,30 @@ export class RegisterIndividual implements OnDestroy {
       ...(referralCode ? { referralCode } : {}),
     };
 
+    let registeredAccessToken = '';
+    let registeredUser!: User;
+
     this.submitting.set(true);
     this.userApi
       .registerIndividual(payload, captchaToken)
       .pipe(
-        switchMap(({ userId, accessToken, user: _user }) => {
+        switchMap(({ userId, accessToken, user, profileId: _profileId }) => {
+          registeredAccessToken = accessToken;
+          registeredUser = user;
           this.authService.setTempToken(accessToken);
           clearAffiliateCode();
-          return (photo ? this.uploadService.upload(photo) : of('')).pipe(
-            switchMap((photoKey) =>
-              photoKey ? this.userApi.createIndividualDocuments(userId, photoKey) : of(undefined),
-            ),
-          );
+          if (!photo) return this.userApi.createIndividualDocuments(userId, new FormData());
+          const formData = new FormData();
+          formData.append('photo', photo);
+          return this.userApi.createIndividualDocuments(userId, formData);
         }),
         takeUntil(this.destroy$),
       )
       .subscribe({
         next: () => {
+          this.authService.setSession(registeredAccessToken, registeredUser);
           this.flashMessage.set({ type: 'success', key: 'login.registeredIndividualSuccess' });
-          this.router.navigate(['/auth/login']);
+          this.router.navigate(['/dashboard']);
         },
         error: (err) => {
           this.submitting.set(false);

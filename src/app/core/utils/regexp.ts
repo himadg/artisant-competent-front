@@ -5,5 +5,6 @@ export const PASSWORD_STRONG_REGEXP = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-z
 export const POSTAL_CODE_REGEXP = /^\d{5}$/;
 export const NAME_REGEXP = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/;
 export const STREET_NUMBER_REGEXP = /^\d+\s?(bis|ter|quater|quinquies|[a-z]\d*)?$/i;
-export const URL_REGEXP = /^https?:\/\/([\w-]+\.)+[\w-]{2,}(\/[\w\-./?%&=#]*)?$/i;
+// doit commencer par http://, https:// ou www.
+export const URL_REGEXP = /^(?:https?:\/\/(?:www\.)?|www\.)([\w-]+\.)+[\w-]{2,}(\/[\w\-./?%&=#]*)?$/i;
 export const ADDRESS_REGEXP = /^[a-zA-ZÀ-ÿ0-9 ,-]+$/;

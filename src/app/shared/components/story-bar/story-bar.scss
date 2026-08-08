@@ -1,0 +1,141 @@
+.story-bar {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.1rem 1.25rem 1.25rem;
+  animation: storyBarIn 0.35s ease-out;
+}
+
+.story-bar-label {
+  display: block;
+  margin: 0 0 0.75rem;
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primary-water-green);
+}
+
+.story-bar-list {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 1.15rem;
+  list-style: none;
+  margin: 0;
+  padding: 0.15rem 0.15rem 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--tertiary-brown) transparent;
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: color-mix(in srgb, var(--tertiary-brown) 60%, transparent);
+    border-radius: 9999px;
+  }
+
+  li {
+    flex-shrink: 0;
+    animation: storyItemIn 0.35s ease-out backwards;
+  }
+}
+
+.story-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  width: 4.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.story-ring {
+  width: 4.25rem;
+  height: 4.25rem;
+  border-radius: 50%;
+  padding: 2.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: conic-gradient(
+    from 210deg,
+    var(--primary-water-green),
+    #f7c6b7,
+    var(--tertiary-brown),
+    var(--primary-water-green)
+  );
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.story-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-beige);
+  border: 2.5px solid var(--background-color, #fff);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.story-circle:hover .story-ring,
+.story-circle:focus-visible .story-ring {
+  transform: scale(1.06);
+  filter: brightness(1.08);
+}
+
+.story-avatar-placeholder {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--tertiary-brown);
+}
+
+.story-name {
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-align: center;
+  color: var(--color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+@keyframes storyBarIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes storyItemIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

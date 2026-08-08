@@ -1,0 +1,86 @@
+:host ::ng-deep .range {
+  -webkit-appearance: none;
+  appearance: none;
+  /* Zone de clic/glisser alignée sur la taille du rond visible (.thumb-value),
+     pas seulement sur la fine piste — sinon seul le chiffre au centre est cliquable. */
+  height: 1.75rem;
+  background: transparent;
+  outline: none;
+}
+
+:host ::ng-deep .range::-webkit-slider-runnable-track {
+  background: transparent;
+}
+
+:host ::ng-deep .range::-moz-range-track {
+  background: transparent;
+  height: 1.75rem;
+}
+
+:host ::ng-deep .range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0;
+  height: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+:host ::ng-deep .range::-moz-range-thumb {
+  width: 0;
+  height: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+:host ::ng-deep .range-wrap {
+  position: relative;
+  height: 1.75rem;
+}
+
+:host ::ng-deep .range-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 0.25rem;
+  transform: translateY(-50%);
+  border-radius: 9999px;
+  background: var(--primary-beige);
+  pointer-events: none;
+}
+
+:host ::ng-deep .thumb-value {
+  position: absolute;
+  top: 50%;
+  border-radius: 9999px;
+  background: #f7c6b7;
+  color: var(--secondary-water-green);
+  border: 2px solid var(--secondary-water-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+:host ::ng-deep .range-wrap .range {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+:host ::ng-deep select {
+  border-radius: 9999px;
+}
+
+:host ::ng-deep select option {
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  line-height: 1.25;
+  margin: 0;
+}
