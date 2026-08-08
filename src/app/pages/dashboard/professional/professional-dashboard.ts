@@ -11,6 +11,7 @@ import { DashboardApiService } from '../../../core/services/dashboard-api.servic
 import { AuthService } from '../../../core/services/auth.service';
 import { UserApiService } from '../../../core/services/user-api.service';
 import { AffiliationApiService } from '../../../core/services/affiliation-api.service';
+import { StoryApiService, Story } from '../../../core/services/story-api.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProfessionalDashboardData, OpeningHoursDay } from '../../../shared/interfaces/professional-dashboard';
 import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
@@ -18,18 +19,27 @@ import { LangToggle } from '../../../shared/components/lang-toggle/lang-toggle';
 import { ThemeToggle } from '../../../shared/components/theme-toggle/theme-toggle';
 import { LegalModal } from '../../../shared/components/legal-modal/legal-modal';
 import { DocModal } from '../../../shared/components/doc-modal/doc-modal';
+import { StoryViewer } from '../../../shared/components/story-viewer/story-viewer';
+import { StoryRecorder } from '../../../shared/components/story-recorder/story-recorder';
 import { PreviewDocument } from '../../../shared/interfaces/preview-document';
+import { UploadService } from '../../../core/services/upload.service';
 
 export type ProSection = 'requests' | 'quotes' | 'invoices' | 'profile' | 'legal' | 'practices' | 'affiliation';
 export type ProTab = 'presentation' | 'missions' | 'reviews' | 'documents';
 
 const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as const;
 
+// 1 PRESENTATION story per professional, unlimited TIPS stories
+const MAX_STORIES_PER_TYPE: Record<'PRESENTATION' | 'TIPS', number> = {
+  PRESENTATION: 1,
+  TIPS: Infinity,
+};
+
 @Component({
   selector: 'dashboard-professional',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FormsModule, RouterLink, TranslocoModule, LangToggle, ThemeToggle, LegalModal, DocModal],
+  imports: [CommonModule, FormsModule, RouterLink, TranslocoModule, LangToggle, ThemeToggle, LegalModal, DocModal, StoryViewer, StoryRecorder],
   templateUrl: './professional-dashboard.html',
   styleUrl: './professional-dashboard.scss',
 })
@@ -39,6 +49,8 @@ export class ProfessionalDashboard implements OnInit {
   private readonly dashboardApi = inject(DashboardApiService);
   private readonly userApi = inject(UserApiService);
   private readonly affiliationApi = inject(AffiliationApiService);
+  private readonly storyApi = inject(StoryApiService);
+  private readonly uploadService = inject(UploadService);
   private readonly route = inject(ActivatedRoute);
   private readonly platformLocation = inject(PlatformLocation);
   private readonly transloco = inject(TranslocoService);
@@ -68,6 +80,126 @@ export class ProfessionalDashboard implements OnInit {
       ${professional.workAddress.streetName}, ${professional.workAddress.postalCode} ${professional.workAddress.city}`;
   });
 
+  // Bleu cercle for "Présentation" story, white cercle for "Tips" story.
+  readonly myStories = signal<Story[]>([]);
+  readonly uploadingStoryType = signal<'PRESENTATION' | 'TIPS' | null>(null);
+  readonly storyUploadError = signal<string | null>(null);
+
+  readonly presentationStories = computed(() => this.myStories().filter((s) => s.type === 'PRESENTATION'));
+  readonly tipsStories = computed(() => this.myStories().filter((s) => s.type === 'TIPS'));
+
+  readonly canAddPresentationStory = computed(() => this.presentationStories().length < MAX_STORIES_PER_TYPE.PRESENTATION);
+  readonly canAddTipsStory = computed(() => this.tipsStories().length < MAX_STORIES_PER_TYPE.TIPS);
+
+  readonly viewingStories = signal<Story[]>([]);
+  readonly viewingIndex = signal(0);
+  readonly viewingStoryUrl = signal<string | null>(null);
+  readonly recordingStoryType = signal<'PRESENTATION' | 'TIPS' | null>(null);
+
+  readonly viewingStory = computed<Story | null>(() => this.viewingStories()[this.viewingIndex()] ?? null);
+  readonly hasPrevStory = computed(() => this.viewingIndex() > 0);
+  readonly hasNextStory = computed(() => this.viewingIndex() < this.viewingStories().length - 1);
+
+  loadStories() {
+    this.storyApi.getMine().subscribe({ next: (stories) => this.myStories.set(stories) });
+  }
+
+  onStoryCircleClick(type: 'PRESENTATION' | 'TIPS') {
+    const stories = type === 'PRESENTATION' ? this.presentationStories() : this.tipsStories();
+    if (stories.length > 0) {
+      this.openStoryViewer(stories, 0);
+    } else {
+      this.recordingStoryType.set(type);
+    }
+  }
+
+  onAddStoryClick(event: Event, type: 'PRESENTATION' | 'TIPS') {
+    event.stopPropagation();
+    const canAdd = type === 'PRESENTATION' ? this.canAddPresentationStory() : this.canAddTipsStory();
+    if (!canAdd) return;
+    this.recordingStoryType.set(type);
+  }
+
+  closeRecorder() {
+    this.recordingStoryType.set(null);
+  }
+
+  onStoryFileReady(file: File) {
+    const type = this.recordingStoryType();
+    if (!type) return;
+    this.recordingStoryType.set(null);
+    this.uploadStoryFile(file, type);
+  }
+
+  openStoryViewer(stories: Story[], startIndex: number) {
+    this.viewingStories.set(stories);
+    this.viewingIndex.set(startIndex);
+    this.loadViewingUrl();
+  }
+
+  private loadViewingUrl() {
+    this.viewingStoryUrl.set(null);
+    const story = this.viewingStory();
+    if (!story) return;
+    this.uploadService.getSignedUrl(story.videoKey).subscribe({
+      next: (url) => this.viewingStoryUrl.set(url),
+    });
+  }
+
+  nextStory() {
+    if (!this.hasNextStory()) return;
+    this.viewingIndex.update((i) => i + 1);
+    this.loadViewingUrl();
+  }
+
+  prevStory() {
+    if (!this.hasPrevStory()) return;
+    this.viewingIndex.update((i) => i - 1);
+    this.loadViewingUrl();
+  }
+
+  closeStoryViewer() {
+    this.viewingStories.set([]);
+    this.viewingStoryUrl.set(null);
+  }
+
+  deleteViewingStory() {
+    const story = this.viewingStory();
+    if (!story) return;
+    this.storyApi.delete(story.id).subscribe({
+      next: () => {
+        this.loadStories();
+        const remaining = this.viewingStories().filter((s) => s.id !== story.id);
+        if (remaining.length === 0) {
+          this.closeStoryViewer();
+          return;
+        }
+        this.viewingStories.set(remaining);
+        this.viewingIndex.set(Math.min(this.viewingIndex(), remaining.length - 1));
+        this.loadViewingUrl();
+      },
+    });
+  }
+
+  private uploadStoryFile(file: File, type: 'PRESENTATION' | 'TIPS') {
+    this.uploadingStoryType.set(type);
+    this.storyUploadError.set(null);
+    this.storyApi.upload(file, type).subscribe({
+      next: () => {
+        this.uploadingStoryType.set(null);
+        this.loadStories();
+      },
+      error: (err) => {
+        this.uploadingStoryType.set(null);
+        this.storyUploadError.set(err?.error?.message ?? "Erreur lors de l'envoi de la vidéo");
+      },
+    });
+  }
+
+  deleteStory(id: string) {
+    this.storyApi.delete(id).subscribe({ next: () => this.loadStories() });
+  }
+
   readonly moreMenuOpen = signal(false);
   readonly moreMenuContentDisplayed = signal(false);
 
@@ -88,6 +220,7 @@ export class ProfessionalDashboard implements OnInit {
       next: (data) => {
         this.data.set(data);
         this.loading.set(false);
+        if (!userId) this.loadStories();
       },
       error: () => {
         this.error.set('dashboard.errors.load');

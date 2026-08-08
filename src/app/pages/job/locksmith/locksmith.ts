@@ -64,11 +64,12 @@ export class LocksmithPage implements OnInit, OnDestroy {
     if (!this.tradeContent) return;
 
     if (this.city) {
-      this.titleService.setTitle(this.trade.metaTitle(this.city.name));
-      this.meta.updateTag({ name: 'description', content: this.trade.metaDescription(this.city.name) });
-      this.meta.updateTag({ name: 'keywords', content: this.trade.keywords(this.city.name) });
+      const params = { city: this.city.name };
+      this.titleService.setTitle(this.transloco.translate<string>(`jobs.list.${this.trade.i18nKey}.metaTitle`, params));
+      this.meta.updateTag({ name: 'description', content: this.transloco.translate<string>(`jobs.list.${this.trade.i18nKey}.metaDescription`, params) });
+      this.meta.updateTag({ name: 'keywords', content: this.transloco.translate<string>(`jobs.list.${this.trade.i18nKey}.metaKeywords`, params) });
     } else {
-      this.titleService.setTitle(this.trade.name);
+      this.titleService.setTitle(this.tradeContent.name);
     }
     this.meta.updateTag({ name: 'robots', content: 'index, follow' });
   }

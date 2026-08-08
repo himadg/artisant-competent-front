@@ -1,0 +1,148 @@
+@if (data(); as user) {
+    <div class="ind-profile-section">
+        <div class="ind-info-group">
+            <div class="ind-group-header">
+                <h3 class="ind-group-title">
+                    {{ 'dashboard.individual.sections.personalInfo' | transloco }}
+                </h3>
+                <inline-edit-actions
+                    [editing]="editMode()"
+                    [saving]="saving()"
+                    (edit)="enterEditMode()"
+                    (cancel)="cancelEdit()"
+                    (save)="saveEdit()"
+                />
+            </div>
+            <dl class="ind-info-list">
+                <div class="ind-info-row">
+                    <dt>{{ 'dashboard.individual.fields.firstName' | transloco }}</dt>
+                    @if (editMode()) {
+                        <dd>
+                            <input class="ind-edit-input" type="text" [(ngModel)]="editFields.firstName" [placeholder]="'dashboard.individual.fields.firstName' | transloco" />
+                        </dd>
+                    } @else {
+                        <dd>{{ user.firstName }}</dd>
+                    }
+                </div>
+                <div class="ind-info-row">
+                    <dt>{{ 'dashboard.individual.fields.lastName' | transloco }}</dt>
+                    @if (editMode()) {
+                        <dd>
+                            <input class="ind-edit-input" type="text" [(ngModel)]="editFields.lastName" [placeholder]="'dashboard.individual.fields.lastName' | transloco" />
+                        </dd>
+                    } @else {
+                        <dd>{{ user.lastName }}</dd>
+                    }
+                </div>
+                <div class="ind-info-row">
+                    <dt>{{ 'dashboard.individual.fields.email' | transloco }}</dt>
+                    @if (editMode()) {
+                        <dd>
+                            <input class="ind-edit-input" type="email" [(ngModel)]="editFields.email" [placeholder]="'dashboard.individual.fields.email' | transloco" />
+                        </dd>
+                    } @else {
+                        <dd>{{ user.email }}</dd>
+                    }
+                </div>
+                <div class="ind-info-row">
+                    <dt>{{ 'dashboard.individual.fields.phone' | transloco }}</dt>
+                    @if (editMode()) {
+                        <dd>
+                            <input class="ind-edit-input" type="tel" [(ngModel)]="editFields.phone" [placeholder]="'dashboard.individual.fields.phone' | transloco" />
+                        </dd>
+                    } @else {
+                        <dd>{{ user.individualProfile.phone }}</dd>
+                    }
+                </div>
+                <div class="ind-info-row">
+                    <dt>{{ 'dashboard.individual.fields.birthDate' | transloco }}</dt>
+                    @if (editMode()) {
+                        <dd>
+                            <input class="ind-edit-input" type="date" [(ngModel)]="editFields.birthDate" />
+                        </dd>
+                    } @else {
+                        <dd>{{ birthDate() }}</dd>
+                    }
+                </div>
+                <div class="ind-info-row">
+                    <dt>{{ 'dashboard.individual.fields.gender' | transloco }}</dt>
+                    @if (editMode()) {
+                        <dd>
+                            <select class="ind-edit-input" [(ngModel)]="editFields.gender">
+                                <option value="male">{{ 'register.gender.male' | transloco }}</option>
+                                <option value="female">{{ 'register.gender.female' | transloco }}</option>
+                            </select>
+                        </dd>
+                    } @else {
+                        <dd>{{ `register.gender.${user.gender}` | transloco }}</dd>
+                    }
+                </div>
+                <div class="ind-info-row">
+                    <dt>{{ 'dashboard.individual.fields.addressStreet' | transloco }}</dt>
+                    @if (editMode()) {
+                        <dd>
+                            <div class="flex gap-1">
+                                <input
+                                    class="ind-edit-input"
+                                    style="width: 4.5rem; flex-shrink: 0"
+                                    type="text"
+                                    [(ngModel)]="editFields.address.streetNumber"
+                                    [placeholder]="'register.fields.address.number' | transloco"
+                                />
+                                <input
+                                    class="ind-edit-input w-full"
+                                    type="text"
+                                    [(ngModel)]="editFields.address.streetName"
+                                    [placeholder]="'register.fields.address.street' | transloco"
+                                />
+                            </div>
+                        </dd>
+                    } @else {
+                        <dd>{{ user.address.streetNumber }} {{ user.address.streetName }}</dd>
+                    }
+                </div>
+                @if (editMode() || user.address.additionalInfo) {
+                    <div class="ind-info-row">
+                        <dt>{{ 'dashboard.individual.fields.addressComplement' | transloco }}</dt>
+                        @if (editMode()) {
+                            <dd>
+                                <input
+                                    class="ind-edit-input"
+                                    type="text"
+                                    [(ngModel)]="editFields.address.additionalInfo"
+                                    [placeholder]="'register.fields.address.complement' | transloco"
+                                />
+                            </dd>
+                        } @else {
+                            <dd>{{ user.address.additionalInfo }}</dd>
+                        }
+                    </div>
+                }
+                <div class="ind-info-row">
+                    <dt>{{ 'dashboard.individual.fields.addressCity' | transloco }}</dt>
+                    @if (editMode()) {
+                        <dd>
+                            <div class="flex gap-1">
+                                <input
+                                    class="ind-edit-input"
+                                    style="width: 5.5rem; flex-shrink: 0"
+                                    type="text"
+                                    [(ngModel)]="editFields.address.postalCode"
+                                    [placeholder]="'register.fields.address.zip' | transloco"
+                                />
+                                <input
+                                    class="ind-edit-input w-full"
+                                    type="text"
+                                    [(ngModel)]="editFields.address.city"
+                                    [placeholder]="'register.fields.address.city' | transloco"
+                                />
+                            </div>
+                        </dd>
+                    } @else {
+                        <dd>{{ user.address.postalCode }} {{ user.address.city }}</dd>
+                    }
+                </div>
+            </dl>
+        </div>
+    </div>
+}

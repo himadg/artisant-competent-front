@@ -19,4 +19,5 @@ export interface User {
   role: Role;
   addressId: string;
   address: Address;
+  professionalProfile?: { id: string } | null;
 }

@@ -1,0 +1,195 @@
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60" (click)="closed.emit()">
+    <div
+        class="modal-content w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl"
+        (click)="$event.stopPropagation()"
+    >
+        <!-- Header -->
+        <div class="relative bg-grad-water-green px-6 pt-7 pb-6 text-center">
+            <button
+                (click)="closed.emit()"
+                [attr.aria-label]="'common.close' | transloco"
+                class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 text-white/70 hover:bg-white/20 hover:text-white transition-colors text-sm"
+            >
+                ✕
+            </button>
+            <h2 class="text-xl font-bold text-[var(--primary-beige)]">{{ 'demand.detail.title' | transloco }}</h2>
+        </div>
+
+        <div class="p-6 text-[var(--primary-dark)] bg-white">
+            @if (demandResource.isLoading()) {
+                <div class="flex justify-center py-10">
+                    <span
+                        class="inline-block w-8 h-8 border-4 border-gray-200 border-t-[var(--primary-water-green)] rounded-full animate-spin"
+                    ></span>
+                </div>
+            } @else if (demandResource.error()) {
+                <p class="text-sm text-center py-10 opacity-60">{{ 'demand.modal.error' | transloco }}</p>
+            } @else if (demandResource.value(); as demand) {
+                <div class="flex items-center justify-between mb-3">
+                    <span
+                        class="demand-status"
+                        [class.demand-status--available]="demand.status === 'AVAILABLE'"
+                        [class.demand-status--cancelled]="demand.status === 'CANCELLED'"
+                    >
+                        {{ ('dashboard.requests.status.' + demand.status) | transloco }}
+                    </span>
+                    <span class="text-xs opacity-60">{{ demand.createdAt | localizedDate:'compact' }}</span>
+                </div>
+
+                <p class="detail-author">
+                    {{ 'demand.detail.author' | transloco: { name: demand.author.firstName + ' ' + demand.author.lastName } }}
+                    <span class="detail-author-role">{{ ('dashboard.affiliation.referrals.role.' + demand.author.role) | transloco }}</span>
+                </p>
+
+                <!-- Description -->
+                <div class="detail-section-header">
+                    <h3 class="text-sm font-semibold">{{ 'demand.detail.descriptionTitle' | transloco }}</h3>
+                    @if (canEdit() && demand.status !== 'CANCELLED') {
+                        <inline-edit-actions
+                            [editing]="editDescriptionMode()"
+                            [saving]="savingDescription()"
+                            [saveDisabled]="descriptionDraft().trim().length < 10"
+                            (edit)="enterEditDescription(demand.description)"
+                            (cancel)="cancelEditDescription()"
+                            (save)="saveDescription()"
+                        />
+                    }
+                </div>
+                @if (editDescriptionMode()) {
+                    <textarea
+                        class="detail-edit-textarea mb-5"
+                        rows="4"
+                        [ngModel]="descriptionDraft()"
+                        (ngModelChange)="descriptionDraft.set($event)"
+                        [ngModelOptions]="{ standalone: true }"
+                    ></textarea>
+                } @else {
+                    <p class="text-sm whitespace-pre-line mb-5">{{ demand.description }}</p>
+                }
+
+                <!-- Photos -->
+                @if (canEdit() || demand.photos.length > 0) {
+                    <div class="detail-section-header">
+                        <h3 class="text-sm font-semibold">
+                            {{
+                                'demand.detail.photos'
+                                    | transloco: { count: editPhotosMode() ? totalEditedPhotos() : demand.photos.length }
+                            }}
+                        </h3>
+                        @if (canEdit() && demand.status !== 'CANCELLED') {
+                            <inline-edit-actions
+                                [editing]="editPhotosMode()"
+                                [saving]="savingPhotos()"
+                                (edit)="enterEditPhotos(demand.photoKeys, demand.photos)"
+                                (cancel)="cancelEditPhotos()"
+                                (save)="savePhotos()"
+                            />
+                        }
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 mb-5">
+                        @if (!editPhotosMode()) {
+                            @for (photo of demand.photos; track photo; let i = $index) {
+                                <button type="button" class="photo-tile" (click)="openPhoto(photo, demand.photoKeys[i])">
+                                    <img
+                                        [src]="photo"
+                                        [alt]="'demand.detail.photoAlt' | transloco: { index: i + 1 }"
+                                        class="w-full h-full object-cover"
+                                    />
+                                </button>
+                            }
+                        } @else {
+                            @for (url of keptPhotoUrls(); track url; let i = $index) {
+                                <div class="photo-tile photo-tile--edit">
+                                    <img [src]="url" alt="" class="w-full h-full object-cover" />
+                                    <button
+                                        type="button"
+                                        class="photo-remove-btn"
+                                        [attr.aria-label]="'common.delete' | transloco"
+                                        (click)="removeKeptPhoto(i)"
+                                    >✕</button>
+                                </div>
+                            }
+                            @for (url of newPhotoPreviews(); track url; let i = $index) {
+                                <div class="photo-tile photo-tile--edit">
+                                    <img [src]="url" alt="" class="w-full h-full object-cover" />
+                                    <button
+                                        type="button"
+                                        class="photo-remove-btn"
+                                        [attr.aria-label]="'common.delete' | transloco"
+                                        (click)="removeNewPhoto(i)"
+                                    >✕</button>
+                                </div>
+                            }
+                            @if (totalEditedPhotos() < 3) {
+                                <label class="photo-tile photo-tile--add">
+                                    <span>+</span>
+                                    <input
+                                        type="file"
+                                        accept="image/jpeg,image/png,image/webp"
+                                        class="hidden"
+                                        (change)="onAddPhotoFile($event)"
+                                    />
+                                </label>
+                            }
+                        }
+                    </div>
+                }
+
+                <h3 class="text-sm font-semibold mb-2">
+                    {{ 'demand.detail.contacted' | transloco: { count: demand.professionals.length } }}
+                </h3>
+                <ul class="flex flex-col gap-2">
+                    @for (pro of demand.professionals; track pro.id) {
+                        <li class="flex items-center gap-3">
+                            <div class="overflow-hidden w-9 h-9 rounded-full border border-gray-200 shrink-0">
+                                @if (pro.companyLogoKey) {
+                                    <img [src]="pro.companyLogoKey" [alt]="pro.companyName" class="w-full h-full object-cover" />
+                                } @else {
+                                    <div
+                                        class="flex justify-center items-center w-full h-full text-sm font-semibold bg-[var(--primary-water-green)]/10 text-[var(--primary-water-green)]"
+                                    >
+                                        {{ pro.companyName[0] }}
+                                    </div>
+                                }
+                            </div>
+                            <span class="text-sm">{{ pro.companyName }}</span>
+                        </li>
+                    }
+                </ul>
+
+                @if (canSendMessage(demand) && demand.status !== 'CANCELLED') {
+                    <button
+                        type="button"
+                        class="detail-message-btn"
+                        [disabled]="startingConversation()"
+                        (click)="sendMessage()"
+                    >
+                        @if (startingConversation()) {
+                            <span class="detail-spinner-sm"></span>
+                        }
+                        {{ 'demand.detail.sendMessage' | transloco }}
+                    </button>
+                }
+
+                @if (canEdit() && demand.status !== 'CANCELLED') {
+                    <button
+                        type="button"
+                        class="detail-cancel-demand-btn"
+                        [disabled]="cancelling()"
+                        (click)="cancelDemand()"
+                    >
+                        @if (cancelling()) {
+                            <span class="detail-spinner-sm detail-spinner-sm--danger"></span>
+                        }
+                        {{ 'demand.detail.cancelDemand' | transloco }}
+                    </button>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@if (docToPreview()) {
+    <doc-modal [document]="docToPreview()" (closeModal)="docToPreview.set(null)" />
+}

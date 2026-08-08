@@ -2,17 +2,22 @@
   "banner": {
     "klarna": {
       "textBefore": "Pay in 3 instalments with no fees with",
-      "textAfter": ", subject to conditions *"
+      "textAfter": ", subject to conditions *",
+      "ariaLabel": "Klarna payment announcement"
     }
   },
   "prelaunch": {
-    "banner": "Platform in pre-launch · Sign-ups are open. All other features will be available from September 1, 2026."
+    "banner": "Platform in pre-launch · Sign-ups are open. All other features will be available from September 1, 2026.",
+    "bannerAriaLabel": "Pre-launch announcement"
   },
   "home": {
     "meta": {
       "title": "Artisan Compétent | Your work overseen from A to Z. No more scams!",
       "description": "Only release payment once the work is done. Artisan Compétent oversees your projects with fund escrow, verified tradespeople and digital tracking. Free quote.",
       "ogDescription": "Only release payment once the job is done. Fund escrow, verified tradespeople, digital tracking."
+    },
+    "storyBar": {
+      "nearby": "Craftsmen near you"
     },
     "hero": {
       "h1": "Your small jobs and emergency interventions handled from A to Z, no more scams!",
@@ -35,7 +40,7 @@
       "title": "What is Artisan Compétent? The platform that oversees your projects",
       "intro": "Artisan Compétent is a French web app dedicated to overseen connections between individuals and construction professionals.",
       "accordionTitle": "Discover Artisan Compétent in detail",
-      "accordeon_content": "<p>Unlike a simple directory or a traditional platform, Artisan Compétent does not just display tradespeople.</p><p>The platform sets up a genuine digital oversight system for the project, protecting all at once:</p><ul><li>clients,</li><li>honest tradespeople,</li><li>and the money tied to the works.</li></ul><p>The goal is simple:</p><ul><li>prevent abandoned projects,</li><li>limit scams,</li><li>avoid lost deposits,</li><li>and restore trust in the construction industry.</li></ul><hr><h3>THE PROBLEM ARTISAN COMPÉTENT SOLVES</h3><p>Today, finding a tradesperson has become easy.</p><p>But knowing who to trust has become extremely complicated.</p><p>On Google, social media or search engines:</p><ul><li>anyone can appear first,</li><li>reviews can be fake or manipulated,</li><li>recommendations from people around you guarantee nothing,</li><li>and above all: no one really protects the client's money.</li></ul><p>The result:</p><ul><li>lost deposits,</li><li>abandoned projects,</li><li>overcharging,</li><li>disputes,</li><li>unreachable tradespeople,</li><li>clients left alone.</li></ul><p>Artisan Compétent was created to solve this problem.</p><hr><h3>HOW DOES ARTISAN COMPÉTENT WORK?</h3><h4>1. Verified tradespeople</h4><p>Professionals on the platform are checked before joining:</p><ul><li>business registration (Kbis),</li><li>insurance policies.</li></ul><p>The goal:<br>filter out problematic profiles before they can even work on the platform.</p><hr><h4>2. Digital project tracking</h4><p>Everything goes through the platform:</p><ul><li>quotes,</li><li>messages,</li><li>comments,</li><li>photos,</li><li>project tracking.</li></ul><p>Every step can be documented.</p><p>The client and the professional can both add:</p><ul><li>photos,</li><li>proof,</li><li>comments,</li><li>observations.</li></ul><p>Everything becomes traceable.</p><hr><h4>3. The money is held in escrow</h4><p>This is the heart of the system.</p><p>Unlike traditional methods:<br>the client does not pay the tradesperson directly.</p><p>The money is overseen via Stripe in an escrow account until the project is validated.</p><ul><li>The tradesperson cannot disappear with the money before the works are finished.</li><li>And the client cannot abusively block the payment without justification either.</li></ul><p>Artisan Compétent acts as a trusted third party and arbitrates in case of dispute based on the available evidence.</p><hr><h4>4. A digital project handover report</h4><p>When the works are finished:<br>the professional sends a digital project handover report.</p><p>The client then has 96 heures to:</p><ul><li>check the works,</li><li>report a problem,</li><li>request a correction if necessary.</li></ul><p>This period strongly protects clients.</p><p>Because in the traditional system:<br>once paid, some tradespeople never come back.</p><p>With Artisan Compétent:<br>the funds remain overseen until final validation.</p><hr><h4>5. Overseen emergency call-outs</h4><p>Artisan Compétent also offers emergency call-outs 24/7 for certain sensitive trades:</p><ul><li>plumbing,</li><li>electricity,</li><li>locksmithing,</li><li>drain unblocking.</li></ul><p>The goal:<br>avoid abuse, night-time overcharging and emergency scams.</p><hr><h4>6. A system also designed for honest tradespeople</h4><p>Artisan Compétent doesn't only protect clients.</p><p>The platform also protects honest professionals:</p><ul><li>against unpaid invoices,</li><li>against false disputes,</li><li>against malicious clients,</li><li>and against the poor image of the industry.</li></ul><p>Honest tradespeople finally have a system that rewards seriousness and transparency.</p><hr><h3>CMOD: DIGITAL CLIENT PROJECT ADVISOR</h3><p>Artisan Compétent also offers a unique service:<br>the CMOD.</p><p>The CMOD is an experienced construction professional who supports the client remotely.</p><p>Their role:</p><ul><li>reassure,</li><li>explain,</li><li>help understand a quote,</li><li>advise during the project.</li></ul><p>It is an optional add-on that brings even more peace of mind.</p><hr><h3>WHY ARTISAN COMPÉTENT IS DIFFERENT</h3><p>Because the platform does not just sell contacts.</p><p>It creates a framework.</p><p>A digital oversight inspired by professional construction industry methods:</p><ul><li>tracking,</li><li>proof,</li><li>arbitration,</li><li>traceability,</li><li>fund oversight.</li></ul><p>Today:<br>Google can display a tradesperson.</p><p>But Google does not protect your money.</p><p>Search engines can recommend a professional.</p><p>But they do not track your project.</p><p>Artisan Compétent does.</p><hr><h3>FOR WHOM?</h3><h4>For individuals</h4><p>Who want to:</p><ul><li>avoid scams,</li><li>oversee their money,</li><li>find serious tradespeople,</li><li>track their works properly.</li></ul><h4>For honest tradespeople</h4><p>Who want to:</p><ul><li>work with serious clients,</li><li>be paid properly,</li><li>reassure their clients,</li><li>stand out from bad professionals.</li></ul><h4>For affiliates and partners</h4><p>Who want to recommend a useful, concrete and overseen solution.</p><p>Recommending Artisan Compétent is completely different from recommending \"a tradesperson we know\".</p><p>Because the system itself is designed to prevent abuse.</p><hr><h3>ARTISAN COMPÉTENT'S MISSION</h3><p>To gradually build a new standard of trust in construction.</p><p>A more transparent system.<br>More overseen.<br>More professional.</p><p>And above all:<br>a system where no one disappears with clients' money.</p>"
+      "accordeonContent": "<p>Unlike a simple directory or a traditional platform, Artisan Compétent does not just display tradespeople.</p><p>The platform sets up a genuine digital oversight system for the project, protecting all at once:</p><ul><li>clients,</li><li>honest tradespeople,</li><li>and the money tied to the works.</li></ul><p>The goal is simple:</p><ul><li>prevent abandoned projects,</li><li>limit scams,</li><li>avoid lost deposits,</li><li>and restore trust in the construction industry.</li></ul><hr><h3>THE PROBLEM ARTISAN COMPÉTENT SOLVES</h3><p>Today, finding a tradesperson has become easy.</p><p>But knowing who to trust has become extremely complicated.</p><p>On Google, social media or search engines:</p><ul><li>anyone can appear first,</li><li>reviews can be fake or manipulated,</li><li>recommendations from people around you guarantee nothing,</li><li>and above all: no one really protects the client's money.</li></ul><p>The result:</p><ul><li>lost deposits,</li><li>abandoned projects,</li><li>overcharging,</li><li>disputes,</li><li>unreachable tradespeople,</li><li>clients left alone.</li></ul><p>Artisan Compétent was created to solve this problem.</p><hr><h3>HOW DOES ARTISAN COMPÉTENT WORK?</h3><h4>1. Verified tradespeople</h4><p>Professionals on the platform are checked before joining:</p><ul><li>business registration (Kbis),</li><li>insurance policies.</li></ul><p>The goal:<br>filter out problematic profiles before they can even work on the platform.</p><hr><h4>2. Digital project tracking</h4><p>Everything goes through the platform:</p><ul><li>quotes,</li><li>messages,</li><li>comments,</li><li>photos,</li><li>project tracking.</li></ul><p>Every step can be documented.</p><p>The client and the professional can both add:</p><ul><li>photos,</li><li>proof,</li><li>comments,</li><li>observations.</li></ul><p>Everything becomes traceable.</p><hr><h4>3. The money is held in escrow</h4><p>This is the heart of the system.</p><p>Unlike traditional methods:<br>the client does not pay the tradesperson directly.</p><p>The money is overseen via Stripe in an escrow account until the project is validated.</p><ul><li>The tradesperson cannot disappear with the money before the works are finished.</li><li>And the client cannot abusively block the payment without justification either.</li></ul><p>Artisan Compétent acts as a trusted third party and arbitrates in case of dispute based on the available evidence.</p><hr><h4>4. A digital project handover report</h4><p>When the works are finished:<br>the professional sends a digital project handover report.</p><p>The client then has 48 hours to:</p><ul><li>check the works,</li><li>report a problem,</li><li>request a correction if necessary.</li></ul><p>This period strongly protects clients.</p><p>Because in the traditional system:<br>once paid, some tradespeople never come back.</p><p>With Artisan Compétent:<br>the funds remain overseen until final validation.</p><hr><h4>5. Overseen emergency call-outs</h4><p>Artisan Compétent also offers emergency call-outs 24/7 for certain sensitive trades:</p><ul><li>plumbing,</li><li>electricity,</li><li>locksmithing,</li><li>drain unblocking.</li></ul><p>The goal:<br>avoid abuse, night-time overcharging and emergency scams.</p><hr><h4>6. A system also designed for honest tradespeople</h4><p>Artisan Compétent doesn't only protect clients.</p><p>The platform also protects honest professionals:</p><ul><li>against unpaid invoices,</li><li>against false disputes,</li><li>against malicious clients,</li><li>and against the poor image of the industry.</li></ul><p>Honest tradespeople finally have a system that rewards seriousness and transparency.</p><hr><h3>CMOD: DIGITAL CLIENT PROJECT ADVISOR</h3><p>Artisan Compétent also offers a unique service:<br>the CMOD.</p><p>The CMOD is an experienced construction professional who supports the client remotely.</p><p>Their role:</p><ul><li>reassure,</li><li>explain,</li><li>help understand a quote,</li><li>advise during the project.</li></ul><p>It is an optional add-on that brings even more peace of mind.</p><hr><h3>WHY ARTISAN COMPÉTENT IS DIFFERENT</h3><p>Because the platform does not just sell contacts.</p><p>It creates a framework.</p><p>A digital oversight inspired by professional construction industry methods:</p><ul><li>tracking,</li><li>proof,</li><li>arbitration,</li><li>traceability,</li><li>fund oversight.</li></ul><p>Today:<br>Google can display a tradesperson.</p><p>But Google does not protect your money.</p><p>Search engines can recommend a professional.</p><p>But they do not track your project.</p><p>Artisan Compétent does.</p><hr><h3>FOR WHOM?</h3><h4>For individuals</h4><p>Who want to:</p><ul><li>avoid scams,</li><li>oversee their money,</li><li>find serious tradespeople,</li><li>track their works properly.</li></ul><h4>For honest tradespeople</h4><p>Who want to:</p><ul><li>work with serious clients,</li><li>be paid properly,</li><li>reassure their clients,</li><li>stand out from bad professionals.</li></ul><h4>For affiliates and partners</h4><p>Who want to recommend a useful, concrete and overseen solution.</p><p>Recommending Artisan Compétent is completely different from recommending \"a tradesperson we know\".</p><p>Because the system itself is designed to prevent abuse.</p><hr><h3>ARTISAN COMPÉTENT'S MISSION</h3><p>To gradually build a new standard of trust in construction.</p><p>A more transparent system.<br>More overseen.<br>More professional.</p><p>And above all:<br>a system where no one disappears with clients' money.</p>"
     },
     "reviews": {
       "h2": "They trusted Artisan Compétent",
@@ -120,6 +125,10 @@
       "accordionTitle": "Learn more about our coverage",
       "discoverAll": "Discover all our cities"
     },
+    "stories": {
+      "h2": "Near you right now",
+      "subtitle": "Watch tradespeople's daily life within 50 km of you."
+    },
     "pro": {
       "h2": "Are you a tradesperson? Join the platform for free.",
       "accordionTitle": "Learn more about the platform",
@@ -186,7 +195,7 @@
       },
       "q6": {
         "question": "What happens if I don't validate the completion report within 96h?",
-        "summary": "After the project completion report is sent, you have 96 heures to validate it, contest it or report a problem. A reminder email is sent 8 hours before the deadline. If you take no action within the 96h, the report is validated automatically and the funds are released to the professional.",
+        "summary": "After the project completion report is sent, you have 96 heures to validate it, contest it or report a problem. If you take no action within the 96h, the report is validated automatically and the funds are released to the professional.",
         "body": "<p>Once the project completion report is sent by the professional, the funds stay held in escrow for a period of up to 96 heures.</p><p>This period allows the client:</p><ul><li>to check the work carried out,</li><li>or to request a correction if necessary.</li></ul><p>Eight hours before the deadline, an automatic reminder email is sent to the client to remind them that they must either validate the report or report any problem before the deadline expires.</p><p>If no reservation, challenge or report is made within the 96 heures, the report is automatically deemed validated in accordance with the platform's Terms of Use and Terms of Sale.</p><p>The escrowed funds are then released automatically to the professional.</p><p>Once the report is validated, the construction industry's legal warranties of course remain applicable depending on the nature of the work carried out:</p><ul><li>the defects (snagging) warranty,</li><li>the two-year warranty,</li><li>or the ten-year warranty when it is required.</li></ul>"
       },
       "q7": {
@@ -426,7 +435,8 @@
         "particuliersText": "no more scams, whether for an emergency or longer works.",
         "artisansLabel": "Craftsmen",
         "artisansText": "no more flimsy excuses to avoid payment."
-      }
+      },
+      "vsGoogleAlt": "Artisan Compétent vs Google"
     }
   },
   "common": {
@@ -435,7 +445,61 @@
     "jobs": "Trades",
     "affiliation": "Membership",
     "professionals": "Professionals",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "close": "Close",
+    "dashboard": "My space",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "No",
+    "menu": "Menu",
+    "messages": "Messages",
+    "logo": "Logo",
+    "sidebarNavigation": "Sidebar navigation",
+    "bottomNavigation": "Bottom navigation",
+    "avatar": "Avatar",
+    "back": "Back",
+    "today": "Today"
+  },
+  "docModal": {
+    "defaultTitle": "Document preview",
+    "defaultAlt": "Preview",
+    "pdfUnsupported": "Your browser does not support PDF preview.",
+    "downloadPdf": "Download the PDF",
+    "previewUnavailable": "Preview unavailable for this file type.",
+    "openDocument": "Open document",
+    "cancel": "Cancel"
+  },
+  "demand": {
+    "modal": {
+      "title": "Create a request",
+      "subtitle": "Your request will be sent to {{ count }} professional(s)",
+      "descriptionLabel": "Describe your work",
+      "descriptionPlaceholder": "E.g. I would like to renovate my bathroom, redo the plumbing and tiling...",
+      "errorRequired": "Please describe your work.",
+      "errorMinLength": "The description must be at least 10 characters.",
+      "photosLabel": "Photos",
+      "photosOptional": "(optional, max 3)",
+      "photosPlaceholder": "Add photos",
+      "errorInvalidFormat": "Invalid format. Only JPEG, PNG and WebP files are accepted.",
+      "submit": "Send request",
+      "successTitle": "Request sent!",
+      "successMessage": "The selected professionals have received your request.",
+      "error": "An error occurred. Please try again."
+    },
+    "createSuccess": "Your request has been successfully sent to the professionals.",
+    "photosUploadFailed": "Your request was created but the photos could not be uploaded. You can add them from your dashboard.",
+    "detail": {
+      "title": "Request details",
+      "descriptionTitle": "Description",
+      "photos": "{{ count }} photo(s)",
+      "photoAlt": "Photo {{ index }}",
+      "author": "By {{ name }}",
+      "contacted": "Contacted tradespeople ({{ count }})",
+      "sendMessage": "Send a message",
+      "cancelDemand": "Cancel request",
+      "cancelConfirm": "Are you sure you want to cancel this request? This action cannot be undone.",
+      "errorMaxPhotos": "You have reached the limit of 3 photos."
+    }
   },
   "footer": {
     "newsletterTitle": "Get our anti-scam tips and renovation deals directly on WhatsApp.",
@@ -450,6 +514,7 @@
       "cities": "Our cities",
       "emergency": "Emergency repairs",
       "blog": "Blog",
+      "seoBatiment": "Construction SEO",
       "affiliation": "Affiliation",
       "faq": "FAQ"
     },
@@ -459,7 +524,8 @@
       "payment": "Payment options",
       "escrow": "Stripe escrow",
       "defect": "Defect procedure",
-      "encadrement": "Artisan Compétent supervision in detail"
+      "encadrement": "Artisan Compétent supervision in detail",
+      "proWhyJoinUs": "Professionals, why join us ?"
     },
     "contact": {
       "title": "Contact",
@@ -576,18 +642,24 @@
   },
   "urgencesPage": {
     "title": "Emergency trades",
-    "description": "Our emergency tradespeople are available 24/7 to respond to your most urgent needs."
+    "description": "Our emergency tradespeople are available 24/7 to respond to your most urgent needs.",
+    "cta": "Trouver un artisan d'urgence",
+    "bottomCtaText": "Une fuite, une panne, une porte claquée ? Ne choisissez pas au hasard. Trouvez un artisan d'urgence disponible près de chez vous, avec un paiement encadré par Artisan Compétent."
   },
   "jobs": {
     "title": "Our jobs",
     "description": "Explore the trades and skills available on the platform.",
     "nearbyCities": "in cities near {{ city }}",
+    "nameAtCity": "{{ name }} in {{ city }}",
     "list": {
       "electrician": {
         "title": "Verified electrician, from quote to supervised live work",
         "name": "Electricity & Connected Devices (24/7)",
+        "metaTitle": "Verified electrician in {{ city }} — SIRET, NF C 18-510, Stripe escrow | Artisan Compétent",
+        "metaDescription": "Verified electrician in {{ city }}: checked SIRET, up-to-date RC pro and decennial insurance, NF C 18-510 certification, IRVE qualification for charging stations. Payment overseen by Stripe escrow — funds released 96h after the job.",
+        "metaKeywords": "verified electrician {{ city }}, NF C 18-510 certification {{ city }}, IRVE charging station {{ city }}, home automation {{ city }}, NF C 15-100 compliance {{ city }}",
         "tagline": "This page lists the interventions handled by verified electricians on Artisan Compétent, including home automation, EV charging stations and NF C 15-100 compliance upgrades, as well as the escrow mechanism that governs your payment from quote signing to fund release 96h after completion.",
-        "verifiedBadge": "In brief, a verified electrician on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, NF C 18-510 electrical certification for live work, IRVE qualification for EV charging stations, and Qualifelec certification displayed when held. Escrow process via Stripe: 96h after job completion to report an issue. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 30 km radius per city.",
+        "verifiedBadge": "In brief, a verified electrician on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, NF C 18-510 electrical certification for live work, IRVE qualification for EV charging stations, and Qualifelec certification displayed when held. Escrow process via Stripe: 96h after job completion to report an issue. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 50 km radius per city.",
         "description": {
           "p1": "With Artisan-Compétent, finding a skilled electrician has never been simpler. In a few seconds, you describe your problem via audio, video or photo, and our solution connects you directly with qualified electricians near you — whether for a standard installation or smart home devices and home automation.",
           "p2": "No more complex forms or waiting for callbacks: you compare the proposals received, choose the professional you trust and benefit from fast and secure intervention.",
@@ -772,7 +844,7 @@
             },
             {
               "q": "Which cities are covered by Artisan Compétent for electricity?",
-              "a": "Artisan Compétent aims to cover metropolitan France, the overseas territories and Corsica, meaning 38 zones, with a 30 km intervention radius around each listed city. Major cities (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) are covered as well as many mid-sized cities."
+              "a": "Artisan Compétent aims to cover metropolitan France, the overseas territories and Corsica, meaning 38 zones, with a 50 km intervention radius around each listed city. Major cities (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) are covered as well as many mid-sized cities."
             },
             {
               "q": "Is Qualifelec certification required for a simple electrical repair?",
@@ -784,8 +856,11 @@
       "locksmith": {
         "title": "Verified locksmith, without suffering the night quote",
         "name": "Locksmith (24/7)",
+        "metaTitle": "Locksmith in {{ city }} — 24/7 emergency | Artisan Compétent",
+        "metaDescription": "Locksmith available 24/7 in {{ city }}. Slammed door, forced lock, lock replacement: fast intervention at a fair price. Secure payment on Artisan Compétent.",
+        "metaKeywords": "locksmith {{ city }}, emergency locksmith {{ city }}, slammed door {{ city }}, lock replacement {{ city }}",
         "tagline": "This page lists the interventions handled by verified locksmiths and metalworkers on Artisan Compétent and the anti-scam mechanism that governs your payment, from the signed quote to fund release 96h after the intervention.",
-        "verifiedBadge": "In short, a verified locksmith on Artisan Compétent has their SIRET checked, their RC pro insurance up to date, and provides a prior itemized quote as required by the Consumer Code for any intervention over €150. Process governed by Stripe escrow, 96h to report an abuse. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 30 km radius per city.",
+        "verifiedBadge": "In short, a verified locksmith on Artisan Compétent has their SIRET checked, their RC pro insurance up to date, and provides a prior itemized quote as required by the Consumer Code for any intervention over €150. Process governed by Stripe escrow, 96h to report an abuse. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 50 km radius per city.",
         "description": {
           "p1": "In one sentence, on Artisan Compétent, a verified locksmith provides a written itemized quote before intervention (mandatory above €150 at a home address), and the entire job is governed by a Stripe fund escrow that holds the payment for up to 96h after completion. This is the operational response to the primary source of fraud in the building trades: nighttime call-outs with a verbal quote and cash payment on the spot.",
           "p2": "Emergency locksmithing is the sector most exposed to abusive practices. A verified locksmith on Artisan Compétent has their SIRET checked, their RC pro insurance up to date, and agrees to the prior itemized quote required under Article L. 111-1 of the French Consumer Code for any home visit above €150. The entire process is governed by a Stripe fund escrow: funds remain blocked for up to 96h after the intervention, a window during which you can report a quote that was not respected."
@@ -986,7 +1061,7 @@
             },
             {
               "q": "Which cities does Artisan Competent cover for locksmith services?",
-              "a": "Artisan Competent aims to cover mainland France, overseas territories, and Corsica -- 38 zones in total -- with a 30 km radius around each listed city. All major metropolitan areas are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) with 24/7 night availability in dense urban zones."
+              "a": "Artisan Competent aims to cover mainland France, overseas territories, and Corsica -- 38 zones in total -- with a 50 km radius around each listed city. All major metropolitan areas are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) with 24/7 night availability in dense urban zones."
             }
           ]
         },
@@ -999,8 +1074,11 @@
       "plumberSanitary": {
         "title": "Verified Sanitary Plumber, from quote to overseen fund release",
         "name": "Plumber Sanitary (24/7)",
+        "metaTitle": "Plumber in {{ city }} — Emergency repair | Artisan Compétent",
+        "metaDescription": "Find a qualified plumber in {{ city }} for a leak, a sanitary installation or an emergency repair. Free quote, secure payment, available 24/7.",
+        "metaKeywords": "plumber {{ city }}, plumbing repair {{ city }}, water leak {{ city }}, emergency plumber {{ city }}",
         "tagline": "This page lists the interventions handled by verified plumbers on Artisan Compétent and the mechanism that oversees your payment from start to finish, from the detailed quote to fund release 96h after job completion.",
-        "verifiedBadge": "In short, a verified plumber on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, PG qualification for gas interventions, and, if applicable, RGE qualification for heat pumps and air conditioning eligible for public grants. The entire process is overseen by a Stripe escrow: quote, intervention, fund release 96h after the job is completed. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 30 km radius per city.",
+        "verifiedBadge": "In short, a verified plumber on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, PG qualification for gas interventions, and, if applicable, RGE qualification for heat pumps and air conditioning eligible for public grants. The entire process is overseen by a Stripe escrow: quote, intervention, fund release 96h after the job is completed. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 50 km radius per city.",
         "description": {
           "p1": "A verified plumber on Artisan Compétent has their SIRET checked, their RC pro and decennial insurances up to date, and the PG qualification if their work involves gas. The Stripe fund escrow oversees the entire process: the payment leaves your account when the quote is validated, remains held during the intervention, and for an additional 96h after the end of the work. This 96-hour period gives you time to report a defect, an abuse, or non-compliance with the quote before the funds are released to the plumber."
         },
@@ -1190,7 +1268,7 @@
             },
             {
               "q": "Which cities does Artisan Competent cover for plumbing?",
-              "a": "Artisan Competent aims to cover mainland France, overseas territories, and Corsica -- 38 zones in total -- with a 30 km radius around each listed city. All major metropolitan areas are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) as well as an extensive regional network."
+              "a": "Artisan Competent aims to cover mainland France, overseas territories, and Corsica -- 38 zones in total -- with a 50 km radius around each listed city. All major metropolitan areas are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) as well as an extensive regional network."
             },
             {
               "q": "Is a special qualification required for a plumber working on gas?",
@@ -1202,8 +1280,11 @@
       "drainUnblocker": {
         "title": "Verified drain unblocker, from quote to overseen release",
         "name": "Drain Unblocker (24/7)",
+        "metaTitle": "Drain unblocking in {{ city }} — Urgent | Artisan Compétent",
+        "metaDescription": "Blocked drain in {{ city }}? Urgent intervention from a qualified drain specialist. Sink, toilet, clogged pipes: resolved quickly with secure payment.",
+        "metaKeywords": "drain unblocking {{ city }}, drain plumber {{ city }}, blocked drain {{ city }}, blocked toilet {{ city }}",
         "tagline": "This page lists the drain unblocking and sanitation interventions handled by verified tradespeople on Artisan Compétent and the mechanism that oversees your payment, from the detailed quote to fund release 96h after the intervention.",
-        "verifiedBadge": "In short, a verified drain unblocker on Artisan Compétent has their SIRET checked, RC pro insurance up to date, prefectural approval for the evacuation of sewage if their activity involves septic tanks, and their equipment (inspection camera, hydro-jetting machine) tracked on the dashboard. Process overseen by Stripe escrow, 96h to report an issue. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 30 km radius per city.",
+        "verifiedBadge": "In short, a verified drain unblocker on Artisan Compétent has their SIRET checked, RC pro insurance up to date, prefectural approval for the evacuation of sewage if their activity involves septic tanks, and their equipment (inspection camera, hydro-jetting machine) tracked on the dashboard. Process overseen by Stripe escrow, 96h to report an issue. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 50 km radius per city.",
         "description": {
           "p1": "In one sentence, on Artisan Compétent, a verified drain unblocker has their SIRET, RC pro insurance, and prefectural approval (for septic tanks) checked beforehand, and their equipment (inspection camera, hydro-jetting machine) is tracked on the dashboard. The entire job is overseen by a Stripe fund escrow that holds the payment for up to 96h after the intervention, a window during which you can report a drain that immediately clogs again or an inflated flat rate without detailing the means used.",
           "p2": "A verified drain unblocker on Artisan Compétent has their SIRET checked, their RC pro insurance up to date, and the required prefectural approval for the evacuation of sewage when their activity includes septic tanks. Emergency drain unblocking is one of the sectors where the practice of inflated flat rates without detailing the means used is most frequent: the Stripe fund escrow and the 96h window are the operational response to these abuses."
@@ -1400,7 +1481,7 @@
             },
             {
               "q": "Which cities are covered by Artisan Compétent for drain unblocking?",
-              "a": "Artisan Compétent aims to cover metropolitan France, the overseas territories and Corsica, i.e. 38 zones, with an intervention radius of 30 km around each listed city. All major cities are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) with 24/7 availability in emergencies in dense urban areas."
+              "a": "Artisan Compétent aims to cover metropolitan France, the overseas territories and Corsica, i.e. 38 zones, with an intervention radius of 50 km around each listed city. All major cities are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) with 24/7 availability in emergencies in dense urban areas."
             }
           ]
         },
@@ -1413,8 +1494,11 @@
       "heating": {
         "title": "Verified heating engineer, from quote to overseen start-up",
         "name": "Heating & VMC & Heat Pump",
+        "metaTitle": "Heating engineer, ventilation & heat pump in {{ city }} | Artisan Compétent",
+        "metaDescription": "Qualified heating engineer in {{ city }} for the installation, maintenance or repair of your boiler, ventilation system or heat pump. Free quote and secure payment.",
+        "metaKeywords": "heating engineer {{ city }}, ventilation {{ city }}, heat pump {{ city }}, boiler maintenance {{ city }}",
         "tagline": "This page lists the interventions handled by verified heating engineers on Artisan Compétent, including single and double flow VMC, heat pumps, RGE installations eligible for state aid, and the mechanism that oversees your payment from quote signing to fund release 96h after start-up.",
-        "verifiedBadge": "In short, a verified heating engineer on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, PG qualification for gas, and RGE qualification (QualiPAC, Qualibois, QualiSol depending on the equipment) displayed for public aid. Covered scope: gas, oil, condensing, and wood boilers, air-to-water and air-to-air heat pumps, hydraulic underfloor heating, single and double flow VMC, mandatory annual maintenance. Process overseen by Stripe escrow, 96h to report an issue. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 30 km radius per city.",
+        "verifiedBadge": "In short, a verified heating engineer on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, PG qualification for gas, and RGE qualification (QualiPAC, Qualibois, QualiSol depending on the equipment) displayed for public aid. Covered scope: gas, oil, condensing, and wood boilers, air-to-water and air-to-air heat pumps, hydraulic underfloor heating, single and double flow VMC, mandatory annual maintenance. Process overseen by Stripe escrow, 96h to report an issue. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 50 km radius per city.",
         "description": {
           "p1": "In one sentence, on Artisan Compétent, a verified heating engineer has their SIRET, insurances, PG qualification for gas, and RGE qualification for public aid checked beforehand. The entire job is overseen by a Stripe escrow that holds the payment for up to 96h after start-up, a window during which the compliance certificate, the provision of manuals, and eligibility for aid can be verified.",
           "p2": "A verified heating engineer on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, PG qualification for any intervention on the gas network, and RGE qualification when their activity qualifies for MaPrimeRénov' and CEE public aid. The entire process is overseen by a Stripe fund escrow: it remains blocked until 96h after start-up, a window during which you can report an abuse, a start-up defect, or equipment non-compliant with the quote."
@@ -1574,8 +1658,8 @@
           "p2": "If the tradesperson agrees to offer Klarna, the escrow mechanism remains active, and the payment is protected until the job is validated at 96 heures."
         },
         "faq": {
-          "title": "Frequently asked questions",
-          "lead": "This FAQ groups the most frequently asked questions by individuals looking for a verified heating engineer on Artisan Compétent.",
+          "title": "Frequently Asked Questions",
+          "lead": "This FAQ compiles the most common questions asked by individuals looking for a verified heating contractor on Artisan Compétent.",
           "items": [
             {
               "q": "Can my heating engineer come out in the middle of the night in winter?",
@@ -1628,8 +1712,11 @@
       "hvac": {
         "title": "Verified HVAC technician, from quote to overseen fund release",
         "name": "HVAC Technician & Refrigeration Engineer",
+        "metaTitle": "Air conditioning technician & refrigeration engineer in {{ city }} | Artisan Compétent",
+        "metaDescription": "Air conditioning technician and refrigeration engineer in {{ city }}. Installation, maintenance and repair of air conditioning. Free quote, certified tradespeople, secure payment.",
+        "metaKeywords": "air conditioning technician {{ city }}, refrigeration engineer {{ city }}, air conditioning installation {{ city }}, air conditioning repair {{ city }}",
         "tagline": "This page lists the interventions handled by verified HVAC technicians on Artisan Compétent and the mechanism that oversees your payment from start to finish, from the detailed quote to fund release 96h after job completion.",
-        "verifiedBadge": "In short, a verified HVAC technician on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, refrigerant handling certificate (categories I to IV) and QualiPAC qualification if applicable. The entire process is overseen by a Stripe escrow: quote, intervention, fund release 96h after job completion. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 30 km radius per city.",
+        "verifiedBadge": "In short, a verified HVAC technician on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, refrigerant handling certificate (categories I to IV) and QualiPAC qualification if applicable. The entire process is overseen by a Stripe escrow: quote, intervention, fund release 96h after job completion. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 50 km radius per city.",
         "description": {
           "p1": "In one sentence, on Artisan Compétent, a verified HVAC technician has their SIRET, insurances, and refrigerant handling certificate checked beforehand, and their entire intervention (installation, maintenance, repair of air conditioning or heat pumps) is overseen by a Stripe fund escrow that holds the payment for up to 96h after the end of the job. You only pay if the work complies with the signed quote.",
           "p2": "A verified HVAC technician on Artisan Compétent has their SIRET checked, their RC pro and decennial insurances up to date, their refrigerant handling certificate (categories I to IV depending on the scope of work) and, if applicable, their QualiPAC qualification for heat pumps. The Stripe fund escrow oversees the entire process: the payment leaves your account when the quote is validated, remains held during the intervention, and for an additional 96h after the end of the work. This 96-hour period gives you time to report a defect, a start-up failure, or non-compliance with the quote before the funds are released to the professional."
@@ -1833,7 +1920,7 @@
             },
             {
               "q": "Which cities are covered by Artisan Compétent for air conditioning?",
-              "a": "Artisan Compétent aims to cover metropolitan France, the overseas territories, and Corsica, i.e., 38 zones, with an intervention radius of 30 km around each listed city. All major cities are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille)."
+              "a": "Artisan Compétent aims to cover metropolitan France, the overseas territories, and Corsica, i.e., 38 zones, with an intervention radius of 50 km around each listed city. All major cities are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille)."
             }
           ]
         },
@@ -1846,8 +1933,11 @@
       "glazier": {
         "title": "Verified glazier, from quote to overseen fund release",
         "name": "Glazing & Mirror Work",
+        "metaTitle": "Glazing & mirror work in {{ city }} — Free quote | Artisan Compétent",
+        "metaDescription": "Qualified glazier and mirror maker in {{ city }} for your glazing, mirrors, windows and glass roofs. Free quote, secure payment on Artisan Compétent.",
+        "metaKeywords": "glazier {{ city }}, mirror maker {{ city }}, glazing replacement {{ city }}, mirror installation {{ city }}",
         "tagline": "This page lists the glazing interventions handled by verified glaziers on Artisan Compétent and the mechanism that oversees your payment from start to finish, from the detailed quote to fund release 96h after job completion.",
-        "verifiedBadge": "In short, a verified glazier on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, and the certification corresponding to the technical glazing installed. The entire process is overseen by a Stripe escrow: quote, intervention, fund release 96h after job completion. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 30 km radius per city. Scope: glazing and mirror work. Carpentry (frames, fixed frames) is not covered in V1.",
+        "verifiedBadge": "In short, a verified glazier on Artisan Compétent has their SIRET checked, RC pro and decennial insurance up to date, and the certification corresponding to the technical glazing installed. The entire process is overseen by a Stripe escrow: quote, intervention, fund release 96h after job completion. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 50 km radius per city. Scope: glazing and mirror work. Carpentry (frames, fixed frames) is not covered in V1.",
         "description": {
           "p1": "In one sentence, on Artisan Compétent, a verified glazier has their SIRET and insurances checked beforehand, and their entire intervention (glazing installation, double glazing replacement, broken glass repair, mirrors, storefronts, glass guardrails) is overseen by a Stripe escrow that holds the payment for up to 96h after job completion. You only pay if the work complies with the signed quote.",
           "p2": "A verified glazier on Artisan Compétent has their SIRET checked, their RC pro and decennial insurances up to date and, if applicable, specific certifications for technical works (laminated safety glass, glass guardrails subject to the NF P01-013 standard). The Stripe fund escrow oversees the entire process: the payment leaves your account when the quote is validated, remains held during the intervention, and for an additional 96h after the end of the work. This 96-hour period gives you time to report a defect (scratched glass, poorly installed seal, fogged double glazing) or non-compliance with the quote before the funds are released to the glazier."
@@ -1862,10 +1952,10 @@
             "Carpentry lead times are incompatible with the escrow as it is currently calibrated. Holding funds in escrow for several months would entail operational and legal constraints (client cash flow, blocked supplier payment, cancellation management) that Artisan Compétent does not cover in V1.",
             "Case-by-case specific partnerships are being studied for future versions. The goal is to identify carpentry manufacturers or installers whose reliability of deadlines and quality of commitments allow for the integration of a suitable escrow."
           ],
-          "p3": "Overlap case to know: when a glazing / mirror intervention also requires the replacement of a frame or carpentry elements, only the part strictly relating to glazing / mirror work can be included in the quote made via the Artisan Compétent platform and benefit from the escrow.",
+          "p3": "Overlap cases to be aware of: when a glazing / mirror work intervention also requires the replacement of a frame or carpentry elements, only the part strictly relating to glazing / mirror work can be included in the quote made via the Artisan Compétent platform and benefit from the escrow.",
           "p4": "The quote sent via the platform must therefore only include supplies, materials, and services directly linked to the glazier / mirror maker trade, notably glass, mirrors, glass products as well as the labor associated with their installation or replacement.",
-          "p5": "Any service relating to carpentry, framing, or the manufacture of annex elements must be subject to a separate quote, off-platform, directly between the client and the tradesperson concerned if they are a manufacturer, or with their supplier.",
-          "p6": "This out-of-scope part remains at the client's discretion and benefits from no escrow, tracking, support, mediation, coverage, or recourse via the Artisan Compétent platform."
+          "p5": "Any service relating to carpentry, framing or the manufacture of ancillary elements must be the subject of a separate quote, outside the platform, directly between the client and the tradesperson concerned if they are the manufacturer, or with their supplier.",
+          "p6": "This out-of-scope part remains at the client's discretion and does not benefit from any escrow, tracking, support, mediation, coverage or recourse via the Artisan Compétent platform."
         },
         "whenToCall": {
           "title": "When to call a verified glazier",
@@ -1900,8 +1990,8 @@
               "body": "In practice, the 96h timeframe does not run in a vacuum. At the end of the job, a completion report is issued on the platform. This report opens the 96h window during which you can express reservations: observed defect, non-compliance with the quote, missing finish, promised document not provided. 8 hours before the end of the deadline, a notification email (acting as a formal notice to examine the job) is sent to you to prevent a release simply due to oversight. With no reservations raised at the end of the 96h, the funds are automatically released to the professional. With a reservation, the escrow remains active until the dispute undergoes an adversarial process."
             },
             {
-              "title": "The CMOD can be triggered when no amicable solution can be found between the client and the professional regarding a dispute related to an intervention via the Artisan Compétent platform.",
-              "body": "This procedure can be initiated either by the client or by the Artisan Compétent team when a disagreement persists despite discussions between the parties. The CMOD intervention incurs a flat fee of €35, borne by the concerned professional. This amount will be directly deducted from the escrowed funds related to the file. Therefore, it is in the professional's best interest to favor an amicable and quick settlement before the CMOD is involved, to avoid this extra charge and extended processing time."
+              "title": "The CMOD can be triggered when no amicable solution can be found between the client and the tradesperson regarding a dispute related to an intervention via the Artisan Compétent platform.",
+              "body": "This procedure can be initiated either by the client or by the Artisan Compétent team when a disagreement persists despite discussions between the parties.\nThe CMOD intervention incurs a flat fee of €35, borne by the concerned tradesperson. This amount will be directly deducted from the escrowed funds related to the file.\nTherefore, it is in the tradesperson's best interest to favor an amicable and quick settlement with the client before the CMOD is involved, to avoid this extra charge and extended processing time."
             }
           ]
         },
@@ -2058,7 +2148,7 @@
             },
             {
               "q": "Which cities are covered by Artisan Compétent for glazing?",
-              "a": "Artisan Compétent aims to cover metropolitan France, the overseas territories, and Corsica, i.e., 38 zones, with an intervention radius of 30 km around each listed city. All major cities are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) with 24/7 availability in emergencies in dense urban areas."
+              "a": "Artisan Compétent aims to cover metropolitan France, the overseas territories, and Corsica, i.e., 38 zones, with an intervention radius of 50 km around each listed city. All major cities are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille) with 24/7 availability in emergencies in dense urban areas."
             }
           ]
         },
@@ -2071,8 +2161,11 @@
       "pestControl": {
         "title": "Verified pest control specialist, from quote to overseen fund release",
         "name": "Pest Control (rodents, bedbugs, etc.)",
+        "metaTitle": "Pest control in {{ city }} — Rodents, bed bugs | Artisan Compétent",
+        "metaDescription": "Pest control specialist in {{ city }}. Rodents, bed bugs, cockroaches, wasps: fast and effective intervention. Secure payment on Artisan Compétent.",
+        "metaKeywords": "pest control {{ city }}, rodent control {{ city }}, bed bugs {{ city }}, insect control {{ city }}",
         "tagline": "This page lists the interventions handled by verified pest control specialists on Artisan Compétent and the mechanism that oversees your payment from start to finish, from the detailed quote to fund release 96h after job completion.",
-        "verifiedBadge": "In short, a verified pest control specialist on Artisan Compétent has their SIRET checked, their RC pro insurance up to date, and a valid Certibiocide certificate. The entire process is overseen by a Stripe escrow: quote, intervention, follow-up visits, fund release 96h after job completion. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 30 km radius per city.",
+        "verifiedBadge": "In short, a verified pest control specialist on Artisan Compétent has their SIRET checked, their RC pro insurance up to date, and a valid Certibiocide certificate. The entire process is overseen by a Stripe escrow: quote, intervention, follow-up visits, fund release 96h after job completion. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 50 km radius per city.",
         "description": {
           "p1": "In one sentence, on Artisan Compétent, a verified pest control specialist has their SIRET, insurance, and Certibiocide certification checked beforehand, and their entire intervention (rat control, insect control, disinfection, bedbug or hornet treatment) is overseen by a Stripe escrow that holds the payment for up to 96h after job completion. You only pay if the treatment complies with the signed quote.",
           "p2": "A verified pest control specialist on Artisan Compétent has their SIRET checked, their RC pro insurance up to date, and a valid Certibiocide certificate (a regulatory requirement for handling professional-use biocidal products). The Stripe fund escrow oversees the entire process: the payment leaves your account when the quote is validated, remains held during the intervention, and for an additional 96h after the end of the work. This 96-hour period gives you time to report insufficient effectiveness, an absence of a follow-up visit, or non-compliance with the quote before the funds are released to the professional."
@@ -2269,7 +2362,7 @@
             },
             {
               "q": "Which cities are covered by Artisan Compétent for pest control?",
-              "a": "Artisan Compétent aims to cover metropolitan France, the overseas territories, and Corsica, i.e., 38 zones, with an intervention radius of 30 km around each listed city. All major cities are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille)."
+              "a": "Artisan Compétent aims to cover metropolitan France, the overseas territories, and Corsica, i.e., 38 zones, with an intervention radius of 50 km around each listed city. All major cities are covered (Paris, Marseille, Lyon, Toulouse, Nice, Nantes, Montpellier, Strasbourg, Bordeaux, Lille)."
             }
           ]
         },
@@ -2279,6 +2372,9 @@
           "footer": "Verified pest control specialist with SIRET, RC pro, decennial, and Certibiocide. Process overseen by Stripe escrow, follow-up visits included. Report and photos at each visit. Withholding of up to €250 in case of reported abuse. Scope: rodents, crawling insects, flying insects, bedbugs, hornets, disinfection, insect control, rat control."
         }
       }
+    },
+    "citiesSection": {
+      "title": "Available in all major cities"
     }
   },
   "not-found": {
@@ -2300,6 +2396,7 @@
   "register": {
     "chooseType": "What type of account would you like to create?",
     "title": "Sign up as an individual",
+    "workingAddressHelpAlt": "Geolocation address instructions",
     "addPhoto": "Add a photo",
     "addId": "Add an ID card",
     "addRib": "Add bank account (RIB)",
@@ -2448,10 +2545,12 @@
       "onCallDay": "On call this day"
     },
     "openingHours": {
-      "guideBtn": "User guide - Hours, holidays & on-call rules"
+      "guideBtn": "User guide - Hours, holidays & on-call rules",
+      "guideAlt": "Opening hours instructions"
     },
     "description": {
-      "guideBtn": "User guide - Tips for selling your services"
+      "guideBtn": "User guide - Tips for selling your services",
+      "guideAlt": "Sales tips instructions"
     },
     "workAddress": {
       "guideBtn": "User guide - Geolocation address"
@@ -2463,7 +2562,8 @@
       "condition1": "Minimum 3 years of experience in your trade",
       "condition2": "Mission paid at 35 € per intervention",
       "condition3": "Intervention only in case of dispute",
-      "condition4": "Advisory opinion, non-binding"
+      "condition4": "Advisory opinion, non-binding",
+      "guideAlt": "CMOD instructions"
     },
     "siret": {
       "checking": "Checking SIRET...",
@@ -2515,7 +2615,8 @@
         "diplomaDocRequired": "Diploma required",
         "logoRequired": "Logo required",
         "ribRequired": "Bank details (RIB) required"
-      }
+      },
+      "addressWorkInvalid": "Unable to validate the company address, please check your entry."
     },
     "manager": {
       "company": "Company",
@@ -2618,6 +2719,19 @@
     "experience": "{{ years }} year(s) of experience",
     "tradesTitle": "Trades",
     "servicesTitle": "Services",
+    "descriptionTitle": "Description",
+    "openingHoursTitle": "Opening hours",
+    "closed": "Closed",
+    "onCallHours": "On call",
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    },
     "noDescription": "No description available.",
     "yearsLabel": "yrs exp.",
     "tradesLabel": "trade(s)",
@@ -2630,8 +2744,13 @@
     "kilometersLabel": "Radius (km)",
     "button": "Search"
   },
+  "storyViewer": {
+    "seePresentation": "See presentation video"
+  },
   "affiliation": {
     "title": "Partner program",
+    "backButton": "Back",
+    "backAriaLabel": "Back to the previous page",
     "meta": {
       "title": "Artisan Compétent Partner Program | 20% Commission",
       "description": "Recommend Artisan Compétent to your audience and earn 20% commission the first year. Free signup, no commitment, no upfront cost."
@@ -2655,20 +2774,23 @@
     },
     "commissions": {
       "title": "It's simple. Really.",
+      "intro": "You earn a commission calculated on the intermediation commission effectively acquired by Artisan Compétent for the jobs completed thanks to your recommendations.",
+      "introDetail": "20% during the first six months for the clients you bring in (then 10% during the next six months) and 5% for three months for each professional you have invited to the platform.",
       "summaryTitle": "In three lines",
       "summaryClient": "You refer a client: 20% the first 6 months, 10% the next 6.",
       "summaryArtisan": "You refer a professional: 5% for 3 months.",
-      "summaryBoth": "You do both: you stack, up to 25%.",
+      "summaryBoth": "You do both: you stack both commissions.",
       "detailsTitle": "The details if you need them",
-      "detailClient": "Individual client: 20% commission on Artisan Compétent's margin during the first 6 months after the client's signup, 10% during the next 6 months. After 12 months, the commission ends.",
-      "detailArtisan": "Referred professional: 5% on the margin generated by jobs signed through this professional, for 3 months after their signup on the platform.",
-      "detailCumul": "Stacking: if you bring in both a client and a professional, you earn on both. The same person can therefore earn up to 25% on a single job (20% on the client side + 5% on the professional side).",
+      "detailClient": "Individual client: 20% commission on the intermediation commission acquired by Artisan Compétent during the first 6 months after the client's signup, 10% during the next 6 months. After 12 months, the commission ends.",
+      "detailArtisan": "Referred professional: 5% on the intermediation commission generated by jobs signed through this professional, for 3 months after their signup on the platform.",
+      "detailCumul": "Stacking: if you bring in both a client and a professional, you earn on both (20% on the client side + 5% on the professional side).",
       "conditionsTitle": "Common conditions",
       "condition1": "Attribution cookie valid for 15 days after the first click on your link. It renews with every new click from a visitor via your link. So in practice, as long as you publish regularly, the cookie stays active.",
       "condition2": "On top of the cookie, your referral is tied to your partner account at signup. You earn commissions for the 12 months following their signup (3 months for any referred professional).",
       "condition3": "You must publish at least one piece of content per week to stay active. After 7 days without publication, you receive a warning. After 14 days, your link is deactivated. All referrals already tied to your account keep generating commissions normally.",
-      "condition4": "Commissions only apply to Artisan Compétent's margin. Never on materials, never on the labor billed by the professional.",
-      "condition5": "Quarterly bank transfer, starting from the handover certificate signed by the client. No payment on signed quote alone, because a quote can still be cancelled mid-job."
+      "condition4": "Commissions only apply to the intermediation commission acquired by Artisan Compétent. Never on materials, never on the labor billed by the professional.",
+      "condition5": "Affiliate commissions are validated once the handover certificate is definitively validated and after Artisan Compétent has effectively collected the corresponding intermediation commission. They are then paid by quarterly bank transfer, together with a supporting document available in your partner area.",
+      "basisNote": "Commissions are calculated in accordance with the Terms of Use and only on the intermediation commissions definitively acquired by Artisan Compétent. Technical and administrative costs, refunds, cancellations or any adjustments are not taken into account in the calculation base of affiliate commissions."
     },
     "whyRecommend": {
       "title": "You're not selling a product. You're selling protection. And you're building your brand.",
@@ -2676,7 +2798,7 @@
       "argumentsTitle": "What makes the recommendation easy",
       "arg1": "Escrow protection: the client's money is only released to the professional after the work is validated. That speaks to everyone.",
       "arg2": "Professionals are verified (business registration, public liability insurance, ten-year warranty). No shady profiles.",
-      "arg3": "The CMOD is an independent technical advisor who only intervenes in the event of a dispute, when the client and the tradesperson cannot reach an amicable agreement. They then analyse the case and submit an advisory opinion to the Artisan Compétent team, which remains the sole decision-maker for arbitration.",
+      "arg3": "The CMOD is an independent technical advisor who only steps in in case of a dispute, when the client and the tradesperson cannot reach an amicable agreement. They then analyse the case and forward an advisory opinion to the Artisan Compétent team, who remain solely responsible for the final decision.",
       "arg4": "Signup is free for both clients and professionals. No barrier to entry.",
       "arg5": "Klarna's split payment is available up to €1,500 on quotes, for both major projects and emergency interventions. Subject to the professional accepting to cover the fees (4.9% of the total quote).",
       "outro": "If your audience includes homeowners, renters who want to renovate, condo owners, or simply people who are afraid of getting ripped off on a job, you have a natural audience for Artisan Compétent."
@@ -2724,7 +2846,7 @@
     "legal": {
       "title": "Legal notice and program conditions",
       "item1": "The partner program is open to adult individuals and to legal entities established in France or the European Union.",
-      "item2": "Commissions are calculated on Artisan Compétent's net margin and paid quarterly, subject to the handover certificate being signed by the referral.",
+      "item2": "Commissions are calculated on the intermediation commission definitively acquired by Artisan Compétent and paid quarterly, subject to the handover certificate being signed by the referral.",
       "item3": "The cookie attribution period is 15 days, in line with CNIL recommendations. The partner account link allows compensation to extend beyond the cookie: 12 months for a referred client, 3 months for a referred professional.",
       "item4": "Artisan Compétent reserves the right to suspend or terminate access to the program in case of breach of the rules of use (fraud, spam, inappropriate content, non-compliance with regulations).",
       "item5": "Changes to the commission grid apply only to new signups; conversions already registered remain compensated according to the conditions in force at the time of the original click.",
@@ -2878,13 +3000,11 @@
         "title": "1. Creating the professional profile",
         "intro": "Before validating the account, Artisan Compétent notably verifies:",
         "items": [
-          "your SIRET",
-          "your insurance policies",
-          "your public liability insurance (RC Pro)",
-          "your ten-year warranty (décennale) when necessary",
-          "all the professional certifications you hold, up to date, corresponding to your trade and to the work you offer (RGE, Qualibat, QualiPAC, etc.)"
+          "votre numéro SIRET ;",
+          "vos assurances professionnelles obligatoires, notamment votre RC Pro et, lorsque votre activité l'exige, votre assurance décennale ;",
+          "vos certifications, qualifications et labels professionnels en cours de validité, adaptés à votre métier et aux prestations proposées (RGE, Qualibat, QualiPAC, etc.)."
         ],
-        "outro": "The goal is to maintain a minimum level of seriousness on the platform."
+        "outro": "L'objectif est de maintenir un niveau élevé de sérieux, de fiabilité et de confiance sur la plateforme."
       },
       "s2": {
         "title": "2. Receiving client requests",
@@ -2921,11 +3041,11 @@
       },
       "s8": {
         "title": "8. End-of-project handover certificate",
-        "body": "When the work is finished, you send a digital handover certificate. The client then has 48 hours to verify the work, report a problem, or request a correction if necessary. Eight hours before the end of the deadline, the client automatically receives a reminder email. In the absence of any reservation, the handover certificate is validated automatically and the funds are released."
+        "body": "When the work is finished, you send a digital handover certificate. The client then has 96 hours to verify the work, report a problem, or request a correction if necessary. Eight hours before the end of the deadline, the client automatically receives a reminder email. In the absence of any reservation, the handover certificate is validated automatically and the funds are released."
       },
       "s9": {
         "title": "9. In case of dispute",
-        "body": "Before any official report, amicable dialogue remains mandatory. The vast majority of situations are settled simply through good communication. If no agreement is reached, the client can request the intervention of a CMOD. The CMOD analyses the file, consults the dashboard items, studies the exchanges, and renders an impartial advisory opinion. The CMOD intervention fees, set at €35, remain entirely the responsibility of the professional and are deducted directly from the funds owed to them. The goal therefore, for each professional, is to maintain good communication with the client, ensure serious follow-up of the project, and avoid as much as possible the opening of an official dispute. The final arbitration remains carried out by Artisan Compétent based on available evidence, exchanges, submitted documents, and the Terms of Use / Terms of Sale accepted by the parties."
+        "body": "Before any official report, amicable dialogue remains mandatory. The vast majority of situations are resolved simply through good communication. If no agreement is reached, the client can request the intervention of a CMOD. The CMOD analyses the case, reviews the items in the dashboard, examines the exchanges and issues an impartial advisory opinion. The CMOD intervention fee, set at €35, is borne entirely by the tradesperson and will be directly deducted from the funds owed to them. The goal, for every professional, is therefore to maintain good communication with the client, ensure diligent tracking of the project and avoid, as much as possible, opening an official dispute. Following the CMOD's intervention, if no amicable agreement could be found, the case is forwarded to the Artisan Compétent team, which analyses the available items (digital project tracking, exchanges, documents and evidence provided) in order to determine how the escrowed funds are allocated, in accordance with the platform's Terms of Use and Terms of Sale."
       },
       "s10": {
         "title": "10. Installment payment via Klarna",
@@ -3103,13 +3223,27 @@
       "show": "Show password",
       "hide": "Hide password"
     },
-    "registeredIndividualSuccess": "Your registration has been successfully recorded. You can now log in with your credentials.",
+    "registeredIndividualSuccess": "Your registration has been successfully recorded. Welcome to Artisan Compétent!",
     "registeredProSuccess": "Your registration has been received and is pending validation. You will receive a confirmation email shortly.",
     "registeredProMailFailed": "Your registration has been recorded. We were unable to send you a confirmation email. Please contact us at contact@artisan-competent.com to validate your account.",
     "spamNotice": "If you don't see the email in your inbox, please check your spam folder."
   },
   "dashboard": {
     "title": "Dashboard",
+    "currentRole": "Current role: {{ role }}",
+    "requests": {
+      "tabs": {
+        "mine": "My requests",
+        "received": "Received requests"
+      },
+      "status": {
+        "AVAILABLE": "Available",
+        "UNAVAILABLE": "Unavailable",
+        "CANCELLED": "Cancelled"
+      },
+      "filesCount": "{{ count }} file(s) attached",
+      "createDemand": "Create a request"
+    },
     "nav": {
       "requests": "My requests",
       "quotes": "My quotes",
@@ -3122,6 +3256,8 @@
     },
     "admin": {
       "title": "Administration",
+      "confirmApprove": "Are you sure you want to approve this tradesperson? They will be publicly visible.",
+      "confirmReject": "Are you sure you want to reject this tradesperson?",
       "pendingValidation": "Pending validation",
       "noPendingProfiles": "No pending profiles",
       "registeredOn": "Registered on",
@@ -3181,7 +3317,9 @@
       "mediatorAddress": "Mediator address",
       "mediatorWebsite": "Website",
       "mediatorContactMethod": "Contact method",
-      "mediatorAdditionalInfo": "Additional information"
+      "mediatorAdditionalInfo": "Additional information",
+      "email": "Email",
+      "dayOnCall": "On call"
     },
     "errors": {
       "load": "Unable to load dashboard",
@@ -3195,7 +3333,8 @@
         "invoices": "My invoices",
         "legal": "Legal information",
         "practices": "Best practices",
-        "affiliation": "Referral program"
+        "affiliation": "Referral program",
+        "messages": "Messages"
       },
       "mobile": {
         "profile": "Account",
@@ -3214,7 +3353,21 @@
         "lastName": "Last name",
         "email": "Email",
         "birthDate": "Date of birth",
-        "gender": "Gender"
+        "gender": "Gender",
+        "addressStreet": "Street",
+        "addressComplement": "Additional info",
+        "addressCity": "Postcode / City",
+        "phone": "Phone"
+      },
+      "errors": {
+        "addressIncomplete": "Fill in the full address (number, street, postal code, city) before saving.",
+        "nameInvalid": "First name and last name may only contain letters, apostrophes or hyphens.",
+        "emailInvalid": "The email address is not valid.",
+        "birthDateInvalid": "Birth date is required and cannot be in the future.",
+        "phoneInvalid": "The phone number is not valid.",
+        "streetNumberInvalid": "The street number is not valid.",
+        "postalCodeInvalid": "The postal code must be 5 digits.",
+        "cityInvalid": "The city name is not valid."
       }
     },
     "pro": {
@@ -3225,7 +3378,8 @@
         "profile": "Personal info",
         "legal": "Legal information",
         "practices": "Best practices",
-        "affiliation": "Referral program"
+        "affiliation": "Referral program",
+        "messages": "Messages"
       },
       "tabs": {
         "presentation": "Presentation",
@@ -3237,6 +3391,12 @@
       "empty": {
         "missions": "No missions yet",
         "reviews": "No reviews yet"
+      },
+      "status": {
+        "pendingTitle": "Profile under review",
+        "pendingBody": "Your profile is currently being reviewed by our team. It will be visible to clients once approved.",
+        "rejectedTitle": "Registration rejected",
+        "rejectedBody": "Your profile could not be approved. Please check your documents or contact support."
       },
       "docs": {
         "idFront": "ID card (front)",
@@ -3309,10 +3469,24 @@
       "onCallNo": "No",
       "companyRemarks": "Company remarks",
       "noneProvided": "Not provided",
-      "expiresOn": "Expires on"
+      "expiresOn": "Expires on",
+      "description": "Description",
+      "noPartnersError": "Add at least one supplier before saving.",
+      "noTradesError": "Select at least one trade before saving.",
+      "personalAddressError": "Fill in the full address (number, street, postal code, city) before saving.",
+      "workAddressError": "Fill in the full company address (number, street, postal code, city) before saving.",
+      "fieldRequiredError": "This field is required.",
+      "mediatorIncompleteError": "If you fill in the mediator, all fields (name, address, website, contact method) are required.",
+      "mediatorNameInvalid": "The mediator name contains invalid characters.",
+      "mediatorAddressInvalid": "The mediator address is not valid.",
+      "mediatorWebsiteInvalid": "The mediator website is not valid.",
+      "storyAddPresentationHint": "Add a presentation video (2 min max)",
+      "storyAddTipsHint": "Add a tips / daily life video (2 min max)",
+      "storyViewHint": "View the story"
     },
     "empty": {
       "requests": "No requests yet",
+      "requestsReceived": "No requests received yet",
       "quotes": "No quotes yet",
       "invoices": "No invoices yet",
       "legal": "No legal information available",
@@ -3362,6 +3536,44 @@
         "title": "How it works?",
         "individual": "Referred individual → 20% commission for the first 6 months, then 10% for the next 6.",
         "professional": "Referred professional → 5% commission for 6 months."
+      }
+    },
+    "loading": "Loading dashboard...",
+    "messages": {
+      "searchPlaceholder": "Search",
+      "empty": "No conversations",
+      "selectPrompt": "Select a conversation to view it here",
+      "inputPlaceholder": "Write your message...",
+      "send": "Send",
+      "demandLabel": "Demand",
+      "attach": "Attach a file",
+      "actions": {
+        "title": "Actions",
+        "decline": "Decline the offer",
+        "quote": "Create a quote",
+        "review": "Leave a review",
+        "dispute": "Report a dispute"
+      },
+      "invalidAttachment": "Unsupported file format. Accepted formats: JPG, JPEG, PNG, WEBP, PDF."
+    },
+    "sections": {
+      "profile": {
+        "title": "Personal info — My account"
+      },
+      "requests": {
+        "title": "My requests — My account"
+      },
+      "messages": {
+        "title": "Messages — My account"
+      },
+      "practices": {
+        "title": "Best practices — My account"
+      },
+      "legal": {
+        "title": "Legal info — My account"
+      },
+      "affiliation": {
+        "title": "Affiliation — My account"
       }
     }
   },
@@ -3416,6 +3628,7 @@
   },
   "search": {
     "title": "{{ trade }} in {{ address }}",
+    "pageTitle": "Search results",
     "subtitle": "{{ count }} result(s) within a {{ radius }} km radius",
     "error": "An error occurred. Please try again.",
     "empty": "No professional found in this area.",
@@ -3571,7 +3784,7 @@
     "lead": "Understand exactly how our protection system works.",
     "cmod": {
       "title": "CMOD : c'est quoi ?",
-      "body": "<p>Le CMOD (Conseiller Maître d'Ouvrage Digital) est un professionnel indépendant du bâtiment disposant d'au minimum trois années d'expérience dans son métier.</p><p>Le CMOD n'intervient pas automatiquement sur les chantiers.</p><p>Son intervention peut être demandée uniquement lorsqu'un désaccord apparaît entre le Client et l'Artisan et qu'aucune solution amiable n'a pu être trouvée malgré les échanges entre les parties.</p><p>L'objectif du CMOD n'est pas de prendre parti pour le Client ou pour l'Artisan.</p><p>Son rôle est d'apporter un regard technique, indépendant et impartial sur la situation afin d'aider à mieux comprendre le dossier et faciliter l'analyse du litige.</p><p>Le CMOD intervient à distance uniquement, via un appel en visioconférence.</p><p>Pour rendre son avis, il dispose notamment d'un accès :</p><ul><li>aux échanges réalisés en interne,</li><li>aux devis,</li><li>aux photographies du chantier,</li><li>aux commentaires,</li><li>aux documents transmis,</li><li>et aux différents éléments enregistrés dans le suivi digital du chantier.</li></ul><p>À partir de ces éléments, le CMOD analyse la situation puis transmet son avis consultatif à l'équipe Artisan Compétent, laquelle reste seule décisionnaire dans le cadre de l'arbitrage final prévu par les CGU et CGV de la plateforme.</p><p>L'intervention du CMOD donne lieu à une rémunération forfaitaire de 35 € prélevée directement sur les fonds séquestrés revenant à l'Artisan.</p><p>Pour cette raison, Artisan Compétent recommande toujours aux parties de privilégier au maximum le dialogue et la recherche d'une solution amiable avant toute activation d'un CMOD.</p><p>Le système a été pensé pour favoriser les échanges constructifs, limiter les conflits inutiles et protéger aussi bien les Clients que les Artisans sérieux.</p>",
+      "body": "<p>The CMOD (Digital Project Owner Advisor) is an independent building professional with at least three years of experience in their trade.</p><p>The CMOD does not intervene automatically on projects.</p><p>Their intervention can only be requested when a disagreement arises between the client and the tradesperson and no amicable solution could be found despite exchanges between the parties.</p><p>The CMOD's goal is not to take the client's or the tradesperson's side.</p><p>Their role is to bring an independent, impartial technical perspective to the situation in order to help better understand the case and facilitate the analysis of the dispute.</p><p>The CMOD operates remotely only, via a video call.</p><p>To form their opinion, they notably have access to:</p><ul><li>internal exchanges,</li><li>quotes,</li><li>photographs of the project,</li><li>comments,</li><li>documents provided,</li><li>and the various items recorded in the project's digital tracking.</li></ul><p>Based on these items, the CMOD analyses the situation and then forwards their advisory opinion to the Artisan Compétent team, who remain solely responsible for the final decision regarding the allocation of funds, as set out in the platform's Terms of Use and Terms of Sale.</p><p>The CMOD intervention incurs a flat fee of €35, deducted directly from the escrowed funds owed to the tradesperson.</p><p>For this reason, Artisan Compétent always recommends that the parties prioritise dialogue and seek an amicable solution as much as possible before activating a CMOD.</p><p>The system was designed to encourage constructive exchanges, limit unnecessary conflicts and protect both clients and serious tradespeople.</p>",
       "cta": "Support package"
     },
     "escrow": {
@@ -3580,7 +3793,7 @@
     },
     "validation": {
       "title": "Work validation and release of funds",
-      "body": "<p>Once the project is finished, the professional sends you a digital completion report.</p><p>You then have up to 48 hours to:</p><ul><li>validate the report or raise a reservation if necessary.</li></ul><p>During this period, the funds stay secured and are not paid to the professional.</p><p>If no problem is reported within the set period, the funds are released automatically in line with the conditions set out in the Terms of Use, and the report is deemed validated without reservation.</p><p>In the event of a dispute, the funds stay held while Artisan Compétent analyses the records in the digital tracking, to support arbitration based on concrete evidence.</p>"
+      "body": "<p>Once the project is finished, the professional sends you a digital completion report.</p><p>You then have up to 96 hours to:</p><ul><li>validate the report or raise a reservation if necessary.</li></ul><p>During this period, the funds stay secured and are not paid to the professional.</p><p>If no problem is reported within the set period, the funds are released automatically in line with the conditions set out in the Terms of Use, and the report is deemed validated without reservation.</p><p>In the event of a dispute, the funds stay held while Artisan Compétent analyses the records in the digital tracking, to support arbitration based on concrete evidence.</p>"
     },
     "klarna": {
       "title": "Payment in instalments via Klarna",
@@ -3588,7 +3801,7 @@
     },
     "malfacon": {
       "title": "Notice a problem or a defect? Here's the right approach.",
-      "body": "<h4>1. Talk to the tradesperson</h4><p>The vast majority of situations are resolved simply through dialogue.</p><p>The tradespeople on Artisan Compétent are verified, serious professionals.</p><p>As on any project, a finish, an adjustment or a detail may sometimes need correcting after the work.</p><p>Before reporting anything, take the time to talk calmly with the professional in order to look for an amicable solution.</p><h4>2. Report the problem from your client area</h4><p>If, despite these discussions, no agreement is reached, you can report the problem directly from your dashboard.</p><p>From that point, the Artisan Compétent team can access all the digital tracking already present on the platform:</p><ul><li>photos,</li><li>messages in the internal chat,</li><li>items added by the client and the professional.</li></ul><p>The advantage of this approach is that it spares the parties from having to start over or resend everything.</p><p>As the project is already documented directly within the platform, the team can analyse the situation from the items already recorded and time-stamped.</p><p>Only in certain cases will additional information or items be requested, if this is needed to deepen the analysis.</p><p>Throughout this phase, the funds stay held in secure escrow.</p><h4>3. Analysis of the situation and overseen mediation</h4><p>In the event of a dispute, Artisan Compétent analyses the records in the digital tracking in order to encourage a balanced resolution based on concrete evidence.</p><p>It is important to point out that Artisan Compétent does not impose a price grid on the professionals on the platform.</p><p>Prices remain free.</p><p>Tradespeople set their own rates and quotes according to their experience, their structure, their geographic area and the nature of the work carried out.</p><p>The platform simply provides recommendations and best practices to encourage consistent and transparent practices.</p><p>Cases of clear abuse mainly concern certain particularly sensitive emergency call-outs, especially at night or in immediate repair situations.</p><p>In the rare cases where clearly excessive and entirely disproportionate overcharging is found compared with the practices usually observed for this type of call-out, Artisan Compétent may launch an enhanced mediation procedure in accordance with the Terms of Use and Terms of Sale.</p><p>Before any measure is taken, an attempt at an amicable resolution is always favoured with the professional concerned.</p><p>If no reasonable agreement is found despite the discussions and the analysis of the evidence, Artisan Compétent may:</p><ul><li>temporarily suspend the professional's account,</li><li>or even permanently remove their access to the platform in the event of a serious breach.</li></ul><p>In this context, a processing fee of up to €250 may be applied in accordance with the Terms of Use and Terms of Sale.</p><p>This fee is not kept by Artisan Compétent and is paid back to the client from the escrowed portion, in order to partly compensate for the harm suffered.</p><p>This type of situation nevertheless remains exceptional, as the vast majority of tradespeople on the platform are serious, good-faith professionals.</p>"
+      "body": "<h4>1. Talk to the tradesperson</h4><p>The vast majority of situations are resolved simply through dialogue.</p><p>The tradespeople on Artisan Compétent are verified, serious professionals.</p><p>As on any project, a finish, an adjustment or a detail may sometimes need correcting after the work.</p><p>Before reporting anything, take the time to talk calmly with the professional in order to look for an amicable solution.</p><h4>2. Report the problem from your client area</h4><p>If, despite these discussions, no agreement is reached, you can report the problem directly from your dashboard.</p><p>From that point, the Artisan Compétent team can access all the digital tracking already present on the platform:</p><ul><li>photos,</li><li>messages in the internal chat,</li><li>items added by the client and the professional.</li></ul><p>The advantage of this approach is that it spares the parties from having to start over or resend everything.</p><p>As the project is already documented directly within the platform, the team can analyse the situation from the items already recorded and time-stamped.</p><p>Only in certain cases will additional information or items be requested, if this is needed to deepen the analysis.</p><p>Throughout this phase, the funds stay held in secure escrow.</p><h4>3. Case analysis and intervention by Artisan Compétent</h4><p>In the event of a dispute, Artisan Compétent analyses the items recorded in the project's digital tracking in order to support a balanced, objective resolution based on concrete evidence.</p><p>The analysis notably covers the execution of the work, compliance with the commitments made by the parties, the reservations raised, the documents provided, the photographs, the comments recorded in the digital tracking, as well as any other item useful to understanding the case.</p><p>It is important to clarify that Artisan Compétent does not impose any pricing scale on the professionals present on the platform.</p><p>The prices charged by the professionals listed on Artisan Compétent are freely set by each tradesperson.</p><p>It is up to the client to assess the quote offered to them before signing and, where possible, to compare several offers or negotiate the amount of the intervention.</p><p>Artisan Compétent neither controls nor approves the rates charged. Its mission is to secure the contractual relationship between the parties, the escrowed payment, the digital tracking of the project and the proper fulfilment of the commitments made by the client and the professional.</p><p>When the parties cannot find an amicable solution, the client can request the intervention of a CMOD (Digital Project Owner Advisor).</p><p>The CMOD analyses the items in the case, reviews the documents available on the platform and issues a purely advisory opinion intended to facilitate finding an agreement between the parties.</p><p>If no amicable agreement is found, the Artisan Compétent teams examine the entire case in accordance with the Terms of Use, the Terms of Sale and the Cancellation Policy in order to determine the amounts owed respectively to the client and the tradesperson and to proceed, where applicable, with their allocation.</p><p>In addition, Artisan Compétent may temporarily suspend a professional's account or permanently remove their access to the platform in case of fraud, falsified documents, an attempt to circumvent the platform, serious breach of the Terms of Use or Terms of Sale, or any other serious breach of the platform's rules.</p><p>This type of situation remains exceptional, as the vast majority of tradespeople on Artisan Compétent are serious, transparent professionals who care about the quality of their work.</p>"
     },
     "signed": {
       "title": "And what if you've already signed the report?",
@@ -3612,11 +3825,26 @@
     },
     "step3": {
       "title": "Project start and tracking, reporting and CMOD intervention",
-      "body": "<h4>Project start and tracking</h4><p>Once the quote is signed and the overseen payment made via the platform, the project can start.</p><p>Throughout the duration of the works:</p><ul><li>the professional is required to regularly add tracking photos and comments to the platform,</li><li>every important stage of the project must be documentable,</li><li>exchanges remain centralised in the project's digital tracking,</li><li>the client follows progress directly from their dashboard.</li></ul><p>The client remains the project owner. As such, it is also up to them to follow the works, regularly review the items added by the professional and quickly report any issue likely to compromise the proper execution or proper handover of the works.</p><p>The sooner a problem is reported, the easier it is to correct quickly and under good conditions.</p><p>For fast or emergency call-outs, particularly repairs performed within a very short timeframe, a simple condition photo accompanied by an explanatory comment from the professional may be enough.</p><p>If no particular issue is noted, the client is not required to add comments or contradicting items in the tracking.</p><p>Every step remains traced, time-stamped and centralised in the platform in order to ensure transparent tracking accessible to both parties.</p><h4>Reporting a problem during the project</h4><p>In case of disagreement, of an observed defect or of difficulty during the project, the client and the professional are encouraged to favour dialogue first and an attempt at an amicable arrangement.</p><p>The vast majority of situations are resolved directly between the parties when they communicate quickly and constructively.</p><p>If no agreement is reached, the client can then file a report directly from their dashboard. The Artisan Compétent team then has access to all the items already present in the digital tracking:</p><ul><li>internal chat exchanges,</li><li>photos,</li><li>comments,</li><li>documents,</li><li>quotes,</li><li>project stages.</li></ul><p>In most cases, these items already allow a first analysis of the situation without any additional document being requested immediately.</p><h4>CMOD intervention in case of dispute</h4><p>In case of a dispute that persists despite attempts at communication between the parties, Artisan Compétent can propose a call with a CMOD (Digital Client Project Advisor).</p><p>The CMOD is an independent construction professional with field experience.</p><p>Their role is:</p><ul><li>to help clarify the situation,</li><li>to ease the exchanges,</li><li>to bring an external technical perspective,</li><li>and to encourage a middle ground between the client and the professional.</li></ul><p>This support is provided exclusively remotely. The CMOD does not physically visit project sites.</p><p>If, despite this intervention, no agreement is reached, the case can then be escalated to the Artisan Compétent team for arbitration.</p><p>Arbitration is carried out based on the items present in the project's digital tracking, the recorded exchanges and the available evidence.</p><p>Artisan Compétent then makes a decision aimed at protecting the party considered to have been harmed in light of the items analysed and the obligations set out in the platform's Terms of Use and Terms of Sale.</p>"
+      "body": "<h4>CMOD intervention in case of dispute</h4><p>If disagreement persists despite exchanges between the client and the professional, Artisan Compétent can offer the intervention of a CMOD (Digital Project Owner Advisor).</p><p>The CMOD is an independent building professional with field experience.</p><p>Their role consists of:</p><ul><li>clarifying the situation;</li><li>facilitating exchanges between the parties;</li><li>providing an outside technical perspective;</li><li>helping find an amicable solution.</li></ul><p>This support is provided exclusively remotely. The CMOD does not travel physically to project sites.</p><p>If no agreement is reached following this intervention, the CMOD forwards their report along with the information gathered to the Artisan Compétent team.</p><p>Artisan Compétent then analyses the case based on the items available in the project's digital tracking, recorded exchanges, documents, photographs, videos and other evidence provided by the parties.</p><p>Following this analysis, Artisan Compétent determines how the escrowed funds are allocated in accordance with the provisions set out in the platform's Terms of Use and Terms of Sale.</p>"
     },
     "step4": {
       "title": "Project handover, release of funds, reviews and project closure",
-      "body": "<h4>Project handover</h4><p>At the end of the project, the professional sends a digital project handover report directly via the Artisan Compétent platform.</p><p>From that moment, the client has up to 48 hours to:</p><ul><li>check the works carried out,</li><li>inspect the finishes,</li><li>report any defect,</li><li>request a correction if necessary,</li><li>or definitively validate the project.</li></ul><p>The client can also validate the handover report immediately if they consider the works compliant.</p><p>Throughout this period, the funds remain overseen in the Stripe escrow account.</p><p>Eight hours before the end of the 48-hour period, an automatic reminder email is sent to the client. This email also serves as a formal notice, informing the client that:</p><ul><li>either they must raise a reservation or a report if they notice a problem,</li><li>or the funds will be automatically released at the end of the set period.</li></ul><p>If no reservation or challenge is raised within the set period, the handover report is automatically deemed validated in accordance with the platform's Terms of Use and Terms of Sale.</p><h4>Funds release</h4><p>Once the handover report is validated, manually or automatically after expiry of the set period without reservation, the escrowed funds are immediately released to the professional.</p><p>The funds never pass through Artisan Compétent's bank account. They remain overseen in the Stripe protocol until their final release.</p><p>In case of reservation, reported defect or declared dispute within the set period:</p><ul><li>the funds remain held,</li><li>an analysis of the case can be performed,</li><li>an amicable exchange is favoured,</li><li>and arbitration can be initiated if necessary based on the items recorded in the digital tracking.</li></ul><p>Depending on the situation:</p><ul><li>a correction can be requested,</li><li>a partial refund can be made,</li><li>or the funds can be adjusted proportionally to the works actually carried out.</li></ul><h4>After handover: warranties and follow-up</h4><p>Even after validation of the handover report, the professionals on Artisan Compétent remain bound by their legal obligations.</p><p>Like any serious construction professional, they remain required to step in for issues falling under:</p><ul><li>the defects (snagging) warranty,</li><li>the two-year warranty when applicable,</li><li>or the ten-year warranty depending on the nature of the works carried out.</li></ul><p>The Artisan Compétent system does not replace the existing legal warranties, but adds an extra layer of safety and traceability throughout the project.</p><h4>Reviews and project closure</h4><p>Once the project is finished, the client can leave a review on the professional.</p><p>Reviews are intended to remain:</p><ul><li>transparent,</li><li>constructive,</li><li>useful to the community,</li><li>and based on a real experience lived via the platform.</li></ul><p>Artisan Compétent's goal is not to create a simple review platform, but a trust environment based on projects actually tracked and documented.</p><p>Once the handover report is validated, Artisan Compétent also invites the client and the professional to download and keep all the documents, exchanges, photos, quotes, handover reports and items present in their dashboard.</p><p>These documents can be useful later in case of:</p><ul><li>a warranty to be invoked,</li><li>a defect appearing after handover,</li><li>a future dispute,</li><li>or simply to keep a full history of the project.</li></ul><p>The Artisan Compétent platform keeps the data for a limited period in accordance with its data management and protection policy. It is therefore up to the client and the professional to keep their own copies of the important items of the project.</p><p>Once this step is complete, the project is officially closed on the platform.</p>"
+      "body": "<h4>Project handover</h4><p>At the end of the project, the professional sends a digital project handover report directly via the Artisan Compétent platform.</p><p>From that moment, the client has up to 96 hours to:</p><ul><li>check the works carried out,</li><li>inspect the finishes,</li><li>report any defect,</li><li>request a correction if necessary,</li><li>or definitively validate the project.</li></ul><p>The client can also validate the handover report immediately if they consider the works compliant.</p><p>Throughout this period, the funds remain overseen in the Stripe escrow account.</p><p>Eight hours before the end of the 96-hour period, an automatic reminder email is sent to the client. This email also serves as a formal notice, informing the client that:</p><ul><li>either they must raise a reservation or a report if they notice a problem,</li><li>or the funds will be automatically released at the end of the set period.</li></ul><p>If no reservation or challenge is raised within the set period, the handover report is automatically deemed validated in accordance with the platform's Terms of Use and Terms of Sale.</p><h4>Funds release</h4><p>Once the handover report is validated, manually or automatically after expiry of the set period without reservation, the escrowed funds are immediately released to the professional.</p><p>The funds never pass through Artisan Compétent's bank account. They remain overseen in the Stripe protocol until their final release.</p><p>In case of reservation, reported defect or declared dispute within the set period:</p><ul><li>the funds remain held,</li><li>an analysis of the case can be performed,</li><li>an amicable exchange is favoured,</li><li>and arbitration can be initiated if necessary based on the items recorded in the digital tracking.</li></ul><p>Depending on the situation:</p><ul><li>a correction can be requested,</li><li>a partial refund can be made,</li><li>or the funds can be adjusted proportionally to the works actually carried out.</li></ul><h4>After handover: warranties and follow-up</h4><p>Even after validation of the handover report, the professionals on Artisan Compétent remain bound by their legal obligations.</p><p>Like any serious construction professional, they remain required to step in for issues falling under:</p><ul><li>the defects (snagging) warranty,</li><li>the two-year warranty when applicable,</li><li>or the ten-year warranty depending on the nature of the works carried out.</li></ul><p>The Artisan Compétent system does not replace the existing legal warranties, but adds an extra layer of safety and traceability throughout the project.</p><h4>Reviews and project closure</h4><p>Once the project is finished, the client can leave a review on the professional.</p><p>Reviews are intended to remain:</p><ul><li>transparent,</li><li>constructive,</li><li>useful to the community,</li><li>and based on a real experience lived via the platform.</li></ul><p>Artisan Compétent's goal is not to create a simple review platform, but a trust environment based on projects actually tracked and documented.</p><p>Once the handover report is validated, Artisan Compétent also invites the client and the professional to download and keep all the documents, exchanges, photos, quotes, handover reports and items present in their dashboard.</p><p>These documents can be useful later in case of:</p><ul><li>a warranty to be invoked,</li><li>a defect appearing after handover,</li><li>a future dispute,</li><li>or simply to keep a full history of the project.</li></ul><p>The Artisan Compétent platform keeps the data for a limited period in accordance with its data management and protection policy. It is therefore up to the client and the professional to keep their own copies of the important items of the project.</p><p>Once this step is complete, the project is officially closed on the platform.</p>"
     }
+  },
+  "errors": {
+    "network": "Unable to reach the server. Please check your connection.",
+    "badRequest": "The request is invalid. Please check the submitted data.",
+    "forbidden": "You do not have permission to perform this action.",
+    "notFound": "The requested resource could not be found.",
+    "server": "A server error occurred. Please try again.",
+    "unknown": "An unexpected error occurred. Please try again.",
+    "invalidImageFormat": "Invalid format. Only JPEG, PNG and WebP files are accepted.",
+    "invalidDocumentFormat": "Invalid format. Only JPEG, PNG, WebP and PDF files are accepted."
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "No notifications yet",
+    "markAllRead": "Mark all as read"
   }
 }

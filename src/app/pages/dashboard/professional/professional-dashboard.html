@@ -206,18 +206,45 @@
                                 <img
                                     [src]="pro.professionalProfile.photoUrl"
                                     [alt]="pro.professionalProfile.companyName"
-                                    class="pro-photo"
+                                    class="pro-photo pro-story-trigger"
+                                    [class.pro-photo--story-presentation]="presentationStories().length > 0"
+                                    [title]="presentationStories().length ? ('dashboard.pro.storyViewHint' | transloco) : ('dashboard.pro.storyAddPresentationHint' | transloco)"
+                                    (click)="onStoryCircleClick('PRESENTATION')"
                                 />
                             } @else {
-                                <div class="pro-photo pro-photo--placeholder">
+                                <div
+                                    class="pro-photo pro-photo--placeholder pro-story-trigger"
+                                    [class.pro-photo--story-presentation]="presentationStories().length > 0"
+                                    [title]="presentationStories().length ? ('dashboard.pro.storyViewHint' | transloco) : ('dashboard.pro.storyAddPresentationHint' | transloco)"
+                                    (click)="onStoryCircleClick('PRESENTATION')"
+                                >
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                         <circle cx="12" cy="8" r="4" />
                                         <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
                                     </svg>
                                 </div>
                             }
+                            @if (uploadingStoryType() === 'PRESENTATION') {
+                                <div class="pro-story-uploading-ring pro-story-uploading-ring--photo"></div>
+                            }
+                            @if (canAddPresentationStory()) {
+                                <button
+                                    type="button"
+                                    class="pro-story-add-btn pro-story-add-btn--presentation"
+                                    [title]="'dashboard.pro.storyAddPresentationHint' | transloco"
+                                    (click)="onAddStoryClick($event, 'PRESENTATION')"
+                                >
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+                                </button>
+                            }
+
                             @if (pro.professionalProfile.isCmod) {
-                                <div class="pro-badge-company">
+                                <div
+                                    class="pro-badge-company pro-story-trigger"
+                                    [class.pro-badge-company--story-tips]="tipsStories().length > 0"
+                                    [title]="tipsStories().length ? ('dashboard.pro.storyViewHint' | transloco) : ('dashboard.pro.storyAddTipsHint' | transloco)"
+                                    (click)="onStoryCircleClick('TIPS')"
+                                >
                                     @if (pro.professionalProfile.logoUrl) {
                                         <img
                                             [src]="pro.professionalProfile.logoUrl"
@@ -229,6 +256,19 @@
                                             <span>Artisan</span>
                                             <strong>COMPÉTENT</strong>
                                         </small>
+                                    }
+                                    @if (uploadingStoryType() === 'TIPS') {
+                                        <div class="pro-story-uploading-ring"></div>
+                                    }
+                                    @if (canAddTipsStory()) {
+                                        <button
+                                            type="button"
+                                            class="pro-story-add-btn pro-story-add-btn--tips"
+                                            [title]="'dashboard.pro.storyAddTipsHint' | transloco"
+                                            (click)="onAddStoryClick($event, 'TIPS')"
+                                        >
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+                                        </button>
                                     }
                                 </div>
                             }
@@ -271,6 +311,10 @@
                             </div>
                         </div>
                     </div>
+
+                    @if (storyUploadError()) {
+                        <p class="pro-story-error pro-story-error--header">{{ storyUploadError() }}</p>
+                    }
 
                     <!-- Onglets -->
                     @if (activeSection() === 'profile' && !moreMenuContentDisplayed()) {
@@ -1366,4 +1410,21 @@
 
 @if (docToPreview()) {
     <doc-modal [document]="docToPreview()" (closeModal)="docToPreview.set(null)" />
+}
+
+<story-viewer
+    [story]="viewingStory()"
+    [videoUrl]="viewingStoryUrl()"
+    [hasPrev]="hasPrevStory()"
+    [hasNext]="hasNextStory()"
+    [currentIndex]="viewingIndex()"
+    [total]="viewingStories().length"
+    (closeModal)="closeStoryViewer()"
+    (deleteRequested)="deleteViewingStory()"
+    (prevRequested)="prevStory()"
+    (nextRequested)="nextStory()"
+/>
+
+@if (recordingStoryType()) {
+    <story-recorder (closeModal)="closeRecorder()" (fileReady)="onStoryFileReady($event)" />
 }

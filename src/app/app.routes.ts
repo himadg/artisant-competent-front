@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
+import { roleMatch } from './core/guards/role-match.guard';
 
 export const routes: Routes = [
   {
@@ -11,9 +12,39 @@ export const routes: Routes = [
   { path: 'auth', loadChildren: () => import('./pages/auth/auth.routes').then((c) => c.authRoutes) },
   {
     path: 'dashboard',
-    title: 'dashboard.title',
+    pathMatch: 'full',
+    redirectTo: '/dashboard/profile',
+  },
+  {
+    path: 'dashboard',
     canActivate: [authGuard],
-    loadComponent: () => import('./pages/dashboard/dashboard').then((p) => p.DashboardPage),
+    data: { showHeader: false, showFooter: false },
+    children: [
+      {
+        path: '',
+        canMatch: [roleMatch('PROFESSIONAL')],
+        loadChildren: () => import('./pages/dashboard/professional/professional.routes').then((r) => r.professionalDashboardRoutes),
+      },
+      {
+        path: '',
+        canMatch: [roleMatch('INDIVIDUAL')],
+        loadChildren: () => import('./pages/dashboard/individual/individual.routes').then((r) => r.individualDashboardRoutes),
+      },
+      {
+        path: '',
+        canMatch: [roleMatch('ADMIN')],
+        loadChildren: () => import('./pages/dashboard/admin/admin.routes').then((r) => r.adminDashboardRoutes),
+      },
+      {
+        path: '**',
+        loadComponent: () => import('./pages/dashboard/dashboard-fallback/dashboard-fallback').then((m) => m.DashboardFallback),
+      },
+    ],
+  },
+  {
+    path: 'about-us',
+    title: 'home.presentation.title',
+    loadComponent: () => import('./pages/about-us/about-us').then((p) => p.AboutUsPage),
   },
   {
     path: 'video-call-test',
@@ -26,9 +57,9 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/affiliation/affiliation').then((p) => p.AffiliationPage),
   },
   {
-    path: 'espace-professionnel',
+    path: 'pro-why-join-us',
     title: 'pro.meta.title',
-    loadComponent: () => import('./pages/professionnels/professionnels').then((p) => p.ProfessionnelsPageComponent),
+    loadComponent: () => import('./pages/pro-why-join-us/pro-why-join-us').then((p) => p.ProWhyJoinUsPageComponent),
   },
   {
     path: 'seo-batiment',
@@ -83,8 +114,9 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/city/city').then((c) => c.CityPage),
   },
   {
-    path: 'search-pro-results',
-    loadComponent: () => import('./pages/search-pro-results/search-pro-results').then((p) => p.SearchProResultsPage),
+    path: 'search-pro',
+    title: 'search.pageTitle',
+    loadComponent: () => import('./pages/search-pro/search-pro').then((p) => p.SearchProPage),
   },
   {
     path: 'blog',

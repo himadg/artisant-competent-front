@@ -8,7 +8,7 @@
                 <div class="overflow-hidden mx-auto w-40 h-40 rounded-full border">
                     <img
                         [src]="trade.image"
-                        [alt]="trade.name"
+                        [alt]="'jobs.list.' + trade.i18nKey + '.name' | transloco"
                         class="object-cover w-full h-full"
                         loading="lazy"
                     />
