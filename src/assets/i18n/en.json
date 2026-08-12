@@ -460,6 +460,14 @@
     "back": "Back",
     "today": "Today"
   },
+  "call": {
+    "waitingStatus": "Calling…",
+    "muteMic": "Mute microphone",
+    "unmuteMic": "Unmute microphone",
+    "disableCamera": "Turn off camera",
+    "enableCamera": "Turn on camera",
+    "hangup": "Hang up"
+  },
   "docModal": {
     "defaultTitle": "Document preview",
     "defaultAlt": "Preview",
@@ -3547,6 +3555,14 @@
       "send": "Send",
       "demandLabel": "Demand",
       "attach": "Attach a file",
+      "videoCall": "Video call",
+      "voiceCall": "Voice call",
+      "incomingVideoCall": "{{ name }} is calling you (video)…",
+      "incomingVoiceCall": "{{ name }} is calling you…",
+      "acceptCall": "Accept call",
+      "declineCall": "Decline call",
+      "callDeclined": "The call was declined.",
+      "callInviteError": "Could not start the call.",
       "actions": {
         "title": "Actions",
         "decline": "Decline the offer",

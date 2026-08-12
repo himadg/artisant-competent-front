@@ -52,6 +52,8 @@ export class ConversationView {
   readonly openDemand = output<string>();
   readonly sendAttachment = output<File>();
   readonly loadMore = output<void>();
+  readonly startVideoCall = output<void>();
+  readonly startVoiceCall = output<void>();
 
   readonly messagesContainer = viewChild<ElementRef<HTMLDivElement>>('messagesContainer');
   readonly oldestSentinel = viewChild<ElementRef<HTMLDivElement>>('oldestSentinel');

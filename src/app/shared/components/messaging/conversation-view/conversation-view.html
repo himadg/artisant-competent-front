@@ -18,6 +18,14 @@
             }
         </div>
 
+        <button type="button" class="chat-actions-btn" (click)="startVoiceCall.emit()" [attr.aria-label]="'dashboard.messages.voiceCall' | transloco">
+            <iconify-icon icon="lucide:phone"></iconify-icon>
+        </button>
+
+        <button type="button" class="chat-actions-btn" (click)="startVideoCall.emit()" [attr.aria-label]="'dashboard.messages.videoCall' | transloco">
+            <iconify-icon icon="lucide:video"></iconify-icon>
+        </button>
+
         <div class="chat-actions">
             <button type="button" class="chat-actions-btn" (click)="toggleActionsMenu()" [attr.aria-label]="'dashboard.messages.actions.title' | transloco">
                 <iconify-icon icon="lucide:more-vertical"></iconify-icon>

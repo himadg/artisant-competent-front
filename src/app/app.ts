@@ -6,13 +6,14 @@ import { PrelaunchBanner } from './core/layout/prelaunch-banner/prelaunch-banner
 import { Header } from './core/layout/header/header';
 import { Footer } from './core/layout/footer/footer';
 import { Toast } from './shared/components/toast/toast';
+import { CallOverlay } from './shared/components/call-overlay/call-overlay';
 import { filter, map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, TranslocoModule, AnnouncementBanner, PrelaunchBanner, Header, Footer, Toast],
+  imports: [RouterOutlet, TranslocoModule, AnnouncementBanner, PrelaunchBanner, Header, Footer, Toast, CallOverlay],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.html',
   styleUrl: './app.scss',
