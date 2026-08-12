@@ -460,6 +460,14 @@
     "back": "Retour",
     "today": "Aujourd'hui"
   },
+  "call": {
+    "waitingStatus": "Appel en cours…",
+    "muteMic": "Couper le micro",
+    "unmuteMic": "Activer le micro",
+    "disableCamera": "Couper la caméra",
+    "enableCamera": "Activer la caméra",
+    "hangup": "Raccrocher"
+  },
   "docModal": {
     "defaultTitle": "Aperçu du document",
     "defaultAlt": "Aperçu",
@@ -3547,6 +3555,14 @@
       "send": "Envoyer",
       "demandLabel": "Demande",
       "attach": "Joindre un fichier",
+      "videoCall": "Appel vidéo",
+      "voiceCall": "Appel vocal",
+      "incomingVideoCall": "{{ name }} vous appelle en visio…",
+      "incomingVoiceCall": "{{ name }} vous appelle…",
+      "acceptCall": "Accepter l'appel",
+      "declineCall": "Refuser l'appel",
+      "callDeclined": "L'appel a été refusé.",
+      "callInviteError": "Impossible de démarrer l'appel.",
       "actions": {
         "title": "Actions",
         "decline": "Décliner l'offre",

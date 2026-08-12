@@ -4,7 +4,10 @@ import { TranslocoModule } from '@jsverse/transloco';
 import { ConversationList } from './conversation-list/conversation-list';
 import { ConversationView } from './conversation-view/conversation-view';
 import { ConversationMessage } from '../../interfaces/conversation';
+import { CallType } from '../../interfaces/call';
 import { ChatService } from '../../../core/services/chat.service';
+import { CallService } from '../../../core/services/call.service';
+import { FlashMessageService } from '../../../core/services/flash-message.service';
 
 const MESSAGES_PAGE_SIZE = 50;
 
@@ -18,6 +21,8 @@ const MESSAGES_PAGE_SIZE = 50;
 })
 export class Messaging {
   private readonly chatService = inject(ChatService);
+  private readonly callService = inject(CallService);
+  private readonly flashMessage = inject(FlashMessageService);
 
   /** Permet à un appelant externe (ex: bouton "envoyer un message" sur une demande) de préselectionner une conversation. */
   readonly initialConversationId = input<string | null>(null);
@@ -130,5 +135,20 @@ export class Messaging {
 
     const message = await this.chatService.sendAttachment(conversationId, file);
     this.messages.update((list) => (list.some((m) => m.id === message.id) ? list : [...list, message]));
+  }
+
+  async onStartCall(callType: CallType): Promise<void> {
+    const conversationId = this.selectedConversationId();
+    const conversation = this.selectedConversation();
+    if (!conversationId || !conversation) return;
+
+    try {
+      await this.callService.startCall(conversationId, callType, {
+        name: `${conversation.otherParticipant.firstName} ${conversation.otherParticipant.lastName}`,
+        photoUrl: conversation.otherParticipant.photoUrl,
+      });
+    } catch {
+      this.flashMessage.set({ type: 'error', key: 'dashboard.messages.callInviteError' });
+    }
   }
 }

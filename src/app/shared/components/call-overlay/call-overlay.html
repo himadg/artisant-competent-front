@@ -1,0 +1,26 @@
+@if (callService.incomingCall(); as call) {
+    <div class="incoming-call-banner">
+        <user-avatar [photoUrl]="call.fromPhotoUrl" [alt]="call.fromName" style="--avatar-size: 2.5rem" />
+        <span class="incoming-call-text">
+            {{ (call.callType === 'VIDEO' ? 'dashboard.messages.incomingVideoCall' : 'dashboard.messages.incomingVoiceCall') | transloco: { name: call.fromName } }}
+        </span>
+        <button type="button" class="incoming-call-btn incoming-call-btn--accept" (click)="accept()" [attr.aria-label]="'dashboard.messages.acceptCall' | transloco">
+            <iconify-icon icon="lucide:phone"></iconify-icon>
+        </button>
+        <button type="button" class="incoming-call-btn incoming-call-btn--decline" (click)="decline()" [attr.aria-label]="'dashboard.messages.declineCall' | transloco">
+            <iconify-icon icon="lucide:phone-off"></iconify-icon>
+        </button>
+    </div>
+}
+
+@if (callService.activeCall(); as call) {
+    <div class="call-overlay-backdrop">
+        <video-call
+            [roomId]="call.roomId"
+            [audioOnly]="call.callType === 'AUDIO'"
+            [peerName]="call.peerName"
+            [peerPhotoUrl]="call.peerPhotoUrl"
+            (hangup)="end($event)"
+        />
+    </div>
+}

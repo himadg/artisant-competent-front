@@ -3,17 +3,44 @@
     <p class="call-error">{{ error }}</p>
   }
 
-  <div class="call-videos">
-    <video #localVideo class="call-video call-video--local" autoplay playsinline muted></video>
+  @if (!hasRemote()) {
+    <div class="call-waiting">
+      <user-avatar [photoUrl]="peerPhotoUrl()" [alt]="peerName()" style="--avatar-size: 6rem" />
+      <p class="call-waiting-name">{{ peerName() }}</p>
+      <p class="call-waiting-status">{{ 'call.waitingStatus' | transloco }}</p>
+    </div>
+  } @else {
+    <div class="call-videos" [class.call-videos--single]="callService.remoteParticipants().length === 1">
+      @for (participant of callService.remoteParticipants(); track participant.socketId) {
+        <video class="call-video call-video--remote" [streamSource]="participant.stream" autoplay playsinline></video>
+      }
+    </div>
+    <div class="call-duration">{{ elapsedLabel() }}</div>
+  }
 
-    @for (participant of callService.remoteParticipants(); track participant.socketId) {
-      <video class="call-video" [streamSource]="participant.stream" autoplay playsinline></video>
-    }
-  </div>
+  <video #localVideo class="call-video call-video--local" [hidden]="!cameraEnabled" autoplay playsinline muted></video>
 
   <div class="call-controls">
-    <button type="button" (click)="toggleMic()">{{ micEnabled ? 'Couper le micro' : 'Activer le micro' }}</button>
-    <button type="button" (click)="toggleCamera()">{{ cameraEnabled ? 'Couper la caméra' : 'Activer la caméra' }}</button>
-    <button type="button" class="call-controls__hangup" (click)="hangUp()">Raccrocher</button>
+    <button
+      type="button"
+      class="call-controls__btn"
+      [class.call-controls__btn--off]="!micEnabled"
+      (click)="toggleMic()"
+      [attr.aria-label]="(micEnabled ? 'call.muteMic' : 'call.unmuteMic') | transloco"
+    >
+      <iconify-icon [icon]="micEnabled ? 'lucide:mic' : 'lucide:mic-off'"></iconify-icon>
+    </button>
+    <button
+      type="button"
+      class="call-controls__btn"
+      [class.call-controls__btn--off]="!cameraEnabled"
+      (click)="toggleCamera()"
+      [attr.aria-label]="(cameraEnabled ? 'call.disableCamera' : 'call.enableCamera') | transloco"
+    >
+      <iconify-icon [icon]="cameraEnabled ? 'lucide:video' : 'lucide:video-off'"></iconify-icon>
+    </button>
+    <button type="button" class="call-controls__btn call-controls__btn--hangup" (click)="hangUp()" [attr.aria-label]="'call.hangup' | transloco">
+      <iconify-icon icon="lucide:phone-off"></iconify-icon>
+    </button>
   </div>
 </div>
