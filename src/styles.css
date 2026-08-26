@@ -294,6 +294,53 @@ select option {
   margin: 0 0 0.75rem;
 }
 
+/* ── Contenu légal injecté via [innerHTML] (CGU, Politique d'annulation) ── */
+.legal-prose {
+  line-height: 1.7;
+}
+
+.legal-prose h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.4rem;
+  font-family: 'Montserrat', 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.legal-prose h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  font-family: 'Montserrat', 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.legal-prose p {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.legal-prose ul {
+  font-size: 0.875rem;
+  margin: 0.25rem 0 0.75rem;
+  padding-left: 1.5rem;
+  list-style: disc;
+}
+
+.legal-prose li {
+  margin-bottom: 0.25rem;
+}
+
+.legal-prose li:last-child {
+  margin-bottom: 0;
+}
+
+.legal-prose strong {
+  font-weight: 600;
+}
+
+/* ────────────────────────────────────────────────────────── */
+
 .protection-body h3 {
   margin: 1.75rem 0 0.5rem;
   font-size: 1.125rem;
