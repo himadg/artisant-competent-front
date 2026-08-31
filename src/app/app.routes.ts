@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './core/guards/auth.guard';
+import { dashboardGuard } from './core/guards/auth.guard';
 import { roleMatch } from './core/guards/role-match.guard';
 
 export const routes: Routes = [
@@ -17,7 +17,7 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    canActivate: [authGuard],
+    canActivate: [dashboardGuard],
     data: { showHeader: false, showFooter: false },
     children: [
       {

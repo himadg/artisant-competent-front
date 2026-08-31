@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { User } from '../../shared/interfaces/user';
+import { AuthUser } from '../../shared/interfaces/user';
 
 /** Marge prise avant l'expiration réelle du token pour déclencher le renouvellement proactif. */
 const PROACTIVE_REFRESH_MARGIN_MS = 60_000;
@@ -11,7 +11,7 @@ const PROACTIVE_REFRESH_MARGIN_MS = 60_000;
 function decodeJwtExpiryMs(token: string): number | null {
   try {
     const payload = token.split('.')[1];
-    const json = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
+    const json = JSON.parse(atob(payload.replaceAll('-', '+').replaceAll('_', '/')));
     return typeof json.exp === 'number' ? json.exp * 1000 : null;
   } catch {
     return null;
@@ -24,7 +24,7 @@ export class AuthService {
   private readonly router = inject(Router);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
-  private readonly _currentUser = signal<User | null>(null);
+  private readonly _currentUser = signal<AuthUser | null>(null);
   private _accessToken: string | null = null;
   private refreshTimer: ReturnType<typeof setTimeout> | null = null;
   /** Déduplique les refresh concurrents (ex: plusieurs requêtes en 401 en même temps) : un seul
@@ -44,7 +44,7 @@ export class AuthService {
 
   async login(email: string, password: string): Promise<void> {
     const { accessToken, user } = await firstValueFrom(
-      this.http.post<{ accessToken: string; user: User }>('/auth/login', { email, password }),
+      this.http.post<{ accessToken: string; user: AuthUser }>('/auth/login', { email, password }),
     );
     this._accessToken = accessToken;
     this._currentUser.set(user);
@@ -63,7 +63,7 @@ export class AuthService {
     try {
       const options = cookieHeader ? { headers: { Cookie: cookieHeader } } : {};
       const { accessToken, user } = await firstValueFrom(
-        this.http.post<{ accessToken: string; user: User }>('/auth/refresh', {}, options),
+        this.http.post<{ accessToken: string; user: AuthUser }>('/auth/refresh', {}, options),
       );
       this._accessToken = accessToken;
       this._currentUser.set(user);
@@ -86,7 +86,7 @@ export class AuthService {
   private async performRefresh(): Promise<string | null> {
     try {
       const { accessToken, user } = await firstValueFrom(
-        this.http.post<{ accessToken: string; user: User }>('/auth/refresh', {}),
+        this.http.post<{ accessToken: string; user: AuthUser }>('/auth/refresh', {}),
       );
       this._accessToken = accessToken;
       this._currentUser.set(user);
@@ -101,13 +101,13 @@ export class AuthService {
     }
   }
 
-  setSession(accessToken: string, user: User): void {
+  setSession(accessToken: string, user: AuthUser): void {
     this._accessToken = accessToken;
     this._currentUser.set(user);
     this.scheduleProactiveRefresh(accessToken);
   }
 
-  setUser(user: User): void {
+  setUser(user: AuthUser): void {
     this._currentUser.set(user);
   }
 

@@ -158,7 +158,7 @@
                     }
                 </ul>
 
-                @if (canSendMessage(demand) && demand.status !== 'CANCELLED') {
+                @if (canProSendMessage(demand) && demand.status !== 'CANCELLED') {
                     <button
                         type="button"
                         class="detail-message-btn"

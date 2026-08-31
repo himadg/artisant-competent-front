@@ -4,7 +4,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { AdminApiService } from '../../../core/services/admin-api.service';
-import { PendingUser } from '../../../shared/interfaces/pending-user';
+import { PendingUser } from '../../../shared/interfaces/user';
 import { AuthService } from '../../../core/services/auth.service';
 import { LocalizedDatePipe } from '../../../shared/pipes/localized-date.pipe';
 

@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from '../../shared/interfaces/user';
+import { AuthUser } from '../../shared/interfaces/user';
 
 type OpeningHoursUpdate = {
   days: { day: string; closed: boolean; intervals: { start: string; end: string }[] }[];
@@ -14,8 +14,8 @@ export class UserApiService {
   registerIndividual(
     payload: Record<string, unknown>,
     captchaToken: string,
-  ): Observable<{ userId: string; profileId: string; accessToken: string; user: User }> {
-    return this.http.post<{ userId: string; profileId: string; accessToken: string; user: User }>('/individuals', payload, {
+  ): Observable<{ userId: string; profileId: string; accessToken: string; user: AuthUser }> {
+    return this.http.post<{ userId: string; profileId: string; accessToken: string; user: AuthUser }>('/individuals', payload, {
       headers: { 'x-turnstile-token': captchaToken },
     });
   }
@@ -69,14 +69,14 @@ export class UserApiService {
   registerProfessional(
     payload: Record<string, unknown>,
     captchaToken: string,
-  ): Observable<{ userId: string; profileId: string; accessToken: string; user: User; mailSent: boolean }> {
-    return this.http.post<{ userId: string; profileId: string; accessToken: string; user: User; mailSent: boolean }>('/professionals', payload, {
+  ): Observable<{ userId: string; profileId: string; accessToken: string; user: AuthUser }> {
+    return this.http.post<{ userId: string; profileId: string; accessToken: string; user: AuthUser }>('/professionals', payload, {
       headers: { 'x-turnstile-token': captchaToken },
     });
   }
 
-  createProfessionalDocuments(userId: string, formData: FormData): Observable<void> {
-    return this.http.patch<void>(`/professionals/${userId}/documents`, formData);
+  createProfessionalDocuments(userId: string, formData: FormData): Observable<{ mailSent: boolean }> {
+    return this.http.patch<{ mailSent: boolean }>(`/professionals/${userId}/documents`, formData);
   }
 
   getAllTrades(): Observable<{ id: string; name: string }[]> {

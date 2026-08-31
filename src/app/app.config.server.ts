@@ -5,7 +5,7 @@ import { serverRoutes } from './app.routes.server';
 import { AppConfigService } from './core/services/app-config.service';
 import { AuthService } from './core/services/auth.service';
 import { USER_STATE_KEY, ACCESS_TOKEN_STATE_KEY } from './core/state/auth-transfer';
-import { User } from './shared/interfaces/user';
+import { AuthUser } from './shared/interfaces/user';
 
 const serverConfig: ApplicationConfig = {
   providers: [
@@ -30,7 +30,7 @@ const serverConfig: ApplicationConfig = {
             body: '{}',
           });
           if (res.ok) {
-            const { accessToken, user } = await res.json() as { accessToken: string; user: User };
+            const { accessToken, user } = await res.json() as { accessToken: string; user: AuthUser };
             auth.setSession(accessToken, user);
           }
         } catch { /* backend injoignable ou token expiré, on laisse l'user non connecté */ }

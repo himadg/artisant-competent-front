@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PendingUser } from '../../shared/interfaces/pending-user';
+import { PendingUser } from '../../shared/interfaces/user';
 
 @Injectable({ providedIn: 'root' })
 export class AdminApiService {

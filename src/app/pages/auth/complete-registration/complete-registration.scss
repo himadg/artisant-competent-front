@@ -1,0 +1,147 @@
+.page {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.card {
+  width: 100%;
+  max-width: 40rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.logout-btn {
+  flex-shrink: 0;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  background: none;
+  color: var(--color);
+  opacity: 0.75;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.intro {
+  color: var(--color);
+  opacity: 0.8;
+}
+
+.doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.75rem;
+}
+
+.doc-slot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.35rem;
+  height: 9rem;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  cursor: pointer;
+
+  &.force-invalid {
+    border-color: #ef4444;
+  }
+
+  .hidden-input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .doc-slot-label {
+    font-size: 0.85rem;
+  }
+
+  .doc-slot-preview {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+
+    iconify-icon {
+      font-size: 2.5rem;
+    }
+  }
+
+  .doc-slot-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .doc-slot-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    background: rgb(0 0 0 / 40%);
+    color: #fff;
+    font-size: 0.75rem;
+  }
+
+  .doc-slot-preview:hover .doc-slot-overlay {
+    opacity: 1;
+  }
+
+  .file-name {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.submit-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  background: var(--primary-water-green);
+  color: var(--primary-beige);
+  font-weight: 600;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}

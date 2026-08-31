@@ -10,6 +10,11 @@
     "banner": "Plateforme en pré-lancement · Les inscriptions sont ouvertes. Toutes les autres fonctionnalités seront disponibles à partir du 15 Octobre 2026.",
     "bannerAriaLabel": "Annonce pré-lancement"
   },
+  "completeRegistration": {
+    "title": "Finalisez votre inscription",
+    "intro": "Votre compte a bien été créé, mais l'envoi de vos documents n'a pas abouti. Merci de les renvoyer ci-dessous pour que votre dossier puisse être examiné.",
+    "submit": "Envoyer mes documents"
+  },
   "home": {
     "meta": {
       "title": "Artisan Compétent | Vos travaux encadrés de A à Z. Finis les arnaques !",
@@ -2529,6 +2534,7 @@
     },
     "addLogo": "Ajouter un logo",
     "addRib": "Ajouter un RIB",
+    "confirmDeleteFile": "Supprimer le fichier ?",
     "onCall": "Je suis d'astreinte (24h/24 et 7j/7)",
     "requiredFieldsNotice": "Tous les champs obligatoires sont marqués d'un *",
     "goodPracticesBtn": "Mode d'emploi - Consulter les bonnes pratiques",
@@ -2586,6 +2592,8 @@
       "decennialInsuranceIncomplete": "L'assurance décennale est partiellement renseignée. Veuillez compléter tous les champs (document, nom, numéro, date d'expiration).",
       "diplomaRequired": "Veuillez ajouter au moins un diplôme ou justificatif.",
       "diplomaMissingFile": "Veuillez joindre un fichier pour ce document.",
+      "diplomaMissingName": "Veuillez renseigner le nom du document.",
+      "diplomaMissingExpiry": "Veuillez renseigner la date d'expiration du document.",
       "diplomaIncomplete": "Veuillez renseigner le nom et la date d'expiration du document.",
       "diplomaExpiryPast": "La date d'expiration ne peut pas être antérieure à aujourd'hui.",
       "birthDateFuture": "La date de naissance ne peut pas être dans le futur.",
@@ -3882,7 +3890,18 @@
     "server": "Une erreur est survenue côté serveur. Veuillez réessayer.",
     "unknown": "Une erreur inattendue est survenue. Veuillez réessayer.",
     "invalidImageFormat": "Format invalide. Seuls les fichiers JPEG, PNG et WebP sont acceptés.",
-    "invalidDocumentFormat": "Format invalide. Seuls les fichiers JPEG, PNG, WebP et PDF sont acceptés."
+    "invalidDocumentFormat": "Format invalide. Seuls les fichiers JPEG, PNG, WebP et PDF sont acceptés.",
+    "documentsUploadFailed": "Votre compte a été créé, mais l'envoi de vos documents a échoué. Vous pouvez réessayer ci-dessous.",
+    "documentsRetryFailed": "L'envoi a de nouveau échoué. Vérifiez votre connexion et réessayez dans quelques instants.",
+    "documentFieldFailed": "L'envoi de \"{{ field }}\" a échoué. Vérifiez ce fichier et réessayez.",
+    "documentFields": {
+      "photo": "Photo de profil",
+      "idFront": "Carte d'identité (recto)",
+      "idBack": "Carte d'identité (verso)",
+      "logo": "Logo de l'entreprise",
+      "rib": "RIB",
+      "diplomas": "Diplômes / justificatifs"
+    }
   },
   "notifications": {
     "title": "Notifications",

@@ -21,3 +21,29 @@ export interface User {
   address: Address;
   professionalProfile?: { id: string } | null;
 }
+
+// Utilisateur connecté (AuthService.currentUser) : forme minimale, identité + autorisation
+// seulement — jamais les données métier complètes (nom, adresse...), chargées à la demande
+// via les endpoints dashboard dédiés (IndividualDashboardData / ProfessionalDashboardData).
+export type UserStatus = 'INCOMPLETE' | 'PENDING_VALIDATION' | 'ACTIVE' | 'REJECTED';
+
+export interface AuthUser {
+  id: string;
+  email: string;
+  status: UserStatus;
+  role: { code: RoleType };
+  professionalProfile?: { id: string } | null;
+}
+
+export interface PendingUser {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  createdAt: string;
+  role: { code: string };
+  professionalProfile?: {
+    companyName: string;
+    workAddress: { city: string; postalCode: number };
+  };
+}
