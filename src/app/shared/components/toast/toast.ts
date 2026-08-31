@@ -28,7 +28,7 @@ export class Toast implements OnDestroy {
     effect(() => {
       if (this.flash.message()) {
         if (this.timer) clearTimeout(this.timer);
-        this.timer = setTimeout(() => this.dismiss(), 5000);
+        this.timer = setTimeout(() => this.dismiss(), 10000); // 10 seconds
       }
     });
   }

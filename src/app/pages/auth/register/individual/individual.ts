@@ -10,13 +10,13 @@ import { LegalModal } from '../../../../shared/components/legal-modal/legal-moda
 import { AppConfigService } from '../../../../core/services/app-config.service';
 import { UserApiService } from '../../../../core/services/user-api.service';
 import { AuthService } from '../../../../core/services/auth.service';
-import { User } from '../../../../shared/interfaces/user';
+import { AuthUser } from '../../../../shared/interfaces/user';
 import { Router } from '@angular/router';
 import { capitalize, evaluatePasswordCriteria, getAffiliateCode, clearAffiliateCode } from '../../../../core/utils/common-utils';
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
 import { NAME_REGEXP, PASSWORD_STRONG_REGEXP, PHONE_FR_REGEXP, POSTAL_CODE_REGEXP, STREET_NUMBER_REGEXP } from '../../../../core/utils/regexp';
 import { pastDateValidator } from '../../../../core/utils/validators';
-import { ALLOWED_IMAGE_TYPES } from '../../../../core/utils/file-types';
+import { ALLOWED_IMAGE_TYPES, isFileTypeAllowed } from '../../../../core/utils/file-types';
 
 @Component({
   selector: 'register-individual',
@@ -190,11 +190,11 @@ export class RegisterIndividual implements OnDestroy {
   }
 
   // --- Photo ---
-  addPhoto(event: Event) {
+  async addPhoto(event: Event) {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0] ?? null;
     input.value = '';
-    if (file && !ALLOWED_IMAGE_TYPES.has(file.type)) {
+    if (file && !(await isFileTypeAllowed(file, ALLOWED_IMAGE_TYPES))) {
       this.flashMessage.set({ type: 'error', key: 'errors.invalidImageFormat' });
       return;
     }
@@ -253,7 +253,8 @@ export class RegisterIndividual implements OnDestroy {
     };
 
     let registeredAccessToken = '';
-    let registeredUser!: User;
+    let registeredUser!: AuthUser;
+    let accountCreated = false;
 
     this.submitting.set(true);
     this.userApi
@@ -262,6 +263,7 @@ export class RegisterIndividual implements OnDestroy {
         switchMap(({ userId, accessToken, user, profileId: _profileId }) => {
           registeredAccessToken = accessToken;
           registeredUser = user;
+          accountCreated = true;
           this.authService.setTempToken(accessToken);
           clearAffiliateCode();
           if (!photo) return this.userApi.createIndividualDocuments(userId, new FormData());
@@ -279,6 +281,17 @@ export class RegisterIndividual implements OnDestroy {
         },
         error: (err) => {
           this.submitting.set(false);
+
+          if (accountCreated) {
+            // Le compte a déjà été créé côté serveur (étape 1 réussie) ; seul l'envoi de la photo
+            // (étape 2) a échoué. Pas de rollback possible depuis le front : on connecte quand
+            // même l'utilisateur plutôt que de le laisser bloqué devant le formulaire.
+            this.authService.setSession(registeredAccessToken, registeredUser);
+            this.flashMessage.set({ type: 'warning', key: 'errors.documentsUploadFailed' });
+            this.router.navigate(['/dashboard']);
+            return;
+          }
+
           const msg = (err?.error?.message ?? '') as string;
           if (msg === 'INVALID_REFERRAL_CODE') {
             this.referralCodeError.set(true);

@@ -15,6 +15,9 @@ export class AppConfigService {
       };
       return;
     }
+    // Fetch réseau plutôt que TransferState : fonctionne peu importe le mode de rendu de la route
+    // (SSR, prérendu, ou 100% client comme /auth/** et /dashboard/**), contrairement à TransferState
+    // qui ne se remplit que pendant un vrai rendu serveur.
     await fetch('/assets/config/config.json')
       .then(res => res.json())
       .then(cfg => { this.config = cfg; });

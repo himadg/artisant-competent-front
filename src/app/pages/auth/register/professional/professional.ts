@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, FormBuilder, FormControl, Validators, FormArray, AbstractControl } from '@angular/forms';
-import { TranslocoModule } from '@jsverse/transloco';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { isBefore, parseISO, startOfDay } from 'date-fns';
 import { Subject, switchMap, debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs';
 import {
@@ -38,7 +38,7 @@ import { LegalModal } from '../../../../shared/components/legal-modal/legal-moda
 import { Router } from '@angular/router';
 import { UserApiService } from '../../../../core/services/user-api.service';
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
-import { ALLOWED_IMAGE_TYPES, ALLOWED_DOCUMENT_TYPES, DocTarget, IMAGE_ONLY_TARGETS } from '../../../../core/utils/file-types';
+import { ALLOWED_IMAGE_TYPES, ALLOWED_DOCUMENT_TYPES, DocTarget, IMAGE_ONLY_TARGETS, isFileTypeAllowed } from '../../../../core/utils/file-types';
 import { GeocodingService } from '../../../../core/services/geocoding.service';
 import { AddressSuggestion } from '../../../../shared/interfaces/address-suggestion';
 import { SiretService } from '../../../../core/services/siret.service';
@@ -53,7 +53,7 @@ import {
 } from '../../../../core/utils/regexp';
 import { AppConfigService } from '../../../../core/services/app-config.service';
 import { AuthService } from '../../../../core/services/auth.service';
-import { User } from '../../../../shared/interfaces/user';
+import { AuthUser } from '../../../../shared/interfaces/user';
 import { DiplomaEntry } from '../../../../shared/interfaces/diploma-entry';
 
 @Component({
@@ -74,6 +74,7 @@ export class RegisterProfessional implements OnDestroy {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly flashMessage = inject(FlashMessageService);
+  private readonly transloco = inject(TranslocoService);
   private readonly destroy$ = new Subject<void>();
 
   readonly step = signal<1 | 2>(1);
@@ -96,6 +97,11 @@ export class RegisterProfessional implements OnDestroy {
   ]);
   readonly diplomaTouched = signal(false);
   readonly hoursTouched = signal(false);
+
+  // Indices des lignes de diplôme dont l'utilisateur a quitté le focus au moins une fois (ou
+  // toutes, après une tentative d'envoi) — n'affiche les erreurs d'une ligne qu'une fois qu'on l'a
+  // quittée, pas en continu pendant la saisie.
+  readonly touchedDiplomaRows = signal<Set<number>>(new Set());
 
   readonly diplomaEntryErrors = computed(() =>
     this.diplomaFiles().map((d) => {
@@ -354,6 +360,7 @@ export class RegisterProfessional implements OnDestroy {
 
   nextStep() {
     this.diplomaTouched.set(true);
+    this.touchedDiplomaRows.update(() => new Set(this.diplomaFiles().map((_, i) => i)));
     this.step1ControlPaths.forEach((path) => this.form.get(path)?.markAllAsTouched());
     this.form.get('professionalProfile')?.markAsTouched();
 
@@ -523,7 +530,7 @@ export class RegisterProfessional implements OnDestroy {
     else if (target === 'rib') this.ribName.set(name);
   }
 
-  addFile(target: DocTarget, e: Event) {
+  async addFile(target: DocTarget, e: Event) {
     const input = e.target as HTMLInputElement;
     const file = input.files?.[0] ?? null;
     if (!file) {
@@ -534,7 +541,7 @@ export class RegisterProfessional implements OnDestroy {
     }
 
     const allowedTypes = IMAGE_ONLY_TARGETS.has(target) ? ALLOWED_IMAGE_TYPES : ALLOWED_DOCUMENT_TYPES;
-    if (!allowedTypes.has(file.type)) {
+    if (!(await isFileTypeAllowed(file, allowedTypes))) {
       input.value = '';
       const key = IMAGE_ONLY_TARGETS.has(target) ? 'errors.invalidImageFormat' : 'errors.invalidDocumentFormat';
       this.flashMessage.set({ type: 'error', key });
@@ -553,7 +560,7 @@ export class RegisterProfessional implements OnDestroy {
   }
 
   removeFile(target: DocTarget) {
-    const ok = confirm('Supprimer le fichier ?');
+    const ok = confirm(this.transloco.translate('professional.confirmDeleteFile'));
     if (!ok) return;
     this.setPreview(target, null);
     this.setName(target, null);
@@ -571,6 +578,28 @@ export class RegisterProfessional implements OnDestroy {
   removeDiplomaSlot(index: number) {
     if (this.diplomaFiles().length < 2) return;
     this.diplomaFiles.update((list) => list.filter((_, i) => i !== index));
+    // Réindexation : les lignes après celle supprimée décalent d'un cran.
+    this.touchedDiplomaRows.update((rows) => {
+      const next = new Set<number>();
+      for (const i of rows) {
+        if (i < index) next.add(i);
+        else if (i > index) next.add(i - 1);
+      }
+      return next;
+    });
+  }
+
+  /** Marque la ligne comme "quittée" seulement quand le focus sort vraiment du groupe (nom + date +
+   * fichier), pas à chaque changement de champ à l'intérieur de la même ligne. */
+  onDiplomaRowBlur(index: number, event: FocusEvent) {
+    const row = event.currentTarget as HTMLElement;
+    const next = event.relatedTarget as Node | null;
+    if (next && row.contains(next)) return;
+    this.touchedDiplomaRows.update((rows) => new Set(rows).add(index));
+  }
+
+  isDiplomaRowTouched(index: number): boolean {
+    return this.touchedDiplomaRows().has(index);
   }
 
   updateDiplomaDocumentName(index: number, value: string) {
@@ -583,7 +612,7 @@ export class RegisterProfessional implements OnDestroy {
     this.diplomaFiles.update((list) => list.map((entry, i) => (i === index ? { ...entry, expiryDate: value } : entry)));
   }
 
-  onDiplomaFileChange(index: number, e: Event) {
+  async onDiplomaFileChange(index: number, e: Event) {
     const input = e.target as HTMLInputElement;
     const file = input.files?.[0] ?? null;
     if (!file) {
@@ -593,7 +622,7 @@ export class RegisterProfessional implements OnDestroy {
       return;
     }
 
-    if (!ALLOWED_DOCUMENT_TYPES.has(file.type)) {
+    if (!(await isFileTypeAllowed(file, ALLOWED_DOCUMENT_TYPES))) {
       input.value = '';
       this.flashMessage.set({ type: 'error', key: 'errors.invalidDocumentFormat' });
       return;
@@ -818,18 +847,18 @@ export class RegisterProfessional implements OnDestroy {
 
     const diplomaEntries = this.diplomaFiles().filter((d) => d.file !== null);
 
-    let mailSent = true;
     let registeredAccessToken = '';
-    let registeredUser!: User;
+    let registeredUser!: AuthUser;
+    let accountCreated = false;
 
     this.submitting.set(true);
     this.userApi
       .registerProfessional(payload, captchaToken)
       .pipe(
-        switchMap(({ userId, accessToken, user, mailSent: ms, profileId: _profileId }) => {
-          mailSent = ms;
+        switchMap(({ userId, accessToken, user, profileId: _profileId }) => {
           registeredAccessToken = accessToken;
           registeredUser = user;
+          accountCreated = true;
           this.authService.setTempToken(accessToken);
           clearAffiliateCode();
 
@@ -851,7 +880,7 @@ export class RegisterProfessional implements OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe({
-        next: () => {
+        next: ({ mailSent }) => {
           this.authService.setSession(registeredAccessToken, registeredUser);
           this.flashMessage.set({
             type: mailSent ? 'success' : 'warning',
@@ -861,6 +890,19 @@ export class RegisterProfessional implements OnDestroy {
         },
         error: (err) => {
           this.submitting.set(false);
+
+          if (accountCreated) {
+            // Le compte et le profil ont déjà été créés côté serveur (étape 1 réussie) ; seul
+            // l'envoi des documents (étape 2) a échoué. Pas de rollback possible depuis le front :
+            // on connecte l'utilisateur (statut INCOMPLETE) et on l'envoie sur l'écran de reprise
+            // dédié plutôt que de le laisser bloqué devant le formulaire ou lui donner un accès
+            // dashboard incomplet.
+            this.authService.setSession(registeredAccessToken, registeredUser);
+            this.flashMessage.set({ type: 'warning', key: 'errors.documentsUploadFailed' });
+            this.router.navigate(['/auth/complete-registration']);
+            return;
+          }
+
           const msg = (err?.error?.message ?? '') as string;
           if (msg === 'INVALID_REFERRAL_CODE') {
             this.referralCodeError.set(true);
