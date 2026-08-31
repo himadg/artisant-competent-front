@@ -1,0 +1,214 @@
+<div class="page">
+    <div class="card">
+        <div class="header-row">
+            <h1 class="title">{{ 'completeRegistration.title' | transloco }}</h1>
+            <button type="button" class="logout-btn" (click)="logout()">{{ 'auth.logout' | transloco }}</button>
+        </div>
+        <p class="intro">{{ 'completeRegistration.intro' | transloco }}</p>
+
+        <!-- Documents identité / logo / RIB -->
+        <div class="doc-grid">
+            <div class="doc-slot" [class.force-invalid]="touched() && !photoName()">
+                @if (photoPreview() === 'pdf') {
+                    <div class="doc-slot-preview" (click)="removeFile('photo')">
+                        <iconify-icon icon="vscode-icons:file-type-pdf2"></iconify-icon>
+                        <span class="file-name">{{ photoName() }}</span>
+                        <div class="doc-slot-overlay">{{ 'common.delete' | transloco }}</div>
+                    </div>
+                } @else if (photoPreview(); as preview) {
+                    <div class="doc-slot-preview" (click)="removeFile('photo')">
+                        <img [src]="preview" alt="" class="doc-slot-img" />
+                        <div class="doc-slot-overlay">{{ 'common.delete' | transloco }}</div>
+                    </div>
+                } @else {
+                    <span class="doc-slot-label">{{ 'professional.addPhoto' | transloco }} *</span>
+                    <input type="file" class="hidden-input" accept="image/*" (change)="addFile('photo', $event)" />
+                }
+            </div>
+            <div class="doc-slot" [class.force-invalid]="touched() && !idFrontName()">
+                @if (idFrontPreview() === 'pdf') {
+                    <div class="doc-slot-preview" (click)="removeFile('idFront')">
+                        <iconify-icon icon="vscode-icons:file-type-pdf2"></iconify-icon>
+                        <span class="file-name">{{ idFrontName() }}</span>
+                        <div class="doc-slot-overlay">{{ 'common.delete' | transloco }}</div>
+                    </div>
+                } @else if (idFrontPreview(); as preview) {
+                    <div class="doc-slot-preview" (click)="removeFile('idFront')">
+                        <img [src]="preview" alt="" class="doc-slot-img" />
+                        <div class="doc-slot-overlay">{{ 'common.delete' | transloco }}</div>
+                    </div>
+                } @else {
+                    <span class="doc-slot-label">{{ 'professional.addIdFront' | transloco }} *</span>
+                    <input type="file" class="hidden-input" accept="image/*,.pdf" (change)="addFile('idFront', $event)" />
+                }
+            </div>
+            <div class="doc-slot" [class.force-invalid]="touched() && !idBackName()">
+                @if (idBackPreview() === 'pdf') {
+                    <div class="doc-slot-preview" (click)="removeFile('idBack')">
+                        <iconify-icon icon="vscode-icons:file-type-pdf2"></iconify-icon>
+                        <span class="file-name">{{ idBackName() }}</span>
+                        <div class="doc-slot-overlay">{{ 'common.delete' | transloco }}</div>
+                    </div>
+                } @else if (idBackPreview(); as preview) {
+                    <div class="doc-slot-preview" (click)="removeFile('idBack')">
+                        <img [src]="preview" alt="" class="doc-slot-img" />
+                        <div class="doc-slot-overlay">{{ 'common.delete' | transloco }}</div>
+                    </div>
+                } @else {
+                    <span class="doc-slot-label">{{ 'professional.addIdBack' | transloco }} *</span>
+                    <input type="file" class="hidden-input" accept="image/*,.pdf" (change)="addFile('idBack', $event)" />
+                }
+            </div>
+            <div class="doc-slot" [class.force-invalid]="touched() && !logoName()">
+                @if (logoPreview() === 'pdf') {
+                    <div class="doc-slot-preview" (click)="removeFile('logo')">
+                        <iconify-icon icon="vscode-icons:file-type-pdf2"></iconify-icon>
+                        <span class="file-name">{{ logoName() }}</span>
+                        <div class="doc-slot-overlay">{{ 'common.delete' | transloco }}</div>
+                    </div>
+                } @else if (logoPreview(); as preview) {
+                    <div class="doc-slot-preview" (click)="removeFile('logo')">
+                        <img [src]="preview" alt="" class="doc-slot-img" />
+                        <div class="doc-slot-overlay">{{ 'common.delete' | transloco }}</div>
+                    </div>
+                } @else {
+                    <span class="doc-slot-label">{{ 'professional.addLogo' | transloco }} *</span>
+                    <input type="file" class="hidden-input" accept="image/*" (change)="addFile('logo', $event)" />
+                }
+            </div>
+            <div class="doc-slot" [class.force-invalid]="touched() && !ribName()">
+                @if (ribPreview() === 'pdf') {
+                    <div class="doc-slot-preview" (click)="removeFile('rib')">
+                        <iconify-icon icon="vscode-icons:file-type-pdf2"></iconify-icon>
+                        <span class="file-name">{{ ribName() }}</span>
+                        <div class="doc-slot-overlay">{{ 'common.delete' | transloco }}</div>
+                    </div>
+                } @else if (ribPreview(); as preview) {
+                    <div class="doc-slot-preview" (click)="removeFile('rib')">
+                        <img [src]="preview" alt="" class="doc-slot-img" />
+                        <div class="doc-slot-overlay">{{ 'common.delete' | transloco }}</div>
+                    </div>
+                } @else {
+                    <span class="doc-slot-label">{{ 'professional.addRib' | transloco }} *</span>
+                    <input type="file" class="hidden-input" accept="image/*,.pdf" (change)="addFile('rib', $event)" />
+                }
+            </div>
+        </div>
+
+        <!-- Diplômes / Documents obligatoires — même agencement que l'inscription pro -->
+        <div class="space-y-3">
+            <h3 class="font-bold text-[var(--primary-blue)]">{{ 'professional.documents.title' | transloco }}</h3>
+
+            <div class="rounded-lg border border-gray-200">
+                <!-- En-têtes (desktop uniquement) -->
+                <div class="hidden sm:grid items-center gap-2 bg-gray-50 rounded-tl-lg rounded-tr-lg border-b border-gray-200 px-3 py-2 text-[0.65rem] font-semibold uppercase tracking-wide text-gray-500"
+                     style="grid-template-columns: minmax(0,2fr) minmax(0,1fr) minmax(0,1fr) 1.75rem">
+                    <span>{{ 'professional.documents.colName' | transloco }} *</span>
+                    <span>{{ 'professional.documents.colExpiry' | transloco }} *</span>
+                    <span>{{ 'professional.documents.colFile' | transloco }} *</span>
+                    <span></span>
+                </div>
+
+                <!-- Lignes -->
+                @for (entry of diplomaFiles(); track $index) {
+                    <div
+                        class="relative flex flex-col gap-2 px-3 py-3 border-b border-[var(--border-color)] last:border-b-0 sm:grid sm:gap-x-2 sm:gap-y-1 sm:py-2"
+                        [class.bg-red-50]="isDiplomaRowTouched($index) && diplomaEntryErrors()[$index] !== null"
+                        style="grid-template-columns: minmax(0,2fr) minmax(0,1fr) minmax(0,1fr) 1.75rem; grid-template-rows: auto auto auto"
+                        (focusout)="onDiplomaRowBlur($index, $event)"
+                    >
+                        <!-- Textarea nom du document -->
+                        <div class="sm:[grid-column:1] sm:[grid-row:1/3] flex flex-col gap-1">
+                            <span class="sm:hidden py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-gray-500">{{ 'professional.documents.colName' | transloco }} *</span>
+                            <textarea
+                                rows="2"
+                                [value]="entry.documentName"
+                                (input)="updateDiplomaDocumentName($index, $any($event).target.value)"
+                                class="px-2 py-1.5 w-full h-full text-xs rounded border resize-none"
+                                [class.border-red-400]="isDiplomaRowTouched($index) && diplomaEntryErrors()[$index]?.missingName"
+                                [placeholder]="'professional.documents.namePlaceholder' | transloco"
+                            ></textarea>
+                        </div>
+
+                        <!-- Date d'expiration -->
+                        <div class="sm:[grid-column:2] sm:[grid-row:1] flex flex-col gap-1">
+                            <span class="sm:hidden py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-gray-500">{{ 'professional.documents.colExpiry' | transloco }} *</span>
+                            <input
+                                type="date"
+                                [value]="entry.expiryDate"
+                                [min]="today"
+                                (change)="updateDiplomaExpiry($index, $any($event).target.value)"
+                                class="px-2 py-2 w-full text-xs rounded border"
+                                [class.border-red-400]="isDiplomaRowTouched($index) && (diplomaEntryErrors()[$index]?.missingExpiry || diplomaEntryErrors()[$index]?.expiryPast)"
+                            />
+                        </div>
+
+                        <!-- Bouton fichier -->
+                        <div class="sm:[grid-column:3] sm:[grid-row:1] flex flex-col gap-1">
+                            <span class="sm:hidden py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-gray-500">{{ 'professional.documents.colFile' | transloco }} *</span>
+                            <label class="flex items-center justify-center gap-1 px-2 py-2 text-xs rounded border cursor-pointer hover:bg-gray-50 whitespace-nowrap"
+                                [class.border-red-400]="isDiplomaRowTouched($index) && diplomaEntryErrors()[$index]?.missingFile">
+                                {{ 'professional.documents.chooseFile' | transloco }}
+                                <input type="file" class="hidden" accept="image/*,.pdf" (change)="onDiplomaFileChange($index, $event)" />
+                            </label>
+                        </div>
+
+                        <!-- Nom du fichier -->
+                        <div class="flex items-baseline gap-1 min-w-0 sm:[grid-column:2/4] sm:[grid-row:2]">
+                            <span class="text-[0.65rem] text-gray-500 truncate">
+                                {{ entry.fileName ?? ('professional.documents.noFile' | transloco) }}
+                            </span>
+                            @if (entry.fileName) {
+                                <button type="button" class="text-red-400 hover:text-red-600 leading-none shrink-0" (click)="removeDiplomaFile($index)">×</button>
+                            }
+                        </div>
+
+                        <!-- Supprimer la ligne -->
+                        <button
+                            type="button"
+                            class="absolute top-3 right-3 flex justify-center items-center w-6 h-6 text-sm text-white rounded bg-red-400 hover:bg-red-600 shrink-0 sm:static sm:[grid-column:4] sm:[grid-row:1/3]"
+                            [class.invisible]="diplomaFiles().length < 2"
+                            (click)="removeDiplomaSlot($index)"
+                        >×</button>
+
+                        <!-- Erreurs par entrée -->
+                        @if (isDiplomaRowTouched($index) && diplomaEntryErrors()[$index]; as errs) {
+                            <div class="sm:[grid-column:1/5] sm:[grid-row:3] flex flex-col gap-0.5">
+                                @if (errs.missingFile) {
+                                    <p class="text-[0.65rem] text-red-500">{{ 'professional.errors.diplomaMissingFile' | transloco }}</p>
+                                }
+                                @if (errs.missingName) {
+                                    <p class="text-[0.65rem] text-red-500">{{ 'professional.errors.diplomaMissingName' | transloco }}</p>
+                                }
+                                @if (errs.missingExpiry) {
+                                    <p class="text-[0.65rem] text-red-500">{{ 'professional.errors.diplomaMissingExpiry' | transloco }}</p>
+                                }
+                                @if (errs.expiryPast) {
+                                    <p class="text-[0.65rem] text-red-500">{{ 'professional.errors.diplomaExpiryPast' | transloco }}</p>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+
+            <!-- Ajouter un document -->
+            <button
+                type="button"
+                class="inline-flex gap-2 items-center px-4 py-2 text-sm border rounded-lg border-gray-400 hover:border-gray-600 hover:bg-gray-50"
+                (click)="addDiplomaSlot()"
+            >
+                <span class="text-lg leading-none">+</span>
+                {{ 'professional.documents.addBtn' | transloco }}
+            </button>
+
+            @if (touched() && !diplomasValid()) {
+                <p class="text-xs text-red-500">{{ 'professional.errors.diplomaRequired' | transloco }}</p>
+            }
+        </div>
+
+        <button type="button" class="submit-btn" [disabled]="submitting()" (click)="submit()">
+            {{ (submitting() ? 'common.loading' : 'completeRegistration.submit') | transloco }}
+        </button>
+    </div>
+</div>

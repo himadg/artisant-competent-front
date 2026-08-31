@@ -12,7 +12,7 @@ import { InlineEditActions } from '../inline-edit-actions/inline-edit-actions';
 import { extractDocNameFromS3 } from '../../../core/utils/common-utils';
 import { LocalizedDatePipe } from '../../pipes/localized-date.pipe';
 import { FlashMessageService } from '../../../core/services/flash-message.service';
-import { ALLOWED_IMAGE_TYPES } from '../../../core/utils/file-types';
+import { ALLOWED_IMAGE_TYPES, isFileTypeAllowed } from '../../../core/utils/file-types';
 
 const MAX_PHOTOS = 3;
 
@@ -42,10 +42,10 @@ export class DemandDetailsModal {
   readonly startingConversation = signal(false);
 
   /** Le bouton "envoyer un message" n'a de sens que pour un pro faisant partie des destinataires de la demande. */
-  canSendMessage(demand: DemandDetail | undefined): boolean {
+  canProSendMessage(demand: DemandDetail | undefined): boolean {
     if (!demand || this.canEdit() || this.authService.currentUser()?.role?.code !== 'PROFESSIONAL') return false;
     const professionalProfileId = this.authService.currentUser()?.professionalProfile?.id;
-    return !!professionalProfileId && demand.professionals.some((p) => p.id === professionalProfileId);
+    return !!professionalProfileId && demand?.professionals.some((p) => p.id === professionalProfileId);
   }
 
   sendMessage(): void {
@@ -123,7 +123,7 @@ export class DemandDetailsModal {
     this.keptPhotoUrls.update((urls) => urls.filter((_, i) => i !== index));
   }
 
-  onAddPhotoFile(event: Event): void {
+  async onAddPhotoFile(event: Event): Promise<void> {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
     input.value = '';
@@ -133,7 +133,7 @@ export class DemandDetailsModal {
       this.flashMessage.set({ type: 'error', key: 'demand.detail.errorMaxPhotos' });
       return;
     }
-    if (!ALLOWED_IMAGE_TYPES.has(file.type)) {
+    if (!(await isFileTypeAllowed(file, ALLOWED_IMAGE_TYPES))) {
       this.flashMessage.set({ type: 'error', key: 'demand.modal.errorInvalidFormat' });
       return;
     }

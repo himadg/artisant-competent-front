@@ -1,74 +1,25 @@
 <!doctype html>
 <html lang="fr">
     <head>
-        <!-- Google Tag Manager -->
-        <script>
-            (function (w, d, s, l, i) {
-                w[l] = w[l] || [];
-                w[l].push({
-                    'gtm.start': new Date().now(),
-                    event: 'gtm.js',
-                });
-                var f = d.getElementsByTagName(s)[0],
-                    j = d.createElement(s),
-                    dl = l != 'dataLayer' ? '&l=' + l : '';
-                j.async = true;
-                j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-                f.parentNode.insertBefore(j, f);
-            })(window, document, 'script', 'dataLayer', 'GTM-WJNL9SHS');
-        </script>
-        <!-- End Google Tag Manager -->
         <meta charset="utf-8" />
         <title>Artisan Competent</title>
         <base href="/" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
         <meta
             http-equiv="Content-Security-Policy"
-            content="trusted-types default angular angular#unsafe-bypass cloudflare-turnstile iconify; require-trusted-types-for 'script'"
+            content="trusted-types default angular angular#unsafe-bypass cloudflare-turnstile iconify goog#html; require-trusted-types-for 'script'"
         />
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
-        <script>
-            if (window.trustedTypes && trustedTypes.createPolicy) {
-                trustedTypes.createPolicy('default', {
-                    createScriptURL(url) {
-                        const allowedOrigin = 'https://www.googletagmanager.com';
-                        if (new URL(url, location.href).origin === allowedOrigin) {
-                            return url;
-                        }
-                        throw new TypeError('Blocked script URL not allowed by default Trusted Types policy: ' + url);
-                    },
-                });
-            }
-        </script>
+        <script src="assets/scripts/trusted-types-policy.js"></script>
+        <!-- Google Tag Manager -->
+        <script src="assets/scripts/gtm-init.js"></script>
+        <!-- End Google Tag Manager -->
         <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async></script>
         <link rel="preload" as="image" href="assets/img/image-qui-defile-1.webp" fetchpriority="high" />
 
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-KT92099KBQ"></script>
-        <script>
-            globalThis.dataLayer = globalThis.dataLayer || [];
-            function gtag() {
-                globalThis.dataLayer.push(arguments);
-            }
-
-            gtag('js', new Date());
-            gtag('config', 'G-KT92099KBQ');
-            gtag('consent', 'default', {
-                ad_storage: 'denied',
-                ad_user_data: 'denied',
-                ad_personalization: 'denied',
-                analytics_storage: 'denied',
-            });
-
-            function allConsentGranted() {
-                gtag('consent', 'update', {
-                    ad_user_data: 'granted',
-                    ad_personalization: 'granted',
-                    ad_storage: 'granted',
-                    analytics_storage: 'granted',
-                });
-            }
-        </script>
+        <script src="assets/scripts/gtag-init.js"></script>
     </head>
 
     <body>

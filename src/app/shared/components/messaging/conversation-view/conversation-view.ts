@@ -20,7 +20,7 @@ import { UserAvatar } from '../../user-avatar/user-avatar';
 import { PreviewDocument } from '../../../interfaces/preview-document';
 import { LocalizedDatePipe } from '../../../pipes/localized-date.pipe';
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
-import { ALLOWED_DOCUMENT_TYPES } from '../../../../core/utils/file-types';
+import { ALLOWED_DOCUMENT_TYPES, isFileTypeAllowed } from '../../../../core/utils/file-types';
 import { LangService } from '../../../../core/services/lang.service';
 import { DATE_STYLE_COMPACT, formatLocalizedDate, formatLocalizedTime } from '../../../../core/utils/date-format';
 
@@ -141,12 +141,12 @@ export class ConversationView {
     this.docToPreview.set({ url: message.fileUrl, title: message.content });
   }
 
-  onAttachmentSelected(event: Event): void {
+  async onAttachmentSelected(event: Event): Promise<void> {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
     input.value = '';
     if (!file) return;
-    if (!ALLOWED_DOCUMENT_TYPES.has(file.type)) {
+    if (!(await isFileTypeAllowed(file, ALLOWED_DOCUMENT_TYPES))) {
       this.flashMessage.set({ type: 'error', key: 'dashboard.messages.invalidAttachment' });
       return;
     }

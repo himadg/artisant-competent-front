@@ -5,5 +5,6 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './cmod-formule.html',
+  styleUrl: './cmod-formule.scss',
 })
 export class CmodFormulePage {}

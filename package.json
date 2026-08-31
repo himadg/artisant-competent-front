@@ -9,10 +9,11 @@
     "dev:clean": "ng cache clean && ng serve --hmr",
     "watch": "ng build --watch --configuration development",
     "build": "ng build",
-    "build:staging": "node scripts/generate-config.js && ng build -c staging",
-    "build:prod": "node scripts/generate-config.js && ng build -c production",
+    "build:staging": "node scripts/generate-config.js && ng build -c staging && node scripts/csp-hashes.js",
+    "build:prod": "node scripts/generate-config.js && ng build -c production && node scripts/csp-hashes.js",
     "test": "ng test",
-    "ssr": "npm run build && node dist/artisan-competent/server/server.mjs"
+    "ssr": "npm run build && node dist/artisan-competent/server/server.mjs",
+    "update-csp": "ng build && node scripts/csp-hashes.js --update"
   },
   "prettier": {
     "printWidth": 120,
@@ -56,6 +57,7 @@
     "@ng-icons/heroicons": "^32.5.0",
     "@ng-icons/lucide": "^32.5.0",
     "date-fns": "^4.4.0",
+    "dotenv": "^17.4.2",
     "express": "^5.1.0",
     "iconify-icon": "^3.0.2",
     "rxjs": "~7.8.0",
