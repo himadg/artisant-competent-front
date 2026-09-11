@@ -7,6 +7,8 @@ import { AffiliationApiService } from '../../../core/services/affiliation-api.se
 import { DemandService } from '../../../core/services/demand.service';
 import { StoryApiService, Story } from '../../../core/services/story-api.service';
 import { UploadService } from '../../../core/services/upload.service';
+import { FlashMessageService } from '../../../core/services/flash-message.service';
+import { buildStoryUploadErrorMessage } from '../../../core/utils/story-upload-error';
 import { ProfessionalDashboardData, OpeningHoursDay } from '../../../shared/interfaces/professional-dashboard';
 import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
 import { DemandDetail, DemandSummary } from '../../../shared/interfaces/demand';
@@ -15,6 +17,13 @@ import { PreviewDocument } from '../../../shared/interfaces/preview-document';
 export type ProSection = 'profile' | 'requests' | 'messages' | 'practices' | 'legal' | 'affiliation';
 export type ProTab = 'presentation' | 'missions' | 'reviews' | 'documents';
 export type RequestsTab = 'mine' | 'received';
+export type StoryTriggerType = 'PRESENTATION' | 'TIPS';
+
+// 1 story PRESENTATION et 1 story TIPS par professionnel (aligné sur MAX_STORIES_PER_TYPE côté backend).
+const MAX_STORIES_PER_TYPE: Record<StoryTriggerType, number> = {
+  PRESENTATION: 1,
+  TIPS: 1,
+};
 
 export interface PersonalInfoEditFields {
   gender: string;
@@ -54,6 +63,7 @@ export class ProfessionalDashboardStateService {
   private readonly demandService = inject(DemandService);
   private readonly storyApi = inject(StoryApiService);
   private readonly uploadService = inject(UploadService);
+  private readonly flashMessage = inject(FlashMessageService);
   private readonly transloco = inject(TranslocoService);
 
   readonly data = signal<ProfessionalDashboardData | null>(null);
@@ -85,73 +95,122 @@ export class ProfessionalDashboardStateService {
   }
 
   // ── Stories ──────────────────────────────────────────────────────────────
-  // Le cercle bleu (photo) déclenche la story "Présentation", le cercle blanc (logo) la story "Tips".
+  // Le cercle bleu (photo) porte la story "Présentation", le cercle blanc (logo) la story "Tips" —
+  // une seule de chaque par pro (MAX_STORIES_PER_TYPE). Le viewer/state restent basés sur des tableaux
+  // (navigation prev/next incluse) pour absorber sans refonte un futur passage à plusieurs stories.
   readonly myStories = signal<Story[]>([]);
-  readonly uploadingStoryType = signal<'PRESENTATION' | 'TIPS' | null>(null);
-  readonly storyUploadError = signal<string | null>(null);
+  readonly uploadingStoryType = signal<StoryTriggerType | null>(null);
+  /** Type en cours d'enregistrement : pilote l'affichage de la modale <story-recorder>. */
+  readonly recordingStoryType = signal<StoryTriggerType | null>(null);
 
-  readonly presentationStory = computed(() => this.myStories().find((s) => s.type === 'PRESENTATION') ?? null);
-  readonly tipsStory = computed(() => this.myStories().find((s) => s.type === 'TIPS') ?? null);
+  readonly presentationStories = computed(() => this.myStories().filter((s) => s.type === 'PRESENTATION'));
+  readonly tipsStories = computed(() => this.myStories().filter((s) => s.type === 'TIPS'));
 
-  readonly viewingStory = signal<Story | null>(null);
+  readonly canAddPresentationStory = computed(
+    () => this.presentationStories().length < MAX_STORIES_PER_TYPE.PRESENTATION,
+  );
+  readonly canAddTipsStory = computed(() => this.tipsStories().length < MAX_STORIES_PER_TYPE.TIPS);
+
+  readonly viewingStories = signal<Story[]>([]);
+  readonly viewingIndex = signal(0);
   readonly viewingStoryUrl = signal<string | null>(null);
+
+  readonly viewingStory = computed<Story | null>(() => this.viewingStories()[this.viewingIndex()] ?? null);
+  readonly hasPrevStory = computed(() => this.viewingIndex() > 0);
+  readonly hasNextStory = computed(() => this.viewingIndex() < this.viewingStories().length - 1);
 
   loadStories(): void {
     this.storyApi.getMine().subscribe({ next: (stories) => this.myStories.set(stories) });
   }
 
-  onStoryCircleClick(type: 'PRESENTATION' | 'TIPS', fileInput: HTMLInputElement): void {
-    const existing = type === 'PRESENTATION' ? this.presentationStory() : this.tipsStory();
-    if (existing) {
-      this.openStoryViewer(existing);
+  onStoryCircleClick(type: StoryTriggerType): void {
+    const stories = type === 'PRESENTATION' ? this.presentationStories() : this.tipsStories();
+    if (stories.length > 0) {
+      this.openStoryViewer(stories, 0);
     } else {
-      fileInput.click();
+      this.recordingStoryType.set(type);
     }
   }
 
-  openStoryViewer(story: Story): void {
-    this.viewingStory.set(story);
+  onAddStoryClick(type: StoryTriggerType): void {
+    const canAdd = type === 'PRESENTATION' ? this.canAddPresentationStory() : this.canAddTipsStory();
+    if (!canAdd) return;
+    this.recordingStoryType.set(type);
+  }
+
+  closeRecorder(): void {
+    this.recordingStoryType.set(null);
+  }
+
+  onStoryFileReady(file: File): void {
+    const type = this.recordingStoryType();
+    if (!type) return;
+    this.recordingStoryType.set(null);
+    this.uploadStoryFile(file, type);
+  }
+
+  openStoryViewer(stories: Story[], startIndex: number): void {
+    this.viewingStories.set(stories);
+    this.viewingIndex.set(startIndex);
+    this.loadViewingUrl();
+  }
+
+  private loadViewingUrl(): void {
     this.viewingStoryUrl.set(null);
+    const story = this.viewingStory();
+    if (!story) return;
     this.uploadService.getSignedUrl(story.videoKey).subscribe({
       next: (url) => this.viewingStoryUrl.set(url),
     });
   }
 
+  nextStory(): void {
+    if (!this.hasNextStory()) return;
+    this.viewingIndex.update((i) => i + 1);
+    this.loadViewingUrl();
+  }
+
+  prevStory(): void {
+    if (!this.hasPrevStory()) return;
+    this.viewingIndex.update((i) => i - 1);
+    this.loadViewingUrl();
+  }
+
   closeStoryViewer(): void {
-    this.viewingStory.set(null);
+    this.viewingStories.set([]);
     this.viewingStoryUrl.set(null);
   }
 
   deleteViewingStory(): void {
     const story = this.viewingStory();
     if (!story) return;
-    this.deleteStory(story.id);
-    this.closeStoryViewer();
-  }
-
-  onStoryFileSelected(event: Event, type: 'PRESENTATION' | 'TIPS'): void {
-    const input = event.target as HTMLInputElement;
-    const file = input.files?.[0];
-    if (!file) return;
-
-    this.uploadingStoryType.set(type);
-    this.storyUploadError.set(null);
-    this.storyApi.upload(file, type).subscribe({
+    this.storyApi.delete(story.id).subscribe({
       next: () => {
-        this.uploadingStoryType.set(null);
-        input.value = '';
         this.loadStories();
-      },
-      error: (err) => {
-        this.uploadingStoryType.set(null);
-        input.value = '';
-        this.storyUploadError.set(err?.error?.message ?? "Erreur lors de l'envoi de la vidéo");
+        const remaining = this.viewingStories().filter((s) => s.id !== story.id);
+        if (remaining.length === 0) {
+          this.closeStoryViewer();
+          return;
+        }
+        this.viewingStories.set(remaining);
+        this.viewingIndex.set(Math.min(this.viewingIndex(), remaining.length - 1));
+        this.loadViewingUrl();
       },
     });
   }
 
-  deleteStory(id: string): void {
-    this.storyApi.delete(id).subscribe({ next: () => this.loadStories() });
+  private uploadStoryFile(file: File, type: StoryTriggerType): void {
+    this.uploadingStoryType.set(type);
+    this.storyApi.upload(file, type).subscribe({
+      next: () => {
+        this.uploadingStoryType.set(null);
+        this.loadStories();
+      },
+      error: (err) => {
+        this.uploadingStoryType.set(null);
+        this.flashMessage.set(buildStoryUploadErrorMessage(err));
+      },
+    });
   }
 
   readonly workCity = computed(() => {

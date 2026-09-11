@@ -191,6 +191,7 @@
 
 .pro-photo--story-presentation {
   border-color: #2563eb;
+  box-shadow: 0 0 0 3px color-mix(in srgb, #2563eb 25%, transparent);
 }
 
 .pro-badge-company--story-tips {
@@ -198,24 +199,63 @@
   box-shadow: 0 0 0 2px #ffffff;
 }
 
-.pro-story-uploading-overlay {
+/* Anneau animé pendant l'envoi d'une story : la photo a un décalage visuel (top: -15px) que
+   l'anneau, positionné en absolute sur .pro-photo-wrap, doit reproduire pour rester aligné. */
+.pro-story-uploading-ring {
   position: absolute;
-  inset: 0;
+  inset: -4px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+  background: conic-gradient(from 0deg, transparent 0deg, #2563eb 100deg, transparent 200deg);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+  animation: story-ring-spin 0.9s linear infinite;
+
+  &--photo {
+    animation-name: story-ring-spin-photo;
+  }
+}
+
+@keyframes story-ring-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes story-ring-spin-photo {
+  from { transform: translateY(-15px) rotate(0deg); }
+  to { transform: translateY(-15px) rotate(360deg); }
+}
+
+.pro-story-add-btn {
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-}
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
+  border: 2px solid var(--background-color);
+  transition: opacity 0.15s;
 
-.pro-story-error {
-  font-size: 0.8rem;
-  color: #ef4444;
-  margin: 0.5rem 0 0;
+  svg {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
 
-  &--header {
-    text-align: center;
-    margin: 0 0 0.5rem;
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &--presentation {
+    top: -10px;
+    left: -2px;
+  }
+
+  &--tips {
+    top: -6px;
+    right: -6px;
   }
 }
 
@@ -457,6 +497,36 @@
     border: none !important;
     border-radius: 0 !important;
   }
+
+    .pro-story-add-btn {
+      &--presentation {
+        top: 5px;
+        left: -3px;
+      }
+    }
+
+    .pro-photo--story-presentation {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px
+      color-mix(in srgb, #2563eb 25%, transparent);
+    }
+
+    // Nom distinct plutôt qu'une redéfinition du même @keyframes dans le @media : évite de dépendre
+    // de l'écrasement par nom identique (peu fiable selon la façon dont le bundler traite les
+    // @keyframes imbriqués dans un @media), on choisit explicitement la bonne animation à la place.
+    .pro-story-uploading-ring--photo {
+      animation-name: story-ring-spin-photo-mobile;
+    }
+
+    @keyframes story-ring-spin-photo-mobile {
+      from {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      to {
+        transform: translateY(0) rotate(360deg);
+      }
+    }
 
   /* ── Menu "Plus" ── */
   .more-overlay {
