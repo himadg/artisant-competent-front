@@ -3490,7 +3490,12 @@
       "mediatorWebsiteInvalid": "Le site web du médiateur n'est pas valide.",
       "storyAddPresentationHint": "Ajouter une vidéo de présentation (2 min max)",
       "storyAddTipsHint": "Ajouter une vidéo tips / quotidien (2 min max)",
-      "storyViewHint": "Voir la story"
+      "storyViewHint": "Voir la story",
+      "storyMaxReachedError": "Nombre maximum de stories de ce type atteint.",
+      "storyDurationExceededError": "La vidéo dépasse la durée maximale de 2 minutes.",
+      "storyFormatUnsupportedError": "Format vidéo non supporté.",
+      "storyNoFileError": "Aucune vidéo reçue.",
+      "storyGenericUploadError": "Erreur lors de l'envoi de la vidéo."
     },
     "empty": {
       "requests": "Aucune demande pour le moment",

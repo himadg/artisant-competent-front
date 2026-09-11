@@ -4,6 +4,7 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   DestroyRef,
   OnInit,
+  computed,
   inject,
   signal,
 } from '@angular/core';
@@ -26,6 +27,7 @@ import { UserAvatar } from '../../../../shared/components/user-avatar/user-avata
 import { DocModal } from '../../../../shared/components/doc-modal/doc-modal';
 import { DemandDetailsModal } from '../../../../shared/components/demand-details-modal/demand-details-modal';
 import { StoryViewer } from '../../../../shared/components/story-viewer/story-viewer';
+import { StoryRecorder } from '../../../../shared/components/story-recorder/story-recorder';
 
 @Component({
   selector: 'dashboard-professional-shell',
@@ -45,6 +47,7 @@ import { StoryViewer } from '../../../../shared/components/story-viewer/story-vi
     DocModal,
     DemandDetailsModal,
     StoryViewer,
+    StoryRecorder,
   ],
   templateUrl: './professional-dashboard-shell.html',
   styleUrl: './professional-dashboard-shell.scss',
@@ -69,12 +72,18 @@ export class ProfessionalDashboardShell implements OnInit {
 
   readonly docToPreview = this.state.docToPreview;
 
-  readonly presentationStory = this.state.presentationStory;
-  readonly tipsStory = this.state.tipsStory;
+  readonly presentationStories = this.state.presentationStories;
+  readonly tipsStories = this.state.tipsStories;
+  readonly canAddPresentationStory = this.state.canAddPresentationStory;
+  readonly canAddTipsStory = this.state.canAddTipsStory;
   readonly uploadingStoryType = this.state.uploadingStoryType;
-  readonly storyUploadError = this.state.storyUploadError;
+  readonly recordingStoryType = this.state.recordingStoryType;
   readonly viewingStory = this.state.viewingStory;
   readonly viewingStoryUrl = this.state.viewingStoryUrl;
+  readonly viewingIndex = this.state.viewingIndex;
+  readonly viewingStoriesCount = computed(() => this.state.viewingStories().length);
+  readonly hasPrevStory = this.state.hasPrevStory;
+  readonly hasNextStory = this.state.hasNextStory;
 
   readonly moreMenuOpen = signal(false);
   readonly moreMenuContentDisplayed = signal(false);
@@ -151,12 +160,21 @@ export class ProfessionalDashboardShell implements OnInit {
     this.moreMenuOpen.set(false);
   }
 
-  onStoryCircleClick(type: 'PRESENTATION' | 'TIPS', fileInput: HTMLInputElement): void {
-    this.state.onStoryCircleClick(type, fileInput);
+  onStoryCircleClick(type: 'PRESENTATION' | 'TIPS'): void {
+    this.state.onStoryCircleClick(type);
   }
 
-  onStoryFileSelected(event: Event, type: 'PRESENTATION' | 'TIPS'): void {
-    this.state.onStoryFileSelected(event, type);
+  onAddStoryClick(event: Event, type: 'PRESENTATION' | 'TIPS'): void {
+    event.stopPropagation();
+    this.state.onAddStoryClick(type);
+  }
+
+  closeRecorder(): void {
+    this.state.closeRecorder();
+  }
+
+  onStoryFileReady(file: File): void {
+    this.state.onStoryFileReady(file);
   }
 
   closeStoryViewer(): void {
@@ -165,5 +183,13 @@ export class ProfessionalDashboardShell implements OnInit {
 
   deleteViewingStory(): void {
     this.state.deleteViewingStory();
+  }
+
+  prevStory(): void {
+    this.state.prevStory();
+  }
+
+  nextStory(): void {
+    this.state.nextStory();
   }
 }

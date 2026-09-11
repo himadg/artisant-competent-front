@@ -68,6 +68,8 @@ function buildContentSecurityPolicy(): string {
     "frame-src https://challenges.cloudflare.com https://www.googletagmanager.com https://*.backblazeb2.com",
     // Angular utilise des Web Workers via blob: en interne (dev + certains outils internes).
     "worker-src 'self' blob:",
+    // blob: pour la prévisualisation caméra (MediaRecorder) ; Backblaze pour les vidéos déjà uploadées.
+    "media-src 'self' blob: https://*.backblazeb2.com",
     "object-src 'none'",
     "base-uri 'self'",
     "frame-ancestors 'self'",

@@ -133,48 +133,46 @@
                     <!-- En-tête profil -->
                     <div class="w-[100%] mb-4 rounded-lg border border-solid pro-header">
                         <div class="pro-user">
-                            <input
-                                #presentationFileInput
-                                type="file"
-                                accept="video/mp4,video/webm,video/quicktime"
-                                hidden
-                                (change)="onStoryFileSelected($event, 'PRESENTATION')"
-                            />
-                            <input
-                                #tipsFileInput
-                                type="file"
-                                accept="video/mp4,video/webm,video/quicktime"
-                                hidden
-                                (change)="onStoryFileSelected($event, 'TIPS')"
-                            />
-
                             <div class="pro-photo-wrap">
                                 <user-avatar
                                     [photoUrl]="pro.professionalProfile.photoUrl"
                                     [alt]="pro.firstName[0] + pro.lastName[0]"
                                     class="pro-photo pro-story-trigger"
-                                    [class.pro-photo--story-presentation]="!!presentationStory()"
+                                    [class.pro-photo--story-presentation]="presentationStories().length > 0"
                                     [title]="
-                                        presentationStory()
+                                        presentationStories().length
                                             ? ('dashboard.pro.storyViewHint' | transloco)
                                             : ('dashboard.pro.storyAddPresentationHint' | transloco)
                                     "
                                     style="--avatar-size: 9rem"
-                                    (click)="onStoryCircleClick('PRESENTATION', presentationFileInput)"
+                                    (click)="onStoryCircleClick('PRESENTATION')"
                                 />
                                 @if (uploadingStoryType() === 'PRESENTATION') {
-                                    <div class="pro-story-uploading-overlay"><span class="pro-spinner-sm"></span></div>
+                                    <div class="pro-story-uploading-ring pro-story-uploading-ring--photo"></div>
+                                }
+                                @if (canAddPresentationStory()) {
+                                    <button
+                                        type="button"
+                                        class="pro-story-add-btn pro-story-add-btn--presentation"
+                                        [title]="'dashboard.pro.storyAddPresentationHint' | transloco"
+                                        (click)="onAddStoryClick($event, 'PRESENTATION')"
+                                    >
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                            <line x1="12" y1="5" x2="12" y2="19" />
+                                            <line x1="5" y1="12" x2="19" y2="12" />
+                                        </svg>
+                                    </button>
                                 }
                                 @if (pro.professionalProfile.logoUrl) {
                                     <div
                                         class="pro-badge-company pro-story-trigger"
-                                        [class.pro-badge-company--story-tips]="!!tipsStory()"
+                                        [class.pro-badge-company--story-tips]="tipsStories().length > 0"
                                         [title]="
-                                            tipsStory()
+                                            tipsStories().length
                                                 ? ('dashboard.pro.storyViewHint' | transloco)
                                                 : ('dashboard.pro.storyAddTipsHint' | transloco)
                                         "
-                                        (click)="onStoryCircleClick('TIPS', tipsFileInput)"
+                                        (click)="onStoryCircleClick('TIPS')"
                                     >
                                         @if (pro.professionalProfile.logoUrl) {
                                             <img
@@ -189,9 +187,20 @@
                                             </small>
                                         }
                                         @if (uploadingStoryType() === 'TIPS') {
-                                            <div class="pro-story-uploading-overlay">
-                                                <span class="pro-spinner-sm"></span>
-                                            </div>
+                                            <div class="pro-story-uploading-ring"></div>
+                                        }
+                                        @if (canAddTipsStory()) {
+                                            <button
+                                                type="button"
+                                                class="pro-story-add-btn pro-story-add-btn--tips"
+                                                [title]="'dashboard.pro.storyAddTipsHint' | transloco"
+                                                (click)="onAddStoryClick($event, 'TIPS')"
+                                            >
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                                    <line x1="12" y1="5" x2="12" y2="19" />
+                                                    <line x1="5" y1="12" x2="19" y2="12" />
+                                                </svg>
+                                            </button>
                                         }
                                     </div>
                                 }
@@ -214,10 +223,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        @if (storyUploadError()) {
-                            <p class="pro-story-error pro-story-error--header">{{ storyUploadError() }}</p>
-                        }
 
                         <!-- Onglets -->
                         @if (isProfileSection() && !moreMenuContentDisplayed()) {
@@ -375,6 +380,16 @@
 <story-viewer
     [story]="viewingStory()"
     [videoUrl]="viewingStoryUrl()"
+    [hasPrev]="hasPrevStory()"
+    [hasNext]="hasNextStory()"
+    [currentIndex]="viewingIndex()"
+    [total]="viewingStoriesCount()"
     (closeModal)="closeStoryViewer()"
     (deleteRequested)="deleteViewingStory()"
+    (prevRequested)="prevStory()"
+    (nextRequested)="nextStory()"
 />
+
+@if (recordingStoryType()) {
+    <story-recorder (closeModal)="closeRecorder()" (fileReady)="onStoryFileReady($event)" />
+}
