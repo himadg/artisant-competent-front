@@ -69,6 +69,8 @@ export class ProfessionalDashboardShell implements OnInit {
   readonly selectedDemandEditable = this.state.selectedDemandEditable;
   readonly activeTab = this.state.activeTab;
   readonly workCity = this.state.workCity;
+  readonly stripeSetupNeeded = this.state.stripeSetupNeeded;
+  readonly stripeActionNeeded = this.state.stripeActionNeeded;
 
   readonly docToPreview = this.state.docToPreview;
 
@@ -96,6 +98,14 @@ export class ProfessionalDashboardShell implements OnInit {
       map(() => this.router.url.startsWith('/dashboard/profile')),
     ),
     { initialValue: this.router.url.startsWith('/dashboard/profile') },
+  );
+
+  readonly isPaymentsSection = toSignal(
+    this.router.events.pipe(
+      filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+      map(() => this.router.url.startsWith('/dashboard/payments')),
+    ),
+    { initialValue: this.router.url.startsWith('/dashboard/payments') },
   );
 
   readonly inscriptionDate = () => {

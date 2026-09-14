@@ -93,6 +93,10 @@
                         <iconify-icon icon="lucide:search"></iconify-icon>
                         {{ 'dashboard.pro.nav.requests' | transloco }}
                     </button>
+                    <button class="nav-item" routerLink="/dashboard/payments" routerLinkActive="active">
+                        <iconify-icon icon="lucide:credit-card"></iconify-icon>
+                        {{ 'dashboard.pro.nav.payments' | transloco }}
+                    </button>
                     <button class="nav-item" routerLink="/dashboard/practices" routerLinkActive="active">
                         <iconify-icon icon="lucide:alert-circle"></iconify-icon>
                         {{ 'dashboard.pro.nav.practices' | transloco }}
@@ -130,6 +134,29 @@
             <!-- ═══════════════ CONTENU PRINCIPAL ═══════════════ -->
             <main class="pro-main w-full max-md:p-0">
                 <div class="pro-content w-full h-full lg:w-[52rem] md:py-8">
+                    @if (!isPaymentsSection()) {
+                        @if (stripeSetupNeeded()) {
+                            <div class="stripe-status-banner stripe-status-banner--setup">
+                                <div>
+                                    <h4>{{ 'dashboard.pro.payments.setupBannerTitle' | transloco }}</h4>
+                                    <p>{{ 'dashboard.pro.payments.setupBannerBody' | transloco }}</p>
+                                </div>
+                                <button routerLink="/dashboard/payments">
+                                    {{ 'dashboard.pro.payments.setupBannerCta' | transloco }}
+                                </button>
+                            </div>
+                        } @else if (stripeActionNeeded()) {
+                            <div class="stripe-status-banner stripe-status-banner--action">
+                                <div>
+                                    <h4>{{ 'dashboard.pro.payments.actionBannerTitle' | transloco }}</h4>
+                                    <p>{{ 'dashboard.pro.payments.actionBannerBody' | transloco }}</p>
+                                </div>
+                                <button routerLink="/dashboard/payments">
+                                    {{ 'dashboard.pro.payments.actionBannerCta' | transloco }}
+                                </button>
+                            </div>
+                        }
+                    }
                     <!-- En-tête profil -->
                     <div class="w-[100%] mb-4 rounded-lg border border-solid pro-header">
                         <div class="pro-user">
@@ -317,6 +344,15 @@
             @if (moreMenuOpen()) {
                 <div class="more-overlay" (click)="closeMoreMenu()"></div>
                 <div class="more-menu">
+                    <button
+                        class="nav-item"
+                        routerLink="/dashboard/payments"
+                        routerLinkActive="active"
+                        (click)="toggleMoreMenu(); moreMenuContentDisplayed.set(true)"
+                    >
+                        <iconify-icon icon="lucide:credit-card"></iconify-icon>
+                        {{ 'dashboard.pro.nav.payments' | transloco }}
+                    </button>
                     <button
                         class="nav-item"
                         routerLink="/dashboard/practices"

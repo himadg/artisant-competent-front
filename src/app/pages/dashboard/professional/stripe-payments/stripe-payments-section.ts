@@ -14,6 +14,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 import { StripeApiService } from '../../../../core/services/stripe-api.service';
 import { StripeConnectService } from '../../../../core/services/stripe-connect.service';
 import { StripeConnectStatus } from '../../../../shared/interfaces/stripe-connect';
+import { ProfessionalDashboardStateService } from '../professional-dashboard-state.service';
 
 @Component({
   selector: 'stripe-payments-section',
@@ -26,6 +27,7 @@ import { StripeConnectStatus } from '../../../../shared/interfaces/stripe-connec
 export class StripePaymentsSection implements OnInit {
   private readonly stripeApi = inject(StripeApiService);
   private readonly stripeConnect = inject(StripeConnectService);
+  private readonly dashboardState = inject(ProfessionalDashboardStateService);
 
   readonly status = signal<StripeConnectStatus | null>(null);
   readonly loading = signal(true);
@@ -82,6 +84,7 @@ export class StripePaymentsSection implements OnInit {
 
   private setStatus(status: StripeConnectStatus) {
     this.status.set(status);
+    this.dashboardState.updateStripeStatus(status);
     this.statusChanged.emit(status);
   }
 
