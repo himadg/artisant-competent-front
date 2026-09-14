@@ -3383,11 +3383,27 @@
         "requests": "My requests",
         "quotes": "My quotes",
         "invoices": "My invoices",
+        "payments": "Payments",
         "profile": "Personal info",
         "legal": "Legal information",
         "practices": "Best practices",
         "affiliation": "Referral program",
         "messages": "Messages"
+      },
+      "payments": {
+        "loading": "Loading your payments area…",
+        "error": "Unable to load your payments area. Please try again.",
+        "retry": "Retry",
+        "onboardingIntro": "To receive your payouts, complete your payment account setup. Your information is verified securely by our payment partner Stripe.",
+        "balances": "Balance",
+        "payouts": "Payouts received",
+        "management": "Account information",
+        "setupBannerTitle": "Set up your payments",
+        "setupBannerBody": "To receive missions and get paid, you need to set up your payment account.",
+        "setupBannerCta": "Set up my payments",
+        "actionBannerTitle": "Action required on your payments",
+        "actionBannerBody": "Additional information is required to keep receiving your payouts.",
+        "actionBannerCta": "See what is required"
       },
       "tabs": {
         "presentation": "Presentation",
