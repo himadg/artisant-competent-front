@@ -38,7 +38,9 @@ const angularApp = new AngularNodeAppEngine();
 // utilisé par AppConfigService). Le stockage (*.backblazeb2.com), lui, ne dépend pas de
 // l'environnement — seul le nom du bucket change, ce que le wildcard absorbe déjà.
 function buildContentSecurityPolicy(): string {
-  const apiUrl = process.env['API_URL'];
+  // `ng serve` ne reçoit pas forcément API_URL alors que la configuration navigateur locale
+  // pointe sur le backend Nest. Autoriser explicitement ce fallback uniquement hors production.
+  const apiUrl = process.env['API_URL'] || (process.env['NODE_ENV'] !== 'production' ? 'http://localhost:3000' : undefined);
   const apiWsUrl = apiUrl?.replace(/^http/, 'ws');
 
   const connectSrc = [
@@ -49,6 +51,8 @@ function buildContentSecurityPolicy(): string {
     'https://*.analytics.google.com',
     // Turnstile appelle challenges.cloudflare.com en XHR/fetch pour valider le challenge.
     'https://challenges.cloudflare.com',
+    // Requêtes effectuées par les composants Stripe Connect embarqués.
+    'https://*.stripe.com',
     apiUrl,
     apiWsUrl,
   ].filter(Boolean);
@@ -59,13 +63,13 @@ function buildContentSecurityPolicy(): string {
 
   return [
     "default-src 'self'",
-    `script-src 'self' ${scriptHashes} https://www.googletagmanager.com https://www.google-analytics.com https://challenges.cloudflare.com`,
+    `script-src 'self' ${scriptHashes} https://www.googletagmanager.com https://www.google-analytics.com https://challenges.cloudflare.com https://connect-js.stripe.com`,
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https://*.backblazeb2.com",
     "font-src 'self' data:",
     `connect-src ${connectSrc.join(' ')}`,
     // Backblaze : aperçu PDF affiché en iframe (doc-modal) depuis une URL signée du bucket.
-    "frame-src https://challenges.cloudflare.com https://www.googletagmanager.com https://*.backblazeb2.com",
+    "frame-src https://challenges.cloudflare.com https://www.googletagmanager.com https://*.backblazeb2.com https://*.stripe.com",
     // Angular utilise des Web Workers via blob: en interne (dev + certains outils internes).
     "worker-src 'self' blob:",
     // blob: pour la prévisualisation caméra (MediaRecorder) ; Backblaze pour les vidéos déjà uploadées.
