@@ -272,6 +272,15 @@
   min-height: 4rem;
 }
 
+.chat-demand-cancelled {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--border-color);
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  text-align: center;
+  opacity: 0.7;
+}
+
 .chat-input-wrap {
   position: relative;
   flex: 1;

@@ -4,5 +4,7 @@
     <messaging
         [initialConversationId]="pendingConversationId()"
         (openDemand)="onOpenDemandFromMessaging($event)"
+        (initialConversationConsumed)="onInitialConversationConsumed()"
     ></messaging>
 }
+

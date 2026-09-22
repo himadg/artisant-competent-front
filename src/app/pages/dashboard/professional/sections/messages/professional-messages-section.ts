@@ -24,4 +24,8 @@ export class ProfessionalMessagesSection {
     this.state.selectedDemandEditable.set(false);
     this.state.selectedDemandId.set(demandId);
   }
+
+  onInitialConversationConsumed(): void {
+    this.state.pendingConversationId.set(null);
+  }
 }
