@@ -1,4 +1,84 @@
 {
+  "quote": {
+    "title": "Quote",
+    "subtitle": "Draw up a clear, detailed and professional quote.",
+    "amountHT": "Amount excl. VAT (€)",
+    "vatRate": "VAT (%)",
+    "amountTTC": "Amount incl. VAT (€)",
+    "vatGuide": "VAT user guide",
+    "actions": {
+      "guide": "Quote user guide",
+      "preview": "Preview quote",
+      "save": "Save",
+      "draftSaveSuccess": "Draft saved.",
+      "generate": "Generate quote"
+    },
+    "materials": {
+      "title": "1. Materials and supplies",
+      "hint": "Description (max 250 characters) – use \"Add materials and supplies\" to enter each additional material or supply individually, stating the name of its supplier.",
+      "descriptionPlaceholder": "E.g.: 32A circuit breaker, H07V-U 2.5 mm² cable, junction box... (supplier POINT P)",
+      "vatExemptHint": "If you are a sole trader who has not yet reached the turnover threshold requiring you to charge VAT, enter \"00.00\" in the <strong>VAT (%)</strong> field. Then enter the total materials amount excl. VAT, which will be the final price charged to the client.",
+      "originLabel": "Origin of materials (multiple choices possible)",
+      "origin": {
+        "new": "New materials",
+        "refurbished": "Refurbished materials",
+        "custom": "Custom-made materials",
+        "none": "No materials or supplies (labour only)"
+      },
+      "originNoneHint": "This option must not be used to avoid supplying materials as the tradesperson. The client's choice of materials may affect the tradesperson's liability in the event of a dispute.",
+      "addBtn": "Add materials and supplies"
+    },
+    "labor": {
+      "title": "2. Labour",
+      "hint": "Describe the work carried out (max 250 characters)",
+      "nightWorkQuestion": "Emergency call-out carried out between 8pm and 7am?",
+      "nightWorkHint": "(A night call-out is one carried out between 8pm and 7am. Due to organisational, availability and travel constraints, the rate applied may be higher during this time slot.)",
+      "descriptionPlaceholder": "E.g.: Full installation of the electrical panel and commissioning...",
+      "addBtn": "Add a service"
+    },
+    "logistics": {
+      "title": "3. Logistics and ancillary costs",
+      "hint": "State travel costs, equipment rental, delivery, parking, etc.",
+      "descriptionPlaceholder": "E.g.: Travel costs, scaffolding rental...",
+      "addBtn": "Add logistics or ancillary costs"
+    },
+    "dates": {
+      "title": "4. Estimated project dates",
+      "hint": "State the estimated start and end dates of the project.",
+      "start": "Estimated start date",
+      "end": "Estimated end date",
+      "warning": "These dates are given as an estimate. Any significant change must be reported to the client via the project's digital tracking."
+    },
+    "legal": {
+      "title": "5. Legal notices and obligations",
+      "hint": "Add your insurance, certification or other legal obligation documents and name them.",
+      "obligationsGuide": "User guide to document and insurance obligations by trade",
+      "fileLabel": "Document to upload",
+      "chooseFile": "Choose a file to upload",
+      "nameLabel": "Document name (e.g.: professional liability insurance, ten-year insurance, official form, etc.)",
+      "namePlaceholder": "E.g.: Professional liability insurance, ten-year insurance (if applicable), form 12506...",
+      "addBtn": "Add a document",
+      "klarnaAccept": "I accept instalment payment via Klarna offered when the client is eligible.",
+      "vatExempt": "Apply VAT exemption (sole trader)",
+      "vatExemptArticle": "VAT not applicable, article 293 B of the French General Tax Code"
+    },
+    "remarks": {
+      "title": "6. Remarks",
+      "hint": "Any additional information not stated elsewhere on the quote.",
+      "placeholder": "Example: Specific project conditions, details useful for understanding the quote, access constraints to the property, agreed intervention hours, specific deadlines, important technical information, custom-made elements (glazing, mirror work, joinery, etc.), specific changes planned to the work, information that may help with project tracking or the analysis of a potential dispute, as well as any other relevant remark."
+    },
+    "agreement": {
+      "title": "7. Agreement and validation",
+      "mentionsTitle": "Important notices:",
+      "mainAgreement": "I confirm my agreement to this quote, which also constitutes a purchase order. By validating it, I authorise the professional to prepare and organise the project in accordance with the planned services. I acknowledge that it is my responsibility to check, as soon as possible, the validity of the tradesperson's insurance, certifications and required documents, before or during the project.<br><br>To help the work run smoothly and avoid any delay or dispute, it is recommended to carry out these checks as early as possible. From the handover of the project completion report, I nonetheless have a maximum period of 96 hours to carry out or finalise these checks before the automatic validation of the project and the release of funds. This period notably accounts for emergency call-outs carried out at night, on weekends or on public holidays.",
+      "earlyStart": "I expressly request that the work may begin before the legal withdrawal period expires. I acknowledge having been informed that, by giving this agreement, the professional may incur the expenses necessary for the project, in particular for the purchase of materials, supplies or the booking of any equipment, in accordance with the accepted quote.<br><br>I also acknowledge having read, prior to signing the quote, and accept without reservation the Terms of Use, the Terms of Sale and the Cancellation Policy of the Artisan Compétent platform. I accept that these documents apply to the contractual relationship binding me to the tradesperson.",
+      "summaryTitle": "Summary",
+      "summaryHT": "Total excl. VAT (Materials + Labour + Costs):",
+      "summaryTTC": "Total amount due incl. VAT:",
+      "ttcDisclaimer": "Amounts incl. VAT are calculated automatically from the VAT rate selected by the tradesperson. It is the tradesperson's sole responsibility to verify the accuracy of the tax information provided, in particular the VAT treatment applicable to their activity. Artisans.com carries out no verification of the tradesperson's tax situation and cannot be held liable for the consequences of an incorrect declaration, exceeding legal VAT thresholds, or failure to comply with tax obligations. Check every line to ensure your quote is accurate.",
+      "escrowNotice": "<strong>Only projects paid in full by the client via Artisan Compétent are eligible for secure payment.</strong><br>Work financed by public assistance, a CEE scheme, a tax credit or any other deferred financing is not currently supported."
+    }
+  },
   "banner": {
     "klarna": {
       "textBefore": "Pay in 3 instalments with no fees with",
@@ -493,6 +573,7 @@
     },
     "createSuccess": "Your request has been successfully sent to the professionals.",
     "photosUploadFailed": "Your request was created but the photos could not be uploaded. You can add them from your dashboard.",
+    "addressNotFound": "We couldn't locate this address. Please try again by selecting an address from the suggestions.",
     "detail": {
       "title": "Request details",
       "descriptionTitle": "Description",
@@ -726,49 +807,19 @@
         "comparatif": {
           "title": "Comparison: Artisan Compétent vs other platforms vs Google search",
           "lead": "Three ways to find an electrician in France. Three radically different levels of protection, particularly around regulatory compliance.",
-          "headers": [
-            "Criterion",
-            "Other platforms",
-            "Google search",
-            "Artisan Compétent"
-          ],
+          "headers": ["Criterion", "Other platforms", "Google search", "Artisan Compétent"],
           "rows": [
-            [
-              "SIRET verification",
-              "Variable",
-              "None",
-              "Systematic before validation"
-            ],
+            ["SIRET verification", "Variable", "None", "Systematic before validation"],
             [
               "Insurance & NF C 18-510 certification check",
               "Rare",
               "None",
               "RC pro, decennial, certification, IRVE if applicable"
             ],
-            [
-              "Managed payment",
-              "Variable",
-              "None",
-              "Framed payment via Stripe, settlement at 96h"
-            ],
-            [
-              "Recourse in case of dispute",
-              "Limited",
-              "None",
-              "Hold up to €250 on report < 96h"
-            ],
-            [
-              "NF C 15-100 & Consuel compliance",
-              "Variable",
-              "None",
-              "Enforced"
-            ],
-            [
-              "Project management advisor",
-              "No",
-              "None",
-              "CMOD available as option"
-            ]
+            ["Managed payment", "Variable", "None", "Framed payment via Stripe, settlement at 96h"],
+            ["Recourse in case of dispute", "Limited", "None", "Hold up to €250 on report < 96h"],
+            ["NF C 15-100 & Consuel compliance", "Variable", "None", "Enforced"],
+            ["Project management advisor", "No", "None", "CMOD available as option"]
           ]
         },
         "traps": {
@@ -925,55 +976,20 @@
         "comparatif": {
           "title": "Comparison: Artisan Compétent vs other platforms vs Direct Google search",
           "lead": "Three ways to find a locksmith in France. Three radically different levels of protection, particularly for night-time call-outs.",
-          "headers": [
-            "Criterion",
-            "Other platforms",
-            "Direct Google",
-            "Artisan Compétent"
-          ],
+          "headers": ["Criterion", "Other platforms", "Direct Google", "Artisan Compétent"],
           "rows": [
-            [
-              "Tradesperson SIRET verification",
-              "Variable",
-              "None",
-              "Systematic before validation"
-            ],
-            [
-              "RC pro insurance verification",
-              "Rare",
-              "None",
-              "Verified before validation, uploaded to dashboard"
-            ],
+            ["Tradesperson SIRET verification", "Variable", "None", "Systematic before validation"],
+            ["RC pro insurance verification", "Rare", "None", "Verified before validation, uploaded to dashboard"],
             [
               "Night-time emergency scam risk",
               "Variable",
               "Very high",
               "Neutralised by prior quote and framed payment"
             ],
-            [
-              "Framed payment",
-              "Variable",
-              "No",
-              "Framed payment via Stripe, settlement at 96h"
-            ],
-            [
-              "Recourse in case of abuse",
-              "Limited",
-              "None",
-              "Withholding up to €250 upon report < 96h"
-            ],
-            [
-              "Prior detailed quote",
-              "Variable",
-              "No",
-              "Required before intervention"
-            ],
-            [
-              "Project management advisor",
-              "No",
-              "No",
-              "CMOD available as an option"
-            ]
+            ["Framed payment", "Variable", "No", "Framed payment via Stripe, settlement at 96h"],
+            ["Recourse in case of abuse", "Limited", "None", "Withholding up to €250 upon report < 96h"],
+            ["Prior detailed quote", "Variable", "No", "Required before intervention"],
+            ["Project management advisor", "No", "No", "CMOD available as an option"]
           ]
         },
         "traps": {
@@ -1142,49 +1158,14 @@
         "comparatif": {
           "title": "Comparison: Artisan Competent vs other platforms vs Google search",
           "lead": "Three ways to find a plumber in France. Three radically different levels of protection.",
-          "headers": [
-            "Criterion",
-            "Other platforms",
-            "Google search",
-            "Artisan Competent"
-          ],
+          "headers": ["Criterion", "Other platforms", "Google search", "Artisan Competent"],
           "rows": [
-            [
-              "Tradesperson SIRET check",
-              "Variable",
-              "None",
-              "Systematic before approval"
-            ],
-            [
-              "Insurance verification",
-              "Rare",
-              "None",
-              "Public liability, decennial, PG, RGE where applicable"
-            ],
-            [
-              "Regulated payment",
-              "Variable",
-              "No",
-              "Framed payment via Stripe, settlement at 96h"
-            ],
-            [
-              "Recourse in case of abuse",
-              "Limited",
-              "None",
-              "Withholding up to 250 EUR on report < 96h"
-            ],
-            [
-              "Transparent hourly rate",
-              "Variable",
-              "Variable",
-              "Detailed quote required before work begins"
-            ],
-            [
-              "Project manager adviser",
-              "No",
-              "No",
-              "CMOD available on request"
-            ]
+            ["Tradesperson SIRET check", "Variable", "None", "Systematic before approval"],
+            ["Insurance verification", "Rare", "None", "Public liability, decennial, PG, RGE where applicable"],
+            ["Regulated payment", "Variable", "No", "Framed payment via Stripe, settlement at 96h"],
+            ["Recourse in case of abuse", "Limited", "None", "Withholding up to 250 EUR on report < 96h"],
+            ["Transparent hourly rate", "Variable", "Variable", "Detailed quote required before work begins"],
+            ["Project manager adviser", "No", "No", "CMOD available on request"]
           ]
         },
         "traps": {
@@ -1345,55 +1326,20 @@
         "comparatif": {
           "title": "Comparison: Artisan Compétent vs other platforms vs Direct Google search",
           "lead": "Three ways to find a drain unblocker in France. Three radically different levels of protection.",
-          "headers": [
-            "Criterion",
-            "Other platforms",
-            "Direct Google",
-            "Artisan Compétent"
-          ],
+          "headers": ["Criterion", "Other platforms", "Direct Google", "Artisan Compétent"],
           "rows": [
-            [
-              "Professional SIRET verification",
-              "Variable",
-              "None",
-              "Systematic before validation"
-            ],
+            ["Professional SIRET verification", "Variable", "None", "Systematic before validation"],
             [
               "RC pro insurance & prefectural approval verification",
               "Rare",
               "None",
               "RC pro, emptying approval, equipment proof"
             ],
-            [
-              "Framed payment",
-              "No",
-              "No",
-              "Framed payment via Stripe, settlement at 96h"
-            ],
-            [
-              "Recourse if pipe clogs within 96h",
-              "Limited",
-              "None",
-              "Funds blocked until effective validation"
-            ],
-            [
-              "Recourse in case of abuse",
-              "Limited",
-              "None",
-              "Withholding up to €250 upon report < 96h"
-            ],
-            [
-              "Pricing framed on market reference",
-              "No",
-              "None",
-              "Compagnie des Déboucheurs grid being integrated"
-            ],
-            [
-              "Project management advisor",
-              "No",
-              "No",
-              "CMOD available as an option"
-            ]
+            ["Framed payment", "No", "No", "Framed payment via Stripe, settlement at 96h"],
+            ["Recourse if pipe clogs within 96h", "Limited", "None", "Funds blocked until effective validation"],
+            ["Recourse in case of abuse", "Limited", "None", "Withholding up to €250 upon report < 96h"],
+            ["Pricing framed on market reference", "No", "None", "Compagnie des Déboucheurs grid being integrated"],
+            ["Project management advisor", "No", "No", "CMOD available as an option"]
           ]
         },
         "traps": {
@@ -1563,55 +1509,20 @@
         "comparatif": {
           "title": "Comparison: Artisan Compétent vs other platforms vs Direct Google search",
           "lead": "Three ways to find a heating engineer in France. Three radically different levels of protection, particularly concerning PG and RGE qualifications and the mobilisation of public grants.",
-          "headers": [
-            "Criterion",
-            "Other platforms",
-            "Direct Google",
-            "Artisan Compétent"
-          ],
+          "headers": ["Criterion", "Other platforms", "Direct Google", "Artisan Compétent"],
           "rows": [
-            [
-              "Tradesperson SIRET verification",
-              "Variable",
-              "None",
-              "Systematic before validation"
-            ],
+            ["Tradesperson SIRET verification", "Variable", "None", "Systematic before validation"],
             [
               "Insurance and PG qualification verification",
               "Rare",
               "None",
               "RC pro, decennial, PG, RGE uploaded to dashboard"
             ],
-            [
-              "RGE qualification and public grants",
-              "Variable",
-              "None",
-              "Checked upon registration"
-            ],
-            [
-              "Framed payment",
-              "No",
-              "No",
-              "Framed payment via Stripe, settlement at 96h"
-            ],
-            [
-              "Recourse in case of abuse",
-              "Limited",
-              "None",
-              "Withholding up to €250 upon report < 96h"
-            ],
-            [
-              "Qualigaz certificate at start-up",
-              "Variable",
-              "None",
-              "Checked upon registration"
-            ],
-            [
-              "Project management advisor",
-              "No",
-              "No",
-              "CMOD available as an option"
-            ]
+            ["RGE qualification and public grants", "Variable", "None", "Checked upon registration"],
+            ["Framed payment", "No", "No", "Framed payment via Stripe, settlement at 96h"],
+            ["Recourse in case of abuse", "Limited", "None", "Withholding up to €250 upon report < 96h"],
+            ["Qualigaz certificate at start-up", "Variable", "None", "Checked upon registration"],
+            ["Project management advisor", "No", "No", "CMOD available as an option"]
           ]
         },
         "traps": {
@@ -1794,12 +1705,7 @@
         "comparatif": {
           "title": "Comparison: Artisan Compétent vs other platforms vs Direct Google search",
           "lead": "Synthetic comparison table of the three most used channels to find an HVAC technician. Criteria are based on the real risk points of the trade.",
-          "headers": [
-            "Criterion",
-            "Other platforms",
-            "Direct Google",
-            "Artisan Compétent"
-          ],
+          "headers": ["Criterion", "Other platforms", "Direct Google", "Artisan Compétent"],
           "rows": [
             [
               "Professional SIRET verification",
@@ -1819,30 +1725,10 @@
               "None",
               "RC pro and decennial required and verified"
             ],
-            [
-              "RGE QualiPAC qualification for heat pumps",
-              "Variable",
-              "None",
-              "Verified for grant-eligible projects"
-            ],
-            [
-              "Framed payment",
-              "No",
-              "No",
-              "Framed payment via Stripe, settlement at 96h"
-            ],
-            [
-              "Recourse in case of defect",
-              "Limited",
-              "None",
-              "Withhold up to €250 if reported < 96h"
-            ],
-            [
-              "Project management advisor",
-              "No",
-              "No",
-              "CMOD available as an option"
-            ]
+            ["RGE QualiPAC qualification for heat pumps", "Variable", "None", "Verified for grant-eligible projects"],
+            ["Framed payment", "No", "No", "Framed payment via Stripe, settlement at 96h"],
+            ["Recourse in case of defect", "Limited", "None", "Withhold up to €250 if reported < 96h"],
+            ["Project management advisor", "No", "No", "CMOD available as an option"]
           ]
         },
         "traps": {
@@ -2018,12 +1904,7 @@
         "comparatif": {
           "title": "Comparison: Artisan Compétent vs other platforms vs Direct Google search",
           "lead": "Synthetic comparison table of the three most used channels to find a glazier. Criteria are based on the real risk points of the trade.",
-          "headers": [
-            "Criterion",
-            "Other platforms",
-            "Direct Google",
-            "Artisan Compétent"
-          ],
+          "headers": ["Criterion", "Other platforms", "Direct Google", "Artisan Compétent"],
           "rows": [
             [
               "Professional SIRET verification",
@@ -2043,30 +1924,15 @@
               "None",
               "Verified and uploaded to dashboard"
             ],
-            [
-              "Framed payment",
-              "No",
-              "No",
-              "Framed payment via Stripe, settlement at 96h"
-            ],
+            ["Framed payment", "No", "No", "Framed payment via Stripe, settlement at 96h"],
             [
               "Recourse in case of defect (scratched glass, failing seal)",
               "Limited",
               "None",
               "Withhold up to €250 if reported < 96h"
             ],
-            [
-              "Prior detailed quote required",
-              "No",
-              "Variable",
-              "Supply / installation / urgency breakdown"
-            ],
-            [
-              "Project management advisor",
-              "No",
-              "No",
-              "CMOD available as an option"
-            ]
+            ["Prior detailed quote required", "No", "Variable", "Supply / installation / urgency breakdown"],
+            ["Project management advisor", "No", "No", "CMOD available as an option"]
           ]
         },
         "traps": {
@@ -2233,12 +2099,7 @@
         "comparatif": {
           "title": "Comparison: Artisan Compétent vs other platforms vs Direct Google search",
           "lead": "Synthetic comparison table of the three most used channels to find a pest control specialist. Criteria are based on the real risk points of the trade.",
-          "headers": [
-            "Criterion",
-            "Other platforms",
-            "Direct Google",
-            "Artisan Compétent"
-          ],
+          "headers": ["Criterion", "Other platforms", "Direct Google", "Artisan Compétent"],
           "rows": [
             [
               "Professional SIRET verification",
@@ -2246,42 +2107,12 @@
               "None by default",
               "Systematic before profile validation"
             ],
-            [
-              "Certibiocide certificate checked",
-              "Rare",
-              "None",
-              "Verified and uploaded to dashboard"
-            ],
-            [
-              "Insurance verification (RC pro)",
-              "Rare or declarative",
-              "None",
-              "RC pro required and verified"
-            ],
-            [
-              "Framed payment",
-              "No",
-              "No",
-              "Framed payment via Stripe, settlement at 96h"
-            ],
-            [
-              "Recourse in case of ineffective treatment",
-              "Limited",
-              "None",
-              "Withhold up to €250 if reported < 96h"
-            ],
-            [
-              "Documented follow-up visits",
-              "Variable",
-              "None",
-              "Photos and report on the dashboard"
-            ],
-            [
-              "Project management advisor",
-              "No",
-              "No",
-              "CMOD available as an option"
-            ]
+            ["Certibiocide certificate checked", "Rare", "None", "Verified and uploaded to dashboard"],
+            ["Insurance verification (RC pro)", "Rare or declarative", "None", "RC pro required and verified"],
+            ["Framed payment", "No", "No", "Framed payment via Stripe, settlement at 96h"],
+            ["Recourse in case of ineffective treatment", "Limited", "None", "Withhold up to €250 if reported < 96h"],
+            ["Documented follow-up visits", "Variable", "None", "Photos and report on the dashboard"],
+            ["Project management advisor", "No", "No", "CMOD available as an option"]
           ]
         },
         "traps": {
@@ -2748,7 +2579,7 @@
   },
   "searchPro": {
     "placeholder": "Search a professional or service",
-    "addressLabel": "Your address",
+    "addressLabel": "Intervention address",
     "tradeLabel": "Select a trade",
     "kilometersLabel": "Radius (km)",
     "button": "Search"
@@ -3168,10 +2999,7 @@
         "question": "Am I required to accept Klarna?",
         "intro": "No. Instalment payment via Klarna remains entirely optional.",
         "choice": "Each professional is free:",
-        "choiceItems": [
-          "to accept it",
-          "or to refuse it"
-        ],
+        "choiceItems": ["to accept it", "or to refuse it"],
         "benefits": "However, this solution can represent a real commercial advantage. A client who can pay in instalments:",
         "benefitsItems": [
           "hesitates less",
@@ -3186,16 +3014,9 @@
         "introBefore": "Yes. A professional can also ",
         "affiliateLink": "become an Artisan Compétent affiliate",
         "introAfter": " and earn additional income by recommending the platform:",
-        "audienceItems": [
-          "to other professionals",
-          "or directly to clients"
-        ],
+        "audienceItems": ["to other professionals", "or directly to clients"],
         "national": "The advantage of the system is that it operates at the national level:",
-        "nationalItems": [
-          "Metropolitan France",
-          "Corsica",
-          "French Overseas Territories"
-        ],
+        "nationalItems": ["Metropolitan France", "Corsica", "French Overseas Territories"],
         "outro": "Each affiliate can thus contribute to the development of the Artisan Compétent network while generating additional income thanks to the handover certificates signed via their recommendations.",
         "answerLd": "Yes. A professional can also become an Artisan Compétent affiliate and earn additional income by recommending the platform to other professionals or directly to clients. The advantage of the system is that it operates at the national level: Metropolitan France, Corsica, French Overseas Territories. Each affiliate can thus contribute to the development of the Artisan Compétent network while generating additional income thanks to the handover certificates signed via their recommendations."
       }
@@ -3250,7 +3071,8 @@
         "CANCELLED": "Cancelled"
       },
       "filesCount": "{{ count }} file(s) attached",
-      "createDemand": "Create a request"
+      "createDemand": "Create a request",
+      "location": "Job in {{ city }} ({{ postalCode }})"
     },
     "nav": {
       "requests": "My requests",
@@ -3560,10 +3382,12 @@
       "send": "Send",
       "demandLabel": "Demand",
       "attach": "Attach a file",
+      "demandCancelled": "This request has been cancelled by its author. You can no longer send messages or act on this conversation.",
       "actions": {
         "title": "Actions",
         "decline": "Decline the offer",
-        "quote": "Create a quote",
+        "createQuote": "Create a quote",
+        "resumeQuote": "Resume quote",
         "review": "Leave a review",
         "dispute": "Report a dispute"
       },
@@ -3795,27 +3619,15 @@
       "title": "Why does Artisan Compétent recommend him?",
       "intro": "Because good SEO cannot be improvised. And above all because construction is a unique field.",
       "notNeeded": "Tradespeople do not need:",
-      "notNeededItems": [
-        "complicated marketing pitches",
-        "nor unrealistic promises"
-      ],
+      "notNeededItems": ["complicated marketing pitches", "nor unrealistic promises"],
       "needed": "They need:",
-      "neededItems": [
-        "visibility",
-        "real calls",
-        "real quote requests",
-        "real clients"
-      ],
+      "neededItems": ["visibility", "real calls", "real quote requests", "real clients"],
       "outro": "Guillaume Azas and Webesty work with a clear, structured and results-driven approach. The goal is simple: helping serious professionals grow their business sustainably."
     },
     "complement": {
       "title": "An ideal complement to Artisan Compétent",
       "intro": "Artisan Compétent oversees your projects. SEO, on the other hand, helps:",
-      "items": [
-        "grow your visibility",
-        "improve your image",
-        "generate more business opportunities"
-      ],
+      "items": ["grow your visibility", "improve your image", "generate more business opportunities"],
       "outro": "The two systems are complementary: more visibility, more trust, more enquiries and more signed quotes."
     },
     "gbp": {
@@ -3907,6 +3719,7 @@
     "notFound": "The requested resource could not be found.",
     "server": "A server error occurred. Please try again.",
     "unknown": "An unexpected error occurred. Please try again.",
+    "serviceUnavailable": "The service is temporarily unavailable. Please try again in a moment.",
     "invalidImageFormat": "Invalid format. Only JPEG, PNG and WebP files are accepted.",
     "invalidDocumentFormat": "Invalid format. Only JPEG, PNG, WebP and PDF files are accepted.",
     "documentsUploadFailed": "Your account was created, but uploading your documents failed. You can try again below.",

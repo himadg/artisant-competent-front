@@ -46,7 +46,7 @@ export class ConversationView {
   readonly back = output<void>();
   readonly sendMessage = output<string>();
   readonly declineOffer = output<void>();
-  readonly createQuote = output<void>();
+  readonly createQuote = output<string>();
   readonly leaveReview = output<void>();
   readonly reportDispute = output<void>();
   readonly openDemand = output<string>();

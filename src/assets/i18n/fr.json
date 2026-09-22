@@ -1,4 +1,84 @@
 {
+  "quote": {
+    "title": "Devis",
+    "subtitle": "Établissez un devis clair, détaillé et professionnel.",
+    "amountHT": "Montant HT (€)",
+    "vatRate": "TVA (%)",
+    "amountTTC": "TTC (€)",
+    "vatGuide": "Mode d'emploi TVA",
+    "actions": {
+      "guide": "Mode d'emploi devis",
+      "preview": "Aperçu du devis",
+      "save": "Enregistrer",
+      "draftSaveSuccess": "Brouillon enregistré.",
+      "generate": "Générer le devis"
+    },
+    "materials": {
+      "title": "1. Matériaux et fournitures",
+      "hint": "Description (max 250 caractères) – utilisez \"Ajouter des matériaux et fournitures\" pour renseigner chaque matériau ou fourniture supplémentaire individuellement, en indiquant obligatoirement le nom de son fournisseur.",
+      "descriptionPlaceholder": "Ex : Disjoncteur 32A, câble H07V-U 2,5 mm², boîte de dérivation... (fournisseur POINT P)",
+      "vatExemptHint": "Si vous êtes auto-entrepreneur et que vous n'avez pas encore atteint le seuil de chiffre d'affaires vous obligeant à reverser la TVA, renseignez \"00,00\" dans le champ <strong>TVA (%)</strong>. Indiquez ensuite le montant total du matériel HT, qui correspondra au prix final facturé au client.",
+      "originLabel": "Origine du matériel (plusieurs choix possibles)",
+      "origin": {
+        "new": "Matériel neuf",
+        "refurbished": "Matériel reconditionné",
+        "custom": "Matériel fabriqué sur mesure",
+        "none": "Aucun matériel ni fourniture (main-d'œuvre uniquement)"
+      },
+      "originNoneHint": "Cette option ne doit pas servir à éviter la fourniture de matériaux par l'artisan. Le choix des matériaux par le client peut impacter la responsabilité de l'artisan en cas de litige.",
+      "addBtn": "Ajouter des matériaux et fournitures"
+    },
+    "labor": {
+      "title": "2. Prestation (main-d'œuvre)",
+      "hint": "Décrivez la prestation réalisée (250 caractères max)",
+      "nightWorkQuestion": "Intervention d'urgence réalisée entre 20h et 7h ?",
+      "nightWorkHint": "(Une intervention de nuit correspond à une intervention réalisée entre 20h et 7h du matin. En raison des contraintes d'organisation, de disponibilité et de déplacement, le tarif appliqué peut être majoré pendant cette tranche horaire.)",
+      "descriptionPlaceholder": "Ex : Installation complète du tableau électrique et mise en service...",
+      "addBtn": "Ajouter une prestation"
+    },
+    "logistics": {
+      "title": "3. Logistique et frais annexes",
+      "hint": "Indiquez les frais de déplacement, location de matériel, livraison, parking, etc.",
+      "descriptionPlaceholder": "Ex : Frais de déplacement, location d'échafaudage...",
+      "addBtn": "Ajouter logistique ou frais annexes"
+    },
+    "dates": {
+      "title": "4. Dates prévisionnelles du chantier",
+      "hint": "Indiquez les dates prévisionnelles de début et de fin du chantier.",
+      "start": "Date de début prévisionnelle",
+      "end": "Date de fin prévisionnelle",
+      "warning": "Ces dates sont données à titre prévisionnel. Toute modification importante devra être signalée au client via le suivi digital du chantier."
+    },
+    "legal": {
+      "title": "5. Mentions et obligations légales",
+      "hint": "Ajoutez vos documents d'assurance, certification ou autres obligations légales et nommez-les.",
+      "obligationsGuide": "Mode d'emploi obligations documentaires et assurances par métier",
+      "fileLabel": "Document à télécharger",
+      "chooseFile": "Choisir un fichier à télécharger",
+      "nameLabel": "Nom du document (ex : RC Pro, Assurance décennale, CERFA, etc.)",
+      "namePlaceholder": "Ex : RC Pro, Assurance décennale (si applicable), CERFA 12506...",
+      "addBtn": "Ajouter un document",
+      "klarnaAccept": "J'accepte le paiement en plusieurs fois proposé via Klarna lorsque le client y est éligible.",
+      "vatExempt": "Appliquer l'exonération de TVA (auto-entrepreneur)",
+      "vatExemptArticle": "TVA non applicable, article 293 B du CGI"
+    },
+    "remarks": {
+      "title": "6. Remarque",
+      "hint": "Toute information complémentaire qui ne figure pas ailleurs sur le devis.",
+      "placeholder": "Exemple : Conditions particulières du chantier, précisions utiles à la bonne compréhension du devis, contraintes d'accès au logement ou au local, horaires d'intervention convenus, délais spécifiques, informations techniques importantes, éléments fabriqués sur mesure (vitrerie, miroiterie, menuiserie, etc.), modifications particulières prévues sur l'ouvrage, informations susceptibles de faciliter le suivi du chantier ou l'analyse d'un éventuel litige, ainsi que toute autre remarque pertinente."
+    },
+    "agreement": {
+      "title": "7. Accord et validation",
+      "mentionsTitle": "Mentions importantes :",
+      "mainAgreement": "Je confirme mon accord sur le présent devis, qui vaut également bon de commande. En le validant, j'autorise le professionnel à préparer et organiser le chantier conformément aux prestations prévues. Je reconnais qu'il m'appartient de vérifier, dès que possible, la validité des assurances, certifications et documents obligatoires de l'artisan, avant ou pendant le chantier.<br><br>Afin de faciliter le bon déroulement des travaux et d'éviter tout retard ou litige, il est recommandé d'effectuer ces vérifications le plus tôt possible. À compter de la remise du procès-verbal de fin de chantier, je dispose toutefois d'un délai maximal de 96 heures pour effectuer ou finaliser ces vérifications avant la validation automatique du chantier et la libération des fonds. Ce délai est notamment prévu pour tenir compte des interventions d'urgence réalisées de nuit, les week-ends ou les jours fériés.",
+      "earlyStart": "Je demande expressément que les travaux puissent débuter avant l'expiration du délai légal de rétractation. Je reconnais avoir été informé qu'en donnant cet accord, le professionnel peut engager les dépenses nécessaires au chantier, notamment pour l'achat des matériaux, fournitures ou la réservation d'éventuels équipements, conformément au devis accepté.<br><br>Je reconnais également avoir pris connaissance, préalablement à la signature du devis, et accepter sans réserve les Conditions Générales d'Utilisation (CGU), les Conditions Générales de Vente (CGV) ainsi que la Politique d'annulation de la plateforme Artisan Compétent. J'accepte que ces documents s'appliquent à la relation contractuelle me liant à l'artisan.",
+      "summaryTitle": "Récapitulatif",
+      "summaryHT": "Total HT (Matériaux + Prestations + Frais) :",
+      "summaryTTC": "Montant TTC à régler :",
+      "ttcDisclaimer": "Les montants TTC sont calculés automatiquement à partir du taux de TVA sélectionné par l'artisan. Ils appartiennent exclusivement à l'artisan de vérifier l'exactitude des informations fiscales renseignées, notamment l'origine de la TVA applicable à son activité. Artisans.com ne procède à aucun contrôle de la situation fiscale de l'artisan et ne saurait être tenu responsable des conséquences résultant d'une déclaration erronée, d'un dépassement des seuils légaux de TVA ou de non-respect de ses obligations fiscales. Vérifiez chaque ligne pour garantir l'exactitude de votre devis.",
+      "escrowNotice": "<strong>Seuls les chantiers réglés intégralement par le client via Artisan Compétent sont éligibles au paiement sécurisé.</strong><br>Les travaux financés par une aide publique, un dispositif CEE, un crédit d'impôt ou tout autre financement différé ne sont pas pris en charge à ce jour."
+    }
+  },
   "banner": {
     "klarna": {
       "textBefore": "Payez en 3 fois sans frais avec",
@@ -493,6 +573,7 @@
     },
     "createSuccess": "Votre demande a bien été envoyée aux professionnels.",
     "photosUploadFailed": "Votre demande a été créée mais les photos n'ont pas pu être envoyées. Vous pouvez les ajouter depuis votre espace.",
+    "addressNotFound": "Nous n'avons pas pu localiser cette adresse. Réessayez en sélectionnant une adresse dans les suggestions.",
     "detail": {
       "title": "Détails de la demande",
       "descriptionTitle": "Description",
@@ -726,49 +807,19 @@
         "comparatif": {
           "title": "Comparatif : Artisan Compétent vs autres plateformes vs Google direct",
           "lead": "Trois manières de trouver un électricien en France. Trois niveaux de protection radicalement différents, particulièrement sur la conformité réglementaire.",
-          "headers": [
-            "Critère",
-            "Autres plateformes",
-            "Google direct",
-            "Artisan Compétent"
-          ],
+          "headers": ["Critère", "Autres plateformes", "Google direct", "Artisan Compétent"],
           "rows": [
-            [
-              "Vérification SIRET artisan",
-              "Variable",
-              "Aucune",
-              "Systématique avant validation"
-            ],
+            ["Vérification SIRET artisan", "Variable", "Aucune", "Systématique avant validation"],
             [
               "Vérification assurances et habilitation NF C 18-510",
               "Rare",
               "Aucune",
               "RC pro, décennale, habilitation, IRVE si applicable"
             ],
-            [
-              "Paiement encadré",
-              "Variable",
-              "Aucun",
-              "Paiement encadré Stripe, versement à 96h"
-            ],
-            [
-              "Recours en cas d'abus",
-              "Limité",
-              "Aucun",
-              "Retenue jusqu'à 250 € sur signalement < 96h"
-            ],
-            [
-              "Conformité NF C 15-100 et Consuel",
-              "Variable",
-              "Aucune",
-              "Imposée"
-            ],
-            [
-              "Conseiller maître d'ouvrage",
-              "Non",
-              "Aucun",
-              "CMOD disponible sur option"
-            ]
+            ["Paiement encadré", "Variable", "Aucun", "Paiement encadré Stripe, versement à 96h"],
+            ["Recours en cas d'abus", "Limité", "Aucun", "Retenue jusqu'à 250 € sur signalement < 96h"],
+            ["Conformité NF C 15-100 et Consuel", "Variable", "Aucune", "Imposée"],
+            ["Conseiller maître d'ouvrage", "Non", "Aucun", "CMOD disponible sur option"]
           ]
         },
         "traps": {
@@ -925,19 +976,9 @@
         "comparatif": {
           "title": "Comparatif : Artisan Compétent vs autres plateformes vs Google direct",
           "lead": "Trois manières de trouver un serrurier en France. Trois niveaux de protection radicalement différents, particulièrement en sortie nocturne.",
-          "headers": [
-            "Critère",
-            "Autres plateformes",
-            "Google direct",
-            "Artisan Compétent"
-          ],
+          "headers": ["Critère", "Autres plateformes", "Google direct", "Artisan Compétent"],
           "rows": [
-            [
-              "Vérification SIRET artisan",
-              "Variable",
-              "Aucune",
-              "Systématique avant validation"
-            ],
+            ["Vérification SIRET artisan", "Variable", "Aucune", "Systématique avant validation"],
             [
               "Vérification assurance RC pro",
               "Rare",
@@ -950,30 +991,10 @@
               "Très élevé",
               "Neutralisé par devis préalable et paiement encadré"
             ],
-            [
-              "Paiement encadré",
-              "Variable",
-              "Non",
-              "Paiement encadré Stripe, versement à 96h"
-            ],
-            [
-              "Recours en cas d’abus",
-              "Limité",
-              "Aucun",
-              "Retenue jusqu’à 250 € sur signalement < 96h"
-            ],
-            [
-              "Devis chiffré préalable",
-              "Variable",
-              "Non",
-              "Imposé avant intervention"
-            ],
-            [
-              "Conseiller maître d’ouvrage",
-              "Non",
-              "Non",
-              "CMOD disponible sur option"
-            ]
+            ["Paiement encadré", "Variable", "Non", "Paiement encadré Stripe, versement à 96h"],
+            ["Recours en cas d’abus", "Limité", "Aucun", "Retenue jusqu’à 250 € sur signalement < 96h"],
+            ["Devis chiffré préalable", "Variable", "Non", "Imposé avant intervention"],
+            ["Conseiller maître d’ouvrage", "Non", "Non", "CMOD disponible sur option"]
           ]
         },
         "traps": {
@@ -1142,49 +1163,14 @@
         "comparatif": {
           "title": "Comparatif : Artisan Compétent vs autres plateformes vs Google direct",
           "lead": "Trois manières de trouver un plombier en France. Trois niveaux de protection radicalement différents.",
-          "headers": [
-            "Critère",
-            "Autres plateformes",
-            "Google direct",
-            "Artisan Compétent"
-          ],
+          "headers": ["Critère", "Autres plateformes", "Google direct", "Artisan Compétent"],
           "rows": [
-            [
-              "Vérification SIRET artisan",
-              "Variable",
-              "Aucune",
-              "Systématique avant validation"
-            ],
-            [
-              "Vérification assurances",
-              "Rare",
-              "Aucune",
-              "RC pro, décennale, PG, RGE si applicable"
-            ],
-            [
-              "Paiement encadré",
-              "Variable",
-              "Non",
-              "Paiement encadré Stripe, versement à 96h"
-            ],
-            [
-              "Recours en cas d’abus",
-              "Limité",
-              "Aucun",
-              "Retenue jusqu’à 250 € sur signalement < 96h"
-            ],
-            [
-              "Tarif horaire transparent",
-              "Variable",
-              "Variable",
-              "Devis détaillé imposé avant intervention"
-            ],
-            [
-              "Conseiller maître d’ouvrage",
-              "Non",
-              "Non",
-              "CMOD disponible sur option"
-            ]
+            ["Vérification SIRET artisan", "Variable", "Aucune", "Systématique avant validation"],
+            ["Vérification assurances", "Rare", "Aucune", "RC pro, décennale, PG, RGE si applicable"],
+            ["Paiement encadré", "Variable", "Non", "Paiement encadré Stripe, versement à 96h"],
+            ["Recours en cas d’abus", "Limité", "Aucun", "Retenue jusqu’à 250 € sur signalement < 96h"],
+            ["Tarif horaire transparent", "Variable", "Variable", "Devis détaillé imposé avant intervention"],
+            ["Conseiller maître d’ouvrage", "Non", "Non", "CMOD disponible sur option"]
           ]
         },
         "traps": {
@@ -1345,55 +1331,30 @@
         "comparatif": {
           "title": "Comparatif : Artisan Compétent vs autres plateformes vs Google direct",
           "lead": "Trois manières de trouver un déboucheur en France. Trois niveaux de protection radicalement différents.",
-          "headers": [
-            "Critère",
-            "Autres plateformes",
-            "Google direct",
-            "Artisan Compétent"
-          ],
+          "headers": ["Critère", "Autres plateformes", "Google direct", "Artisan Compétent"],
           "rows": [
-            [
-              "Vérification SIRET artisan",
-              "Variable",
-              "Aucune",
-              "Systématique avant validation"
-            ],
+            ["Vérification SIRET artisan", "Variable", "Aucune", "Systématique avant validation"],
             [
               "Vérification assurance RC pro et agrément préfectoral",
               "Rare",
               "Aucune",
               "RC pro, agrément vidange, justificatif matériel"
             ],
-            [
-              "Paiement encadré",
-              "Non",
-              "Non",
-              "Paiement encadré Stripe, versement à 96h"
-            ],
+            ["Paiement encadré", "Non", "Non", "Paiement encadré Stripe, versement à 96h"],
             [
               "Recours en cas de canalisation reboucher sous 96h",
               "Limité",
               "Aucun",
               "Règlement suspendu jusqu’à validation effective"
             ],
-            [
-              "Recours en cas d’abus",
-              "Limité",
-              "Aucun",
-              "Retenue jusqu’à 250 € sur signalement < 96h"
-            ],
+            ["Recours en cas d’abus", "Limité", "Aucun", "Retenue jusqu’à 250 € sur signalement < 96h"],
             [
               "Tarification cadrée sur référence du marché",
               "Non",
               "Aucune",
               "Grille Compagnie des Déboucheurs en cours d’intégration"
             ],
-            [
-              "Conseiller maître d’ouvrage",
-              "Non",
-              "Non",
-              "CMOD disponible sur option"
-            ]
+            ["Conseiller maître d’ouvrage", "Non", "Non", "CMOD disponible sur option"]
           ]
         },
         "traps": {
@@ -1563,55 +1524,20 @@
         "comparatif": {
           "title": "Comparatif : Artisan Compétent vs autres plateformes vs Google direct",
           "lead": "Trois manières de trouver un chauffagiste en France. Trois niveaux de protection radicalement différents, particulièrement sur les qualifications PG, RGE et la mobilisation des aides publiques.",
-          "headers": [
-            "Critère",
-            "Autres plateformes",
-            "Google direct",
-            "Artisan Compétent"
-          ],
+          "headers": ["Critère", "Autres plateformes", "Google direct", "Artisan Compétent"],
           "rows": [
-            [
-              "Vérification SIRET artisan",
-              "Variable",
-              "Aucune",
-              "Systématique avant validation"
-            ],
+            ["Vérification SIRET artisan", "Variable", "Aucune", "Systématique avant validation"],
             [
               "Vérification assurances et qualification PG",
               "Rare",
               "Aucune",
               "RC pro, décennale, PG, RGE déposés au tableau de bord"
             ],
-            [
-              "Qualification RGE et aides publiques",
-              "Variable",
-              "Aucune",
-              "Contrôlée à l’inscription"
-            ],
-            [
-              "Paiement encadré",
-              "Non",
-              "Non",
-              "Paiement encadré Stripe, versement à 96h"
-            ],
-            [
-              "Recours en cas d’abus",
-              "Limité",
-              "Aucun",
-              "Retenue jusqu’à 250 € sur signalement < 96h"
-            ],
-            [
-              "Attestation Qualigaz à la mise en service",
-              "Variable",
-              "Aucune",
-              "Controlée à l’inscription"
-            ],
-            [
-              "Conseiller maître d’ouvrage",
-              "Non",
-              "Non",
-              "CMOD disponible sur option"
-            ]
+            ["Qualification RGE et aides publiques", "Variable", "Aucune", "Contrôlée à l’inscription"],
+            ["Paiement encadré", "Non", "Non", "Paiement encadré Stripe, versement à 96h"],
+            ["Recours en cas d’abus", "Limité", "Aucun", "Retenue jusqu’à 250 € sur signalement < 96h"],
+            ["Attestation Qualigaz à la mise en service", "Variable", "Aucune", "Controlée à l’inscription"],
+            ["Conseiller maître d’ouvrage", "Non", "Non", "CMOD disponible sur option"]
           ]
         },
         "traps": {
@@ -1794,12 +1720,7 @@
         "comparatif": {
           "title": "Comparatif : Artisan Compétent vs autres plateformes vs Google direct",
           "lead": "Tableau comparatif synthétique des trois canaux les plus utilisés pour trouver un technicien climatisation. Les critères sont calés sur les points de risque réels du métier.",
-          "headers": [
-            "Critère",
-            "Autres plateformes",
-            "Google direct",
-            "Artisan Compétent"
-          ],
+          "headers": ["Critère", "Autres plateformes", "Google direct", "Artisan Compétent"],
           "rows": [
             [
               "Vérification SIRET de l’artisan",
@@ -1825,24 +1746,9 @@
               "Aucune",
               "Vérifiée pour les chantiers éligibles aux aides"
             ],
-            [
-              "Paiement encadré",
-              "Non",
-              "Non",
-              "Paiement encadré Stripe, versement à 96h"
-            ],
-            [
-              "Recours en cas de malfaçon",
-              "Limité",
-              "Aucun",
-              "Retenue jusqu’à 250 € si signalement < 96h"
-            ],
-            [
-              "Conseiller maître d’ouvrage",
-              "Non",
-              "Non",
-              "CMOD disponible sur option"
-            ]
+            ["Paiement encadré", "Non", "Non", "Paiement encadré Stripe, versement à 96h"],
+            ["Recours en cas de malfaçon", "Limité", "Aucun", "Retenue jusqu’à 250 € si signalement < 96h"],
+            ["Conseiller maître d’ouvrage", "Non", "Non", "CMOD disponible sur option"]
           ]
         },
         "traps": {
@@ -2018,12 +1924,7 @@
         "comparatif": {
           "title": "Artisan Compétent vs autres plateformes vs Google direct",
           "lead": "Tableau comparatif synthétique des trois canaux les plus utilisés pour trouver un vitrier. Les critères sont calés sur les points de risque réels du métier.",
-          "headers": [
-            "Critère",
-            "Autres plateformes",
-            "Google direct",
-            "Artisan Compétent"
-          ],
+          "headers": ["Critère", "Autres plateformes", "Google direct", "Artisan Compétent"],
           "rows": [
             [
               "Vérification SIRET de l’artisan",
@@ -2043,12 +1944,7 @@
               "Aucune",
               "Vérifiées et déposées au tableau de bord"
             ],
-            [
-              "Paiement encadré",
-              "Non",
-              "Non",
-              "Paiement encadré Stripe, versement à 96h"
-            ],
+            ["Paiement encadré", "Non", "Non", "Paiement encadré Stripe, versement à 96h"],
             [
               "Recours en cas de malfaçon (vitrage rayé, joint défaillant)",
               "Limité",
@@ -2061,12 +1957,7 @@
               "Variable",
               "Décomposition fourniture / pose / urgence"
             ],
-            [
-              "Conseiller maître d’ouvrage",
-              "Non",
-              "Non",
-              "CMOD disponible sur option"
-            ]
+            ["Conseiller maître d’ouvrage", "Non", "Non", "CMOD disponible sur option"]
           ]
         },
         "traps": {
@@ -2233,12 +2124,7 @@
         "comparatif": {
           "title": "Artisan Compétent vs autres plateformes vs Google direct",
           "lead": "Tableau comparatif synthétique des trois canaux les plus utilisés pour trouver un spécialiste anti-nuisibles. Les critères sont calés sur les points de risque réels du métier.",
-          "headers": [
-            "Critère",
-            "Autres plateformes",
-            "Google direct",
-            "Artisan Compétent"
-          ],
+          "headers": ["Critère", "Autres plateformes", "Google direct", "Artisan Compétent"],
           "rows": [
             [
               "Vérification SIRET de l’artisan",
@@ -2246,42 +2132,17 @@
               "Aucune par défaut",
               "Systématique avant validation du profil"
             ],
-            [
-              "Certificat Certibiocide contrôlé",
-              "Rare",
-              "Aucune",
-              "Vérifié et déposé au tableau de bord"
-            ],
-            [
-              "Vérification assurances (RC pro)",
-              "Rare ou déclarative",
-              "Aucune",
-              "RC pro exigée et vérifiée"
-            ],
-            [
-              "Paiement encadré",
-              "Non",
-              "Non",
-              "Paiement encadré Stripe, versement à 96h"
-            ],
+            ["Certificat Certibiocide contrôlé", "Rare", "Aucune", "Vérifié et déposé au tableau de bord"],
+            ["Vérification assurances (RC pro)", "Rare ou déclarative", "Aucune", "RC pro exigée et vérifiée"],
+            ["Paiement encadré", "Non", "Non", "Paiement encadré Stripe, versement à 96h"],
             [
               "Recours en cas d’inefficacité de traitement",
               "Limité",
               "Aucun",
               "Retenue jusqu’à 250 € si signalement < 96h"
             ],
-            [
-              "Visites de contrôle documentées",
-              "Variable",
-              "Aucune",
-              "Photos et compte-rendu au tableau de bord"
-            ],
-            [
-              "Conseiller maître d’ouvrage",
-              "Non",
-              "Non",
-              "CMOD disponible sur option"
-            ]
+            ["Visites de contrôle documentées", "Variable", "Aucune", "Photos et compte-rendu au tableau de bord"],
+            ["Conseiller maître d’ouvrage", "Non", "Non", "CMOD disponible sur option"]
           ]
         },
         "traps": {
@@ -2748,7 +2609,7 @@
   },
   "searchPro": {
     "placeholder": "Rechercher un professionnel ou un service",
-    "addressLabel": "Votre adresse",
+    "addressLabel": "Adresse d'intervention",
     "tradeLabel": "Choisir un métier",
     "kilometersLabel": "Rayon (km)",
     "button": "Rechercher"
@@ -3168,10 +3029,7 @@
         "question": "Suis-je obligé d'accepter Klarna ?",
         "intro": "Non. Le paiement en plusieurs fois via Klarna reste entièrement facultatif.",
         "choice": "Chaque artisan est libre :",
-        "choiceItems": [
-          "de l'accepter",
-          "ou de le refuser"
-        ],
+        "choiceItems": ["de l'accepter", "ou de le refuser"],
         "benefits": "Cependant, cette solution peut représenter un véritable avantage commercial. Un client qui peut payer en plusieurs fois :",
         "benefitsItems": [
           "hésite moins",
@@ -3186,16 +3044,9 @@
         "introBefore": "Oui. Un artisan peut également ",
         "affiliateLink": "devenir affilié Artisan Compétent",
         "introAfter": " et percevoir des revenus complémentaires en recommandant la plateforme :",
-        "audienceItems": [
-          "à d'autres artisans",
-          "ou directement à des clients"
-        ],
+        "audienceItems": ["à d'autres artisans", "ou directement à des clients"],
         "national": "L'avantage du système est qu'il fonctionne au niveau national :",
-        "nationalItems": [
-          "France métropolitaine",
-          "Corse",
-          "DOM-TOM"
-        ],
+        "nationalItems": ["France métropolitaine", "Corse", "DOM-TOM"],
         "outro": "Chaque affilié peut ainsi participer au développement du réseau Artisan Compétent tout en générant des revenus complémentaires grâce aux procès-verbaux signés via ses recommandations.",
         "answerLd": "Oui. Un artisan peut également devenir affilié Artisan Compétent et percevoir des revenus complémentaires en recommandant la plateforme à d'autres artisans ou directement à des clients. L'avantage du système est qu'il fonctionne au niveau national : France métropolitaine, Corse, DOM-TOM. Chaque affilié peut ainsi participer au développement du réseau Artisan Compétent tout en générant des revenus complémentaires grâce aux procès-verbaux signés via ses recommandations."
       }
@@ -3250,7 +3101,8 @@
         "CANCELLED": "Annulée"
       },
       "filesCount": "{{ count }} fichier(s) joint(s)",
-      "createDemand": "Créer une demande"
+      "createDemand": "Créer une demande",
+      "location": "Intervention à {{ city }} ({{ postalCode }})"
     },
     "nav": {
       "requests": "Mes demandes",
@@ -3560,10 +3412,12 @@
       "send": "Envoyer",
       "demandLabel": "Demande",
       "attach": "Joindre un fichier",
+      "demandCancelled": "Cette demande a été annulée par son auteur. Il n'est plus possible d'envoyer de message ni d'agir sur cette conversation.",
       "actions": {
         "title": "Actions",
         "decline": "Décliner l'offre",
-        "quote": "Créer un devis",
+        "createQuote": "Créer un devis",
+        "resumeQuote": "Reprendre le devis",
         "review": "Laisser un avis",
         "dispute": "Signaler un conflit"
       },
@@ -3795,17 +3649,9 @@
       "title": "Pourquoi Artisan Compétent le recommande ?",
       "intro": "Parce qu'un bon référencement ne s'improvise pas. Et surtout parce que le bâtiment est un domaine particulier.",
       "notNeeded": "Les artisans n'ont pas besoin :",
-      "notNeededItems": [
-        "d'un discours marketing compliqué",
-        "ni de promesses irréalistes"
-      ],
+      "notNeededItems": ["d'un discours marketing compliqué", "ni de promesses irréalistes"],
       "needed": "Ils ont besoin :",
-      "neededItems": [
-        "de visibilité",
-        "de vrais appels",
-        "de vrais devis",
-        "de vrais clients"
-      ],
+      "neededItems": ["de visibilité", "de vrais appels", "de vrais devis", "de vrais clients"],
       "outro": "Guillaume Azas et Webesty travaillent avec une approche claire, structurée et orientée résultats. L'objectif est simple : aider les professionnels sérieux à développer leur activité durablement."
     },
     "complement": {
@@ -3907,6 +3753,7 @@
     "notFound": "La ressource demandée est introuvable.",
     "server": "Une erreur est survenue côté serveur. Veuillez réessayer.",
     "unknown": "Une erreur inattendue est survenue. Veuillez réessayer.",
+    "serviceUnavailable": "Le service est momentanément indisponible. Veuillez réessayer dans quelques instants.",
     "invalidImageFormat": "Format invalide. Seuls les fichiers JPEG, PNG et WebP sont acceptés.",
     "invalidDocumentFormat": "Format invalide. Seuls les fichiers JPEG, PNG, WebP et PDF sont acceptés.",
     "documentsUploadFailed": "Votre compte a été créé, mais l'envoi de vos documents a échoué. Vous pouvez réessayer ci-dessous.",

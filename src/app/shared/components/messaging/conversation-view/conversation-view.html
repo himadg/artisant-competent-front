@@ -18,33 +18,39 @@
             }
         </div>
 
-        <div class="chat-actions">
-            <button type="button" class="chat-actions-btn" (click)="toggleActionsMenu()" [attr.aria-label]="'dashboard.messages.actions.title' | transloco">
-                <iconify-icon icon="lucide:more-vertical"></iconify-icon>
-            </button>
+        @if (conversation().demandStatus !== 'CANCELLED') {
+            <div class="chat-actions">
+                <button type="button" class="chat-actions-btn" (click)="toggleActionsMenu()" [attr.aria-label]="'dashboard.messages.actions.title' | transloco">
+                    <iconify-icon icon="lucide:more-vertical"></iconify-icon>
+                </button>
 
-            @if (actionsMenuOpen()) {
-                <div class="chat-actions-overlay" (click)="closeActionsMenu()"></div>
-                <div class="chat-actions-menu">
-                    <button type="button" (click)="declineOffer.emit(); closeActionsMenu()">
-                        <iconify-icon icon="lucide:x-circle"></iconify-icon>
-                        {{ 'dashboard.messages.actions.decline' | transloco }}
-                    </button>
-                    <button type="button" (click)="createQuote.emit(); closeActionsMenu()">
-                        <iconify-icon icon="lucide:file-plus"></iconify-icon>
-                        {{ 'dashboard.messages.actions.quote' | transloco }}
-                    </button>
-                    <button type="button" (click)="leaveReview.emit(); closeActionsMenu()">
-                        <iconify-icon icon="lucide:star"></iconify-icon>
-                        {{ 'dashboard.messages.actions.review' | transloco }}
-                    </button>
-                    <button type="button" (click)="reportDispute.emit(); closeActionsMenu()">
-                        <iconify-icon icon="lucide:flag"></iconify-icon>
-                        {{ 'dashboard.messages.actions.dispute' | transloco }}
-                    </button>
-                </div>
-            }
-        </div>
+                @if (actionsMenuOpen()) {
+                    <div class="chat-actions-overlay" (click)="closeActionsMenu()"></div>
+                    <div class="chat-actions-menu">
+                        <button type="button" (click)="declineOffer.emit(); closeActionsMenu()">
+                            <iconify-icon icon="lucide:x-circle"></iconify-icon>
+                            {{ 'dashboard.messages.actions.decline' | transloco }}
+                        </button>
+                        <button type="button" (click)="createQuote.emit(conversation().demandId); closeActionsMenu()">
+                            <iconify-icon icon="lucide:file-plus"></iconify-icon>
+                            {{
+                                (conversation().quoteStatus === 'DRAFT'
+                                    ? 'dashboard.messages.actions.resumeQuote'
+                                    : 'dashboard.messages.actions.createQuote') | transloco
+                            }}
+                        </button>
+                        <button type="button" (click)="leaveReview.emit(); closeActionsMenu()">
+                            <iconify-icon icon="lucide:star"></iconify-icon>
+                            {{ 'dashboard.messages.actions.review' | transloco }}
+                        </button>
+                        <button type="button" (click)="reportDispute.emit(); closeActionsMenu()">
+                            <iconify-icon icon="lucide:flag"></iconify-icon>
+                            {{ 'dashboard.messages.actions.dispute' | transloco }}
+                        </button>
+                    </div>
+                }
+            </div>
+        }
     </div>
 
     <button type="button" class="chat-demand-banner" (click)="openDemand.emit(conversation().demandId)">
@@ -89,30 +95,34 @@
         }
     </div>
 
-    <form class="chat-input-bar" (ngSubmit)="submit()">
-        <div class="chat-input-wrap">
-            <textarea
-                rows="1"
-                class="chat-input"
-                [value]="draft()"
-                [placeholder]="'dashboard.messages.inputPlaceholder' | transloco"
-                (input)="onDraftInput($event)"
-                (keydown)="onKeydown($event)"
-            ></textarea>
-            <label class="chat-attach-btn" [attr.aria-label]="'dashboard.messages.attach' | transloco">
-                <iconify-icon icon="lucide:paperclip"></iconify-icon>
-                <input
-                    type="file"
-                    class="hidden"
-                    accept="image/jpeg,image/png,image/webp,application/pdf"
-                    (change)="onAttachmentSelected($event)"
-                />
-            </label>
-        </div>
-        <button type="submit" class="chat-send-btn" [disabled]="!draft().trim()" [attr.aria-label]="'dashboard.messages.send' | transloco">
-            <iconify-icon icon="lucide:send"></iconify-icon>
-        </button>
-    </form>
+    @if (conversation().demandStatus === 'CANCELLED') {
+        <p class="chat-demand-cancelled">{{ 'dashboard.messages.demandCancelled' | transloco }}</p>
+    } @else {
+        <form class="chat-input-bar" (ngSubmit)="submit()">
+            <div class="chat-input-wrap">
+                <textarea
+                    rows="1"
+                    class="chat-input"
+                    [value]="draft()"
+                    [placeholder]="'dashboard.messages.inputPlaceholder' | transloco"
+                    (input)="onDraftInput($event)"
+                    (keydown)="onKeydown($event)"
+                ></textarea>
+                <label class="chat-attach-btn" [attr.aria-label]="'dashboard.messages.attach' | transloco">
+                    <iconify-icon icon="lucide:paperclip"></iconify-icon>
+                    <input
+                        type="file"
+                        class="hidden"
+                        accept="image/jpeg,image/png,image/webp,application/pdf"
+                        (change)="onAttachmentSelected($event)"
+                    />
+                </label>
+            </div>
+            <button type="submit" class="chat-send-btn" [disabled]="!draft().trim()" [attr.aria-label]="'dashboard.messages.send' | transloco">
+                <iconify-icon icon="lucide:send"></iconify-icon>
+            </button>
+        </form>
+    }
 </div>
 
 @if (docToPreview()) {

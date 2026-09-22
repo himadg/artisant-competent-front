@@ -21,6 +21,11 @@
                     <span class="demand-date">{{ demand.createdAt | localizedDate:'compact' }}</span>
                 </div>
                 <p class="demand-description">{{ demand.description }}</p>
+                @if (demand.address) {
+                    <p class="demand-meta">
+                        {{ 'dashboard.requests.location' | transloco: demand.address }}
+                    </p>
+                }
                 <p class="demand-meta">
                     {{ 'dashboard.requests.filesCount' | transloco: { count: demand.photoKeys.length } }}
                 </p>

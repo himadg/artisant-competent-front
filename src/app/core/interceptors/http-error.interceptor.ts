@@ -8,6 +8,7 @@ const STATUS_KEY_MAP: Record<number, string> = {
   403: 'errors.forbidden',
   404: 'errors.notFound',
   500: 'errors.server',
+  503: 'errors.serviceUnavailable',
 };
 
 export const httpErrorInterceptor: HttpInterceptorFn = (req, next) => {
