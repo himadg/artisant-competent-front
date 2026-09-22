@@ -5,6 +5,7 @@ import { ConversationList } from './conversation-list/conversation-list';
 import { ConversationView } from './conversation-view/conversation-view';
 import { ConversationMessage } from '../../interfaces/conversation';
 import { ChatService } from '../../../core/services/chat.service';
+import { QuoteModal } from '../quote-modal/quote-modal';
 
 const MESSAGES_PAGE_SIZE = 50;
 
@@ -12,16 +13,20 @@ const MESSAGES_PAGE_SIZE = 50;
   selector: 'messaging',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, TranslocoModule, ConversationList, ConversationView],
+  imports: [CommonModule, TranslocoModule, ConversationList, ConversationView, QuoteModal],
   templateUrl: './messaging.html',
   styleUrl: './messaging.scss',
 })
 export class Messaging {
   private readonly chatService = inject(ChatService);
 
-  /** Permet à un appelant externe (ex: bouton "envoyer un message" sur une demande) de préselectionner une conversation. */
+  // Permet à un appelant externe (ex: bouton "envoyer un message" sur une demande) de préselectionner une conversation.
   readonly initialConversationId = input<string | null>(null);
   readonly openDemand = output<string>();
+  /** Émis juste après avoir appliqué initialConversationId : signale à l'appelant qu'il peut
+   * remettre sa source (ex: pendingConversationId) à null, pour qu'une prochaine préselection sur
+   * la même conversation redéclenche bien l'effet (sinon une valeur inchangée ne notifie personne). */
+  readonly initialConversationConsumed = output<void>();
 
   readonly conversations = this.chatService.conversations;
   readonly selectedConversationId = signal<string | null>(null);
@@ -30,6 +35,8 @@ export class Messaging {
   readonly messagesLoading = signal(false);
   readonly loadingMoreMessages = signal(false);
   readonly hasMoreMessages = signal(true);
+  // `null` = fermé, sinon l'id de la demande pour laquelle le devis est en cours de création.
+  readonly quoteModalOpen = signal<string | null>(null);
 
   readonly selectedConversation = computed(
     () => this.conversations().find((c) => c.id === this.selectedConversationId()) ?? null,
@@ -41,10 +48,19 @@ export class Messaging {
   private readonly messagesCache = new Map<string, ConversationMessage[]>();
   private readonly hasMoreCache = new Map<string, boolean>();
 
+  // Dernière valeur de initialConversationId déjà appliquée — permet de ne réagir qu'à un vrai
+  // changement de cet input, jamais à un changement de selectedConversationId lui-même (sinon
+  // sélectionner une autre conversation, ou fermer la vue mobile, se ferait aussitôt écraser).
+  private lastAppliedInitialId: string | null = null;
+
   constructor() {
     effect(() => {
       const id = this.initialConversationId();
-      if (id && id !== this.selectedConversationId()) this.selectConversation(id);
+      if (id && id !== this.lastAppliedInitialId) {
+        this.lastAppliedInitialId = id;
+        this.selectConversation(id);
+        this.initialConversationConsumed.emit();
+      }
     });
 
     effect(() => {
@@ -107,6 +123,10 @@ export class Messaging {
         this.messages.update((list) => [...list, ...older]);
       })
       .finally(() => this.loadingMoreMessages.set(false));
+  }
+
+  openQuoteModal(demandId: string): void {
+    this.quoteModalOpen.set(demandId);
   }
 
   closeConversation(): void {
