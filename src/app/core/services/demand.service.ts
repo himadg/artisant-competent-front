@@ -9,9 +9,11 @@ const BASE_URL = '/demands';
 export class DemandService {
   private readonly http = inject(HttpClient);
 
-  create(description: string, professionalsId: string[]): Promise<CreateDemandResponse> {
+  /** `address` : le texte de recherche choisi dans l'autocomplete (label) — le reste de l'adresse
+   * (city/postalCode/lat/lng) est re-dérivé côté serveur, jamais envoyé par le client. */
+  create(description: string, professionalsId: string[], address: string): Promise<CreateDemandResponse> {
     return firstValueFrom(
-      this.http.post<CreateDemandResponse>(BASE_URL, { description, professionalsId }),
+      this.http.post<CreateDemandResponse>(BASE_URL, { description, professionalsId, address }),
     );
   }
 

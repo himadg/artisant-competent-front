@@ -114,7 +114,7 @@ export class SearchProPage implements OnInit {
   async submit(value: DemandFormValue): Promise<void> {
     this.demandLoading.set(true);
     try {
-      const { id } = await this.demandService.create(value.description, [...this.selectedIds()]);
+      const { id } = await this.demandService.create(value.description, [...this.selectedIds()], this.address);
 
       if (value.files.length > 0) {
         try {
@@ -130,8 +130,12 @@ export class SearchProPage implements OnInit {
       this.flash.set({ type: 'success', key: 'demand.createSuccess' });
       this.showDemandModal.set(false);
       this.clearSelection();
-    } catch {
+    } catch (err) {
       // L'intercepteur HTTP affiche déjà le toast d'erreur, on garde le modal ouvert pour retry
+      const code = (err as { error?: { code?: string } })?.error?.code;
+      if (code === 'DEMAND_ADDRESS_NOT_FOUND') {
+        this.flash.set({ type: 'error', key: 'demand.addressNotFound' });
+      }
     } finally {
       this.demandLoading.set(false);
     }
