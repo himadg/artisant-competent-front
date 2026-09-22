@@ -973,17 +973,26 @@
             }
             <!-- 4e bloc : vidéo de présentation Artisan Compétent -->
             <li
-                class="flex flex-col items-center justify-center p-2 rounded-xl border overflow-hidden cursor-pointer"
+                class="flex flex-col text-center gap-3 p-4 rounded-xl border overflow-hidden cursor-pointer"
                 role="button"
                 tabindex="0"
                 (click)="presentationVideoModalOpen.set(true)"
                 (keydown.enter)="presentationVideoModalOpen.set(true)"
             >
+                <div class="flex flex-col md:justify-between md:min-h-[6rem]">
+                    <img
+                        src="assets/img/logo.webp"
+                        [attr.alt]="'home.paiement.videoLabel' | transloco"
+                        width="44"
+                        height="44"
+                        class="mx-auto object-contain"
+                    />
+                    <p class="font-bold text-sm md:text-base">{{ 'home.paiement.videoLabel' | transloco }}</p>
+                </div>
+                <div class="w-8 h-0.5 bg-[var(--tertiary-brown)] rounded mx-auto"></div>
                 <video
                     src="assets/video/artisan-competent-presentation.mp4"
                     class="w-full rounded-lg object-cover"
-                    autoplay
-                    muted
                     loop
                     playsinline
                     [attr.aria-label]="'home.paiement.vsGoogleAlt' | transloco"
