@@ -7,16 +7,8 @@ import { TranslocoModule } from '@jsverse/transloco';
 import { Subject, switchMap, debounceTime, filter } from 'rxjs';
 import { TradeApiService } from '../../../core/services/trade-api.service';
 import { GeocodingService } from '../../../core/services/geocoding.service';
-import { AddressSuggestion } from '../../interfaces/address-suggestion';
+import { AddressSuggestion, SelectedAddress } from '../../interfaces/address-suggestion';
 import { Trade } from '../../interfaces/trade';
-
-// Ce composant n'a besoin que du label et des coordonnées, jamais des champs d'adresse structurée
-// (streetNumber/streetName/postalCode/city) — type étroit plutôt que d'emprunter AddressSuggestion en entier.
-interface SelectedAddress {
-  label: string;
-  latitude: number;
-  longitude: number;
-}
 
 @Component({
   selector: 'search-pro-form',

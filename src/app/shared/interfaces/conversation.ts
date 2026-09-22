@@ -1,3 +1,6 @@
+import { DemandStatus } from './demand';
+import { QuoteStatus } from './quote';
+
 export type MessageType = 'TEXT' | 'IMAGE' | 'DOCUMENT';
 
 export interface ConversationParticipant {
@@ -26,6 +29,8 @@ export interface ConversationSummary {
   demandId: string;
   demandDescription: string;
   demandCreatedAt: string | null;
+  demandStatus: DemandStatus | null;
+  quoteStatus: QuoteStatus | null;
   otherParticipant: ConversationParticipant;
   lastMessage: { content: string; type: MessageType; createdAt: string } | null;
   unreadCount: number;

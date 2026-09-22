@@ -15,9 +15,14 @@
                 (sendAttachment)="sendAttachment($event)"
                 (openDemand)="openDemand.emit($event)"
                 (loadMore)="loadMoreMessages()"
+                (createQuote)="openQuoteModal($event)"
             />
         } @else {
             <div class="messaging-empty">{{ 'dashboard.messages.selectPrompt' | transloco }}</div>
         }
     </div>
 </div>
+
+@if (quoteModalOpen(); as demandId) {
+    <quote-modal [demandId]="demandId" (closed)="quoteModalOpen.set(null)" />
+}
