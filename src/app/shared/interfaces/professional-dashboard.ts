@@ -25,6 +25,7 @@ export interface ProfessionalProfile {
   ribUrl: string | null;
   siret: string;
   companyStatus: 'COMPANY' | 'INDIVIDUAL';
+  legalForm: string;
   yearsExperience: number;
   isCmod: boolean;
   onCall: boolean;
