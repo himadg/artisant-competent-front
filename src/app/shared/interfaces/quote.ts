@@ -1,3 +1,6 @@
+import { Address } from './address';
+import { DemandAddress } from './demand';
+
 export type MaterialOrigin = 'new' | 'refurbished' | 'custom' | 'none';
 export type QuoteStatus = 'DRAFT' | 'SENT' | 'ACCEPTED' | 'DECLINED';
 
@@ -45,4 +48,43 @@ export interface Quote extends SaveQuoteDraftPayload {
   professionalProfileId: string;
   createdAt: string;
   updatedAt: string;
+}
+
+/** Identité du professionnel telle qu'affichée sur le devis (sous-ensemble de ProfessionalProfile). */
+export interface QuotePreviewProfessional {
+  companyName: string;
+  siret: string;
+  legalForm: string;
+  managerPhone: string;
+  professionalEmail: string | null;
+  logoUrl: string | null;
+  workAddress: Address;
+}
+
+/** Identité du client telle qu'affichée sur le devis — l'adresse reste masquée (ville/code postal
+ * uniquement) tant que le devis n'est pas payé, cf. DemandAddressHidden dans demand.ts. */
+export interface QuotePreviewClient {
+  firstName: string;
+  lastName: string;
+  address: DemandAddress | null;
+}
+
+/** Données assemblées pour l'aperçu HTML du devis (quote-preview) : snapshot du brouillon en cours
+ * d'édition + identité pro/client récupérées séparément. Sera réutilisée telle quelle pour
+ * l'impression PDF finale (Playwright) une fois le devis signé. */
+export interface QuotePreviewData {
+  quoteNumber: string;
+  createdAt: string;
+  professional: QuotePreviewProfessional;
+  client: QuotePreviewClient;
+  materialLines: QuoteLineItem[];
+  laborLines: QuoteLineItem[];
+  logisticsLines: QuoteLineItem[];
+  nightWorkSurcharge: boolean | null;
+  estimatedStartDate: string | null;
+  estimatedEndDate: string | null;
+  documents: QuoteDocument[];
+  remarks: string;
+  klarnaAccepted: boolean;
+  vatExempt: boolean;
 }

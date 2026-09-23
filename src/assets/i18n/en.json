@@ -13,6 +13,26 @@
       "draftSaveSuccess": "Draft saved.",
       "generate": "Generate quote"
     },
+    "preview": {
+      "close": "Close preview",
+      "professional": "Professional",
+      "client": "Client",
+      "siret": "Company ID (SIRET)",
+      "phone": "Phone",
+      "email": "Email",
+      "legalForm": "Legal form",
+      "description": "Description",
+      "paymentConditions": "Payment terms",
+      "klarnaAccepted": "Instalment payment via Klarna is offered for this project.",
+      "documentsTitle": "Attached documents",
+      "noDocuments": "No document attached.",
+      "nightWorkYes": "Night work (8pm-7am): surcharge applied",
+      "nightWorkNo": "Night work (8pm-7am): no",
+      "totalHT": "Total excl. VAT",
+      "totalVAT": "Total VAT",
+      "totalTTC": "Total incl. VAT",
+      "printedOn": "Quote issued on"
+    },
     "materials": {
       "title": "1. Materials and supplies",
       "hint": "Description (max 250 characters) – use \"Add materials and supplies\" to enter each additional material or supply individually, stating the name of its supplier.",
@@ -70,8 +90,9 @@
     "agreement": {
       "title": "7. Agreement and validation",
       "mentionsTitle": "Important notices:",
-      "mainAgreement": "I confirm my agreement to this quote, which also constitutes a purchase order. By validating it, I authorise the professional to prepare and organise the project in accordance with the planned services. I acknowledge that it is my responsibility to check, as soon as possible, the validity of the tradesperson's insurance, certifications and required documents, before or during the project.<br><br>To help the work run smoothly and avoid any delay or dispute, it is recommended to carry out these checks as early as possible. From the handover of the project completion report, I nonetheless have a maximum period of 96 hours to carry out or finalise these checks before the automatic validation of the project and the release of funds. This period notably accounts for emergency call-outs carried out at night, on weekends or on public holidays.",
-      "earlyStart": "I expressly request that the work may begin before the legal withdrawal period expires. I acknowledge having been informed that, by giving this agreement, the professional may incur the expenses necessary for the project, in particular for the purchase of materials, supplies or the booking of any equipment, in accordance with the accepted quote.<br><br>I also acknowledge having read, prior to signing the quote, and accept without reservation the Terms of Use, the Terms of Sale and the Cancellation Policy of the Artisan Compétent platform. I accept that these documents apply to the contractual relationship binding me to the tradesperson.",
+      "clientSignatureHint": "These notices and their acceptance are the client's responsibility: they will review and electronically sign them when opening this quote in the conversation.",
+      "quoteAgreementAccepted": "I confirm my agreement to this quote, which also constitutes a purchase order. By validating it, I authorise the professional to prepare and organise the project in accordance with the planned services. I acknowledge that it is my responsibility to check, as soon as possible, the validity of the tradesperson's insurance, certifications and required documents, before or during the project.<br><br>To help the work run smoothly and avoid any delay or dispute, it is recommended to carry out these checks as early as possible. From the handover of the project completion report, I nonetheless have a maximum period of 96 hours to carry out or finalise these checks before the automatic validation of the project and the release of funds. This period notably accounts for emergency call-outs carried out at night, on weekends or on public holidays.",
+      "earlyStartAccepted": "I expressly request that the work may begin before the legal withdrawal period expires. I acknowledge having been informed that, by giving this agreement, the professional may incur the expenses necessary for the project, in particular for the purchase of materials, supplies or the booking of any equipment, in accordance with the accepted quote.<br><br>I also acknowledge having read, prior to signing the quote, and accept without reservation the Terms of Use, the Terms of Sale and the Cancellation Policy of the Artisan Compétent platform. I accept that these documents apply to the contractual relationship binding me to the tradesperson.",
       "summaryTitle": "Summary",
       "summaryHT": "Total excl. VAT (Materials + Labour + Costs):",
       "summaryTTC": "Total amount due incl. VAT:",

@@ -12,8 +12,20 @@ import {
 import { DecimalPipe } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { QuoteService } from '../../../core/services/quote.service';
+import { DemandService } from '../../../core/services/demand.service';
+import { DashboardDataService } from '../../../core/services/dashboard-data.service';
 import { FlashMessageService } from '../../../core/services/flash-message.service';
-import { MaterialOrigin, Quote, QuoteDocumentDraft, QuoteLineItem, SaveQuoteDraftPayload } from '../../interfaces/quote';
+import {
+  MaterialOrigin,
+  Quote,
+  QuoteDocumentDraft,
+  QuoteLineItem,
+  QuotePreviewData,
+  SaveQuoteDraftPayload,
+} from '../../interfaces/quote';
+import { ProfessionalDashboardData, ProfessionalProfile } from '../../interfaces/professional-dashboard';
+import { DemandDetail } from '../../interfaces/demand';
+import { QuotePreview } from '../quote-preview/quote-preview';
 
 // Discriminant purement interne (routage vers le bon signal dans linesSignal()) — ce n'est pas une
 // forme de donnée, donc pas dans shared/interfaces/ contrairement à QuoteLineItem/QuoteDocumentDraft.
@@ -60,13 +72,15 @@ function generateQuoteNumber(): string {
   selector: 'quote-modal',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TranslocoModule, DecimalPipe],
+  imports: [TranslocoModule, DecimalPipe, QuotePreview],
   templateUrl: './quote-modal.html',
   styleUrl: './quote-modal.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class QuoteModal implements OnInit {
   private readonly quoteService = inject(QuoteService);
+  private readonly demandService = inject(DemandService);
+  private readonly dashboardData = inject(DashboardDataService);
   private readonly flash = inject(FlashMessageService);
 
   readonly demandId = input.required<string>();
@@ -78,6 +92,51 @@ export class QuoteModal implements OnInit {
 
   readonly loadingDraft = signal(true);
   readonly saving = signal(false);
+
+  // ── Aperçu (identité pro/client, chargées séparément du brouillon) ─────
+  private readonly professionalProfile = signal<ProfessionalProfile | null>(null);
+  private readonly demand = signal<DemandDetail | null>(null);
+  readonly showPreview = signal(false);
+
+  readonly previewData = computed<QuotePreviewData | null>(() => {
+    const professional = this.professionalProfile();
+    const demand = this.demand();
+    if (!professional || !demand) return null;
+    return {
+      quoteNumber: this.quoteNumber(),
+      createdAt: this.today,
+      professional: {
+        companyName: professional.companyName,
+        siret: professional.siret,
+        legalForm: professional.legalForm,
+        managerPhone: professional.managerPhone,
+        professionalEmail: professional.professionalEmail,
+        logoUrl: professional.logoUrl,
+        workAddress: professional.workAddress,
+      },
+      client: {
+        firstName: demand.author.firstName,
+        lastName: demand.author.lastName,
+        address: demand.address,
+      },
+      materialLines: this.materialLines(),
+      laborLines: this.laborLines(),
+      logisticsLines: this.logisticsLines(),
+      nightWorkSurcharge: this.nightWorkSurcharge(),
+      estimatedStartDate: this.estimatedStartDate() || null,
+      estimatedEndDate: this.estimatedEndDate() || null,
+      documents: this.documents()
+        .filter((d) => d.name.trim())
+        .map((d) => ({ name: d.name })),
+      remarks: this.remarks(),
+      klarnaAccepted: this.klarnaAccepted(),
+      vatExempt: this.vatExempt(),
+    };
+  });
+
+  openPreview(): void {
+    if (this.previewData()) this.showPreview.set(true);
+  }
 
   // ── 1. Matériaux et fournitures ─────────────────────────────────────────
   readonly materialLines = signal<QuoteLineItem[]>([emptyMaterialLine()]);
@@ -201,10 +260,6 @@ export class QuoteModal implements OnInit {
   // ── 6. Remarque ───────────────────────────────────────────────────────
   readonly remarks = signal('');
 
-  // ── 7. Accord et validation ──────────────────────────────────────────
-  readonly quoteAgreementAccepted = signal(false);
-  readonly earlyStartAccepted = signal(false);
-
   // ── Récapitulatif ────────────────────────────────────────────────────
   private readonly allLines = computed(() => [...this.materialLines(), ...this.laborLines(), ...this.logisticsLines()]);
 
@@ -229,6 +284,15 @@ export class QuoteModal implements OnInit {
       })
       .catch(() => this.flash.set({ type: 'error', key: 'errors.unknown' }))
       .finally(() => this.loadingDraft.set(false));
+
+    // Chargement séparé de l'aperçu : `loadOwn` est mis en cache par DashboardDataService, donc
+    // gratuit si le dashboard pro l'a déjà chargé — n'attend pas et ne bloque pas le brouillon.
+    Promise.all([this.dashboardData.loadOwn<ProfessionalDashboardData>(), this.demandService.getById(this.demandId())])
+      .then(([dashboard, demand]) => {
+        this.professionalProfile.set(dashboard.professionalProfile);
+        this.demand.set(demand);
+      })
+      .catch(() => this.flash.set({ type: 'error', key: 'errors.unknown' }));
   }
 
   private applyDraft(draft: Quote): void {
@@ -247,8 +311,6 @@ export class QuoteModal implements OnInit {
     this.remarks.set(draft.remarks ?? '');
     this.klarnaAccepted.set(draft.klarnaAccepted);
     this.vatExempt.set(draft.vatExempt);
-    this.quoteAgreementAccepted.set(draft.quoteAgreementAccepted);
-    this.earlyStartAccepted.set(draft.earlyStartAccepted);
   }
 
   private buildDraftPayload(): SaveQuoteDraftPayload {
@@ -266,8 +328,10 @@ export class QuoteModal implements OnInit {
       remarks: this.remarks(),
       klarnaAccepted: this.klarnaAccepted(),
       vatExempt: this.vatExempt(),
-      quoteAgreementAccepted: this.quoteAgreementAccepted(),
-      earlyStartAccepted: this.earlyStartAccepted(),
+      // Consentements du client (signature électronique à venir) : le pro n'y a jamais accès,
+      // toujours false tant que le client n'a pas lui-même signé le devis dans son propre écran.
+      quoteAgreementAccepted: false,
+      earlyStartAccepted: false,
     };
   }
 
