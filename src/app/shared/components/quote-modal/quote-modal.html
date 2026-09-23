@@ -20,7 +20,12 @@
                     <iconify-icon icon="lucide:book-open" width="16"></iconify-icon>
                     <span class="hidden sm:inline">{{ 'quote.actions.guide' | transloco }}</span>
                 </button>
-                <button type="button" class="quote-btn quote-btn--outline">
+                <button
+                    type="button"
+                    class="quote-btn quote-btn--outline"
+                    [disabled]="!previewData()"
+                    (click)="openPreview()"
+                >
                     <iconify-icon icon="lucide:eye" width="16"></iconify-icon>
                     <span class="hidden sm:inline">{{ 'quote.actions.preview' | transloco }}</span>
                 </button>
@@ -533,23 +538,13 @@
                         </div>
                         <p class="quote-field-label">{{ 'quote.agreement.mentionsTitle' | transloco }}</p>
 
-                        <label class="quote-agreement-item">
-                            <input
-                                type="checkbox"
-                                [checked]="quoteAgreementAccepted()"
-                                (change)="quoteAgreementAccepted.set($any($event.target).checked)"
-                            />
-                            <span [innerHTML]="'quote.agreement.mainAgreement' | transloco"></span>
-                        </label>
-
-                        <label class="quote-agreement-item">
-                            <input
-                                type="checkbox"
-                                [checked]="earlyStartAccepted()"
-                                (change)="earlyStartAccepted.set($any($event.target).checked)"
-                            />
-                            <span [innerHTML]="'quote.agreement.earlyStart' | transloco"></span>
-                        </label>
+                        <!-- Ces 2 mentions engagent le CLIENT (1ère personne "je") : c'est lui qui les
+                        cochera et les signera électroniquement à l'ouverture du devis dans la conversation,
+                        jamais le pro. Elles restent visibles en lecture seule dans l'aperçu (quote-preview). -->
+                        <div class="quote-info-box">
+                            <iconify-icon icon="lucide:info" width="16" class="mt-0.5 shrink-0"></iconify-icon>
+                            <p>{{ 'quote.agreement.clientSignatureHint' | transloco }}</p>
+                        </div>
 
                         <div class="quote-summary">
                             <h4 class="quote-field-label">{{ 'quote.agreement.summaryTitle' | transloco }}</h4>
@@ -578,4 +573,8 @@
             }
         </div>
     </div>
+
+    @if (showPreview() && previewData(); as preview) {
+        <quote-preview [data]="preview" (closed)="showPreview.set(false)" />
+    }
 </div>
