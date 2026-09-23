@@ -1,0 +1,221 @@
+<div class="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 p-2 sm:p-4" (click)="close(); $event.stopPropagation()">
+    <div
+        class="quote-preview-paper flex h-full max-h-[95dvh] w-full max-w-3xl flex-col overflow-hidden rounded-xl bg-white shadow-2xl"
+        (click)="$event.stopPropagation()"
+    >
+        <div class="flex items-center justify-between gap-3 border-b border-gray-200 px-4 py-3 sm:px-6">
+            <h2 class="text-base font-bold text-gray-900 sm:text-lg">{{ 'quote.actions.preview' | transloco }}</h2>
+            <button
+                type="button"
+                class="quote-preview-close-btn"
+                [attr.aria-label]="'quote.preview.close' | transloco"
+                (click)="close()"
+            >
+                <iconify-icon icon="lucide:x" width="20"></iconify-icon>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto px-4 py-5 sm:px-8 sm:py-8 text-gray-900">
+            <!-- ═══ En-tête devis ═══ -->
+            <div class="flex flex-wrap items-start justify-between gap-4 border-b border-gray-300 pb-4">
+                <div class="flex items-center gap-3">
+                    @if (data().professional.logoUrl) {
+                        <img [src]="data().professional.logoUrl" alt="" class="h-12 w-12 shrink-0 rounded object-cover" />
+                    }
+                    <div>
+                        <p class="text-lg font-bold">{{ data().professional.companyName }}</p>
+                        <p class="text-xs text-gray-500">
+                            {{ 'quote.preview.siret' | transloco }} : {{ data().professional.siret }}
+                        </p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-lg font-bold">{{ 'quote.title' | transloco }} n&deg; {{ data().quoteNumber }}</p>
+                    <p class="text-xs text-gray-500">{{ 'quote.preview.printedOn' | transloco }} {{ data().createdAt }}</p>
+                </div>
+            </div>
+
+            <!-- ═══ Professionnel / Client ═══ -->
+            <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div class="quote-preview-box">
+                    <p class="quote-preview-box-title">{{ 'quote.preview.client' | transloco }}</p>
+                    <p>{{ data().client.firstName }} {{ data().client.lastName }}</p>
+                    @if (data().client.address; as address) {
+                        <p>{{ address.postalCode }} {{ address.city }}</p>
+                    }
+                </div>
+
+                <div class="quote-preview-box">
+                    <p class="quote-preview-box-title">{{ 'quote.preview.professional' | transloco }}</p>
+                    <p>{{ data().professional.companyName }}</p>
+                    <p>
+                        {{ data().professional.workAddress.streetNumber }} {{ data().professional.workAddress.streetName }},
+                        {{ data().professional.workAddress.postalCode }} {{ data().professional.workAddress.city }}
+                    </p>
+                    <p>{{ 'quote.preview.phone' | transloco }} : {{ data().professional.managerPhone }}</p>
+                    @if (data().professional.professionalEmail) {
+                        <p>{{ 'quote.preview.email' | transloco }} : {{ data().professional.professionalEmail }}</p>
+                    }
+                    <p>{{ 'quote.preview.legalForm' | transloco }} : {{ data().professional.legalForm }}</p>
+                </div>
+            </div>
+
+            <!-- ═══ 1. Matériaux et fournitures ═══ -->
+            @if (data().materialLines.length) {
+                <section class="mt-6">
+                    <h3 class="quote-preview-section-title">{{ 'quote.materials.title' | transloco }}</h3>
+                    <table class="quote-preview-table">
+                        <thead>
+                            <tr>
+                                <th>{{ 'quote.preview.description' | transloco }}</th>
+                                <th>{{ 'quote.amountHT' | transloco }}</th>
+                                <th>{{ 'quote.vatRate' | transloco }}</th>
+                                <th>{{ 'quote.amountTTC' | transloco }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (line of data().materialLines; track $index) {
+                                <tr>
+                                    <td>{{ line.description }}</td>
+                                    <td>{{ line.amountHT | number: '1.2-2' }}</td>
+                                    <td>{{ line.vatRate | number: '1.0-2' }} %</td>
+                                    <td>{{ lineTTC(line) | number: '1.2-2' }}</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </section>
+            }
+
+            <!-- ═══ 2. Prestation ═══ -->
+            @if (data().laborLines.length) {
+                <section class="mt-6">
+                    <h3 class="quote-preview-section-title">{{ 'quote.labor.title' | transloco }}</h3>
+                    <table class="quote-preview-table">
+                        <thead>
+                            <tr>
+                                <th>{{ 'quote.preview.description' | transloco }}</th>
+                                <th>{{ 'quote.amountHT' | transloco }}</th>
+                                <th>{{ 'quote.vatRate' | transloco }}</th>
+                                <th>{{ 'quote.amountTTC' | transloco }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (line of data().laborLines; track $index) {
+                                <tr>
+                                    <td>{{ line.description }}</td>
+                                    <td>{{ line.amountHT | number: '1.2-2' }}</td>
+                                    <td>{{ line.vatRate | number: '1.0-2' }} %</td>
+                                    <td>{{ lineTTC(line) | number: '1.2-2' }}</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @if (data().nightWorkSurcharge !== null) {
+                        <p class="mt-2 text-xs text-gray-500">
+                            {{ (data().nightWorkSurcharge ? 'quote.preview.nightWorkYes' : 'quote.preview.nightWorkNo') | transloco }}
+                        </p>
+                    }
+                </section>
+            }
+
+            <!-- ═══ 3. Logistique et frais annexes ═══ -->
+            @if (data().logisticsLines.length) {
+                <section class="mt-6">
+                    <h3 class="quote-preview-section-title">{{ 'quote.logistics.title' | transloco }}</h3>
+                    <table class="quote-preview-table">
+                        <thead>
+                            <tr>
+                                <th>{{ 'quote.preview.description' | transloco }}</th>
+                                <th>{{ 'quote.amountHT' | transloco }}</th>
+                                <th>{{ 'quote.vatRate' | transloco }}</th>
+                                <th>{{ 'quote.amountTTC' | transloco }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (line of data().logisticsLines; track $index) {
+                                <tr>
+                                    <td>{{ line.description }}</td>
+                                    <td>{{ line.amountHT | number: '1.2-2' }}</td>
+                                    <td>{{ line.vatRate | number: '1.0-2' }} %</td>
+                                    <td>{{ lineTTC(line) | number: '1.2-2' }}</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </section>
+            }
+
+            <!-- ═══ 4. Dates prévisionnelles ═══ -->
+            @if (data().estimatedStartDate || data().estimatedEndDate) {
+                <section class="mt-6">
+                    <h3 class="quote-preview-section-title">{{ 'quote.dates.title' | transloco }}</h3>
+                    <p>{{ 'quote.dates.start' | transloco }} : {{ data().estimatedStartDate ?? '—' }}</p>
+                    <p>{{ 'quote.dates.end' | transloco }} : {{ data().estimatedEndDate ?? '—' }}</p>
+                </section>
+            }
+
+            <!-- ═══ 5. Conditions de paiement ═══ -->
+            <section class="mt-6">
+                <h3 class="quote-preview-section-title">{{ 'quote.preview.paymentConditions' | transloco }}</h3>
+                <div class="quote-preview-box">
+                    <p [innerHTML]="'quote.agreement.escrowNotice' | transloco"></p>
+                    @if (data().klarnaAccepted) {
+                        <p class="mt-2">{{ 'quote.preview.klarnaAccepted' | transloco }}</p>
+                    }
+                    @if (data().vatExempt) {
+                        <p class="mt-2">{{ 'quote.legal.vatExemptArticle' | transloco }}</p>
+                    }
+                </div>
+            </section>
+
+            <!-- ═══ 6. Documents ═══ -->
+            <section class="mt-6">
+                <h3 class="quote-preview-section-title">{{ 'quote.preview.documentsTitle' | transloco }}</h3>
+                @if (documents().length) {
+                    <ul class="list-inside list-disc text-sm">
+                        @for (document of documents(); track $index) {
+                            <li>{{ document.name }}</li>
+                        }
+                    </ul>
+                } @else {
+                    <p class="text-sm text-gray-500">{{ 'quote.preview.noDocuments' | transloco }}</p>
+                }
+            </section>
+
+            <!-- ═══ 7. Remarque ═══ -->
+            @if (data().remarks.trim()) {
+                <section class="mt-6">
+                    <h3 class="quote-preview-section-title">{{ 'quote.remarks.title' | transloco }}</h3>
+                    <p class="whitespace-pre-line text-sm">{{ data().remarks }}</p>
+                </section>
+            }
+
+            <!-- ═══ 8. Accord et validation (clauses toujours affichées, signées par le client
+            à l'ouverture du devis dans la conversation — cf. feature de signature électronique) ═══ -->
+            <section class="mt-6">
+                <h3 class="quote-preview-section-title">{{ 'quote.agreement.title' | transloco }}</h3>
+                <div class="quote-preview-box flex flex-col gap-3">
+                    <p [innerHTML]="'quote.agreement.quoteAgreementAccepted' | transloco"></p>
+                    <p [innerHTML]="'quote.agreement.earlyStartAccepted' | transloco"></p>
+                </div>
+            </section>
+
+            <!-- ═══ Récapitulatif ═══ -->
+            <section class="quote-preview-totals mt-6">
+                <div class="flex justify-between text-sm">
+                    <span>{{ 'quote.preview.totalHT' | transloco }}</span>
+                    <span>{{ totalHT() | number: '1.2-2' }} &euro;</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <span>{{ 'quote.preview.totalVAT' | transloco }}</span>
+                    <span>{{ totalVAT() | number: '1.2-2' }} &euro;</span>
+                </div>
+                <div class="flex justify-between text-base font-bold">
+                    <span>{{ 'quote.preview.totalTTC' | transloco }}</span>
+                    <span>{{ totalTTC() | number: '1.2-2' }} &euro;</span>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

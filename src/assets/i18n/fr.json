@@ -13,6 +13,26 @@
       "draftSaveSuccess": "Brouillon enregistré.",
       "generate": "Générer le devis"
     },
+    "preview": {
+      "close": "Fermer l'aperçu",
+      "professional": "Professionnel",
+      "client": "Client",
+      "siret": "SIRET",
+      "phone": "Téléphone",
+      "email": "E-mail",
+      "legalForm": "Forme juridique",
+      "description": "Description",
+      "paymentConditions": "Conditions de paiement",
+      "klarnaAccepted": "Paiement en plusieurs fois via Klarna proposé pour ce chantier.",
+      "documentsTitle": "Documents joints",
+      "noDocuments": "Aucun document joint.",
+      "nightWorkYes": "Intervention de nuit (20h-7h) : majoration appliquée",
+      "nightWorkNo": "Intervention de nuit (20h-7h) : non",
+      "totalHT": "Total HT",
+      "totalVAT": "Total TVA",
+      "totalTTC": "Total TTC",
+      "printedOn": "Devis émis le"
+    },
     "materials": {
       "title": "1. Matériaux et fournitures",
       "hint": "Description (max 250 caractères) – utilisez \"Ajouter des matériaux et fournitures\" pour renseigner chaque matériau ou fourniture supplémentaire individuellement, en indiquant obligatoirement le nom de son fournisseur.",
@@ -70,8 +90,9 @@
     "agreement": {
       "title": "7. Accord et validation",
       "mentionsTitle": "Mentions importantes :",
-      "mainAgreement": "Je confirme mon accord sur le présent devis, qui vaut également bon de commande. En le validant, j'autorise le professionnel à préparer et organiser le chantier conformément aux prestations prévues. Je reconnais qu'il m'appartient de vérifier, dès que possible, la validité des assurances, certifications et documents obligatoires de l'artisan, avant ou pendant le chantier.<br><br>Afin de faciliter le bon déroulement des travaux et d'éviter tout retard ou litige, il est recommandé d'effectuer ces vérifications le plus tôt possible. À compter de la remise du procès-verbal de fin de chantier, je dispose toutefois d'un délai maximal de 96 heures pour effectuer ou finaliser ces vérifications avant la validation automatique du chantier et la libération des fonds. Ce délai est notamment prévu pour tenir compte des interventions d'urgence réalisées de nuit, les week-ends ou les jours fériés.",
-      "earlyStart": "Je demande expressément que les travaux puissent débuter avant l'expiration du délai légal de rétractation. Je reconnais avoir été informé qu'en donnant cet accord, le professionnel peut engager les dépenses nécessaires au chantier, notamment pour l'achat des matériaux, fournitures ou la réservation d'éventuels équipements, conformément au devis accepté.<br><br>Je reconnais également avoir pris connaissance, préalablement à la signature du devis, et accepter sans réserve les Conditions Générales d'Utilisation (CGU), les Conditions Générales de Vente (CGV) ainsi que la Politique d'annulation de la plateforme Artisan Compétent. J'accepte que ces documents s'appliquent à la relation contractuelle me liant à l'artisan.",
+      "clientSignatureHint": "Ces mentions et leur acceptation relèvent du client : il les consultera et les signera électroniquement à l'ouverture de ce devis dans la conversation.",
+      "quoteAgreementAccepted": "Je confirme mon accord sur le présent devis, qui vaut également bon de commande. En le validant, j'autorise le professionnel à préparer et organiser le chantier conformément aux prestations prévues. Je reconnais qu'il m'appartient de vérifier, dès que possible, la validité des assurances, certifications et documents obligatoires de l'artisan, avant ou pendant le chantier.<br><br>Afin de faciliter le bon déroulement des travaux et d'éviter tout retard ou litige, il est recommandé d'effectuer ces vérifications le plus tôt possible. À compter de la remise du procès-verbal de fin de chantier, je dispose toutefois d'un délai maximal de 96 heures pour effectuer ou finaliser ces vérifications avant la validation automatique du chantier et la libération des fonds. Ce délai est notamment prévu pour tenir compte des interventions d'urgence réalisées de nuit, les week-ends ou les jours fériés.",
+      "earlyStartAccepted": "Je demande expressément que les travaux puissent débuter avant l'expiration du délai légal de rétractation. Je reconnais avoir été informé qu'en donnant cet accord, le professionnel peut engager les dépenses nécessaires au chantier, notamment pour l'achat des matériaux, fournitures ou la réservation d'éventuels équipements, conformément au devis accepté.<br><br>Je reconnais également avoir pris connaissance, préalablement à la signature du devis, et accepter sans réserve les Conditions Générales d'Utilisation (CGU), les Conditions Générales de Vente (CGV) ainsi que la Politique d'annulation de la plateforme Artisan Compétent. J'accepte que ces documents s'appliquent à la relation contractuelle me liant à l'artisan.",
       "summaryTitle": "Récapitulatif",
       "summaryHT": "Total HT (Matériaux + Prestations + Frais) :",
       "summaryTTC": "Montant TTC à régler :",
