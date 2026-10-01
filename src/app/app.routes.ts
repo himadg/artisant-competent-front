@@ -41,6 +41,13 @@ export const routes: Routes = [
       },
     ],
   },
+  // Chargée uniquement par Playwright lors de la génération PDF d'un devis (jamais par un
+  // utilisateur) — pas de header/footer, authentification par jeton d'impression, pas de session.
+  {
+    path: 'print/quote/:quoteId',
+    data: { showHeader: false, showFooter: false },
+    loadComponent: () => import('./pages/print/quote-print/quote-print').then((p) => p.QuotePrintPage),
+  },
   {
     path: 'about-us',
     title: 'home.presentation.title',
