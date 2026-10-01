@@ -21,6 +21,10 @@ export class ChatService {
   readonly conversations = signal<ConversationSummary[]>([]);
   /** Message reçu en temps réel, à destination du composant actuellement en train d'afficher la conversation. */
   readonly incomingMessage = signal<ConversationMessage | null>(null);
+  /** Message EXISTANT dont le contenu a changé (ex: statut d'un devis après acceptation/refus) — ne
+   * touche jamais au compteur de non-lus ni à l'aperçu de la conversation, contrairement à
+   * `incomingMessage`, puisqu'aucun nouveau message n'est réellement créé (cf. ConversationService). */
+  readonly updatedMessage = signal<ConversationMessage | null>(null);
   /** Nombre de conversations non lues (et non le total de messages non lus), pour le badge de l'enveloppe. */
   readonly unreadConversationsCount = computed(() => this.conversations().filter((c) => c.unreadCount > 0).length);
 
@@ -129,16 +133,19 @@ export class ChatService {
       }
       this.incomingMessage.set(message);
     });
+    this.socket.on('message:updated', (message: ConversationMessage) => this.updatedMessage.set(message));
     this.socket.on('connect_error', (err) => console.warn('Connexion WebSocket messagerie échouée', err));
   }
 
   private disconnect(): void {
     if (!this.socket) return;
     this.socket.off('message:new');
+    this.socket.off('message:updated');
     this.socket.off('connect_error');
     this.socket = null;
     this.socketConnection.release();
     this.conversations.set([]);
     this.incomingMessage.set(null);
+    this.updatedMessage.set(null);
   }
 }

@@ -27,18 +27,22 @@
                 @if (actionsMenuOpen()) {
                     <div class="chat-actions-overlay" (click)="closeActionsMenu()"></div>
                     <div class="chat-actions-menu">
-                        <button type="button" (click)="declineOffer.emit(); closeActionsMenu()">
-                            <iconify-icon icon="lucide:x-circle"></iconify-icon>
-                            {{ 'dashboard.messages.actions.decline' | transloco }}
-                        </button>
-                        <button type="button" (click)="createQuote.emit(conversation().demandId); closeActionsMenu()">
-                            <iconify-icon icon="lucide:file-plus"></iconify-icon>
-                            {{
-                                (conversation().quoteStatus === 'DRAFT'
-                                    ? 'dashboard.messages.actions.resumeQuote'
-                                    : 'dashboard.messages.actions.createQuote') | transloco
-                            }}
-                        </button>
+                        @if (conversation().isAuthor) {
+                            <button type="button" (click)="declineOffer.emit(); closeActionsMenu()">
+                                <iconify-icon icon="lucide:x-circle"></iconify-icon>
+                                {{ 'dashboard.messages.actions.decline' | transloco }}
+                            </button>
+                        }
+                        @if (!conversation().isAuthor && canManageQuote()) {
+                            <button type="button" (click)="createQuote.emit(conversation().demandId); closeActionsMenu()">
+                                <iconify-icon icon="lucide:file-plus"></iconify-icon>
+                                {{
+                                    (conversation().quoteStatus === 'DRAFT'
+                                        ? 'dashboard.messages.actions.resumeQuote'
+                                        : 'dashboard.messages.actions.createQuote') | transloco
+                                }}
+                            </button>
+                        }
                         <button type="button" (click)="leaveReview.emit(); closeActionsMenu()">
                             <iconify-icon icon="lucide:star"></iconify-icon>
                             {{ 'dashboard.messages.actions.review' | transloco }}
@@ -61,7 +65,12 @@
     <div class="chat-messages" #messagesContainer>
         @for (message of messages(); track message.id) {
             <div class="chat-bubble-row" [class.own]="message.isOwnMessage">
-                <div class="chat-bubble" [class.own]="message.isOwnMessage">
+                <div
+                    class="chat-bubble"
+                    [class.own]="message.isOwnMessage"
+                    [class.chat-bubble--declined]="message.type === 'QUOTE' && message.quoteStatus === 'DECLINED'"
+                    [class.chat-bubble--accepted]="message.type === 'QUOTE' && message.quoteStatus === 'ACCEPTED'"
+                >
                     @switch (message.type) {
                         @case ('IMAGE') {
                             <button
@@ -78,6 +87,17 @@
                                 <iconify-icon icon="lucide:file-text"></iconify-icon>
                                 <span>{{ message.content }}</span>
                             </a>
+                        }
+                        @case ('QUOTE') {
+                            <button type="button" class="chat-bubble-quote" (click)="openQuoteMessage(message)">
+                                <iconify-icon icon="lucide:file-text"></iconify-icon>
+                                <span class="chat-bubble-quote-info">
+                                    <span class="chat-bubble-quote-title">{{ 'quote.title' | transloco }} n&deg; {{ message.content }}</span>
+                                    @if (message.quoteStatus; as status) {
+                                        <span class="chat-bubble-quote-status">{{ ('quote.messageBubble.status.' + status) | transloco }}</span>
+                                    }
+                                </span>
+                            </button>
                         }
                         @default {
                             <p class="chat-bubble-text">{{ message.content }}</p>

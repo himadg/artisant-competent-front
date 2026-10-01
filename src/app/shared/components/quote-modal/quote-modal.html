@@ -15,6 +15,17 @@
                 </div>
             </div>
 
+            <label class="quote-field w-full sm:w-auto items-center !flex-row md:!flex-col">
+                <span class="quote-field-label">{{ 'quote.validUntil.label' | transloco }}<span class="quote-required">*</span></span>
+                <input
+                    type="date"
+                    [value]="validUntil()"
+                    (input)="validUntil.set($any($event.target).value)"
+                    class="quote-input !w-fit md:!w-full"
+                    [class.quote-field-invalid]="attemptedSend() && validUntilMissing()"
+                />
+            </label>
+
             <div class="w-full flex flex-wrap items-center justify-evenly sm:justify-end gap-2">
                 <button type="button" class="quote-btn quote-btn--primary">
                     <iconify-icon icon="lucide:book-open" width="16"></iconify-icon>
@@ -37,9 +48,18 @@
                     }
                     <span class="hidden sm:inline">{{ 'quote.actions.save' | transloco }}</span>
                 </button>
-                <button type="button" class="quote-btn quote-btn--primary">
-                    <iconify-icon icon="lucide:send" width="16"></iconify-icon>
-                    <span class="hidden sm:inline">{{ 'quote.actions.generate' | transloco }}</span>
+                <button
+                    type="button"
+                    class="quote-btn quote-btn--primary"
+                    [disabled]="saving() || sending()"
+                    (click)="sendQuote()"
+                >
+                    @if (sending()) {
+                        <span class="quote-spinner-sm"></span>
+                    } @else {
+                        <iconify-icon icon="lucide:send" width="16"></iconify-icon>
+                    }
+                    <span class="hidden sm:inline">{{ 'quote.actions.send' | transloco }}</span>
                 </button>
             </div>
         </div>
@@ -60,521 +80,638 @@
                     <span class="spinner"></span>
                 </div>
             } @else {
-            <div class="flex-1 overflow-y-auto pb-6">
-                <div class="flex flex-col gap-5">
-                    <!-- ═══ 1. Matériaux et fournitures ═══ -->
-                    <section class="quote-section">
-                        <div class="quote-section-header">
-                            <iconify-icon icon="lucide:box" width="26"></iconify-icon>
-                            <div>
-                                <h3 class="quote-section-title">{{ 'quote.materials.title' | transloco }}</h3>
-                                <p class="quote-section-hint">{{ 'quote.materials.hint' | transloco }}</p>
+                <div class="flex-1 overflow-y-auto pb-6">
+                    <div class="flex flex-col gap-5">
+                        <!-- ═══ 1. Matériaux et fournitures ═══ -->
+                        <section class="quote-section">
+                            <div class="quote-section-header">
+                                <iconify-icon icon="lucide:box" width="26"></iconify-icon>
+                                <div>
+                                    <h3 class="quote-section-title">{{ 'quote.materials.title' | transloco }}</h3>
+                                    @if (!noMaterials()) {
+                                        <p class="quote-section-hint">{{ 'quote.materials.hint' | transloco }}</p>
+                                    }
+                                </div>
                             </div>
-                        </div>
 
-                        @for (line of materialLines(); track $index) {
-                            @if ($index > 0) {
-                                <hr class="quote-line-card--separator">
+                            <label class="quote-checkbox">
+                                <input type="checkbox" [checked]="noMaterials()" (change)="toggleNoMaterials()" />
+                                {{ 'quote.materials.origin.none' | transloco }}
+                            </label>
+                            @if (noMaterials()) {
+                                <div class="quote-info-box">
+                                    <iconify-icon icon="lucide:info" width="16" class="mt-0.5 shrink-0"></iconify-icon>
+                                    <p>{{ 'quote.materials.originNoneHint' | transloco }}</p>
+                                </div>
                             }
-                            <div class="quote-line-card">
-                                <textarea
-                                    rows="3"
-                                    [value]="line.description"
-                                    (input)="updateLineDescription('material', $index, $any($event.target).value)"
-                                    [placeholder]="'quote.materials.descriptionPlaceholder' | transloco"
-                                    class="quote-textarea"
-                                ></textarea>
 
-                                @if (materialLines().length > 1) {
-                                    <button
-                                        type="button"
-                                        class="quote-remove-line-btn"
-                                        (click)="removeMaterialLine($index)"
-                                        [attr.aria-label]="'common.delete' | transloco"
-                                    >
-                                        <iconify-icon icon="lucide:x" width="14"></iconify-icon>
-                                    </button>
+                            @if (!noMaterials()) {
+                                @for (line of materialLines(); track $index) {
+                                    @if ($index > 0) {
+                                        <hr class="quote-line-card--separator">
+                                    }
+                                    <div class="quote-line-card" [class.quote-field-invalid]="attemptedSend() && materialLineInvalid(line)">
+                                        <textarea
+                                            rows="3"
+                                            [value]="line.description"
+                                            (input)="updateLineDescription('material', $index, $any($event.target).value)"
+                                            [placeholder]="'quote.materials.descriptionPlaceholder' | transloco"
+                                            class="quote-textarea"
+                                        ></textarea>
+
+                                        @if (materialLines().length > 1) {
+                                            <button
+                                                type="button"
+                                                class="quote-remove-line-btn"
+                                                (click)="removeMaterialLine($index)"
+                                                [attr.aria-label]="'common.delete' | transloco"
+                                            >
+                                                <iconify-icon icon="lucide:x" width="14"></iconify-icon>
+                                            </button>
+                                        }
+
+                                        <div class="flex items-stretch gap-3 flex-col md:flex-row">
+                                            <button type="button" class="quote-btn quote-btn--outline quote-btn--primary quote-btn--sm shrink-0 w-fit md:w-auto
+                                            ">
+                                                <iconify-icon icon="lucide:book-open" width="15"></iconify-icon>
+                                                {{ 'quote.vatGuide' | transloco }}
+                                            </button>
+
+                                            <div class="quote-info-box flex-1">
+                                                <iconify-icon icon="lucide:info" width="16" class="mt-0.5 shrink-0"></iconify-icon>
+                                                <p [innerHTML]="'quote.materials.vatExemptHint' | transloco"></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="quote-amount-row">
+                                            <label class="quote-field quote-amount-width">
+                                                <span class="quote-field-label">{{ 'quote.materials.quantity' | transloco }}</span>
+                                                <input
+                                                    type="number"
+                                                    min="1"
+                                                    step="1"
+                                                    [value]="line.quantity"
+                                                    (input)="updateMaterialLineQuantity($index, $any($event.target).value)"
+                                                    placeholder="0"
+                                                    class="quote-input"
+                                                />
+                                            </label>
+                                            <label class="quote-field quote-amount-width">
+                                                <span class="quote-field-label">{{ 'quote.materials.unitPriceHT' | transloco }}</span>
+                                                <input
+                                                    type="number"
+                                                    min="0"
+                                                    step="0.01"
+                                                    [value]="line.unitPriceHT"
+                                                    (input)="updateMaterialLineUnitPrice($index, $any($event.target).value)"
+                                                    placeholder="00,00"
+                                                    class="quote-input"
+                                                />
+                                            </label>
+                                        </div>
+
+                                        <div class="quote-amount-row">
+                                            <div class="quote-field quote-amount-width">
+                                                <span class="quote-field-label">{{ 'quote.amountHT' | transloco }}</span>
+                                                <span class="quote-ttc-value">{{ line.amountHT | number: '1.2-2' }}</span>
+                                            </div>
+                                            @if (!vatExempt()) {
+                                                <label class="quote-field quote-vat-width">
+                                                    <span class="quote-field-label">{{ 'quote.vatRate' | transloco }}</span>
+                                                    <div class="quote-percent-field">
+                                                        <input
+                                                            type="number"
+                                                            min="0"
+                                                            max="100"
+                                                            step="0.01"
+                                                            [value]="line.vatRate"
+                                                            (input)="updateLineVatRate('material', $index, $any($event.target).value)"
+                                                            placeholder="00,00"
+                                                            class="quote-input"
+                                                        />
+                                                        <!-- <span class="quote-percent-suffix">%</span> -->
+                                                    </div>
+                                                </label>
+                                            }
+                                            <div class="quote-field quote-total-width">
+                                                <span class="quote-field-label">{{ 'quote.amountTTC' | transloco }}</span>
+                                                <span class="quote-ttc-value">{{ lineTTC(line) | number: '1.2-2' }} <!-- &euro; --></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="quote-origin">
+                                            <span class="quote-field-label">{{ 'quote.materials.originLabel' | transloco }}<span class="quote-required">*</span></span>
+                                            <div class="flex flex-wrap gap-x-6 gap-y-2">
+                                                <label class="quote-checkbox">
+                                                    <input
+                                                        type="checkbox"
+                                                        [checked]="isMaterialOriginChecked($index, 'new')"
+                                                        (change)="toggleMaterialOrigin($index, 'new')"
+                                                    />
+                                                    {{ 'quote.materials.origin.new' | transloco }}
+                                                </label>
+                                                <label class="quote-checkbox">
+                                                    <input
+                                                        type="checkbox"
+                                                        [checked]="isMaterialOriginChecked($index, 'refurbished')"
+                                                        (change)="toggleMaterialOrigin($index, 'refurbished')"
+                                                    />
+                                                    {{ 'quote.materials.origin.refurbished' | transloco }}
+                                                </label>
+                                                <label class="quote-checkbox">
+                                                    <input
+                                                        type="checkbox"
+                                                        [checked]="isMaterialOriginChecked($index, 'custom')"
+                                                        (change)="toggleMaterialOrigin($index, 'custom')"
+                                                    />
+                                                    {{ 'quote.materials.origin.custom' | transloco }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 }
 
-                                <div class="flex items-stretch gap-3 flex-col md:flex-row">
-                                    <button type="button" class="quote-btn quote-btn--outline quote-btn--primary quote-btn--sm shrink-0 w-fit md:w-auto
-                                    ">
+                                <button type="button" class="quote-btn quote-btn--outline w-fit" (click)="addMaterialLine()">
+                                    <iconify-icon icon="lucide:plus" width="16"></iconify-icon>
+                                    {{ 'quote.materials.addBtn' | transloco }}
+                                </button>
+                            }
+                        </section>
+
+                        <!-- ═══ 2. Prestation (main-d'œuvre) ═══ -->
+                        <section class="quote-section">
+                            <div class="quote-section-header">
+                                <iconify-icon icon="lucide:user" width="26"></iconify-icon>
+                                <div>
+                                    <h3 class="quote-section-title">{{ 'quote.labor.title' | transloco }}<span class="quote-required">*</span></h3>
+                                    <p class="quote-section-hint">{{ 'quote.labor.hint' | transloco }}</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="quote-info-box quote-info-box--filled flex-col"
+                                [class.quote-field-invalid]="attemptedSend() && nightWorkSurchargeMissing()"
+                            >
+                                <div class="flex items-center justify-between gap-3">
+                                    <span class="font-semibold">{{ 'quote.labor.nightWorkQuestion' | transloco }}<span class="quote-required">*</span></span>
+                                    <div class="flex gap-4">
+                                        <label class="quote-checkbox">
+                                            <input
+                                                type="checkbox"
+                                                [checked]="nightWorkSurcharge() === true"
+                                                (change)="nightWorkSurcharge.set(true)"
+                                            />
+                                            {{ 'common.yes' | transloco }}
+                                        </label>
+                                        <label class="quote-checkbox">
+                                            <input
+                                                type="checkbox"
+                                                [checked]="nightWorkSurcharge() === false"
+                                                (change)="nightWorkSurcharge.set(false)"
+                                            />
+                                            {{ 'common.no' | transloco }}
+                                        </label>
+                                    </div>
+                                </div>
+                                <p class="mt-2 text-xs opacity-80">{{ 'quote.labor.nightWorkHint' | transloco }}</p>
+                            </div>
+
+                            @for (line of laborLines(); track $index) {
+                                @if ($index > 0) {
+                                    <hr class="quote-line-card--separator">
+                                }
+                                <div
+                                    class="quote-line-card"
+                                    [class.quote-line-card--separated]="$index > 0"
+                                    [class.quote-field-invalid]="attemptedSend() && laborIncomplete() && laborLines().length === 1"
+                                >
+                                    <textarea
+                                        rows="3"
+                                        [value]="line.description"
+                                        (input)="updateLineDescription('labor', $index, $any($event.target).value)"
+                                        [placeholder]="'quote.labor.descriptionPlaceholder' | transloco"
+                                        class="quote-textarea"
+                                    ></textarea>
+
+                                    @if (laborLines().length > 1) {
+                                        <button
+                                            type="button"
+                                            class="quote-remove-line-btn"
+                                            (click)="removeLaborLine($index)"
+                                            [attr.aria-label]="'common.delete' | transloco"
+                                        >
+                                            <iconify-icon icon="lucide:x" width="14"></iconify-icon>
+                                        </button>
+                                    }
+
+                                    <button type="button" class="quote-btn quote-btn--outline quote-btn--sm quote-btn--primary w-fit">
                                         <iconify-icon icon="lucide:book-open" width="15"></iconify-icon>
                                         {{ 'quote.vatGuide' | transloco }}
                                     </button>
 
-                                    <div class="quote-info-box flex-1">
-                                        <iconify-icon icon="lucide:info" width="16" class="mt-0.5 shrink-0"></iconify-icon>
-                                        <p [innerHTML]="'quote.materials.vatExemptHint' | transloco"></p>
-                                    </div>
-                                </div>
-
-                                <div class="quote-amount-row">
-                                    <label class="quote-field quote-amount-width">
-                                        <span class="quote-field-label">{{ 'quote.amountHT' | transloco }}</span>
-                                        <input
-                                            type="number"
-                                            min="0"
-                                            step="0.01"
-                                            [value]="line.amountHT"
-                                            (input)="updateLineAmount('material', $index, $any($event.target).value)"
-                                            placeholder="00,00"
-                                            class="quote-input"
-                                        />
-                                    </label>
-                                    <label class="quote-field quote-vat-width">
-                                        <span class="quote-field-label">{{ 'quote.vatRate' | transloco }}</span>
-                                        <div class="quote-percent-field">
+                                    <div class="quote-amount-row">
+                                        <label class="quote-field quote-amount-width">
+                                            <span class="quote-field-label">{{ 'quote.amountHT' | transloco }}</span>
                                             <input
                                                 type="number"
                                                 min="0"
-                                                max="100"
                                                 step="0.01"
-                                                [value]="line.vatRate"
-                                                (input)="updateLineVatRate('material', $index, $any($event.target).value)"
-                                                placeholder="00,00"
+                                                [value]="line.amountHT"
+                                                (input)="updateLineAmount('labor', $index, $any($event.target).value)"
+                                                placeholder="0,00"
                                                 class="quote-input"
                                             />
-                                            <!-- <span class="quote-percent-suffix">%</span> -->
+                                        </label>
+                                        @if (!vatExempt()) {
+                                            <label class="quote-field quote-vat-width">
+                                                <span class="quote-field-label">{{ 'quote.vatRate' | transloco }}</span>
+                                                <div class="quote-percent-field">
+                                                    <input
+                                                        type="number"
+                                                        min="0"
+                                                        max="100"
+                                                        step="0.01"
+                                                        [value]="line.vatRate"
+                                                        (input)="updateLineVatRate('labor', $index, $any($event.target).value)"
+                                                        placeholder="00,00"
+                                                        class="quote-input"
+                                                    />
+                                                    <!-- <span class="quote-percent-suffix">%</span> -->
+                                                </div>
+                                            </label>
+                                        }
+                                        <div class="quote-field quote-total-width">
+                                            <span class="quote-field-label">{{ 'quote.amountTTC' | transloco }}</span>
+                                            <span class="quote-ttc-value">{{ lineTTC(line) | number: '1.2-2' }} <!-- &euro; --></span>
                                         </div>
-                                    </label>
-                                    <div class="quote-field quote-total-width">
-                                        <span class="quote-field-label">{{ 'quote.amountTTC' | transloco }}</span>
-                                        <span class="quote-ttc-value">{{ lineTTC(line) | number: '1.2-2' }} <!-- &euro; --></span>
                                     </div>
                                 </div>
-
-                                <div class="quote-origin">
-                                    <span class="quote-field-label">{{ 'quote.materials.originLabel' | transloco }}</span>
-                                    <div class="flex flex-wrap gap-x-6 gap-y-2">
-                                        <label class="quote-checkbox">
-                                            <input
-                                                type="checkbox"
-                                                [checked]="isMaterialOriginChecked($index, 'new')"
-                                                (change)="toggleMaterialOrigin($index, 'new')"
-                                            />
-                                            {{ 'quote.materials.origin.new' | transloco }}
-                                        </label>
-                                        <label class="quote-checkbox">
-                                            <input
-                                                type="checkbox"
-                                                [checked]="isMaterialOriginChecked($index, 'refurbished')"
-                                                (change)="toggleMaterialOrigin($index, 'refurbished')"
-                                            />
-                                            {{ 'quote.materials.origin.refurbished' | transloco }}
-                                        </label>
-                                        <label class="quote-checkbox">
-                                            <input
-                                                type="checkbox"
-                                                [checked]="isMaterialOriginChecked($index, 'custom')"
-                                                (change)="toggleMaterialOrigin($index, 'custom')"
-                                            />
-                                            {{ 'quote.materials.origin.custom' | transloco }}
-                                        </label>
-                                        <label class="quote-checkbox">
-                                            <input
-                                                type="checkbox"
-                                                [checked]="isMaterialOriginChecked($index, 'none')"
-                                                (change)="toggleMaterialOrigin($index, 'none')"
-                                            />
-                                            {{ 'quote.materials.origin.none' | transloco }}
-                                        </label>
-                                    </div>
-                                    <div class="quote-info-box">
-                                        <iconify-icon icon="lucide:info" width="16" class="mt-0.5 shrink-0"></iconify-icon>
-                                        <p>{{ 'quote.materials.originNoneHint' | transloco }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-
-                        <button type="button" class="quote-btn quote-btn--outline w-fit" (click)="addMaterialLine()">
-                            <iconify-icon icon="lucide:plus" width="16"></iconify-icon>
-                            {{ 'quote.materials.addBtn' | transloco }}
-                        </button>
-                    </section>
-
-                    <!-- ═══ 2. Prestation (main-d'œuvre) ═══ -->
-                    <section class="quote-section">
-                        <div class="quote-section-header">
-                            <iconify-icon icon="lucide:user" width="26"></iconify-icon>
-                            <div>
-                                <h3 class="quote-section-title">{{ 'quote.labor.title' | transloco }}</h3>
-                                <p class="quote-section-hint">{{ 'quote.labor.hint' | transloco }}</p>
-                            </div>
-                        </div>
-
-                        <div class="quote-info-box quote-info-box--filled flex-col">
-                            <div class="flex items-center justify-between gap-3">
-                                <span class="font-semibold">{{ 'quote.labor.nightWorkQuestion' | transloco }}</span>
-                                <div class="flex gap-4">
-                                    <label class="quote-checkbox">
-                                        <input
-                                            type="checkbox"
-                                            [checked]="nightWorkSurcharge() === true"
-                                            (change)="nightWorkSurcharge.set(true)"
-                                        />
-                                        {{ 'common.yes' | transloco }}
-                                    </label>
-                                    <label class="quote-checkbox">
-                                        <input
-                                            type="checkbox"
-                                            [checked]="nightWorkSurcharge() === false"
-                                            (change)="nightWorkSurcharge.set(false)"
-                                        />
-                                        {{ 'common.no' | transloco }}
-                                    </label>
-                                </div>
-                            </div>
-                            <p class="mt-2 text-xs opacity-80">{{ 'quote.labor.nightWorkHint' | transloco }}</p>
-                        </div>
-
-                        @for (line of laborLines(); track $index) {
-                            <div class="quote-line-card" [class.quote-line-card--separated]="$index > 0">
-                                <textarea
-                                    rows="3"
-                                    [value]="line.description"
-                                    (input)="updateLineDescription('labor', $index, $any($event.target).value)"
-                                    [placeholder]="'quote.labor.descriptionPlaceholder' | transloco"
-                                    class="quote-textarea"
-                                ></textarea>
-
-                                @if (laborLines().length > 1) {
-                                    <button
-                                        type="button"
-                                        class="quote-remove-line-btn"
-                                        (click)="removeLaborLine($index)"
-                                        [attr.aria-label]="'common.delete' | transloco"
-                                    >
-                                        <iconify-icon icon="lucide:x" width="14"></iconify-icon>
-                                    </button>
-                                }
-
-                                <button type="button" class="quote-btn quote-btn--outline quote-btn--sm quote-btn--primary w-fit">
-                                    <iconify-icon icon="lucide:book-open" width="15"></iconify-icon>
-                                    {{ 'quote.vatGuide' | transloco }}
-                                </button>
-
-                                <div class="quote-amount-row">
-                                    <label class="quote-field quote-amount-width">
-                                        <span class="quote-field-label">{{ 'quote.amountHT' | transloco }}</span>
-                                        <input
-                                            type="number"
-                                            min="0"
-                                            step="0.01"
-                                            [value]="line.amountHT"
-                                            (input)="updateLineAmount('labor', $index, $any($event.target).value)"
-                                            placeholder="0,00"
-                                            class="quote-input"
-                                        />
-                                    </label>
-                                    <label class="quote-field quote-vat-width">
-                                        <span class="quote-field-label">{{ 'quote.vatRate' | transloco }}</span>
-                                        <div class="quote-percent-field">
-                                            <input
-                                                type="number"
-                                                min="0"
-                                                max="100"
-                                                step="0.01"
-                                                [value]="line.vatRate"
-                                                (input)="updateLineVatRate('labor', $index, $any($event.target).value)"
-                                                placeholder="00,00"
-                                                class="quote-input"
-                                            />
-                                            <!-- <span class="quote-percent-suffix">%</span> -->
-                                        </div>
-                                    </label>
-                                    <div class="quote-field quote-total-width">
-                                        <span class="quote-field-label">{{ 'quote.amountTTC' | transloco }}</span>
-                                        <span class="quote-ttc-value">{{ lineTTC(line) | number: '1.2-2' }} <!-- &euro; --></span>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-
-                        <button type="button" class="quote-btn quote-btn--outline w-fit" (click)="addLaborLine()">
-                            <iconify-icon icon="lucide:plus" width="16"></iconify-icon>
-                            {{ 'quote.labor.addBtn' | transloco }}
-                        </button>
-                    </section>
-
-                    <!-- ═══ 3. Logistique et frais annexes ═══ -->
-                    <section class="quote-section">
-                        <div class="quote-section-header">
-                            <iconify-icon icon="lucide:truck" width="26"></iconify-icon>
-                            <div>
-                                <h3 class="quote-section-title">{{ 'quote.logistics.title' | transloco }}</h3>
-                                <p class="quote-section-hint">{{ 'quote.logistics.hint' | transloco }}</p>
-                            </div>
-                        </div>
-
-                        @for (line of logisticsLines(); track $index) {
-                            @if ($index > 0) {
-                                <hr class="quote-line-card--separator">
                             }
-                            <div class="quote-line-card">
-                                <textarea
-                                    rows="3"
-                                    [value]="line.description"
-                                    (input)="updateLineDescription('logistics', $index, $any($event.target).value)"
-                                    [placeholder]="'quote.logistics.descriptionPlaceholder' | transloco"
-                                    class="quote-textarea"
-                                ></textarea>
 
-                                @if (logisticsLines().length > 1) {
-                                    <button
-                                        type="button"
-                                        class="quote-remove-line-btn"
-                                        (click)="removeLogisticsLine($index)"
-                                        [attr.aria-label]="'common.delete' | transloco"
-                                    >
-                                        <iconify-icon icon="lucide:x" width="14"></iconify-icon>
-                                    </button>
-                                }
-
-                                <button type="button" class="quote-btn quote-btn--outline quote-btn--sm quote-btn--primary w-fit">
-                                    <iconify-icon icon="lucide:book-open" width="15"></iconify-icon>
-                                    {{ 'quote.vatGuide' | transloco }}
-                                </button>
-
-                                <div class="quote-amount-row">
-                                    <label class="quote-field quote-amount-width">
-                                        <span class="quote-field-label">{{ 'quote.amountHT' | transloco }}</span>
-                                        <input
-                                            type="number"
-                                            min="0"
-                                            step="0.01"
-                                            [value]="line.amountHT"
-                                            (input)="updateLineAmount('logistics', $index, $any($event.target).value)"
-                                            placeholder="0,00"
-                                            class="quote-input"
-                                        />
-                                    </label>
-                                    <label class="quote-field quote-vat-width">
-                                        <span class="quote-field-label">{{ 'quote.vatRate' | transloco }}</span>
-                                        <div class="quote-percent-field">
-                                            <input
-                                                type="number"
-                                                min="0"
-                                                max="100"
-                                                step="0.01"
-                                                [value]="line.vatRate"
-                                                (input)="updateLineVatRate('logistics', $index, $any($event.target).value)"
-                                                placeholder="00,00"
-                                                class="quote-input"
-                                            />
-                                            <!-- <span class="quote-percent-suffix">%</span> -->
-                                        </div>
-                                    </label>
-                                    <div class="quote-field quote-ttc-width">
-                                        <span class="quote-field-label">{{ 'quote.amountTTC' | transloco }}</span>
-                                        <span class="quote-ttc-value">{{ lineTTC(line) | number: '1.2-2' }} <!-- &euro; --></span>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-
-                        <button type="button" class="quote-btn quote-btn--outline w-fit" (click)="addLogisticsLine()">
-                            <iconify-icon icon="lucide:plus" width="16"></iconify-icon>
-                            {{ 'quote.logistics.addBtn' | transloco }}
-                        </button>
-                    </section>
-
-                    <!-- ═══ 4. Dates prévisionnelles du chantier ═══ -->
-                    <section class="quote-section">
-                        <div class="quote-section-header">
-                            <iconify-icon icon="lucide:calendar-clock" width="26"></iconify-icon>
-                            <div>
-                                <h3 class="quote-section-title">{{ 'quote.dates.title' | transloco }}</h3>
-                                <p class="quote-section-hint">{{ 'quote.dates.hint' | transloco }}</p>
-                            </div>
-                        </div>
-
-                        <div class="quote-dates-row">
-                            <label class="quote-field flex-1">
-                                <span class="quote-field-label">{{ 'quote.dates.start' | transloco }}</span>
-                                <input
-                                    type="date"
-                                    [min]="today"
-                                    [value]="estimatedStartDate()"
-                                    (change)="estimatedStartDate.set($any($event.target).value)"
-                                    class="quote-input"
-                                />
-                            </label>
-                            <div class="quote-dates-divider"></div>
-                            <label class="quote-field flex-1">
-                                <span class="quote-field-label">{{ 'quote.dates.end' | transloco }}</span>
-                                <input
-                                    type="date"
-                                    [min]="estimatedStartDate() || today"
-                                    [value]="estimatedEndDate()"
-                                    (change)="estimatedEndDate.set($any($event.target).value)"
-                                    class="quote-input"
-                                />
-                            </label>
-                        </div>
-
-                        <div class="quote-info-box quote-info-box--filled">
-                            <iconify-icon icon="lucide:info" width="16" class="mt-0.5 shrink-0"></iconify-icon>
-                            <p>{{ 'quote.dates.warning' | transloco }}</p>
-                        </div>
-                    </section>
-
-                    <!-- ═══ 5. Mentions et obligations légales ═══ -->
-                    <section class="quote-section">
-                        <div class="quote-section-header quote-section-header--between">
-                            <div class="flex items-start gap-3">
-                                <iconify-icon icon="lucide:file-edit" width="26"></iconify-icon>
-                                <div>
-                                    <h3 class="quote-section-title">{{ 'quote.legal.title' | transloco }}</h3>
-                                    <p class="quote-section-hint">{{ 'quote.legal.hint' | transloco }}</p>
-                                </div>
-                            </div>
-                            <button type="button" class="quote-btn quote-btn--outline quote-btn--sm quote-btn--primary shrink-0 w-[340px]">
-                                <iconify-icon icon="lucide:book-open" width="15"></iconify-icon>
-                                {{ 'quote.legal.obligationsGuide' | transloco }}
+                            <button type="button" class="quote-btn quote-btn--outline w-fit" (click)="addLaborLine()">
+                                <iconify-icon icon="lucide:plus" width="16"></iconify-icon>
+                                {{ 'quote.labor.addBtn' | transloco }}
                             </button>
-                        </div>
+                        </section>
 
-                        @for (doc of documents(); track $index) {
-                            @if ($index > 0) {
-                                <hr class="quote-line-card--separator">
+                        <!-- ═══ 3. Logistique et frais annexes ═══ -->
+                        <section class="quote-section">
+                            <div class="quote-section-header">
+                                <iconify-icon icon="lucide:truck" width="26"></iconify-icon>
+                                <div>
+                                    <h3 class="quote-section-title">{{ 'quote.logistics.title' | transloco }}</h3>
+                                    <p class="quote-section-hint">{{ 'quote.logistics.hint' | transloco }}</p>
+                                </div>
+                            </div>
+
+                            @for (line of logisticsLines(); track $index) {
+                                @if ($index > 0) {
+                                    <hr class="quote-line-card--separator">
+                                }
+                                <div class="quote-line-card">
+                                    <textarea
+                                        rows="3"
+                                        [value]="line.description"
+                                        (input)="updateLineDescription('logistics', $index, $any($event.target).value)"
+                                        [placeholder]="'quote.logistics.descriptionPlaceholder' | transloco"
+                                        class="quote-textarea"
+                                    ></textarea>
+
+                                    @if (logisticsLines().length > 1) {
+                                        <button
+                                            type="button"
+                                            class="quote-remove-line-btn"
+                                            (click)="removeLogisticsLine($index)"
+                                            [attr.aria-label]="'common.delete' | transloco"
+                                        >
+                                            <iconify-icon icon="lucide:x" width="14"></iconify-icon>
+                                        </button>
+                                    }
+
+                                    <button type="button" class="quote-btn quote-btn--outline quote-btn--sm quote-btn--primary w-fit">
+                                        <iconify-icon icon="lucide:book-open" width="15"></iconify-icon>
+                                        {{ 'quote.vatGuide' | transloco }}
+                                    </button>
+
+                                    <div class="quote-amount-row">
+                                        <label class="quote-field quote-amount-width">
+                                            <span class="quote-field-label">{{ 'quote.amountHT' | transloco }}</span>
+                                            <input
+                                                type="number"
+                                                min="0"
+                                                step="0.01"
+                                                [value]="line.amountHT"
+                                                (input)="updateLineAmount('logistics', $index, $any($event.target).value)"
+                                                placeholder="0,00"
+                                                class="quote-input"
+                                            />
+                                        </label>
+                                        @if (!vatExempt()) {
+                                            <label class="quote-field quote-vat-width">
+                                                <span class="quote-field-label">{{ 'quote.vatRate' | transloco }}</span>
+                                                <div class="quote-percent-field">
+                                                    <input
+                                                        type="number"
+                                                        min="0"
+                                                        max="100"
+                                                        step="0.01"
+                                                        [value]="line.vatRate"
+                                                        (input)="updateLineVatRate('logistics', $index, $any($event.target).value)"
+                                                        placeholder="00,00"
+                                                        class="quote-input"
+                                                    />
+                                                    <!-- <span class="quote-percent-suffix">%</span> -->
+                                                </div>
+                                            </label>
+                                        }
+                                        <div class="quote-field quote-ttc-width">
+                                            <span class="quote-field-label">{{ 'quote.amountTTC' | transloco }}</span>
+                                            <span class="quote-ttc-value">{{ lineTTC(line) | number: '1.2-2' }} <!-- &euro; --></span>
+                                        </div>
+                                    </div>
+                                </div>
                             }
-                            <div class="quote-line-card">
-                                <label class="quote-field">
-                                    <span class="quote-field-label">{{ 'quote.legal.nameLabel' | transloco }}</span>
+
+                            <button type="button" class="quote-btn quote-btn--outline w-fit" (click)="addLogisticsLine()">
+                                <iconify-icon icon="lucide:plus" width="16"></iconify-icon>
+                                {{ 'quote.logistics.addBtn' | transloco }}
+                            </button>
+                        </section>
+
+                        <!-- ═══ 4. Dates prévisionnelles du chantier ═══ -->
+                        <section class="quote-section">
+                            <div class="quote-section-header">
+                                <iconify-icon icon="lucide:calendar-clock" width="26"></iconify-icon>
+                                <div>
+                                    <h3 class="quote-section-title">{{ 'quote.dates.title' | transloco }}</h3>
+                                    <p class="quote-section-hint">{{ 'quote.dates.hint' | transloco }}</p>
+                                </div>
+                            </div>
+
+                            <div class="quote-dates-row">
+                                <label class="quote-field flex-1">
+                                    <span class="quote-field-label">{{ 'quote.dates.start' | transloco }}<span class="quote-required">*</span></span>
                                     <input
-                                        type="text"
-                                        [value]="doc.name"
-                                        (input)="updateDocumentName($index, $any($event.target).value)"
-                                        [placeholder]="'quote.legal.namePlaceholder' | transloco"
+                                        type="date"
+                                        [min]="today"
+                                        [value]="estimatedStartDate()"
+                                        (change)="estimatedStartDate.set($any($event.target).value)"
                                         class="quote-input"
+                                        [class.quote-field-invalid]="attemptedSend() && estimatedStartDateMissing()"
                                     />
                                 </label>
-                                <span class="quote-field-label">{{ 'quote.legal.fileLabel' | transloco }}</span>
-                                <div class="quote-file-row">
-                                    <label class="quote-file-btn quote-btn--outline">
-                                        <iconify-icon icon="lucide:upload" width="16"></iconify-icon>
-                                        {{ 'quote.legal.chooseFile' | transloco }}
-                                        <input type="file" class="hidden" (change)="onDocumentFileChange($index, $event)" />
-                                    </label>
-                                    <span class="quote-file-name">
-                                        {{ doc.fileName ?? ('professional.documents.noFile' | transloco) }}
-                                    </span>
-                                </div>
-                                @if (documents().length > 1) {
-                                    <button
-                                        type="button"
-                                        class="quote-remove-line-btn !-top-[4px]"
-                                        (click)="removeDocument($index)"
-                                        [attr.aria-label]="'common.delete' | transloco"
-                                    >
-                                        <iconify-icon icon="lucide:x" width="14"></iconify-icon>
-                                    </button>
-                                }
+                                <div class="quote-dates-divider"></div>
+                                <label class="quote-field flex-1">
+                                    <span class="quote-field-label">{{ 'quote.dates.end' | transloco }}<span class="quote-required">*</span></span>
+                                    <input
+                                        type="date"
+                                        [min]="estimatedStartDate() || today"
+                                        [value]="estimatedEndDate()"
+                                        (change)="estimatedEndDate.set($any($event.target).value)"
+                                        class="quote-input"
+                                        [class.quote-field-invalid]="attemptedSend() && estimatedEndDateMissing()"
+                                    />
+                                </label>
                             </div>
-                        }
 
-                        <button type="button" class="quote-btn quote-btn--primary w-fit" (click)="addDocument()">
-                            <iconify-icon icon="lucide:plus" width="16"></iconify-icon>
-                            {{ 'quote.legal.addBtn' | transloco }}
-                        </button>
+                            <div class="quote-info-box quote-info-box--filled">
+                                <iconify-icon icon="lucide:info" width="16" class="mt-0.5 shrink-0"></iconify-icon>
+                                <p>{{ 'quote.dates.warning' | transloco }}</p>
+                            </div>
+                        </section>
 
-                        <label class="quote-checkbox mt-2">
-                            <input
-                                type="checkbox"
-                                [checked]="klarnaAccepted()"
-                                (change)="klarnaAccepted.set($any($event.target).checked)"
-                            />
-                            {{ 'quote.legal.klarnaAccept' | transloco }}
-                        </label>
+                        <!-- ═══ 5. Mentions et obligations légales ═══ -->
+                        <section class="quote-section">
+                            <div class="quote-section-header quote-section-header--between">
+                                <div class="flex items-start gap-3">
+                                    <iconify-icon icon="lucide:file-edit" width="26"></iconify-icon>
+                                    <div>
+                                        <h3 class="quote-section-title">{{ 'quote.legal.title' | transloco }}<span class="quote-required">*</span></h3>
+                                        <p class="quote-section-hint">{{ 'quote.legal.hint' | transloco }}</p>
+                                    </div>
+                                </div>
+                                <button type="button" class="quote-btn quote-btn--outline quote-btn--sm quote-btn--primary shrink-0 w-[340px]">
+                                    <iconify-icon icon="lucide:book-open" width="15"></iconify-icon>
+                                    {{ 'quote.legal.obligationsGuide' | transloco }}
+                                </button>
+                            </div>
 
-                        <div>
-                            <label class="quote-checkbox">
+                            @for (doc of documents(); track $index) {
+                                @if ($index > 0) {
+                                    <hr class="quote-line-card--separator">
+                                }
+                                <div
+                                    class="quote-line-card"
+                                    [class.quote-field-invalid]="attemptedSend() && documentsMissing() && documents().length === 1"
+                                >
+                                    <label class="quote-field">
+                                        <span class="quote-field-label">{{ 'quote.legal.nameLabel' | transloco }}<span class="quote-required">*</span></span>
+                                        <input
+                                            type="text"
+                                            [value]="doc.name"
+                                            (input)="updateDocumentName($index, $any($event.target).value)"
+                                            [placeholder]="'quote.legal.namePlaceholder' | transloco"
+                                            class="quote-input"
+                                        />
+                                    </label>
+                                    <span class="quote-field-label">{{ 'quote.legal.fileLabel' | transloco }}<span class="quote-required">*</span></span>
+                                    <div class="quote-file-row">
+                                        <label class="quote-file-btn quote-btn--outline">
+                                            <iconify-icon icon="lucide:upload" width="16"></iconify-icon>
+                                            {{ 'quote.legal.chooseFile' | transloco }}
+                                            <input type="file" class="hidden" (change)="onDocumentFileChange($index, $event)" />
+                                        </label>
+                                        <span class="quote-file-name">
+                                            @if (doc.fileKey) {
+                                                <iconify-icon icon="lucide:check" width="14" class="text-green-600"></iconify-icon>
+                                                {{ doc.fileName }}
+                                            } @else if (doc.fileName) {
+                                                <iconify-icon icon="lucide:clock" width="14" class="text-amber-600"></iconify-icon>
+                                                {{ doc.fileName }} — {{ 'quote.legal.pendingUpload' | transloco }}
+                                            } @else {
+                                                {{ 'professional.documents.noFile' | transloco }}
+                                            }
+                                        </span>
+                                    </div>
+                                    @if (documents().length > 1) {
+                                        <button
+                                            type="button"
+                                            class="quote-remove-line-btn !-top-[4px]"
+                                            (click)="removeDocument($index)"
+                                            [attr.aria-label]="'common.delete' | transloco"
+                                        >
+                                            <iconify-icon icon="lucide:x" width="14"></iconify-icon>
+                                        </button>
+                                    }
+                                </div>
+                            }
+
+                            <button type="button" class="quote-btn quote-btn--primary w-fit" (click)="addDocument()">
+                                <iconify-icon icon="lucide:plus" width="16"></iconify-icon>
+                                {{ 'quote.legal.addBtn' | transloco }}
+                            </button>
+
+                            <div class="quote-line-card">
+                                <p class="quote-field-label">{{ 'quote.legal.insuranceTitle' | transloco }}</p>
+                                <div class="quote-amount-row flex-col md:flex-row md:!gap-[0.7rem]">
+                                    <label class="quote-field flex-1">
+                                        <span class="quote-field-label">{{ 'quote.legal.decennaleInsurer' | transloco }}<span class="quote-required">*</span></span>
+                                        <input
+                                            type="text"
+                                            [value]="decennaleInsurer()"
+                                            (input)="decennaleInsurer.set($any($event.target).value)"
+                                            class="quote-input"
+                                            [class.quote-field-invalid]="attemptedSend() && decennaleInsurerMissing()"
+                                        />
+                                    </label>
+                                    <label class="quote-field flex-1">
+                                        <span class="quote-field-label">{{ 'quote.legal.decennalePolicyNumber' | transloco }}<span class="quote-required">*</span></span>
+                                        <input
+                                            type="text"
+                                            [value]="decennalePolicyNumber()"
+                                            (input)="decennalePolicyNumber.set($any($event.target).value)"
+                                            class="quote-input"
+                                            [class.quote-field-invalid]="attemptedSend() && decennalePolicyNumberMissing()"
+                                        />
+                                    </label>
+                                    <label class="quote-field flex-1">
+                                        <span class="quote-field-label">{{ 'quote.legal.decennaleCoverageArea' | transloco }}</span>
+                                        <input
+                                            type="text"
+                                            [value]="decennaleCoverageArea()"
+                                            (input)="decennaleCoverageArea.set($any($event.target).value)"
+                                            class="quote-input"
+                                        />
+                                    </label>
+                                </div>
+                                <div class="quote-amount-row flex-col md:flex-row">
+                                    <label class="quote-field flex-1">
+                                        <span class="quote-field-label">{{ 'quote.legal.rcProInsurer' | transloco }}<span class="quote-required">*</span></span>
+                                        <input
+                                            type="text"
+                                            [value]="rcProInsurer()"
+                                            (input)="rcProInsurer.set($any($event.target).value)"
+                                            class="quote-input"
+                                            [class.quote-field-invalid]="attemptedSend() && rcProInsurerMissing()"
+                                        />
+                                    </label>
+                                    <label class="quote-field flex-1">
+                                        <span class="quote-field-label">{{ 'quote.legal.rcProPolicyNumber' | transloco }}<span class="quote-required">*</span></span>
+                                        <input
+                                            type="text"
+                                            [value]="rcProPolicyNumber()"
+                                            (input)="rcProPolicyNumber.set($any($event.target).value)"
+                                            class="quote-input"
+                                            [class.quote-field-invalid]="attemptedSend() && rcProPolicyNumberMissing()"
+                                        />
+                                    </label>
+                                </div>
+                            </div>
+
+                            <label class="quote-checkbox mt-2">
                                 <input
                                     type="checkbox"
-                                    [checked]="vatExempt()"
-                                    (change)="vatExempt.set($any($event.target).checked)"
+                                    [checked]="klarnaAccepted()"
+                                    (change)="klarnaAccepted.set($any($event.target).checked)"
                                 />
-                                {{ 'quote.legal.vatExempt' | transloco }}
+                                {{ 'quote.legal.klarnaAccept' | transloco }}
                             </label>
-                            <p class="quote-section-hint ml-6">{{ 'quote.legal.vatExemptArticle' | transloco }}</p>
-                        </div>
-                    </section>
 
-                    <!-- ═══ 6. Remarque ═══ -->
-                    <section class="quote-section">
-                        <div class="quote-section-header">
-                            <iconify-icon icon="lucide:message-square" width="26"></iconify-icon>
                             <div>
-                                <h3 class="quote-section-title">{{ 'quote.remarks.title' | transloco }}</h3>
-                                <p class="quote-section-hint">{{ 'quote.remarks.hint' | transloco }}</p>
+                                <label class="quote-checkbox">
+                                    <input
+                                        type="checkbox"
+                                        [checked]="vatExempt()"
+                                        (change)="vatExempt.set($any($event.target).checked)"
+                                    />
+                                    {{ 'quote.legal.vatExempt' | transloco }}
+                                </label>
+                                <p class="quote-section-hint ml-6">{{ 'quote.legal.vatExemptArticle' | transloco }}</p>
                             </div>
-                        </div>
+                        </section>
 
-                        <div class="quote-line-card">
-                            <textarea
-                                rows="5"
-                                maxlength="1000"
-                                [value]="remarks()"
-                                (input)="remarks.set($any($event.target).value)"
-                                [placeholder]="'quote.remarks.placeholder' | transloco"
-                                class="quote-textarea"
-                            ></textarea>
-                        </div>
-                    </section>
-
-                    <!-- ═══ 7. Accord et validation ═══ -->
-                    <section class="quote-section">
-                        <div class="quote-section-header quote-section-header--between">
-                            <div class="flex items-start gap-3">
-                                <iconify-icon icon="lucide:handshake" width="26"></iconify-icon>
-                                <h3 class="quote-section-title">{{ 'quote.agreement.title' | transloco }}</h3>
+                        <!-- ═══ 6. Remarque ═══ -->
+                        <section class="quote-section">
+                            <div class="quote-section-header">
+                                <iconify-icon icon="lucide:message-square" width="26"></iconify-icon>
+                                <div>
+                                    <h3 class="quote-section-title">{{ 'quote.remarks.title' | transloco }}</h3>
+                                    <p class="quote-section-hint">{{ 'quote.remarks.hint' | transloco }}</p>
+                                </div>
                             </div>
-                            <button type="button" class="quote-btn quote-btn--outline quote-btn--sm quote-btn--primary shrink-0 w-[340px]">
-                                <iconify-icon icon="lucide:book-open" width="15"></iconify-icon>
-                                {{ 'quote.legal.obligationsGuide' | transloco }}
-                            </button>
-                        </div>
-                        <p class="quote-field-label">{{ 'quote.agreement.mentionsTitle' | transloco }}</p>
 
-                        <!-- Ces 2 mentions engagent le CLIENT (1ère personne "je") : c'est lui qui les
-                        cochera et les signera électroniquement à l'ouverture du devis dans la conversation,
-                        jamais le pro. Elles restent visibles en lecture seule dans l'aperçu (quote-preview). -->
-                        <div class="quote-info-box">
-                            <iconify-icon icon="lucide:info" width="16" class="mt-0.5 shrink-0"></iconify-icon>
-                            <p>{{ 'quote.agreement.clientSignatureHint' | transloco }}</p>
-                        </div>
-
-                        <div class="quote-summary">
-                            <h4 class="quote-field-label">{{ 'quote.agreement.summaryTitle' | transloco }}</h4>
-                            <div class="quote-summary-row">
-                                <span>{{ 'quote.agreement.summaryHT' | transloco }}</span>
-                                <span class="font-bold">{{ totalHT() | number: '1.2-2' }} &euro;</span>
+                            <div class="quote-line-card">
+                                <textarea
+                                    rows="5"
+                                    maxlength="1000"
+                                    [value]="remarks()"
+                                    (input)="remarks.set($any($event.target).value)"
+                                    [placeholder]="'quote.remarks.placeholder' | transloco"
+                                    class="quote-textarea"
+                                ></textarea>
                             </div>
-                            <div class="quote-summary-row quote-summary-row--total">
-                                <span>{{ 'quote.agreement.summaryTTC' | transloco }}</span>
-                                <span class="font-bold">{{ totalTTC() | number: '1.2-2' }} &euro;</span>
+                        </section>
+
+                        <!-- ═══ 7. Accord et validation ═══ -->
+                        <section class="quote-section">
+                            <div class="quote-section-header quote-section-header--between">
+                                <div class="flex items-start gap-3">
+                                    <iconify-icon icon="lucide:handshake" width="26"></iconify-icon>
+                                    <h3 class="quote-section-title">{{ 'quote.agreement.title' | transloco }}</h3>
+                                </div>
+                                <button type="button" class="quote-btn quote-btn--outline quote-btn--sm quote-btn--primary shrink-0 w-[340px]">
+                                    <iconify-icon icon="lucide:book-open" width="15"></iconify-icon>
+                                    {{ 'quote.legal.obligationsGuide' | transloco }}
+                                </button>
                             </div>
-                        </div>
+                            <p class="quote-field-label">{{ 'quote.agreement.mentionsTitle' | transloco }}</p>
 
-                        <div class="quote-info-box">
-                            <iconify-icon icon="lucide:info" width="16" class="mt-0.5 shrink-0"></iconify-icon>
-                            <p>{{ 'quote.agreement.ttcDisclaimer' | transloco }}</p>
-                        </div>
+                            <!-- Ces 2 mentions engagent le CLIENT (1ère personne "je") : c'est lui qui les
+                            cochera et les signera électroniquement à l'ouverture du devis dans la conversation,
+                            jamais le pro. Elles restent visibles en lecture seule dans l'aperçu (quote-preview). -->
+                            <div class="quote-info-box">
+                                <iconify-icon icon="lucide:info" width="16" class="mt-0.5 shrink-0"></iconify-icon>
+                                <p>{{ 'quote.agreement.clientSignatureHint' | transloco }}</p>
+                            </div>
 
-                        <div class="quote-info-box quote-info-box--filled">
-                            <iconify-icon icon="lucide:megaphone" width="16" class="mt-0.5 shrink-0"></iconify-icon>
-                            <p [innerHTML]="'quote.agreement.escrowNotice' | transloco"></p>
-                        </div>
-                    </section>
+                            <div class="quote-summary">
+                                <h4 class="quote-field-label">{{ 'quote.agreement.summaryTitle' | transloco }}</h4>
+                                <div class="quote-summary-row">
+                                    <span>{{ 'quote.agreement.summaryHT' | transloco }}</span>
+                                    <span class="font-bold">{{ totalHT() | number: '1.2-2' }} &euro;</span>
+                                </div>
+                                <div class="quote-summary-row quote-summary-row--total">
+                                    <span>{{ 'quote.agreement.summaryTTC' | transloco }}</span>
+                                    <span class="font-bold">{{ totalTTC() | number: '1.2-2' }} &euro;</span>
+                                </div>
+                            </div>
+
+                            <div class="quote-info-box">
+                                <iconify-icon icon="lucide:info" width="16" class="mt-0.5 shrink-0"></iconify-icon>
+                                <p>{{ 'quote.agreement.ttcDisclaimer' | transloco }}</p>
+                            </div>
+
+                            <div class="quote-info-box quote-info-box--filled">
+                                <iconify-icon icon="lucide:megaphone" width="16" class="mt-0.5 shrink-0"></iconify-icon>
+                                <p [innerHTML]="'quote.agreement.escrowNotice' | transloco"></p>
+                            </div>
+                        </section>
+                    </div>
                 </div>
-            </div>
             }
         </div>
     </div>
 
     @if (showPreview() && previewData(); as preview) {
         <quote-preview [data]="preview" (closed)="showPreview.set(false)" />
+    }
+
+    @if (signatureLink(); as link) {
+        <youtrust-signature-widget
+            [signatureLink]="link"
+            [isSandbox]="isSandbox()"
+            (success)="onProSigned()"
+            (closed)="signatureLink.set(null)"
+        />
     }
 </div>
