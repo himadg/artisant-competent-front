@@ -213,6 +213,14 @@
     background: var(--primary-water-green);
     color: var(--primary-beige);
   }
+
+  &--declined {
+    box-shadow: 0 0 .5rem 2px red;
+  }
+
+  &--accepted {
+    box-shadow: 0 0 .5rem 2px green;
+  }
 }
 
 .chat-bubble-text {
@@ -254,6 +262,37 @@
   iconify-icon {
     flex-shrink: 0;
   }
+}
+
+.chat-bubble-quote {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: inherit;
+  min-height: 0;
+  text-align: left;
+
+  iconify-icon {
+    flex-shrink: 0;
+    font-size: 1.4rem;
+  }
+}
+
+.chat-bubble-quote-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.chat-bubble-quote-title {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.chat-bubble-quote-status {
+  font-size: 0.75rem;
+  opacity: 0.75;
 }
 
 .chat-bubble-time {

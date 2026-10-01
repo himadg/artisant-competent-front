@@ -35,6 +35,9 @@ export class IndividualDashboardStateService {
   readonly error = signal<string | null>(null);
 
   readonly selectedDemandId = signal<string | null>(null);
+  // Deep link vers une conversation précise (ex: notification "devis envoyé/accepté/refusé"), cf.
+  // Messaging.initialConversationId — consommé puis remis à null par la section messages.
+  readonly pendingConversationId = signal<string | null>(null);
 
   readonly myDemands = signal<DemandSummary[] | null>(null);
   readonly demandsLoading = signal(false);
