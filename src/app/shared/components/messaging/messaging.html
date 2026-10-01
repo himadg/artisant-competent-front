@@ -16,6 +16,7 @@
                 (openDemand)="openDemand.emit($event)"
                 (loadMore)="loadMoreMessages()"
                 (createQuote)="openQuoteModal($event)"
+                (viewQuote)="openQuoteViewer($event)"
             />
         } @else {
             <div class="messaging-empty">{{ 'dashboard.messages.selectPrompt' | transloco }}</div>
@@ -25,4 +26,8 @@
 
 @if (quoteModalOpen(); as demandId) {
     <quote-modal [demandId]="demandId" (closed)="quoteModalOpen.set(null)" />
+}
+
+@if (quoteViewerOpen(); as quoteId) {
+    <quote-client-view [quoteId]="quoteId" (closed)="quoteViewerOpen.set(null)" />
 }

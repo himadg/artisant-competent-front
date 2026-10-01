@@ -8,6 +8,9 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'dashboard/**', renderMode: RenderMode.Client },
   { path: 'admin/professionals/**', renderMode: RenderMode.Client },
   { path: 'auth/**', renderMode: RenderMode.Client },
+  // CSR obligatoire : l'en-tête X-Print-Token posé par Playwright doit s'appliquer à l'appel API
+  // fait par Angular lui-même dans le navigateur, pas être retransmis manuellement depuis un SSR.
+  { path: 'print/quote/**', renderMode: RenderMode.Client },
 
   // Résultats dépendant des query params (+ sessionStorage) → CSR
   { path: 'search-pro', renderMode: RenderMode.Client },

@@ -18,7 +18,13 @@ export class IndividualMessagesSection {
 
   readonly comingSoonEnabled = this.configService.get('comingSoonEnabled') === 'true';
 
+  readonly pendingConversationId = this.state.pendingConversationId;
+
   onOpenDemandFromMessaging(demandId: string): void {
     this.state.selectedDemandId.set(demandId);
+  }
+
+  onInitialConversationConsumed(): void {
+    this.state.pendingConversationId.set(null);
   }
 }

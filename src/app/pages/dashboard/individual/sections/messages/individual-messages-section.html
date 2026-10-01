@@ -1,5 +1,9 @@
 @if (comingSoonEnabled) {
     <coming-soon />
 } @else {
-    <messaging (openDemand)="onOpenDemandFromMessaging($event)"></messaging>
+    <messaging
+        [initialConversationId]="pendingConversationId()"
+        (openDemand)="onOpenDemandFromMessaging($event)"
+        (initialConversationConsumed)="onInitialConversationConsumed()"
+    ></messaging>
 }
