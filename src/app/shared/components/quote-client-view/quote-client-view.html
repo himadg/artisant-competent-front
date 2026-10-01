@@ -1,0 +1,22 @@
+@if (loading()) {
+    <div class="fixed inset-0 z-[60] flex items-center justify-center bg-black/60">
+        <span class="spinner"></span>
+    </div>
+} @else if (previewData(); as data) {
+    <quote-preview
+        [data]="data"
+        [interactive]="canSign()"
+        (closed)="closed.emit()"
+        (accept)="onAccept()"
+        (decline)="onDecline()"
+    />
+}
+
+@if (signatureLink(); as link) {
+    <youtrust-signature-widget
+        [signatureLink]="link"
+        [isSandbox]="isSandbox()"
+        (success)="onClientSigned()"
+        (closed)="signatureLink.set(null)"
+    />
+}

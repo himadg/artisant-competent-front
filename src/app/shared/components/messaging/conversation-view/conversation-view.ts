@@ -47,6 +47,7 @@ export class ConversationView {
   readonly sendMessage = output<string>();
   readonly declineOffer = output<void>();
   readonly createQuote = output<string>();
+  readonly viewQuote = output<string>();
   readonly leaveReview = output<void>();
   readonly reportDispute = output<void>();
   readonly openDemand = output<string>();
@@ -107,6 +108,14 @@ export class ConversationView {
     return description.length > 100 ? `${description.slice(0, 100)}…` : description;
   });
 
+  // Le pro ne peut créer/reprendre un devis que si aucun n'existe encore, ou si le plus récent a été
+  // refusé (DECLINED) — tant qu'un devis est en attente (SENT) ou validé (ACCEPTED),
+  // il ne peut rien faire d'autre qu'attendre, cf. QuoteService.assertCanCreateNewQuote côté backend.
+  readonly canManageQuote = computed(() => {
+    const status = this.conversation().quoteStatus;
+    return status !== 'SENT' && status !== 'ACCEPTED';
+  });
+
   formatBubbleTime(iso: string): string {
     const date = new Date(iso);
     const now = new Date();
@@ -151,6 +160,11 @@ export class ConversationView {
       return;
     }
     this.sendAttachment.emit(file);
+  }
+
+  // Ouvre l'aperçu du devis associé au message donné.
+  openQuoteMessage(message: ConversationMessage): void {
+    if (message.quoteId) this.viewQuote.emit(message.quoteId);
   }
 
   toggleActionsMenu(): void {

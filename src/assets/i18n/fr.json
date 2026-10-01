@@ -6,22 +6,42 @@
     "vatRate": "TVA (%)",
     "amountTTC": "TTC (€)",
     "vatGuide": "Mode d'emploi TVA",
+    "validUntil": {
+      "label": "Devis valable jusqu'au"
+    },
     "actions": {
       "guide": "Mode d'emploi devis",
       "preview": "Aperçu du devis",
       "save": "Enregistrer",
       "draftSaveSuccess": "Brouillon enregistré.",
-      "generate": "Générer le devis"
+      "send": "Envoyer le devis",
+      "sendSuccess": "Devis envoyé au client.",
+      "sendMissingFields": "Le devis ne peut pas être envoyé : certains champs obligatoires sont manquants ou incomplets.",
+      "pendingClientResponse": "Ce devis est en attente de réponse du client, impossible d'en créer un nouveau pour l'instant.",
+      "alreadyAccepted": "Ce devis a déjà été accepté par le client, la mission peut démarrer.",
+      "alreadySent": "Ce devis a déjà été envoyé.",
+      "prefilledFromDeclined": "Ce brouillon reprend les informations du devis précédent, refusé — modifiez ce qui doit changer."
+    },
+    "messageBubble": {
+      "status": {
+        "DRAFT": "Brouillon",
+        "SENT": "Envoyé",
+        "ACCEPTED": "Accepté",
+        "DECLINED": "Refusé"
+      }
     },
     "preview": {
       "close": "Fermer l'aperçu",
       "professional": "Professionnel",
       "client": "Client",
+      "clientSignature": "Signature du client",
+      "professionalSignature": "Signature de l'artisan",
       "siret": "SIRET",
       "phone": "Téléphone",
       "email": "E-mail",
       "legalForm": "Forme juridique",
       "description": "Description",
+      "noMaterials": "Aucun matériel ni fourniture pour ce devis (main-d'œuvre uniquement).",
       "paymentConditions": "Conditions de paiement",
       "klarnaAccepted": "Paiement en plusieurs fois via Klarna proposé pour ce chantier.",
       "documentsTitle": "Documents joints",
@@ -31,12 +51,19 @@
       "totalHT": "Total HT",
       "totalVAT": "Total TVA",
       "totalTTC": "Total TTC",
-      "printedOn": "Devis émis le"
+      "printedOn": "Devis émis le",
+      "validUntil": "Devis valable jusqu'au",
+      "insuranceTitle": "Assurances",
+      "decennale": "Garantie décennale",
+      "rcPro": "RC Pro",
+      "coverageArea": "Zone de couverture"
     },
     "materials": {
-      "title": "1. Matériaux et fournitures",
+      "title": "Matériaux et fournitures",
       "hint": "Description (max 250 caractères) – utilisez \"Ajouter des matériaux et fournitures\" pour renseigner chaque matériau ou fourniture supplémentaire individuellement, en indiquant obligatoirement le nom de son fournisseur.",
       "descriptionPlaceholder": "Ex : Disjoncteur 32A, câble H07V-U 2,5 mm², boîte de dérivation... (fournisseur POINT P)",
+      "quantity": "Quantité",
+      "unitPriceHT": "Prix unitaire HT (€)",
       "vatExemptHint": "Si vous êtes auto-entrepreneur et que vous n'avez pas encore atteint le seuil de chiffre d'affaires vous obligeant à reverser la TVA, renseignez \"00,00\" dans le champ <strong>TVA (%)</strong>. Indiquez ensuite le montant total du matériel HT, qui correspondra au prix final facturé au client.",
       "originLabel": "Origine du matériel (plusieurs choix possibles)",
       "origin": {
@@ -49,7 +76,7 @@
       "addBtn": "Ajouter des matériaux et fournitures"
     },
     "labor": {
-      "title": "2. Prestation (main-d'œuvre)",
+      "title": "Prestation (main-d'œuvre)",
       "hint": "Décrivez la prestation réalisée (250 caractères max)",
       "nightWorkQuestion": "Intervention d'urgence réalisée entre 20h et 7h ?",
       "nightWorkHint": "(Une intervention de nuit correspond à une intervention réalisée entre 20h et 7h du matin. En raison des contraintes d'organisation, de disponibilité et de déplacement, le tarif appliqué peut être majoré pendant cette tranche horaire.)",
@@ -57,42 +84,56 @@
       "addBtn": "Ajouter une prestation"
     },
     "logistics": {
-      "title": "3. Logistique et frais annexes",
+      "title": "Logistique et frais annexes",
       "hint": "Indiquez les frais de déplacement, location de matériel, livraison, parking, etc.",
       "descriptionPlaceholder": "Ex : Frais de déplacement, location d'échafaudage...",
       "addBtn": "Ajouter logistique ou frais annexes"
     },
     "dates": {
-      "title": "4. Dates prévisionnelles du chantier",
+      "title": "Dates prévisionnelles du chantier",
       "hint": "Indiquez les dates prévisionnelles de début et de fin du chantier.",
       "start": "Date de début prévisionnelle",
       "end": "Date de fin prévisionnelle",
       "warning": "Ces dates sont données à titre prévisionnel. Toute modification importante devra être signalée au client via le suivi digital du chantier."
     },
     "legal": {
-      "title": "5. Mentions et obligations légales",
+      "title": "Mentions et obligations légales",
       "hint": "Ajoutez vos documents d'assurance, certification ou autres obligations légales et nommez-les.",
       "obligationsGuide": "Mode d'emploi obligations documentaires et assurances par métier",
       "fileLabel": "Document à télécharger",
       "chooseFile": "Choisir un fichier à télécharger",
+      "pendingUpload": "sera envoyé à l'enregistrement",
       "nameLabel": "Nom du document (ex : RC Pro, Assurance décennale, CERFA, etc.)",
       "namePlaceholder": "Ex : RC Pro, Assurance décennale (si applicable), CERFA 12506...",
       "addBtn": "Ajouter un document",
+      "insuranceTitle": "Références d'assurance (mention obligatoire sur le devis)",
+      "decennaleInsurer": "Assureur (garantie décennale)",
+      "decennalePolicyNumber": "N° de police (garantie décennale)",
+      "decennaleCoverageArea": "Zone de couverture géographique",
+      "rcProInsurer": "Assureur (RC Pro)",
+      "rcProPolicyNumber": "N° de police (RC Pro)",
       "klarnaAccept": "J'accepte le paiement en plusieurs fois proposé via Klarna lorsque le client y est éligible.",
       "vatExempt": "Appliquer l'exonération de TVA (auto-entrepreneur)",
       "vatExemptArticle": "TVA non applicable, article 293 B du CGI"
     },
     "remarks": {
-      "title": "6. Remarque",
+      "title": "Remarque",
       "hint": "Toute information complémentaire qui ne figure pas ailleurs sur le devis.",
       "placeholder": "Exemple : Conditions particulières du chantier, précisions utiles à la bonne compréhension du devis, contraintes d'accès au logement ou au local, horaires d'intervention convenus, délais spécifiques, informations techniques importantes, éléments fabriqués sur mesure (vitrerie, miroiterie, menuiserie, etc.), modifications particulières prévues sur l'ouvrage, informations susceptibles de faciliter le suivi du chantier ou l'analyse d'un éventuel litige, ainsi que toute autre remarque pertinente."
     },
     "agreement": {
-      "title": "7. Accord et validation",
+      "title": "Engagement du client",
       "mentionsTitle": "Mentions importantes :",
       "clientSignatureHint": "Ces mentions et leur acceptation relèvent du client : il les consultera et les signera électroniquement à l'ouverture de ce devis dans la conversation.",
       "quoteAgreementAccepted": "Je confirme mon accord sur le présent devis, qui vaut également bon de commande. En le validant, j'autorise le professionnel à préparer et organiser le chantier conformément aux prestations prévues. Je reconnais qu'il m'appartient de vérifier, dès que possible, la validité des assurances, certifications et documents obligatoires de l'artisan, avant ou pendant le chantier.<br><br>Afin de faciliter le bon déroulement des travaux et d'éviter tout retard ou litige, il est recommandé d'effectuer ces vérifications le plus tôt possible. À compter de la remise du procès-verbal de fin de chantier, je dispose toutefois d'un délai maximal de 96 heures pour effectuer ou finaliser ces vérifications avant la validation automatique du chantier et la libération des fonds. Ce délai est notamment prévu pour tenir compte des interventions d'urgence réalisées de nuit, les week-ends ou les jours fériés.",
       "earlyStartAccepted": "Je demande expressément que les travaux puissent débuter avant l'expiration du délai légal de rétractation. Je reconnais avoir été informé qu'en donnant cet accord, le professionnel peut engager les dépenses nécessaires au chantier, notamment pour l'achat des matériaux, fournitures ou la réservation d'éventuels équipements, conformément au devis accepté.<br><br>Je reconnais également avoir pris connaissance, préalablement à la signature du devis, et accepter sans réserve les Conditions Générales d'Utilisation (CGU), les Conditions Générales de Vente (CGV) ainsi que la Politique d'annulation de la plateforme Artisan Compétent. J'accepte que ces documents s'appliquent à la relation contractuelle me liant à l'artisan.",
+      "quoteAgreementAcceptedSummary": "Le client confirme son accord sur le présent devis, qui vaut également bon de commande. En le validant, il autorise le professionnel à préparer et organiser le chantier conformément aux prestations prévues. Il reconnaît qu'il lui appartient de vérifier, dès que possible, la validité des assurances, certifications et documents obligatoires de l'artisan, avant ou pendant le chantier.<br><br>Afin de faciliter le bon déroulement des travaux et d'éviter tout retard ou litige, il est recommandé d'effectuer ces vérifications le plus tôt possible. À compter de la remise du procès-verbal de fin de chantier, le client dispose toutefois d'un délai maximal de 96 heures pour effectuer ou finaliser ces vérifications avant la validation automatique du chantier et la libération des fonds. Ce délai est notamment prévu pour tenir compte des interventions d'urgence réalisées de nuit, les week-ends ou les jours fériés.",
+      "earlyStartAcceptedSummary": "Le client demande expressément que les travaux puissent débuter avant l'expiration du délai légal de rétractation. Il reconnaît avoir été informé qu'en donnant cet accord, le professionnel peut engager les dépenses nécessaires au chantier, notamment pour l'achat des matériaux, fournitures ou la réservation d'éventuels équipements, conformément au devis accepté.<br><br>Le client reconnaît également avoir pris connaissance, préalablement à la signature du devis, et accepter sans réserve les Conditions Générales d'Utilisation (CGU), les Conditions Générales de Vente (CGV) ainsi que la Politique d'annulation de la plateforme Artisan Compétent. Il accepte que ces documents s'appliquent à la relation contractuelle le liant à l'artisan.",
+      "accept": "Accepter et signer le devis",
+      "decline": "Refuser le devis",
+      "acceptanceRequired": "Veuillez accepter les conditions pour pouvoir signer le devis.",
+      "acceptSuccess": "Devis signé et accepté.",
+      "declineSuccess": "Devis refusé.",
       "summaryTitle": "Récapitulatif",
       "summaryHT": "Total HT (Matériaux + Prestations + Frais) :",
       "summaryTTC": "Montant TTC à régler :",
@@ -146,7 +187,7 @@
       "title": "Qu'est-ce qu'Artisan Compétent ? La plateforme qui encadre vos travaux",
       "intro": "Artisan Compétent est une web app française spécialisée dans la mise en relation encadrée entre particuliers et professionnels du bâtiment.",
       "accordionTitle": "Découvrir Artisan Compétent en détail",
-      "accordeonContent": "<p>Contrairement à un simple annuaire ou à une plateforme classique, Artisan Compétent ne se contente pas d'afficher des artisans.</p><p>La plateforme met en place un véritable système d'encadrement numérique du chantier pour protéger à la fois :</p><ul><li>les clients,</li><li>les vrais artisans,</li><li>et l'argent des travaux.</li></ul><p>L'objectif est simple :</p><ul><li>empêcher les abandons de chantier,</li><li>limiter les escroqueries,</li><li>éviter les acomptes perdus,</li><li>et rétablir la confiance dans le bâtiment.</li></ul><hr><h3>LE PROBLÈME QUE RÉSOUT ARTISAN COMPÉTENT</h3><p>Aujourd'hui, trouver un artisan est devenu facile.</p><p>Mais savoir à qui faire confiance est devenu extrêmement compliqué.</p><p>Sur Google, les réseaux sociaux ou les moteurs de recherche :</p><ul><li>n'importe qui peut apparaître en premier,</li><li>les avis peuvent être faux ou manipulés,</li><li>les recommandations de l'entourage ne garantissent rien,</li><li>et surtout : personne ne protège réellement l'argent du client.</li></ul><p>Résultat :</p><ul><li>acomptes perdus,</li><li>chantiers abandonnés,</li><li>surfacturations,</li><li>litiges,</li><li>artisans introuvables,</li><li>clients laissés seuls.</li></ul><p>Artisan Compétent a été créé pour résoudre ce problème.</p><hr><h3>COMMENT FONCTIONNE ARTISAN COMPÉTENT ?</h3><h4>1. Des artisans vérifiés</h4><p>Les professionnels présents sur la plateforme sont contrôlés avant intégration :</p><ul><li>Kbis,</li><li>assurances.</li></ul><p>L'objectif :<br>filtrer les profils problématiques avant même qu'ils puissent travailler sur la plateforme.</p><h4>2. Un suivi digital du chantier</h4><p>Tout passe par la plateforme :</p><ul><li>devis,</li><li>échanges,</li><li>commentaires,</li><li>photos,</li><li>suivi du chantier.</li></ul><p>Chaque étape peut être documentée.</p><p>Le client comme le professionnel peuvent ajouter :</p><ul><li>des photos,</li><li>des preuves,</li><li>des commentaires,</li><li>des observations.</li></ul><p>Tout devient traçable.</p><h4>3. Le règlement du professionnel est différé</h4><p>C'est le cœur du système.</p><p>Contrairement aux méthodes classiques :<br>le client ne paie pas directement l'artisan.</p><p>Le paiement est traité par Stripe et le règlement du professionnel est différé jusqu'à validation du chantier.</p><ul><li>L'artisan ne peut donc pas disparaître avec l'argent avant la fin des travaux.</li><li>Et le client ne peut pas non plus bloquer abusivement le paiement sans justification.</li></ul><p>Artisan Compétent applique les règles contractuelles acceptées par les parties et transmet au prestataire de services de paiement les instructions correspondant au résultat de la procédure prévue par les CGU et les CGV.</p><h4>4. Un procès-verbal digital de fin de chantier</h4><p>Lorsque les travaux sont terminés :<br>le professionnel envoie un PV digital de réception de chantier.</p><p>Le client dispose alors de 48 heures pour :</p><ul><li>vérifier les travaux,</li><li>signaler un problème,</li><li>demander une correction si nécessaire.</li></ul><p>Ce délai protège énormément les clients.</p><p>Car dans le système classique :<br>une fois payé, certains artisans ne reviennent plus.</p><p>Avec Artisan Compétent :<br>le règlement du professionnel reste suspendu jusqu'à validation finale.</p><h4>5. Des interventions d'urgence encadrées</h4><p>Artisan Compétent propose également des interventions d'urgence 24h/24 et 7j/7 pour certains métiers sensibles :</p><ul><li>plomberie,</li><li>électricité,</li><li>serrurerie,</li><li>débouchage de canalisations.</li></ul><p>L'objectif :<br>éviter les abus, les surfacturations nocturnes et les arnaques d'urgence.</p><h4>6. Un système pensé aussi pour les vrais artisans</h4><p>Artisan Compétent ne protège pas seulement les clients.</p><p>La plateforme protège aussi les professionnels honnêtes :</p><ul><li>contre les impayés,</li><li>contre les faux litiges,</li><li>contre les clients malveillants,</li><li>et contre la mauvaise image du secteur.</li></ul><p>Les vrais artisans ont enfin un système qui valorise le sérieux et la transparence.</p><hr><h3>LE CMOD : CONSEILLER MAÎTRE D'OUVRAGE DIGITAL</h3><p>Artisan Compétent propose aussi un service unique :<br>le CMOD.</p><p>Le CMOD est un professionnel expérimenté du bâtiment qui accompagne le client à distance.</p><p>Son rôle :</p><ul><li>rassurer,</li><li>expliquer,</li><li>aider à comprendre un devis,</li><li>conseiller pendant le chantier.</li></ul><p>C'est une option facultative qui apporte encore plus de sécurité.</p><hr><h3>POURQUOI ARTISAN COMPÉTENT EST DIFFÉRENT ?</h3><p>Parce que la plateforme ne vend pas simplement des contacts.</p><p>Elle crée un cadre.</p><p>Un encadrement numérique inspiré des méthodes professionnelles du BTP :</p><ul><li>suivi,</li><li>preuves,</li><li>traitement des litiges,</li><li>traçabilité,</li><li>encadrement des fonds.</li></ul><p>Aujourd'hui :<br>Google peut afficher un artisan.</p><p>Mais Google ne protège pas votre argent.</p><p>Les moteurs de recherche peuvent recommander un professionnel.</p><p>Mais ils ne suivent pas votre chantier.</p><p>Artisan Compétent, oui.</p><hr><h3>POUR QUI ?</h3><h4>Pour les particuliers</h4><p>Qui veulent :</p><ul><li>éviter les arnaques,</li><li>encadrer leur argent,</li><li>trouver des artisans sérieux,</li><li>suivre leurs travaux correctement.</li></ul><h4>Pour les artisans honnêtes</h4><p>Qui veulent :</p><ul><li>travailler avec des clients sérieux,</li><li>être payés correctement,</li><li>rassurer leurs clients,</li><li>se différencier des mauvais professionnels.</li></ul><h4>Pour les affiliés et partenaires</h4><p>Qui veulent recommander une solution utile, concrète et encadrée.</p><p>Recommander Artisan Compétent est totalement différent de recommander \"un artisan qu'on connaît\".</p><p>Parce que le système lui-même est conçu pour empêcher les abus.</p><hr><h3>OBJECTIF D'ARTISAN COMPÉTENT</h3><p>Créer progressivement un nouveau standard de confiance dans le bâtiment.</p><p>Un système plus transparent.<br>Plus encadré.<br>Plus professionnel.</p><p>Et surtout :<br>un système où personne ne disparaît avec l'argent des clients.</p>"
+      "accordeonContent": "<p>Contrairement à un simple annuaire ou à une plateforme classique, Artisan Compétent ne se contente pas d'afficher des artisans.</p><p>La plateforme met en place un véritable système d'encadrement numérique du chantier pour protéger à la fois :</p><ul><li>les clients,</li><li>les vrais artisans,</li><li>et l'argent des travaux.</li></ul><p>L'objectif est simple :</p><ul><li>empêcher les abandons de chantier,</li><li>limiter les escroqueries,</li><li>éviter les acomptes perdus,</li><li>et rétablir la confiance dans le bâtiment.</li></ul><hr><h3>LE PROBLÈME QUE RÉSOUT ARTISAN COMPÉTENT</h3><p>Aujourd'hui, trouver un artisan est devenu facile.</p><p>Mais savoir à qui faire confiance est devenu extrêmement compliqué.</p><p>Sur Google, les réseaux sociaux ou les moteurs de recherche :</p><ul><li>n'importe qui peut apparaître en premier,</li><li>les avis peuvent être faux ou manipulés,</li><li>les recommandations de l'entourage ne garantissent rien,</li><li>et surtout : personne ne protège réellement l'argent du client.</li></ul><p>Résultat :</p><ul><li>acomptes perdus,</li><li>chantiers abandonnés,</li><li>surfacturations,</li><li>litiges,</li><li>artisans introuvables,</li><li>clients laissés seuls.</li></ul><p>Artisan Compétent a été créé pour résoudre ce problème.</p><hr><h3>COMMENT FONCTIONNE ARTISAN COMPÉTENT ?</h3><h4>1. Des artisans vérifiés</h4><p>Les professionnels présents sur la plateforme sont contrôlés avant intégration :</p><ul><li>Kbis,</li><li>assurances.</li></ul><p>L'objectif :<br>filtrer les profils problématiques avant même qu'ils puissent travailler sur la plateforme.</p><h4>2. Un suivi digital du chantier</h4><p>Tout passe par la plateforme :</p><ul><li>devis,</li><li>échanges,</li><li>commentaires,</li><li>photos,</li><li>suivi du chantier.</li></ul><p>Chaque étape peut être documentée.</p><p>Le client comme le professionnel peuvent ajouter :</p><ul><li>des photos,</li><li>des preuves,</li><li>des commentaires,</li><li>des observations.</li></ul><p>Tout devient traçable.</p><h4>3. Le règlement du professionnel est différé</h4><p>C'est le cœur du système.</p><p>Contrairement aux méthodes classiques :<br>le client ne paie pas directement l'artisan.</p><p>Le paiement est traité par Stripe et le règlement du professionnel est différé jusqu'à validation du chantier.</p><ul><li>L'artisan ne peut donc pas disparaître avec l'argent avant la fin des travaux.</li><li>Et le client ne peut pas non plus bloquer abusivement le paiement sans justification.</li></ul><p>Artisan Compétent applique les règles contractuelles acceptées par les parties et transmet au prestataire de services de paiement les instructions correspondant au résultat de la procédure prévue par les CGU et les CGV.</p><h4>4. Un procès-verbal digital de fin de chantier</h4><p>Lorsque les travaux sont terminés :<br>le professionnel envoie un PV digital de réception de chantier.</p><p>Le client dispose alors de 96 heures pour :</p><ul><li>vérifier les travaux,</li><li>signaler un problème,</li><li>demander une correction si nécessaire.</li></ul><p>Ce délai protège énormément les clients.</p><p>Car dans le système classique :<br>une fois payé, certains artisans ne reviennent plus.</p><p>Avec Artisan Compétent :<br>le règlement du professionnel reste suspendu jusqu'à validation finale.</p><h4>5. Des interventions d'urgence encadrées</h4><p>Artisan Compétent propose également des interventions d'urgence 24h/24 et 7j/7 pour certains métiers sensibles :</p><ul><li>plomberie,</li><li>électricité,</li><li>serrurerie,</li><li>débouchage de canalisations.</li></ul><p>L'objectif :<br>éviter les abus, les surfacturations nocturnes et les arnaques d'urgence.</p><h4>6. Un système pensé aussi pour les vrais artisans</h4><p>Artisan Compétent ne protège pas seulement les clients.</p><p>La plateforme protège aussi les professionnels honnêtes :</p><ul><li>contre les impayés,</li><li>contre les faux litiges,</li><li>contre les clients malveillants,</li><li>et contre la mauvaise image du secteur.</li></ul><p>Les vrais artisans ont enfin un système qui valorise le sérieux et la transparence.</p><hr><h3>LE CMOD : CONSEILLER MAÎTRE D'OUVRAGE DIGITAL</h3><p>Artisan Compétent propose aussi un service unique :<br>le CMOD.</p><p>Le CMOD est un professionnel expérimenté du bâtiment qui accompagne le client à distance.</p><p>Son rôle :</p><ul><li>rassurer,</li><li>expliquer,</li><li>aider à comprendre un devis,</li><li>conseiller pendant le chantier.</li></ul><p>C'est une option facultative qui apporte encore plus de sécurité.</p><hr><h3>POURQUOI ARTISAN COMPÉTENT EST DIFFÉRENT ?</h3><p>Parce que la plateforme ne vend pas simplement des contacts.</p><p>Elle crée un cadre.</p><p>Un encadrement numérique inspiré des méthodes professionnelles du BTP :</p><ul><li>suivi,</li><li>preuves,</li><li>traitement des litiges,</li><li>traçabilité,</li><li>encadrement des fonds.</li></ul><p>Aujourd'hui :<br>Google peut afficher un artisan.</p><p>Mais Google ne protège pas votre argent.</p><p>Les moteurs de recherche peuvent recommander un professionnel.</p><p>Mais ils ne suivent pas votre chantier.</p><p>Artisan Compétent, oui.</p><hr><h3>POUR QUI ?</h3><h4>Pour les particuliers</h4><p>Qui veulent :</p><ul><li>éviter les arnaques,</li><li>encadrer leur argent,</li><li>trouver des artisans sérieux,</li><li>suivre leurs travaux correctement.</li></ul><h4>Pour les artisans honnêtes</h4><p>Qui veulent :</p><ul><li>travailler avec des clients sérieux,</li><li>être payés correctement,</li><li>rassurer leurs clients,</li><li>se différencier des mauvais professionnels.</li></ul><h4>Pour les affiliés et partenaires</h4><p>Qui veulent recommander une solution utile, concrète et encadrée.</p><p>Recommander Artisan Compétent est totalement différent de recommander \"un artisan qu'on connaît\".</p><p>Parce que le système lui-même est conçu pour empêcher les abus.</p><hr><h3>OBJECTIF D'ARTISAN COMPÉTENT</h3><p>Créer progressivement un nouveau standard de confiance dans le bâtiment.</p><p>Un système plus transparent.<br>Plus encadré.<br>Plus professionnel.</p><p>Et surtout :<br>un système où personne ne disparaît avec l'argent des clients.</p>"
     },
     "reviews": {
       "h2": "Ils ont fait confiance à Artisan Compétent",
@@ -828,19 +869,49 @@
         "comparatif": {
           "title": "Comparatif : Artisan Compétent vs autres plateformes vs Google direct",
           "lead": "Trois manières de trouver un électricien en France. Trois niveaux de protection radicalement différents, particulièrement sur la conformité réglementaire.",
-          "headers": ["Critère", "Autres plateformes", "Google direct", "Artisan Compétent"],
+          "headers": [
+            "Critère",
+            "Autres plateformes",
+            "Google direct",
+            "Artisan Compétent"
+          ],
           "rows": [
-            ["Vérification SIRET artisan", "Variable", "Aucune", "Systématique avant validation"],
+            [
+              "Vérification SIRET artisan",
+              "Variable",
+              "Aucune",
+              "Systématique avant validation"
+            ],
             [
               "Vérification assurances et habilitation NF C 18-510",
               "Rare",
               "Aucune",
               "RC pro, décennale, habilitation, IRVE si applicable"
             ],
-            ["Paiement encadré", "Variable", "Aucun", "Paiement encadré Stripe, versement à 96h"],
-            ["Recours en cas d'abus", "Limité", "Aucun", "Retenue jusqu'à 250 € sur signalement < 96h"],
-            ["Conformité NF C 15-100 et Consuel", "Variable", "Aucune", "Imposée"],
-            ["Conseiller maître d'ouvrage", "Non", "Aucun", "CMOD disponible sur option"]
+            [
+              "Paiement encadré",
+              "Variable",
+              "Aucun",
+              "Paiement encadré Stripe, versement à 96h"
+            ],
+            [
+              "Recours en cas d'abus",
+              "Limité",
+              "Aucun",
+              "Retenue jusqu'à 250 € sur signalement < 96h"
+            ],
+            [
+              "Conformité NF C 15-100 et Consuel",
+              "Variable",
+              "Aucune",
+              "Imposée"
+            ],
+            [
+              "Conseiller maître d'ouvrage",
+              "Non",
+              "Aucun",
+              "CMOD disponible sur option"
+            ]
           ]
         },
         "traps": {
@@ -997,9 +1068,19 @@
         "comparatif": {
           "title": "Comparatif : Artisan Compétent vs autres plateformes vs Google direct",
           "lead": "Trois manières de trouver un serrurier en France. Trois niveaux de protection radicalement différents, particulièrement en sortie nocturne.",
-          "headers": ["Critère", "Autres plateformes", "Google direct", "Artisan Compétent"],
+          "headers": [
+            "Critère",
+            "Autres plateformes",
+            "Google direct",
+            "Artisan Compétent"
+          ],
           "rows": [
-            ["Vérification SIRET artisan", "Variable", "Aucune", "Systématique avant validation"],
+            [
+              "Vérification SIRET artisan",
+              "Variable",
+              "Aucune",
+              "Systématique avant validation"
+            ],
             [
               "Vérification assurance RC pro",
               "Rare",
@@ -1012,10 +1093,30 @@
               "Très élevé",
               "Neutralisé par devis préalable et paiement encadré"
             ],
-            ["Paiement encadré", "Variable", "Non", "Paiement encadré Stripe, versement à 96h"],
-            ["Recours en cas d’abus", "Limité", "Aucun", "Retenue jusqu’à 250 € sur signalement < 96h"],
-            ["Devis chiffré préalable", "Variable", "Non", "Imposé avant intervention"],
-            ["Conseiller maître d’ouvrage", "Non", "Non", "CMOD disponible sur option"]
+            [
+              "Paiement encadré",
+              "Variable",
+              "Non",
+              "Paiement encadré Stripe, versement à 96h"
+            ],
+            [
+              "Recours en cas d’abus",
+              "Limité",
+              "Aucun",
+              "Retenue jusqu’à 250 € sur signalement < 96h"
+            ],
+            [
+              "Devis chiffré préalable",
+              "Variable",
+              "Non",
+              "Imposé avant intervention"
+            ],
+            [
+              "Conseiller maître d’ouvrage",
+              "Non",
+              "Non",
+              "CMOD disponible sur option"
+            ]
           ]
         },
         "traps": {
@@ -1184,14 +1285,49 @@
         "comparatif": {
           "title": "Comparatif : Artisan Compétent vs autres plateformes vs Google direct",
           "lead": "Trois manières de trouver un plombier en France. Trois niveaux de protection radicalement différents.",
-          "headers": ["Critère", "Autres plateformes", "Google direct", "Artisan Compétent"],
+          "headers": [
+            "Critère",
+            "Autres plateformes",
+            "Google direct",
+            "Artisan Compétent"
+          ],
           "rows": [
-            ["Vérification SIRET artisan", "Variable", "Aucune", "Systématique avant validation"],
-            ["Vérification assurances", "Rare", "Aucune", "RC pro, décennale, PG, RGE si applicable"],
-            ["Paiement encadré", "Variable", "Non", "Paiement encadré Stripe, versement à 96h"],
-            ["Recours en cas d’abus", "Limité", "Aucun", "Retenue jusqu’à 250 € sur signalement < 96h"],
-            ["Tarif horaire transparent", "Variable", "Variable", "Devis détaillé imposé avant intervention"],
-            ["Conseiller maître d’ouvrage", "Non", "Non", "CMOD disponible sur option"]
+            [
+              "Vérification SIRET artisan",
+              "Variable",
+              "Aucune",
+              "Systématique avant validation"
+            ],
+            [
+              "Vérification assurances",
+              "Rare",
+              "Aucune",
+              "RC pro, décennale, PG, RGE si applicable"
+            ],
+            [
+              "Paiement encadré",
+              "Variable",
+              "Non",
+              "Paiement encadré Stripe, versement à 96h"
+            ],
+            [
+              "Recours en cas d’abus",
+              "Limité",
+              "Aucun",
+              "Retenue jusqu’à 250 € sur signalement < 96h"
+            ],
+            [
+              "Tarif horaire transparent",
+              "Variable",
+              "Variable",
+              "Devis détaillé imposé avant intervention"
+            ],
+            [
+              "Conseiller maître d’ouvrage",
+              "Non",
+              "Non",
+              "CMOD disponible sur option"
+            ]
           ]
         },
         "traps": {
@@ -1352,30 +1488,55 @@
         "comparatif": {
           "title": "Comparatif : Artisan Compétent vs autres plateformes vs Google direct",
           "lead": "Trois manières de trouver un déboucheur en France. Trois niveaux de protection radicalement différents.",
-          "headers": ["Critère", "Autres plateformes", "Google direct", "Artisan Compétent"],
+          "headers": [
+            "Critère",
+            "Autres plateformes",
+            "Google direct",
+            "Artisan Compétent"
+          ],
           "rows": [
-            ["Vérification SIRET artisan", "Variable", "Aucune", "Systématique avant validation"],
+            [
+              "Vérification SIRET artisan",
+              "Variable",
+              "Aucune",
+              "Systématique avant validation"
+            ],
             [
               "Vérification assurance RC pro et agrément préfectoral",
               "Rare",
               "Aucune",
               "RC pro, agrément vidange, justificatif matériel"
             ],
-            ["Paiement encadré", "Non", "Non", "Paiement encadré Stripe, versement à 96h"],
+            [
+              "Paiement encadré",
+              "Non",
+              "Non",
+              "Paiement encadré Stripe, versement à 96h"
+            ],
             [
               "Recours en cas de canalisation reboucher sous 96h",
               "Limité",
               "Aucun",
               "Règlement suspendu jusqu’à validation effective"
             ],
-            ["Recours en cas d’abus", "Limité", "Aucun", "Retenue jusqu’à 250 € sur signalement < 96h"],
+            [
+              "Recours en cas d’abus",
+              "Limité",
+              "Aucun",
+              "Retenue jusqu’à 250 € sur signalement < 96h"
+            ],
             [
               "Tarification cadrée sur référence du marché",
               "Non",
               "Aucune",
               "Grille Compagnie des Déboucheurs en cours d’intégration"
             ],
-            ["Conseiller maître d’ouvrage", "Non", "Non", "CMOD disponible sur option"]
+            [
+              "Conseiller maître d’ouvrage",
+              "Non",
+              "Non",
+              "CMOD disponible sur option"
+            ]
           ]
         },
         "traps": {
@@ -1545,20 +1706,55 @@
         "comparatif": {
           "title": "Comparatif : Artisan Compétent vs autres plateformes vs Google direct",
           "lead": "Trois manières de trouver un chauffagiste en France. Trois niveaux de protection radicalement différents, particulièrement sur les qualifications PG, RGE et la mobilisation des aides publiques.",
-          "headers": ["Critère", "Autres plateformes", "Google direct", "Artisan Compétent"],
+          "headers": [
+            "Critère",
+            "Autres plateformes",
+            "Google direct",
+            "Artisan Compétent"
+          ],
           "rows": [
-            ["Vérification SIRET artisan", "Variable", "Aucune", "Systématique avant validation"],
+            [
+              "Vérification SIRET artisan",
+              "Variable",
+              "Aucune",
+              "Systématique avant validation"
+            ],
             [
               "Vérification assurances et qualification PG",
               "Rare",
               "Aucune",
               "RC pro, décennale, PG, RGE déposés au tableau de bord"
             ],
-            ["Qualification RGE et aides publiques", "Variable", "Aucune", "Contrôlée à l’inscription"],
-            ["Paiement encadré", "Non", "Non", "Paiement encadré Stripe, versement à 96h"],
-            ["Recours en cas d’abus", "Limité", "Aucun", "Retenue jusqu’à 250 € sur signalement < 96h"],
-            ["Attestation Qualigaz à la mise en service", "Variable", "Aucune", "Controlée à l’inscription"],
-            ["Conseiller maître d’ouvrage", "Non", "Non", "CMOD disponible sur option"]
+            [
+              "Qualification RGE et aides publiques",
+              "Variable",
+              "Aucune",
+              "Contrôlée à l’inscription"
+            ],
+            [
+              "Paiement encadré",
+              "Non",
+              "Non",
+              "Paiement encadré Stripe, versement à 96h"
+            ],
+            [
+              "Recours en cas d’abus",
+              "Limité",
+              "Aucun",
+              "Retenue jusqu’à 250 € sur signalement < 96h"
+            ],
+            [
+              "Attestation Qualigaz à la mise en service",
+              "Variable",
+              "Aucune",
+              "Controlée à l’inscription"
+            ],
+            [
+              "Conseiller maître d’ouvrage",
+              "Non",
+              "Non",
+              "CMOD disponible sur option"
+            ]
           ]
         },
         "traps": {
@@ -1741,7 +1937,12 @@
         "comparatif": {
           "title": "Comparatif : Artisan Compétent vs autres plateformes vs Google direct",
           "lead": "Tableau comparatif synthétique des trois canaux les plus utilisés pour trouver un technicien climatisation. Les critères sont calés sur les points de risque réels du métier.",
-          "headers": ["Critère", "Autres plateformes", "Google direct", "Artisan Compétent"],
+          "headers": [
+            "Critère",
+            "Autres plateformes",
+            "Google direct",
+            "Artisan Compétent"
+          ],
           "rows": [
             [
               "Vérification SIRET de l’artisan",
@@ -1767,9 +1968,24 @@
               "Aucune",
               "Vérifiée pour les chantiers éligibles aux aides"
             ],
-            ["Paiement encadré", "Non", "Non", "Paiement encadré Stripe, versement à 96h"],
-            ["Recours en cas de malfaçon", "Limité", "Aucun", "Retenue jusqu’à 250 € si signalement < 96h"],
-            ["Conseiller maître d’ouvrage", "Non", "Non", "CMOD disponible sur option"]
+            [
+              "Paiement encadré",
+              "Non",
+              "Non",
+              "Paiement encadré Stripe, versement à 96h"
+            ],
+            [
+              "Recours en cas de malfaçon",
+              "Limité",
+              "Aucun",
+              "Retenue jusqu’à 250 € si signalement < 96h"
+            ],
+            [
+              "Conseiller maître d’ouvrage",
+              "Non",
+              "Non",
+              "CMOD disponible sur option"
+            ]
           ]
         },
         "traps": {
@@ -1945,7 +2161,12 @@
         "comparatif": {
           "title": "Artisan Compétent vs autres plateformes vs Google direct",
           "lead": "Tableau comparatif synthétique des trois canaux les plus utilisés pour trouver un vitrier. Les critères sont calés sur les points de risque réels du métier.",
-          "headers": ["Critère", "Autres plateformes", "Google direct", "Artisan Compétent"],
+          "headers": [
+            "Critère",
+            "Autres plateformes",
+            "Google direct",
+            "Artisan Compétent"
+          ],
           "rows": [
             [
               "Vérification SIRET de l’artisan",
@@ -1965,7 +2186,12 @@
               "Aucune",
               "Vérifiées et déposées au tableau de bord"
             ],
-            ["Paiement encadré", "Non", "Non", "Paiement encadré Stripe, versement à 96h"],
+            [
+              "Paiement encadré",
+              "Non",
+              "Non",
+              "Paiement encadré Stripe, versement à 96h"
+            ],
             [
               "Recours en cas de malfaçon (vitrage rayé, joint défaillant)",
               "Limité",
@@ -1978,7 +2204,12 @@
               "Variable",
               "Décomposition fourniture / pose / urgence"
             ],
-            ["Conseiller maître d’ouvrage", "Non", "Non", "CMOD disponible sur option"]
+            [
+              "Conseiller maître d’ouvrage",
+              "Non",
+              "Non",
+              "CMOD disponible sur option"
+            ]
           ]
         },
         "traps": {
@@ -2145,7 +2376,12 @@
         "comparatif": {
           "title": "Artisan Compétent vs autres plateformes vs Google direct",
           "lead": "Tableau comparatif synthétique des trois canaux les plus utilisés pour trouver un spécialiste anti-nuisibles. Les critères sont calés sur les points de risque réels du métier.",
-          "headers": ["Critère", "Autres plateformes", "Google direct", "Artisan Compétent"],
+          "headers": [
+            "Critère",
+            "Autres plateformes",
+            "Google direct",
+            "Artisan Compétent"
+          ],
           "rows": [
             [
               "Vérification SIRET de l’artisan",
@@ -2153,17 +2389,42 @@
               "Aucune par défaut",
               "Systématique avant validation du profil"
             ],
-            ["Certificat Certibiocide contrôlé", "Rare", "Aucune", "Vérifié et déposé au tableau de bord"],
-            ["Vérification assurances (RC pro)", "Rare ou déclarative", "Aucune", "RC pro exigée et vérifiée"],
-            ["Paiement encadré", "Non", "Non", "Paiement encadré Stripe, versement à 96h"],
+            [
+              "Certificat Certibiocide contrôlé",
+              "Rare",
+              "Aucune",
+              "Vérifié et déposé au tableau de bord"
+            ],
+            [
+              "Vérification assurances (RC pro)",
+              "Rare ou déclarative",
+              "Aucune",
+              "RC pro exigée et vérifiée"
+            ],
+            [
+              "Paiement encadré",
+              "Non",
+              "Non",
+              "Paiement encadré Stripe, versement à 96h"
+            ],
             [
               "Recours en cas d’inefficacité de traitement",
               "Limité",
               "Aucun",
               "Retenue jusqu’à 250 € si signalement < 96h"
             ],
-            ["Visites de contrôle documentées", "Variable", "Aucune", "Photos et compte-rendu au tableau de bord"],
-            ["Conseiller maître d’ouvrage", "Non", "Non", "CMOD disponible sur option"]
+            [
+              "Visites de contrôle documentées",
+              "Variable",
+              "Aucune",
+              "Photos et compte-rendu au tableau de bord"
+            ],
+            [
+              "Conseiller maître d’ouvrage",
+              "Non",
+              "Non",
+              "CMOD disponible sur option"
+            ]
           ]
         },
         "traps": {
@@ -3050,7 +3311,10 @@
         "question": "Suis-je obligé d'accepter Klarna ?",
         "intro": "Non. Le paiement en plusieurs fois via Klarna reste entièrement facultatif.",
         "choice": "Chaque artisan est libre :",
-        "choiceItems": ["de l'accepter", "ou de le refuser"],
+        "choiceItems": [
+          "de l'accepter",
+          "ou de le refuser"
+        ],
         "benefits": "Cependant, cette solution peut représenter un véritable avantage commercial. Un client qui peut payer en plusieurs fois :",
         "benefitsItems": [
           "hésite moins",
@@ -3065,9 +3329,16 @@
         "introBefore": "Oui. Un artisan peut également ",
         "affiliateLink": "devenir affilié Artisan Compétent",
         "introAfter": " et percevoir des revenus complémentaires en recommandant la plateforme :",
-        "audienceItems": ["à d'autres artisans", "ou directement à des clients"],
+        "audienceItems": [
+          "à d'autres artisans",
+          "ou directement à des clients"
+        ],
         "national": "L'avantage du système est qu'il fonctionne au niveau national :",
-        "nationalItems": ["France métropolitaine", "Corse", "DOM-TOM"],
+        "nationalItems": [
+          "France métropolitaine",
+          "Corse",
+          "DOM-TOM"
+        ],
         "outro": "Chaque affilié peut ainsi participer au développement du réseau Artisan Compétent tout en générant des revenus complémentaires grâce aux procès-verbaux signés via ses recommandations.",
         "answerLd": "Oui. Un artisan peut également devenir affilié Artisan Compétent et percevoir des revenus complémentaires en recommandant la plateforme à d'autres artisans ou directement à des clients. L'avantage du système est qu'il fonctionne au niveau national : France métropolitaine, Corse, DOM-TOM. Chaque affilié peut ainsi participer au développement du réseau Artisan Compétent tout en générant des revenus complémentaires grâce aux procès-verbaux signés via ses recommandations."
       }
@@ -3670,9 +3941,17 @@
       "title": "Pourquoi Artisan Compétent le recommande ?",
       "intro": "Parce qu'un bon référencement ne s'improvise pas. Et surtout parce que le bâtiment est un domaine particulier.",
       "notNeeded": "Les artisans n'ont pas besoin :",
-      "notNeededItems": ["d'un discours marketing compliqué", "ni de promesses irréalistes"],
+      "notNeededItems": [
+        "d'un discours marketing compliqué",
+        "ni de promesses irréalistes"
+      ],
       "needed": "Ils ont besoin :",
-      "neededItems": ["de visibilité", "de vrais appels", "de vrais devis", "de vrais clients"],
+      "neededItems": [
+        "de visibilité",
+        "de vrais appels",
+        "de vrais devis",
+        "de vrais clients"
+      ],
       "outro": "Guillaume Azas et Webesty travaillent avec une approche claire, structurée et orientée résultats. L'objectif est simple : aider les professionnels sérieux à développer leur activité durablement."
     },
     "complement": {

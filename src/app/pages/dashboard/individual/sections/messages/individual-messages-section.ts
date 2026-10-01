@@ -13,7 +13,13 @@ import { Messaging } from '../../../../../shared/components/messaging/messaging'
 export class IndividualMessagesSection {
   private readonly state = inject(IndividualDashboardStateService);
 
+  readonly pendingConversationId = this.state.pendingConversationId;
+
   onOpenDemandFromMessaging(demandId: string): void {
     this.state.selectedDemandId.set(demandId);
+  }
+
+  onInitialConversationConsumed(): void {
+    this.state.pendingConversationId.set(null);
   }
 }

@@ -1,3 +1,21 @@
+// Rendu "papier nu" pour l'export PDF (Playwright) — largeur fixe façon A4, pas de hauteur limitée
+// ni de scroll (le PDF doit contenir tout le contenu, pas juste la portion visible à l'écran).
+.quote-preview-paper--print {
+  // 100% et non 210mm : avec les marges désormais gérées par Playwright (cf. plus bas), la largeur
+  // imprimable réelle de la page est 210mm moins les marges gauche/droite — un contenu à 210mm fixe
+  // déborderait de cette zone et serait rogné sur les côtés.
+  width: 100%;
+  min-height: 297mm;
+  margin: 0 auto;
+  // Explicite plutôt que de compter uniquement sur la classe Tailwind `bg-white` du template : le
+  // fond de l'app est beige par défaut, ce blanc doit être garanti ici, pas seulement hérité.
+  background: #fff;
+  // Pas de padding ici : les marges "façon Word" (haut/bas/gauche/droite) viennent entièrement de
+  // l'option `margin` de Playwright (cf. QuotePdfService.generatePdf), qui se répète correctement sur
+  // CHAQUE page générée — contrairement à un padding CSS, qui ne s'appliquerait qu'au début/à la fin
+  // du flux de contenu si celui-ci déborde sur plusieurs pages, pas à chaque saut de page.
+}
+
 .quote-preview-close-btn {
   display: flex;
   align-items: center;
@@ -57,6 +75,35 @@
   th:not(:first-child) {
     text-align: right;
     white-space: nowrap;
+  }
+}
+
+// .quote-btn (quote-modal.scss) n'est pas utilisable ici : styles de composant scopés par Angular,
+// jamais partagés entre composants même à classe identique — d'où des boutons sans style (fond blanc
+// par défaut du navigateur) avant cet ajout.
+.quote-agreement-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &--accept {
+    background-color: #16a34a;
+  }
+
+  &--decline {
+    background-color: #dc2626;
   }
 }
 

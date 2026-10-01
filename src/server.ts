@@ -49,6 +49,10 @@ function buildContentSecurityPolicy(): string {
     'https://*.analytics.google.com',
     // Turnstile appelle challenges.cloudflare.com en XHR/fetch pour valider le challenge.
     'https://challenges.cloudflare.com',
+    // SDK YouTrust (widget de signature embarqué) : le domaine nu ET ses sous-domaines — un wildcard
+    // *.yousign.app seul ne couvre jamais le domaine nu lui-même (yousign.app), utilisé en réalité.
+    'https://yousign.app',
+    'https://*.yousign.app',
     apiUrl,
     apiWsUrl,
   ].filter(Boolean);
@@ -59,13 +63,14 @@ function buildContentSecurityPolicy(): string {
 
   return [
     "default-src 'self'",
-    `script-src 'self' ${scriptHashes} https://www.googletagmanager.com https://www.google-analytics.com https://challenges.cloudflare.com`,
+    `script-src 'self' ${scriptHashes} https://www.googletagmanager.com https://www.google-analytics.com https://challenges.cloudflare.com https://cdn.yousign.tech`,
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https://*.backblazeb2.com",
     "font-src 'self' data:",
     `connect-src ${connectSrc.join(' ')}`,
     // Backblaze : aperçu PDF affiché en iframe (doc-modal) depuis une URL signée du bucket.
-    "frame-src https://challenges.cloudflare.com https://www.googletagmanager.com https://*.backblazeb2.com",
+    // yousign.app (domaine nu, réellement utilisé) + son wildcard : iframe de signature embarquée.
+    "frame-src https://challenges.cloudflare.com https://www.googletagmanager.com https://*.backblazeb2.com https://yousign.app https://*.yousign.app",
     // Angular utilise des Web Workers via blob: en interne (dev + certains outils internes).
     "worker-src 'self' blob:",
     // blob: pour la prévisualisation caméra (MediaRecorder) ; Backblaze pour les vidéos déjà uploadées.

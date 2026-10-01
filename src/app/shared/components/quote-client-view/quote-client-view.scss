@@ -1,0 +1,15 @@
+.spinner {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--primary-water-green);
+  border-radius: 50%;
+  animation: quote-client-view-spin 0.8s linear infinite;
+}
+
+@keyframes quote-client-view-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

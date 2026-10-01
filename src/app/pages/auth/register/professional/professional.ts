@@ -904,7 +904,8 @@ export class RegisterProfessional implements OnDestroy {
           }
 
           const msg = (err?.error?.message ?? '') as string;
-          if (msg === 'INVALID_REFERRAL_CODE') {
+          const code = (err?.error?.code ?? '') as string;
+          if (code === 'INVALID_REFERRAL_CODE') {
             this.referralCodeError.set(true);
             this.turnstile.reset();
             this.onCaptchaReset();

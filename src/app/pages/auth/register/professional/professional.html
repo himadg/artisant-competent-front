@@ -136,9 +136,7 @@
                                 }
                             </select>
                         </div>
-                        @if (form.get('user.birthDate')?.errors?.['required'] && form.get('user.birthDate')?.touched) {
-                            <p class="text-xs text-red-500">{{ 'professional.errors.required' | transloco }}</p>
-                        } @else if (form.get('user.birthDate')?.errors?.['futureDate'] && form.get('user.birthDate')?.touched) {
+                        @if (form.get('user.birthDate')?.errors?.['futureDate'] && form.get('user.birthDate')?.touched) {
                             <p class="text-xs text-red-500">{{ 'professional.errors.birthDateFuture' | transloco }}</p>
                         }
                     </div>

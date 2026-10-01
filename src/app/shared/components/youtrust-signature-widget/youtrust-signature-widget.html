@@ -1,0 +1,8 @@
+<div class="youtrust-widget-backdrop" (click)="closed.emit(); $event.stopPropagation()">
+    <div class="youtrust-widget-box w-full max-w-3xl" (click)="$event.stopPropagation()">
+        <button type="button" class="youtrust-widget-close-btn" [attr.aria-label]="'common.close' | transloco" (click)="closed.emit()">
+            <iconify-icon icon="lucide:x" width="20"></iconify-icon>
+        </button>
+        <div #container class="youtrust-widget-frame"></div>
+    </div>
+</div>

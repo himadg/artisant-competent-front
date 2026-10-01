@@ -6,6 +6,7 @@ import { ConversationView } from './conversation-view/conversation-view';
 import { ConversationMessage } from '../../interfaces/conversation';
 import { ChatService } from '../../../core/services/chat.service';
 import { QuoteModal } from '../quote-modal/quote-modal';
+import { QuoteClientView } from '../quote-client-view/quote-client-view';
 
 const MESSAGES_PAGE_SIZE = 50;
 
@@ -13,7 +14,7 @@ const MESSAGES_PAGE_SIZE = 50;
   selector: 'messaging',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, TranslocoModule, ConversationList, ConversationView, QuoteModal],
+  imports: [CommonModule, TranslocoModule, ConversationList, ConversationView, QuoteModal, QuoteClientView],
   templateUrl: './messaging.html',
   styleUrl: './messaging.scss',
 })
@@ -37,6 +38,8 @@ export class Messaging {
   readonly hasMoreMessages = signal(true);
   // `null` = fermé, sinon l'id de la demande pour laquelle le devis est en cours de création.
   readonly quoteModalOpen = signal<string | null>(null);
+  // `null` = fermé, sinon l'id du devis précis à afficher en lecture seule (client, cmod plus tard).
+  readonly quoteViewerOpen = signal<string | null>(null);
 
   readonly selectedConversation = computed(
     () => this.conversations().find((c) => c.id === this.selectedConversationId()) ?? null,
@@ -67,8 +70,24 @@ export class Messaging {
       const message = this.chatService.incomingMessage();
       if (message?.conversationId !== this.selectedConversationId()) return;
 
-      this.messages.update((list) => (list.some((m) => m.id === message.id) ? list : [...list, message]));
+      this.messages.update((list) => (list.some((m) => m.id === message.id) ? list : [message, ...list]));
       if (!message.isOwnMessage) void this.chatService.markAsRead(message.conversationId);
+    });
+
+    // Message EXISTANT dont le statut a changé (ex: devis accepté/refusé, cf.
+    // ConversationService.broadcastQuoteStatusChange) — jamais un nouveau message, on remplace juste
+    // la version en cache sans toucher au compteur de non-lus ni à l'aperçu de la conversation.
+    // Patché aussi dans messagesCache (pas seulement `messages`) : sinon, revenir plus tard sur une
+    // conversation actuellement fermée réafficherait la version figée au moment de sa mise en cache.
+    effect(() => {
+      const message = this.chatService.updatedMessage();
+      if (!message) return;
+
+      const patch = (list: ConversationMessage[]) => list.map((m) => (m.id === message.id ? message : m));
+      if (message.conversationId === this.selectedConversationId()) this.messages.update(patch);
+
+      const cached = this.messagesCache.get(message.conversationId);
+      if (cached) this.messagesCache.set(message.conversationId, patch(cached));
     });
 
     effect(() => {
@@ -129,6 +148,10 @@ export class Messaging {
     this.quoteModalOpen.set(demandId);
   }
 
+  openQuoteViewer(quoteId: string): void {
+    this.quoteViewerOpen.set(quoteId);
+  }
+
   closeConversation(): void {
     this.mobileShowConversation.set(false);
     // Sans ça, les messages reçus pour cette conversation continueraient à être marqués lus
@@ -141,7 +164,7 @@ export class Messaging {
     if (!conversationId) return;
 
     const message = await this.chatService.sendMessage(conversationId, content);
-    this.messages.update((list) => (list.some((m) => m.id === message.id) ? list : [...list, message]));
+    this.messages.update((list) => (list.some((m) => m.id === message.id) ? list : [message, ...list]));
   }
 
   async sendAttachment(file: File): Promise<void> {
@@ -149,6 +172,6 @@ export class Messaging {
     if (!conversationId) return;
 
     const message = await this.chatService.sendAttachment(conversationId, file);
-    this.messages.update((list) => (list.some((m) => m.id === message.id) ? list : [...list, message]));
+    this.messages.update((list) => (list.some((m) => m.id === message.id) ? list : [message, ...list]));
   }
 }

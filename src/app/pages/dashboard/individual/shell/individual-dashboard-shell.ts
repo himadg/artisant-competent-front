@@ -72,10 +72,17 @@ export class IndividualDashboardShell implements OnInit {
     // Deep link depuis une notification (ex: nouvelle demande) : /dashboard/requests?d=xxx
     this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
       const demandId = params.get('d');
-      if (!demandId) return;
+      if (demandId) {
+        this.selectedDemandId.set(demandId);
+        this.router.navigate([], { relativeTo: this.route, queryParams: { d: null }, queryParamsHandling: 'merge', replaceUrl: true });
+      }
 
-      this.selectedDemandId.set(demandId);
-      this.router.navigate([], { relativeTo: this.route, queryParams: { d: null }, queryParamsHandling: 'merge', replaceUrl: true });
+      // Deep link depuis une notification (devis envoyé/accepté/refusé) : /dashboard/messages?c=xxx
+      const conversationId = params.get('c');
+      if (conversationId) {
+        this.state.pendingConversationId.set(conversationId);
+        this.router.navigate([], { relativeTo: this.route, queryParams: { c: null }, queryParamsHandling: 'merge', replaceUrl: true });
+      }
     });
   }
 
