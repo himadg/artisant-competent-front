@@ -22,6 +22,11 @@ export const professionalDashboardRoutes: Routes = [
         loadComponent: () => import('./sections/messages/professional-messages-section').then((m) => m.ProfessionalMessagesSection),
       },
       {
+        path: 'payments',
+        title: 'dashboard.pro.nav.payments',
+        loadComponent: () => import('./stripe-payments/stripe-payments-section').then((m) => m.StripePaymentsSection),
+      },
+      {
         path: 'practices',
         title: 'dashboard.sections.practices.title',
         loadComponent: () => import('./sections/practices/professional-practices-section').then((m) => m.ProfessionalPracticesSection),

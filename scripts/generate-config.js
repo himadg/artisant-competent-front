@@ -7,6 +7,7 @@ const path = require('node:path');
 const config = {
   apiUrl: process.env.API_URL,
   turnstileSiteKey: process.env.TURNSTILE_SITE_KEY,
+  stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
 };
 
 const outPath = path.join(__dirname, '../src/assets/config/config.json');

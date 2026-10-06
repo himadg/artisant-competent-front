@@ -13,8 +13,9 @@ import { ProfessionalDashboardData, OpeningHoursDay } from '../../../shared/inte
 import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
 import { DemandDetail, DemandSummary } from '../../../shared/interfaces/demand';
 import { PreviewDocument } from '../../../shared/interfaces/preview-document';
+import { StripeConnectStatus } from '../../../shared/interfaces/stripe-connect';
 
-export type ProSection = 'profile' | 'requests' | 'messages' | 'practices' | 'legal' | 'affiliation';
+export type ProSection = 'profile' | 'requests' | 'messages' | 'payments' | 'practices' | 'legal' | 'affiliation';
 export type ProTab = 'presentation' | 'missions' | 'reviews' | 'documents';
 export type RequestsTab = 'mine' | 'received';
 export type StoryTriggerType = 'PRESENTATION' | 'TIPS';
@@ -69,6 +70,36 @@ export class ProfessionalDashboardStateService {
   readonly data = signal<ProfessionalDashboardData | null>(null);
   readonly loading = signal(true);
   readonly error = signal<string | null>(null);
+
+  readonly stripeSetupNeeded = computed(() => {
+    const profile = this.data()?.professionalProfile;
+    return !!profile && !profile.stripeDetailsSubmitted;
+  });
+
+  readonly stripeActionNeeded = computed(() => {
+    const profile = this.data()?.professionalProfile;
+    return (
+      !!profile &&
+      profile.stripeDetailsSubmitted === true &&
+      (!profile.stripeTransfersEnabled || !profile.stripePayoutsEnabled)
+    );
+  });
+
+  updateStripeStatus(status: StripeConnectStatus): void {
+    this.data.update((current) =>
+      current
+        ? {
+            ...current,
+            professionalProfile: {
+              ...current.professionalProfile,
+              stripeDetailsSubmitted: status.detailsSubmitted,
+              stripeTransfersEnabled: status.transfersEnabled,
+              stripePayoutsEnabled: status.payoutsEnabled,
+            },
+          }
+        : current,
+    );
+  }
 
   /** Piloté par le shell (barre d'onglets dans l'en-tête), lu par la section profil. */
   readonly activeTab = signal<ProTab>('presentation');
