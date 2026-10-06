@@ -64,7 +64,9 @@ export class StripePaymentsSection implements OnInit {
     this.error.set(false);
     this.stripeApi.createAccount().subscribe({
       next: () => {
-        this.stripeApi.getStatus().subscribe({
+        // La section Paiements doit toujours repartir de l'état Stripe courant : cela répare
+        // aussi les flags locaux si un webhook a été retardé ou manqué.
+        this.stripeApi.getStatus(true).subscribe({
           next: (status) => {
             this.setStatus(status);
             this.loading.set(false);
@@ -97,6 +99,9 @@ export class StripePaymentsSection implements OnInit {
     if (el.dataset['mounted']) return;
     el.dataset['mounted'] = 'true';
     const component = this.stripeConnect.getInstance().create('account-onboarding');
+    // Collecte dès l'onboarding les informations actuellement ou éventuellement requises,
+    // y compris les futures exigences connues de Stripe.
+    component.setCollectionOptions({ fields: 'eventually_due', futureRequirements: 'include' });
     // Déclenché quand l'artisan quitte/termine le flow : resynchronise les flags côté backend
     component.setOnExit(() => this.refreshStatus());
     el.appendChild(component);
