@@ -25,7 +25,7 @@ import {
   QuotePreviewData,
   SaveQuoteDraftPayload,
 } from '../../interfaces/quote';
-import { ProfessionalDashboardData, ProfessionalProfile } from '../../interfaces/professional-dashboard';
+import { ProfessionalDashboardData } from '../../interfaces/professional-dashboard';
 import { DemandDetail } from '../../interfaces/demand';
 import { QuotePreview } from '../quote-preview/quote-preview';
 import { YoutrustSignatureWidget } from '../youtrust-signature-widget/youtrust-signature-widget';
@@ -136,10 +136,12 @@ export class QuoteModal implements OnInit {
   readonly documentsMissing = computed(
     () => !this.documents().some((d) => d.name.trim() !== '' && (d.fileKey !== null || d.file !== null)),
   );
-  readonly decennaleInsurerMissing = computed(() => !this.decennaleInsurer().trim());
-  readonly decennalePolicyNumberMissing = computed(() => !this.decennalePolicyNumber().trim());
   readonly rcProInsurerMissing = computed(() => !this.rcProInsurer().trim());
   readonly rcProPolicyNumberMissing = computed(() => !this.rcProPolicyNumber().trim());
+  // Décennale reste optionnelle dans son ensemble, mais pas à moitié renseignée (cf. SendQuoteSchema
+  // côté backend, même règle) : assureur et n° de police doivent être tous les deux présents, ou
+  // tous les deux absents.
+  readonly decennaleMismatch = computed(() => !!this.decennaleInsurer().trim() !== !!this.decennalePolicyNumber().trim());
 
   // Une ligne de matériaux jamais touchée par le pro (le formulaire en garde toujours une par
   // défaut) ne doit pas être signalée comme incomplète — seule une ligne réellement commencée
@@ -154,20 +156,24 @@ export class QuoteModal implements OnInit {
   }
 
   // ── Aperçu (identité pro/client, chargées séparément du brouillon) ─────
-  private readonly professionalProfile = signal<ProfessionalProfile | null>(null);
+  private readonly dashboard = signal<ProfessionalDashboardData | null>(null);
   private readonly demand = signal<DemandDetail | null>(null);
   readonly showPreview = signal(false);
 
   readonly previewData = computed<QuotePreviewData | null>(() => {
-    const professional = this.professionalProfile();
+    const dashboard = this.dashboard();
+    const professional = dashboard?.professionalProfile ?? null;
     const demand = this.demand();
-    if (!professional || !demand) return null;
+    if (!professional || !demand || !dashboard) return null;
     return {
       quoteNumber: this.quoteNumber(),
       createdAt: this.today,
       validUntil: this.validUntil() || null,
       professional: {
         companyName: professional.companyName,
+        firstName: dashboard.firstName,
+        lastName: dashboard.lastName,
+        gender: dashboard.gender,
         siret: professional.siret,
         legalForm: professional.legalForm,
         managerPhone: professional.managerPhone,
@@ -175,11 +181,16 @@ export class QuoteModal implements OnInit {
         logoUrl: professional.logoUrl,
         workAddress: professional.workAddress,
       },
+      // Aperçu local pré-envoi (jamais le document final) : l'adresse personnelle du client n'est
+      // pas disponible ici (endpoint démande = adresse du chantier uniquement), cohérent avec le
+      // masquage — le pro ne la voit de toute façon pas avant PENDING_PAYMENT.
       client: {
         firstName: demand.author.firstName,
         lastName: demand.author.lastName,
-        address: demand.address,
+        gender: demand.author.gender,
+        address: null,
       },
+      interventionAddress: demand.address,
       materialLines: this.noMaterials() ? [] : this.materialLines(),
       laborLines: this.laborLines(),
       logisticsLines: this.logisticsLines(),
@@ -188,7 +199,7 @@ export class QuoteModal implements OnInit {
       estimatedEndDate: this.estimatedEndDate() || null,
       documents: this.documents()
         .filter((d) => d.name.trim())
-        .map((d) => ({ name: d.name })),
+        .map((d) => ({ name: d.name, fileName: d.fileName })),
       remarks: this.remarks(),
       decennaleInsurer: this.decennaleInsurer(),
       decennalePolicyNumber: this.decennalePolicyNumber(),
@@ -326,7 +337,7 @@ export class QuoteModal implements OnInit {
   private readonly existingDocuments = computed<QuoteDocument[]>(() =>
     this.documents()
       .filter((d): d is QuoteDocumentDraft & { fileKey: string } => d.name.trim() !== '' && d.fileKey !== null)
-      .map((d) => ({ name: d.name, fileKey: d.fileKey })),
+      .map((d) => ({ name: d.name, fileKey: d.fileKey, fileName: d.fileName ?? d.name })),
   );
 
   // Fichiers tout juste sélectionnés, jamais encore uploadés : envoyés séparément à l'enregistrement/
@@ -418,7 +429,7 @@ export class QuoteModal implements OnInit {
     // gratuit si le dashboard pro l'a déjà chargé — n'attend pas et ne bloque pas le brouillon.
     Promise.all([this.dashboardData.loadOwn<ProfessionalDashboardData>(), this.demandService.getById(this.demandId())])
       .then(([dashboard, demand]) => {
-        this.professionalProfile.set(dashboard.professionalProfile);
+        this.dashboard.set(dashboard);
         this.demand.set(demand);
       })
       .catch(() => this.flash.set({ type: 'error', key: 'errors.unknown' }));
@@ -438,7 +449,7 @@ export class QuoteModal implements OnInit {
     this.estimatedEndDate.set(draft.estimatedEndDate?.slice(0, 10) ?? '');
     this.documents.set(
       draft.documents.length
-        ? draft.documents.map((d) => ({ name: d.name, fileKey: d.fileKey, file: null, fileName: d.name }))
+        ? draft.documents.map((d) => ({ name: d.name, fileKey: d.fileKey, file: null, fileName: d.fileName }))
         : [emptyDocument()],
     );
     this.remarks.set(draft.remarks ?? '');
@@ -484,7 +495,7 @@ export class QuoteModal implements OnInit {
     return this.quoteService.saveDraft(this.demandId(), this.buildDraftPayload(), this.newDocuments()).then((quote) => {
       this.documents.set(
         quote.documents.length
-          ? quote.documents.map((d) => ({ name: d.name, fileKey: d.fileKey, file: null, fileName: d.name }))
+          ? quote.documents.map((d) => ({ name: d.name, fileKey: d.fileKey, file: null, fileName: d.fileName }))
           : [emptyDocument()],
       );
       return quote;
@@ -525,9 +536,15 @@ export class QuoteModal implements OnInit {
     this.sending.set(true);
     this.persistDraft()
       .then(() => this.quoteService.send(this.demandId()))
-      .then(({ signatureLink, isSandbox }) => {
+      .then(({ signatureLink, isSandbox, alreadySigned }) => {
         if (!signatureLink) {
-          this.flash.set({ type: 'error', key: 'errors.unknown' });
+          // Fenêtre de course rare : le pro a déjà signé mais le webhook `signer.done` n'est pas
+          // encore traité côté serveur (statut local encore DRAFT) — se résout seul en quelques
+          // secondes, jamais une vraie erreur à traiter ici.
+          this.flash.set({
+            type: 'error',
+            key: alreadySigned ? 'quote.actions.alreadySignedPending' : 'errors.unknown',
+          });
           return;
         }
         this.signatureLink.set(signatureLink);

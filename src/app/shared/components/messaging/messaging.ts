@@ -98,6 +98,28 @@ export class Messaging {
       this.messagesCache.set(id, messages);
       this.hasMoreCache.set(id, hasMore);
     });
+
+    // Rattrape des messages manqués pendant une coupure réseau (WebSocket sans garantie de
+    // livraison) : à chaque (re)connexion, on recharge le fil de la conversation ouverte.
+    effect(() => {
+      this.chatService.reconnected();
+      const id = this.selectedConversationId();
+      if (id) this.resyncMessages(id);
+    });
+  }
+
+  private resyncMessages(conversationId: string): void {
+    this.chatService
+      .loadMessages(conversationId, undefined, MESSAGES_PAGE_SIZE)
+      .then((latest) => {
+        if (this.selectedConversationId() !== conversationId) return;
+        this.messages.update((list) => {
+          const byId = new Map(list.map((m) => [m.id, m]));
+          for (const m of latest) byId.set(m.id, m);
+          return [...byId.values()].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        });
+      })
+      .catch(() => {});
   }
 
   selectConversation(id: string): void {

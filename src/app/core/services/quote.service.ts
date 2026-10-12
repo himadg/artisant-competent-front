@@ -27,8 +27,8 @@ export class QuoteService {
 
   /** Valide le devis tel qu'enregistré côté serveur et crée la Signature Request YouTrust (pro puis
    * client) — renvoie le lien de signature du pro, à afficher dans le widget embarqué. Le devis ne
-   * passe en SENT (et le message n'est envoyé dans la conversation) qu'une fois cette signature
-   * confirmée par webhook, jamais directement en réponse de cet appel.
+   * passe en SIGNED_BY_PRO (et le message n'est envoyé dans la conversation) qu'une fois cette
+   * signature confirmée par webhook, jamais directement en réponse de cet appel.
    * `lang` : langue ACTIVE du pro au moment de l'envoi (jamais stockée), pour l'écran de signature
    * YouTrust — cf. LangService. */
   send(demandId: string): Promise<SignatureLinkResult> {
@@ -44,18 +44,34 @@ export class QuoteService {
     return firstValueFrom(this.http.get<QuoteViewerData>(`/quotes/${quoteId}`));
   }
 
-  /** Lien de signature du client — `null` tant que le pro n'a pas encore signé (ordre séquentiel
-   * imposé par YouTrust, cf. QuoteService backend). `lang` : sa langue active à cet instant précis
-   * (jamais stockée), appliquée à chaque appel pour rester toujours à jour. */
-  getClientSignatureLink(quoteId: string): Promise<SignatureLinkResult> {
+  /** URL signée temporaire vers le PDF final (signé par les 2 parties) — générée à la demande, pas
+   * pré-chargée avec `getForViewer` (inutile de fabriquer une URL si personne ne clique jamais). */
+  getSignedPdfUrl(quoteId: string): Promise<{ url: string }> {
+    return firstValueFrom(this.http.get<{ url: string }>(`/quotes/${quoteId}/signed-pdf-url`));
+  }
+
+  /** Appelée par le même bouton pour la 1ère tentative ou une reprise (widget fermé avant la fin) —
+   * jamais de paiement ici : le paiement (mocké pour l'instant) n'est déclenché côté serveur qu'une
+   * fois la signature du client confirmée par webhook, jamais avant (cf. QuoteService backend —
+   * l'acompte se paie à la signature, pas avant). `null` tant que le pro n'a pas encore signé (ordre
+   * séquentiel imposé par YouTrust). `lang` : sa langue active à cet instant précis (jamais stockée),
+   * appliquée à chaque appel pour rester toujours à jour. */
+  requestClientSignature(quoteId: string): Promise<SignatureLinkResult> {
     return firstValueFrom(
-      this.http.post<SignatureLinkResult>(`/quotes/${quoteId}/signature-link`, { lang: this.langService.lang() }),
+      this.http.post<SignatureLinkResult>(`/quotes/${quoteId}/sign`, { lang: this.langService.lang() }),
     );
   }
 
   /** Refus du client — n'invoque jamais YouTrust (cf. discussion : décliner ne signe rien). */
   decline(quoteId: string): Promise<Quote> {
     return firstValueFrom(this.http.post<Quote>(`/quotes/${quoteId}/decline`, {}));
+  }
+
+  /** Appelée une fois le paiement (mocké pour l'instant, widget/iframe Stripe Connect à câbler plus
+   * tard) terminé côté client — PENDING_PAYMENT -> PAID. Contrairement aux étapes de signature,
+   * c'est un appel REST classique en réponse directe à une action du client, pas un webhook. */
+  confirmPayment(quoteId: string): Promise<void> {
+    return firstValueFrom(this.http.post<void>(`/quotes/${quoteId}/confirm-payment`, {}));
   }
 
   /** Réservé à la route d'impression (`/print/quote/:quoteId`) : l'autorisation vient du jeton posé
