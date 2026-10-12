@@ -1,14 +1,9 @@
 // Rendu "papier nu" pour l'export PDF (Playwright) — largeur fixe façon A4, pas de hauteur limitée
 // ni de scroll (le PDF doit contenir tout le contenu, pas juste la portion visible à l'écran).
 .quote-preview-paper--print {
-  // 100% et non 210mm : avec les marges désormais gérées par Playwright (cf. plus bas), la largeur
-  // imprimable réelle de la page est 210mm moins les marges gauche/droite — un contenu à 210mm fixe
-  // déborderait de cette zone et serait rogné sur les côtés.
   width: 100%;
   min-height: 297mm;
   margin: 0 auto;
-  // Explicite plutôt que de compter uniquement sur la classe Tailwind `bg-white` du template : le
-  // fond de l'app est beige par défaut, ce blanc doit être garanti ici, pas seulement hérité.
   background: #fff;
   // Pas de padding ici : les marges "façon Word" (haut/bas/gauche/droite) viennent entièrement de
   // l'option `margin` de Playwright (cf. QuotePdfService.generatePdf), qui se répète correctement sur
@@ -105,6 +100,36 @@
   &--decline {
     background-color: #dc2626;
   }
+}
+
+// Empêche Playwright/Chromium de couper ce bloc entre deux pages du PDF : s'il ne tient pas dans
+// le reste de la page courante, il bascule intact en page suivante plutôt que d'être scindé.
+.quote-eidas-block {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+// Police recommandée par YouTrust pour une détection fiable des Smart Anchors (texte blanc,
+// invisible à l'écran, cf. les anchors checkbox/signature/signature_date du bloc printMode).
+.quote-anchor {
+  font-family: Arial, sans-serif;
+
+  &--field {
+    font-size: 10px;
+  }
+
+  &--signature {
+    font-size: 12px;
+  }
+}
+
+// Largeur fixe identique à celle du champ signature (150px) : les anchors signature/signature_date
+// ont des longueurs de texte très différentes, donc centrer chaque <p> dans toute la colonne (bien
+// plus large) les décentre l'un par rapport à l'autre — YouTrust positionne chaque champ à
+// l'emplacement détecté de son texte d'anchor, pas au milieu du conteneur CSS.
+.quote-anchor-signature-center {
+  width: 150px;
+  margin: 0 auto;
 }
 
 .quote-preview-totals {

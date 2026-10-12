@@ -27,12 +27,6 @@
                 @if (actionsMenuOpen()) {
                     <div class="chat-actions-overlay" (click)="closeActionsMenu()"></div>
                     <div class="chat-actions-menu">
-                        @if (conversation().isAuthor) {
-                            <button type="button" (click)="declineOffer.emit(); closeActionsMenu()">
-                                <iconify-icon icon="lucide:x-circle"></iconify-icon>
-                                {{ 'dashboard.messages.actions.decline' | transloco }}
-                            </button>
-                        }
                         @if (!conversation().isAuthor && canManageQuote()) {
                             <button type="button" (click)="createQuote.emit(conversation().demandId); closeActionsMenu()">
                                 <iconify-icon icon="lucide:file-plus"></iconify-icon>
@@ -69,7 +63,9 @@
                     class="chat-bubble"
                     [class.own]="message.isOwnMessage"
                     [class.chat-bubble--declined]="message.type === 'QUOTE' && message.quoteStatus === 'DECLINED'"
-                    [class.chat-bubble--accepted]="message.type === 'QUOTE' && message.quoteStatus === 'ACCEPTED'"
+                    [class.chat-bubble--signed]="message.type === 'QUOTE' && message.quoteStatus === 'SIGNED_BY_PRO'"
+                    [class.chat-bubble--pending]="message.type === 'QUOTE' && message.quoteStatus === 'PENDING_PAYMENT'"
+                    [class.chat-bubble--paid]="message.type === 'QUOTE' && message.quoteStatus === 'PAID'"
                 >
                     @switch (message.type) {
                         @case ('IMAGE') {
@@ -105,6 +101,21 @@
                     }
                     <span class="chat-bubble-time">{{ formatBubbleTime(message.createdAt) }}</span>
                 </div>
+                @if (conversation().isAuthor && message.type === 'QUOTE' && message.quoteStatus === 'PENDING_PAYMENT') {
+                    <div class="chat-quote-milestone">
+                        <span class="chat-quote-milestone-line"></span>
+                        <button
+                            type="button"
+                            class="chat-quote-milestone-btn"
+                            [disabled]="resumingPaymentQuoteId() === message.quoteId"
+                            (click)="onResumePayment(message)"
+                        >
+                            <iconify-icon icon="lucide:credit-card"></iconify-icon>
+                            <span>{{ 'quote.milestone.resumePayment' | transloco }}</span>
+                        </button>
+                        <span class="chat-quote-milestone-line"></span>
+                    </div>
+                }
             </div>
         }
         <div #oldestSentinel class="chat-messages-sentinel"></div>

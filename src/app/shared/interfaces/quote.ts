@@ -2,7 +2,7 @@ import { Address } from './address';
 import { DemandAddress } from './demand';
 
 export type MaterialOrigin = 'new' | 'refurbished' | 'custom';
-export type QuoteStatus = 'DRAFT' | 'SENT' | 'ACCEPTED' | 'DECLINED';
+export type QuoteStatus = 'DRAFT' | 'SIGNED_BY_PRO' | 'PENDING_PAYMENT' | 'PAID' | 'DECLINED';
 
 export interface QuoteLineItem {
   description: string;
@@ -19,10 +19,13 @@ export interface QuoteMaterialLineItem extends QuoteLineItem {
   unitPriceHT: number | null;
 }
 
-/** Document déjà sauvegardé lors d'un précédent enregistrement (fileKey connu). */
+/** Document déjà sauvegardé lors d'un précédent enregistrement (fileKey connu). `fileName` est le
+ * nom réel du fichier uploadé (avec extension), distinct de `name` (libellé métier choisi par le
+ * pro). */
 export interface QuoteDocument {
   name: string;
   fileKey: string;
+  fileName: string;
 }
 
 /** État local d'une ligne de document dans le formulaire : soit déjà sauvegardée (`fileKey` connu,
@@ -66,11 +69,18 @@ export interface Quote extends SaveQuoteDraftPayload {
   professionalProfileId: string;
   createdAt: string;
   updatedAt: string;
+  // Renseigné une fois PENDING_PAYMENT (les 2 parties ont signé) — jamais avant.
+  signedPdfKey: string | null;
 }
 
-/** Identité du professionnel telle qu'affichée sur le devis (sous-ensemble de ProfessionalProfile). */
+/** Identité du professionnel telle qu'affichée sur le devis (sous-ensemble de ProfessionalProfile).
+ * `firstName`/`lastName` sont ceux du gérant (User), affichés à la place du nom de société dans le
+ * bloc d'identité — `companyName` reste utilisé ailleurs sur le devis (en-tête, mentions légales). */
 export interface QuotePreviewProfessional {
   companyName: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
   siret: string;
   legalForm: string;
   managerPhone: string;
@@ -79,11 +89,13 @@ export interface QuotePreviewProfessional {
   workAddress: Address;
 }
 
-/** Identité du client telle qu'affichée sur le devis — l'adresse reste masquée (ville/code postal
- * uniquement) tant que le devis n'est pas payé, cf. DemandAddressHidden dans demand.ts. */
+/** Identité du client telle qu'affichée sur le devis — `address` est son adresse personnelle
+ * (User.address), masquée (ville/code postal uniquement) pour le pro tant que le devis n'est pas au
+ * moins PENDING_PAYMENT, toujours complète pour le client lui-même, cf. DemandAddressHidden dans demand.ts. */
 export interface QuotePreviewClient {
   firstName: string;
   lastName: string;
+  gender: string;
   address: DemandAddress | null;
 }
 
@@ -93,14 +105,20 @@ export interface QuotePreviewClient {
 export interface QuoteViewerData extends Quote {
   professional: QuotePreviewProfessional;
   client: QuotePreviewClient;
+  // Adresse du chantier (demande), distincte de l'adresse personnelle du client — jamais
+  // d'additionalInfo (donnée géocodée, cf. GeocodingService.fullAddress), même règle de masquage.
+  interventionAddress: DemandAddress | null;
   isDemandAuthor: boolean;
 }
 
-/** Réponse des endpoints déclenchant une signature YouTrust (`send`, `signature-link`) — `null` si
- * pas encore le tour du signataire concerné (cf. QuoteService.getClientSignatureLink backend). */
+/** Réponse des endpoints déclenchant une signature YouTrust (`send`, `sign`) — `signatureLink`
+ * est `null` soit parce que ce n'est pas encore le tour du signataire, soit parce qu'il a déjà signé
+ * (`alreadySigned: true` — fenêtre de course possible si le webhook `signer.done` n'est pas encore
+ * traité côté serveur), cf. QuoteService.requestClientSignature backend. */
 export interface SignatureLinkResult {
   signatureLink: string | null;
   isSandbox: boolean;
+  alreadySigned: boolean;
 }
 
 /** Données assemblées pour l'aperçu HTML du devis (quote-preview) : snapshot du brouillon en cours
@@ -112,15 +130,14 @@ export interface QuotePreviewData {
   validUntil: string | null;
   professional: QuotePreviewProfessional;
   client: QuotePreviewClient;
+  interventionAddress: DemandAddress | null;
   materialLines: QuoteMaterialLineItem[];
   laborLines: QuoteLineItem[];
   logisticsLines: QuoteLineItem[];
   nightWorkSurcharge: boolean | null;
   estimatedStartDate: string | null;
   estimatedEndDate: string | null;
-  // Simple liste de noms : à ce stade, certains documents peuvent être sélectionnés localement et
-  // pas encore uploadés (pas de fileKey), l'aperçu n'a de toute façon besoin que du nom affiché.
-  documents: { name: string }[];
+  documents: { name: string; fileName: string | null }[];
   remarks: string;
   decennaleInsurer: string;
   decennalePolicyNumber: string;

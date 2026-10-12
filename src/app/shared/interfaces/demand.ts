@@ -6,6 +6,7 @@ export interface DemandAuthor {
   id: string;
   firstName: string;
   lastName: string;
+  gender: string;
   role: RoleType;
 }
 
@@ -34,6 +35,9 @@ export interface DemandAddressFull {
   label: string;
   streetNumber: string;
   streetName: string;
+  // Uniquement pour l'adresse personnelle (User.address) — jamais pour celle du chantier (géocodée,
+  // sans ce champ).
+  additionalInfo?: string;
   postalCode: string;
   city: string;
 }

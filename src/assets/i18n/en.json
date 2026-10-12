@@ -20,15 +20,20 @@
       "pendingClientResponse": "This quote is awaiting the client's response, you cannot create a new one yet.",
       "alreadyAccepted": "This quote has already been accepted by the client, the project can start.",
       "alreadySent": "This quote has already been sent.",
-      "prefilledFromDeclined": "This draft reuses the information from the previous, declined quote — edit whatever needs to change."
+      "prefilledFromDeclined": "This draft reuses the information from the previous, declined quote — edit whatever needs to change.",
+      "alreadySignedPending": "Your signature has already been recorded, the update is in progress — please try again in a moment."
     },
     "messageBubble": {
       "status": {
         "DRAFT": "Draft",
-        "SENT": "Sent",
-        "ACCEPTED": "Accepted",
+        "SIGNED_BY_PRO": "Signed by the pro",
+        "PENDING_PAYMENT": "Awaiting payment",
+        "PAID": "Paid",
         "DECLINED": "Declined"
       }
+    },
+    "milestone": {
+      "resumePayment": "Resume payment"
     },
     "preview": {
       "close": "Close preview",
@@ -36,6 +41,9 @@
       "client": "Client",
       "clientSignature": "Client signature",
       "professionalSignature": "Tradesperson signature",
+      "civilityMale": "Mr",
+      "civilityFemale": "Ms",
+      "interventionAddress": "Project address",
       "siret": "Company ID (SIRET)",
       "phone": "Phone",
       "email": "Email",
@@ -129,11 +137,17 @@
       "earlyStartAccepted": "I expressly request that the work may begin before the legal withdrawal period expires. I acknowledge having been informed that, by giving this agreement, the professional may incur the expenses necessary for the project, in particular for the purchase of materials, supplies or the booking of any equipment, in accordance with the accepted quote.<br><br>I also acknowledge having read, prior to signing the quote, and accept without reservation the Terms of Use, the Terms of Sale and the Cancellation Policy of the Artisan Compétent platform. I accept that these documents apply to the contractual relationship binding me to the tradesperson.",
       "quoteAgreementAcceptedSummary": "The client confirms their agreement to this quote, which also constitutes a purchase order. By validating it, they authorise the professional to prepare and organise the project in accordance with the planned services. They acknowledge that it is their responsibility to check, as soon as possible, the validity of the tradesperson's insurance, certifications and required documents, before or during the project.<br><br>To help the work run smoothly and avoid any delay or dispute, it is recommended to carry out these checks as early as possible. From the handover of the project completion report, the client nonetheless has a maximum period of 96 hours to carry out or finalise these checks before the automatic validation of the project and the release of funds. This period notably accounts for emergency call-outs carried out at night, on weekends or on public holidays.",
       "earlyStartAcceptedSummary": "The client expressly requests that the work may begin before the legal withdrawal period expires. They acknowledge having been informed that, by giving this agreement, the professional may incur the expenses necessary for the project, in particular for the purchase of materials, supplies or the booking of any equipment, in accordance with the accepted quote.<br><br>The client also acknowledges having read, prior to signing the quote, and accepts without reservation the Terms of Use, the Terms of Sale and the Cancellation Policy of the Artisan Compétent platform. They accept that these documents apply to the contractual relationship binding them to the tradesperson.",
+      "eidasNotice": "By signing this document electronically, you acknowledge having read and accepted the terms of sale and this quote. This electronic signature has the same legal value as a handwritten signature in accordance with eIDAS Regulation No. 910/2014.",
       "accept": "Accept and sign the quote",
       "decline": "Decline the quote",
-      "acceptanceRequired": "Please accept the terms to sign the quote.",
       "acceptSuccess": "Quote signed and accepted.",
       "declineSuccess": "Quote declined.",
+      "signSuccess": "Quote signed — finalising payment.",
+      "paymentProcessing": "Processing payment...",
+      "paymentSuccess": "Payment completed, the quote is now finalised.",
+      "paymentError": "The payment could not be completed. Please try again in a moment.",
+      "noticeDeclined": "You declined this quote — it can no longer be signed.",
+      "noticeDeclinedByClient": "The client declined this quote.",
       "summaryTitle": "Summary",
       "summaryHT": "Total excl. VAT (Materials + Labour + Costs):",
       "summaryTTC": "Total amount due incl. VAT:",
@@ -610,8 +624,6 @@
   "docModal": {
     "defaultTitle": "Document preview",
     "defaultAlt": "Preview",
-    "pdfUnsupported": "Your browser does not support PDF preview.",
-    "downloadPdf": "Download the PDF",
     "previewUnavailable": "Preview unavailable for this file type.",
     "openDocument": "Open document",
     "cancel": "Cancel"
