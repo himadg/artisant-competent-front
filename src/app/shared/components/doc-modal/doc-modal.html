@@ -23,12 +23,14 @@
                         (mousedown)="onImageMouseDown($event)"
                     />
                 } @else if (isPdf() && safePdfUrl()) {
-                    <object [data]="safePdfUrl()" type="application/pdf" class="preview-pdf">
-                        <p>
-                            {{ 'docModal.pdfUnsupported' | transloco }}
-                            <a [href]="document()?.url" target="_blank" rel="noopener">{{ 'docModal.downloadPdf' | transloco }}</a>.
-                        </p>
-                    </object>
+                    <!-- <object> est bloqué par la CSP (object-src 'none', volontaire — surface XSS des
+                    plugins) : <iframe> rend le PDF tout aussi bien et passe déjà sous frame-src, qui
+                    autorise B2 depuis longtemps pour YouTrust/Cloudflare — aucun changement de CSP requis. -->
+                    <iframe
+                        [src]="safePdfUrl()"
+                        [title]="document()?.title || ('docModal.defaultTitle' | transloco)"
+                        class="preview-pdf"
+                    ></iframe>
                 } @else {
                     <div class="preview-unsupported">
                         <p>{{ 'docModal.previewUnavailable' | transloco }}</p>

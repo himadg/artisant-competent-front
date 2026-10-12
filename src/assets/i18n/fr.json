@@ -20,15 +20,20 @@
       "pendingClientResponse": "Ce devis est en attente de réponse du client, impossible d'en créer un nouveau pour l'instant.",
       "alreadyAccepted": "Ce devis a déjà été accepté par le client, la mission peut démarrer.",
       "alreadySent": "Ce devis a déjà été envoyé.",
-      "prefilledFromDeclined": "Ce brouillon reprend les informations du devis précédent, refusé — modifiez ce qui doit changer."
+      "prefilledFromDeclined": "Ce brouillon reprend les informations du devis précédent, refusé — modifiez ce qui doit changer.",
+      "alreadySignedPending": "Votre signature a déjà été prise en compte, la mise à jour est en cours — réessayez dans quelques instants."
     },
     "messageBubble": {
       "status": {
         "DRAFT": "Brouillon",
-        "SENT": "Envoyé",
-        "ACCEPTED": "Accepté",
+        "SIGNED_BY_PRO": "Signé par le pro",
+        "PENDING_PAYMENT": "En attente de paiement",
+        "PAID": "Payé",
         "DECLINED": "Refusé"
       }
+    },
+    "milestone": {
+      "resumePayment": "Reprendre le paiement"
     },
     "preview": {
       "close": "Fermer l'aperçu",
@@ -36,6 +41,9 @@
       "client": "Client",
       "clientSignature": "Signature du client",
       "professionalSignature": "Signature de l'artisan",
+      "civilityMale": "M.",
+      "civilityFemale": "Mme",
+      "interventionAddress": "Adresse du chantier",
       "siret": "SIRET",
       "phone": "Téléphone",
       "email": "E-mail",
@@ -129,11 +137,17 @@
       "earlyStartAccepted": "Je demande expressément que les travaux puissent débuter avant l'expiration du délai légal de rétractation. Je reconnais avoir été informé qu'en donnant cet accord, le professionnel peut engager les dépenses nécessaires au chantier, notamment pour l'achat des matériaux, fournitures ou la réservation d'éventuels équipements, conformément au devis accepté.<br><br>Je reconnais également avoir pris connaissance, préalablement à la signature du devis, et accepter sans réserve les Conditions Générales d'Utilisation (CGU), les Conditions Générales de Vente (CGV) ainsi que la Politique d'annulation de la plateforme Artisan Compétent. J'accepte que ces documents s'appliquent à la relation contractuelle me liant à l'artisan.",
       "quoteAgreementAcceptedSummary": "Le client confirme son accord sur le présent devis, qui vaut également bon de commande. En le validant, il autorise le professionnel à préparer et organiser le chantier conformément aux prestations prévues. Il reconnaît qu'il lui appartient de vérifier, dès que possible, la validité des assurances, certifications et documents obligatoires de l'artisan, avant ou pendant le chantier.<br><br>Afin de faciliter le bon déroulement des travaux et d'éviter tout retard ou litige, il est recommandé d'effectuer ces vérifications le plus tôt possible. À compter de la remise du procès-verbal de fin de chantier, le client dispose toutefois d'un délai maximal de 96 heures pour effectuer ou finaliser ces vérifications avant la validation automatique du chantier et la libération des fonds. Ce délai est notamment prévu pour tenir compte des interventions d'urgence réalisées de nuit, les week-ends ou les jours fériés.",
       "earlyStartAcceptedSummary": "Le client demande expressément que les travaux puissent débuter avant l'expiration du délai légal de rétractation. Il reconnaît avoir été informé qu'en donnant cet accord, le professionnel peut engager les dépenses nécessaires au chantier, notamment pour l'achat des matériaux, fournitures ou la réservation d'éventuels équipements, conformément au devis accepté.<br><br>Le client reconnaît également avoir pris connaissance, préalablement à la signature du devis, et accepter sans réserve les Conditions Générales d'Utilisation (CGU), les Conditions Générales de Vente (CGV) ainsi que la Politique d'annulation de la plateforme Artisan Compétent. Il accepte que ces documents s'appliquent à la relation contractuelle le liant à l'artisan.",
+      "eidasNotice": "En signant ce document électroniquement, vous reconnaissez avoir lu et accepté les conditions générales de vente et le présent devis. Cette signature électronique a la même valeur juridique qu'une signature manuscrite conformément au règlement eIDAS n°910/2014.",
       "accept": "Accepter et signer le devis",
       "decline": "Refuser le devis",
-      "acceptanceRequired": "Veuillez accepter les conditions pour pouvoir signer le devis.",
       "acceptSuccess": "Devis signé et accepté.",
       "declineSuccess": "Devis refusé.",
+      "signSuccess": "Devis signé — finalisation du paiement en cours.",
+      "paymentProcessing": "Paiement en cours...",
+      "paymentSuccess": "Paiement effectué, le devis est désormais finalisé.",
+      "paymentError": "Le paiement n'a pas pu être finalisé. Réessayez dans quelques instants.",
+      "noticeDeclined": "Vous avez refusé ce devis — il n'est plus possible de le signer.",
+      "noticeDeclinedByClient": "Le client a refusé ce devis.",
       "summaryTitle": "Récapitulatif",
       "summaryHT": "Total HT (Matériaux + Prestations + Frais) :",
       "summaryTTC": "Montant TTC à régler :",
@@ -610,8 +624,6 @@
   "docModal": {
     "defaultTitle": "Aperçu du document",
     "defaultAlt": "Aperçu",
-    "pdfUnsupported": "Votre navigateur ne supporte pas la prévisualisation de PDF.",
-    "downloadPdf": "Télécharger le PDF",
     "previewUnavailable": "Aperçu non disponible pour ce type de fichier.",
     "openDocument": "Ouvrir le document",
     "cancel": "Annuler"

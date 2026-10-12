@@ -22,6 +22,7 @@ import { LocalizedDatePipe } from '../../../pipes/localized-date.pipe';
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
 import { ALLOWED_DOCUMENT_TYPES, isFileTypeAllowed } from '../../../../core/utils/file-types';
 import { LangService } from '../../../../core/services/lang.service';
+import { QuoteService } from '../../../../core/services/quote.service';
 import { DATE_STYLE_COMPACT, formatLocalizedDate, formatLocalizedTime } from '../../../../core/utils/date-format';
 
 @Component({
@@ -37,6 +38,7 @@ export class ConversationView {
   private readonly flashMessage = inject(FlashMessageService);
   private readonly langService = inject(LangService);
   private readonly transloco = inject(TranslocoService);
+  private readonly quoteService = inject(QuoteService);
 
   readonly conversation = input.required<ConversationSummary>();
   readonly messages = input.required<ConversationMessage[]>();
@@ -60,6 +62,7 @@ export class ConversationView {
   readonly draft = signal('');
   readonly actionsMenuOpen = signal(false);
   readonly docToPreview = signal<PreviewDocument | null>(null);
+  readonly resumingPaymentQuoteId = signal<string | null>(null);
 
   // Hauteur de scroll capturée juste avant de déclencher le chargement des messages plus anciens,
   // pour compenser leur insertion et éviter que la vue ne saute (cf. l'effect ci-dessous).
@@ -109,11 +112,12 @@ export class ConversationView {
   });
 
   // Le pro ne peut créer/reprendre un devis que si aucun n'existe encore, ou si le plus récent a été
-  // refusé (DECLINED) — tant qu'un devis est en attente (SENT) ou validé (ACCEPTED),
-  // il ne peut rien faire d'autre qu'attendre, cf. QuoteService.assertCanCreateNewQuote côté backend.
+  // refusé (DECLINED) — tant qu'un devis suit son cours (signé par le pro, en attente de paiement)
+  // ou est payé (PAID), il ne peut rien faire d'autre qu'attendre,
+  // cf. QuoteService.assertCanCreateNewQuote côté backend.
   readonly canManageQuote = computed(() => {
     const status = this.conversation().quoteStatus;
-    return status !== 'SENT' && status !== 'ACCEPTED';
+    return !(status === 'SIGNED_BY_PRO' || status === 'PENDING_PAYMENT' || status === 'PAID');
   });
 
   formatBubbleTime(iso: string): string {
@@ -162,9 +166,30 @@ export class ConversationView {
     this.sendAttachment.emit(file);
   }
 
-  // Ouvre l'aperçu du devis associé au message donné.
+  // Ouvre le devis dans le message.
   openQuoteMessage(message: ConversationMessage): void {
-    if (message.quoteId) this.viewQuote.emit(message.quoteId);
+    if (!message.quoteId) return;
+    // Si le devis a été signé par le pro et le client, ouvre le devis signé dans un nouvel onglet.
+    if (message.quoteStatus === 'PENDING_PAYMENT' || message.quoteStatus === 'PAID') {
+      this.quoteService
+        .getSignedPdfUrl(message.quoteId)
+        .then(({ url }) => window.open(url, '_blank', 'noopener'))
+        .catch(() => this.flashMessage.set({ type: 'error', key: 'errors.unknown' }));
+      return;
+    }
+    // Sinon, ouvre l'aperçu.
+    this.viewQuote.emit(message.quoteId);
+  }
+
+  // Jalon visible uniquement pour relancer un paiement échoué après signature du devis.
+  onResumePayment(message: ConversationMessage): void {
+    if (!message.quoteId || this.resumingPaymentQuoteId()) return;
+    this.resumingPaymentQuoteId.set(message.quoteId);
+    this.quoteService
+      .confirmPayment(message.quoteId)
+      .then(() => this.flashMessage.set({ type: 'success', key: 'quote.agreement.paymentSuccess' }))
+      .catch(() => this.flashMessage.set({ type: 'error', key: 'quote.agreement.paymentError' }))
+      .finally(() => this.resumingPaymentQuoteId.set(null));
   }
 
   toggleActionsMenu(): void {

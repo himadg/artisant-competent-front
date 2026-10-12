@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA, computed, input, output, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA, computed, input, output } from '@angular/core';
 import { DecimalPipe, NgTemplateOutlet } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { QuoteLineItem, QuotePreviewData } from '../../interfaces/quote';
@@ -17,21 +17,23 @@ export class QuotePreview {
   readonly data = input.required<QuotePreviewData>();
   readonly closed = output<void>();
 
-  // Uniquement pour le client (jamais le pro) : les 2 seules cases qui lui appartiennent. État
-  // local uniquement pour l'instant — aucune sauvegarde/signature réelle tant que cette feature
-  // n'est pas construite (cf. discussion signature électronique).
+  // N'affiche les boutons accepter/décliner que pour le client, tant qu'une décision est encore
+  // attendue — les 2 cases d'engagement (quoteAgreementAccepted/earlyStartAccepted) ne sont plus
+  // gérées ici : elles sont désormais des champs checkbox natifs du document signé YouTrust
+  // (obligatoires), cochés directement dans son widget, jamais dans cette app.
   readonly interactive = input(false);
 
   // Rendu "papier nu", sans overlay/backdrop/bouton fermer — utilisé uniquement par la route
   // d'impression (cf. quote-print-page) capturée en PDF par Playwright, jamais par un utilisateur.
   readonly printMode = input(false);
-  readonly quoteAgreementAccepted = signal(false);
-  readonly earlyStartAccepted = signal(false);
-  readonly canAccept = computed(() => this.quoteAgreementAccepted() && this.earlyStartAccepted());
 
-  // Décision prise ici (cocher les 2 cases + cliquer), l'action réelle (appel serveur, ouverture du
-  // widget de signature) est gérée par le parent (cf. QuoteClientView) — ce composant reste
-  // purement présentationnel, comme pour `closed`.
+  // Message expliquant au client pourquoi il ne peut plus éditer/signer (devis refusé, déjà signé,
+  // payé...) — propre à l'aperçu affiché dans l'app, jamais au document légal (cf. printMode dans le
+  // template). `null` : rien à afficher (cas normal, en attente de décision).
+  readonly statusNotice = input<string | null>(null);
+
+  // Décision prise ici, l'action réelle (appel serveur, ouverture du widget de signature) est gérée
+  // par le parent (cf. QuoteClientView) — ce composant reste purement présentationnel, comme `closed`.
   readonly accept = output<void>();
   readonly decline = output<void>();
 
@@ -59,5 +61,9 @@ export class QuotePreview {
 
   close(): void {
     this.closed.emit();
+  }
+
+  civilityKey(gender: string): string {
+    return gender === 'male' ? 'quote.preview.civilityMale' : 'quote.preview.civilityFemale';
   }
 }

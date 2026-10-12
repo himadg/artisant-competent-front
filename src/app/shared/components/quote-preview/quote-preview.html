@@ -27,6 +27,22 @@
     </div>
 }
 
+<!-- Rendu partagé entre l'adresse personnelle du client et celle du chantier (même règle de
+masquage hidden/full, cf. QuoteService.shapeAddress) — évite de dupliquer la logique 2 fois. -->
+<ng-template #addressBlock let-address="address">
+    @if (address) {
+        @if (address.kind === 'full') {
+            @if (address.additionalInfo) {
+                <p>{{ address.additionalInfo }}</p>
+            }
+            <p>{{ address.streetNumber }} {{ address.streetName }}</p>
+            <p>{{ address.postalCode }} {{ address.city }}</p>
+        } @else {
+            <p>{{ address.postalCode }} {{ address.city }}</p>
+        }
+    }
+</ng-template>
+
 <!-- Contenu partagé entre le mode modale (aperçu depuis quote-modal) et le mode impression (PDF via
 Playwright, cf. quote-print-page) — évite de dupliquer tout le document à chaque changement. -->
 <ng-template #content>
@@ -56,15 +72,15 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
     <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div class="quote-preview-box">
             <p class="quote-preview-box-title">{{ 'quote.preview.client' | transloco }}</p>
-            <p>{{ data().client.firstName }} {{ data().client.lastName }}</p>
-            @if (data().client.address; as address) {
-                <p>{{ address.postalCode }} {{ address.city }}</p>
-            }
+            <p>
+                {{ civilityKey(data().client.gender) | transloco }} {{ data().client.lastName }} {{ data().client.firstName }}
+            </p>
+            <ng-container *ngTemplateOutlet="addressBlock; context: { address: data().client.address }"></ng-container>
         </div>
 
         <div class="quote-preview-box">
             <p class="quote-preview-box-title">{{ 'quote.preview.professional' | transloco }}</p>
-            <p>{{ data().professional.companyName }}</p>
+            <p>{{ civilityKey(data().professional.gender) | transloco }} {{ data().professional.firstName }} {{ data().professional.lastName }}</p>
             <p>
                 {{ data().professional.workAddress.streetNumber }} {{ data().professional.workAddress.streetName }},
                 {{ data().professional.workAddress.postalCode }} {{ data().professional.workAddress.city }}
@@ -75,6 +91,13 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
             }
             <p>{{ 'quote.preview.legalForm' | transloco }} : {{ data().professional.legalForm }}</p>
         </div>
+    </div>
+
+    <!-- Adresse du chantier : distincte de l'adresse personnelle du client ci-dessus, jamais de
+    complément (donnée géocodée, cf. GeocodingService.fullAddress) — même règle de masquage. -->
+    <div class="quote-preview-box mt-4">
+        <p class="quote-preview-box-title">{{ 'quote.preview.interventionAddress' | transloco }}</p>
+        <ng-container *ngTemplateOutlet="addressBlock; context: { address: data().interventionAddress }"></ng-container>
     </div>
 
     <!-- ═══ 1. Matériaux et fournitures ═══ -->
@@ -209,17 +232,17 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
         <section class="mt-6">
             <h3 class="quote-preview-section-title">{{ 'quote.preview.insuranceTitle' | transloco }}</h3>
             <div class="quote-preview-box flex flex-col gap-2">
+                @if (data().rcProInsurer) {
+                    <p>
+                        {{ 'quote.preview.rcPro' | transloco }} : {{ data().rcProInsurer }}
+                        @if (data().rcProPolicyNumber) { (n&deg; {{ data().rcProPolicyNumber }}) }
+                    </p>
+                }
                 @if (data().decennaleInsurer) {
                     <p>
                         {{ 'quote.preview.decennale' | transloco }} : {{ data().decennaleInsurer }}
                         @if (data().decennalePolicyNumber) { (n&deg; {{ data().decennalePolicyNumber }}) }
                         @if (data().decennaleCoverageArea) { — {{ 'quote.preview.coverageArea' | transloco }} : {{ data().decennaleCoverageArea }} }
-                    </p>
-                }
-                @if (data().rcProInsurer) {
-                    <p>
-                        {{ 'quote.preview.rcPro' | transloco }} : {{ data().rcProInsurer }}
-                        @if (data().rcProPolicyNumber) { (n&deg; {{ data().rcProPolicyNumber }}) }
                     </p>
                 }
             </div>
@@ -232,7 +255,7 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
         @if (documents().length) {
             <ul class="list-inside list-disc text-sm">
                 @for (document of documents(); track $index) {
-                    <li>{{ document.name }}</li>
+                    <li>{{ document.name }} : {{ document.fileName }}</li>
                 }
             </ul>
         } @else {
@@ -254,15 +277,15 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
     <section class="mt-6">
         <h3 class="quote-preview-section-title">{{ 'quote.agreement.title' | transloco }}</h3>
         <div class="quote-preview-box flex flex-col gap-3">
-            @if (interactive()) {
-                <label class="flex items-start gap-2">
-                    <input type="checkbox" class="mt-1" [checked]="quoteAgreementAccepted()" (change)="quoteAgreementAccepted.set($any($event.target).checked)" />
+            @if (printMode()) {
+                <p>
+                    <span class="text-white quote-anchor quote-anchor--field">{{ '{{s2|checkbox|16|f|f|QuoteAgreement}}' }}</span>
                     <span [innerHTML]="'quote.agreement.quoteAgreementAccepted' | transloco"></span>
-                </label>
-                <label class="flex items-start gap-2">
-                    <input type="checkbox" class="mt-1" [checked]="earlyStartAccepted()" (change)="earlyStartAccepted.set($any($event.target).checked)" />
+                </p>
+                <p>
+                    <span class="text-white quote-anchor quote-anchor--field">{{ '{{s2|checkbox|16|f|f|EarlyStart}}' }}</span>
                     <span [innerHTML]="'quote.agreement.earlyStartAccepted' | transloco"></span>
-                </label>
+                </p>
             } @else {
                 <p [innerHTML]="'quote.agreement.quoteAgreementAcceptedSummary' | transloco"></p>
                 <p [innerHTML]="'quote.agreement.earlyStartAcceptedSummary' | transloco"></p>
@@ -287,35 +310,50 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
     </section>
 
     <!-- Action finale, après lecture complète du devis (y compris le prix) — jamais avant, comme
-    toute signature électronique (cf. YouTrust qui impose de tout scroller avant de signer). -->
+    toute signature électronique (cf. YouTrust qui impose de tout scroller avant de signer). Les 2
+    cases d'engagement sont désormais vérifiées dans le widget YouTrust lui-même, pas ici. -->
     @if (interactive()) {
-        @if (!canAccept()) {
-            <p class="mt-6 font-bold italic">{{ 'quote.agreement.acceptanceRequired' | transloco }}</p>
-        }
         <div class="flex flex-col sm:flex-row gap-3 mt-6">
-            @if (canAccept()) {
-                <button type="button" class="quote-agreement-btn quote-agreement-btn--accept" (click)="accept.emit()">
-                    {{ 'quote.agreement.accept' | transloco }}
-                </button>
-            }
+            <button type="button" class="quote-agreement-btn quote-agreement-btn--accept" (click)="accept.emit()">
+                {{ 'quote.agreement.accept' | transloco }}
+            </button>
             <button type="button" class="quote-agreement-btn quote-agreement-btn--decline" (click)="decline.emit()">
                 {{ 'quote.agreement.decline' | transloco }}
             </button>
         </div>
     }
 
-    @if (printMode()) {
-        <!-- s1 = pro (1er signataire créé), s2 = client (2e) — ordre indépendant de la position ici : client à gauche,
-            pro à droite, comme le bloc d'identité en haut du devis (client en 1re colonne, professionnel en 2e). -->
-        <div class="mt-16 grid grid-cols-2 text-center">
-            <div>
-                <p class="text-xs text-gray-500">{{ 'quote.preview.clientSignature' | transloco }}</p>
-                <p class="text-white" style="font-family: Arial, sans-serif; font-size: 12px;">{{ '{{s2|signature|150|60}}' }}</p>
+    <!-- Regroupées pour ne jamais être coupées entre deux pages du PDF généré (Playwright/Chromium
+        respecte break-inside sur la pagination réelle) : si l'ensemble ne tient pas dans le reste
+        de la page courante, il bascule intact en page suivante plutôt que d'être scindé. -->
+    <div class="quote-eidas-block">
+        <p class="mt-6 text-xs italic text-gray-500">{{ 'quote.agreement.eidasNotice' | transloco }}</p>
+
+        @if (printMode()) {
+            <!-- s1 = pro (1er signataire créé), s2 = client (2e) — ordre indépendant de la position ici : client à gauche,
+                pro à droite, comme le bloc d'identité en haut du devis (client en 1re colonne, professionnel en 2e). -->
+            <div class="mt-16 grid grid-cols-2 text-center">
+                <div>
+                    <p class="text-xs text-gray-500">{{ 'quote.preview.clientSignature' | transloco }}</p>
+                    <div class="quote-anchor-signature-center">
+                        <p class="text-white quote-anchor quote-anchor--signature">{{ '{{s2|signature|150|60}}' }}</p>
+                        <p class="text-white quote-anchor quote-anchor--field">{{ '{{s2|signature_date|dd/MM/yyyy HH:mm|t||SignatureDateClient}}' }}</p>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-500">{{ 'quote.preview.professionalSignature' | transloco }}</p>
+                    <div class="quote-anchor-signature-center">
+                        <p class="text-white quote-anchor quote-anchor--signature">{{ '{{s1|signature|150|60}}' }}</p>
+                        <p class="text-white quote-anchor quote-anchor--field">{{ '{{s1|signature_date|dd/MM/yyyy HH:mm|t||SignatureDatePro}}' }}</p>
+                    </div>
+                </div>
             </div>
-            <div>
-                <p class="text-xs text-gray-500">{{ 'quote.preview.professionalSignature' | transloco }}</p>
-                <p class="text-white" style="font-family: Arial, sans-serif; font-size: 12px;">{{ '{{s1|signature|150|60}}' }}</p>
-            </div>
-        </div>
+        }
+    </div>
+
+    <!-- Jamais en printMode : propre à l'aperçu consulté dans l'app (pas une mention du document
+    légal lui-même), explique au client pourquoi il ne peut plus éditer/signer selon le statut actuel. -->
+    @if (!printMode() && statusNotice()) {
+        <p class="mt-8 text-center text-lg font-bold">{{ statusNotice() }}</p>
     }
 </ng-template>

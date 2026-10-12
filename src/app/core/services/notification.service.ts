@@ -72,12 +72,19 @@ export class NotificationService {
   private connect(): void {
     if (this.socket) return;
 
-    void this.refreshUnreadCount();
+    // Chargement initial en HTTP simple, indépendant du WebSocket : celui-ci peut être lent à se
+    // connecter (ou échouer) sans empêcher d'afficher les notifications déjà existantes.
     void this.loadAll();
+    void this.refreshUnreadCount();
 
     this.socket = this.socketConnection.acquire();
     if (!this.socket) return;
-    this.socket.on('connect', () => void this.refreshUnreadCount());
+    this.socket.on('connect', () => {
+      // Resync à chaque reconnexion (coupure réseau, veille...) — un WebSocket ne garantit pas la
+      // livraison des notifications manquées pendant une déconnexion.
+      void this.loadAll();
+      void this.refreshUnreadCount();
+    });
     this.socket.on('notification', (notification: AppNotification) => {
       this.notifications.update((list) => [notification, ...list]);
       this.unreadCount.update((n) => n + 1);

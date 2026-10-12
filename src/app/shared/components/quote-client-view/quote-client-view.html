@@ -2,10 +2,11 @@
     <div class="fixed inset-0 z-[60] flex items-center justify-center bg-black/60">
         <span class="spinner"></span>
     </div>
-} @else if (previewData(); as data) {
+} @else if (previewVisible() && previewData(); as data) {
     <quote-preview
         [data]="data"
         [interactive]="canSign()"
+        [statusNotice]="statusNotice()"
         (closed)="closed.emit()"
         (accept)="onAccept()"
         (decline)="onDecline()"
@@ -19,4 +20,11 @@
         (success)="onClientSigned()"
         (closed)="signatureLink.set(null)"
     />
+}
+
+@if (processingPayment()) {
+    <div class="fixed inset-0 z-[60] flex flex-col items-center justify-center gap-3 bg-black/60">
+        <span class="spinner"></span>
+        <p class="text-sm font-medium text-white">{{ 'quote.agreement.paymentProcessing' | transloco }}</p>
+    </div>
 }
