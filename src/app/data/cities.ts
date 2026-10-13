@@ -2,7 +2,6 @@ export type { City } from '../shared/interfaces/city';
 import type { City } from '../shared/interfaces/city';
 
 export const CITIES: City[] = [
-
   // ── Paris & Île-de-France (rayon 50 km par route) ─────────────────────────
   { slug: 'paris', name: 'Paris', region: 'Île-de-France',
     nearbyCities: [
@@ -175,7 +174,7 @@ export const CITIES: City[] = [
 
   // ── Toulouse & environs (rayon 50 km par route) ───────────────────────────
   { slug: 'toulouse', name: 'Toulouse', region: 'Occitanie',
-    nearbyCities: ['blagnac','colomiers','tournefeuille','cugnaux','muret'],
+    nearbyCities: ['blagnac','colomiers','tournefeuille','cugnaux','muret','montauban'],
   },
   { slug: 'blagnac', name: 'Blagnac', region: 'Occitanie',
     nearbyCities: ['toulouse','colomiers','muret'],
@@ -251,7 +250,7 @@ export const CITIES: City[] = [
 
   // ── Strasbourg & environs (rayon 50 km par route) ─────────────────────────
   { slug: 'strasbourg', name: 'Strasbourg', region: 'Grand Est',
-    nearbyCities: ['schiltigheim','illkirch-graffenstaden','haguenau','selestat'],
+    nearbyCities: ['schiltigheim','illkirch-graffenstaden','haguenau'],
   },
   { slug: 'schiltigheim', name: 'Schiltigheim', region: 'Grand Est',
     nearbyCities: ['strasbourg','illkirch-graffenstaden'],
@@ -262,11 +261,6 @@ export const CITIES: City[] = [
   { slug: 'haguenau', name: 'Haguenau', region: 'Grand Est',
     nearbyCities: ['strasbourg'],
   },
-  // Sélestat (~50 km de Strasbourg par A35)
-  { slug: 'selestat', name: 'Sélestat', region: 'Grand Est',
-    nearbyCities: ['strasbourg'],
-  },
-
   // ── Montpellier & environs (rayon 50 km par route) ────────────────────────
   { slug: 'montpellier', name: 'Montpellier', region: 'Occitanie',
     nearbyCities: ['sete','lunel','agde'],
@@ -274,12 +268,13 @@ export const CITIES: City[] = [
   { slug: 'sete', name: 'Sète', region: 'Occitanie',
     nearbyCities: ['montpellier','agde','lunel','beziers'],
   },
-  // Nîmes (~54 km de Montpellier par route) : connectée via Lunel
+  // Nîmes (~54 km de Montpellier par route) : connectée via Lunel, jamais directement à Montpellier
   { slug: 'nimes', name: 'Nîmes', region: 'Occitanie',
-    nearbyCities: ['lunel'],
+    nearbyCities: ['lunel','ales','avignon'],
   },
+  { slug: 'ales', name: 'Alès', region: 'Occitanie', nearbyCities: ['nimes'] },
   { slug: 'beziers', name: 'Béziers', region: 'Occitanie',
-    nearbyCities: ['agde','sete'],
+    nearbyCities: ['agde','sete','narbonne'],
   },
   { slug: 'lunel', name: 'Lunel', region: 'Occitanie',
     nearbyCities: ['montpellier','nimes','sete'],
@@ -325,8 +320,9 @@ export const CITIES: City[] = [
   { slug: 'lorient', name: 'Lorient', region: 'Bretagne', nearbyCities: [] },
 
   // ── Grenoble & environs ───────────────────────────────────────────────────
+  // Chambéry (~55 km de Grenoble par route) : zone explicitement groupée malgré le léger dépassement
   { slug: 'grenoble', name: 'Grenoble', region: 'Auvergne-Rhône-Alpes',
-    nearbyCities: ['echirolles','saint-martin-dheres','bourgoin-jallieu'],
+    nearbyCities: ['echirolles','saint-martin-dheres','bourgoin-jallieu','chambery'],
   },
   { slug: 'echirolles', name: 'Échirolles', region: 'Auvergne-Rhône-Alpes',
     nearbyCities: ['grenoble','saint-martin-dheres'],
@@ -345,10 +341,12 @@ export const CITIES: City[] = [
   { slug: 'hyeres', name: 'Hyères', region: "Provence-Alpes-Côte d'Azur",
     nearbyCities: ['toulon','la-seyne-sur-mer'],
   },
-  // Fréjus rattaché au cluster Nice/Cannes (~35 km de Cannes)
+  // Fréjus rattaché au cluster Nice/Cannes (~35 km de Cannes) + micro-cluster Saint-Raphaël/Draguignan
   { slug: 'frejus', name: 'Fréjus', region: "Provence-Alpes-Côte d'Azur",
-    nearbyCities: ['cannes'],
+    nearbyCities: ['cannes','saint-raphael','draguignan'],
   },
+  { slug: 'saint-raphael', name: 'Saint-Raphaël', region: "Provence-Alpes-Côte d'Azur", nearbyCities: ['frejus','draguignan'] },
+  { slug: 'draguignan', name: 'Draguignan', region: "Provence-Alpes-Côte d'Azur", nearbyCities: ['frejus','saint-raphael'] },
   { slug: 'six-fours-les-plages', name: 'Six-Fours-les-Plages', region: "Provence-Alpes-Côte d'Azur",
     nearbyCities: ['toulon','la-seyne-sur-mer','la-garde'],
   },
@@ -356,8 +354,151 @@ export const CITIES: City[] = [
     nearbyCities: ['toulon','la-seyne-sur-mer','six-fours-les-plages'],
   },
 
-  // ── Villes isolées ────────────────────────────────────────────────────────
+  { slug: 'montauban', name: 'Montauban', region: 'Occitanie', nearbyCities: ['toulouse'] },
+
+  { slug: 'chambery', name: 'Chambéry', region: 'Auvergne-Rhône-Alpes', nearbyCities: ['grenoble','aix-les-bains'] },
+  { slug: 'aix-les-bains', name: 'Aix-les-Bains', region: 'Auvergne-Rhône-Alpes', nearbyCities: ['chambery'] },
+
+  { slug: 'avignon', name: 'Avignon', region: "Provence-Alpes-Côte d'Azur",
+    nearbyCities: ['nimes','carpentras','cavaillon','orange','isle-sur-la-sorgue'],
+  },
+  { slug: 'carpentras', name: 'Carpentras', region: "Provence-Alpes-Côte d'Azur", nearbyCities: ['avignon'] },
+  { slug: 'cavaillon', name: 'Cavaillon', region: "Provence-Alpes-Côte d'Azur", nearbyCities: ['avignon'] },
+  { slug: 'orange', name: 'Orange', region: "Provence-Alpes-Côte d'Azur", nearbyCities: ['avignon'] },
+  { slug: 'isle-sur-la-sorgue', name: "L'Isle-sur-la-Sorgue", region: "Provence-Alpes-Côte d'Azur", nearbyCities: ['avignon'] },
+
   { slug: 'saint-etienne', name: 'Saint-Étienne', region: 'Auvergne-Rhône-Alpes', nearbyCities: [] },
+  { slug: 'firminy', name: 'Firminy', region: 'Auvergne-Rhône-Alpes', nearbyCities: ['saint-etienne'] },
+
+  // ── Reims & environs (rayon 50 km par route) ──────────────────────────────
+  { slug: 'reims', name: 'Reims', region: 'Grand Est',
+    nearbyCities: ['epernay','chalons-en-champagne'],
+  },
+  { slug: 'epernay', name: 'Épernay', region: 'Grand Est', nearbyCities: ['reims'] },
+  // Châlons-en-Champagne (~45 km de Reims par route)
+  { slug: 'chalons-en-champagne', name: 'Châlons-en-Champagne', region: 'Grand Est', nearbyCities: ['reims'] },
+
+  // ── Le Havre (aucun satellite ≥20k habitants dans un rayon de 50 km) ──────
+  { slug: 'le-havre', name: 'Le Havre', region: 'Normandie', nearbyCities: [] },
+  { slug: 'montivilliers', name: 'Montivilliers', region: 'Normandie', nearbyCities: ['le-havre'] },
+
+  // ── Dijon & environs (rayon 50 km) ────────────────────────────────────────
+  { slug: 'dijon', name: 'Dijon', region: 'Bourgogne-Franche-Comté', nearbyCities: ['beaune'] },
+  // Chalon-sur-Saône : aucun candidat ≥20k à ≤50 km à vol d'oiseau trouvé
+  { slug: 'chalon-sur-saone', name: 'Chalon-sur-Saône', region: 'Bourgogne-Franche-Comté', nearbyCities: [] },
+  { slug: 'beaune', name: 'Beaune', region: 'Bourgogne-Franche-Comté', nearbyCities: ['dijon'] },
+
+  // ── Angers & environs (rayon 50 km par route) ─────────────────────────────
+  { slug: 'angers', name: 'Angers', region: 'Pays de la Loire', nearbyCities: ['saumur'] },
+  { slug: 'saumur', name: 'Saumur', region: 'Pays de la Loire', nearbyCities: ['angers'] },
+
+  // ── Clermont-Ferrand & environs (rayon 50 km par route) ───────────────────
+  { slug: 'clermont-ferrand', name: 'Clermont-Ferrand', region: 'Auvergne-Rhône-Alpes', nearbyCities: ['vichy'] },
+  // Vichy : 47 km de Clermont-Ferrand à vol d'oiseau (dans le rayon)
+  { slug: 'vichy', name: 'Vichy', region: 'Auvergne-Rhône-Alpes', nearbyCities: ['clermont-ferrand'] },
+
+  // ── Tours & environs (rayon 50 km par route) ──────────────────────────────
+  { slug: 'tours', name: 'Tours', region: 'Centre-Val de Loire', nearbyCities: ['joue-les-tours'] },
+  { slug: 'joue-les-tours', name: 'Joué-lès-Tours', region: 'Centre-Val de Loire', nearbyCities: ['tours'] },
+
+  // ── Amiens & environs (rayon 50 km par route) ─────────────────────────────
+  // Amiens (aucun satellite ≥20k habitants à ≤50 km à vol d'oiseau : Beauvais à ~54 km, Albert/Corbie <20k)
+  { slug: 'amiens', name: 'Amiens', region: 'Hauts-de-France', nearbyCities: [] },
+  // Beauvais : aucun candidat ≥20k à ≤50 km à vol d'oiseau trouvé
+  { slug: 'beauvais', name: 'Beauvais', region: 'Hauts-de-France', nearbyCities: [] },
+
+  // ── Limoges & environs (rayon 50 km par route) ────────────────────────────
+  // Limoges (aucun satellite ≥20k habitants à ≤50 km)
+  { slug: 'limoges', name: 'Limoges', region: 'Nouvelle-Aquitaine', nearbyCities: [] },
+  { slug: 'panazol', name: 'Panazol', region: 'Nouvelle-Aquitaine', nearbyCities: ['limoges'] },
+
+  // ── Annecy & environs (rayon 50 km par route) ─────────────────────────────
+  { slug: 'annecy', name: 'Annecy', region: 'Auvergne-Rhône-Alpes', nearbyCities: ['annemasse'] },
+  { slug: 'annemasse', name: 'Annemasse', region: 'Auvergne-Rhône-Alpes', nearbyCities: ['annecy'] },
+
+  // ── Perpignan & environs (rayon 50 km par route) ──────────────────────────
+  // Perpignan (aucun satellite ≥20k habitants à ≤50 km à vol d'oiseau : Narbonne à ~56 km)
+  { slug: 'perpignan', name: 'Perpignan', region: 'Occitanie', nearbyCities: [] },
+  { slug: 'narbonne', name: 'Narbonne', region: 'Occitanie', nearbyCities: ['beziers'] },
+
+  // ── Metz & environs (rayon 50 km par route) ───────────────────────────────
+  { slug: 'metz', name: 'Metz', region: 'Grand Est',
+    nearbyCities: ['montigny-les-metz','thionville','nancy'],
+  },
+  { slug: 'montigny-les-metz', name: 'Montigny-lès-Metz', region: 'Grand Est', nearbyCities: ['metz'] },
+  { slug: 'thionville', name: 'Thionville', region: 'Grand Est', nearbyCities: ['metz'] },
+  // Nancy : 47,5 km de Metz à vol d'oiseau (dans le rayon)
+  { slug: 'nancy', name: 'Nancy', region: 'Grand Est', nearbyCities: ['metz'] },
+
+  // Besançon (Montbéliard à ~66 km à vol d'oiseau, hors rayon et pas une ville principale)
+  { slug: 'besancon', name: 'Besançon', region: 'Bourgogne-Franche-Comté', nearbyCities: [] },
+  { slug: 'montbeliard', name: 'Montbéliard', region: 'Bourgogne-Franche-Comté', nearbyCities: ['belfort'] },
+  { slug: 'belfort', name: 'Belfort', region: 'Bourgogne-Franche-Comté', nearbyCities: ['montbeliard'] },
+
+  // ── Orléans & environs (rayon 50 km par route) ────────────────────────────
+  { slug: 'orleans', name: 'Orléans', region: 'Centre-Val de Loire', nearbyCities: ['olivet'] },
+  // Blois : aucun candidat ≥20k à ≤50 km à vol d'oiseau trouvé
+  { slug: 'blois', name: 'Blois', region: 'Centre-Val de Loire', nearbyCities: [] },
+  { slug: 'olivet', name: 'Olivet', region: 'Centre-Val de Loire', nearbyCities: ['orleans'] },
+
+  // ── Mulhouse & environs (rayon 50 km par route) ───────────────────────────
+  { slug: 'mulhouse', name: 'Mulhouse', region: 'Grand Est', nearbyCities: ['colmar'] },
+  { slug: 'colmar', name: 'Colmar', region: 'Grand Est', nearbyCities: ['mulhouse'] },
+
+  // ── Caen & environs (rayon 50 km par route) ───────────────────────────────
+  { slug: 'caen', name: 'Caen', region: 'Normandie', nearbyCities: ['herouville-saint-clair'] },
+  { slug: 'lisieux', name: 'Lisieux', region: 'Normandie', nearbyCities: ['caen'] },
+  { slug: 'herouville-saint-clair', name: 'Hérouville-Saint-Clair', region: 'Normandie', nearbyCities: ['caen'] },
+
+  // ── Ajaccio & environs (Corse, rayon 50 km par route) ─────────────────────
+  { slug: 'ajaccio', name: 'Ajaccio', region: 'Corse', nearbyCities: [] },
+  { slug: 'porticcio', name: 'Porticcio', region: 'Corse', nearbyCities: ['ajaccio'] },
+
+  // ── Bastia & environs (Corse, rayon 50 km par route) ──────────────────────
+  { slug: 'bastia', name: 'Bastia', region: 'Corse', nearbyCities: [] },
+  { slug: 'biguglia', name: 'Biguglia', region: 'Corse', nearbyCities: ['bastia'] },
+
+  // ── Pointe-à-Pitre & environs (Guadeloupe, rayon 50 km par route) ─────────
+  { slug: 'pointe-a-pitre', name: 'Pointe-à-Pitre', region: 'Guadeloupe',
+    nearbyCities: ['les-abymes','baie-mahault','le-gosier'],
+  },
+  { slug: 'les-abymes', name: 'Les Abymes', region: 'Guadeloupe', nearbyCities: ['pointe-a-pitre'] },
+  { slug: 'baie-mahault', name: 'Baie-Mahault', region: 'Guadeloupe', nearbyCities: ['pointe-a-pitre'] },
+  { slug: 'le-gosier', name: 'Le Gosier', region: 'Guadeloupe', nearbyCities: ['pointe-a-pitre'] },
+
+  // ── Fort-de-France & environs (Martinique, rayon 50 km par route) ─────────
+  { slug: 'fort-de-france', name: 'Fort-de-France', region: 'Martinique', nearbyCities: ['le-lamentin'] },
+  { slug: 'le-lamentin', name: 'Le Lamentin', region: 'Martinique', nearbyCities: ['fort-de-france'] },
+
+  // ── Cayenne & environs (Guyane, rayon 50 km par route) ────────────────────
+  { slug: 'cayenne', name: 'Cayenne', region: 'Guyane',
+    nearbyCities: ['matoury','remire-montjoly'],
+  },
+  { slug: 'matoury', name: 'Matoury', region: 'Guyane', nearbyCities: ['cayenne'] },
+  { slug: 'remire-montjoly', name: 'Rémire-Montjoly', region: 'Guyane', nearbyCities: ['cayenne'] },
+
+  // ── Saint-Denis & Saint-Pierre (La Réunion) ────────────────────────────────
+  // Les deux pôles de l'île sont à ~65 km l'un de l'autre (versants opposés) : jamais reliés
+  // directement, chacun garde son propre micro-cluster de 50 km. Slugs suffixés "-reunion" pour
+  // éviter toute collision avec le Saint-Denis d'Île-de-France (slug 'saint-denis' déjà pris).
+  { slug: 'saint-denis-reunion', name: 'Saint-Denis', region: 'La Réunion',
+    nearbyCities: ['sainte-marie-reunion','le-port','la-possession'],
+  },
+  { slug: 'sainte-marie-reunion', name: 'Sainte-Marie', region: 'La Réunion', nearbyCities: ['saint-denis-reunion'] },
+  { slug: 'le-port', name: 'Le Port', region: 'La Réunion', nearbyCities: ['saint-denis-reunion'] },
+  { slug: 'la-possession', name: 'La Possession', region: 'La Réunion', nearbyCities: ['saint-denis-reunion'] },
+  { slug: 'saint-pierre-reunion', name: 'Saint-Pierre', region: 'La Réunion',
+    nearbyCities: ['saint-louis-reunion','le-tampon','saint-joseph-reunion'],
+  },
+  { slug: 'saint-louis-reunion', name: 'Saint-Louis', region: 'La Réunion', nearbyCities: ['saint-pierre-reunion'] },
+  { slug: 'le-tampon', name: 'Le Tampon', region: 'La Réunion', nearbyCities: ['saint-pierre-reunion'] },
+  { slug: 'saint-joseph-reunion', name: 'Saint-Joseph', region: 'La Réunion', nearbyCities: ['saint-pierre-reunion'] },
+
+  // ── Mamoudzou & environs (Mayotte, rayon 50 km par route) ─────────────────
+  { slug: 'mamoudzou', name: 'Mamoudzou', region: 'Mayotte', nearbyCities: ['koungou'] },
+  { slug: 'koungou', name: 'Koungou', region: 'Mayotte', nearbyCities: ['mamoudzou'] },
+
+  // ── Villes isolées ────────────────────────────────────────────────────────
   { slug: 'roanne', name: 'Roanne', region: 'Auvergne-Rhône-Alpes', nearbyCities: [] },
 ];
 
