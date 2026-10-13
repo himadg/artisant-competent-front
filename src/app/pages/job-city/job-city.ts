@@ -11,7 +11,6 @@ export class JobCityPage implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private paramsSub?: Subscription;
-  tradeContent: any = null;
 
   ngOnInit(): void {
     this.paramsSub = this.route.paramMap.subscribe(params => {

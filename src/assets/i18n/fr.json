@@ -7,7 +7,7 @@
     }
   },
   "prelaunch": {
-    "banner": "Plateforme en pré-lancement · Les inscriptions sont ouvertes. Toutes les autres fonctionnalités seront disponibles à partir du 15 Octobre 2026.",
+    "banner": "Plateforme en pré-lancement · Les inscriptions sont ouvertes. Toutes les autres fonctionnalités seront disponibles prochainement.",
     "bannerAriaLabel": "Annonce pré-lancement"
   },
   "completeRegistration": {
@@ -659,7 +659,8 @@
     "nameAtCity": "{{ name }} à {{ city }}",
     "list": {
       "electrician": {
-        "title": "Électricien vérifié, du devis à la mise sous tension encadrée",
+        "pageTitle": "Électricité & Appareils connectés | Artisan Compétent",
+        "title": "Électricien vérifié, du devis à la mise sous tension encadrée (24/7)",
         "name": "Électricité & Appareils connectés (24/7)",
         "metaTitle": "Électricien vérifié à {{ city }} : SIRET, NF C 18-510, paiement encadré Stripe | Artisan Compétent",
         "metaDescription": "Électricien vérifié à {{ city }} : SIRET contrôlé, RC pro et décennale à jour, habilitation NF C 18-510, qualification IRVE pour bornes de recharge. Paiement encadré via Stripe : règlement versé à l'artisan 96h après le chantier.",
@@ -860,7 +861,8 @@
         }
       },
       "locksmith": {
-        "title": "Serrurier vérifié, sans subir le devis nocturne",
+        "pageTitle": "Serrurier | Artisan Compétent",
+        "title": "Serrurier vérifié, sans subir le devis nocturne (24/7)",
         "name": "Serrurier (24/7)",
         "metaTitle": "Serrurier à {{ city }} — Urgence 24h/24 | Artisan Compétent",
         "metaDescription": "Serrurier disponible 24h/24 à {{ city }}. Porte claquée, serrure forcée, changement de serrure : intervention rapide et tarif juste. Paiement sécurisé sur Artisan Compétent.",
@@ -1078,7 +1080,8 @@
         }
       },
       "plumberSanitary": {
-        "title": "Plombier sanitaire vérifié, du devis au versement du règlement à l'artisan encadrée",
+        "pageTitle": "Plombier sanitaire | Artisan Compétent",
+        "title": "Plombier sanitaire vérifié, du devis au versement du règlement à l'artisan encadrée (24/7)",
         "name": "Plombier sanitaire (24/7)",
         "metaTitle": "Plombier à {{ city }} — Dépannage urgent | Artisan Compétent",
         "metaDescription": "Trouvez un plombier qualifié à {{ city }} pour une fuite, une installation sanitaire ou un dépannage d'urgence. Devis gratuit, paiement sécurisé, disponible 24h/24.",
@@ -1284,11 +1287,12 @@
         }
       },
       "drainUnblocker": {
-        "title": "Déboucheur de canalisations vérifié, du devis à la libération encadrée",
-        "name": "Déboucheur de canalisations (24/7)",
-        "metaTitle": "Déboucheur de canalisation à {{ city }} — Urgent | Artisan Compétent",
-        "metaDescription": "Canalisation bouchée à {{ city }} ? Intervention urgente d'un déboucheur qualifié. Évier, WC, canalisation engorgée : résolu rapidement avec paiement sécurisé.",
-        "metaKeywords": "débouchage canalisation {{ city }}, plombier déboucheur {{ city }}, canalisation bouchée {{ city }}, WC bouché {{ city }}",
+        "pageTitle": "Déboucheur canalisation & chemisage | Artisan Compétent",
+        "title": "Trouver un déboucheur de canalisations vérifié : débouchage, hydrocurage et chemisage sans travaux lourds (24/7)",
+        "name": "Déboucheur de canalisations & chemisage (24/7)",
+        "metaTitle": "Déboucheur de canalisations & chemisage à {{ city }} — Urgent | Artisan Compétent",
+        "metaDescription": "Canalisation bouchée ou un chemisage à faire à {{ city }} ? Intervention urgente d'un déboucheur qualifié. Évier, WC, canalisation engorgée : résolu rapidement avec paiement sécurisé. Déboucheur vérifié : débouchage, hydrocurage, inspection caméra et chemisage sans tranchée. SIRET et assurances contrôlés, paiement en séquestre Stripe.",
+        "metaKeywords": "débouchage canalisation & chemisage {{ city }}, plombier déboucheur {{ city }}, canalisation bouchée {{ city }}, WC bouché {{ city}}, chemisage canalisation {{ city }}, gainage de canalisation {{ city }}, réparation canalisation sans tranchée {{ city }}, réhabilitation canalisation sans creuser {{ city }}, chemisage canalisation prix {{ city }}",
         "tagline": "Cette page liste les interventions de débouchage et d'assainissement traitées par les artisans vérifiés d'Artisan Compétent et le mécanisme qui encadre votre paiement, du devis chiffré au versement du règlement à l'artisan 96h après l'intervention.",
         "verifiedBadge": "En bref, un déboucheur de canalisations vérifié sur Artisan Compétent a son SIRET contrôlé, son assurance RC pro à jour, l’agrément préfectoral pour l’évacuation des matières de vidange si son activité touche aux fosses septiques, et son matériel (caméra d’inspection, hydrocureur) tracé au tableau de bord. Process encadré et traité par Stripe, 96h pour signaler un abus. Couverture France métropolitaine, DOM-TOM et Corse sur 38 zones, rayon de 50 km par ville.",
         "description": {
@@ -1307,7 +1311,9 @@
             "Vidange de fosse septique avec bordereau de suivi et évacuation par professionnel agréé préfectoralement",
             "Mise en conformité d’une installation d’assainissement non collectif après contrôle SPANC",
             "Dégorgement d’un poste de relevage, d’une station de pompage ou d’un siphon de cour",
-            "Recherche de cassure ou de contre-pente sur réseau d’évacuation par passage caméra"
+            "Recherche de cassure ou de contre-pente sur réseau d’évacuation par passage caméra",
+            "Chemisage (gainage) d'une canalisation fissurée ou cassée, sans ouverture de tranchée",
+            "Réparation localisée par manchette après repérage caméra, sur réseau enterré ou sous dalle"
           ],
           "footer": "Chacune de ces interventions est encadrée par le code de la santé publique et, pour l’assainissement non collectif, par l’arrêté du 7 septembre 2009 modifié. L’évacuation des matières de vidange impose un professionnel agréé par le préfet : c’est un point que la vérification Artisan Compétent contrôle quand le métier l’exige."
         },
@@ -1462,6 +1468,10 @@
               "a": "Le furet (manuel ou motorisé) est un câble mécanique souple, terminé par une tête adaptée, qui désagrège ou repousse un bouchon localisé sur évacuation courte. L’hydrocurage utilise un jet d’eau haute pression projeté par une lance dans la canalisation pour décoller les graisses, les dépôts et les obstructions sur des longueurs plus importantes. L’hydrocurage est plus puissant mais aussi plus cher. Le choix dépend du diagnostic, qui passe idéalement par une inspection caméra préalable."
             },
             {
+              "q": "Qu'est-ce que le chemisage d'une canalisation et dans quels cas y a-t-on recours ?",
+              "a": "Le chemisage consiste à réparer une canalisation de l'intérieur, sans creuser. Après un repérage par caméra, l'artisan insère dans le réseau une gaine imprégnée de résine qui est plaquée contre la paroi existante puis durcie sur place : la conduite est reconstituée sur toute la longueur traitée. On y a recours sur les canalisations fissurées, cassées ou dégradées, en particulier lorsqu'elles sont enterrées ou passent sous une dalle, et que la réparation classique imposerait plusieurs jours de terrassement. Sur Artisan Compétent, le diagnostic caméra et le devis détaillé précèdent l'intervention, le paiement reste en séquestre Stripe et le client dispose de 48h après la fin du chantier pour valider ou signaler un défaut."
+            },
+            {
               "q": "Faut-il un agrément spécial pour vidanger une fosse septique ?",
               "a": "Oui. L’évacuation des matières de vidange impose un professionnel agréé par le préfet, avec délivrance d’un bordereau de suivi à chaque vidange. C’est une obligation du code de la santé publique et de l’arrêté du 7 septembre 2009 modifié. Sur Artisan Compétent, l’agrément préfectoral est vérifié en amont pour les artisans qui interviennent sur fosses septiques, et déposé au tableau de bord."
             },
@@ -1495,10 +1505,20 @@
           "title": "Pour aller plus loin",
           "body": "Un WC qui refoule, une canalisation bouchée résistante au déboucheur chimique, une fosse à vidanger avec bordereau de suivi, un passage caméra à programmer sur un réseau ancien : Artisan Compétent encadre la vérification du déboucheur (SIRET, RC pro, agrément préfectoral, justificatif matériel) et tout votre process par paiement encadré jusqu’à 96h après l’intervention.",
           "footer": "Déboucheur vérifié SIRET, RC pro et agrément préfectoral pour vidange. Matériel tracé au tableau de bord (caméra d’inspection, hydrocureur). Process encadré et traité par Stripe. Retenue jusqu’à 250 € en cas de signalement d’abus. Recours assurance habitation systématique après dégât des eaux."
+        },
+        "lining": {
+          "title": "Le chemisage : réparer une canalisation cassée sans ouvrir le jardin",
+          "chapo": "Le chemisage reconstitue une canalisation endommagée par l'intérieur, sans terrassement. Encore peu connu des particuliers, il évite dans beaucoup de cas plusieurs jours de travaux lourds.",
+          "paragraphs": [
+            "Quand une canalisation enterrée casse, se fissure ou prend une contre-pente, le réflexe habituel est d'ouvrir : on creuse le jardin ou la dalle, on cherche le tronçon en cause, on remplace, on rebouche. C'est long, salissant et coûteux, en particulier sur une maison individuelle où le réseau passe sous les aménagements extérieurs.",
+            "Le chemisage suit une autre logique. L'artisan passe d'abord une caméra dans le réseau pour localiser précisément le défaut, puis insère une gaine imprégnée de résine qui est plaquée contre la paroi existante et durcie sur place. La canalisation est reconstituée de l'intérieur sur toute la longueur traitée, sans tranchée et sans démolition. Là où une réparation classique mobilise plusieurs jours de chantier, une intervention de chemisage se traite souvent dans la journée.",
+            "De plus en plus de déboucheurs proposent cette prestation en complément du débouchage et de l'hydrocurage, et certaines entreprises en ont fait leur spécialité. Sur Artisan Compétent, le chemisage suit exactement le même cadre que les autres interventions : diagnostic caméra puis devis détaillé avant tout engagement, paiement bloqué en séquestre via Stripe, et 48h après la fin du chantier pour valider le travail ou signaler un défaut."
+          ]
         }
       },
       "heating": {
-        "title": "Chauffagiste vérifié, du devis à la mise en chauffe encadrée",
+        "pageTitle": "Chauffagiste & VMC & Pompe à chaleur | Artisan Compétent",
+        "title": "Chauffagiste vérifié, du devis à la mise en chauffe encadrée (24/7)",
         "name": "Chauffagiste & VMC & Pompe à chaleur (24/7)",
         "metaTitle": "Chauffagiste & VMC & Pompe à chaleur à {{ city }} | Artisan Compétent",
         "metaDescription": "Chauffagiste qualifié à {{ city }} pour l'installation, l'entretien ou la réparation de votre chaudière, VMC ou pompe à chaleur. Devis gratuit et paiement sécurisé.",
@@ -1716,6 +1736,7 @@
         }
       },
       "hvac": {
+        "pageTitle": "Technicien climatisation & Frigoriste | Artisan Compétent",
         "title": "Technicien climatisation vérifié, du devis au versement du règlement à l'artisan encadrée",
         "name": "Technicien climatisation & Frigoriste",
         "metaTitle": "Technicien climatisation & Frigoriste à {{ city }} | Artisan Compétent",
@@ -1937,6 +1958,7 @@
         }
       },
       "glazier": {
+        "pageTitle": "Vitrerie & Miroiterie | Artisan Compétent",
         "title": "Vitrier vérifié, du devis au versement du règlement à l'artisan encadrée",
         "name": "Vitrerie & Miroiterie",
         "metaTitle": "Vitrerie & Miroiterie à {{ city }} — Devis gratuit | Artisan Compétent",
@@ -2165,6 +2187,7 @@
         }
       },
       "pestControl": {
+        "pageTitle": "Traitement anti-nuisibles (rongeurs, punaises...) | Artisan Compétent",
         "title": "Spécialiste anti-nuisibles vérifié, du devis au versement du règlement à l'artisan encadrée",
         "name": "Traitement anti-nuisibles (rongeurs, punaises...)",
         "metaTitle": "Traitement anti-nuisibles à {{ city }} — Rongeurs, punaises | Artisan Compétent",

@@ -7,7 +7,7 @@
     }
   },
   "prelaunch": {
-    "banner": "Platform in pre-launch · Sign-ups are open. All other features will be available from October 15, 2026.",
+    "banner": "Platform in pre-launch · Sign-ups are open. All other features will be available soon.",
     "bannerAriaLabel": "Pre-launch announcement"
   },
   "completeRegistration": {
@@ -659,7 +659,8 @@
     "nameAtCity": "{{ name }} in {{ city }}",
     "list": {
       "electrician": {
-        "title": "Verified electrician, from quote to supervised live work",
+        "pageTitle": "Electricity & Connected Devices | Artisan Compétent",
+        "title": "Verified electrician, from quote to supervised live work (24/7)",
         "name": "Electricity & Connected Devices (24/7)",
         "metaTitle": "Verified electrician in {{ city }} : SIRET, NF C 18-510, framed payment via Stripe | Artisan Compétent",
         "metaDescription": "Verified electrician in {{ city }}: checked SIRET, up-to-date RC pro and decennial insurance, NF C 18-510 certification, IRVE qualification for charging stations. Payment processed via Stripe: the professional is paid 96h after the job.",
@@ -860,7 +861,8 @@
         }
       },
       "locksmith": {
-        "title": "Verified locksmith, without suffering the night quote",
+        "pageTitle": "Locksmith | Artisan Compétent",
+        "title": "Verified locksmith, without suffering the night quote (24/7)",
         "name": "Locksmith (24/7)",
         "metaTitle": "Locksmith in {{ city }} — 24/7 emergency | Artisan Compétent",
         "metaDescription": "Locksmith available 24/7 in {{ city }}. Slammed door, forced lock, lock replacement: fast intervention at a fair price. Secure payment on Artisan Compétent.",
@@ -1078,7 +1080,8 @@
         }
       },
       "plumberSanitary": {
-        "title": "Verified Sanitary Plumber, from quote to overseen settlement",
+        "pageTitle": "Plumber Sanitary | Artisan Compétent",
+        "title": "Verified Sanitary Plumber, from quote to overseen settlement (24/7)",
         "name": "Plumber Sanitary (24/7)",
         "metaTitle": "Plumber in {{ city }} — Emergency repair | Artisan Compétent",
         "metaDescription": "Find a qualified plumber in {{ city }} for a leak, a sanitary installation or an emergency repair. Free quote, secure payment, available 24/7.",
@@ -1284,11 +1287,12 @@
         }
       },
       "drainUnblocker": {
-        "title": "Verified drain unblocker, from quote to overseen release",
-        "name": "Drain Unblocker (24/7)",
-        "metaTitle": "Drain unblocking in {{ city }} — Urgent | Artisan Compétent",
-        "metaDescription": "Blocked drain in {{ city }}? Urgent intervention from a qualified drain specialist. Sink, toilet, clogged pipes: resolved quickly with secure payment.",
-        "metaKeywords": "drain unblocking {{ city }}, drain plumber {{ city }}, blocked drain {{ city }}, blocked toilet {{ city }}",
+        "pageTitle": "Drain unblocking & pipe relining | Artisan Compétent",
+        "title": "Find a verified drain unblocker: unblocking, hydro-jetting and pipe relining without heavy works (24/7)",
+        "name": "Drain unblocker & pipe relining (24/7)",
+        "metaTitle": "Drain unblocking & pipe relining in {{ city }} — Urgent | Artisan Compétent",
+        "metaDescription": "Blocked or pipe relining in {{ city }}? Urgent intervention from a qualified drain specialist. Sink, toilet, clogged pipes: resolved quickly with secure payment. Verified drain unblocker: unblocking, hydro-jetting, camera inspection and trenchless pipe relining. SIRET and insurance checked, escrow payment via Stripe.",
+        "metaKeywords": "drain unblocking & pipe relining {{ city }}, drain plumber {{ city }}, blocked drain {{ city }}, blocked toilet {{ city }}, pipe relining {{ city }}, drain lining {{ city }}, trenchless pipe repair {{ city }}, no-dig pipe rehabilitation {{ city }}, pipe relining cost {{ city }}",
         "tagline": "This page lists the drain unblocking and sanitation interventions handled by verified tradespeople on Artisan Compétent and the mechanism that oversees your payment, from the detailed quote to settlement 96h after the intervention.",
         "verifiedBadge": "In short, a verified drain unblocker on Artisan Compétent has their SIRET checked, RC pro insurance up to date, prefectural approval for the evacuation of sewage if their activity involves septic tanks, and their equipment (inspection camera, hydro-jetting machine) tracked on the dashboard. Payment processed via Stripe, the payment provider, 96h to report an issue. Coverage across metropolitan France, overseas territories and Corsica across 38 zones, 50 km radius per city.",
         "description": {
@@ -1307,7 +1311,9 @@
             "Emptying of a septic tank with tracking slip and evacuation by a professional with prefectural approval",
             "Compliance upgrade of a non-mains drainage installation after a SPANC inspection",
             "Unblocking a lifting station, pumping station or courtyard gully",
-            "Finding a breakage or backfall on a drainage network by camera inspection"
+            "Finding a breakage or backfall on a drainage network by camera inspection",
+            "Relining (lining) of a cracked or broken pipe, without opening a trench",
+            "Localised repair with a patch after camera inspection, on a buried or under-slab network"
           ],
           "footer": "Each of these interventions is governed by the public health code and, for non-mains drainage, by the amended decree of 7 September 2009. The evacuation of sewage requires a professional approved by the prefect: this is a point that Artisan Compétent checks when the trade requires it."
         },
@@ -1462,6 +1468,10 @@
               "a": "The drain snake (manual or motorised) is a flexible mechanical cable, ending in a suitable head, which breaks up or pushes back a localised blockage on a short drain. Hydro-jetting uses a high-pressure water jet sprayed by a lance into the pipe to loosen grease, deposits and obstructions over longer distances. Hydro-jetting is more powerful but also more expensive. The choice depends on the diagnosis, which ideally involves a prior camera inspection."
             },
             {
+              "q": "What is pipe relining and when is it used?",
+              "a": "Pipe relining repairs a pipe from the inside, without digging. After a camera inspection, the tradesperson inserts a resin-impregnated liner into the network that is pressed against the existing wall then cured in place: the pipe is rebuilt along its whole treated length. It is used on cracked, broken or degraded pipes, especially when they are buried or run under a slab, and when a classic repair would require several days of excavation. On Artisan Compétent, the camera diagnosis and the detailed quote come before the job, payment stays in escrow via Stripe, and the client has 48h after the job ends to validate it or report a defect."
+            },
+            {
               "q": "Do you need special approval to empty a septic tank?",
               "a": "Yes. The evacuation of sewage requires a professional approved by the prefect, with the issuance of a tracking slip for each emptying. This is an obligation under the public health code and the amended decree of September 7, 2009. On Artisan Compétent, prefectural approval is verified beforehand for professionals working on septic tanks, and uploaded to the dashboard."
             },
@@ -1495,10 +1505,20 @@
           "title": "To go further",
           "body": "An overflowing toilet, a clogged pipe resistant to chemical unblockers, a septic tank to empty with a tracking slip, a camera inspection to schedule on an old network: Artisan Compétent oversees the verification of the drain unblocker (SIRET, RC pro, prefectural approval, equipment proof) and your entire process by framed payment until 96h after the intervention.",
           "footer": "Verified drain unblocker with SIRET, RC pro and prefectural approval for emptying. Equipment tracked on dashboard (inspection camera, hydro-jetting machine). Payment processed via Stripe, the payment provider. Withholding of up to €250 in case of reported abuse. Systematic home insurance recourse after water damage."
+        },
+        "lining": {
+          "title": "Pipe relining: repairing a broken pipe without digging up the garden",
+          "chapo": "Pipe relining rebuilds a damaged pipe from the inside, without excavation. Still little known to homeowners, it avoids several days of heavy works in many cases.",
+          "paragraphs": [
+            "When a buried pipe breaks, cracks or sags, the usual reflex is to dig: the garden or the slab is opened up, the faulty section is located, replaced, then backfilled. It's long, messy and costly, especially on a house where the network runs under outdoor fittings.",
+            "Pipe relining follows a different logic. The tradesperson first runs a camera through the network to precisely locate the defect, then inserts a resin-impregnated liner that is pressed against the existing wall and cured in place. The pipe is rebuilt from the inside along the whole treated length, without trenching or demolition. Where a classic repair takes up several days of work, a relining job is often completed within a day.",
+            "More and more drain unblockers offer this service alongside unblocking and hydro-jetting, and some companies have made it their specialty. On Artisan Compétent, pipe relining follows exactly the same framework as other jobs: camera diagnosis then a detailed quote before any commitment, payment held in escrow via Stripe, and 48h after the job ends to validate the work or report a defect."
+          ]
         }
       },
       "heating": {
-        "title": "Verified heating engineer, from quote to overseen start-up",
+        "pageTitle": "Heating & VMC & Heat Pump | Artisan Compétent",
+        "title": "Verified heating engineer, from quote to overseen start-up (24/7)",
         "name": "Heating & VMC & Heat Pump",
         "metaTitle": "Heating engineer, ventilation & heat pump in {{ city }} | Artisan Compétent",
         "metaDescription": "Qualified heating engineer in {{ city }} for the installation, maintenance or repair of your boiler, ventilation system or heat pump. Free quote and secure payment.",
@@ -1716,6 +1736,7 @@
         }
       },
       "hvac": {
+        "pageTitle": "HVAC Technician & Refrigeration Engineer | Artisan Compétent",
         "title": "Verified HVAC technician, from quote to overseen settlement",
         "name": "HVAC Technician & Refrigeration Engineer",
         "metaTitle": "Air conditioning technician & refrigeration engineer in {{ city }} | Artisan Compétent",
@@ -1937,6 +1958,7 @@
         }
       },
       "glazier": {
+        "pageTitle": "Glazing & Mirror Work | Artisan Compétent",
         "title": "Verified glazier, from quote to overseen settlement",
         "name": "Glazing & Mirror Work",
         "metaTitle": "Glazing & mirror work in {{ city }} — Free quote | Artisan Compétent",
@@ -2165,6 +2187,7 @@
         }
       },
       "pestControl": {
+        "pageTitle": "Pest Control (rodents, bedbugs, etc.) | Artisan Compétent",
         "title": "Verified pest control specialist, from quote to overseen settlement",
         "name": "Pest Control (rodents, bedbugs, etc.)",
         "metaTitle": "Pest control in {{ city }} — Rodents, bed bugs | Artisan Compétent",
