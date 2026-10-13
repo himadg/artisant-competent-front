@@ -67,7 +67,7 @@
         "locksmith": "Locksmith (24/7)",
         "plumberSanitary": "Plumber Sanitary (24/7)",
         "heating": "Heating & VMC & Heat Pump",
-        "drainUnblocker": "Drain Unblocker (24/7)",
+        "drainUnblocker": "Drain Unblocker & Chemical Treatment (24/7)",
         "hvac": "HVAC Technician & Refrigeration Engineer",
         "glazier": "Glazing & Mirror Work",
         "pestControl": "Pest Control (rodents, bedbugs, etc.)"
@@ -335,7 +335,7 @@
         },
         {
           "slug": "drain-unblocker",
-          "name": "Drain unblocker",
+          "name": "Drain unblocker & chemical treatment",
           "desc": "Blocked drain, backflow..."
         }
       ],
@@ -370,7 +370,7 @@
         },
         {
           "slug": "drain-unblocker",
-          "name": "Drain unblocker"
+          "name": "Drain unblocker & chemical treatment"
         },
         {
           "slug": "hvac",
@@ -489,7 +489,7 @@
       "submit": "Send request",
       "successTitle": "Request sent!",
       "successMessage": "The selected professionals have received your request.",
-      "error": "An error occurred. Please try again."
+      "error": "An error occurred. Please try again later or refresh."
     },
     "createSuccess": "Your request has been successfully sent to the professionals.",
     "photosUploadFailed": "Your request was created but the photos could not be uploaded. You can add them from your dashboard.",
@@ -2711,8 +2711,7 @@
     },
     "ribInfo": {
       "text1": "The bank details (RIB) requested here are used by Artisan Compétent for certain administrative operations and services offered on the platform.",
-      "stripe": "Customer payments go through Stripe.",
-      "text2": "A few days before the official launch, you will receive an email inviting you to create and finalise your Stripe account for free so that you can receive your payments."
+      "stripe": "Customer payments go through Stripe."
     },
     "mediator": {
       "title": "My consumer mediator",
