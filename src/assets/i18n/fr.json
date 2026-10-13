@@ -489,7 +489,7 @@
       "submit": "Envoyer la demande",
       "successTitle": "Demande envoyée !",
       "successMessage": "Les professionnels sélectionnés ont bien reçu votre demande.",
-      "error": "Une erreur est survenue. Veuillez réessayer."
+      "error": "Une erreur est survenue. Veuillez réessayer utlérieurement ou actualiser."
     },
     "createSuccess": "Votre demande a bien été envoyée aux professionnels.",
     "photosUploadFailed": "Votre demande a été créée mais les photos n'ont pas pu être envoyées. Vous pouvez les ajouter depuis votre espace.",
@@ -2711,8 +2711,7 @@
     },
     "ribInfo": {
       "text1": "Le RIB demandé ici est utilisé par Artisan Compétent pour certaines opérations administratives et services proposés sur la plateforme.",
-      "stripe": "Les paiements des clients transitent par Stripe.",
-      "text2": "Quelques jours avant le lancement officiel, vous recevrez un e-mail vous invitant à créer et finaliser gratuitement votre compte Stripe afin de pouvoir recevoir vos paiements."
+      "stripe": "Les paiements des clients transitent par Stripe."
     },
     "mediator": {
       "title": "Mon médiateur de la consommation",
