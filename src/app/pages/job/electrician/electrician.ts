@@ -12,7 +12,7 @@ import { JobCitiesSection } from '../../../shared/components/job-cities-section/
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoModule, JobCitiesSection, RouterModule],
   templateUrl: './electrician.html',
-  styleUrl: './electrician.scss'
+  styleUrl: './electrician.scss',
 })
 export class ElectricianPage implements OnInit, OnDestroy {
   private readonly meta = inject(Meta);
@@ -32,7 +32,7 @@ export class ElectricianPage implements OnInit, OnDestroy {
   nearbyCities: { city: City; tradeSlug: string }[] = [];
 
   ngOnInit(): void {
-    this.querySub = this.route.queryParamMap.subscribe(params => {
+    this.querySub = this.route.queryParamMap.subscribe((params) => {
       const citySlug = params.get('city');
 
       if (citySlug && getAllCities().includes(citySlug)) {
@@ -53,7 +53,7 @@ export class ElectricianPage implements OnInit, OnDestroy {
       this.cdr.markForCheck();
     });
 
-    this.contentSub = this.transloco.selectTranslateObject(`jobs.list.${this.trade.i18nKey}`).subscribe(content => {
+    this.contentSub = this.transloco.selectTranslateObject(`jobs.list.${this.trade.i18nKey}`).subscribe((content) => {
       this.tradeContent = content;
       this.updateMetaTags();
       this.cdr.markForCheck();
@@ -63,14 +63,22 @@ export class ElectricianPage implements OnInit, OnDestroy {
   private updateMetaTags(): void {
     if (!this.tradeContent) return;
 
-    if (this.city) {
-      const params = { city: this.city.name };
-      this.titleService.setTitle(this.transloco.translate<string>(`jobs.list.${this.trade.i18nKey}.metaTitle`, params));
-      this.meta.updateTag({ name: 'description', content: this.transloco.translate<string>(`jobs.list.${this.trade.i18nKey}.metaDescription`, params) });
-      this.meta.updateTag({ name: 'keywords', content: this.transloco.translate<string>(`jobs.list.${this.trade.i18nKey}.metaKeywords`, params) });
-    } else {
-      this.titleService.setTitle(this.tradeContent.name);
-    }
+    const params = { city: this.city ? this.city.name : '' };
+
+    this.titleService.setTitle(
+      this.city
+        ? this.transloco.translate<string>(`jobs.list.${this.trade.i18nKey}.metaTitle`, params)
+        : this.tradeContent.pageTitle,
+    );
+    this.meta.updateTag({
+      name: 'description',
+      content: this.transloco.translate<string>(`jobs.list.${this.trade.i18nKey}.metaDescription`, params),
+    });
+    this.meta.updateTag({
+      name: 'keywords',
+      content: this.transloco.translate<string>(`jobs.list.${this.trade.i18nKey}.metaKeywords`, params),
+    });
+
     this.meta.updateTag({ name: 'robots', content: 'index, follow' });
   }
 

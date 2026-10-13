@@ -4,7 +4,7 @@
         <section class="space-y-4">
             <h1 class="text-2xl font-semibold title">
                 @if (city) {
-                    {{ 'jobs.nameAtCity' | transloco: { name: tradeContent.name, city: city.name } }}
+                    {{ 'jobs.nameAtCity' | transloco: { name: tradeContent.title, city: city.name } }}
                 } @else {
                     {{ tradeContent.title }}
                 }
@@ -45,6 +45,17 @@
                 </ul>
                 @if (tradeContent.whenToCall.footer) {
                     <p class="text-sm italic">{{ tradeContent.whenToCall.footer }}</p>
+                }
+            </section>
+        }
+
+        <!-- Chemisage -->
+        @if (tradeContent.lining) {
+            <section class="space-y-3 border-t pt-8">
+                <h2 class="text-xl font-semibold title">{{ tradeContent.lining.title }}</h2>
+                <p class="text-sm italic text-[var(--text-muted)]">{{ tradeContent.lining.chapo }}</p>
+                @for (paragraph of tradeContent.lining.paragraphs; track $index) {
+                    <p>{{ paragraph }}</p>
                 }
             </section>
         }

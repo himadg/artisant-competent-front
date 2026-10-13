@@ -63,14 +63,16 @@ export class DrainUnblockerPage implements OnInit, OnDestroy {
   private updateMetaTags(): void {
     if (!this.tradeContent) return;
 
-    if (this.city) {
-      const params = { city: this.city.name };
-      this.titleService.setTitle(this.transloco.translate<string>(`jobs.list.${this.trade.i18nKey}.metaTitle`, params));
-      this.meta.updateTag({ name: 'description', content: this.transloco.translate<string>(`jobs.list.${this.trade.i18nKey}.metaDescription`, params) });
-      this.meta.updateTag({ name: 'keywords', content: this.transloco.translate<string>(`jobs.list.${this.trade.i18nKey}.metaKeywords`, params) });
-    } else {
-      this.titleService.setTitle(this.tradeContent.name);
-    }
+    const params = { city: this.city ? this.city.name : '' };
+
+    this.titleService.setTitle(
+      this.city
+        ? this.transloco.translate<string>(`jobs.list.${this.trade.i18nKey}.metaTitle`, params)
+        : this.tradeContent.pageTitle,
+    );
+    this.meta.updateTag({ name: 'description', content: this.transloco.translate<string>(`jobs.list.${this.trade.i18nKey}.metaDescription`, params) });
+    this.meta.updateTag({ name: 'keywords', content: this.transloco.translate<string>(`jobs.list.${this.trade.i18nKey}.metaKeywords`, params) });
+
     this.meta.updateTag({ name: 'robots', content: 'index, follow' });
   }
 
