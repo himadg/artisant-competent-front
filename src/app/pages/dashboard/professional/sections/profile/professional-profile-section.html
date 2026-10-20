@@ -633,11 +633,13 @@
 
         @case ('documents') {
             <div class="doc-grid">
+                <!-- RIB désactivé (plus demandé aux pros) — entrée retirée de la liste ci-dessous :
+                { key: pro.professionalProfile.ribKey, url: pro.professionalProfile.ribUrl, label: 'dashboard.pro.docs.rib' },
+                -->
                 @for (
                     doc of [
                         { key: pro.professionalProfile.idFrontKey, url: pro.professionalProfile.idFrontUrl, label: 'dashboard.pro.docs.idFront' },
                         { key: pro.professionalProfile.idBackKey, url: pro.professionalProfile.idBackUrl, label: 'dashboard.pro.docs.idBack' },
-                        { key: pro.professionalProfile.ribKey, url: pro.professionalProfile.ribUrl, label: 'dashboard.pro.docs.rib' },
                         { key: pro.professionalProfile.companyLogoKey, url: pro.professionalProfile.logoUrl, label: 'dashboard.pro.docs.logo' },
                     ];
                     track doc.key

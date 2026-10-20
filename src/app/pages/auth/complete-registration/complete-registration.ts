@@ -39,7 +39,8 @@ export class CompleteRegistrationPage implements OnInit {
   readonly idFrontName = signal<string | null>(null);
   readonly idBackName = signal<string | null>(null);
   readonly logoName = signal<string | null>(null);
-  readonly ribName = signal<string | null>(null);
+  // RIB désactivé (plus demandé aux pros)
+  // readonly ribName = signal<string | null>(null);
 
   // Data-URL pour un aperçu image, ou le repère "pdf" (aucun rendu de contenu, juste une icône) —
   // null tant qu'aucun fichier n'a été choisi pour ce champ.
@@ -47,13 +48,15 @@ export class CompleteRegistrationPage implements OnInit {
   readonly idFrontPreview = signal<string | 'pdf' | null>(null);
   readonly idBackPreview = signal<string | 'pdf' | null>(null);
   readonly logoPreview = signal<string | 'pdf' | null>(null);
-  readonly ribPreview = signal<string | 'pdf' | null>(null);
+   // RIB désactivé
+   // readonly ribPreview = signal<string | 'pdf' | null>(null);
 
   private photo: File | null = null;
   private idFront: File | null = null;
   private idBack: File | null = null;
   private logo: File | null = null;
-  private rib: File | null = null;
+   // RIB désactivé
+   // private rib: File | null = null;
 
   readonly diplomaFiles = signal<DiplomaEntry[]>([
     { file: null, preview: null, fileName: null, documentName: '', expiryDate: '' },
@@ -88,7 +91,8 @@ export class CompleteRegistrationPage implements OnInit {
   });
 
   readonly formValid = computed(
-    () => !!this.photo && !!this.idFront && !!this.idBack && !!this.logo && !!this.rib && this.diplomasValid(),
+    // RIB désactivé : `&& !!this.rib` retiré de la condition
+    () => !!this.photo && !!this.idFront && !!this.idBack && !!this.logo && this.diplomasValid(),
   );
 
   ngOnInit(): void {
@@ -115,11 +119,24 @@ export class CompleteRegistrationPage implements OnInit {
       return;
     }
 
-    if (target === 'photo') { this.photo = file; this.photoName.set(file.name); }
-    else if (target === 'idFront') { this.idFront = file; this.idFrontName.set(file.name); }
-    else if (target === 'idBack') { this.idBack = file; this.idBackName.set(file.name); }
-    else if (target === 'logo') { this.logo = file; this.logoName.set(file.name); }
-    else if (target === 'rib') { this.rib = file; this.ribName.set(file.name); }
+    if (target === 'photo') {
+      this.photo = file;
+      this.photoName.set(file.name);
+    } else if (target === 'idFront') {
+      this.idFront = file;
+      this.idFrontName.set(file.name);
+    } else if (target === 'idBack') {
+      this.idBack = file;
+      this.idBackName.set(file.name);
+    } else if (target === 'logo') {
+      this.logo = file;
+      this.logoName.set(file.name);
+    }
+    // RIB désactivé
+    // else if (target === 'rib') {
+    //   this.rib = file;
+    //   this.ribName.set(file.name);
+    // }
 
     this.setPreview(target, file);
   }
@@ -128,28 +145,32 @@ export class CompleteRegistrationPage implements OnInit {
     const preview = this.previewSignal(target);
 
     if (file.type === 'application/pdf') {
-      preview.set('pdf');
+      preview?.set('pdf');
       return;
     }
     const reader = new FileReader();
-    reader.onload = () => preview.set(reader.result as string);
+    reader.onload = () => preview?.set(reader.result as string);
     reader.readAsDataURL(file);
   }
 
   private previewSignal(target: DocTarget) {
-    return target === 'photo' ? this.photoPreview
-      : target === 'idFront' ? this.idFrontPreview
-      : target === 'idBack' ? this.idBackPreview
-      : target === 'logo' ? this.logoPreview
-      : this.ribPreview;
+    if (target === 'photo') return this.photoPreview;
+    if (target === 'idFront') return this.idFrontPreview;
+    if (target === 'idBack') return this.idBackPreview
+    if (target === 'logo') return this.logoPreview;
+    // RIB désactivé
+    // if (target === 'rib') return this.ribPreview;
+    return null;
   }
 
   private nameSignal(target: DocTarget) {
-    return target === 'photo' ? this.photoName
-      : target === 'idFront' ? this.idFrontName
-      : target === 'idBack' ? this.idBackName
-      : target === 'logo' ? this.logoName
-      : this.ribName;
+    if (target === 'photo') return this.photoName;
+    if (target === 'idFront') return this.idFrontName;
+    if (target === 'idBack') return this.idBackName;
+    if (target === 'logo') return this.logoName;
+    // RIB désactivé
+    // if (target === 'rib') return this.ribName;
+    return null;
   }
 
   removeFile(target: DocTarget): void {
@@ -161,10 +182,11 @@ export class CompleteRegistrationPage implements OnInit {
     else if (target === 'idFront') this.idFront = null;
     else if (target === 'idBack') this.idBack = null;
     else if (target === 'logo') this.logo = null;
-    else this.rib = null;
+    // RIB désactivé
+    // else if (target === 'rib') this.rib = null;
 
-    this.nameSignal(target).set(null);
-    this.previewSignal(target).set(null);
+    this.nameSignal(target)?.set(null);
+    this.previewSignal(target)?.set(null);
   }
 
   addDiplomaSlot(): void {
@@ -243,7 +265,8 @@ export class CompleteRegistrationPage implements OnInit {
     formData.append('idFront', this.idFront!);
     formData.append('idBack', this.idBack!);
     formData.append('logo', this.logo!);
-    formData.append('rib', this.rib!);
+    // RIB désactivé
+    // formData.append('rib', this.rib!);
     for (const entry of diplomaEntries) {
       if (entry.file) formData.append('diplomas', entry.file);
     }

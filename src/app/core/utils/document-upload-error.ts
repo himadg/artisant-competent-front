@@ -1,7 +1,8 @@
 import { TranslocoService } from '@jsverse/transloco';
 import { FlashMessage } from '../../shared/interfaces/flash-message';
 
-const KNOWN_FIELDS = new Set(['photo', 'idFront', 'idBack', 'logo', 'rib', 'diplomas']);
+// RIB désactivé (plus demandé aux pros) : 'rib' retiré
+const KNOWN_FIELDS = new Set(['photo', 'idFront', 'idBack', 'logo', /* 'rib', */ 'diplomas']);
 
 /** Construit le message à afficher après l'échec d'un envoi de documents (inscription pro ou
  * écran de reprise) : pointe le document précis en cause quand le back l'indique (`err.error.field`),

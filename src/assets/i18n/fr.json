@@ -2713,6 +2713,7 @@
       "text1": "Le RIB demandé ici est utilisé par Artisan Compétent pour certaines opérations administratives et services proposés sur la plateforme.",
       "stripe": "Les paiements des clients transitent par Stripe."
     },
+    "stripeInfo": "Une fois votre inscription validée par l'administrateur, pensez à créer votre compte Stripe depuis l'onglet « {{tab}} » de votre tableau de bord: il est indispensable pour apparaitre dans les résultats des recherches clients, recevoir les demandes et les paiements.",
     "mediator": {
       "title": "Mon médiateur de la consommation",
       "guideBtn": "Mode d'emploi - Médiateur de la consommation",

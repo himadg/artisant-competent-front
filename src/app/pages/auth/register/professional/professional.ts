@@ -88,8 +88,9 @@ export class RegisterProfessional implements OnDestroy {
   readonly idBackName = signal<string | null>(null);
   readonly logoPreview = signal<string | null>(null);
   readonly logoName = signal<string | null>(null);
-  readonly ribPreview = signal<string | null>(null);
-  readonly ribName = signal<string | null>(null);
+  // RIB désactivé (plus demandé aux pros)
+  // readonly ribPreview = signal<string | null>(null);
+  // readonly ribName = signal<string | null>(null);
 
   // Multiple diplomas
   readonly diplomaFiles = signal<DiplomaEntry[]>([
@@ -269,7 +270,8 @@ export class RegisterProfessional implements OnDestroy {
         idFront: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
         idBack: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
         logo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
-        rib: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
+        // RIB désactivé (plus demandé aux pros)
+        // rib: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
         companyName: ['', Validators.required],
         workAddress: this.fb.group({
           streetNumber: ['', [Validators.required, Validators.pattern(STREET_NUMBER_REGEXP)]],
@@ -519,7 +521,7 @@ export class RegisterProfessional implements OnDestroy {
     else if (target === 'idFront') this.idFrontPreview.set(val);
     else if (target === 'idBack') this.idBackPreview.set(val);
     else if (target === 'logo') this.logoPreview.set(val);
-    else if (target === 'rib') this.ribPreview.set(val);
+    // else if (target === 'rib') this.ribPreview.set(val); // RIB désactivé
   }
 
   private setName(target: DocTarget, name: string | null) {
@@ -527,7 +529,7 @@ export class RegisterProfessional implements OnDestroy {
     else if (target === 'idFront') this.idFrontName.set(name);
     else if (target === 'idBack') this.idBackName.set(name);
     else if (target === 'logo') this.logoName.set(name);
-    else if (target === 'rib') this.ribName.set(name);
+    // else if (target === 'rib') this.ribName.set(name); // RIB désactivé
   }
 
   async addFile(target: DocTarget, e: Event) {
@@ -732,7 +734,8 @@ export class RegisterProfessional implements OnDestroy {
       'professionalProfile.siret',
       'professionalProfile.companyStatus',
       'professionalProfile.logo',
-      'professionalProfile.rib',
+      // RIB désactivé
+      // 'professionalProfile.rib',
       'professionalProfile.companyName',
       'professionalProfile.workAddress',
       'professionalProfile.trades',
@@ -810,7 +813,8 @@ export class RegisterProfessional implements OnDestroy {
       idFront,
       idBack,
       logo,
-      rib,
+      // RIB désactivé
+      // rib,
       additionalRemarks,
       companyRemarks,
       ...profRest
@@ -823,7 +827,8 @@ export class RegisterProfessional implements OnDestroy {
       idFront: File | null;
       idBack: File | null;
       logo: File | null;
-      rib: File | null;
+      // RIB désactivé
+      // rib: File | null;
       additionalRemarks: string;
       companyRemarks: string;
     };
@@ -867,7 +872,8 @@ export class RegisterProfessional implements OnDestroy {
           if (idFront) formData.append('idFront', idFront);
           if (idBack) formData.append('idBack', idBack);
           if (logo) formData.append('logo', logo);
-          if (rib) formData.append('rib', rib);
+          // RIB désactivé
+          // formData.append('rib', rib);
           for (const entry of diplomaEntries) {
             if (entry.file) formData.append('diplomas', entry.file);
           }

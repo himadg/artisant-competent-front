@@ -32,7 +32,8 @@ export interface ProfessionalProfile {
   workAddress: Address;
   siret: string;
   companyStatus: 'COMPANY' | 'INDIVIDUAL';
-  ribKey: string;
+  // RIB désactivé (plus demandé aux pros)
+  // ribKey: string;
   trades: string[];
   yearsExperience: number;
   isCmod: boolean;

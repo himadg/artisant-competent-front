@@ -798,7 +798,7 @@
                 </div>
 
                 <div class="grid gap-6 items-stretch md:grid-cols-2">
-                    <!-- Logo + RIB -->
+                    <!-- Logo (+ RIB désactivé) -->
                     <div class="flex flex-col gap-3 justify-evenly items-center">
                         <div
                             class="overflow-hidden relative w-40 h-28 rounded-md border group"
@@ -846,6 +846,15 @@
                             }
                         </div>
 
+                        <!-- Info Stripe (remplace l'encart RIB) -->
+                        <div class="flex gap-2 w-full rounded-lg bg-red-50 border !border-red-500 px-3 py-3 text-sm text-red-600">
+                            <span class="mt-0.5 shrink-0 text-red-500">
+                                <iconify-icon icon="lucide:info" width="14"></iconify-icon>
+                            </span>
+                            <p>{{ 'professional.stripeInfo' | transloco: { tab: ('dashboard.pro.nav.payments' | transloco) } }}</p>
+                        </div>
+
+                        <!-- RIB désactivé (plus demandé aux pros)
                         <div
                             class="overflow-hidden relative w-40 h-28 rounded-md border group"
                             [class.force-invalid]="
@@ -891,6 +900,7 @@
                                 />
                             }
                         </div>
+                        -->
                     </div>
 
                     <!-- Nom société + adresse de travail -->
@@ -977,7 +987,7 @@
                     </div>
                 </div>
 
-                <!-- Info RIB -->
+                <!-- Info RIB — désactivé (plus demandé aux pros)
                 <div class="w-full rounded-lg bg-[#fdf5e6] border border-[#e8c87a] px-3 py-3 text-xs text-gray-700 space-y-2">
                     <div class="flex gap-2">
                         <span class="mt-0.5 shrink-0 text-[#c8933a]">
@@ -987,6 +997,7 @@
                     </div>
                     <p class="font-semibold">{{ 'professional.ribInfo.stripe' | transloco }}</p>
                 </div>
+                -->
 
                 <!-- Métiers -->
                 <div class="flex flex-col gap-2">

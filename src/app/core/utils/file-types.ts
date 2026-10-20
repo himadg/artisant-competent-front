@@ -5,7 +5,8 @@ export const ALLOWED_IMAGE_TYPES = new Set(['image/jpeg', 'image/png', 'image/we
 export const ALLOWED_DOCUMENT_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp', 'application/pdf']);
 
 /** Champs de documents de l'inscription professionnelle. */
-export type DocTarget = 'photo' | 'idFront' | 'idBack' | 'logo' | 'rib';
+// RIB désactivé (plus demandé aux pros) : `| 'rib'` retiré de l'union
+export type DocTarget = 'photo' | 'idFront' | 'idBack' | 'logo' /* | 'rib' */;
 
 /** Seule la photo de profil n'accepte que des images ; les autres champs acceptent aussi un PDF. */
 export const IMAGE_ONLY_TARGETS = new Set<DocTarget>(['photo']);

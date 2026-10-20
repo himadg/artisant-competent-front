@@ -76,6 +76,7 @@
                     <input type="file" class="hidden-input" accept="image/*" (change)="addFile('logo', $event)" />
                 }
             </div>
+            <!-- RIB désactivé (plus demandé aux pros)
             <div class="doc-slot" [class.force-invalid]="touched() && !ribName()">
                 @if (ribPreview() === 'pdf') {
                     <div class="doc-slot-preview" (click)="removeFile('rib')">
@@ -93,6 +94,7 @@
                     <input type="file" class="hidden-input" accept="image/*,.pdf" (change)="addFile('rib', $event)" />
                 }
             </div>
+            -->
         </div>
 
         <!-- Diplômes / Documents obligatoires — même agencement que l'inscription pro -->

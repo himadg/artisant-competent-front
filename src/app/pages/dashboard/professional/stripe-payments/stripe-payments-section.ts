@@ -6,14 +6,13 @@ import {
   computed,
   effect,
   inject,
-  output,
   signal,
   viewChild,
 } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
+import { switchMap } from 'rxjs';
 import { StripeApiService } from '../../../../core/services/stripe-api.service';
 import { StripeConnectService } from '../../../../core/services/stripe-connect.service';
-import { StripeConnectStatus } from '../../../../shared/interfaces/stripe-connect';
 import { ProfessionalDashboardStateService } from '../professional-dashboard-state.service';
 
 @Component({
@@ -29,12 +28,13 @@ export class StripePaymentsSection implements OnInit {
   private readonly stripeConnect = inject(StripeConnectService);
   private readonly dashboardState = inject(ProfessionalDashboardStateService);
 
-  readonly status = signal<StripeConnectStatus | null>(null);
   readonly loading = signal(true);
   readonly error = signal(false);
-  readonly onboarded = computed(() => this.status()?.detailsSubmitted === true);
-
-  readonly statusChanged = output<StripeConnectStatus>();
+  // Source unique : l'état du dashboard, que chaque lecture de statut Stripe met à jour. Le shell
+  // n'affiche le router-outlet qu'une fois ces données chargées, elles sont donc toujours présentes ici.
+  readonly onboarded = computed(
+    () => this.dashboardState.data()?.professionalProfile.stripeDetailsSubmitted === true,
+  );
 
   private readonly onboardingContainer = viewChild<ElementRef<HTMLDivElement>>('onboardingContainer');
   private readonly bannerContainer = viewChild<ElementRef<HTMLDivElement>>('bannerContainer');
@@ -62,32 +62,24 @@ export class StripePaymentsSection implements OnInit {
   init() {
     this.loading.set(true);
     this.error.set(false);
-    this.stripeApi.createAccount().subscribe({
-      next: () => {
-        // La section Paiements doit toujours repartir de l'état Stripe courant : cela répare
-        // aussi les flags locaux si un webhook a été retardé ou manqué.
-        this.stripeApi.getStatus(true).subscribe({
-          next: (status) => {
-            this.setStatus(status);
-            this.loading.set(false);
-          },
-          error: () => this.fail(),
-        });
-      },
-      error: () => this.fail(),
-    });
+    this.stripeApi
+      .createAccount()
+      // La section Paiements doit toujours repartir de l'état Stripe courant : cela répare
+      // aussi les flags locaux si un webhook a été retardé ou manqué.
+      .pipe(switchMap(() => this.stripeApi.getStatus(true)))
+      .subscribe({
+        next: (status) => {
+          this.dashboardState.updateStripeStatus(status);
+          this.loading.set(false);
+        },
+        error: () => this.fail(),
+      });
   }
 
   refreshStatus() {
     this.stripeApi.getStatus(true).subscribe({
-      next: (status) => this.setStatus(status),
+      next: (status) => this.dashboardState.updateStripeStatus(status),
     });
-  }
-
-  private setStatus(status: StripeConnectStatus) {
-    this.status.set(status);
-    this.dashboardState.updateStripeStatus(status);
-    this.statusChanged.emit(status);
   }
 
   private fail() {

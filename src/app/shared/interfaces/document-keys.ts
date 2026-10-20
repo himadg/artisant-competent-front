@@ -10,5 +10,6 @@ export interface DocumentKeys {
   idBackKey: string;
   diplomas: DiplomaDoc[];
   companyLogoKey: string;
-  ribKey: string;
+  // RIB désactivé (plus demandé aux pros)
+  // ribKey: string;
 }

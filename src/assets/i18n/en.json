@@ -2713,6 +2713,7 @@
       "text1": "The bank details (RIB) requested here are used by Artisan Compétent for certain administrative operations and services offered on the platform.",
       "stripe": "Customer payments go through Stripe."
     },
+    "stripeInfo": "Once your registration has been approved by the administrator, remember to create your Stripe account from the \"{{tab}}\" tab of your dashboard: it's required to appear in the results of client searches, receive requests and payments.",
     "mediator": {
       "title": "My consumer mediator",
       "guideBtn": "Employment mode - Consumer mediator user guide",

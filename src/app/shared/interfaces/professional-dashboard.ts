@@ -21,8 +21,9 @@ export interface ProfessionalProfile {
   idBackKey: string;
   idBackUrl: string | null;
   diplomas: { id: string; documentName: string; expiryDate: string; fileKey: string; url: string | null }[];
-  ribKey: string;
-  ribUrl: string | null;
+  // RIB désactivé (plus demandé aux pros)
+  // ribKey: string;
+  // ribUrl: string | null;
   siret: string;
   companyStatus: 'COMPANY' | 'INDIVIDUAL';
   yearsExperience: number;
