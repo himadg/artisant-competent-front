@@ -75,8 +75,8 @@ export class UserApiService {
     });
   }
 
-  createProfessionalDocuments(userId: string, formData: FormData): Observable<{ mailSent: boolean }> {
-    return this.http.patch<{ mailSent: boolean }>(`/professionals/${userId}/documents`, formData);
+  createProfessionalDocuments(userId: string, formData: FormData): Observable<{ mailSent: boolean; user: AuthUser }> {
+    return this.http.patch<{ mailSent: boolean; user: AuthUser }>(`/professionals/${userId}/documents`, formData);
   }
 
   getAllTrades(): Observable<{ id: string; name: string }[]> {

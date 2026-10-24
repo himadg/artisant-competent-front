@@ -277,9 +277,8 @@ export class CompleteRegistrationPage implements OnInit {
 
     this.submitting.set(true);
     this.userApi.createProfessionalDocuments(userId, formData).subscribe({
-      next: ({ mailSent }) => {
-        const user = this.authService.currentUser();
-        if (user) this.authService.setUser({ ...user, status: 'PENDING_VALIDATION' });
+      next: ({ mailSent, user }) => {
+        this.authService.setUser(user);
         this.flashMessage.set({
           type: mailSent ? 'success' : 'warning',
           key: mailSent ? 'login.registeredProSuccess' : 'login.registeredProMailFailed',

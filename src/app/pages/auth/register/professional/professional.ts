@@ -886,8 +886,10 @@ export class RegisterProfessional implements OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe({
-        next: ({ mailSent }) => {
-          this.authService.setSession(registeredAccessToken, registeredUser);
+        next: ({ mailSent, user }) => {
+          // On renvoie les nouvelles données de l'user suite aux enregistrements de documents pour
+          // récupérer le bon statut.
+          this.authService.setSession(registeredAccessToken, user);
           this.flashMessage.set({
             type: mailSent ? 'success' : 'warning',
             key: mailSent ? 'login.registeredProSuccess' : 'login.registeredProMailFailed',
