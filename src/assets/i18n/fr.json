@@ -2774,7 +2774,9 @@
     "addressLabel": "Votre adresse",
     "tradeLabel": "Choisir un métier",
     "kilometersLabel": "Rayon (km)",
-    "button": "Rechercher"
+    "button": "Rechercher",
+    "searching": "Recherche...",
+    "addressNotFound": "Aucune adresse trouvée"
   },
   "storyViewer": {
     "seePresentation": "Voir la vidéo de présentation"

@@ -2774,7 +2774,9 @@
     "addressLabel": "Your address",
     "tradeLabel": "Select a trade",
     "kilometersLabel": "Radius (km)",
-    "button": "Search"
+    "button": "Search",
+    "searching": "Searching...",
+    "addressNotFound": "No address found"
   },
   "storyViewer": {
     "seePresentation": "See presentation video"

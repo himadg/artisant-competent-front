@@ -25,6 +25,9 @@
                         }
                     </ul>
                 }
+                @if (addressNotFound()) {
+                    <p class="mt-1 px-3 text-sm text-red-200">{{ 'searchPro.addressNotFound' | transloco }}</p>
+                }
             </div>
 
             <!-- Métier -->
@@ -54,8 +57,9 @@
                 </div>
             </div>
 
-            <button type="submit" class="flex-1 px-4 py-2 rounded-full bg-grad-beige text-[var(--primary-water-green)]">
-                {{ 'searchPro.button' | transloco }}
+            <button type="submit" [disabled]="searching()"
+                class="flex-1 px-4 py-2 rounded-full bg-grad-beige text-[var(--primary-water-green)] disabled:opacity-60">
+                {{ (searching() ? 'searchPro.searching' : 'searchPro.button') | transloco }}
             </button>
         </div>
     </form>

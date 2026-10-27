@@ -4,7 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Subject, switchMap, debounceTime, filter } from 'rxjs';
+import { Subject, switchMap, debounceTime, filter, take } from 'rxjs';
 import { TradeApiService } from '../../../core/services/trade-api.service';
 import { GeocodingService } from '../../../core/services/geocoding.service';
 import { AddressSuggestion } from '../../interfaces/address-suggestion';
@@ -37,6 +37,8 @@ export class SearchProForm {
   readonly addressSuggestions = signal<AddressSuggestion[]>([]);
   readonly addressOpen = signal(false);
   readonly highlightedIndex = signal(-1);
+  readonly searching = signal(false);
+  readonly addressNotFound = signal(false);
   readonly ranges = [5, 10, 15, 20, 30, 50];
 
   readonly addressListboxId = 'search-pro-address-listbox';
@@ -110,6 +112,7 @@ export class SearchProForm {
     this.address = value;
     this.selectedAddress = null;
     this.highlightedIndex.set(-1);
+    this.addressNotFound.set(false);
     if (!value.trim()) {
       this.addressSuggestions.set([]);
       this.addressOpen.set(false);
@@ -160,15 +163,40 @@ export class SearchProForm {
     return `search-pro-address-option-${index}`;
   }
 
+  // Une adresse tapée sans qu'une suggestion n'ait été cliquée (selectedAddress reste null, cf.
+  // onAddressInput/selectAddress) est géocodée à la volée ici plutôt que de bloquer silencieusement.
   submit(): void {
-    if (!this.selectedAddress || !this.trade) return;
+    if (!this.trade) return;
+    if (this.selectedAddress) {
+      this.navigateToResults(this.selectedAddress);
+      return;
+    }
+    const query = this.address.trim();
+    if (!query) return;
+    this.addressNotFound.set(false);
+    this.searching.set(true);
+    this.geocodingService
+      .search(query)
+      .pipe(take(1))
+      .subscribe((suggestions) => {
+        this.searching.set(false);
+        const first = suggestions[0];
+        if (!first) {
+          this.addressNotFound.set(true);
+          return;
+        }
+        this.navigateToResults(first);
+      });
+  }
+
+  private navigateToResults(address: SelectedAddress): void {
     this.router.navigate(['/search-pro'], {
       queryParams: {
-        lat: this.selectedAddress.latitude,
-        lng: this.selectedAddress.longitude,
+        lat: address.latitude,
+        lng: address.longitude,
         radius: this.kilometers,
         trade: this.trade,
-        address: this.selectedAddress.label,
+        address: address.label,
       },
     });
   }
