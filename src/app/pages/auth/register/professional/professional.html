@@ -1074,108 +1074,110 @@
                 </label>
 
                 <!-- Horaires d'ouverture -->
-                <div class="space-y-3">
-                    <div class="flex flex-wrap gap-2 items-center justify-between">
-                        <label class="font-medium" [class.text-red-500]="hours.errors?.['atLeastOneOpen'] && hoursTouched()">
-                            {{ 'professional.fields.openingHours' | transloco }} *
-                        </label>
-                        <button
-                            type="button"
-                            class="inline-flex gap-2 items-center px-4 py-2 text-sm rounded-lg text-[var(--primary-beige)] bg-grad-water-green hover:opacity-80"
-                            (click)="openingHoursModalOpen.set(true)"
+                @if (!onCall()) {
+                    <div class="space-y-3">
+                        <div class="flex flex-wrap gap-2 items-center justify-between">
+                            <label class="font-medium" [class.text-red-500]="hours.errors?.['atLeastOneOpen'] && hoursTouched()">
+                                {{ 'professional.fields.openingHours' | transloco }} *
+                            </label>
+                            <button
+                                type="button"
+                                class="inline-flex gap-2 items-center px-4 py-2 text-sm rounded-lg text-[var(--primary-beige)] bg-grad-water-green hover:opacity-80"
+                                (click)="openingHoursModalOpen.set(true)"
+                            >
+                                <iconify-icon icon="lucide:book-open" class="text-base shrink-0"></iconify-icon>
+                                {{ 'professional.openingHours.guideBtn' | transloco }}
+                            </button>
+                        </div>
+                        <div
+                            class="space-y-2 rounded-lg p-2"
+                            [class.force-invalid]="hours.errors?.['atLeastOneOpen'] && hoursTouched()"
                         >
-                            <iconify-icon icon="lucide:book-open" class="text-base shrink-0"></iconify-icon>
-                            {{ 'professional.openingHours.guideBtn' | transloco }}
-                        </button>
-                    </div>
-                    <div
-                        class="space-y-2 rounded-lg p-2"
-                        [class.force-invalid]="hours.errors?.['atLeastOneOpen'] && hoursTouched()"
-                    >
-                        @for (ctrl of hours.controls; track ctrl.value.day) {
-                            <div class="p-3 rounded-lg border space-y-2">
-                                <!-- Ligne jour + checkboxes -->
-                                <div class="flex flex-wrap gap-x-4 gap-y-1 items-center justify-between">
-                                    <span class="text-sm font-medium">{{
-                                        `supplier.days.${ctrl.value.day}` | transloco
-                                    }}</span>
-                                    <div class="flex gap-4">
-                                        <label class="inline-flex gap-1.5 items-center text-sm cursor-pointer">
-                                            <input type="checkbox" [formControl]="$any(ctrl.get('closed'))" (change)="onDayCheckboxChange(ctrl, 'closed')" />
-                                            {{ 'professional.hours.closed' | transloco }}
-                                        </label>
-                                        <label class="inline-flex gap-1.5 items-center text-sm cursor-pointer">
-                                            <input type="checkbox" [formControl]="$any(ctrl.get('onCallDay'))" (change)="onDayCheckboxChange(ctrl, 'onCallDay')" />
-                                            {{ 'professional.hours.onCallDay' | transloco }}
-                                        </label>
+                            @for (ctrl of hours.controls; track ctrl.value.day) {
+                                <div class="p-3 rounded-lg border space-y-2">
+                                    <!-- Ligne jour + checkboxes -->
+                                    <div class="flex flex-wrap gap-x-4 gap-y-1 items-center justify-between">
+                                        <span class="text-sm font-medium">{{
+                                            `supplier.days.${ctrl.value.day}` | transloco
+                                        }}</span>
+                                        <div class="flex gap-4">
+                                            <label class="inline-flex gap-1.5 items-center text-sm cursor-pointer">
+                                                <input type="checkbox" [formControl]="$any(ctrl.get('closed'))" (change)="onDayCheckboxChange(ctrl, 'closed')" />
+                                                {{ 'professional.hours.closed' | transloco }}
+                                            </label>
+                                            <label class="inline-flex gap-1.5 items-center text-sm cursor-pointer">
+                                                <input type="checkbox" [formControl]="$any(ctrl.get('onCallDay'))" (change)="onDayCheckboxChange(ctrl, 'onCallDay')" />
+                                                {{ 'professional.hours.onCallDay' | transloco }}
+                                            </label>
+                                        </div>
                                     </div>
+                                    <!-- Dropdowns horaires (cachés si fermé ou d'astreinte) -->
+                                    @if (!ctrl.get('closed')?.value && !ctrl.get('onCallDay')?.value) {
+                                        <div class="flex flex-wrap gap-1 items-center">
+                                            <select
+                                                [formControl]="$any(ctrl.get('openHour'))"
+                                                class="px-2 py-1.5 text-sm rounded border"
+                                                [class.force-invalid]="ctrl.invalid && hoursTouched()"
+                                                (change)="onOpenTimeChange(ctrl)"
+                                            >
+                                                <option value="">--</option>
+                                                @for (h of hoursOptions; track h) {
+                                                    <option [value]="h">{{ h }}</option>
+                                                }
+                                            </select>
+                                            <span class="text-sm">h</span>
+                                            <select
+                                                [formControl]="$any(ctrl.get('openMinute'))"
+                                                class="px-2 py-1.5 text-sm rounded border"
+                                                [class.force-invalid]="ctrl.invalid && hoursTouched()"
+                                                (change)="onOpenTimeChange(ctrl)"
+                                            >
+                                                <option value="">--</option>
+                                                @for (m of minutesOptions; track m) {
+                                                    <option [value]="m">{{ m }}</option>
+                                                }
+                                            </select>
+                                            <span class="mx-1 text-sm">–</span>
+                                            <select
+                                                [formControl]="$any(ctrl.get('closeHour'))"
+                                                class="px-2 py-1.5 text-sm rounded border"
+                                                [class.force-invalid]="ctrl.invalid && hoursTouched()"
+                                            >
+                                                <option value="">--</option>
+                                                @for (h of hoursOptions; track h) {
+                                                    <option [value]="h" [disabled]="h === '00' || (ctrl.get('openHour')?.value && h < ctrl.get('openHour')?.value)">{{ h }}</option>
+                                                }
+                                            </select>
+                                            <span class="text-sm">h</span>
+                                            <select
+                                                [formControl]="$any(ctrl.get('closeMinute'))"
+                                                class="px-2 py-1.5 text-sm rounded border"
+                                                [class.force-invalid]="ctrl.invalid && hoursTouched()"
+                                            >
+                                                <option value="">--</option>
+                                                @for (m of minutesOptions; track m) {
+                                                    <option [value]="m" [disabled]="ctrl.get('closeHour')?.value === ctrl.get('openHour')?.value && ctrl.get('openMinute')?.value && m <= ctrl.get('openMinute')?.value">{{ m }}</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    }
+                                    @if (ctrl.errors?.['timeRequired'] && hoursTouched()) {
+                                        <span class="text-xs text-red-600">{{
+                                            'supplier.errors.timeRequired' | transloco
+                                        }}</span>
+                                    } @else if (ctrl.errors?.['timeOrder'] && hoursTouched()) {
+                                        <span class="text-xs text-red-600">{{
+                                            'supplier.errors.timeOrder' | transloco
+                                        }}</span>
+                                    }
                                 </div>
-                                <!-- Dropdowns horaires (cachés si fermé ou d'astreinte) -->
-                                @if (!ctrl.get('closed')?.value && !ctrl.get('onCallDay')?.value) {
-                                    <div class="flex flex-wrap gap-1 items-center">
-                                        <select
-                                            [formControl]="$any(ctrl.get('openHour'))"
-                                            class="px-2 py-1.5 text-sm rounded border"
-                                            [class.force-invalid]="ctrl.invalid && hoursTouched()"
-                                            (change)="onOpenTimeChange(ctrl)"
-                                        >
-                                            <option value="">--</option>
-                                            @for (h of hoursOptions; track h) {
-                                                <option [value]="h">{{ h }}</option>
-                                            }
-                                        </select>
-                                        <span class="text-sm">h</span>
-                                        <select
-                                            [formControl]="$any(ctrl.get('openMinute'))"
-                                            class="px-2 py-1.5 text-sm rounded border"
-                                            [class.force-invalid]="ctrl.invalid && hoursTouched()"
-                                            (change)="onOpenTimeChange(ctrl)"
-                                        >
-                                            <option value="">--</option>
-                                            @for (m of minutesOptions; track m) {
-                                                <option [value]="m">{{ m }}</option>
-                                            }
-                                        </select>
-                                        <span class="mx-1 text-sm">–</span>
-                                        <select
-                                            [formControl]="$any(ctrl.get('closeHour'))"
-                                            class="px-2 py-1.5 text-sm rounded border"
-                                            [class.force-invalid]="ctrl.invalid && hoursTouched()"
-                                        >
-                                            <option value="">--</option>
-                                            @for (h of hoursOptions; track h) {
-                                                <option [value]="h" [disabled]="h === '00' || (ctrl.get('openHour')?.value && h < ctrl.get('openHour')?.value)">{{ h }}</option>
-                                            }
-                                        </select>
-                                        <span class="text-sm">h</span>
-                                        <select
-                                            [formControl]="$any(ctrl.get('closeMinute'))"
-                                            class="px-2 py-1.5 text-sm rounded border"
-                                            [class.force-invalid]="ctrl.invalid && hoursTouched()"
-                                        >
-                                            <option value="">--</option>
-                                            @for (m of minutesOptions; track m) {
-                                                <option [value]="m" [disabled]="ctrl.get('closeHour')?.value === ctrl.get('openHour')?.value && ctrl.get('openMinute')?.value && m <= ctrl.get('openMinute')?.value">{{ m }}</option>
-                                            }
-                                        </select>
-                                    </div>
-                                }
-                                @if (ctrl.errors?.['timeRequired'] && hoursTouched()) {
-                                    <span class="text-xs text-red-600">{{
-                                        'supplier.errors.timeRequired' | transloco
-                                    }}</span>
-                                } @else if (ctrl.errors?.['timeOrder'] && hoursTouched()) {
-                                    <span class="text-xs text-red-600">{{
-                                        'supplier.errors.timeOrder' | transloco
-                                    }}</span>
-                                }
-                            </div>
+                            }
+                        </div>
+                        @if (hours.errors?.['atLeastOneOpen'] && hoursTouched()) {
+                            <p class="text-xs text-red-500">{{ 'professional.errors.openingAtLeastOne' | transloco }}</p>
                         }
                     </div>
-                    @if (hours.errors?.['atLeastOneOpen'] && hoursTouched()) {
-                        <p class="text-xs text-red-500">{{ 'professional.errors.openingAtLeastOne' | transloco }}</p>
-                    }
-                </div>
+                }
 
                 <div class="flex flex-col gap-1">
                     <div class="flex flex-wrap gap-2 items-center justify-between">
