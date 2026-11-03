@@ -5,8 +5,12 @@ import { TRADES } from './data/trades';
 export const serverRoutes: ServerRoute[] = [
   // Routes protégées → CSR
   { path: 'dashboard', renderMode: RenderMode.Client },
+  { path: 'dashboard/**', renderMode: RenderMode.Client },
   { path: 'admin/professionals/**', renderMode: RenderMode.Client },
   { path: 'auth/**', renderMode: RenderMode.Client },
+
+  // Résultats dépendant des query params (+ sessionStorage) → CSR
+  { path: 'search-pro', renderMode: RenderMode.Client },
 
   // Pages statiques → prérendu au build
   { path: '', renderMode: RenderMode.Prerender },
@@ -15,6 +19,19 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'jobs', renderMode: RenderMode.Prerender },
   { path: 'affiliation', renderMode: RenderMode.Prerender },
   { path: 'contact', renderMode: RenderMode.Prerender },
+  { path: 'seo-batiment', renderMode: RenderMode.Prerender },
+  { path: 'cmod/formule', renderMode: RenderMode.Prerender },
+  { path: 'cities', renderMode: RenderMode.Prerender },
+  { path: 'blog', renderMode: RenderMode.Prerender },
+  { path: 'faq', renderMode: RenderMode.Prerender },
+  { path: 'urgences', renderMode: RenderMode.Prerender },
+  { path: 'guidance', renderMode: RenderMode.Prerender },
+  { path: 'steps', renderMode: RenderMode.Prerender },
+  { path: 'cgu', renderMode: RenderMode.Prerender },
+  { path: 'cgv', renderMode: RenderMode.Prerender },
+  { path: 'politique-confidentialite', renderMode: RenderMode.Prerender },
+  { path: 'mentions-legales', renderMode: RenderMode.Prerender },
+  { path: 'politique-cookies', renderMode: RenderMode.Prerender },
 
   // Pages métier → prérendu statique par métier
   { path: 'job/electrician', renderMode: RenderMode.Prerender },

@@ -1,15 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit, PLATFORM_ID, inject, signal, computed } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-import { StoryApiService, StoryFeedItem } from '../../../core/services/story-api.service';
+import { StoryApiService } from '../../../core/services/story-api.service';
 import { StoryViewer } from '../story-viewer/story-viewer';
-
-export interface StoryGroup {
-  professionalProfileId: string;
-  companyName: string;
-  avatarUrl: string | null;
-  stories: StoryFeedItem[];
-}
+import { StoryFeedItem, StoryGroup } from '../../interfaces/story';
 
 function groupByProfessional(stories: StoryFeedItem[]): StoryGroup[] {
   const groups = new Map<string, StoryGroup>();

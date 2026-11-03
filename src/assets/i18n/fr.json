@@ -3261,6 +3261,32 @@
     "registeredProMailFailed": "Votre inscription a été prise en compte. Nous n'avons pas pu vous envoyer d'email de confirmation. Veuillez nous contacter à contact@artisan-competent.com pour valider votre compte.",
     "spamNotice": "Si vous ne voyez pas l'email dans votre boîte de réception, pensez à vérifier vos spams."
   },
+  "forgotPassword": {
+    "title": "Mot de passe oublié",
+    "subtitle": "Indiquez votre adresse email, nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+    "submit": "Envoyer le lien",
+    "sent": "Si un compte existe avec cet email, un lien de réinitialisation vient de lui être envoyé.",
+    "backToLogin": "Retour à la connexion",
+    "errors": {
+      "generic": "Une erreur est survenue, veuillez réessayer."
+    }
+  },
+  "resetPassword": {
+    "title": "Réinitialiser le mot de passe",
+    "fields": {
+      "newPassword": "Nouveau mot de passe",
+      "confirmPassword": "Confirmer le mot de passe"
+    },
+    "submit": "Réinitialiser mon mot de passe",
+    "success": "Votre mot de passe a bien été mis à jour. Vous pouvez vous connecter.",
+    "requestNewLink": "Demander un nouveau lien",
+    "errors": {
+      "missingToken": "Ce lien de réinitialisation est invalide.",
+      "invalidToken": "Ce lien a expiré ou a déjà été utilisé.",
+      "rateLimited": "Trop de tentatives, veuillez réessayer plus tard.",
+      "generic": "Une erreur est survenue, veuillez réessayer."
+    }
+  },
   "dashboard": {
     "title": "Mon compte",
     "currentRole": "Rôle actuel : {{ role }}",
@@ -3629,6 +3655,32 @@
       "affiliation": {
         "title": "Affiliation — Mon compte"
       }
+    },
+    "goodPractices": {
+      "pro": {
+        "guide": "Bonnes pratiques pro",
+        "description": "Description de l'activité",
+        "mediator": "Médiateur de la consommation",
+        "geolocation": "Géolocalisation",
+        "hours": "Horaires, congés & astreintes",
+        "cmod": "CMOD"
+      },
+      "individual": {
+        "guide": "Bonnes pratiques client"
+      },
+      "shared": {
+        "docObligations": "Obligations documentaires & assurances",
+        "flatRate": "Tarifs au forfait",
+        "hourlyRate": "Tarifs à l'heure",
+        "vat": "TVA"
+      },
+      "pagination": {
+        "prev": "Page précédente",
+        "next": "Page suivante",
+        "page": "Page {{current}} / {{total}}"
+      },
+      "scrollLeft": "Faire défiler les onglets vers la gauche",
+      "scrollRight": "Faire défiler les onglets vers la droite"
     }
   },
   "cities": {

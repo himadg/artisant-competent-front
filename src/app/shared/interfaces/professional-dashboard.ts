@@ -61,3 +61,28 @@ export interface ProfessionalDashboardData {
   address: Address;
   professionalProfile: ProfessionalProfile;
 }
+
+export interface PersonalInfoEditFields {
+  gender: string;
+  lastName: string;
+  firstName: string;
+  birthDate: string;
+  email: string;
+  professionalEmail: string;
+  managerPhone: string;
+  address: { streetNumber: string; streetName: string; additionalInfo: string; postalCode: string; city: string };
+}
+
+export interface CompanyExtraEditFields {
+  yearsExperience: number;
+  onCall: boolean;
+  workAddress: { streetNumber: string; streetName: string; additionalInfo: string; postalCode: string; city: string };
+}
+
+export interface MediatorEditFields {
+  mediatorName: string;
+  mediatorAddress: string;
+  mediatorWebsite: string;
+  mediatorContactMethod: string;
+  mediatorAdditionalInfo: string;
+}

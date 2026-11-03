@@ -3261,6 +3261,32 @@
     "registeredProMailFailed": "Your registration has been recorded. We were unable to send you a confirmation email. Please contact us at contact@artisan-competent.com to validate your account.",
     "spamNotice": "If you don't see the email in your inbox, please check your spam folder."
   },
+  "forgotPassword": {
+    "title": "Forgot password",
+    "subtitle": "Enter your email address and we'll send you a link to reset your password.",
+    "submit": "Send the link",
+    "sent": "If an account exists for this email, a reset link has just been sent to it.",
+    "backToLogin": "Back to login",
+    "errors": {
+      "generic": "Something went wrong, please try again."
+    }
+  },
+  "resetPassword": {
+    "title": "Reset password",
+    "fields": {
+      "newPassword": "New password",
+      "confirmPassword": "Confirm password"
+    },
+    "submit": "Reset my password",
+    "success": "Your password has been updated. You can now sign in.",
+    "requestNewLink": "Request a new link",
+    "errors": {
+      "missingToken": "This reset link is invalid.",
+      "invalidToken": "This link has expired or was already used.",
+      "rateLimited": "Too many attempts, please try again later.",
+      "generic": "Something went wrong, please try again."
+    }
+  },
   "dashboard": {
     "title": "Dashboard",
     "currentRole": "Current role: {{ role }}",
@@ -3629,6 +3655,32 @@
       "affiliation": {
         "title": "Affiliation — My account"
       }
+    },
+    "goodPractices": {
+      "pro": {
+        "guide": "Pro best practices",
+        "description": "Activity description",
+        "mediator": "Consumer mediator",
+        "geolocation": "Geolocation",
+        "hours": "Hours, holidays & on-call",
+        "cmod": "CMOD"
+      },
+      "individual": {
+        "guide": "Client best practices"
+      },
+      "shared": {
+        "docObligations": "Documentation & insurance requirements",
+        "flatRate": "Flat-rate pricing",
+        "hourlyRate": "Hourly pricing",
+        "vat": "VAT"
+      },
+      "pagination": {
+        "prev": "Previous page",
+        "next": "Next page",
+        "page": "Page {{current}} / {{total}}"
+      },
+      "scrollLeft": "Scroll tabs left",
+      "scrollRight": "Scroll tabs right"
     }
   },
   "cities": {

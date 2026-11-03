@@ -1,30 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export type StoryType = 'PRESENTATION' | 'TIPS' | 'LIVE';
-
-export interface Story {
-  id: string;
-  professionalProfileId: string;
-  type: StoryType;
-  videoKey: string;
-  thumbnailKey: string | null;
-  durationSeconds: number;
-  createdAt: string;
-  expiresAt: string;
-}
-
-export interface StoryFeedItem {
-  id: string;
-  type: StoryType;
-  createdAt: string;
-  professionalProfileId: string;
-  companyName: string;
-  videoUrl: string;
-  thumbnailUrl: string | null;
-  avatarUrl: string | null;
-}
+import { Story, StoryFeedItem } from '../../shared/interfaces/story';
 
 @Injectable({ providedIn: 'root' })
 export class StoryApiService {

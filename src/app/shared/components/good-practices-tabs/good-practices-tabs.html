@@ -1,0 +1,98 @@
+<div class="good-practices-tabs">
+    <div class="good-practices-tabs__tabs-row">
+        <div class="good-practices-tabs__tabs" #tabsRow (scroll)="onTabsScroll()">
+            @for (topic of topics(); track topic.id) {
+                <button
+                    type="button"
+                    class="gp-tab"
+                    [class.gp-tab--active]="topic.id === activeTopic().id"
+                    (click)="setActive(topic.id)"
+                >
+                    {{ topic.labelKey | transloco }}
+                </button>
+            }
+        </div>
+
+        @if (canScrollTabsLeft()) {
+            <button
+                type="button"
+                class="gp-scroll-btn gp-scroll-btn--left"
+                (click)="scrollTabsBy(-1)"
+                [attr.aria-label]="'dashboard.goodPractices.scrollLeft' | transloco"
+            >
+                <iconify-icon icon="lucide:chevron-left" width="24"></iconify-icon>
+            </button>
+        }
+
+        @if (canScrollTabsRight()) {
+            <button
+                type="button"
+                class="gp-scroll-btn gp-scroll-btn--right"
+                (click)="scrollTabsBy(1)"
+                [attr.aria-label]="'dashboard.goodPractices.scrollRight' | transloco"
+            >
+                <iconify-icon icon="lucide:chevron-right" width="24"></iconify-icon>
+            </button>
+        }
+    </div>
+
+    <div class="good-practices-tabs__body">
+        @if (pageCount() > 1) {
+            <div class="gp-pagination">
+                <button
+                    type="button"
+                    class="gp-page-btn"
+                    [disabled]="!hasPrevPage()"
+                    (click)="prevPage()"
+                    [attr.aria-label]="'dashboard.goodPractices.pagination.prev' | transloco"
+                >
+                    <iconify-icon icon="lucide:chevron-left" width="18"></iconify-icon>
+                </button>
+
+                <span class="gp-page-indicator">
+                    {{ 'dashboard.goodPractices.pagination.page' | transloco: { current: currentPage() + 1, total: pageCount() } }}
+                </span>
+
+                <button
+                    type="button"
+                    class="gp-page-btn"
+                    [disabled]="!hasNextPage()"
+                    (click)="nextPage()"
+                    [attr.aria-label]="'dashboard.goodPractices.pagination.next' | transloco"
+                >
+                    <iconify-icon icon="lucide:chevron-right" width="18"></iconify-icon>
+                </button>
+            </div>
+        }
+
+        <img [src]="currentImg()" [alt]="activeTopic().labelKey | transloco" class="gp-image" />
+
+        @if (pageCount() > 1) {
+            <div class="gp-pagination">
+                <button
+                    type="button"
+                    class="gp-page-btn"
+                    [disabled]="!hasPrevPage()"
+                    (click)="prevPage()"
+                    [attr.aria-label]="'dashboard.goodPractices.pagination.prev' | transloco"
+                >
+                    <iconify-icon icon="lucide:chevron-left" width="18"></iconify-icon>
+                </button>
+
+                <span class="gp-page-indicator">
+                    {{ 'dashboard.goodPractices.pagination.page' | transloco: { current: currentPage() + 1, total: pageCount() } }}
+                </span>
+
+                <button
+                    type="button"
+                    class="gp-page-btn"
+                    [disabled]="!hasNextPage()"
+                    (click)="nextPage()"
+                    [attr.aria-label]="'dashboard.goodPractices.pagination.next' | transloco"
+                >
+                    <iconify-icon icon="lucide:chevron-right" width="18"></iconify-icon>
+                </button>
+            </div>
+        }
+    </div>
+</div>

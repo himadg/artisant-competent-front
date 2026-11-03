@@ -4,19 +4,9 @@ import { DashboardDataService } from '../../../core/services/dashboard-data.serv
 import { UserApiService } from '../../../core/services/user-api.service';
 import { AffiliationApiService } from '../../../core/services/affiliation-api.service';
 import { DemandService } from '../../../core/services/demand.service';
-import { IndividualDashboardData } from '../../../shared/interfaces/individual-dashboard';
+import { IndividualDashboardData, ProfileEditFields } from '../../../shared/interfaces/individual-dashboard';
 import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
 import { DemandDetail, DemandSummary } from '../../../shared/interfaces/demand';
-
-export interface ProfileEditFields {
-  firstName: string;
-  lastName: string;
-  email: string;
-  birthDate: string;
-  gender: string;
-  phone: string;
-  address: { streetNumber: string; streetName: string; additionalInfo: string; postalCode: string; city: string };
-}
 
 /**
  * État partagé entre le shell et les sections routées du dashboard particulier (fourni une seule

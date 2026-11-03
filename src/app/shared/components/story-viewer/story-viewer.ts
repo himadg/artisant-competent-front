@@ -1,10 +1,7 @@
 import { Component, input, output, computed, signal, effect, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-
-export interface StoryViewerItem {
-  createdAt: string;
-}
+import { StoryViewerItem } from '../../interfaces/story';
 
 interface StoryViewerSnapshot {
   story: StoryViewerItem;

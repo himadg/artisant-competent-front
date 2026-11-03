@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { CommonModule } from '@angular/common';
 import { FormsModule, Validators } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
-import { IndividualDashboardStateService, ProfileEditFields } from '../../individual-dashboard-state.service';
+import { IndividualDashboardStateService } from '../../individual-dashboard-state.service';
+import { ProfileEditFields } from '../../../../../shared/interfaces/individual-dashboard';
 import { LangService } from '../../../../../core/services/lang.service';
 import { DATE_STYLE_FULL, formatLocalizedDate } from '../../../../../core/utils/date-format';
 import { InlineEditActions } from '../../../../../shared/components/inline-edit-actions/inline-edit-actions';

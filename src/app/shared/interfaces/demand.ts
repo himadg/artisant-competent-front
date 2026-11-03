@@ -2,6 +2,11 @@ import { RoleType } from './user';
 
 export type DemandStatus = 'AVAILABLE' | 'UNAVAILABLE' | 'CANCELLED';
 
+export interface DemandFormValue {
+  description: string;
+  files: File[];
+}
+
 export interface DemandAuthor {
   id: string;
   firstName: string;

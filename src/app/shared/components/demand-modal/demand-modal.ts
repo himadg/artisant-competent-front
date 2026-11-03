@@ -2,11 +2,7 @@ import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, inp
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
 import { ALLOWED_IMAGE_TYPES, isFileTypeAllowed } from '../../../core/utils/file-types';
-
-export interface DemandFormValue {
-  description: string;
-  files: File[];
-}
+import { DemandFormValue } from '../../interfaces/demand';
 
 @Component({
   selector: 'demand-modal',

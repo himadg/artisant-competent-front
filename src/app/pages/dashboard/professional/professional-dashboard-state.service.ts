@@ -5,11 +5,18 @@ import { DashboardDataService } from '../../../core/services/dashboard-data.serv
 import { UserApiService } from '../../../core/services/user-api.service';
 import { AffiliationApiService } from '../../../core/services/affiliation-api.service';
 import { DemandService } from '../../../core/services/demand.service';
-import { StoryApiService, Story } from '../../../core/services/story-api.service';
+import { StoryApiService } from '../../../core/services/story-api.service';
+import { Story } from '../../../shared/interfaces/story';
 import { UploadService } from '../../../core/services/upload.service';
 import { FlashMessageService } from '../../../core/services/flash-message.service';
 import { buildStoryUploadErrorMessage } from '../../../core/utils/story-upload-error';
-import { ProfessionalDashboardData, OpeningHoursDay } from '../../../shared/interfaces/professional-dashboard';
+import {
+  ProfessionalDashboardData,
+  OpeningHoursDay,
+  PersonalInfoEditFields,
+  CompanyExtraEditFields,
+  MediatorEditFields,
+} from '../../../shared/interfaces/professional-dashboard';
 import { AffiliationDashboard } from '../../../shared/interfaces/affiliation';
 import { DemandDetail, DemandSummary } from '../../../shared/interfaces/demand';
 import { PreviewDocument } from '../../../shared/interfaces/preview-document';
@@ -25,31 +32,6 @@ const MAX_STORIES_PER_TYPE: Record<StoryTriggerType, number> = {
   PRESENTATION: 1,
   TIPS: 1,
 };
-
-export interface PersonalInfoEditFields {
-  gender: string;
-  lastName: string;
-  firstName: string;
-  birthDate: string;
-  email: string;
-  professionalEmail: string;
-  managerPhone: string;
-  address: { streetNumber: string; streetName: string; additionalInfo: string; postalCode: string; city: string };
-}
-
-export interface CompanyExtraEditFields {
-  yearsExperience: number;
-  onCall: boolean;
-  workAddress: { streetNumber: string; streetName: string; additionalInfo: string; postalCode: string; city: string };
-}
-
-export interface MediatorEditFields {
-  mediatorName: string;
-  mediatorAddress: string;
-  mediatorWebsite: string;
-  mediatorContactMethod: string;
-  mediatorAdditionalInfo: string;
-}
 
 /**
  * État partagé entre le shell et les sections routées du dashboard pro (fourni une seule fois par

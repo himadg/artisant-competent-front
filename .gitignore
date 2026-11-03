@@ -68,3 +68,6 @@ src/assets/config/config.json
 # TypeScript cache
 *.tsbuildinfo
 BRIEF_V5_HOMEPAGE.md
+
+AGENTS.md
+CLAUDE.md

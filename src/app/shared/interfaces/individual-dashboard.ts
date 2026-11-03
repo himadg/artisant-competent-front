@@ -17,6 +17,16 @@ export interface IndividualProfileWithUrls {
   ribUrl: string | null;
 }
 
+export interface ProfileEditFields {
+  firstName: string;
+  lastName: string;
+  email: string;
+  birthDate: string;
+  gender: string;
+  phone: string;
+  address: { streetNumber: string; streetName: string; additionalInfo: string; postalCode: string; city: string };
+}
+
 export interface IndividualDashboardData {
   id: string;
   email: string;

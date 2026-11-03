@@ -10,7 +10,8 @@ import { SearchProForm } from '../../shared/components/search-pro-form/search-pr
 import { AuthService } from '../../core/services/auth.service';
 import { DemandService } from '../../core/services/demand.service';
 import { FlashMessageService } from '../../core/services/flash-message.service';
-import { DemandModal, DemandFormValue } from '../../shared/components/demand-modal/demand-modal';
+import { DemandModal } from '../../shared/components/demand-modal/demand-modal';
+import { DemandFormValue } from '../../shared/interfaces/demand';
 
 const PENDING_REQUEST_KEY = 'pendingRequest';
 

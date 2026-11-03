@@ -51,6 +51,16 @@ export class AuthService {
     this.scheduleProactiveRefresh(accessToken);
   }
 
+  /** Réponse toujours générique côté serveur (que l'email corresponde à un compte ou non) : rien
+   * à faire de spécial ici, l'appelant affiche le même message de confirmation dans tous les cas. */
+  async forgotPassword(email: string): Promise<void> {
+    await firstValueFrom(this.http.post<void>('/auth/forgot-password', { email }));
+  }
+
+  async resetPassword(token: string, newPassword: string): Promise<void> {
+    await firstValueFrom(this.http.post<void>('/auth/reset-password', { token, newPassword }));
+  }
+
   async logout(): Promise<void> {
     await firstValueFrom(this.http.post<void>('/auth/logout', {})).catch(() => null);
     this.clearProactiveRefresh();
