@@ -2778,7 +2778,8 @@
     "noDescription": "Aucune description disponible.",
     "yearsLabel": "ans d'exp.",
     "tradesLabel": "métier(s)",
-    "servicesLabel": "service(s)"
+    "servicesLabel": "service(s)",
+    "presentationLabel": "{{ company }} · Présentation"
   },
   "searchPro": {
     "placeholder": "Rechercher un professionnel ou un service",

@@ -40,6 +40,42 @@
   }
 }
 
+.presentation-loading-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: conic-gradient(from 0deg, transparent 0deg, var(--primary-beige) 100deg, transparent 200deg);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+  animation: presentation-ring-spin 0.9s linear infinite;
+}
+
+@keyframes presentation-ring-spin {
+  to { transform: rotate(360deg); }
+}
+
+.presentation-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid var(--tertiary-brown);
+  pointer-events: none;
+}
+
+.presentation-avatar-gap {
+  inset: 6px;
+  cursor: pointer;
+  background: transparent;
+  transition: transform 0.18s ease, filter 0.18s ease;
+
+  &:hover,
+  &:focus-visible {
+    transform: scale(1.04);
+    filter: brightness(1.08);
+  }
+}
+
 .modal-backdrop {
   animation: backdrop-in 0.2s ease forwards;
 }

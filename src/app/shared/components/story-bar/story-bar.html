@@ -6,6 +6,7 @@
                 <li>
                     <button type="button" class="story-circle" (click)="openGroup(i)">
                         <span class="story-ring">
+                            <span class="story-ring-gradient"></span>
                             <span class="story-avatar">
                                 @if (group.avatarUrl) {
                                     <img [src]="group.avatarUrl" [alt]="group.companyName" loading="lazy" />

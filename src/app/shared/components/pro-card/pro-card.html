@@ -5,7 +5,7 @@
 
     <!-- En-tête avec checkbox -->
     <div class="flex gap-3 items-center">
-        <div class="overflow-hidden w-12 h-12 rounded-full border-2 border-[var(--border-color)] shrink-0">
+        <div class="overflow-hidden w-12 h-12 rounded-full shrink-0">
             @if (proInfo().companyLogoKey) {
                 @if (!logoLoaded()) {
                     <image-skeleton />
@@ -37,7 +37,7 @@
     }
 
     <div class="flex flex-col gap-2 mt-auto pt-1" (click)="$event.stopPropagation()">
-        <button (click)="showDetails.set(true)"
+        <button (click)="openDetails()"
             class="text-sm text-center px-4 py-2 rounded-full border border-[var(--primary-water-green)] text-[var(--primary-water-green)] hover:bg-[var(--primary-water-green)] hover:text-[var(--primary-beige)] transition-colors font-medium">
             {{ 'proCard.details' | transloco }}
         </button>
@@ -58,19 +58,33 @@
                     ✕
                 </button>
 
-                <div class="w-24 h-24 rounded-full border-4 border-white/30 overflow-hidden mb-4 shrink-0">
-                    @if (proInfo().companyLogoKey) {
-                        @if (!logoLoaded()) {
-                            <image-skeleton />
-                        }
-                        <img [src]="proInfo().companyLogoKey" [alt]="proInfo().companyName"
-                             class="object-cover w-full h-full"
-                             [class.hidden]="!logoLoaded()" />
-                    } @else {
-                        <div class="flex justify-center items-center w-full h-full text-3xl font-bold bg-white/10 text-white">
-                            {{ proInfo().companyName[0] }}
-                        </div>
+                <div class="relative w-24 h-24 mb-1 shrink-0">
+                    @if (loadingPresentation()) {
+                        <div class="presentation-loading-ring"></div>
                     }
+                    @if (presentationStory()) {
+                        <div class="presentation-ring"></div>
+                    }
+                    <button type="button"
+                        class="absolute rounded-full overflow-hidden"
+                        [class.inset-0]="!presentationStory()"
+                        [class.presentation-avatar-gap]="presentationStory()"
+                        [disabled]="!presentationStory()"
+                        [attr.aria-label]="presentationStory() ? ('storyViewer.seePresentation' | transloco) : null"
+                        (click)="openPresentationViewer()">
+                        @if (proInfo().companyLogoKey) {
+                            @if (!logoLoaded()) {
+                                <image-skeleton />
+                            }
+                            <img [src]="proInfo().companyLogoKey" [alt]="proInfo().companyName"
+                                 class="object-cover w-full h-full"
+                                 [class.hidden]="!logoLoaded()" />
+                        } @else {
+                            <div class="flex justify-center items-center w-full h-full text-3xl font-bold bg-white/10 text-white">
+                                {{ proInfo().companyName[0] }}
+                            </div>
+                        }
+                    </button>
                 </div>
 
                 <h2 class="text-xl font-bold text-[var(--primary-beige)] leading-tight">{{ proInfo().companyName }}</h2>
@@ -157,4 +171,15 @@
             </div>
         </div>
     </div>
+}
+
+@if (viewingPresentation() && presentationStory()) {
+    <story-viewer
+        [story]="presentationStory()"
+        [videoUrl]="presentationStory()?.videoUrl ?? null"
+        [label]="('proCard.presentationLabel' | transloco: { company: proInfo().companyName })"
+        [allowDelete]="false"
+        [showProfileLink]="false"
+        (closeModal)="closePresentationViewer()"
+    />
 }
