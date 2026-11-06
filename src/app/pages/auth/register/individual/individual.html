@@ -1,6 +1,106 @@
 <div class="my-12 md:my-24">
     <h1 class="my-8 text-4xl font-semibold text-center">{{ 'register.title' | transloco }}</h1>
 
+    <!-- Required fields notice + good practices -->
+    <div class="flex flex-col flex-center justify-center items-center mx-auto mb-6 space-y-3 px-4">
+        <p class="text-lg font-bold mb-4">{{ 'professional.requiredFieldsNotice' | transloco }}</p>
+        <button
+            type="button"
+            class="text-sm px-4 py-2 rounded-lg text-[var(--primary-beige)] bg-grad-water-green hover:opacity-80 flex items-center"
+            (click)="goodPracticesImageIndex.set(0); goodPracticesModalOpen.set(true)"
+        >
+            <iconify-icon icon="lucide:clipboard-check" class="mr-1"></iconify-icon>
+            {{ 'register.goodPracticesBtn' | transloco }}
+        </button>
+        <button
+            type="button"
+            class="text-sm underline text-[var(--secondary-water-green)] hover:opacity-80 flex items-center"
+            (click)="goodPracticesVideoModalOpen.set(true)"
+        >
+            <iconify-icon icon="lucide:play-circle" class="mr-1"></iconify-icon>
+            {{ 'register.goodPracticesVideoBtn' | transloco }}
+        </button>
+    </div>
+
+    @if (goodPracticesVideoModalOpen()) {
+        <video-modal videoUrl="assets/video/help-good-practices-for-ind.mp4" (closed)="goodPracticesVideoModalOpen.set(false)" />
+    }
+
+    <!-- Good practices modal -->
+    @if (goodPracticesModalOpen()) {
+        <div
+            class="flex fixed inset-0 z-50 justify-center items-center bg-black/60 p-4"
+            (click)="goodPracticesModalOpen.set(false)"
+        >
+            <div
+                class="overflow-auto relative max-w-2xl h-[90%] rounded-xl bg-white shadow-xl"
+                (click)="$event.stopPropagation()"
+            >
+                <button
+                    type="button"
+                    class="absolute top-2 right-3 text-2xl text-gray-500 hover:text-gray-800"
+                    (click)="goodPracticesModalOpen.set(false)"
+                >
+                    ×
+                </button>
+
+                <div class="flex gap-3 justify-center items-center py-3">
+                    <button
+                        type="button"
+                        class="flex justify-center items-center w-8 h-8 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed"
+                        [disabled]="goodPracticesImageIndex() === 0"
+                        (click)="goodPracticesImageIndex.set(goodPracticesImageIndex() - 1)"
+                        [attr.aria-label]="'dashboard.goodPractices.pagination.prev' | transloco"
+                    >
+                        ‹
+                    </button>
+                    <span class="text-sm font-medium text-gray-600">
+                        {{ 'dashboard.goodPractices.pagination.page' | transloco: { current: goodPracticesImageIndex() + 1, total: goodPracticesImages.length } }}
+                    </span>
+                    <button
+                        type="button"
+                        class="flex justify-center items-center w-8 h-8 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed"
+                        [disabled]="goodPracticesImageIndex() === goodPracticesImages.length - 1"
+                        (click)="goodPracticesImageIndex.set(goodPracticesImageIndex() + 1)"
+                        [attr.aria-label]="'dashboard.goodPractices.pagination.next' | transloco"
+                    >
+                        ›
+                    </button>
+                </div>
+
+                <img
+                    [src]="goodPracticesImages[goodPracticesImageIndex()]"
+                    alt="{{ 'register.goodPracticesAlt' | transloco }}"
+                    class="w-full h-auto"
+                />
+
+                <div class="flex gap-3 justify-center items-center py-3">
+                    <button
+                        type="button"
+                        class="flex justify-center items-center w-8 h-8 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed"
+                        [disabled]="goodPracticesImageIndex() === 0"
+                        (click)="goodPracticesImageIndex.set(goodPracticesImageIndex() - 1)"
+                        [attr.aria-label]="'dashboard.goodPractices.pagination.prev' | transloco"
+                    >
+                        ‹
+                    </button>
+                    <span class="text-sm font-medium text-gray-600">
+                        {{ 'dashboard.goodPractices.pagination.page' | transloco: { current: goodPracticesImageIndex() + 1, total: goodPracticesImages.length } }}
+                    </span>
+                    <button
+                        type="button"
+                        class="flex justify-center items-center w-8 h-8 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed"
+                        [disabled]="goodPracticesImageIndex() === goodPracticesImages.length - 1"
+                        (click)="goodPracticesImageIndex.set(goodPracticesImageIndex() + 1)"
+                        [attr.aria-label]="'dashboard.goodPractices.pagination.next' | transloco"
+                    >
+                        ›
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+
     <form [formGroup]="form" (ngSubmit)="submit()" class="py-8 px-4 mx-auto space-y-4 max-w-[29rem] autofill-fix">
         <div class="grid gap-4 items-stretch md:grid-cols-2">
             <div class="flex justify-center items-center">
@@ -271,6 +371,15 @@
             }
             @if (referralCodeError()) {
                 <span class="text-sm font-medium text-center text-red-500">{{ 'register.errors.invalidReferralCode' | transloco }}</span>
+            }
+            @if (duplicateError() === 'email') {
+                <span class="text-sm font-medium text-center text-red-500">{{ 'register.errors.emailAlreadyUsed' | transloco }}</span>
+            }
+            @if (duplicateError() === 'phone') {
+                <span class="text-sm font-medium text-center text-red-500">{{ 'register.errors.phoneAlreadyUsed' | transloco }}</span>
+            }
+            @if (duplicateError() === 'generic') {
+                <span class="text-sm font-medium text-center text-red-500">{{ 'register.errors.genericConflict' | transloco }}</span>
             }
         </div>
     </form>

@@ -4,15 +4,17 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { AdminApiService } from '../../../core/services/admin-api.service';
-import { PendingUser } from '../../../shared/interfaces/user';
+import { PendingUser, RejectProfessionalPayload } from '../../../shared/interfaces/user';
 import { AuthService } from '../../../core/services/auth.service';
 import { LocalizedDatePipe } from '../../../shared/pipes/localized-date.pipe';
+import { FlashMessageService } from '../../../core/services/flash-message.service';
+import { RejectProModal } from './reject-pro-modal/reject-pro-modal';
 
 @Component({
   selector: 'dashboard-admin',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, TranslocoModule, RouterModule, LocalizedDatePipe],
+  imports: [CommonModule, TranslocoModule, RouterModule, LocalizedDatePipe, RejectProModal],
   templateUrl: './admin-dashboard.html',
   styleUrl: './admin-dashboard.scss',
 })
@@ -20,11 +22,16 @@ export class AdminDashboard implements OnInit {
   private readonly adminApi = inject(AdminApiService);
   private readonly sanitizer = inject(DomSanitizer);
   private readonly transloco = inject(TranslocoService);
+  private readonly flashMessage = inject(FlashMessageService);
   readonly authService = inject(AuthService);
 
   readonly pendingUsers = signal<PendingUser[]>([]);
   readonly loading = signal(true);
   readonly selectedUser = signal<any>(null);
+
+  /** Dossier ciblé par la modale de refus (null = modale fermée). */
+  readonly rejectTarget = signal<{ id: string; displayName: string } | null>(null);
+  readonly rejecting = signal(false);
 
   readonly modalDocUrl = signal<SafeResourceUrl | string | null>(null);
   readonly modalDocType = signal<'image' | 'pdf' | null>(null);
@@ -56,7 +63,7 @@ export class AdminDashboard implements OnInit {
 
   approveUser(id: string) {
     if (!confirm(this.transloco.translate('dashboard.admin.confirmApprove'))) return;
-    this.adminApi.updateUserStatus(id, 'ACTIVE').subscribe({
+    this.adminApi.approveUser(id).subscribe({
       next: () => {
         this.selectedUser.set(null);
         this.loadPendingUsers();
@@ -64,13 +71,37 @@ export class AdminDashboard implements OnInit {
     });
   }
 
-  rejectUser(id: string) {
-    if (!confirm(this.transloco.translate('dashboard.admin.confirmReject'))) return;
-    this.adminApi.updateUserStatus(id, 'REJECTED').subscribe({
-      next: () => {
+  rejectUser(user: any) {
+    const company = user.professionalProfile?.companyName;
+    const name = `${user.firstName} ${user.lastName}`;
+    this.rejectTarget.set({ id: user.id, displayName: company ? `${name} — ${company}` : name });
+  }
+
+  cancelReject() {
+    this.rejectTarget.set(null);
+  }
+
+  confirmReject(payload: RejectProfessionalPayload) {
+    const target = this.rejectTarget();
+    if (!target) return;
+    this.rejecting.set(true);
+    this.adminApi.rejectProfessional(target.id, payload).subscribe({
+      next: ({ mailSent, email }) => {
+        this.rejecting.set(false);
+        this.rejectTarget.set(null);
         this.selectedUser.set(null);
         this.loadPendingUsers();
-      }
+        this.flashMessage.set(
+          mailSent
+            ? { type: 'success', key: 'dashboard.admin.rejectModal.success' }
+            : { type: 'warning', key: 'dashboard.admin.rejectModal.mailFailed', params: { email } },
+        );
+      },
+      error: () => {
+        // La modale reste ouverte pour permettre de réessayer sans ressaisir le motif.
+        this.rejecting.set(false);
+        this.flashMessage.set({ type: 'error', key: 'dashboard.admin.rejectModal.error' });
+      },
     });
   }
 

@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PendingUser } from '../../shared/interfaces/user';
+import { PendingUser, RejectProfessionalPayload, RejectProfessionalResult } from '../../shared/interfaces/user';
 
 @Injectable({ providedIn: 'root' })
 export class AdminApiService {
@@ -15,7 +15,11 @@ export class AdminApiService {
     return this.http.get<any>(`/admin/users/${id}`);
   }
 
-  updateUserStatus(id: string, status: 'ACTIVE' | 'REJECTED'): Observable<void> {
-    return this.http.patch<void>(`/admin/users/${id}/status`, { status });
+  approveUser(id: string): Observable<void> {
+    return this.http.patch<void>(`/admin/users/${id}/status`, { status: 'ACTIVE' });
+  }
+
+  rejectProfessional(id: string, payload: RejectProfessionalPayload): Observable<RejectProfessionalResult> {
+    return this.http.post<RejectProfessionalResult>(`/admin/users/${id}/reject`, payload);
   }
 }

@@ -2490,8 +2490,14 @@
       }
     },
     "errors": {
-      "invalidReferralCode": "This referral code is not valid. Please make sure you have copied and pasted the code correctly from the link given by the referral."
-    }
+      "invalidReferralCode": "This referral code is not valid. Please make sure you have copied and pasted the code correctly from the link given by the referral.",
+      "emailAlreadyUsed": "This email is already in use by another account.",
+      "phoneAlreadyUsed": "This phone number is already in use by another account.",
+      "genericConflict": "A data conflict was detected, please try again."
+    },
+    "goodPracticesVideoBtn": "Watch the best practices video",
+    "goodPracticesBtn": "Instructions - Best practices",
+    "goodPracticesAlt": "Individual best practices"
   },
   "supplier": {
     "title": "Supplier sign up",
@@ -2648,7 +2654,11 @@
         "logoRequired": "Logo required",
         "ribRequired": "Bank details (RIB) required"
       },
-      "addressWorkInvalid": "Unable to validate the company address, please check your entry."
+      "addressWorkInvalid": "Unable to validate the company address, please check your entry.",
+      "emailAlreadyUsed": "This email is already in use by another account.",
+      "siretAlreadyUsed": "This SIRET is already registered on the platform.",
+      "phoneAlreadyUsed": "This phone number is already in use by another account.",
+      "genericConflict": "A data conflict was detected, please try again."
     },
     "manager": {
       "company": "Company",
@@ -2742,7 +2752,8 @@
       "title": "Remarks and additional information",
       "description": "If some important information is not included in the submitted documents, you can specify it here. For example: a diploma, certification or qualification held by an employee, as well as any other useful detail about your activity or the organisation of your company.",
       "placeholder": "Describe your situation or add any useful information (500 characters max)"
-    }
+    },
+    "goodPracticesVideoBtn": "Watch the best practices video"
   },
   "proCard": {
     "details": "See details",
@@ -3316,7 +3327,6 @@
     "admin": {
       "title": "Administration",
       "confirmApprove": "Are you sure you want to approve this tradesperson? They will be publicly visible.",
-      "confirmReject": "Are you sure you want to reject this tradesperson?",
       "pendingValidation": "Pending validation",
       "noPendingProfiles": "No pending profiles",
       "registeredOn": "Registered on",
@@ -3378,7 +3388,27 @@
       "mediatorContactMethod": "Contact method",
       "mediatorAdditionalInfo": "Additional information",
       "email": "Email",
-      "dayOnCall": "On call"
+      "dayOnCall": "On call",
+      "rejectModal": {
+        "title": "Reject {{name}}'s application",
+        "warning": "This action cannot be undone: the account, its information and its documents will be deleted. The person will receive an email with the reason and will be able to register again.",
+        "reasonLabel": "Reason for rejection",
+        "reasonPlaceholder": "Select a reason",
+        "reasons": {
+          "MISSING_INFO": "Missing information",
+          "INVALID_INFO": "Incorrect information",
+          "MISSING_DOCUMENT": "Missing document",
+          "INVALID_DOCUMENT": "Incorrect document"
+        },
+        "detailsLabel": "Details (optional)",
+        "detailsPlaceholder": "E.g. the back of the ID document is unreadable. This text will be included in the email sent.",
+        "cancel": "Cancel",
+        "submit": "Reject and delete the account",
+        "submitting": "Rejecting…",
+        "success": "Application rejected: the account has been deleted and the rejection email sent.",
+        "mailFailed": "The account has been deleted, but the rejection email could not be sent to {{email}}. Please notify the person manually.",
+        "error": "The rejection failed. Please try again."
+      }
     },
     "errors": {
       "load": "Unable to load dashboard",
@@ -4018,5 +4048,8 @@
     "title": "Notifications",
     "empty": "No notifications yet",
     "markAllRead": "Mark all as read"
+  },
+  "videoModal": {
+    "ariaLabel": "Best practices video"
   }
 }

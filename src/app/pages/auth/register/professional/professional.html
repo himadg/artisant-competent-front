@@ -7,12 +7,24 @@
         <button
             type="button"
             class="text-sm px-4 py-2 rounded-lg text-[var(--primary-beige)] bg-grad-water-green hover:opacity-80 flex items-center"
-            (click)="goodPracticesModalOpen.set(true)"
+            (click)="goodPracticesImageIndex.set(0); goodPracticesModalOpen.set(true)"
         >
             <iconify-icon icon="lucide:clipboard-check" class="mr-1"></iconify-icon>
             {{ 'professional.goodPracticesBtn' | transloco }}
         </button>
+        <button
+            type="button"
+            class="text-sm underline text-[var(--secondary-water-green)] hover:opacity-80 flex items-center"
+            (click)="goodPracticesVideoModalOpen.set(true)"
+        >
+            <iconify-icon icon="lucide:play-circle" class="mr-1"></iconify-icon>
+            {{ 'professional.goodPracticesVideoBtn' | transloco }}
+        </button>
     </div>
+
+    @if (goodPracticesVideoModalOpen()) {
+        <video-modal videoUrl="assets/video/help-good-practices-for-pro.mp4" (closed)="goodPracticesVideoModalOpen.set(false)" />
+    }
 
     @if (step() === 1) {
         <form [formGroup]="form" class="py-8 px-4 mx-auto space-y-4 max-w-[35rem] autofill-fix">
@@ -1377,6 +1389,30 @@
                     }}</span
                     ><br />
                 }
+                @if (duplicateError() === 'email') {
+                    <span class="text-sm font-medium text-red-500">{{
+                        'professional.errors.emailAlreadyUsed' | transloco
+                    }}</span
+                    ><br />
+                }
+                @if (duplicateError() === 'siret') {
+                    <span class="text-sm font-medium text-red-500">{{
+                        'professional.errors.siretAlreadyUsed' | transloco
+                    }}</span
+                    ><br />
+                }
+                @if (duplicateError() === 'phone') {
+                    <span class="text-sm font-medium text-red-500">{{
+                        'professional.errors.phoneAlreadyUsed' | transloco
+                    }}</span
+                    ><br />
+                }
+                @if (duplicateError() === 'generic') {
+                    <span class="text-sm font-medium text-red-500">{{
+                        'professional.errors.genericConflict' | transloco
+                    }}</span
+                    ><br />
+                }
             </div>
         </form>
     }
@@ -1401,11 +1437,60 @@
             >
                 ×
             </button>
+
+            <div class="flex gap-3 justify-center items-center py-3">
+                <button
+                    type="button"
+                    class="flex justify-center items-center w-8 h-8 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed"
+                    [disabled]="goodPracticesImageIndex() === 0"
+                    (click)="goodPracticesImageIndex.set(goodPracticesImageIndex() - 1)"
+                    [attr.aria-label]="'dashboard.goodPractices.pagination.prev' | transloco"
+                >
+                    ‹
+                </button>
+                <span class="text-sm font-medium text-gray-600">
+                    {{ 'dashboard.goodPractices.pagination.page' | transloco: { current: goodPracticesImageIndex() + 1, total: goodPracticesImages.length } }}
+                </span>
+                <button
+                    type="button"
+                    class="flex justify-center items-center w-8 h-8 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed"
+                    [disabled]="goodPracticesImageIndex() === goodPracticesImages.length - 1"
+                    (click)="goodPracticesImageIndex.set(goodPracticesImageIndex() + 1)"
+                    [attr.aria-label]="'dashboard.goodPractices.pagination.next' | transloco"
+                >
+                    ›
+                </button>
+            </div>
+
             <img
-                src="assets/img/help-good-practices-pro.jpeg"
+                [src]="goodPracticesImages[goodPracticesImageIndex()]"
                 alt="{{ 'professional.goodPracticesAlt' | transloco }}"
                 class="w-full h-auto"
             />
+
+            <div class="flex gap-3 justify-center items-center py-3">
+                <button
+                    type="button"
+                    class="flex justify-center items-center w-8 h-8 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed"
+                    [disabled]="goodPracticesImageIndex() === 0"
+                    (click)="goodPracticesImageIndex.set(goodPracticesImageIndex() - 1)"
+                    [attr.aria-label]="'dashboard.goodPractices.pagination.prev' | transloco"
+                >
+                    ‹
+                </button>
+                <span class="text-sm font-medium text-gray-600">
+                    {{ 'dashboard.goodPractices.pagination.page' | transloco: { current: goodPracticesImageIndex() + 1, total: goodPracticesImages.length } }}
+                </span>
+                <button
+                    type="button"
+                    class="flex justify-center items-center w-8 h-8 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed"
+                    [disabled]="goodPracticesImageIndex() === goodPracticesImages.length - 1"
+                    (click)="goodPracticesImageIndex.set(goodPracticesImageIndex() + 1)"
+                    [attr.aria-label]="'dashboard.goodPractices.pagination.next' | transloco"
+                >
+                    ›
+                </button>
+            </div>
         </div>
     </div>
 }

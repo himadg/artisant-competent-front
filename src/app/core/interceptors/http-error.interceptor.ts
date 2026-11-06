@@ -18,6 +18,10 @@ export const httpErrorInterceptor: HttpInterceptorFn = (req, next) => {
       // 401 géré par authInterceptor (refresh silencieux ou déconnexion)
       if (error.status === 401) return throwError(() => error);
 
+      // 409 (conflits, ex: email/téléphone/SIRET déjà utilisé) : toujours affiché inline par
+      // l'appelant (formulaires d'inscription, etc...)
+      if (error.status === 409) return throwError(() => error);
+
       const key = STATUS_KEY_MAP[error.status] ?? (error.status === 0 ? 'errors.network' : 'errors.unknown');
       flash.set({ type: 'error', key });
 

@@ -5,6 +5,7 @@ import {
   OnDestroy,
   ViewChild,
   computed,
+  effect,
   ChangeDetectionStrategy,
   CUSTOM_ELEMENTS_SCHEMA,
 } from '@angular/core';
@@ -35,6 +36,7 @@ import { TradeApiService } from '../../../../core/services/trade-api.service';
 import { Trade } from '../../../../shared/interfaces/trade';
 import { TurnstileComponent } from '../../../../shared/components/turnstile/turnstile';
 import { LegalModal } from '../../../../shared/components/legal-modal/legal-modal';
+import { VideoModal } from '../../../../shared/components/video-modal/video-modal';
 import { Router } from '@angular/router';
 import { UserApiService } from '../../../../core/services/user-api.service';
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
@@ -60,7 +62,7 @@ import { DiplomaEntry } from '../../../../shared/interfaces/diploma-entry';
   selector: 'register-professional',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent, LegalModal],
+  imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent, LegalModal, VideoModal],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './professional.html',
   styleUrl: './professional.scss',
@@ -191,9 +193,20 @@ export class RegisterProfessional implements OnDestroy {
   readonly showSubmitError = signal<boolean>(false);
   readonly submitting = signal(false);
   readonly referralCodeError = signal(false);
+  readonly duplicateError = signal<'email' | 'siret' | 'phone' | 'generic' | null>(null);
   readonly legalModalOpen = signal(false);
 
   readonly goodPracticesModalOpen = signal(false);
+  // Les 3 parties du guide pro, même contenu/pagination non circulaire que good-practices-tabs
+  // (dashboard) — dupliqué ici volontairement : contexte différent (modale ad-hoc d'inscription
+  // vs panneau à onglets du dashboard), pas la même structure de composant à réutiliser telle quelle.
+  readonly goodPracticesImages = [
+    'assets/img/help-good-practices-for-pro-1.png',
+    'assets/img/help-good-practices-for-pro-2.png',
+    'assets/img/help-good-practices-for-pro-3.png',
+  ];
+  readonly goodPracticesImageIndex = signal(0);
+  readonly goodPracticesVideoModalOpen = signal(false);
   readonly mediatorGuideModalOpen = signal(false);
   readonly docObligationsModalOpen = signal(false);
   readonly workingAddressModalOpen = signal(false);
@@ -238,6 +251,12 @@ export class RegisterProfessional implements OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe((suggestions) => this.workAddressSuggestions.set(suggestions));
+
+    // Si le pro coche "onCall", on met tous les jours à onCall (onCallDAy) pour éviter une erreur de validation
+    effect(() => {
+      const onCall = this.onCall();
+      this.hours.controls.forEach((ctrl) => ctrl.get('onCallDay')?.setValue(onCall, { emitEvent: false }));
+    });
   }
 
   ngOnDestroy() {
@@ -728,6 +747,8 @@ export class RegisterProfessional implements OnDestroy {
   // --- Submit ---
   submit() {
     this.showSubmitError.set(false);
+    this.adressError.set(null);
+    this.duplicateError.set(null);
     this.hoursTouched.set(true);
 
     [
@@ -767,7 +788,6 @@ export class RegisterProfessional implements OnDestroy {
       return;
     }
 
-    this.adressError.set(null);
     const captchaToken = this.captchaToken();
     if (!captchaToken) return;
 
@@ -920,6 +940,10 @@ export class RegisterProfessional implements OnDestroy {
           }
           if (msg.toLowerCase().includes('personnelle')) this.adressError.set('addressPersonal');
           else if (msg.toLowerCase().includes('travail')) this.adressError.set('addressWork');
+          else if (msg.toLowerCase().includes('siret')) this.duplicateError.set('siret');
+          else if (msg.toLowerCase().includes('téléphone')) this.duplicateError.set('phone');
+          else if (msg.toLowerCase().includes('email')) this.duplicateError.set('email');
+          else if (msg.toLowerCase().includes('conflit de données')) this.duplicateError.set('generic');
           this.turnstile.reset();
           this.onCaptchaReset();
         },

@@ -495,7 +495,7 @@
                             </button>
                             <button
                                 class="flex-1 px-6 py-2 font-medium text-red-700 bg-red-100 rounded-lg transition-colors hover:bg-red-200"
-                                (click)="rejectUser(user.id)"
+                                (click)="rejectUser(user)"
                             >
                                 {{ 'dashboard.admin.rejectProfile' | transloco }}
                             </button>
@@ -521,6 +521,15 @@
             </div>
         }
     </div>
+
+    @if (rejectTarget(); as target) {
+        <reject-pro-modal
+            [displayName]="target.displayName"
+            [submitting]="rejecting()"
+            (cancelled)="cancelReject()"
+            (confirmed)="confirmReject($event)"
+        />
+    }
 
     <!-- Modale de document -->
     @if (modalDocUrl()) {

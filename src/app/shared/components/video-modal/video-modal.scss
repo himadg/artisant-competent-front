@@ -1,0 +1,59 @@
+// Même logique de thème que le reste de l'app : couleurs via var(--x), pas de classes dark:
+// Tailwind — cf. good-practices-tabs.scss/legal-modal.scss.
+
+.video-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  padding: 1rem;
+}
+
+.video-modal {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  background: var(--background-color);
+  border-radius: 1rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+
+  &__close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    border: none;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.15s;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  &__video {
+    display: block;
+    width: 100%;
+    max-height: 85vh;
+    background: #000;
+  }
+}
+
+@media (max-width: 640px) {
+  .video-modal {
+    border-radius: 0.75rem;
+  }
+}

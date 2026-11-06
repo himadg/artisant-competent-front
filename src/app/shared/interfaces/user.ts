@@ -47,3 +47,19 @@ export interface PendingUser {
     workAddress: { city: string; postalCode: number };
   };
 }
+
+// Motifs de refus d'un dossier pro : doivent rester alignés avec ProRejectionReasonSchema côté back.
+export const PRO_REJECTION_REASONS = ['MISSING_INFO', 'INVALID_INFO', 'MISSING_DOCUMENT', 'INVALID_DOCUMENT'] as const;
+export type ProRejectionReason = (typeof PRO_REJECTION_REASONS)[number];
+
+export const PRO_REJECTION_DETAILS_MAX_LENGTH = 1000;
+
+export interface RejectProfessionalPayload {
+  reason: ProRejectionReason;
+  details?: string;
+}
+
+export interface RejectProfessionalResult {
+  mailSent: boolean;
+  email: string;
+}

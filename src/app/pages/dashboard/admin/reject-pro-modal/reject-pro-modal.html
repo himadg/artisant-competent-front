@@ -1,0 +1,69 @@
+<div class="flex fixed inset-0 z-50 justify-center items-center p-4 backdrop-blur-sm bg-black/60" (click)="close()">
+    <form
+        class="w-full max-w-lg bg-white rounded-xl shadow-2xl"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="reject-pro-modal-title"
+        [formGroup]="form"
+        (ngSubmit)="submit()"
+        (click)="$event.stopPropagation()"
+    >
+        <div class="p-6 border-b">
+            <h3 id="reject-pro-modal-title" class="text-lg font-semibold text-gray-900">
+                {{ 'dashboard.admin.rejectModal.title' | transloco: { name: displayName() } }}
+            </h3>
+            <p class="mt-2 text-sm text-red-700">{{ 'dashboard.admin.rejectModal.warning' | transloco }}</p>
+        </div>
+
+        <div class="p-6 space-y-5">
+            <div>
+                <label for="reject-pro-reason" class="block mb-1 text-sm font-medium text-gray-700">
+                    {{ 'dashboard.admin.rejectModal.reasonLabel' | transloco }} *
+                </label>
+                <select
+                    id="reject-pro-reason"
+                    formControlName="reason"
+                    class="px-3 py-2 w-full rounded-lg border border-gray-300 focus:border-red-500 focus:outline-none"
+                >
+                    <option value="" disabled>{{ 'dashboard.admin.rejectModal.reasonPlaceholder' | transloco }}</option>
+                    @for (reason of reasons; track reason) {
+                        <option [value]="reason">{{ 'dashboard.admin.rejectModal.reasons.' + reason | transloco }}</option>
+                    }
+                </select>
+            </div>
+
+            <div>
+                <label for="reject-pro-details" class="block mb-1 text-sm font-medium text-gray-700">
+                    {{ 'dashboard.admin.rejectModal.detailsLabel' | transloco }}
+                </label>
+                <textarea
+                    id="reject-pro-details"
+                    formControlName="details"
+                    rows="5"
+                    [attr.maxlength]="detailsMaxLength"
+                    [placeholder]="'dashboard.admin.rejectModal.detailsPlaceholder' | transloco"
+                    class="px-3 py-2 w-full rounded-lg border border-gray-300 resize-y focus:border-red-500 focus:outline-none"
+                ></textarea>
+                <p class="mt-1 text-xs text-right text-gray-500">{{ detailsValue().length }} / {{ detailsMaxLength }}</p>
+            </div>
+        </div>
+
+        <div class="flex gap-4 p-6 border-t">
+            <button
+                type="button"
+                class="flex-1 px-6 py-2 font-medium text-gray-700 bg-gray-100 rounded-lg transition-colors hover:bg-gray-200 disabled:opacity-50"
+                [disabled]="submitting()"
+                (click)="close()"
+            >
+                {{ 'dashboard.admin.rejectModal.cancel' | transloco }}
+            </button>
+            <button
+                type="submit"
+                class="flex-1 px-6 py-2 font-medium text-white bg-red-600 rounded-lg transition-colors hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                [disabled]="formStatus() !== 'VALID' || submitting()"
+            >
+                {{ (submitting() ? 'dashboard.admin.rejectModal.submitting' : 'dashboard.admin.rejectModal.submit') | transloco }}
+            </button>
+        </div>
+    </form>
+</div>

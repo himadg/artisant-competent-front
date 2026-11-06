@@ -1,4 +1,4 @@
-import { Component, signal, inject, OnDestroy, computed, ChangeDetectionStrategy } from '@angular/core';
+import { Component, signal, inject, OnDestroy, computed, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -7,6 +7,7 @@ import { GeocodingService } from '../../../../core/services/geocoding.service';
 import { AddressSuggestion } from '../../../../shared/interfaces/address-suggestion';
 import { TurnstileComponent } from '../../../../shared/components/turnstile/turnstile';
 import { LegalModal } from '../../../../shared/components/legal-modal/legal-modal';
+import { VideoModal } from '../../../../shared/components/video-modal/video-modal';
 import { AppConfigService } from '../../../../core/services/app-config.service';
 import { UserApiService } from '../../../../core/services/user-api.service';
 import { AuthService } from '../../../../core/services/auth.service';
@@ -22,9 +23,10 @@ import { ALLOWED_IMAGE_TYPES, isFileTypeAllowed } from '../../../../core/utils/f
   selector: 'register-individual',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent, LegalModal],
+  imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent, LegalModal, VideoModal],
   templateUrl: './individual.html',
   styleUrl: './individual.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class RegisterIndividual implements OnDestroy {
   private readonly fb = inject(FormBuilder);
@@ -93,7 +95,17 @@ export class RegisterIndividual implements OnDestroy {
   readonly showSubmitError = signal(false);
   readonly submitting = signal(false);
   readonly legalModalOpen = signal(false);
+  readonly goodPracticesVideoModalOpen = signal(false);
+  readonly goodPracticesModalOpen = signal(false);
+  // Les 2 parties du guide particulier, même pagination non circulaire que côté pro
+  // (professional.ts) et que good-practices-tabs (dashboard).
+  readonly goodPracticesImages = [
+    'assets/img/help-good-practices-for-ind-1.png',
+    'assets/img/help-good-practices-for-ind-2.png',
+  ];
+  readonly goodPracticesImageIndex = signal(0);
   readonly referralCodeError = signal(false);
+  readonly duplicateError = signal<'email' | 'phone' | 'generic' | null>(null);
 
   readonly form = this.fb.group({
     photo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
@@ -218,6 +230,7 @@ export class RegisterIndividual implements OnDestroy {
 
   submit() {
     this.showSubmitError.set(false);
+    this.duplicateError.set(null);
     this.form.markAllAsTouched();
 
     if (this.form.invalid || this.form.value.password !== this.form.value.confirmPassword) {
@@ -297,7 +310,10 @@ export class RegisterIndividual implements OnDestroy {
             this.referralCodeError.set(true);
             return;
           }
-          console.error('Erreur inscription:', err);
+          if (msg.toLowerCase().includes('téléphone')) this.duplicateError.set('phone');
+          else if (msg.toLowerCase().includes('email')) this.duplicateError.set('email');
+          else if (msg.toLowerCase().includes('conflit de données')) this.duplicateError.set('generic');
+          else console.error('Erreur inscription:', err);
         },
       });
   }

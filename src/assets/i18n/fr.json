@@ -2490,8 +2490,14 @@
       }
     },
     "errors": {
-      "invalidReferralCode": "Ce code de parrainage n'est pas valide. Assurez-vous d'avoir bien copié et collé le lien donné par le parrain."
-    }
+      "invalidReferralCode": "Ce code de parrainage n'est pas valide. Assurez-vous d'avoir bien copié et collé le lien donné par le parrain.",
+      "emailAlreadyUsed": "Cet email est déjà utilisé par un autre compte.",
+      "phoneAlreadyUsed": "Ce numéro de téléphone est déjà utilisé par un autre compte.",
+      "genericConflict": "Un conflit de données a été détecté, veuillez réessayer."
+    },
+    "goodPracticesVideoBtn": "Voir la vidéo des bonnes pratiques",
+    "goodPracticesBtn": "Mode d'emploi - Consulter les bonnes pratiques",
+    "goodPracticesAlt": "Bonnes pratiques particulier"
   },
   "supplier": {
     "title": "Inscription du fournisseur",
@@ -2648,7 +2654,11 @@
         "logoRequired": "Logo requis",
         "ribRequired": "RIB requis"
       },
-      "addressWorkInvalid": "Impossible de valider l'adresse de l'entreprise, veuillez vérifier votre saisie."
+      "addressWorkInvalid": "Impossible de valider l'adresse de l'entreprise, veuillez vérifier votre saisie.",
+      "emailAlreadyUsed": "Cet email est déjà utilisé par un autre compte.",
+      "siretAlreadyUsed": "Ce SIRET est déjà enregistré sur la plateforme.",
+      "phoneAlreadyUsed": "Ce numéro de téléphone est déjà utilisé par un autre compte.",
+      "genericConflict": "Un conflit de données a été détecté, veuillez réessayer."
     },
     "manager": {
       "company": "Société",
@@ -2742,7 +2752,8 @@
       "title": "Remarques et informations complémentaires",
       "description": "Si certaines informations importantes ne figurent pas dans les documents transmis, vous pouvez les préciser ici. Exemple : diplôme, certification ou habilitation détenue par un salarié, ainsi que toute autre précision utile concernant votre activité ou l'organisation de votre entreprise.",
       "placeholder": "Décrivez votre situation ou ajoutez toute information utile (500 caractères max)"
-    }
+    },
+    "goodPracticesVideoBtn": "Voir la vidéo des bonnes pratiques"
   },
   "proCard": {
     "details": "Voir les détails",
@@ -3316,7 +3327,6 @@
     "admin": {
       "title": "Administration",
       "confirmApprove": "Êtes-vous sûr de vouloir valider cet artisan ? Il sera visible publiquement.",
-      "confirmReject": "Êtes-vous sûr de vouloir refuser cet artisan ?",
       "pendingValidation": "En attente de validation",
       "noPendingProfiles": "Aucun profil en attente",
       "registeredOn": "Inscrit le",
@@ -3378,7 +3388,27 @@
       "mediatorContactMethod": "Méthode de contact",
       "mediatorAdditionalInfo": "Informations complémentaires",
       "email": "Email",
-      "dayOnCall": "Astreinte"
+      "dayOnCall": "Astreinte",
+      "rejectModal": {
+        "title": "Refuser le dossier de {{name}}",
+        "warning": "Cette action est irréversible : le compte, ses informations et ses documents seront supprimés. La personne recevra un email avec le motif et pourra se réinscrire.",
+        "reasonLabel": "Motif du refus",
+        "reasonPlaceholder": "Sélectionnez un motif",
+        "reasons": {
+          "MISSING_INFO": "Informations manquantes",
+          "INVALID_INFO": "Informations erronées",
+          "MISSING_DOCUMENT": "Document manquant",
+          "INVALID_DOCUMENT": "Document erroné"
+        },
+        "detailsLabel": "Précisions (facultatif)",
+        "detailsPlaceholder": "Ex. : le verso de la pièce d'identité est illisible. Ce texte sera inclus dans l'email envoyé.",
+        "cancel": "Annuler",
+        "submit": "Refuser et supprimer le compte",
+        "submitting": "Refus en cours…",
+        "success": "Dossier refusé : le compte a été supprimé et l'email de refus envoyé.",
+        "mailFailed": "Le compte a été supprimé, mais l'email de refus n'a pas pu être envoyé à {{email}}. Prévenez la personne manuellement.",
+        "error": "Le refus a échoué. Veuillez réessayer."
+      }
     },
     "errors": {
       "load": "Impossible de charger le dashboard",
@@ -4018,5 +4048,8 @@
     "title": "Notifications",
     "empty": "Aucune notification pour le moment",
     "markAllRead": "Tout marquer comme lu"
+  },
+  "videoModal": {
+    "ariaLabel": "Vidéo des bonnes pratiques"
   }
 }
