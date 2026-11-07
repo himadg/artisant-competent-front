@@ -2410,6 +2410,10 @@
     "title": "Page introuvable",
     "message": "Page non trouvée"
   },
+  "comingSoon": {
+    "title": "Fonctionnalité prochainement disponible",
+    "message": "Nous travaillons dessus, revenez bientôt."
+  },
   "cmodFormule": {
     "title": "Formule d'accompagnement CMOD",
     "h1": "Formule d'accompagnement CMOD",

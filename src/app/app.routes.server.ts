@@ -21,6 +21,7 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'contact', renderMode: RenderMode.Prerender },
   { path: 'seo-batiment', renderMode: RenderMode.Prerender },
   { path: 'cmod/formule', renderMode: RenderMode.Prerender },
+  { path: 'coming-soon', renderMode: RenderMode.Prerender },
   { path: 'cities', renderMode: RenderMode.Prerender },
   { path: 'blog', renderMode: RenderMode.Prerender },
   { path: 'faq', renderMode: RenderMode.Prerender },

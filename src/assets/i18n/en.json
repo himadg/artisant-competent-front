@@ -2410,6 +2410,10 @@
     "title": "Page not found",
     "message": "Page not found"
   },
+  "comingSoon": {
+    "title": "Feature coming soon",
+    "message": "We're working on it, check back soon."
+  },
   "cmodFormule": {
     "title": "CMOD support package",
     "h1": "CMOD support package",

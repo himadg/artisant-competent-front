@@ -1,5 +1,6 @@
 {
   "apiUrl": "http://localhost:3000",
   "turnstileSiteKey": "turnstile-site-key",
-  "stripePublishableKey": "stripe-publishable-key"
+  "stripePublishableKey": "stripe-publishable-key",
+  "comingSoonEnabled": "false"
 }

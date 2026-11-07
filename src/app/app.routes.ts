@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { dashboardGuard } from './core/guards/auth.guard';
 import { roleMatch } from './core/guards/role-match.guard';
+import { comingSoonGuard } from './core/guards/coming-soon.guard';
 
 export const routes: Routes = [
   {
@@ -70,7 +71,13 @@ export const routes: Routes = [
   {
     path: 'cmod/formule',
     title: 'cmodFormule.title',
+    canActivate: [comingSoonGuard],
     loadComponent: () => import('./pages/cmod-formule/cmod-formule').then((p) => p.CmodFormulePage),
+  },
+  {
+    path: 'coming-soon',
+    title: 'comingSoon.title',
+    loadComponent: () => import('./shared/components/coming-soon/coming-soon').then((p) => p.ComingSoon),
   },
   // Pages légales : 5 routes pointent toutes vers le même composant placeholder.
   // TODO_HIMAD: contenu définitif à fournir pour chaque page.
@@ -111,6 +118,7 @@ export const routes: Routes = [
   {
     path: 'search-pro',
     title: 'search.pageTitle',
+    canActivate: [comingSoonGuard],
     loadComponent: () => import('./pages/search-pro/search-pro').then((p) => p.SearchProPage),
   },
   {

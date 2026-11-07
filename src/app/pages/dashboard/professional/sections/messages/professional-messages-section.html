@@ -1,4 +1,8 @@
-<messaging
-    [initialConversationId]="pendingConversationId()"
-    (openDemand)="onOpenDemandFromMessaging($event)"
-></messaging>
+@if (comingSoonEnabled) {
+    <coming-soon />
+} @else {
+    <messaging
+        [initialConversationId]="pendingConversationId()"
+        (openDemand)="onOpenDemandFromMessaging($event)"
+    ></messaging>
+}

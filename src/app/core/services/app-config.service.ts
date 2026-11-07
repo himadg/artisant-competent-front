@@ -13,6 +13,7 @@ export class AppConfigService {
         apiUrl: process?.env?.['API_URL'] ?? '',
         turnstileSiteKey: process?.env?.['TURNSTILE_SITE_KEY'] ?? '',
         stripePublishableKey: process?.env?.['STRIPE_PUBLISHABLE_KEY'] ?? '',
+        comingSoonEnabled: process?.env?.['COMING_SOON_ENABLED'] ?? 'false',
       };
       return;
     }

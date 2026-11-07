@@ -971,16 +971,29 @@
                     <p class="text-xs md:text-sm">{{ item.desc }}</p>
                 </li>
             }
-            <!-- 4e bloc : image Artisan Compétent vs Google -->
-            <li class="flex flex-col items-center justify-center p-2 rounded-xl border overflow-hidden">
-                <img
-                    src="assets/img/artisan-competent-vs-google.webp"
-                    [attr.alt]="'home.paiement.vsGoogleAlt' | transloco"
+            <!-- 4e bloc : vidéo de présentation Artisan Compétent -->
+            <li
+                class="flex flex-col items-center justify-center p-2 rounded-xl border overflow-hidden cursor-pointer"
+                role="button"
+                tabindex="0"
+                (click)="presentationVideoModalOpen.set(true)"
+                (keydown.enter)="presentationVideoModalOpen.set(true)"
+            >
+                <video
+                    src="assets/video/artisan-competent-presentation.mp4"
                     class="w-full rounded-lg object-cover"
-                    loading="lazy"
-                />
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    [attr.aria-label]="'home.paiement.vsGoogleAlt' | transloco"
+                ></video>
             </li>
         </ul>
+
+        @if (presentationVideoModalOpen()) {
+            <video-modal videoUrl="assets/video/artisan-competent-presentation.mp4" (closed)="presentationVideoModalOpen.set(false)" />
+        }
 
         <!-- Section protection -->
         <div class="p-6 rounded-xl text-center space-y-3 bg-[color-mix(in_srgb,var(--tertiary-brown)_6%,transparent)]">

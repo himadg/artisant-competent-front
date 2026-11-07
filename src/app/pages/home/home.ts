@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, DestroyRef, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, DestroyRef, OnInit, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Meta } from '@angular/platform-browser';
@@ -7,16 +7,18 @@ import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { SearchProForm } from '../../shared/components/search-pro-form/search-pro-form';
 import { Accordion } from '../../shared/components/accordion';
 import { StoryBar } from '../../shared/components/story-bar/story-bar';
+import { VideoModal } from '../../shared/components/video-modal/video-modal';
 @Component({
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TranslocoModule, RouterModule, SearchProForm, Accordion, StoryBar],
+  imports: [TranslocoModule, RouterModule, SearchProForm, Accordion, StoryBar, VideoModal],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomePage implements OnInit {
   readonly reviewsEnabled = false;
+  readonly presentationVideoModalOpen = signal(false);
 
   private readonly meta = inject(Meta);
   private readonly transloco = inject(TranslocoService);
