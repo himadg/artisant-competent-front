@@ -1,4 +1,4 @@
-import { Component, signal, inject, OnDestroy, computed, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, signal, inject, OnDestroy, computed, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -39,6 +39,8 @@ export class RegisterIndividual implements OnDestroy {
   private readonly addressSearch$ = new Subject<string>();
 
   readonly turnstileSiteKey = inject(AppConfigService).get('turnstileSiteKey');
+  @ViewChild(TurnstileComponent) private readonly turnstile!: TurnstileComponent;
+
   readonly today = new Date().toISOString().split('T')[0];
 
   // Birth date dropdowns
@@ -106,6 +108,7 @@ export class RegisterIndividual implements OnDestroy {
   readonly goodPracticesImageIndex = signal(0);
   readonly referralCodeError = signal(false);
   readonly duplicateError = signal<'email' | 'phone' | 'generic' | null>(null);
+  readonly addressError = signal(false);
 
   readonly form = this.fb.group({
     photo: new FormControl<File | null>(null, { nonNullable: false, validators: [Validators.required] }),
@@ -165,7 +168,7 @@ export class RegisterIndividual implements OnDestroy {
     this.addressSuggestions.set([]);
     this.addressOpen.set(false);
     const group = this.form.get('address')!;
-    const currentNumber = (group.get('streetNumber')!.value ?? '');
+    const currentNumber = group.get('streetNumber')!.value ?? '';
     if (address.streetNumber && !/^\d/.test(currentNumber)) group.get('streetNumber')!.setValue(address.streetNumber);
     group.patchValue({
       streetName: address.streetName,
@@ -231,6 +234,7 @@ export class RegisterIndividual implements OnDestroy {
   submit() {
     this.showSubmitError.set(false);
     this.duplicateError.set(null);
+    this.addressError.set(false);
     this.form.markAllAsTouched();
 
     if (this.form.invalid || this.form.value.password !== this.form.value.confirmPassword) {
@@ -296,24 +300,26 @@ export class RegisterIndividual implements OnDestroy {
           this.submitting.set(false);
 
           if (accountCreated) {
-            // Le compte a déjà été créé côté serveur (étape 1 réussie) ; seul l'envoi de la photo
-            // (étape 2) a échoué. Pas de rollback possible depuis le front : on connecte quand
-            // même l'utilisateur plutôt que de le laisser bloqué devant le formulaire.
             this.authService.setSession(registeredAccessToken, registeredUser);
             this.flashMessage.set({ type: 'warning', key: 'errors.documentsUploadFailed' });
             this.router.navigate(['/dashboard']);
             return;
           }
 
-          const code = (err?.error?.code ?? '') as string;
-          if (code === 'INVALID_REFERRAL_CODE') {
-            this.referralCodeError.set(true);
-            return;
-          }
+          const msg = (err?.error?.message ?? '') as string;
           if (msg.toLowerCase().includes('téléphone')) this.duplicateError.set('phone');
           else if (msg.toLowerCase().includes('email')) this.duplicateError.set('email');
           else if (msg.toLowerCase().includes('conflit de données')) this.duplicateError.set('generic');
+          else if (msg.toLowerCase().includes('adresse')) this.addressError.set(true);
           else console.error('Erreur inscription:', err);
+
+          const code = (err?.error?.code ?? '') as string;
+          if (code === 'INVALID_REFERRAL_CODE') {
+            this.referralCodeError.set(true);
+          }
+
+          this.turnstile.reset();
+          this.onCaptchaReset();
         },
       });
   }

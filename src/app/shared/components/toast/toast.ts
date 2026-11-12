@@ -15,7 +15,7 @@ const TYPE_CLASSES: Record<FlashMessageType, string> = {
   standalone: true,
   imports: [TranslocoModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./toast.scss'],
+  styleUrl: './toast.scss',
   templateUrl: './toast.html',
 })
 export class Toast implements OnDestroy {
