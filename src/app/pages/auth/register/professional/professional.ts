@@ -920,11 +920,6 @@ export class RegisterProfessional implements OnDestroy {
           this.submitting.set(false);
 
           if (accountCreated) {
-            // Le compte et le profil ont déjà été créés côté serveur (étape 1 réussie) ; seul
-            // l'envoi des documents (étape 2) a échoué. Pas de rollback possible depuis le front :
-            // on connecte l'utilisateur (statut INCOMPLETE) et on l'envoie sur l'écran de reprise
-            // dédié plutôt que de le laisser bloqué devant le formulaire ou lui donner un accès
-            // dashboard incomplet.
             this.authService.setSession(registeredAccessToken, registeredUser);
             this.flashMessage.set({ type: 'warning', key: 'errors.documentsUploadFailed' });
             this.router.navigate(['/auth/complete-registration']);
@@ -932,19 +927,18 @@ export class RegisterProfessional implements OnDestroy {
           }
 
           const msg = (err?.error?.message ?? '') as string;
-          const code = (err?.error?.code ?? '') as string;
-          if (code === 'INVALID_REFERRAL_CODE') {
-            this.referralCodeError.set(true);
-            this.turnstile.reset();
-            this.onCaptchaReset();
-            return;
-          }
           if (msg.toLowerCase().includes('personnelle')) this.adressError.set('addressPersonal');
           else if (msg.toLowerCase().includes('travail')) this.adressError.set('addressWork');
           else if (msg.toLowerCase().includes('siret')) this.duplicateError.set('siret');
           else if (msg.toLowerCase().includes('téléphone')) this.duplicateError.set('phone');
           else if (msg.toLowerCase().includes('email')) this.duplicateError.set('email');
           else if (msg.toLowerCase().includes('conflit de données')) this.duplicateError.set('generic');
+
+          const code = (err?.error?.code ?? '') as string;
+          if (code === 'INVALID_REFERRAL_CODE') {
+            this.referralCodeError.set(true);
+          }
+
           this.turnstile.reset();
           this.onCaptchaReset();
         },

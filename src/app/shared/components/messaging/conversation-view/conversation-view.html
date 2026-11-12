@@ -27,12 +27,6 @@
                 @if (actionsMenuOpen()) {
                     <div class="chat-actions-overlay" (click)="closeActionsMenu()"></div>
                     <div class="chat-actions-menu">
-                        @if (conversation().isAuthor) {
-                            <button type="button" (click)="declineOffer.emit(); closeActionsMenu()">
-                                <iconify-icon icon="lucide:x-circle"></iconify-icon>
-                                {{ 'dashboard.messages.actions.decline' | transloco }}
-                            </button>
-                        }
                         @if (!conversation().isAuthor && canManageQuote()) {
                             <button type="button" (click)="createQuote.emit(conversation().demandId); closeActionsMenu()">
                                 <iconify-icon icon="lucide:file-plus"></iconify-icon>

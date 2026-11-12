@@ -381,6 +381,9 @@
             @if (duplicateError() === 'generic') {
                 <span class="text-sm font-medium text-center text-red-500">{{ 'register.errors.genericConflict' | transloco }}</span>
             }
+            @if (addressError()) {
+                <span class="text-sm font-medium text-center text-red-500">{{ 'register.errors.addressInvalid' | transloco }}</span>
+            }
         </div>
     </form>
 </div>
