@@ -20,7 +20,8 @@
       "pendingClientResponse": "Ce devis est en attente de réponse du client, impossible d'en créer un nouveau pour l'instant.",
       "alreadyAccepted": "Ce devis a déjà été accepté par le client, la mission peut démarrer.",
       "alreadySent": "Ce devis a déjà été envoyé.",
-      "prefilledFromDeclined": "Ce brouillon reprend les informations du devis précédent, refusé — modifiez ce qui doit changer."
+      "prefilledFromDeclined": "Ce brouillon reprend les informations du devis précédent, refusé — modifiez ce qui doit changer.",
+      "alreadySignedPending": "Votre signature a déjà été prise en compte, la mise à jour est en cours — réessayez dans quelques instants."
     },
     "messageBubble": {
       "status": {
@@ -30,6 +31,9 @@
         "PAID": "Payé",
         "DECLINED": "Refusé"
       }
+    },
+    "milestone": {
+      "resumePayment": "Reprendre le paiement"
     },
     "preview": {
       "close": "Fermer l'aperçu",
@@ -138,6 +142,12 @@
       "acceptanceRequired": "Veuillez accepter les conditions pour pouvoir signer le devis.",
       "acceptSuccess": "Devis signé et accepté.",
       "declineSuccess": "Devis refusé.",
+      "signSuccess": "Devis signé — finalisation du paiement en cours.",
+      "paymentProcessing": "Paiement en cours...",
+      "paymentSuccess": "Paiement effectué, le devis est désormais finalisé.",
+      "paymentError": "Le paiement n'a pas pu être finalisé. Réessayez dans quelques instants.",
+      "noticeDeclined": "Vous avez refusé ce devis — il n'est plus possible de le signer.",
+      "noticeDeclinedByClient": "Le client a refusé ce devis.",
       "summaryTitle": "Récapitulatif",
       "summaryHT": "Total HT (Matériaux + Prestations + Frais) :",
       "summaryVAT": "Total TVA :",
