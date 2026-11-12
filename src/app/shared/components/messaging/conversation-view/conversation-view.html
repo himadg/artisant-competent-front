@@ -27,7 +27,7 @@
                 @if (actionsMenuOpen()) {
                     <div class="chat-actions-overlay" (click)="closeActionsMenu()"></div>
                     <div class="chat-actions-menu">
-                        @if (!conversation().isAuthor && canManageQuote()) {
+                        @if (!conversation().isAuthor && canManageQuote() && !comingSoonEnabled) {
                             <button type="button" (click)="createQuote.emit(conversation().demandId); closeActionsMenu()">
                                 <iconify-icon icon="lucide:file-plus"></iconify-icon>
                                 {{
@@ -85,7 +85,7 @@
                             </a>
                         }
                         @case ('QUOTE') {
-                            <button type="button" class="chat-bubble-quote" (click)="openQuoteMessage(message)">
+                            <button type="button" class="chat-bubble-quote" [disabled]="comingSoonEnabled" (click)="openQuoteMessage(message)">
                                 <iconify-icon icon="lucide:file-text"></iconify-icon>
                                 <span class="chat-bubble-quote-info">
                                     <span class="chat-bubble-quote-title">{{ 'quote.title' | transloco }} n&deg; {{ message.content }}</span>
@@ -101,7 +101,7 @@
                     }
                     <span class="chat-bubble-time">{{ formatBubbleTime(message.createdAt) }}</span>
                 </div>
-                @if (conversation().isAuthor && message.type === 'QUOTE' && message.quoteStatus === 'PENDING_PAYMENT') {
+                @if (conversation().isAuthor && message.type === 'QUOTE' && message.quoteStatus === 'PENDING_PAYMENT' && !comingSoonEnabled) {
                     <div class="chat-quote-milestone">
                         <span class="chat-quote-milestone-line"></span>
                         <button

@@ -7,6 +7,7 @@ import { ConversationMessage } from '../../interfaces/conversation';
 import { ChatService } from '../../../core/services/chat.service';
 import { QuoteModal } from '../quote-modal/quote-modal';
 import { QuoteClientView } from '../quote-client-view/quote-client-view';
+import { AppConfigService } from '../../../core/services/app-config.service';
 
 const MESSAGES_PAGE_SIZE = 50;
 
@@ -20,6 +21,9 @@ const MESSAGES_PAGE_SIZE = 50;
 })
 export class Messaging {
   private readonly chatService = inject(ChatService);
+  private readonly configService = inject(AppConfigService);
+
+  readonly comingSoonEnabled = this.configService.get('comingSoonEnabled') === 'true';
 
   // Permet à un appelant externe (ex: bouton "envoyer un message" sur une demande) de préselectionner une conversation.
   readonly initialConversationId = input<string | null>(null);
@@ -165,10 +169,12 @@ export class Messaging {
   }
 
   openQuoteModal(demandId: string): void {
+    if (this.comingSoonEnabled) return;
     this.quoteModalOpen.set(demandId);
   }
 
   openQuoteViewer(quoteId: string): void {
+    if (this.comingSoonEnabled) return;
     this.quoteViewerOpen.set(quoteId);
   }
 
