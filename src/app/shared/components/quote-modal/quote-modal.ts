@@ -592,9 +592,12 @@ export class QuoteModal implements OnInit {
     this.sending.set(true);
     this.persistDraft()
       .then(() => this.quoteService.send(this.demandId()))
-      .then(({ signatureLink, isSandbox }) => {
+      .then(({ signatureLink, isSandbox, alreadySigned }) => {
         if (!signatureLink) {
-          this.flash.set({ type: 'error', key: 'errors.unknown' });
+          this.flash.set({
+            type: 'error',
+            key: alreadySigned ? 'quote.actions.alreadySignedPending' : 'errors.unknown',
+          });
           return;
         }
         this.signatureLink.set(signatureLink);
