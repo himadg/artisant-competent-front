@@ -72,6 +72,9 @@ export interface Quote extends SaveQuoteDraftPayload {
 
 export interface QuotePreviewProfessional {
   companyName: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
   siret: string;
   legalForm: string;
   managerPhone: string;
@@ -83,6 +86,7 @@ export interface QuotePreviewProfessional {
 export interface QuotePreviewClient {
   firstName: string;
   lastName: string;
+  gender: string;
   address: DemandAddress | null;
 }
 
@@ -92,6 +96,7 @@ export interface QuotePreviewClient {
 export interface QuoteViewerData extends Quote {
   professional: QuotePreviewProfessional;
   client: QuotePreviewClient;
+  interventionAddress: DemandAddress | null;
   isDemandAuthor: boolean;
 }
 
@@ -110,6 +115,7 @@ export interface QuotePreviewData {
   validUntil: string | null;
   professional: QuotePreviewProfessional;
   client: QuotePreviewClient;
+  interventionAddress: DemandAddress | null;
   materialLines: QuoteMaterialLineItem[];
   laborLines: QuoteLineItem[];
   logisticsLines: QuoteLineItem[];

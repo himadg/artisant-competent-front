@@ -11,6 +11,7 @@ export interface DemandAuthor {
   id: string;
   firstName: string;
   lastName: string;
+  gender: string;
   role: RoleType;
 }
 
@@ -39,6 +40,7 @@ export interface DemandAddressFull {
   label: string;
   streetNumber: string;
   streetName: string;
+  additionalInfo?: string;
   postalCode: string;
   city: string;
 }

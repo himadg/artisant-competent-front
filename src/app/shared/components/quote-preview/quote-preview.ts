@@ -60,4 +60,8 @@ export class QuotePreview {
   close(): void {
     this.closed.emit();
   }
+
+  civilityKey(gender: string): string {
+    return gender === 'male' ? 'quote.preview.civilityMale' : 'quote.preview.civilityFemale';
+  }
 }

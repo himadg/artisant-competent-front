@@ -25,8 +25,9 @@
     "messageBubble": {
       "status": {
         "DRAFT": "Draft",
-        "SENT": "Sent",
-        "ACCEPTED": "Accepted",
+        "SIGNED_BY_PRO": "Signed by the pro",
+        "PENDING_PAYMENT": "Awaiting payment",
+        "PAID": "Paid",
         "DECLINED": "Declined"
       }
     },
@@ -36,6 +37,9 @@
       "client": "Client",
       "clientSignature": "Client signature",
       "professionalSignature": "Tradesperson signature",
+      "civilityMale": "Mr",
+      "civilityFemale": "Ms",
+      "interventionAddress": "Project address",
       "siret": "Company ID (SIRET)",
       "phone": "Phone",
       "email": "Email",

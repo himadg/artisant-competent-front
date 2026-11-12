@@ -27,6 +27,22 @@
     </div>
 }
 
+<!-- Rendu partagé entre l'adresse personnelle du client et celle du chantier (même règle de
+masquage hidden/full, cf. QuoteService.shapeAddress) — évite de dupliquer la logique 2 fois. -->
+<ng-template #addressBlock let-address="address">
+    @if (address) {
+        @if (address.kind === 'full') {
+            @if (address.additionalInfo) {
+                <p>{{ address.additionalInfo }}</p>
+            }
+            <p>{{ address.streetNumber }} {{ address.streetName }}</p>
+            <p>{{ address.postalCode }} {{ address.city }}</p>
+        } @else {
+            <p>{{ address.postalCode }} {{ address.city }}</p>
+        }
+    }
+</ng-template>
+
 <!-- Contenu partagé entre le mode modale (aperçu depuis quote-modal) et le mode impression (PDF via
 Playwright, cf. quote-print-page) — évite de dupliquer tout le document à chaque changement. -->
 <ng-template #content>
@@ -56,15 +72,15 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
     <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div class="quote-preview-box">
             <p class="quote-preview-box-title">{{ 'quote.preview.client' | transloco }}</p>
-            <p>{{ data().client.firstName }} {{ data().client.lastName }}</p>
-            @if (data().client.address; as address) {
-                <p>{{ address.postalCode }} {{ address.city }}</p>
-            }
+            <p>
+                {{ civilityKey(data().client.gender) | transloco }} {{ data().client.lastName }} {{ data().client.firstName }}
+            </p>
+            <ng-container *ngTemplateOutlet="addressBlock; context: { address: data().client.address }"></ng-container>
         </div>
 
         <div class="quote-preview-box">
             <p class="quote-preview-box-title">{{ 'quote.preview.professional' | transloco }}</p>
-            <p>{{ data().professional.companyName }}</p>
+            <p>{{ civilityKey(data().professional.gender) | transloco }} {{ data().professional.firstName }} {{ data().professional.lastName }}</p>
             <p>
                 {{ data().professional.workAddress.streetNumber }} {{ data().professional.workAddress.streetName }},
                 {{ data().professional.workAddress.postalCode }} {{ data().professional.workAddress.city }}
@@ -75,6 +91,13 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
             }
             <p>{{ 'quote.preview.legalForm' | transloco }} : {{ data().professional.legalForm }}</p>
         </div>
+    </div>
+
+    <!-- Adresse du chantier : distincte de l'adresse personnelle du client ci-dessus, jamais de
+    complément (donnée géocodée, cf. GeocodingService.fullAddress) — même règle de masquage. -->
+    <div class="quote-preview-box mt-4">
+        <p class="quote-preview-box-title">{{ 'quote.preview.interventionAddress' | transloco }}</p>
+        <ng-container *ngTemplateOutlet="addressBlock; context: { address: data().interventionAddress }"></ng-container>
     </div>
 
     <!-- ═══ 1. Matériaux et fournitures ═══ -->
@@ -232,7 +255,7 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
         @if (documents().length) {
             <ul class="list-inside list-disc text-sm">
                 @for (document of documents(); track $index) {
-                    <li>{{ document.name }}</li>
+                    <li>{{ document.name }} : {{ document.fileName }}</li>
                 }
             </ul>
         } @else {
