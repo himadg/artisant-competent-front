@@ -29,6 +29,8 @@ export class QuotePreview {
   readonly earlyStartAccepted = signal(false);
   readonly canAccept = computed(() => this.quoteAgreementAccepted() && this.earlyStartAccepted());
 
+  readonly statusNotice = input<string | null>(null);
+
   // Décision prise ici (cocher les 2 cases + cliquer), l'action réelle (appel serveur, ouverture du
   // widget de signature) est gérée par le parent (cf. QuoteClientView) — ce composant reste
   // purement présentationnel, comme pour `closed`.

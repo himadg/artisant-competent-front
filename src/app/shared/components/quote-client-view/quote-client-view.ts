@@ -1,7 +1,9 @@
-import { Component, ChangeDetectionStrategy, OnInit, inject, input, output, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnDestroy, OnInit, effect, inject, input, output, signal } from '@angular/core';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { ChatService } from '../../../core/services/chat.service';
 import { QuoteService } from '../../../core/services/quote.service';
 import { FlashMessageService } from '../../../core/services/flash-message.service';
-import { QuotePreviewData, QuoteViewerData } from '../../interfaces/quote';
+import { QuotePreviewData, QuoteStatus, QuoteViewerData } from '../../interfaces/quote';
 import { QuotePreview } from '../quote-preview/quote-preview';
 import { YoutrustSignatureWidget } from '../youtrust-signature-widget/youtrust-signature-widget';
 
@@ -40,33 +42,100 @@ export function toPreviewData(quote: QuoteViewerData): QuotePreviewData {
   selector: 'quote-client-view',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [QuotePreview, YoutrustSignatureWidget],
+  imports: [QuotePreview, YoutrustSignatureWidget, TranslocoModule],
   templateUrl: './quote-client-view.html',
   styleUrl: './quote-client-view.scss',
 })
-export class QuoteClientView implements OnInit {
+export class QuoteClientView implements OnInit, OnDestroy {
   private readonly quoteService = inject(QuoteService);
+  private readonly chatService = inject(ChatService);
   private readonly flash = inject(FlashMessageService);
+  private readonly transloco = inject(TranslocoService);
 
   readonly quoteId = input.required<string>();
   readonly closed = output<void>();
 
   readonly loading = signal(true);
   readonly previewData = signal<QuotePreviewData | null>(null);
-  // Seul le client auteur peut interagir avec les cases de consentement/signature — jamais le pro,
-  // même en consultant son propre devis déjà envoyé (calculé côté serveur, cf. QuoteService.getForViewer).
+  // Masquée pendant l'attente du paiement après signature, réaffichée si le paiement échoue.
+  readonly previewVisible = signal(true);
   readonly canSign = signal(false);
+  readonly statusNotice = signal<string | null>(null);
 
   readonly signing = signal(false);
   readonly signatureLink = signal<string | null>(null);
   readonly isSandbox = signal(false);
+  readonly processingPayment = signal(false);
+
+
+  private readonly awaitingPayment = signal(false);
+  private readonly webhookConfirmed = signal(false);
+  private readonly minDelayDone = signal(false);
+  private minDelayTimeout: ReturnType<typeof setTimeout> | null = null;
+  private paymentSafetyTimeout: ReturnType<typeof setTimeout> | null = null;
+
+  constructor() {
+    effect(() => {
+      const message = this.chatService.updatedMessage();
+      if (!message || !this.awaitingPayment()) return;
+      if (message.quoteId !== this.quoteId() || message.quoteStatus !== 'PENDING_PAYMENT') return;
+      this.webhookConfirmed.set(true);
+      this.tryConfirmPayment();
+    });
+
+    effect(() => {
+      this.chatService.reconnected();
+      if (!this.awaitingPayment()) return;
+      this.resyncAfterReconnect();
+    });
+  }
+
+  private resyncAfterReconnect(): void {
+    this.quoteService
+      .getForViewer(this.quoteId())
+      .then((quote) => {
+        if (quote.status !== 'PENDING_PAYMENT') return;
+        this.webhookConfirmed.set(true);
+        this.tryConfirmPayment();
+      })
+      .catch(() => {});
+  }
+
+  ngOnDestroy(): void {
+    this.clearTimers();
+  }
+
+  private tryConfirmPayment(): void {
+    if (!this.webhookConfirmed() || !this.minDelayDone()) return;
+    this.awaitingPayment.set(false);
+    this.clearTimers();
+    this.confirmPayment();
+  }
+
+  private clearTimers(): void {
+    if (this.minDelayTimeout !== null) {
+      clearTimeout(this.minDelayTimeout);
+      this.minDelayTimeout = null;
+    }
+    if (this.paymentSafetyTimeout !== null) {
+      clearTimeout(this.paymentSafetyTimeout);
+      this.paymentSafetyTimeout = null;
+    }
+  }
+
+  // Seul DECLINED a un message à afficher, différent selon qui consulte.
+  private computeStatusNotice(status: QuoteStatus, isDemandAuthor: boolean): string | null {
+    if (status !== 'DECLINED') return null;
+    return this.transloco.translate(isDemandAuthor ? 'quote.agreement.noticeDeclined' : 'quote.agreement.noticeDeclinedByClient');
+  }
 
   ngOnInit(): void {
     this.quoteService
       .getForViewer(this.quoteId())
       .then((quote) => {
         this.previewData.set(toPreviewData(quote));
-        this.canSign.set(quote.isDemandAuthor);
+        this.canSign.set(quote.isDemandAuthor && quote.status === 'SIGNED_BY_PRO');
+        this.statusNotice.set(this.computeStatusNotice(quote.status, quote.isDemandAuthor));
       })
       .catch(() => {
         this.flash.set({ type: 'error', key: 'errors.unknown' });
@@ -79,10 +148,13 @@ export class QuoteClientView implements OnInit {
     if (this.signing()) return;
     this.signing.set(true);
     this.quoteService
-      .getClientSignatureLink(this.quoteId())
-      .then(({ signatureLink, isSandbox }) => {
+      .requestClientSignature(this.quoteId())
+      .then(({ signatureLink, isSandbox, alreadySigned }) => {
         if (!signatureLink) {
-          this.flash.set({ type: 'error', key: 'errors.unknown' });
+          this.flash.set({
+            type: 'error',
+            key: alreadySigned ? 'quote.actions.alreadySignedPending' : 'errors.unknown',
+          });
           return;
         }
         this.signatureLink.set(signatureLink);
@@ -92,12 +164,40 @@ export class QuoteClientView implements OnInit {
       .finally(() => this.signing.set(false));
   }
 
-  // Signature confirmée côté widget — la bascule réelle en ACCEPTED se fait côté serveur via
-  // webhook une fois les 2 parties signées, on ferme simplement la vue ici.
   onClientSigned(): void {
     this.signatureLink.set(null);
-    this.flash.set({ type: 'success', key: 'quote.agreement.acceptSuccess' });
-    this.closed.emit();
+    this.previewVisible.set(false);
+    this.flash.set({ type: 'success', key: 'quote.agreement.signSuccess' });
+    this.processingPayment.set(true);
+    this.awaitingPayment.set(true);
+    this.webhookConfirmed.set(false);
+    this.minDelayDone.set(false);
+
+    this.minDelayTimeout = setTimeout(() => {
+      this.minDelayDone.set(true);
+      this.tryConfirmPayment();
+    }, 10000);
+
+    this.paymentSafetyTimeout = setTimeout(() => {
+      this.awaitingPayment.set(false);
+      this.processingPayment.set(false);
+      this.flash.set({ type: 'error', key: 'quote.agreement.paymentError' });
+      this.previewVisible.set(true);
+    }, 30000);
+  }
+
+  private confirmPayment(): void {
+    this.quoteService
+      .confirmPayment(this.quoteId())
+      .then(() => {
+        this.flash.set({ type: 'success', key: 'quote.agreement.paymentSuccess' });
+        this.closed.emit();
+      })
+      .catch(() => {
+        this.flash.set({ type: 'error', key: 'quote.agreement.paymentError' });
+        this.previewVisible.set(true);
+      })
+      .finally(() => this.processingPayment.set(false));
   }
 
   onDecline(): void {

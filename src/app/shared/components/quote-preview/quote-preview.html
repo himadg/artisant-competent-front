@@ -343,4 +343,10 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
             </div>
         </div>
     }
+
+    <!-- Jamais en printMode : propre à l'aperçu consulté dans l'app (pas une mention du document
+    légal lui-même), explique au client pourquoi il ne peut plus éditer/signer selon le statut actuel. -->
+    @if (!printMode() && statusNotice()) {
+        <p class="mt-8 text-center text-lg font-bold">{{ statusNotice() }}</p>
+    }
 </ng-template>
