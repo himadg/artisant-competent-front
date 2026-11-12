@@ -174,9 +174,9 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
     }
 
     <!-- ═══ 3. Logistique et frais annexes ═══ -->
-    @if (data().logisticsLines.length) {
-        <section class="mt-6">
-            <h3 class="quote-preview-section-title">{{ 'quote.logistics.title' | transloco }}</h3>
+    <section class="mt-6">
+        <h3 class="quote-preview-section-title">{{ 'quote.logistics.title' | transloco }}</h3>
+        @if (logisticsTotal() > 0) {
             <table class="quote-preview-table">
                 <thead>
                     <tr>
@@ -201,8 +201,10 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
                     }
                 </tbody>
             </table>
-        </section>
-    }
+        } @else {
+            <p class="text-sm text-gray-500">{{ 'quote.logistics.none' | transloco }}</p>
+        }
+    </section>
 
     <!-- ═══ 4. Dates prévisionnelles ═══ -->
     @if (data().estimatedStartDate || data().estimatedEndDate) {
@@ -232,17 +234,17 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
         <section class="mt-6">
             <h3 class="quote-preview-section-title">{{ 'quote.preview.insuranceTitle' | transloco }}</h3>
             <div class="quote-preview-box flex flex-col gap-2">
+                @if (data().rcProInsurer) {
+                    <p>
+                        {{ 'quote.preview.rcPro' | transloco }} : {{ data().rcProInsurer }}
+                        @if (data().rcProPolicyNumber) { (n&deg; {{ data().rcProPolicyNumber }}) }
+                    </p>
+                }
                 @if (data().decennaleInsurer) {
                     <p>
                         {{ 'quote.preview.decennale' | transloco }} : {{ data().decennaleInsurer }}
                         @if (data().decennalePolicyNumber) { (n&deg; {{ data().decennalePolicyNumber }}) }
                         @if (data().decennaleCoverageArea) { — {{ 'quote.preview.coverageArea' | transloco }} : {{ data().decennaleCoverageArea }} }
-                    </p>
-                }
-                @if (data().rcProInsurer) {
-                    <p>
-                        {{ 'quote.preview.rcPro' | transloco }} : {{ data().rcProInsurer }}
-                        @if (data().rcProPolicyNumber) { (n&deg; {{ data().rcProPolicyNumber }}) }
                     </p>
                 }
             </div>

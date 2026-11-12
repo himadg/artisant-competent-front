@@ -151,6 +151,7 @@
                                                     min="1"
                                                     step="1"
                                                     [value]="line.quantity"
+                                                    (keydown)="blockInvalidNumberKeys($event)"
                                                     (input)="updateMaterialLineQuantity($index, $any($event.target).value)"
                                                     placeholder="0"
                                                     class="quote-input"
@@ -163,6 +164,7 @@
                                                     min="0"
                                                     step="0.01"
                                                     [value]="line.unitPriceHT"
+                                                    (keydown)="blockInvalidNumberKeys($event)"
                                                     (input)="updateMaterialLineUnitPrice($index, $any($event.target).value)"
                                                     placeholder="00,00"
                                                     class="quote-input"
@@ -185,6 +187,7 @@
                                                             max="100"
                                                             step="0.01"
                                                             [value]="line.vatRate"
+                                                            (keydown)="blockInvalidNumberKeys($event)"
                                                             (input)="updateLineVatRate('material', $index, $any($event.target).value)"
                                                             placeholder="00,00"
                                                             class="quote-input"
@@ -283,7 +286,7 @@
                                 <div
                                     class="quote-line-card"
                                     [class.quote-line-card--separated]="$index > 0"
-                                    [class.quote-field-invalid]="attemptedSend() && laborIncomplete() && laborLines().length === 1"
+                                    [class.quote-field-invalid]="attemptedSend() && laborLineInvalid(line)"
                                 >
                                     <textarea
                                         rows="3"
@@ -317,6 +320,7 @@
                                                 min="0"
                                                 step="0.01"
                                                 [value]="line.amountHT"
+                                                (keydown)="blockInvalidNumberKeys($event)"
                                                 (input)="updateLineAmount('labor', $index, $any($event.target).value)"
                                                 placeholder="0,00"
                                                 class="quote-input"
@@ -332,6 +336,7 @@
                                                         max="100"
                                                         step="0.01"
                                                         [value]="line.vatRate"
+                                                        (keydown)="blockInvalidNumberKeys($event)"
                                                         (input)="updateLineVatRate('labor', $index, $any($event.target).value)"
                                                         placeholder="00,00"
                                                         class="quote-input"
@@ -368,7 +373,10 @@
                                 @if ($index > 0) {
                                     <hr class="quote-line-card--separator">
                                 }
-                                <div class="quote-line-card">
+                                <div
+                                    class="quote-line-card"
+                                    [class.quote-field-invalid]="attemptedSend() && logisticsLineInvalid(line)"
+                                >
                                     <textarea
                                         rows="3"
                                         [value]="line.description"
@@ -401,6 +409,7 @@
                                                 min="0"
                                                 step="0.01"
                                                 [value]="line.amountHT"
+                                                (keydown)="blockInvalidNumberKeys($event)"
                                                 (input)="updateLineAmount('logistics', $index, $any($event.target).value)"
                                                 placeholder="0,00"
                                                 class="quote-input"
@@ -416,6 +425,7 @@
                                                         max="100"
                                                         step="0.01"
                                                         [value]="line.vatRate"
+                                                        (keydown)="blockInvalidNumberKeys($event)"
                                                         (input)="updateLineVatRate('logistics', $index, $any($event.target).value)"
                                                         placeholder="00,00"
                                                         class="quote-input"
@@ -469,7 +479,7 @@
                                         [value]="estimatedEndDate()"
                                         (change)="estimatedEndDate.set($any($event.target).value)"
                                         class="quote-input"
-                                        [class.quote-field-invalid]="attemptedSend() && estimatedEndDateMissing()"
+                                        [class.quote-field-invalid]="attemptedSend() && (estimatedEndDateMissing() || estimatedDateOrderInvalid())"
                                     />
                                 </label>
                             </div>
@@ -502,7 +512,7 @@
                                 }
                                 <div
                                     class="quote-line-card"
-                                    [class.quote-field-invalid]="attemptedSend() && documentsMissing() && documents().length === 1"
+                                    [class.quote-field-invalid]="attemptedSend() && documentInvalid(doc)"
                                 >
                                     <label class="quote-field">
                                         <span class="quote-field-label">{{ 'quote.legal.nameLabel' | transloco }}<span class="quote-required">*</span></span>
@@ -522,12 +532,8 @@
                                             <input type="file" class="hidden" (change)="onDocumentFileChange($index, $event)" />
                                         </label>
                                         <span class="quote-file-name">
-                                            @if (doc.fileKey) {
-                                                <iconify-icon icon="lucide:check" width="14" class="text-green-600"></iconify-icon>
+                                            @if (doc.fileKey ?? doc.fileName) {
                                                 {{ doc.fileName }}
-                                            } @else if (doc.fileName) {
-                                                <iconify-icon icon="lucide:clock" width="14" class="text-amber-600"></iconify-icon>
-                                                {{ doc.fileName }} — {{ 'quote.legal.pendingUpload' | transloco }}
                                             } @else {
                                                 {{ 'professional.documents.noFile' | transloco }}
                                             }
@@ -553,37 +559,6 @@
 
                             <div class="quote-line-card">
                                 <p class="quote-field-label">{{ 'quote.legal.insuranceTitle' | transloco }}</p>
-                                <div class="quote-amount-row flex-col md:flex-row md:!gap-[0.7rem]">
-                                    <label class="quote-field flex-1">
-                                        <span class="quote-field-label">{{ 'quote.legal.decennaleInsurer' | transloco }}<span class="quote-required">*</span></span>
-                                        <input
-                                            type="text"
-                                            [value]="decennaleInsurer()"
-                                            (input)="decennaleInsurer.set($any($event.target).value)"
-                                            class="quote-input"
-                                            [class.quote-field-invalid]="attemptedSend() && decennaleInsurerMissing()"
-                                        />
-                                    </label>
-                                    <label class="quote-field flex-1">
-                                        <span class="quote-field-label">{{ 'quote.legal.decennalePolicyNumber' | transloco }}<span class="quote-required">*</span></span>
-                                        <input
-                                            type="text"
-                                            [value]="decennalePolicyNumber()"
-                                            (input)="decennalePolicyNumber.set($any($event.target).value)"
-                                            class="quote-input"
-                                            [class.quote-field-invalid]="attemptedSend() && decennalePolicyNumberMissing()"
-                                        />
-                                    </label>
-                                    <label class="quote-field flex-1">
-                                        <span class="quote-field-label">{{ 'quote.legal.decennaleCoverageArea' | transloco }}</span>
-                                        <input
-                                            type="text"
-                                            [value]="decennaleCoverageArea()"
-                                            (input)="decennaleCoverageArea.set($any($event.target).value)"
-                                            class="quote-input"
-                                        />
-                                    </label>
-                                </div>
                                 <div class="quote-amount-row flex-col md:flex-row">
                                     <label class="quote-field flex-1">
                                         <span class="quote-field-label">{{ 'quote.legal.rcProInsurer' | transloco }}<span class="quote-required">*</span></span>
@@ -603,6 +578,37 @@
                                             (input)="rcProPolicyNumber.set($any($event.target).value)"
                                             class="quote-input"
                                             [class.quote-field-invalid]="attemptedSend() && rcProPolicyNumberMissing()"
+                                        />
+                                    </label>
+                                </div>
+                                <div class="quote-amount-row flex-col md:flex-row md:!gap-[0.7rem]">
+                                    <label class="quote-field flex-1">
+                                        <span class="quote-field-label">{{ 'quote.legal.decennaleInsurer' | transloco }}</span>
+                                        <input
+                                            type="text"
+                                            [value]="decennaleInsurer()"
+                                            (input)="decennaleInsurer.set($any($event.target).value)"
+                                            class="quote-input"
+                                            [class.quote-field-invalid]="attemptedSend() && decennaleMismatch()"
+                                        />
+                                    </label>
+                                    <label class="quote-field flex-1">
+                                        <span class="quote-field-label">{{ 'quote.legal.decennalePolicyNumber' | transloco }}</span>
+                                        <input
+                                            type="text"
+                                            [value]="decennalePolicyNumber()"
+                                            (input)="decennalePolicyNumber.set($any($event.target).value)"
+                                            class="quote-input"
+                                            [class.quote-field-invalid]="attemptedSend() && decennaleMismatch()"
+                                        />
+                                    </label>
+                                    <label class="quote-field flex-1">
+                                        <span class="quote-field-label">{{ 'quote.legal.decennaleCoverageArea' | transloco }}</span>
+                                        <input
+                                            type="text"
+                                            [value]="decennaleCoverageArea()"
+                                            (input)="decennaleCoverageArea.set($any($event.target).value)"
+                                            class="quote-input"
                                         />
                                     </label>
                                 </div>
@@ -679,6 +685,10 @@
                                 <div class="quote-summary-row">
                                     <span>{{ 'quote.agreement.summaryHT' | transloco }}</span>
                                     <span class="font-bold">{{ totalHT() | number: '1.2-2' }} &euro;</span>
+                                </div>
+                                <div class="quote-summary-row">
+                                    <span>{{ 'quote.agreement.summaryVAT' | transloco }}</span>
+                                    <span class="font-bold">{{ totalVAT() | number: '1.2-2' }} &euro;</span>
                                 </div>
                                 <div class="quote-summary-row quote-summary-row--total">
                                     <span>{{ 'quote.agreement.summaryTTC' | transloco }}</span>

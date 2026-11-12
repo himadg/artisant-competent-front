@@ -126,32 +126,81 @@ export class QuoteModal implements OnInit {
   // une tentative d'envoi ratée — comme le formulaire d'inscription pro.
   readonly attemptedSend = signal(false);
 
-  readonly laborIncomplete = computed(
-    () => !this.laborLines().some((l) => l.description.trim() !== '' && l.amountHT !== null),
-  );
   readonly nightWorkSurchargeMissing = computed(() => this.nightWorkSurcharge() === null);
   readonly estimatedStartDateMissing = computed(() => !this.estimatedStartDate());
   readonly estimatedEndDateMissing = computed(() => !this.estimatedEndDate());
+  // Date de fin antérieure à la date de début.
+  readonly estimatedDateOrderInvalid = computed(() => {
+    const start = this.estimatedStartDate();
+    const end = this.estimatedEndDate();
+    return !!start && !!end && end < start;
+  });
   readonly validUntilMissing = computed(() => !this.validUntil());
-  readonly documentsMissing = computed(
-    () => !this.documents().some((d) => d.name.trim() !== '' && (d.fileKey !== null || d.file !== null)),
-  );
-  readonly decennaleInsurerMissing = computed(() => !this.decennaleInsurer().trim());
-  readonly decennalePolicyNumberMissing = computed(() => !this.decennalePolicyNumber().trim());
   readonly rcProInsurerMissing = computed(() => !this.rcProInsurer().trim());
   readonly rcProPolicyNumberMissing = computed(() => !this.rcProPolicyNumber().trim());
+  readonly decennaleMismatch = computed(
+    () => !!this.decennaleInsurer().trim() !== !!this.decennalePolicyNumber().trim(),
+  );
 
-  // Une ligne de matériaux jamais touchée par le pro (le formulaire en garde toujours une par
-  // défaut) ne doit pas être signalée comme incomplète — seule une ligne réellement commencée
-  // (description ou origine renseignée) doit l'être si elle ne l'est pas entièrement.
-  isMaterialLineBlank(line: QuoteMaterialLineItem): boolean {
-    return line.description.trim() === '' && !line.materialOrigin?.length;
-  }
-
+  // Vérifie qu'une ligne de matériaux est complète.
   materialLineInvalid(line: QuoteMaterialLineItem): boolean {
-    if (this.isMaterialLineBlank(line)) return false;
-    return line.description.trim() === '' || line.amountHT === null || !line.materialOrigin?.length;
+    return (
+      line.description.trim() === '' ||
+      !line.materialOrigin?.length ||
+      !line.quantity ||
+      !line.unitPriceHT ||
+      (!this.vatExempt() && !line.vatRate) ||
+      line.amountHT! < 0
+    );
   }
+
+  // Vérifie qu'une ligne de main-d'œuvre est complète.
+  laborLineInvalid(line: QuoteLineItem): boolean {
+    return (
+      line.description.trim() === '' ||
+      !line.amountHT ||
+      line.amountHT < 0 ||
+      (!this.vatExempt() && !line.vatRate)
+    );
+  }
+
+  // Vérifie qu'une ligne de frais annexes est complète, sauf si elle n'a jamais été entamée.
+  logisticsLineInvalid(line: QuoteLineItem): boolean {
+    if (line.description.trim() === '' && line.amountHT === null) return false;
+    return (
+      line.description.trim() === '' ||
+      !line.amountHT ||
+      line.amountHT < 0 ||
+      (!this.vatExempt() && !line.vatRate)
+    );
+  }
+
+  // Vérifie qu'un document a un nom et un fichier.
+  documentInvalid(doc: QuoteDocumentDraft): boolean {
+    return doc.name.trim() === '' || (doc.fileKey === null && doc.file === null);
+  }
+
+  // Agrège toutes les règles des champs obligatoires pour bloquer l'envoi.
+  readonly formInvalid = computed(() => {
+    const materialsInvalid = !this.noMaterials() && this.materialLines().some((l) => this.materialLineInvalid(l));
+    const laborInvalid = this.laborLines().some((l) => this.laborLineInvalid(l));
+    const logisticsInvalid = this.logisticsLines().some((l) => this.logisticsLineInvalid(l));
+    const documentsInvalid = this.documents().some((d) => this.documentInvalid(d));
+    return (
+      this.validUntilMissing() ||
+      materialsInvalid ||
+      this.nightWorkSurchargeMissing() ||
+      laborInvalid ||
+      logisticsInvalid ||
+      this.estimatedStartDateMissing() ||
+      this.estimatedEndDateMissing() ||
+      this.estimatedDateOrderInvalid() ||
+      documentsInvalid ||
+      this.rcProInsurerMissing() ||
+      this.rcProPolicyNumberMissing() ||
+      this.decennaleMismatch()
+    );
+  });
 
   // ── Aperçu (identité pro/client, chargées séparément du brouillon) ─────
   private readonly dashboard = signal<ProfessionalDashboardData | null>(null);
@@ -288,6 +337,12 @@ export class QuoteModal implements OnInit {
   }
 
   // ── Champs communs aux 3 catégories de lignes ───────────────────────────
+  // N'autorise que chiffres/virgule/point.
+  blockInvalidNumberKeys(event: KeyboardEvent): void {
+    if (event.ctrlKey || event.metaKey || event.key.length > 1) return;
+    if (!/^[0-9,.]$/.test(event.key)) event.preventDefault();
+  }
+
   updateLineDescription(category: LineCategory, index: number, value: string): void {
     this.linesSignal(category).update((list) =>
       list.map((line, i) => (i === index ? { ...line, description: value } : line)),
@@ -529,6 +584,11 @@ export class QuoteModal implements OnInit {
 
   sendQuote(): void {
     if (this.saving() || this.sending()) return;
+    if (this.formInvalid()) {
+      this.attemptedSend.set(true);
+      this.flash.set({ type: 'error', key: 'quote.actions.sendMissingFields' });
+      return;
+    }
     this.sending.set(true);
     this.persistDraft()
       .then(() => this.quoteService.send(this.demandId()))

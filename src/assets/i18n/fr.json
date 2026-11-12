@@ -91,7 +91,8 @@
       "title": "Logistique et frais annexes",
       "hint": "Indiquez les frais de déplacement, location de matériel, livraison, parking, etc.",
       "descriptionPlaceholder": "Ex : Frais de déplacement, location d'échafaudage...",
-      "addBtn": "Ajouter logistique ou frais annexes"
+      "addBtn": "Ajouter logistique ou frais annexes",
+      "none": "Aucune logistique ou frais annexe"
     },
     "dates": {
       "title": "Dates prévisionnelles du chantier",
@@ -106,7 +107,6 @@
       "obligationsGuide": "Mode d'emploi obligations documentaires et assurances par métier",
       "fileLabel": "Document à télécharger",
       "chooseFile": "Choisir un fichier à télécharger",
-      "pendingUpload": "sera envoyé à l'enregistrement",
       "nameLabel": "Nom du document (ex : RC Pro, Assurance décennale, CERFA, etc.)",
       "namePlaceholder": "Ex : RC Pro, Assurance décennale (si applicable), CERFA 12506...",
       "addBtn": "Ajouter un document",
@@ -140,6 +140,7 @@
       "declineSuccess": "Devis refusé.",
       "summaryTitle": "Récapitulatif",
       "summaryHT": "Total HT (Matériaux + Prestations + Frais) :",
+      "summaryVAT": "Total TVA :",
       "summaryTTC": "Montant TTC à régler :",
       "ttcDisclaimer": "Les montants TTC sont calculés automatiquement à partir du taux de TVA sélectionné par l'artisan. Ils appartiennent exclusivement à l'artisan de vérifier l'exactitude des informations fiscales renseignées, notamment l'origine de la TVA applicable à son activité. Artisans.com ne procède à aucun contrôle de la situation fiscale de l'artisan et ne saurait être tenu responsable des conséquences résultant d'une déclaration erronée, d'un dépassement des seuils légaux de TVA ou de non-respect de ses obligations fiscales. Vérifiez chaque ligne pour garantir l'exactitude de votre devis.",
       "escrowNotice": "<strong>Seuls les chantiers réglés intégralement par le client via Artisan Compétent sont éligibles au paiement sécurisé.</strong><br>Les travaux financés par une aide publique, un dispositif CEE, un crédit d'impôt ou tout autre financement différé ne sont pas pris en charge à ce jour."

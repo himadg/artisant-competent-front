@@ -49,6 +49,10 @@ export class QuotePreview {
   );
   readonly totalTTC = computed(() => this.totalHT() + this.totalVAT());
 
+  readonly logisticsTotal = computed(() =>
+    this.data().logisticsLines.reduce((sum: number, l: QuoteLineItem) => sum + (l.amountHT ?? 0), 0),
+  );
+
   readonly documents = computed(() => this.data().documents.filter((d) => d.name.trim()));
 
   lineTTC(line: QuoteLineItem): number {

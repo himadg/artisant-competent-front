@@ -91,7 +91,8 @@
       "title": "Logistics and ancillary costs",
       "hint": "State travel costs, equipment rental, delivery, parking, etc.",
       "descriptionPlaceholder": "E.g.: Travel costs, scaffolding rental...",
-      "addBtn": "Add logistics or ancillary costs"
+      "addBtn": "Add logistics or ancillary costs",
+      "none": "No logistic or additional fees"
     },
     "dates": {
       "title": "Estimated project dates",
@@ -106,7 +107,6 @@
       "obligationsGuide": "User guide to document and insurance obligations by trade",
       "fileLabel": "Document to upload",
       "chooseFile": "Choose a file to upload",
-      "pendingUpload": "will be uploaded on save",
       "nameLabel": "Document name (e.g.: professional liability insurance, ten-year insurance, official form, etc.)",
       "namePlaceholder": "E.g.: Professional liability insurance, ten-year insurance (if applicable), form 12506...",
       "addBtn": "Add a document",
@@ -139,8 +139,9 @@
       "acceptSuccess": "Quote signed and accepted.",
       "declineSuccess": "Quote declined.",
       "summaryTitle": "Summary",
-      "summaryHT": "Total excl. VAT (Materials + Labour + Costs):",
-      "summaryTTC": "Total amount due incl. VAT:",
+      "summaryHT": "Total excl. VAT (Materials + Labour + Costs) :",
+      "summaryVAT": "Total VAT :",
+      "summaryTTC": "Total amount due incl. VAT :",
       "ttcDisclaimer": "Amounts incl. VAT are calculated automatically from the VAT rate selected by the tradesperson. It is the tradesperson's sole responsibility to verify the accuracy of the tax information provided, in particular the VAT treatment applicable to their activity. Artisans.com carries out no verification of the tradesperson's tax situation and cannot be held liable for the consequences of an incorrect declaration, exceeding legal VAT thresholds, or failure to comply with tax obligations. Check every line to ensure your quote is accurate.",
       "escrowNotice": "<strong>Only projects paid in full by the client via Artisan Compétent are eligible for secure payment.</strong><br>Work financed by public assistance, a CEE scheme, a tax credit or any other deferred financing is not currently supported."
     }
