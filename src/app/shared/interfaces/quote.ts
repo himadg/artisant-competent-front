@@ -2,7 +2,7 @@ import { Address } from './address';
 import { DemandAddress } from './demand';
 
 export type MaterialOrigin = 'new' | 'refurbished' | 'custom';
-export type QuoteStatus = 'DRAFT' | 'SENT' | 'ACCEPTED' | 'DECLINED';
+export type QuoteStatus = 'DRAFT' | 'SIGNED_BY_PRO' | 'PENDING_PAYMENT' | 'PAID' | 'DECLINED';
 
 export interface QuoteLineItem {
   description: string;
@@ -23,6 +23,7 @@ export interface QuoteMaterialLineItem extends QuoteLineItem {
 export interface QuoteDocument {
   name: string;
   fileKey: string;
+  fileName: string;
 }
 
 /** État local d'une ligne de document dans le formulaire : soit déjà sauvegardée (`fileKey` connu,
@@ -66,9 +67,9 @@ export interface Quote extends SaveQuoteDraftPayload {
   professionalProfileId: string;
   createdAt: string;
   updatedAt: string;
+  signedPdfKey: string | null;
 }
 
-/** Identité du professionnel telle qu'affichée sur le devis (sous-ensemble de ProfessionalProfile). */
 export interface QuotePreviewProfessional {
   companyName: string;
   siret: string;
@@ -79,8 +80,6 @@ export interface QuotePreviewProfessional {
   workAddress: Address;
 }
 
-/** Identité du client telle qu'affichée sur le devis — l'adresse reste masquée (ville/code postal
- * uniquement) tant que le devis n'est pas payé, cf. DemandAddressHidden dans demand.ts. */
 export interface QuotePreviewClient {
   firstName: string;
   lastName: string;
@@ -96,11 +95,10 @@ export interface QuoteViewerData extends Quote {
   isDemandAuthor: boolean;
 }
 
-/** Réponse des endpoints déclenchant une signature YouTrust (`send`, `signature-link`) — `null` si
- * pas encore le tour du signataire concerné (cf. QuoteService.getClientSignatureLink backend). */
 export interface SignatureLinkResult {
   signatureLink: string | null;
   isSandbox: boolean;
+  alreadySigned: boolean;
 }
 
 /** Données assemblées pour l'aperçu HTML du devis (quote-preview) : snapshot du brouillon en cours
@@ -118,9 +116,7 @@ export interface QuotePreviewData {
   nightWorkSurcharge: boolean | null;
   estimatedStartDate: string | null;
   estimatedEndDate: string | null;
-  // Simple liste de noms : à ce stade, certains documents peuvent être sélectionnés localement et
-  // pas encore uploadés (pas de fileKey), l'aperçu n'a de toute façon besoin que du nom affiché.
-  documents: { name: string }[];
+  documents: { name: string; fileName: string | null }[];
   remarks: string;
   decennaleInsurer: string;
   decennalePolicyNumber: string;
