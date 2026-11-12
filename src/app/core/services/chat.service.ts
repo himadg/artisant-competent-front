@@ -25,6 +25,8 @@ export class ChatService {
    * touche jamais au compteur de non-lus ni à l'aperçu de la conversation, contrairement à
    * `incomingMessage`, puisqu'aucun nouveau message n'est réellement créé (cf. ConversationService). */
   readonly updatedMessage = signal<ConversationMessage | null>(null);
+  // Incrémenté à chaque (re)connexion du socket.
+  readonly reconnected = signal(0);
   /** Nombre de conversations non lues (et non le total de messages non lus), pour le badge de l'enveloppe. */
   readonly unreadConversationsCount = computed(() => this.conversations().filter((c) => c.unreadCount > 0).length);
 
@@ -112,10 +114,12 @@ export class ChatService {
   private connect(): void {
     if (this.socket) return;
 
-    void this.loadConversations();
-
     this.socket = this.socketConnection.acquire();
     if (!this.socket) return;
+    this.socket.on('connect', () => {
+      void this.loadConversations();
+      this.reconnected.update((n) => n + 1);
+    });
     this.socket.on('message:new', (message: ConversationMessage) => {
       const isKnownConversation = this.conversations().some((c) => c.id === message.conversationId);
       if (!isKnownConversation) {
@@ -139,6 +143,7 @@ export class ChatService {
 
   private disconnect(): void {
     if (!this.socket) return;
+    this.socket.off('connect');
     this.socket.off('message:new');
     this.socket.off('message:updated');
     this.socket.off('connect_error');

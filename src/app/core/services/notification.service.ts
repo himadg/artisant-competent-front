@@ -72,12 +72,16 @@ export class NotificationService {
   private connect(): void {
     if (this.socket) return;
 
-    void this.refreshUnreadCount();
     void this.loadAll();
+    void this.refreshUnreadCount();
 
     this.socket = this.socketConnection.acquire();
     if (!this.socket) return;
-    this.socket.on('connect', () => void this.refreshUnreadCount());
+    this.socket.on('connect', () => {
+      // Resync à chaque reconnexion.
+      void this.loadAll();
+      void this.refreshUnreadCount();
+    });
     this.socket.on('notification', (notification: AppNotification) => {
       this.notifications.update((list) => [notification, ...list]);
       this.unreadCount.update((n) => n + 1);
