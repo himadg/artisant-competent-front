@@ -25,8 +25,9 @@
     "messageBubble": {
       "status": {
         "DRAFT": "Brouillon",
-        "SENT": "Envoyé",
-        "ACCEPTED": "Accepté",
+        "SIGNED_BY_PRO": "Signé par le pro",
+        "PENDING_PAYMENT": "En attente de paiement",
+        "PAID": "Payé",
         "DECLINED": "Refusé"
       }
     },
@@ -36,6 +37,9 @@
       "client": "Client",
       "clientSignature": "Signature du client",
       "professionalSignature": "Signature de l'artisan",
+      "civilityMale": "M.",
+      "civilityFemale": "Mme",
+      "interventionAddress": "Adresse du chantier",
       "siret": "SIRET",
       "phone": "Téléphone",
       "email": "E-mail",

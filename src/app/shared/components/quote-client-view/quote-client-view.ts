@@ -14,6 +14,7 @@ export function toPreviewData(quote: QuoteViewerData): QuotePreviewData {
     validUntil: quote.validUntil,
     professional: quote.professional,
     client: quote.client,
+    interventionAddress: quote.interventionAddress,
     materialLines: quote.materialLines,
     laborLines: quote.laborLines,
     logisticsLines: quote.logisticsLines,
