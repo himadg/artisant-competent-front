@@ -17,6 +17,7 @@ import { toPreviewData } from '../../../shared/components/quote-client-view/quot
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [QuotePreview],
   templateUrl: './quote-print.html',
+  styleUrl: './quote-print.scss',
 })
 export class QuotePrintPage implements OnInit {
   private readonly route = inject(ActivatedRoute);
@@ -25,11 +26,7 @@ export class QuotePrintPage implements OnInit {
   readonly data = signal<QuotePreviewData | null>(null);
 
   ngOnInit(): void {
-    // Fond blanc forcé : le fond de l'app est beige par défaut (`body { background: var(--background-color) }`),
-    // visible dans les zones non couvertes par le papier du devis lors de la capture PDF par
-    // Playwright. Sans risque ici : cette page n'est jamais chargée par un vrai utilisateur qui
-    // naviguerait ensuite ailleurs dans la même session (uniquement par le navigateur headless,
-    // une instance jetable par génération de PDF), pas besoin de le restaurer.
+    document.documentElement.style.backgroundColor = '#fff';
     document.body.style.backgroundColor = '#fff';
 
     const quoteId = this.route.snapshot.paramMap.get('quoteId');

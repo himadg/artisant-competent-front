@@ -25,12 +25,7 @@ export class QuoteService {
     return firstValueFrom(this.http.get<Quote | null>(`/demands/${demandId}/quote`));
   }
 
-  /** Valide le devis tel qu'enregistré côté serveur et crée la Signature Request YouTrust (pro puis
-   * client) — renvoie le lien de signature du pro, à afficher dans le widget embarqué. Le devis ne
-   * passe en SENT (et le message n'est envoyé dans la conversation) qu'une fois cette signature
-   * confirmée par webhook, jamais directement en réponse de cet appel.
-   * `lang` : langue ACTIVE du pro au moment de l'envoi (jamais stockée), pour l'écran de signature
-   * YouTrust — cf. LangService. */
+  /** Valide le devis et crée la Signature Request YouTrust — renvoie le lien de signature du pro. */
   send(demandId: string): Promise<SignatureLinkResult> {
     return firstValueFrom(
       this.http.post<SignatureLinkResult>(`/demands/${demandId}/quote/send`, { lang: this.langService.lang() }),
@@ -44,18 +39,26 @@ export class QuoteService {
     return firstValueFrom(this.http.get<QuoteViewerData>(`/quotes/${quoteId}`));
   }
 
-  /** Lien de signature du client — `null` tant que le pro n'a pas encore signé (ordre séquentiel
-   * imposé par YouTrust, cf. QuoteService backend). `lang` : sa langue active à cet instant précis
-   * (jamais stockée), appliquée à chaque appel pour rester toujours à jour. */
-  getClientSignatureLink(quoteId: string): Promise<SignatureLinkResult> {
+  /** URL signée temporaire vers le PDF final signé par les 2 parties. */
+  getSignedPdfUrl(quoteId: string): Promise<{ url: string }> {
+    return firstValueFrom(this.http.get<{ url: string }>(`/quotes/${quoteId}/signed-pdf-url`));
+  }
+
+  /** Demande/reprend le lien de signature du client. */
+  requestClientSignature(quoteId: string): Promise<SignatureLinkResult> {
     return firstValueFrom(
-      this.http.post<SignatureLinkResult>(`/quotes/${quoteId}/signature-link`, { lang: this.langService.lang() }),
+      this.http.post<SignatureLinkResult>(`/quotes/${quoteId}/sign`, { lang: this.langService.lang() }),
     );
   }
 
   /** Refus du client — n'invoque jamais YouTrust (cf. discussion : décliner ne signe rien). */
   decline(quoteId: string): Promise<Quote> {
     return firstValueFrom(this.http.post<Quote>(`/quotes/${quoteId}/decline`, {}));
+  }
+
+  /** Confirme le paiement du client — PENDING_PAYMENT -> PAID. */
+  confirmPayment(quoteId: string): Promise<void> {
+    return firstValueFrom(this.http.post<void>(`/quotes/${quoteId}/confirm-payment`, {}));
   }
 
   /** Réservé à la route d'impression (`/print/quote/:quoteId`) : l'autorisation vient du jeton posé
