@@ -23,6 +23,7 @@ import { FlashMessageService } from '../../../../core/services/flash-message.ser
 import { ALLOWED_DOCUMENT_TYPES, isFileTypeAllowed } from '../../../../core/utils/file-types';
 import { LangService } from '../../../../core/services/lang.service';
 import { QuoteService } from '../../../../core/services/quote.service';
+import { AppConfigService } from '../../../../core/services/app-config.service';
 import { DATE_STYLE_COMPACT, formatLocalizedDate, formatLocalizedTime } from '../../../../core/utils/date-format';
 
 @Component({
@@ -39,6 +40,9 @@ export class ConversationView {
   private readonly langService = inject(LangService);
   private readonly transloco = inject(TranslocoService);
   private readonly quoteService = inject(QuoteService);
+  private readonly configService = inject(AppConfigService);
+
+  readonly comingSoonEnabled = this.configService.get('comingSoonEnabled') === 'true';
 
   readonly conversation = input.required<ConversationSummary>();
   readonly messages = input.required<ConversationMessage[]>();
@@ -163,7 +167,7 @@ export class ConversationView {
   }
 
   openQuoteMessage(message: ConversationMessage): void {
-    if (!message.quoteId) return;
+    if (this.comingSoonEnabled || !message.quoteId) return;
     if (message.quoteStatus === 'PENDING_PAYMENT' || message.quoteStatus === 'PAID') {
       this.quoteService
         .getSignedPdfUrl(message.quoteId)
