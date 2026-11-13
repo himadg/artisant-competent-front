@@ -89,37 +89,37 @@ export const routes: Routes = [
   // Pages légales : 5 routes, un même composant qui choisit son contenu selon `data.legalDoc`
   // (cf. legal-placeholder.ts) — contenu partagé avec les modales CGU/CGV/politiques.
   {
-    path: 'cgu',
+    path: 'terms-of-use',
     title: 'footer.legal.cgu',
     data: { legalDoc: 'cgu' },
     loadComponent: () => import('./pages/legal-placeholder/legal-placeholder').then((p) => p.LegalPlaceholderPage),
   },
   {
-    path: 'cgv',
+    path: 'terms-of-sale',
     title: 'footer.legal.cgv',
     data: { legalDoc: 'cgv' },
     loadComponent: () => import('./pages/legal-placeholder/legal-placeholder').then((p) => p.LegalPlaceholderPage),
   },
   {
-    path: 'politique-confidentialite',
+    path: 'privacy-policy',
     title: 'footer.legal.privacy',
     data: { legalDoc: 'confidentialite' },
     loadComponent: () => import('./pages/legal-placeholder/legal-placeholder').then((p) => p.LegalPlaceholderPage),
   },
   {
-    path: 'mentions-legales',
+    path: 'legal-notice',
     title: 'footer.legal.notice',
     data: { legalDoc: 'mentionsLegales' },
     loadComponent: () => import('./pages/legal-placeholder/legal-placeholder').then((p) => p.LegalPlaceholderPage),
   },
   {
-    path: 'politique-cookies',
+    path: 'cookie-policy',
     title: 'footer.legal.cookies',
     data: { legalDoc: 'cookies' },
     loadComponent: () => import('./pages/legal-placeholder/legal-placeholder').then((p) => p.LegalPlaceholderPage),
   },
   {
-    path: 'politique-annulation',
+    path: 'cancellation-policy',
     title: 'footer.legal.cancellation',
     data: { legalDoc: 'annulation' },
     loadComponent: () => import('./pages/legal-placeholder/legal-placeholder').then((p) => p.LegalPlaceholderPage),

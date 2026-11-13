@@ -86,37 +86,37 @@
   </url>
 
   <url>
-    <loc>https://artisan-competent.com/cgu</loc>
+    <loc>https://artisan-competent.com/terms-of-use</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://artisan-competent.com/cgv</loc>
+    <loc>https://artisan-competent.com/terms-of-sale</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://artisan-competent.com/mentions-legales</loc>
+    <loc>https://artisan-competent.com/legal-notice</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://artisan-competent.com/politique-confidentialite</loc>
+    <loc>https://artisan-competent.com/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://artisan-competent.com/politique-cookies</loc>
+    <loc>https://artisan-competent.com/cookie-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://artisan-competent.com/politique-annulation</loc>
+    <loc>https://artisan-competent.com/cancellation-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

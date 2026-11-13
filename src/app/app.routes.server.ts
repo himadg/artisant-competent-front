@@ -31,12 +31,12 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'urgences', renderMode: RenderMode.Prerender },
   { path: 'guidance', renderMode: RenderMode.Prerender },
   { path: 'steps', renderMode: RenderMode.Prerender },
-  { path: 'cgu', renderMode: RenderMode.Prerender },
-  { path: 'cgv', renderMode: RenderMode.Prerender },
-  { path: 'politique-confidentialite', renderMode: RenderMode.Prerender },
-  { path: 'mentions-legales', renderMode: RenderMode.Prerender },
-  { path: 'politique-cookies', renderMode: RenderMode.Prerender },
-  { path: 'politique-annulation', renderMode: RenderMode.Prerender },
+  { path: 'terms-of-use', renderMode: RenderMode.Prerender },
+  { path: 'terms-of-sale', renderMode: RenderMode.Prerender },
+  { path: 'privacy-policy', renderMode: RenderMode.Prerender },
+  { path: 'legal-notice', renderMode: RenderMode.Prerender },
+  { path: 'cookie-policy', renderMode: RenderMode.Prerender },
+  { path: 'cancellation-policy', renderMode: RenderMode.Prerender },
 
   // Pages métier → prérendu statique par métier
   { path: 'job/electrician', renderMode: RenderMode.Prerender },

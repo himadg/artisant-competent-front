@@ -1,5 +1,5 @@
 /** Listes ordonnées des clés i18n composant les CGU/CGV — utilisées à la fois par la modale
- * (legal-modal, pendant l'inscription) et par les pages routées /cgu, /cgv (legal-placeholder),
+ * (legal-modal, pendant l'inscription) et par les pages routées /terms-of-use, /terms-of-sale (legal-placeholder),
  * pour n'avoir qu'une seule source de vérité du contenu. */
 export const CGU_SECTION_KEYS: string[] = [
   'legal.cgu.intro',
