@@ -8,6 +8,18 @@
         <button class="legal-tab" [class.legal-tab--active]="activeTab() === 'cgv'" (click)="setTab('cgv')" type="button">
             {{ 'legal.cgv.tab' | transloco }}
         </button>
+        <button class="legal-tab" [class.legal-tab--active]="activeTab() === 'mentionsLegales'" (click)="setTab('mentionsLegales')" type="button">
+            {{ 'legal.mentionsLegales.title' | transloco }}
+        </button>
+        <button class="legal-tab" [class.legal-tab--active]="activeTab() === 'confidentialite'" (click)="setTab('confidentialite')" type="button">
+            {{ 'policy.confidentialite.tab' | transloco }}
+        </button>
+        <button class="legal-tab" [class.legal-tab--active]="activeTab() === 'cookies'" (click)="setTab('cookies')" type="button">
+            {{ 'policy.cookies.tab' | transloco }}
+        </button>
+        <button class="legal-tab" [class.legal-tab--active]="activeTab() === 'annulation'" (click)="setTab('annulation')" type="button">
+            {{ 'policy.annulation.tab' | transloco }}
+        </button>
     </div>
 </ng-template>
 
@@ -19,6 +31,22 @@
 
         @if (activeTab() === 'cgv') {
             <legal-sections titleKey="legal.cgv.title" [keys]="cgvKeys" />
+        }
+
+        @if (activeTab() === 'mentionsLegales') {
+            <legal-sections titleKey="legal.mentionsLegales.title" [keys]="mentionsLegalesKeys" />
+        }
+
+        @if (activeTab() === 'confidentialite') {
+            <legal-sections titleKey="policy.confidentialite.title" [keys]="confidentialiteKeys" />
+        }
+
+        @if (activeTab() === 'cookies') {
+            <legal-sections titleKey="policy.cookies.title" [keys]="cookiesKeys" />
+        }
+
+        @if (activeTab() === 'annulation') {
+            <legal-sections titleKey="policy.annulation.title" [keys]="annulationKeys" />
         }
     </div>
 </ng-template>
