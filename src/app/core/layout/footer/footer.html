@@ -132,25 +132,25 @@
                 {{ 'footer.legal.notice' | transloco }}
             </a>
             <span class="opacity-30 select-none">|</span>
-            <button type="button" (click)="openConfidentialiteModal()"
-                class="hover:underline hover:opacity-80 bg-transparent border-0 text-inherit cursor-pointer text-sm px-2">
+            <a routerLink="/politique-confidentialite" class="no-underline hover:underline px-2">
                 {{ 'footer.legal.privacy' | transloco }}
-            </button>
+            </a>
             <span class="opacity-30 select-none">|</span>
-            <button type="button" (click)="openLegalModal()"
-                class="hover:underline hover:opacity-80 bg-transparent border-0 text-inherit cursor-pointer text-sm px-2">
-                {{ 'footer.legal.cgu' | transloco }} / {{ 'footer.legal.cgv' | transloco }}
-            </button>
+            <a routerLink="/cgu" class="no-underline hover:underline px-2">
+                {{ 'footer.legal.cgu' | transloco }}
+            </a>
             <span class="opacity-30 select-none">|</span>
-            <button type="button" (click)="openCookiesModal()"
-                class="hover:underline hover:opacity-80 bg-transparent border-0 text-inherit cursor-pointer text-sm px-2">
+            <a routerLink="/cgv" class="no-underline hover:underline px-2">
+                {{ 'footer.legal.cgv' | transloco }}
+            </a>
+            <span class="opacity-30 select-none">|</span>
+            <a routerLink="/politique-cookies" class="no-underline hover:underline px-2">
                 {{ 'footer.legal.cookies' | transloco }}
-            </button>
+            </a>
             <span class="opacity-30 select-none">|</span>
-            <button type="button" (click)="openAnnulationModal()"
-                class="hover:underline hover:opacity-80 bg-transparent border-0 text-inherit cursor-pointer text-sm px-2">
+            <a routerLink="/politique-annulation" class="no-underline hover:underline px-2">
                 {{ 'footer.legal.cancellation' | transloco }}
-            </button>
+            </a>
             <span class="opacity-30 select-none">|</span>
             <a routerLink="/mediateur-consommation"
                 class="flex items-center gap-1 no-underline hover:underline hover:opacity-80 px-2">
@@ -174,22 +174,6 @@
     <!-- <div class="px-6 py-6 mx-auto max-w-screen-lg border-t border-[color-mix(in_srgb,var(--primary-beige)_20%,transparent)]">
         <small class="block text-center">{{ 'footer.copyright' | transloco }}</small>
     </div> -->
-
-    <!-- ── Modale CGU/CGV ── -->
-    @if (legalModalOpen()) {
-        <legal-modal [modal]="true" (closed)="closeLegalModal()"></legal-modal>
-    }
-
-    <!-- ── Modales politiques ── -->
-    @if (annulationModalOpen()) {
-        <policy-modal [modal]="true" tab="annulation" (closed)="closeAnnulationModal()"></policy-modal>
-    }
-    @if (confidentialiteModalOpen()) {
-        <policy-modal [modal]="true" tab="confidentialite" (closed)="closeConfidentialiteModal()"></policy-modal>
-    }
-    @if (cookiesModalOpen()) {
-        <policy-modal [modal]="true" tab="cookies" (closed)="closeCookiesModal()"></policy-modal>
-    }
 
     <!-- ── Modale formulaire de contact ── -->
     @if (contactModalOpen()) {

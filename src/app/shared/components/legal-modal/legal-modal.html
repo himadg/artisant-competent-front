@@ -14,59 +14,11 @@
 <ng-template #bodyTpl>
     <div class="legal-modal__body list-disc">
         @if (activeTab() === 'cgu') {
-            <h2>{{ 'legal.cgu.title' | transloco }}</h2>
-
-            <div class="legal-prose" [innerHTML]="'legal.cgu.intro' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s_def' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s1' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s2' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s3' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s4' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s5' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s6' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s7' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s8' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s9' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s9bis' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s10' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s11' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s11bis' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s12' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s13' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s14' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s15' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s16' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s17' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s18' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s19' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgu.s20' | transloco"></div>
+            <legal-sections titleKey="legal.cgu.title" [keys]="cguKeys" />
         }
 
         @if (activeTab() === 'cgv') {
-            <h2>{{ 'legal.cgv.title' | transloco }}</h2>
-
-            <div class="legal-prose" [innerHTML]="'legal.cgv.intro' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s1' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s2' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s2bis' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s3' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s4' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s5' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s6' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s7' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s8' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s9' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s10' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s11' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s12' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s12bis' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s13' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s14' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s15' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s16' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s17' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s18' | transloco"></div>
-            <div class="legal-prose" [innerHTML]="'legal.cgv.s19' | transloco"></div>
+            <legal-sections titleKey="legal.cgv.title" [keys]="cgvKeys" />
         }
     </div>
 </ng-template>

@@ -1,0 +1,4 @@
+<h2 class="text-xl font-extrabold title mb-16 md:text-3xl">{{ titleKey() | transloco }}</h2>
+@for (key of keys(); track key) {
+    <div class="legal-prose" [innerHTML]="key | transloco"></div>
+}

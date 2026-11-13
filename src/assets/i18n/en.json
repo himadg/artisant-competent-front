@@ -913,7 +913,7 @@
               "Recourse in case of dispute",
               "Limited",
               "None",
-              "Hold up to €250 on report < 96h"
+              "Payment held during case review"
             ],
             [
               "NF C 15-100 & Consuel compliance",
@@ -1119,7 +1119,7 @@
               "Recourse in case of abuse",
               "Limited",
               "None",
-              "Withholding up to €250 upon report < 96h"
+              "Payment held during case review"
             ],
             [
               "Prior detailed quote",
@@ -1157,7 +1157,7 @@
           "title": "Your role in monitoring the job",
           "lead": "Framed-payment protection relies on a written contradictory process. Your active participation determines the strength of your recourse in a dispute: no written trail, no leverage.",
           "body": "For structural jobs (installing an armoured door, fitting a safe, metalwork), the tradesperson uploads progress photos to the shared client-tradesperson dashboard. You can comment, approve, or flag issues in that same space. For short emergency interventions (opening, cylinder replacement), systematically ask for a photo of the installed equipment (A2P mark, manufacturer label, cylinder reference) before validating the completion of the job.",
-          "footer": "In case of reporting abuse within 96 hours of the intervention (standard cylinder charged as A2P, unjustified drilling, quote not respected), Artisan Compétent can withhold up to €250 from the professional's invoice before validating the payment, as per the T&Cs and Terms of Sale. For proven abuses during night call-outs, this withholding serves as concrete protection and a deterrent precedent for the tradesperson."
+          "footer": "In case of reporting abuse within 96 hours of the intervention (standard cylinder charged as A2P, unjustified drilling, quote not respected), the tradesperson's payment stays suspended while Artisan Compétent reviews the case, in accordance with the T&Cs, the Terms of Sale and the Cancellation Policy. For proven abuses during night call-outs, this is a concrete protection and a deterrent precedent for the tradesperson."
         },
         "insurance": {
           "title": "Home insurance and reimbursement",
@@ -1210,7 +1210,7 @@
             },
             {
               "q": "How does framed payment work for an emergency call-out?",
-              "a": "Framed payment is processed via Stripe, the payment provider. When you approve the quote, the payment leaves your account but stays deferred. The funds are released 96 hours after the job, provided no dispute is raised. This window gives you time to check the hardware installed (A2P stamp, cylinder reference, quality of fitting) and flag any abuse. If you report an abuse within 96 hours, Artisan Competent can withhold up to 250 EUR from the locksmith's payment before release."
+              "a": "Framed payment is processed via Stripe, the payment provider. When you approve the quote, the payment leaves your account but stays deferred. The funds are released 96 hours after the job, provided no dispute is raised. This window gives you time to check the hardware installed (A2P stamp, cylinder reference, quality of fitting) and flag any abuse. If you report an abuse within 96 hours, the locksmith's payment stays suspended while Artisan Competent reviews the case."
             },
             {
               "q": "Is Klarna 3-instalment available for a locksmith job?",
@@ -1222,7 +1222,7 @@
             },
             {
               "q": "What should I do if the locksmith drilled when non-destructive entry was possible?",
-              "a": "Report the abuse within 96 hours of the job via the shared dashboard. Funds remain deferred for as long as this window is open. Artisan Competent requests the factual evidence (signed quote, photos of the drilled cylinder, any witness accounts) and can withhold up to 250 EUR from the locksmith's payment before release. The verified locksmith's quote must always state the intended entry method and explain why drilling is necessary if that is the case."
+              "a": "Report the abuse within 96 hours of the job via the shared dashboard. Funds remain deferred for as long as this window is open. Artisan Competent requests the factual evidence (signed quote, photos of the drilled cylinder, any witness accounts) while the locksmith's payment stays suspended during the case review. The verified locksmith's quote must always state the intended entry method and explain why drilling is necessary if that is the case."
             },
             {
               "q": "Which cities does Artisan Competent cover for locksmith services?",
@@ -1233,7 +1233,7 @@
         "conclusion": {
           "title": "Going further",
           "body": "A slammed door at 2 a.m., a break-in to secure the next morning, a move requiring a cylinder change, an armoured door to fit, an A2P safe to install: in every one of these cases, the key risk is the verbal quote and on-the-spot cash payment. Artisan Competent handles upfront locksmith verification and frames the entire process through framed payment up to 96 hours after the job.",
-          "footer": "Locksmith verified: SIRET and public liability insurance. Mandatory written quote required. Payment processed via Stripe, the payment provider. Withholding up to 250 EUR on reported abuse. Systematic home insurance claim after a break-in."
+          "footer": "Locksmith verified: SIRET and public liability insurance. Mandatory written quote required. Payment processed via Stripe, the payment provider. Payment held in case of reported abuse. Systematic home insurance claim after a break-in."
         }
       },
       "plumberSanitary": {
@@ -1331,7 +1331,7 @@
               "Recourse in case of abuse",
               "Limited",
               "None",
-              "Withholding up to 250 EUR on report < 96h"
+              "Payment held during case review"
             ],
             [
               "Transparent hourly rate",
@@ -1369,7 +1369,7 @@
           "title": "Your role in monitoring the job",
           "lead": "Framed-payment protection is powerful but relies on a written contradictory record. Your active participation determines the quality of any recourse in case of dispute: no written trace, no leverage.",
           "body": "For jobs lasting more than one day, the tradesperson uploads daily progress photos to the shared client-tradesperson dashboard. You comment, approve, or flag issues in the same space, creating a written contradictory record in case of a later dispute. On your side, document too: photos of the area before work starts, photos at the end of each day, short but dated written observations.",
-          "footer": "If an abuse is reported within 96 hours of the end of the job, Artisan Competent can withhold up to 250 EUR from the tradesperson's payment before release, in accordance with the Terms and Conditions. This withholding covers cases of proven defective work or non-compliance with the signed quote. Beyond 96 hours, statutory guarantees take over (one-year perfect completion guarantee, two-year guarantee on equipment, ten-year decennial guarantee on permanent installations)."
+          "footer": "If an abuse is reported within 96 hours of the end of the job, the tradesperson's payment stays suspended while Artisan Competent reviews the case, in accordance with the Terms and Conditions. This suspension covers cases of proven defective work or non-compliance with the signed quote. Beyond 96 hours, statutory guarantees take over (one-year perfect completion guarantee, two-year guarantee on equipment, ten-year decennial guarantee on permanent installations)."
         },
         "insurance": {
           "title": "Home insurance and reimbursement",
@@ -1426,7 +1426,7 @@
             },
             {
               "q": "What happens if the plumber does not comply with the signed quote?",
-              "a": "Report the abuse within 96 hours of the end of the job via the shared dashboard. As long as this window is open, the professional's settlement stays deferred and no payment reaches the plumber. Artisan Competent can withhold up to 250 EUR from the tradesperson's payment before release. Daily site photos serve as the written contradictory record."
+              "a": "Report the abuse within 96 hours of the end of the job via the shared dashboard. As long as this window is open, the professional's settlement stays deferred and no payment reaches the plumber, while Artisan Competent reviews the case. Daily site photos serve as the written contradictory record."
             },
             {
               "q": "Can a plumber also install air conditioning or a heat pump?",
@@ -1543,7 +1543,7 @@
               "Recourse in case of abuse",
               "Limited",
               "None",
-              "Withholding up to €250 upon report < 96h"
+              "Payment held during case review"
             ],
             [
               "Pricing framed on market reference",
@@ -1581,7 +1581,7 @@
           "title": "Your role in monitoring the job",
           "lead": "Framed-payment protection relies on a written contradictory process via your dashboard. Your active participation determines the quality of the recourse in the event of a dispute: no written trace, no leverage.",
           "body": "For unblocking interventions, systematically ask the professional for a photo of the device used (motorised snake, hydro-jetting machine, inspection camera) and, where applicable, the camera inspection report with an image of the blockage or obstruction. For longer jobs (septic tank rehabilitation, SPANC compliance, complete camera inspection), the professional uploads progress photos to the shared dashboard daily. Document the nature of the issue before intervention on your side as well (backflow, water level, marks) to facilitate any dispute resolution.",
-          "footer": "In the event of an abuse reported within 96h (pipe immediately clogging again, billed hydro-jetting not performed, missing emptying approval), Artisan Compétent can withhold up to €250 from the professional's invoice before payment validation, in accordance with the T&Cs and Terms of Sale."
+          "footer": "In the event of an abuse reported within 96h (pipe immediately clogging again, billed hydro-jetting not performed, missing emptying approval), the professional's payment stays suspended while Artisan Compétent reviews the case, in accordance with the T&Cs and Terms of Sale."
         },
         "insurance": {
           "title": "Home insurance and reimbursement",
@@ -1638,7 +1638,7 @@
             },
             {
               "q": "How does framed payment work when you call a drain unblocker?",
-              "a": "Framed payment is processed via Stripe, the payment provider. When you validate the quote, the payment leaves your account but the professional's settlement stays deferred. The funds are released 96h after the intervention, without contestation. This window is particularly useful in drain unblocking: if the pipe clogs up again within two days, you can report an incomplete job before release. In the event of reported abuse, Artisan Compétent can withhold up to €250 on the professional's invoice before validation."
+              "a": "Framed payment is processed via Stripe, the payment provider. When you validate the quote, the payment leaves your account but the professional's settlement stays deferred. The funds are released 96h after the intervention, without contestation. This window is particularly useful in drain unblocking: if the pipe clogs up again within two days, you can report an incomplete job before release. In the event of reported abuse, the professional's payment stays suspended while Artisan Compétent reviews the case."
             },
             {
               "q": "Does Klarna 3 interest-free instalments apply to drain unblocking?",
@@ -1650,7 +1650,7 @@
             },
             {
               "q": "What happens if the pipe clogs up again in the following days?",
-              "a": "You report the defect within 96h following the intervention, via the shared dashboard. As long as this period runs, the professional's settlement stays deferred and no payment reaches the unblocker. Artisan Compétent can request a new intervention without additional billing or withhold up to €250 from the professional's invoice before validation. The camera inspection report provided during the first intervention is a key element in distinguishing an incomplete job from a new independent problem."
+              "a": "You report the defect within 96h following the intervention, via the shared dashboard. As long as this period runs, the professional's settlement stays deferred and no payment reaches the unblocker. Artisan Compétent can request a new intervention without additional billing, or keep the professional's payment suspended while the case is reviewed. The camera inspection report provided during the first intervention is a key element in distinguishing an incomplete job from a new independent problem."
             },
             {
               "q": "Which cities are covered by Artisan Compétent for drain unblocking?",
@@ -1661,7 +1661,7 @@
         "conclusion": {
           "title": "To go further",
           "body": "An overflowing toilet, a clogged pipe resistant to chemical unblockers, a septic tank to empty with a tracking slip, a camera inspection to schedule on an old network: Artisan Compétent oversees the verification of the drain unblocker (SIRET, RC pro, prefectural approval, equipment proof) and your entire process by framed payment until 96h after the intervention.",
-          "footer": "Verified drain unblocker with SIRET, RC pro and prefectural approval for emptying. Equipment tracked on dashboard (inspection camera, hydro-jetting machine). Payment processed via Stripe, the payment provider. Withholding of up to €250 in case of reported abuse. Systematic home insurance recourse after water damage."
+          "footer": "Verified drain unblocker with SIRET, RC pro and prefectural approval for emptying. Equipment tracked on dashboard (inspection camera, hydro-jetting machine). Payment processed via Stripe, the payment provider. Payment held in case of reported abuse. Systematic home insurance recourse after water damage."
         },
         "lining": {
           "title": "Pipe relining: repairing a broken pipe without digging up the garden",
@@ -1775,7 +1775,7 @@
               "Recourse in case of abuse",
               "Limited",
               "None",
-              "Withholding up to €250 upon report < 96h"
+              "Payment held during case review"
             ],
             [
               "Qualigaz certificate at start-up",
@@ -1813,7 +1813,7 @@
           "title": "Your role in monitoring the job",
           "lead": "Framed-payment protection relies on a written contradictory process. Your active participation determines the strength of your recourse in a dispute: no written trail, no leverage.",
           "body": "For jobs lasting more than one day (boiler replacement, heat pump installation, double flow VMC), the professional uploads progress photos to the shared client-tradesperson dashboard daily. You comment, approve, or flag issues in that same space. At start-up, systematically request the documents: Qualigaz certificate for gas, RGE certificate for grants, manufacturer's manual, warranty certificate registered in the client's name, signed start-up report, and verify each of these provided documents.",
-          "footer": "In case of reporting abuse within 96 hours of the job's completion (equipment non-compliant with the quote, missing certificate, start-up failure), Artisan Compétent can withhold up to €250 from the professional's invoice before validating payment, according to the T&Cs and Terms of Sale. This withholding covers proven defects or failure to comply with the signed quote."
+          "footer": "In case of reporting abuse within 96 hours of the job's completion (equipment non-compliant with the quote, missing certificate, start-up failure), the professional's payment stays suspended while Artisan Compétent reviews the case, according to the T&Cs and Terms of Sale. This suspension covers proven defects or failure to comply with the signed quote."
         },
         "insurance": {
           "title": "Home insurance and reimbursement",
@@ -1866,7 +1866,7 @@
             },
             {
               "q": "How does framed payment work for replacing a boiler?",
-              "a": "Framed payment is processed via Stripe, the payment provider. When you validate the quote, the payment leaves your account but the professional's settlement stays deferred. The professional is paid, the settlement going to the heating engineer, 96h after the end of the intervention. For a boiler replacement, the 96h window allows verifying the start-up, the gas compliance certificate if applicable (Qualigaz), the provision of manuals, and registering the manufacturer's warranty. In case of reported abuse, Artisan Compétent can withhold up to €250 from the professional's invoice before validation."
+              "a": "Framed payment is processed via Stripe, the payment provider. When you validate the quote, the payment leaves your account but the professional's settlement stays deferred. The professional is paid, the settlement going to the heating engineer, 96h after the end of the intervention. For a boiler replacement, the 96h window allows verifying the start-up, the gas compliance certificate if applicable (Qualigaz), the provision of manuals, and registering the manufacturer's warranty. In case of reported abuse, the professional's payment stays suspended while Artisan Compétent reviews the case."
             },
             {
               "q": "What is the CMOD for a heating project?",
@@ -1882,14 +1882,14 @@
             },
             {
               "q": "What if the boiler breaks down right after an intervention?",
-              "a": "You report the issue within 96h of the intervention ending via the shared dashboard. While this period is active, the professional's settlement stays deferred. If abuse is reported, Artisan Compétent can withhold up to €250. Beyond 96h, the legal warranty of good operation (Article 1792-3 of the Civil Code) covers equipment for two years, and the decennial warranty covers durable installations for ten years."
+              "a": "You report the issue within 96h of the intervention ending via the shared dashboard. While this period is active, the professional's settlement stays deferred. If abuse is reported, the professional's payment stays suspended while the case is reviewed. Beyond 96h, the legal warranty of good operation (Article 1792-3 of the Civil Code) covers equipment for two years, and the decennial warranty covers durable installations for ten years."
             }
           ]
         },
         "conclusion": {
           "title": "To go further",
           "body": "A boiler that breaks down in the middle of a cold snap, an annual maintenance to schedule to remain covered by insurance, a heat pump to install with MaPrimeRénov', a double flow VMC to fit for energy renovation: Artisan Compétent oversees the verification of the heating engineer (PG, RGE, decennial) and your entire process via framed payment until 96h after the end of the job.",
-          "footer": "Verified heating engineer with SIRET, PG and decennial. RGE qualification checked for public grants (QualiPAC, Qualibois, QualiSol). Payment processed via Stripe, the payment provider. Up to €250 withheld in case of reported abuse."
+          "footer": "Verified heating engineer with SIRET, PG and decennial. RGE qualification checked for public grants (QualiPAC, Qualibois, QualiSol). Payment processed via Stripe, the payment provider. Payment held in case of reported abuse."
         }
       },
       "hvac": {
@@ -2013,7 +2013,7 @@
               "Recourse in case of defect",
               "Limited",
               "None",
-              "Withhold up to €250 if reported < 96h"
+              "Payment held during case review"
             ],
             [
               "Project management advisor",
@@ -2045,7 +2045,7 @@
           "title": "Your role in monitoring the job",
           "lead": "On air conditioning and heat pump projects, your active monitoring is essential to document the conformity of the installation and enable quick recourse in case of a defect. Here is what you concretely do, in the shared dashboard with the professional.",
           "body": "For jobs lasting more than one day (multi-splits, ducted systems, heat pumps), the professional uploads daily progress photos to the shared client-professional dashboard: installation of indoor units, refrigerant connection, electrical connection, start-up, leak testing. You comment, validate, or report in the same space, which establishes written evidence for any subsequent dispute. You also document: photos of the area before intervention (planned location, wall condition, electrical outlet), photos at the end of the day, photos of the nameplates of the installed equipment (brand, series, power, energy class).",
-          "footer": "This active participation determines the quality of the recourse in the event of a dispute: no written trace, no leverage. In the event of a reported abuse within 96h following the end of the job, Artisan Compétent can withhold up to €250 from the professional's invoice before payment validation, according to the T&Cs/Terms of Sale. This withholding covers proven defects, non-compliance with the quote, or failure to provide mandatory documents (fluid tracking slip, maintenance certificate, manufacturer warranties)."
+          "footer": "This active participation determines the quality of the recourse in the event of a dispute: no written trace, no leverage. In the event of a reported abuse within 96h following the end of the job, the professional's payment stays suspended while Artisan Compétent reviews the case, according to the T&Cs/Terms of Sale. This suspension covers proven defects, non-compliance with the quote, or failure to provide mandatory documents (fluid tracking slip, maintenance certificate, manufacturer warranties)."
         },
         "insurance": {
           "title": "Home insurance and reimbursement",
@@ -2096,7 +2096,7 @@
             },
             {
               "q": "What happens if the AC breaks down right after installation?",
-              "a": "You report the defect within the 96h following the end of the job, via the shared dashboard. As long as this period runs, the professional's settlement stays deferred and no payment reaches the professional. Artisan Compétent can request a corrective intervention without extra billing or withhold up to €250 from the professional's invoice before validation. Beyond this timeframe, the two-year warranty on the equipment and the manufacturer warranty take over."
+              "a": "You report the defect within the 96h following the end of the job, via the shared dashboard. As long as this period runs, the professional's settlement stays deferred and no payment reaches the professional. Artisan Compétent can request a corrective intervention without extra billing, or keep the professional's payment suspended while the case is reviewed. Beyond this timeframe, the two-year warranty on the equipment and the manufacturer warranty take over."
             },
             {
               "q": "What is CMOD used for in an air conditioning or heat pump job?",
@@ -2111,7 +2111,7 @@
         "conclusion": {
           "title": "To go further",
           "body": "A new air conditioning installation, a heat pump eligible for MaPrimeRénov', mandatory annual maintenance, a repair during a heatwave: Artisan Compétent oversees the verification of the HVAC technician (SIRET, RC pro, decennial, refrigerant handling certificate, QualiPAC) and your entire process via framed payment until 96h after the intervention.",
-          "footer": "Verified HVAC technician with SIRET, RC pro, decennial, and category I to IV refrigerant handling certificate. QualiPAC verified for grant-eligible heat pumps. Payment processed via Stripe, the payment provider. Withholding of up to €250 in case of reported abuse. Fluid tracking slip provided at end of job."
+          "footer": "Verified HVAC technician with SIRET, RC pro, decennial, and category I to IV refrigerant handling certificate. QualiPAC verified for grant-eligible heat pumps. Payment processed via Stripe, the payment provider. Payment held in case of reported abuse. Fluid tracking slip provided at end of job."
         }
       },
       "glazier": {
@@ -2232,7 +2232,7 @@
               "Recourse in case of defect (scratched glass, failing seal)",
               "Limited",
               "None",
-              "Withhold up to €250 if reported < 96h"
+              "Payment held during case review"
             ],
             [
               "Prior detailed quote required",
@@ -2270,7 +2270,7 @@
           "title": "Your role in monitoring the job",
           "lead": "On glazing projects, your active monitoring is essential to document the conformity of the installation and enable quick recourse in case of a defect. Here is what you concretely do, in the shared dashboard with the professional.",
           "body": "For single-day jobs (standard glass replacement, emergency glass breakage repair), the professional uploads photos of the installed work, the delivery note, and product references (brand, dimensions, glass type) at the end of the intervention. You validate or report in the shared dashboard. For longer projects (installing multiple storefronts, full glass stair guardrail, custom mirror work for businesses), the tradesperson uploads daily progress photos: fixing installations, glazing placement, caulking, leak tests. You comment, validate, or report in the same space, establishing a written record for any subsequent dispute. You also document: photos of the area before intervention (condition of existing frame, seals in place), photos after installation (caulking, seal, cleanliness of finish), photos of the installed glazing's nameplate.",
-          "footer": "This active participation determines the quality of the recourse in the event of a dispute: no written trace, no leverage. In the event of a reported abuse within 96h following the end of the job, Artisan Compétent can withhold up to €250 from the professional's invoice before payment validation, according to the T&Cs/Terms of Sale. This withholding covers proven defects (scratched glass, poorly installed seal, dimensions non-compliant with the quote) or failure to comply with the signed quote."
+          "footer": "This active participation determines the quality of the recourse in the event of a dispute: no written trace, no leverage. In the event of a reported abuse within 96h following the end of the job, the professional's payment stays suspended while Artisan Compétent reviews the case, according to the T&Cs/Terms of Sale. This suspension covers proven defects (scratched glass, poorly installed seal, dimensions non-compliant with the quote) or failure to comply with the signed quote."
         },
         "insurance": {
           "title": "Home insurance and reimbursement (enhanced section for glass breakage)",
@@ -2325,7 +2325,7 @@
             },
             {
               "q": "What happens if the installed glass is scratched upon delivery?",
-              "a": "You report the defect within 96h following the end of the job via the shared dashboard, with photos as proof. As long as this period runs, the professional's settlement stays deferred and no payment reaches the glazier. Artisan Compétent may request a replacement without extra billing or withhold up to €250 from the professional's invoice before validation. The handover photo is the key element."
+              "a": "You report the defect within 96h following the end of the job via the shared dashboard, with photos as proof. As long as this period runs, the professional's settlement stays deferred and no payment reaches the glazier. Artisan Compétent may request a replacement without extra billing, or keep the professional's payment suspended while the case is reviewed. The handover photo is the key element."
             },
             {
               "q": "What is CMOD used for in a glazing project?",
@@ -2340,7 +2340,7 @@
         "conclusion": {
           "title": "To go further",
           "body": "A glass breakage after a break-in, fogged double glazing to replace, a damaged commercial storefront, a glass guardrail to install on stairs, a custom mirror for a bathroom: Artisan Compétent oversees the verification of the glazier (SIRET, RC pro, decennial, technical structure certifications) and your entire process via framed payment until 96h after the intervention.",
-          "footer": "Verified glazier with SIRET, RC pro, and decennial. Certifications uploaded to the dashboard (NF P01-013 for glass guardrails, laminated safety glass). Payment processed via Stripe, the payment provider. Withholding of up to €250 in case of reported abuse. Scope: glazing and mirror work. Carpentry out of scope in V1."
+          "footer": "Verified glazier with SIRET, RC pro, and decennial. Certifications uploaded to the dashboard (NF P01-013 for glass guardrails, laminated safety glass). Payment processed via Stripe, the payment provider. Payment held in case of reported abuse. Scope: glazing and mirror work. Carpentry out of scope in V1."
         }
       },
       "pestControl": {
@@ -2448,7 +2448,7 @@
               "Recourse in case of ineffective treatment",
               "Limited",
               "None",
-              "Withhold up to €250 if reported < 96h"
+              "Payment held during case review"
             ],
             [
               "Documented follow-up visits",
@@ -2486,7 +2486,7 @@
           "title": "Your role in monitoring the job",
           "lead": "On pest control projects, your active monitoring is essential to document the effectiveness of the treatment and enable quick recourse in case the infestation returns. Here is what you concretely do, in the shared dashboard with the professional.",
           "body": "For treatments in multiple passes (bedbugs, recurring cockroaches, heavy rat infestation), the professional uploads photos and a report to the shared client/professional dashboard at each visit: treated areas, products used, fixing points of baits, set traps. You document in parallel: photos of observed pests before the intervention, observations between visits (presence or absence of returning infestation), photos of any traces (droppings, damage, molts), request for an early follow-up visit if needed.",
-          "footer": "This active participation determines the quality of the recourse in the event of a dispute: no written trace, no leverage. For bedbugs in particular, a time-stamped photograph of discoveries (on sheets, under mattresses, on bed frames) is the most effective evidence to show that a treatment did not have the expected effect. In the event of a reported abuse within 96h following the end of the job (or the end of the last follow-up visit), Artisan Compétent can withhold up to €250 from the professional's invoice before payment validation, according to the T&Cs/Terms of Sale. This withholding covers cases of proven ineffectiveness, failure to follow the planned protocol, or non-compliance with the signed quote."
+          "footer": "This active participation determines the quality of the recourse in the event of a dispute: no written trace, no leverage. For bedbugs in particular, a time-stamped photograph of discoveries (on sheets, under mattresses, on bed frames) is the most effective evidence to show that a treatment did not have the expected effect. In the event of a reported abuse within 96h following the end of the job (or the end of the last follow-up visit), the professional's payment stays suspended while Artisan Compétent reviews the case, according to the T&Cs/Terms of Sale. This suspension covers cases of proven ineffectiveness, failure to follow the planned protocol, or non-compliance with the signed quote."
         },
         "insurance": {
           "title": "Home insurance and reimbursement",
@@ -2555,7 +2555,7 @@
         "conclusion": {
           "title": "To go further",
           "body": "A bedbug infestation to eradicate in several visits, recurring rodents in a basement or attic, an Asian hornet nest on a facade, a complete disinfection after an incident: Artisan Compétent oversees the verification of the pest control specialist (SIRET, RC pro, decennial, Certibiocide) and your entire process via framed payment until 96h after the last intervention.",
-          "footer": "Verified pest control specialist with SIRET, RC pro, decennial, and Certibiocide. Payment processed via Stripe, follow-up visits included. Report and photos at each visit. Withholding of up to €250 in case of reported abuse. Scope: rodents, crawling insects, flying insects, bedbugs, hornets, disinfection, insect control, rat control."
+          "footer": "Verified pest control specialist with SIRET, RC pro, decennial, and Certibiocide. Payment processed via Stripe, follow-up visits included. Report and photos at each visit. Payment held in case of reported abuse. Scope: rodents, crawling insects, flying insects, bedbugs, hornets, disinfection, insect control, rat control."
         }
       }
     },
@@ -2576,9 +2576,6 @@
     "h1": "CMOD support package",
     "body": "Page under construction."
   },
-  "legalPlaceholder": {
-    "body": "Page being written. The official content will be added shortly."
-  },
   "toggle": {
     "theme": "Toggle theme",
     "lang": "Toggle language"
@@ -2593,6 +2590,7 @@
     "offerServices": "I want to offer my services",
     "captcha": "I am not a robot",
     "cguv": "I accept the Terms",
+    "privacyNotice": "The requested information is necessary to create and manage your account and to provide the platform's services. To learn about the purposes, legal bases, recipients, retention periods and your rights, see our",
     "submit": "Submit",
     "gender": {
       "select": "Select gender",
@@ -3995,6 +3993,18 @@
       "s17": "<h3>Clause 17 – Severability</h3><p>If any provision of this contract is declared null and void, such nullity shall not entail the nullity of the other provisions, which shall remain in force between the parties. Any contractual modification is only valid after a written and signed agreement by the parties.</p>",
       "s18": "<h3>Clause 18 – Links with the GTU</h3><p>These T&CS are functionally linked to the General Terms of Use of the Artisan Compétent Platform, in particular with regard to the matching of parties, project monitoring, the dispute resolution procedure and payment via the platform.</p><p>However, only the contractual relationship between the Craftsman and the Client is governed by these T&CS and the quote, the Platform acting solely as a technical intermediary and not as a party to the contract.</p>",
       "s19": "<h3>Clause 19 – Applicable Law</h3><p>These T&CS are governed by French law.</p>"
+    },
+    "mentionsLegales": {
+      "title": "Legal Notices",
+      "s1": "<h3>1. Site publisher</h3><p>This site is published by the following company:</p><ul><li><strong>Company name:</strong> ARTISAN COMPÉTENT</li><li><strong>Legal form:</strong> Simplified joint-stock company with a single shareholder (SASU)</li><li><strong>Share capital:</strong> €30,000</li><li><strong>Registered office:</strong> 66 avenue des Champs-Élysées, 75008 Paris, France</li><li><strong>SIREN:</strong> 104 445 671</li><li><strong>Registration:</strong> 104 445 671 R.C.S. Paris</li><li><strong>Chairman:</strong> Guelfout Himad</li><li><strong>Email address:</strong> [TO BE COMPLETED — OFFICIAL EMAIL ADDRESS]</li><li><strong>Phone:</strong> [TO BE COMPLETED IF A NUMBER IS PUBLISHED]</li><li><strong>Intra-community VAT number:</strong> [TO BE COMPLETED IF APPLICABLE / TO BE CONFIRMED]</li></ul>",
+      "s2": "<h3>2. Publication director</h3><p>The publication director is the Chairman of ARTISAN COMPÉTENT, Guelfout Himad.</p>",
+      "s3": "<h3>3. Site hosting</h3><p>The site is hosted by:</p><ul><li><strong>Host's legal name:</strong> [TO BE COMPLETED — EXACT LEGAL NAME]</li><li><strong>Postal address:</strong> [TO BE COMPLETED — HOST'S ADDRESS]</li><li><strong>Phone:</strong> [TO BE COMPLETED — PHONE NUMBER]</li><li><strong>Website:</strong> [TO BE COMPLETED — HOST'S URL]</li></ul>",
+      "s4": "<h3>4. Site activity</h3><p>ARTISAN COMPÉTENT operates a digital platform connecting individuals and professionals, notably in the construction, services and repair sectors. The platform provides digital tools for matching, tracking, coordination, exchange management and acceptance of services, within the limits described in its contractual documents.</p>",
+      "s5": "<h3>5. Intellectual property</h3><p>Unless otherwise stated, the elements making up the site (text, graphic elements, logos, trademarks, photographs, illustrations, videos, databases and layout) are protected by intellectual property rights and belong to ARTISAN COMPÉTENT or their respective owners. Any reproduction, representation, adaptation or use without prior authorisation, where required, is prohibited.</p>",
+      "s6": "<h3>6. Liability and availability</h3><p>ARTISAN COMPÉTENT strives to provide accurate information and to keep the site accessible. Interruptions may occur for maintenance, updates, or due to events beyond its control. The roles, obligations and limits of liability of the platform, individuals and professionals are set out in the applicable contractual documents.</p>",
+      "s7": "<h3>7. Hyperlinks</h3><p>The site may contain links to third-party sites or services. ARTISAN COMPÉTENT does not necessarily control these external resources and cannot be held liable for their content or practices.</p>",
+      "s8": "<h3>8. Consumer mediation</h3><p>Where consumer mediation provisions apply, the consumer may have free recourse to the consumer mediator ARTISAN COMPÉTENT falls under, after a prior written complaint to the company and in accordance with the legal conditions.</p><ul><li><strong>Mediator:</strong> [TO BE CONFIRMED — EXACT LEGAL NAME AND ADDRESS]</li><li><strong>Website:</strong> [TO BE COMPLETED]</li><li><strong>Postal address:</strong> [TO BE COMPLETED]</li></ul>",
+      "s9": "<h3>9. Contractual documents and contact</h3><p>The terms of use, sale and cancellation are detailed in the GTU, GTS and Cancellation Policy available on the site. For any question, see our <a href=\"/contact\">contact form</a> or email us at contact@artisancompetent.com.</p>"
     }
   },
   "blog": {
@@ -4017,11 +4027,32 @@
     },
     "confidentialite": {
       "tab": "Privacy",
-      "title": "Privacy Policy"
+      "title": "Privacy Policy",
+      "s1": "<h3>1. Data controller and contact</h3><p>The data controller is ARTISAN COMPÉTENT, a SASU with share capital of €30,000, whose registered office is located at 66 avenue des Champs-Élysées, 75008 Paris, registered with the Paris Trade and Companies Register under number 104 445 671.</p><ul><li><strong>Contact for personal data matters:</strong> [TO BE COMPLETED — GDPR EMAIL ADDRESS]</li><li><strong>Postal address:</strong> ARTISAN COMPÉTENT, 66 avenue des Champs-Élysées, 75008 Paris</li><li><strong>Data Protection Officer (DPO):</strong> [TO BE COMPLETED IF A DPO HAS BEEN APPOINTED]</li></ul>",
+      "s2": "<h3>2. Categories of data processed</h3><ul><li>Identification and account data: name, surname, login credentials, account type and settings;</li><li>Contact details: email address, phone, postal address and information needed to locate a request or a job;</li><li>Service-related data: description of the need, exchanges, appointments, quotes, contractual documents, project tracking, photographs, completion reports and complaints;</li><li>Tradespeople's professional data: company name, SIREN/SIRET, professional contact details, proof of identity where required, insurance, qualifications and administrative documents;</li><li>Billing and transaction data: information relating to payments, refunds, commissions and supporting documents;</li><li>Technical and browsing data: IP address, connection logs, browser, device, pages viewed, cookies and trackers according to choices expressed;</li><li>Marketing and affiliation data: communication preferences, consents, referral links and commission tracking where these features are used.</li></ul>",
+      "s3": "<h3>3. Purposes and legal bases</h3><p>Data is used for specific purposes, each on the appropriate legal basis:</p><ul><li><strong>Account management</strong> (registration, authentication, profile, support): performance of the contract / pre-contractual measures;</li><li><strong>Matching and services</strong> (requests, quotes, exchanges, tracking, acceptance): performance of the contract;</li><li><strong>Payments and refunds</strong>: performance of the contract / legal obligations;</li><li><strong>Verification of professionals</strong> (SIRET, insurance, supporting documents): performance of the contract / legitimate interest / legal obligation depending on the case;</li><li><strong>Complaints and disputes</strong> (file analysis, evidence retention): performance of the contract / legitimate interest / legal obligations;</li><li><strong>Marketing by Artisan Compétent</strong>: consent where required or other authorised basis;</li><li><strong>Marketing by partners</strong>: prior consent where required;</li><li><strong>Site security</strong> (abuse prevention, technical logs): legitimate interest / legal obligations;</li><li><strong>Cookies and audience measurement</strong>: consent where required, subject to applicable exemptions.</li></ul><p>Accepting the GTU is distinct from consenting to receive marketing communications.</p>",
+      "s4": "<h3>4. Mandatory or optional fields</h3><p>Mandatory fields are indicated at the time of collection. If essential information is not provided, ARTISAN COMPÉTENT may be unable to create the account, process the request or provide the relevant feature.</p>",
+      "s5": "<h3>5. Data recipients</h3><p>Within the limits of their duties and on a need-to-know basis, data may be accessible to:</p><ul><li>authorised ARTISAN COMPÉTENT teams, notably customer support, accounting and IT security;</li><li>the individual and the tradesperson concerned, for the request, quote or job;</li><li>technical service providers necessary for the platform to operate (hosting, maintenance, email, electronic signature);</li><li>the payment providers used, notably Stripe and, where the option is offered and used, Klarna;</li><li>the CMOD or any party appointed under the scope set out in the contractual documents;</li><li>authorities or bodies entitled to receive data where the law requires it or where necessary to defend the company's rights.</li></ul><p>Some technical providers or tools may be located outside the European Union, which may lead to transfers outside the EU under the conditions described in the next section.</p>",
+      "s6": "<h3>6. Transfers outside the European Economic Area</h3><p>If a provider or subcontractor processes data outside the European Economic Area, ARTISAN COMPÉTENT ensures that a GDPR-compliant transfer mechanism applies (adequacy decision, standard contractual clauses or another mechanism) and informs the individuals concerned of the relevant safeguards.</p>",
+      "s7": "<h3>7. Retention periods</h3><p>Data is kept for no longer than necessary for the purposes pursued, subject to legal, accounting, tax and evidentiary or dispute-management requirements:</p><ul><li>Account management data (identification, contact details, login, professional supporting documents): for the entire duration the account is active, then deleted after 3 years of inactivity;</li><li>Matching data (profile, listings): for the duration the account is active, then deleted after 3 years of inactivity;</li><li>Service-management data (quotes, photos, completion reports, exchanges): for the duration of the contractual relationship, then archived for up to 10 years for evidentiary purposes;</li><li>Contractual documents and electronic signatures: for the duration of the contractual relationship, then archived for 5 to 10 years;</li><li>Transaction data (history, amounts, invoices): 10 years from the close of the accounting year;</li><li>Security data (logs, IP addresses): 6 months to 1 year, with possible archiving in the event of an incident;</li><li>Customer support: for the duration the request is handled, then archived for 5 years;</li><li>Marketing: 3 years from the last contact or withdrawal of consent.</li></ul>",
+      "s8": "<h3>8. Data subject rights</h3><p>Subject to the conditions and limits set out in the applicable regulations, data subjects may exercise the following rights:</p><ul><li>right of access to their data;</li><li>right to rectification of inaccurate or incomplete data;</li><li>right to erasure where applicable;</li><li>right to restriction of processing where applicable;</li><li>right to object to certain processing, notably marketing;</li><li>right to portability where the legal conditions are met;</li><li>right to withdraw consent at any time where the processing is based on it;</li><li>right to issue instructions on the fate of their data after death, under the conditions set out by law.</li></ul><p>To exercise these rights: [TO BE COMPLETED — GDPR EMAIL] or by post to ARTISAN COMPÉTENT, 66 avenue des Champs-Élysées, 75008 Paris. Proof of identity will only be requested if necessary. Anyone may also lodge a complaint with the CNIL: www.cnil.fr.</p>",
+      "s9": "<h3>9. Marketing</h3><p>Marketing communications are sent in compliance with applicable rules. Where consent is required, it is collected via a separate, optional and non-pre-ticked checkbox. Refusing marketing must not prevent the use of services that do not require it.</p><p>Data is only shared with partners for their own marketing purposes where the legal conditions are met, notably prior consent where required.</p>",
+      "s10": "<h3>10. Cookies and trackers</h3><p>The site may use cookies or other trackers necessary for it to function and, subject to the user's choices, audience-measurement, personalisation or advertising trackers. Non-exempt trackers are only deposited after consent has been obtained where required. Users may accept, refuse or configure trackers at any time. Categories, purposes, durations and recipients are detailed in our Cookie Policy.</p>",
+      "s11": "<h3>11. Security</h3><p>ARTISAN COMPÉTENT implements technical and organisational measures appropriate to the risks in order to protect data against loss, alteration, disclosure or unauthorised access, notably encryption of exchanges via HTTPS and password hashing. Access is limited to people and providers who need it. Measures are reassessed as the platform and risks evolve.</p>",
+      "s12": "<h3>12. Automated decision-making and profiling</h3><p>[TO BE CONFIRMED] As things stand, the platform does not implement any exclusively automated decision-making or profiling producing legal effects or significantly affecting users — in particular, CMOD intervention relies on human review of the file, not on a decision-making algorithm. This section will be updated should such a mechanism be deployed.</p>",
+      "s13": "<h3>13. Updates</h3><p>ARTISAN COMPÉTENT may update this policy to reflect legal, technical or functional developments. The applicable version is the one published on the site at the time of consultation. In the event of a substantial change, users will be informed by an appropriate means.</p>"
     },
     "cookies": {
       "tab": "Cookies",
-      "title": "Cookie Policy"
+      "title": "Cookie Policy",
+      "s1": "<h3>Cookie banner</h3><p>To offer you the best possible experience, Artisan Compétent and our partners use cookies or trackers.</p><p>To guarantee that our site works properly and that our services are used securely, some cookies or trackers are essential and deposited automatically.</p><p>Other cookies or trackers are useful but optional, used to serve personalised advertising, carry out audience measurement, personalise content and communications, and improve our products and user experience.</p><p>By clicking \"Accept\", you consent to the use of cookies for all the purposes above. You can also configure your choices purpose by purpose by clicking \"Manage my choices\", or refuse by clicking \"Refuse\".</p><p>Your choices are only valid on the browser you are currently using. If you delete your cookies, we will no longer be able to know your choices and will ask you again.</p>",
+      "s2": "<h3>What is a cookie/tracker?</h3><p>The concept of a tracker covers tools that allow reading and/or writing on the user's device. A cookie is a small text file sent to your browser and stored by it when you visit websites or a mobile application, regardless of the type of device used. This file keeps a record of your browsing and allows us to offer, in particular, personalised content and advertising.</p><p>A cookie has a limited validity period. It is deposited and stored in compliance with applicable legislation and subject to the choices you have expressed, which you can change at any time.</p>",
+      "s3": "<h3>Cookies or trackers essential to the site's operation</h3><p>These cookies are essential to the service's core features and cannot be disabled.</p>",
+      "s4": "<h3>Audience-measurement cookies or trackers</h3><p>These cookies are used to produce statistics to measure and analyse the audience of our site and applications, helping us improve the quality of our services. These cookies or trackers can only be used with your consent. Refusing them has no impact on your use of our website.</p>",
+      "s5": "<h3>Content and marketing-communication personalisation cookies or trackers</h3><p>These cookies allow you to benefit from communications and/or promotional offers tailored to your profile, browsing and use of our service. These cookies or trackers can only be used with your consent.</p>",
+      "s6": "<h3>User-experience optimisation cookies or trackers</h3><p>These cookies allow you to benefit from a better experience on our site. These cookies or trackers can only be used with your consent.</p>",
+      "s7": "<h3>Advertising cookies or trackers</h3><p>Advertising cookies or trackers are used to offer you personalised advertising tailored to your profile, interests and use of our service. Refusing them has no impact on your use of our website; it will only result in advertising that does not take your interests into account.</p>",
+      "s8": "<h3>Affiliation cookies or trackers</h3><p>These cookies track user activity when they access the platform via affiliated sites or partners. When a user clicks on an affiliate link, a unique identifier is recorded in a cookie, allowing the origin of the visit to be identified and actions taken on the platform to be linked to the affiliate partner concerned. These cookies or trackers can only be used with your consent.</p><p>You can change your preferences on the deposit and use of cookies or trackers at any time via your browser.</p>"
     }
   },
   "seoBatiment": {

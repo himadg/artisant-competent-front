@@ -12,7 +12,7 @@ import { AppConfigService } from '../../../../core/services/app-config.service';
 import { UserApiService } from '../../../../core/services/user-api.service';
 import { AuthService } from '../../../../core/services/auth.service';
 import { AuthUser } from '../../../../shared/interfaces/user';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { capitalize, evaluatePasswordCriteria, getAffiliateCode, clearAffiliateCode } from '../../../../core/utils/common-utils';
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
 import { NAME_REGEXP, PASSWORD_STRONG_REGEXP, PHONE_FR_REGEXP, POSTAL_CODE_REGEXP, STREET_NUMBER_REGEXP } from '../../../../core/utils/regexp';
@@ -23,7 +23,7 @@ import { ALLOWED_IMAGE_TYPES, isFileTypeAllowed } from '../../../../core/utils/f
   selector: 'register-individual',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent, LegalModal, VideoModal],
+  imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent, LegalModal, VideoModal, RouterLink],
   templateUrl: './individual.html',
   styleUrl: './individual.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

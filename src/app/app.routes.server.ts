@@ -36,6 +36,7 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'politique-confidentialite', renderMode: RenderMode.Prerender },
   { path: 'mentions-legales', renderMode: RenderMode.Prerender },
   { path: 'politique-cookies', renderMode: RenderMode.Prerender },
+  { path: 'politique-annulation', renderMode: RenderMode.Prerender },
 
   // Pages métier → prérendu statique par métier
   { path: 'job/electrician', renderMode: RenderMode.Prerender },

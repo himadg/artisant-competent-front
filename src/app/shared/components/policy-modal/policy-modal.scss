@@ -40,6 +40,10 @@ dialog.legal-modal {
     padding: 1rem 1.25rem;
     border-bottom: 1px solid var(--border, #e5e7eb);
     flex-shrink: 0;
+
+    &--close-only {
+      justify-content: flex-end;
+    }
   }
 
   &__tabs {

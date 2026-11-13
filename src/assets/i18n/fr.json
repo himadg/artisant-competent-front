@@ -913,7 +913,7 @@
               "Recours en cas d'abus",
               "Limité",
               "Aucun",
-              "Retenue jusqu'à 250 € sur signalement < 96h"
+              "Règlement suspendu sur signalement < 96h"
             ],
             [
               "Conformité NF C 15-100 et Consuel",
@@ -1056,7 +1056,7 @@
             },
             {
               "title": "Le paiement encadré est assuré par Stripe, prestataire de services de paiement, qui encadre tout le process, du devis au versement du règlement à l'artisan.",
-              "body": "C’est en serrurerie que le paiement encadré joue son rôle anti-arnaque le plus visible. Au moment où vous validez le devis du serrurier, le paiement quitte votre compte mais n’arrive pas chez l’artisan : il le règlement du professionnel reste suspendu, le paiement étant traité par Stripe. Le règlement est versé 96h après l’intervention, sans contestation. Cette mise en attente neutralise la pratique du paiement comptant exigé sur place après une intervention nocturne surfacturée. Si le serrurier a percé un cylindre alors qu’une ouverture fine était possible, ou facturé un cylindre standard au prix d’un A2P, vous avez 96h pour le signaler."
+              "body": "C’est en serrurerie que le paiement encadré joue son rôle anti-arnaque le plus visible. Au moment où vous validez le devis du serrurier, le paiement quitte votre compte mais n’arrive pas chez l’artisan : le règlement du professionnel reste suspendu, le paiement étant traité par Stripe. Le règlement est versé 96h après l’intervention, sans contestation. Cette mise en attente neutralise la pratique du paiement comptant exigé sur place après une intervention nocturne surfacturée. Si le serrurier a percé un cylindre alors qu’une ouverture fine était possible, ou facturé un cylindre standard au prix d’un A2P, vous avez 96h pour le signaler."
             },
             {
               "title": "Le déclenchement des 96h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
@@ -1119,7 +1119,7 @@
               "Recours en cas d’abus",
               "Limité",
               "Aucun",
-              "Retenue jusqu’à 250 € sur signalement < 96h"
+              "Règlement suspendu sur signalement < 96h"
             ],
             [
               "Devis chiffré préalable",
@@ -1157,7 +1157,7 @@
           "title": "Votre rôle dans le suivi du chantier",
           "lead": "La protection du paiement encadré s’appuie sur un contradictoire écrit. Votre participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier.",
           "body": "Pour les chantiers structurants (pose d’une porte blindée, installation d’un coffre, travaux de métallerie), l’artisan dépose des photos d’avancement dans le tableau de bord partagé client · artisan. Vous commentez, vous validez ou vous signalez dans le même espace. Sur les interventions d’urgence courte (ouverture, remplacement de cylindre), demandez systématiquement une photo du matériel posé (poinçon A2P, étiquette fabricant, référence cylindre) avant de valider la fin de chantier.",
-          "footer": "En cas de signalement d’abus dans les 96h suivant l’intervention (cylindre standard facturé en A2P, perçage non justifié, devis non respecté), Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU et CGV. Pour les abus avérés en sortie nocturne, cette retenue est une protection concrète et un précédent dissuasif pour l’artisan."
+          "footer": "En cas de signalement d’abus dans les 96h suivant l’intervention (cylindre standard facturé en A2P, perçage non justifié, devis non respecté), le règlement de l'artisan reste suspendu le temps de l'analyse du dossier par Artisan Compétent, conformément aux CGU, aux CGV et à la Politique d'annulation. Pour les abus avérés en sortie nocturne, cette retenue est une protection concrète et un précédent dissuasif pour l’artisan."
         },
         "insurance": {
           "title": "Assurance habitation et remboursement",
@@ -1210,7 +1210,7 @@
             },
             {
               "q": "Comment fonctionne le paiement encadré pour une intervention en urgence ?",
-              "a": "Le paiement encadré est assuré par Stripe, prestataire de services de paiement. Quand vous validez le devis, le paiement quitte votre compte mais le règlement du professionnel reste suspendu. Le règlement est versé 96h après l’intervention, sans contestation. Cette fenêtre vous laisse le temps de vérifier le matériel posé (poinçon A2P, référence du cylindre, qualité de la pose) et de signaler un abus. En cas de signalement d’abus dans les 96h, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement."
+              "a": "Le paiement encadré est assuré par Stripe, prestataire de services de paiement. Quand vous validez le devis, le paiement quitte votre compte mais le règlement du professionnel reste suspendu. Le règlement est versé 96h après l’intervention, sans contestation. Cette fenêtre vous laisse le temps de vérifier le matériel posé (poinçon A2P, référence du cylindre, qualité de la pose) et de signaler un abus dans les 96h, le temps de l'analyse du dossier par Artisan Compétent."
             },
             {
               "q": "Klarna 3 fois sans frais est-il disponible pour un chantier serrurerie ?",
@@ -1222,7 +1222,7 @@
             },
             {
               "q": "Que faire si le serrurier a percé alors qu’une ouverture fine était possible ?",
-              "a": "Vous signalez l’abus dans les 96h suivant l’intervention, via le tableau de bord partagé. Le règlement du professionnel reste suspendu tant que cette fenêtre court. Artisan Compétent demande les éléments factuels (devis signé, photos du cylindre percé, témoignages éventuels) et peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation. Le devis du serrurier vérifié doit toujours mentionner la méthode d’ouverture envisagée et expliquer pourquoi un perçage est nécessaire si c’est le cas."
+              "a": "Vous signalez l’abus dans les 96h suivant l’intervention, via le tableau de bord partagé. Le règlement du professionnel reste suspendu tant que cette fenêtre court. Artisan Compétent demande les éléments factuels (devis signé, photos du cylindre percé, témoignages éventuels) le temps de l'analyse du dossier. Le devis du serrurier vérifié doit toujours mentionner la méthode d’ouverture envisagée et expliquer pourquoi un perçage est nécessaire si c’est le cas."
             },
             {
               "q": "Quelles villes sont couvertes par Artisan Compétent pour la serrurerie ?",
@@ -1233,7 +1233,7 @@
         "conclusion": {
           "title": "Pour aller plus loin",
           "body": "Une porte claquée à 2h du matin, une tentative d’effraction à sécuriser le lendemain, un déménagement qui impose un changement de cylindre, une porte blindée à poser, un coffre A2P à installer : dans chacun de ces cas, l’enjeu est d’éviter le devis verbal et le paiement comptant exigé sur place. Artisan Compétent encadre la vérification du serrurier en amont et tout votre process par paiement encadré jusqu’à 96h après l’intervention.",
-          "footer": "Serrurier vérifié SIRET et RC pro. Devis chiffré préalable obligatoire. Process encadré et traité par Stripe. Retenue jusqu’à 250 € en cas de signalement d’abus. Recours assurance habitation systématique après effraction."
+          "footer": "Serrurier vérifié SIRET et RC pro. Devis chiffré préalable obligatoire. Process encadré et traité par Stripe. Règlement suspendu en cas de signalement d'abus. Recours assurance habitation systématique après effraction."
         }
       },
       "plumberSanitary": {
@@ -1274,7 +1274,7 @@
             },
             {
               "title": "Le paiement encadré est assuré par Stripe, prestataire de services de paiement, qui encadre tout le process, du devis au versement du règlement à l'artisan.",
-              "body": "Quand vous validez le devis du plombier, le paiement quitte votre compte mais n’arrive pas sur celui de l’artisan : il le règlement du professionnel reste suspendu, le paiement étant traité par Stripe. Cette mise en attente dure jusqu’à la fin de l’intervention, plus un délai de 96h pendant lequel vous pouvez signaler un abus, un défaut de qualité ou un non-respect du devis. Sans contestation, le règlement est versé au plombier au terme de ces 96h. Pendant la fenêtre de 96h, le paiement encadré joue son rôle de levier : c’est la motivation la plus efficace pour qu’un artisan termine proprement son chantier."
+              "body": "Quand vous validez le devis du plombier, le paiement quitte votre compte mais n’arrive pas sur celui de l’artisan : le règlement du professionnel reste suspendu, le paiement étant traité par Stripe. Cette mise en attente dure jusqu’à la fin de l’intervention, plus un délai de 96h pendant lequel vous pouvez signaler un abus, un défaut de qualité ou un non-respect du devis. Sans contestation, le règlement est versé au plombier au terme de ces 96h. Pendant la fenêtre de 96h, le paiement encadré joue son rôle de levier : c’est la motivation la plus efficace pour qu’un artisan termine proprement son chantier."
             },
             {
               "title": "Le déclenchement des 96h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
@@ -1331,7 +1331,7 @@
               "Recours en cas d’abus",
               "Limité",
               "Aucun",
-              "Retenue jusqu’à 250 € sur signalement < 96h"
+              "Règlement suspendu sur signalement < 96h"
             ],
             [
               "Tarif horaire transparent",
@@ -1369,7 +1369,7 @@
           "title": "Votre rôle dans le suivi du chantier",
           "lead": "La protection du paiement encadré est puissante mais elle s’appuie sur un contradictoire écrit. Votre participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier.",
           "body": "Pour les chantiers de plus d’un jour, l’artisan dépose chaque jour des photos d’avancement dans le tableau de bord partagé client · artisan. Vous commentez, vous validez ou vous signalez dans le même espace, ce qui établit un contradictoire écrit en cas de litige ultérieur. De votre côté, documentez aussi : photos de la zone avant intervention, photos à la fin de chaque journée, observations écrites courtes mais datées.",
-          "footer": "En cas de signalement d’abus dans les 96h suivant la fin du chantier, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU et CGV. Cette retenue couvre les cas de malfaçon avérée ou de non-respect du devis signé. Au-delà des 96h, les garanties légales prennent le relais (garantie de parfait achèvement à un an, biennale sur les équipements, décennale sur les installations durables)."
+          "footer": "En cas de signalement d’abus dans les 96h suivant la fin du chantier, le règlement de l'artisan reste suspendu le temps de l'analyse du dossier par Artisan Compétent, conformément aux CGU, aux CGV et à la Politique d'annulation. Cette retenue couvre les cas de malfaçon avérée ou de non-respect du devis signé. Au-delà des 96h, les garanties légales prennent le relais (garantie de parfait achèvement à un an, biennale sur les équipements, décennale sur les installations durables)."
         },
         "insurance": {
           "title": "Assurance habitation et remboursement",
@@ -1426,7 +1426,7 @@
             },
             {
               "q": "Que se passe-t-il si le plombier ne respecte pas le devis signé ?",
-              "a": "Vous signalez l’abus dans les 96h suivant la fin du chantier, via le tableau de bord partagé. Tant que ce délai court, le règlement du professionnel reste suspendu et le règlement n'est pas versé au plombier. Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation, conformément aux CGU et CGV. Les photos quotidiennes du chantier, déposées par l’artisan et complétées par vos propres observations, servent de contradictoire écrit."
+              "a": "Vous signalez l’abus dans les 96h suivant la fin du chantier, via le tableau de bord partagé. Tant que ce délai court, le règlement du professionnel reste suspendu et le règlement n'est pas versé au plombier, le temps de l'analyse du dossier par Artisan Compétent, conformément aux CGU, aux CGV et à la Politique d'annulation. Les photos quotidiennes du chantier, déposées par l’artisan et complétées par vos propres observations, servent de contradictoire écrit."
             },
             {
               "q": "Un plombier peut-il aussi installer une climatisation ou une pompe à chaleur ?",
@@ -1543,7 +1543,7 @@
               "Recours en cas d’abus",
               "Limité",
               "Aucun",
-              "Retenue jusqu’à 250 € sur signalement < 96h"
+              "Règlement suspendu sur signalement < 96h"
             ],
             [
               "Tarification cadrée sur référence du marché",
@@ -1581,7 +1581,7 @@
           "title": "Votre rôle dans le suivi du chantier",
           "lead": "La protection du paiement encadré s’appuie sur un contradictoire écrit via votre tableau de bord. Votre participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier.",
           "body": "Pour les interventions de débouchage, demandez systématiquement à l’artisan une photo du dispositif utilisé (furet motorisé, hydrocureur, caméra d’inspection) et, le cas échéant, le rapport d’inspection caméra avec image du bouchon ou de l’obstruction. Pour les chantiers de plus longue durée (réhabilitation de fosse, mise en conformité SPANC, passage caméra complet), l’artisan dépose chaque jour des photos d’avancement dans le tableau de bord partagé. Documentez aussi de votre côté la nature du désordre avant intervention (refoulement, niveau d’eau, traces) pour faciliter un éventuel contradictoire.",
-          "footer": "En cas de signalement d’abus dans les 96h (canalisation rebouchée immédiatement, hydrocurage facturé non réalisé, agrément vidange manquant), Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU et CGV."
+          "footer": "En cas de signalement d’abus dans les 96h (canalisation rebouchée immédiatement, hydrocurage facturé non réalisé, agrément vidange manquant), le règlement de l'artisan reste suspendu le temps de l'analyse du dossier par Artisan Compétent, conformément aux CGU, aux CGV et à la Politique d'annulation."
         },
         "insurance": {
           "title": "Assurance habitation et remboursement",
@@ -1638,7 +1638,7 @@
             },
             {
               "q": "Comment fonctionne le paiement encadré quand on appelle un déboucheur ?",
-              "a": "Le paiement encadré est assuré par Stripe, prestataire de services de paiement. Quand vous validez le devis, le paiement quitte votre compte mais le règlement du professionnel reste suspendu. Le règlement est versé 96h après l’intervention, sans contestation. Cette fenêtre est particulièrement utile en débouchage : si la canalisation se rebouche dans les deux jours, vous pouvez signaler un travail incomplet avant la libération. En cas de signalement d’abus, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation."
+              "a": "Le paiement encadré est assuré par Stripe, prestataire de services de paiement. Quand vous validez le devis, le paiement quitte votre compte mais le règlement du professionnel reste suspendu. Le règlement est versé 96h après l’intervention, sans contestation. Cette fenêtre est particulièrement utile en débouchage : si la canalisation se rebouche dans les deux jours, vous pouvez signaler un travail incomplet avant la libération, le temps de l'analyse du dossier par Artisan Compétent."
             },
             {
               "q": "Klarna 3 fois sans frais s’applique-t-il à un débouchage ?",
@@ -1650,7 +1650,7 @@
             },
             {
               "q": "Que se passe-t-il si la canalisation se rebouche dans les jours qui suivent ?",
-              "a": "Vous signalez le défaut dans les 96h suivant l’intervention, via le tableau de bord partagé. Tant que ce délai court, le règlement du professionnel reste suspendu et le règlement n'est pas versé au déboucheur. Artisan Compétent peut demander une nouvelle intervention sans facturation complémentaire ou retenir jusqu’à 250 € sur la facturation de l’artisan avant validation. Le rapport d’inspection caméra remis à la première intervention est un élément clé pour distinguer un travail incomplet d’un nouveau problème indépendant."
+              "a": "Vous signalez le défaut dans les 96h suivant l’intervention, via le tableau de bord partagé. Tant que ce délai court, le règlement du professionnel reste suspendu et le règlement n'est pas versé au déboucheur. Artisan Compétent peut demander une nouvelle intervention sans facturation complémentaire ou suspendre le règlement de l'artisan le temps de l'analyse du dossier. Le rapport d’inspection caméra remis à la première intervention est un élément clé pour distinguer un travail incomplet d’un nouveau problème indépendant."
             },
             {
               "q": "Quelles villes sont couvertes par Artisan Compétent pour le débouchage ?",
@@ -1661,7 +1661,7 @@
         "conclusion": {
           "title": "Pour aller plus loin",
           "body": "Un WC qui refoule, une canalisation bouchée résistante au déboucheur chimique, une fosse à vidanger avec bordereau de suivi, un passage caméra à programmer sur un réseau ancien : Artisan Compétent encadre la vérification du déboucheur (SIRET, RC pro, agrément préfectoral, justificatif matériel) et tout votre process par paiement encadré jusqu’à 96h après l’intervention.",
-          "footer": "Déboucheur vérifié SIRET, RC pro et agrément préfectoral pour vidange. Matériel tracé au tableau de bord (caméra d’inspection, hydrocureur). Process encadré et traité par Stripe. Retenue jusqu’à 250 € en cas de signalement d’abus. Recours assurance habitation systématique après dégât des eaux."
+          "footer": "Déboucheur vérifié SIRET, RC pro et agrément préfectoral pour vidange. Matériel tracé au tableau de bord (caméra d’inspection, hydrocureur). Process encadré et traité par Stripe. Règlement suspendu en cas de signalement d'abus. Recours assurance habitation systématique après dégât des eaux."
         },
         "lining": {
           "title": "Le chemisage : réparer une canalisation cassée sans ouvrir le jardin",
@@ -1775,7 +1775,7 @@
               "Recours en cas d’abus",
               "Limité",
               "Aucun",
-              "Retenue jusqu’à 250 € sur signalement < 96h"
+              "Règlement suspendu sur signalement < 96h"
             ],
             [
               "Attestation Qualigaz à la mise en service",
@@ -1813,7 +1813,7 @@
           "title": "Votre rôle dans le suivi du chantier",
           "lead": "La protection du paiement encadré s’appuie sur un contradictoire écrit. Votre participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier.",
           "body": "Pour les chantiers de plus d’un jour (remplacement de chaudière, pose de pompe à chaleur, pose de VMC double flux), l’artisan dépose chaque jour des photos d’avancement dans le tableau de bord partagé client · artisan. Vous commentez, vous validez ou vous signalez dans le même espace. À la mise en service, demandez les documents systématiquement : attestation Qualigaz pour le gaz, attestation RGE pour les aides, notice fabricant, certificat de garantie enregistré au nom du client, rapport de mise en service signé et verifiez chaqu’un de ces documents fournis.",
-          "footer": "En cas de signalement d’abus dans les 96h suivant la fin du chantier (matériel non conforme au devis, attestation manquante, défaut de mise en service), Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU et CGV. Cette retenue couvre les cas de malfaçon avérée ou de non-respect du devis signé."
+          "footer": "En cas de signalement d’abus dans les 96h suivant la fin du chantier (matériel non conforme au devis, attestation manquante, défaut de mise en service), le règlement de l'artisan reste suspendu le temps de l'analyse du dossier par Artisan Compétent, conformément aux CGU, aux CGV et à la Politique d'annulation. Cette retenue couvre les cas de malfaçon avérée ou de non-respect du devis signé."
         },
         "insurance": {
           "title": "Assurance habitation et remboursement",
@@ -1866,7 +1866,7 @@
             },
             {
               "q": "Comment fonctionne le paiement encadré pour un changement de chaudière ?",
-              "a": "Le paiement encadré est assuré par Stripe, prestataire de services de paiement. Quand vous validez le devis, le paiement quitte votre compte mais le règlement du professionnel reste suspendu. Le règlement est versé au chauffagiste 96h après la fin de l’intervention. Pour un changement de chaudière, la fenêtre de 96h permet de vérifier la mise en service, l’attestation de conformité gaz si applicable (Qualigaz), la remise des notices et l’enregistrement de la garantie constructeur. En cas de signalement d’abus, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation."
+              "a": "Le paiement encadré est assuré par Stripe, prestataire de services de paiement. Quand vous validez le devis, le paiement quitte votre compte mais le règlement du professionnel reste suspendu. Le règlement est versé au chauffagiste 96h après la fin de l’intervention. Pour un changement de chaudière, la fenêtre de 96h permet de vérifier la mise en service, l’attestation de conformité gaz si applicable (Qualigaz), la remise des notices et l’enregistrement de la garantie constructeur, le temps de l'analyse du dossier par Artisan Compétent en cas de signalement d’abus."
             },
             {
               "q": "À quoi sert CMOD pour un chantier de chauffage ?",
@@ -1882,14 +1882,14 @@
             },
             {
               "q": "Que faire si la chaudière tombe en panne juste après une intervention ?",
-              "a": "Vous signalez le défaut dans les 96h suivant la fin de l’intervention, via le tableau de bord partagé. Tant que ce délai court, le règlement du professionnel reste suspendu. En cas de signalement d’abus, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation. Au-delà de 96h, la garantie de bon fonctionnement légale (article 1792-3 du Code civil) couvre les équipements pendant deux ans, et la garantie décennale couvre les installations durables pendant dix ans."
+              "a": "Vous signalez le défaut dans les 96h suivant la fin de l’intervention, via le tableau de bord partagé. Tant que ce délai court, le règlement du professionnel reste suspendu, le temps de l'analyse du dossier par Artisan Compétent en cas de signalement d’abus. Au-delà de 96h, la garantie de bon fonctionnement légale (article 1792-3 du Code civil) couvre les équipements pendant deux ans, et la garantie décennale couvre les installations durables pendant dix ans."
             }
           ]
         },
         "conclusion": {
           "title": "Pour aller plus loin",
           "body": "Une chaudière qui s’arrête en pleine vague de froid, un entretien annuel à programmer pour rester couvert par l’assurance, une pompe à chaleur à installer avec MaPrimeRénov’, une VMC double flux à poser en rénovation énergétique : Artisan Compétent encadre la vérification du chauffagiste (PG, RGE, décennale) et tout votre process par paiement encadré jusqu’à 96h après la fin du chantier.",
-          "footer": "Chauffagiste vérifié SIRET, PG et décennale. Qualification RGE contrôlée pour les aides publiques (QualiPAC, Qualibois, QualiSol). Process encadré et traité par Stripe. Retenue jusqu’à 250 € en cas de signalement d’abus."
+          "footer": "Chauffagiste vérifié SIRET, PG et décennale. Qualification RGE contrôlée pour les aides publiques (QualiPAC, Qualibois, QualiSol). Process encadré et traité par Stripe. Règlement suspendu en cas de signalement d'abus."
         }
       },
       "hvac": {
@@ -1942,7 +1942,7 @@
             },
             {
               "title": "Le paiement encadré est assuré par Stripe, prestataire de services de paiement, qui encadre tout le process, du devis au versement du règlement à l'artisan.",
-              "body": "Quand vous validez le devis du technicien climatisation, le paiement quitte votre compte mais n’arrive pas sur celui de l’artisan : il le règlement du professionnel reste suspendu, le paiement étant traité par Stripe. Cette mise en attente dure jusqu’à la fin de l’intervention, plus un délai de 96h pendant lequel vous pouvez signaler un abus, un défaut de qualité ou un non-respect du devis. Sans contestation, le règlement est versé au technicien au terme de ces 96h. Pendant la fenêtre de 96h, le paiement encadré joue son rôle de levier : c’est la motivation la plus efficace pour qu’un artisan termine proprement la mise en service et remette tous les documents (bordereau de suivi des fluides, attestation d’entretien, garanties constructeur)."
+              "body": "Quand vous validez le devis du technicien climatisation, le paiement quitte votre compte mais n’arrive pas sur celui de l’artisan : le règlement du professionnel reste suspendu, le paiement étant traité par Stripe. Cette mise en attente dure jusqu’à la fin de l’intervention, plus un délai de 96h pendant lequel vous pouvez signaler un abus, un défaut de qualité ou un non-respect du devis. Sans contestation, le règlement est versé au technicien au terme de ces 96h. Pendant la fenêtre de 96h, le paiement encadré joue son rôle de levier : c’est la motivation la plus efficace pour qu’un artisan termine proprement la mise en service et remette tous les documents (bordereau de suivi des fluides, attestation d’entretien, garanties constructeur)."
             },
             {
               "title": "Le déclenchement des 96h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
@@ -2013,7 +2013,7 @@
               "Recours en cas de malfaçon",
               "Limité",
               "Aucun",
-              "Retenue jusqu’à 250 € si signalement < 96h"
+              "Règlement suspendu si signalement < 96h"
             ],
             [
               "Conseiller maître d’ouvrage",
@@ -2045,7 +2045,7 @@
           "title": "Votre rôle dans le suivi du chantier",
           "lead": "Sur les chantiers climatisation et pompes à chaleur, votre suivi actif est essentiel pour documenter la conformité de la pose et débloquer un recours rapide en cas de malfaçon. Voici ce que vous faites concrètement, dans le tableau de bord partagé avec l’artisan.",
           "body": "Pour les chantiers de plus d’un jour (multi-splits, gainables, pompes à chaleur), l’artisan dépose chaque jour des photos d’avancement dans le tableau de bord partagé client · artisan : pose des unités intérieures, raccordement frigorifique, raccordement électrique, mise en service, test d’étanchéité. Vous commentez, validez ou signalez dans le même espace, ce qui établit un contradictoire écrit en cas de litige ultérieur. Vous documentez vous aussi : photos de la zone avant intervention (emplacement prévu, état du mur, sortie électrique), photos en fin de journée, photos de la plaque signalétique des équipements posés (marque, série, puissance, classe énergétique).",
-          "footer": "Cette participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier. En cas de signalement d’abus dans les 96h suivant la fin du chantier, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU/CGV. Cette retenue couvre les cas de malfaçon avérée, de non-respect du devis ou de non-remise des documents obligatoires (bordereau fluides, attestation d’entretien, garanties constructeur)."
+          "footer": "Cette participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier. En cas de signalement d’abus dans les 96h suivant la fin du chantier, le règlement de l'artisan reste suspendu le temps de l'analyse du dossier par Artisan Compétent, conformément aux CGU, aux CGV et à la Politique d'annulation. Cette retenue couvre les cas de malfaçon avérée, de non-respect du devis ou de non-remise des documents obligatoires (bordereau fluides, attestation d’entretien, garanties constructeur)."
         },
         "insurance": {
           "title": "Assurance habitation et remboursement",
@@ -2096,7 +2096,7 @@
             },
             {
               "q": "Que se passe-t-il si la clim tombe en panne juste après la pose ?",
-              "a": "Vous signalez le défaut dans les 96h suivant la fin du chantier, via le tableau de bord partagé. Tant que ce délai court, le règlement du professionnel reste suspendu et le règlement n'est pas versé à l'artisan. Artisan Compétent peut demander une intervention de correction sans facturation complémentaire ou retenir jusqu’à 250 € sur la facturation de l’artisan avant validation. Au-delà du délai, la garantie biennale sur l’équipement et la garantie constructeur prennent le relais."
+              "a": "Vous signalez le défaut dans les 96h suivant la fin du chantier, via le tableau de bord partagé. Tant que ce délai court, le règlement du professionnel reste suspendu et le règlement n'est pas versé à l'artisan. Artisan Compétent peut demander une intervention de correction sans facturation complémentaire ou suspendre le règlement de l'artisan le temps de l'analyse du dossier. Au-delà du délai, la garantie biennale sur l’équipement et la garantie constructeur prennent le relais."
             },
             {
               "q": "À quoi sert CMOD pour un chantier de climatisation ou de pompe à chaleur ?",
@@ -2111,7 +2111,7 @@
         "conclusion": {
           "title": "Pour aller plus loin",
           "body": "Une pose neuve de climatisation, une pompe à chaleur éligible à MaPrimeRénov’, un entretien annuel obligatoire, un dépannage en pleine canicule : Artisan Compétent encadre la vérification du technicien climatisation (SIRET, RC pro, décennale, attestation fluides frigorigènes, QualiPAC) et tout votre process par paiement encadré jusqu’à 96h après l’intervention.",
-          "footer": "Technicien climatisation vérifié SIRET, RC pro, décennale et attestation fluides frigorigènes catégorie I à IV. QualiPAC vérifiée pour les pompes à chaleur éligibles aux aides. Process encadré et traité par Stripe. Retenue jusqu’à 250 € en cas de signalement d’abus. Bordereau de suivi des fluides remis en fin de chantier."
+          "footer": "Technicien climatisation vérifié SIRET, RC pro, décennale et attestation fluides frigorigènes catégorie I à IV. QualiPAC vérifiée pour les pompes à chaleur éligibles aux aides. Process encadré et traité par Stripe. Règlement suspendu en cas de signalement d'abus. Bordereau de suivi des fluides remis en fin de chantier."
         }
       },
       "glazier": {
@@ -2168,7 +2168,7 @@
             },
             {
               "title": "Le paiement encadré est assuré par Stripe, prestataire de services de paiement, qui encadre tout le process, du devis au versement du règlement à l'artisan.",
-              "body": "Quand vous validez le devis du vitrier, le paiement quitte votre compte mais n’arrive pas sur celui de l’artisan : il le règlement du professionnel reste suspendu, le paiement étant traité par Stripe. Cette mise en attente dure jusqu’à la fin de l’intervention, plus un délai de 96h pendant lequel vous pouvez signaler un abus, un défaut de qualité (vitrage rayé, joint mal posé) ou un non-respect du devis. Sans contestation, le règlement est versé au vitrier au terme de ces 96h. Pendant la fenêtre de 96h, le paiement encadré joue son rôle de levier : c’est la motivation la plus efficace pour qu’un artisan reprenne un défaut visible à la livraison."
+              "body": "Quand vous validez le devis du vitrier, le paiement quitte votre compte mais n’arrive pas sur celui de l’artisan : le règlement du professionnel reste suspendu, le paiement étant traité par Stripe. Cette mise en attente dure jusqu’à la fin de l’intervention, plus un délai de 96h pendant lequel vous pouvez signaler un abus, un défaut de qualité (vitrage rayé, joint mal posé) ou un non-respect du devis. Sans contestation, le règlement est versé au vitrier au terme de ces 96h. Pendant la fenêtre de 96h, le paiement encadré joue son rôle de levier : c’est la motivation la plus efficace pour qu’un artisan reprenne un défaut visible à la livraison."
             },
             {
               "title": "Le déclenchement des 96h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
@@ -2232,7 +2232,7 @@
               "Recours en cas de malfaçon (vitrage rayé, joint défaillant)",
               "Limité",
               "Aucun",
-              "Retenue jusqu’à 250 € si signalement < 96h"
+              "Règlement suspendu si signalement < 96h"
             ],
             [
               "Devis détaillé imposé avant intervention",
@@ -2270,7 +2270,7 @@
           "title": "Votre rôle dans le suivi du chantier",
           "lead": "Sur les chantiers vitrerie, votre suivi actif est essentiel pour documenter la conformité de la pose et débloquer un recours rapide en cas de malfaçon. Voici ce que vous faites concrètement, dans le tableau de bord partagé avec l’artisan.",
           "body": "Pour les chantiers d’un seul jour (remplacement de vitrage standard, dépannage bris de glace), l’artisan dépose à la fin de l’intervention des photos de l’ouvrage posé, le bon de pose et les références produit (marque, dimensions, type de vitrage). Vous validez ou signalez dans le tableau de bord partagé. Pour les chantiers plus longs (pose de plusieurs vitrines, garde-corps verre sur escalier complet, miroiterie sur mesure pour commerce), l’artisan dépose chaque jour des photos d’avancement : pose des fixations, mise en place des vitrages, calfeutrement, contrôles d’étanchéité. Vous commentez, validez ou signalez dans le même espace, ce qui établit un contradictoire écrit en cas de litige ultérieur. Vous documentez aussi : photos de la zone avant intervention (état du cadre existant, joints en place), photos après pose (calfeutrement, étanchéité, propreté de la finition), photos de la plaque signalétique du vitrage posé.",
-          "footer": "Cette participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier. En cas de signalement d’abus dans les 96h suivant la fin du chantier, Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU/CGV. Cette retenue couvre les cas de malfaçon avérée (vitrage rayé, joint mal posé, dimension non conforme au devis) ou de non-respect du devis signé."
+          "footer": "Cette participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier. En cas de signalement d’abus dans les 96h suivant la fin du chantier, le règlement de l'artisan reste suspendu le temps de l'analyse du dossier par Artisan Compétent, conformément aux CGU, aux CGV et à la Politique d'annulation. Cette retenue couvre les cas de malfaçon avérée (vitrage rayé, joint mal posé, dimension non conforme au devis) ou de non-respect du devis signé."
         },
         "insurance": {
           "title": "Assurance habitation et remboursement (rubrique renforcée pour le bris de glace)",
@@ -2325,7 +2325,7 @@
             },
             {
               "q": "Que se passe-t-il si le vitrage posé est rayé à la livraison ?",
-              "a": "Vous signalez le défaut dans les 96h suivant la fin du chantier, via le tableau de bord partagé, photos à l’appui. Tant que ce délai court, le règlement du professionnel reste suspendu et le règlement n'est pas versé au vitrier. Artisan Compétent peut demander un remplacement sans facturation complémentaire ou retenir jusqu’à 250 € sur la facturation de l’artisan avant validation. La photo de réception est l’élément clé."
+              "a": "Vous signalez le défaut dans les 96h suivant la fin du chantier, via le tableau de bord partagé, photos à l’appui. Tant que ce délai court, le règlement du professionnel reste suspendu et le règlement n'est pas versé au vitrier. Artisan Compétent peut demander un remplacement sans facturation complémentaire ou suspendre le règlement de l'artisan le temps de l'analyse du dossier. La photo de réception est l’élément clé."
             },
             {
               "q": "À quoi sert CMOD pour un chantier de vitrerie ?",
@@ -2340,7 +2340,7 @@
         "conclusion": {
           "title": "Pour aller plus loin",
           "body": "Un bris de glace après effraction, un double vitrage embué à remplacer, une vitrine commerciale endommagée, un garde-corps verre à poser sur un escalier, un miroir sur mesure pour une salle de bain : Artisan Compétent encadre la vérification du vitrier (SIRET, RC pro, décennale, certifications ouvrages techniques) et tout votre process par paiement encadré jusqu’à 96h après l’intervention.",
-          "footer": "Vitrier vérifié SIRET, RC pro et décennale. Certifications déposées au tableau de bord (NF P01-013 pour garde-corps verre, vitrages feuilletés de sécurité). Process encadré et traité par Stripe. Retenue jusqu’à 250 € en cas de signalement d’abus. Périmètre vitrerie miroiterie. Menuiserie hors périmètre en V1."
+          "footer": "Vitrier vérifié SIRET, RC pro et décennale. Certifications déposées au tableau de bord (NF P01-013 pour garde-corps verre, vitrages feuilletés de sécurité). Process encadré et traité par Stripe. Règlement suspendu en cas de signalement d'abus. Périmètre vitrerie miroiterie. Menuiserie hors périmètre en V1."
         }
       },
       "pestControl": {
@@ -2382,7 +2382,7 @@
             },
             {
               "title": "Le paiement encadré est assuré par Stripe, prestataire de services de paiement, qui encadre tout le process, du devis au versement du règlement à l'artisan.",
-              "body": "Quand vous validez le devis du spécialiste anti-nuisibles, le paiement quitte votre compte mais n’arrive pas sur celui de l’artisan : il le règlement du professionnel reste suspendu, le paiement étant traité par Stripe. Cette mise en attente dure jusqu’à la fin de l’intervention (et de la dernière visite de contrôle pour les traitements en plusieurs passages), plus un délai de 96h pendant lequel vous pouvez signaler un abus, un défaut de qualité ou un non-respect du devis. Sans contestation, le règlement est versé au spécialiste au terme de ces 96h. Pendant la fenêtre de 96h, le paiement encadré joue son rôle de levier : c’est la motivation la plus efficace pour qu’un artisan revienne contrôler l’efficacité du traitement."
+              "body": "Quand vous validez le devis du spécialiste anti-nuisibles, le paiement quitte votre compte mais n’arrive pas sur celui de l’artisan : le règlement du professionnel reste suspendu, le paiement étant traité par Stripe. Cette mise en attente dure jusqu’à la fin de l’intervention (et de la dernière visite de contrôle pour les traitements en plusieurs passages), plus un délai de 96h pendant lequel vous pouvez signaler un abus, un défaut de qualité ou un non-respect du devis. Sans contestation, le règlement est versé au spécialiste au terme de ces 96h. Pendant la fenêtre de 96h, le paiement encadré joue son rôle de levier : c’est la motivation la plus efficace pour qu’un artisan revienne contrôler l’efficacité du traitement."
             },
             {
               "title": "Le déclenchement des 96h est balisé : procès-verbal de réception, fenêtre de réserves, notification de fin de délai.",
@@ -2448,7 +2448,7 @@
               "Recours en cas d’inefficacité de traitement",
               "Limité",
               "Aucun",
-              "Retenue jusqu’à 250 € si signalement < 96h"
+              "Règlement suspendu si signalement < 96h"
             ],
             [
               "Visites de contrôle documentées",
@@ -2486,7 +2486,7 @@
           "title": "Votre rôle dans le suivi du chantier",
           "lead": "Sur les chantiers anti-nuisibles, votre suivi actif est essentiel pour documenter l’efficacité du traitement et débloquer un recours rapide en cas de retour de l’infestation. Voici ce que vous faites concrètement, dans le tableau de bord partagé avec l’artisan.",
           "body": "Pour les traitements en plusieurs passages (punaises de lit, cafards récurrents, dératisation lourde), l’artisan dépose à chaque passage des photos et un compte-rendu dans le tableau de bord partagé client · artisan : zones traitées, produits utilisés, points de fixation des appâts, pièges posés. Vous documentez en parallèle : photos des nuisibles observés avant l’intervention, observations entre les passages (présence ou absence de retour de l’infestation), photos des éventuelles traces (déjections, dégâts, mues), demande de passage de contrôle anticipé si besoin.",
-          "footer": "Cette participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier. Sur les punaises de lit en particulier, la photographie horodatée des découvertes (sur draps, sous matelas, sur sommier) est la pièce la plus efficace pour démontrer qu’un traitement n’a pas eu l’effet attendu. En cas de signalement d’abus dans les 96h suivant la fin du chantier (ou la fin du dernier passage de contrôle), Artisan Compétent peut retenir jusqu’à 250 € sur la facturation de l’artisan avant validation du paiement, conformément aux CGU/CGV. Cette retenue couvre les cas d’inefficacité avérée, de non-respect du protocole prévu ou de non-respect du devis signé."
+          "footer": "Cette participation active conditionne la qualité du recours en cas de litige : pas de trace écrite, pas de levier. Sur les punaises de lit en particulier, la photographie horodatée des découvertes (sur draps, sous matelas, sur sommier) est la pièce la plus efficace pour démontrer qu’un traitement n’a pas eu l’effet attendu. En cas de signalement d’abus dans les 96h suivant la fin du chantier (ou la fin du dernier passage de contrôle), le règlement de l'artisan reste suspendu le temps de l'analyse du dossier par Artisan Compétent, conformément aux CGU, aux CGV et à la Politique d'annulation. Cette retenue couvre les cas d’inefficacité avérée, de non-respect du protocole prévu ou de non-respect du devis signé."
         },
         "insurance": {
           "title": "Assurance habitation et remboursement",
@@ -2555,7 +2555,7 @@
         "conclusion": {
           "title": "Pour aller plus loin",
           "body": "Une infestation de punaises de lit à éradiquer en plusieurs passages, des rongeurs récurrents en cave ou en combles, un nid de frelons asiatiques en façade, une désinfection complète après sinistre : Artisan Compétent encadre la vérification du spécialiste anti-nuisibles (SIRET, RC pro, décennale, Certibiocide) et tout votre process par paiement encadré jusqu’à 96h après la dernière intervention.",
-          "footer": "Spécialiste anti-nuisibles vérifié SIRET, RC pro, décennale et Certibiocide. Process encadré et traité par Stripe, visites de contrôle incluses. Compte-rendu et photos à chaque passage. Retenue jusqu’à 250 € en cas de signalement d’abus. Périmètre : rongeurs, insectes rampants, insectes volants, punaises de lit, frelons, désinfection, désinsectisation, dératisation."
+          "footer": "Spécialiste anti-nuisibles vérifié SIRET, RC pro, décennale et Certibiocide. Process encadré et traité par Stripe, visites de contrôle incluses. Compte-rendu et photos à chaque passage. Règlement suspendu en cas de signalement d'abus. Périmètre : rongeurs, insectes rampants, insectes volants, punaises de lit, frelons, désinfection, désinsectisation, dératisation."
         }
       }
     },
@@ -2576,9 +2576,6 @@
     "h1": "Formule d'accompagnement CMOD",
     "body": "Page en cours de construction."
   },
-  "legalPlaceholder": {
-    "body": "Page en cours de rédaction. Le contenu officiel sera ajouté prochainement."
-  },
   "toggle": {
     "theme": "Basculer le thème",
     "lang": "Basculer la langue"
@@ -2593,6 +2590,7 @@
     "offerServices": "Je souhaite offrir mes services",
     "captcha": "Je ne suis pas un robot",
     "cguv": "J'accepte les CGU et CGV",
+    "privacyNotice": "Les informations demandées sont nécessaires à la création et à la gestion de votre compte ainsi qu'à la fourniture des services de la plateforme. Pour connaître les finalités, les bases légales, les destinataires, les durées de conservation et vos droits, consultez notre",
     "submit": "Valider",
     "gender": {
       "select": "Sélectionner le genre",
@@ -3995,6 +3993,18 @@
       "s17": "<h3>Clause 17 – Indivisibilité</h3><p>Si l'une des stipulations du présent contrat était annulée, cette nullité n'entraînerait pas la nullité des autres stipulations qui demeureront en vigueur entre les parties. Toute modification contractuelle n'est valable qu'après un accord écrit et signé des parties.</p>",
       "s18": "<h3>Clause 18 – Liens avec les CGU</h3><p>Les présentes CGV sont en lien fonctionnel avec les Conditions Générales d'Utilisation de la Plateforme Artisan Compétent, notamment en ce qui concerne la mise en relation, le suivi de chantier, la procédure de contestation et la gestion des litiges et le paiement via la plateforme.</p><p>Toutefois, seule la relation contractuelle entre l'Artisan et le Client est régie par les présentes CGV et le devis, la Plateforme n'intervenant qu'en tant qu'intermédiaire technique et non comme partie au contrat.</p>",
       "s19": "<h3>Clause 19 – Droit applicable</h3><p>Les présentes CGV sont régies par le droit français.</p>"
+    },
+    "mentionsLegales": {
+      "title": "Mentions légales",
+      "s1": "<h3>1. Éditeur du site</h3><p>Le présent site est édité par la société suivante :</p><ul><li><strong>Dénomination sociale :</strong> ARTISAN COMPÉTENT</li><li><strong>Forme juridique :</strong> Société par actions simplifiée à associé unique (SASU)</li><li><strong>Capital social :</strong> 30 000 euros</li><li><strong>Siège social :</strong> 66 avenue des Champs-Élysées, 75008 Paris, France</li><li><strong>SIREN :</strong> 104 445 671</li><li><strong>Immatriculation :</strong> 104 445 671 R.C.S. Paris</li><li><strong>Président :</strong> Himad GUELFOUT</li><li><strong>Adresse e-mail :</strong> competentartisan@gmail.com</li><li><strong>Téléphone :</strong> 06 95 67 34 64</li><li><strong>TVA intracommunautaire :</strong> FR59104445671</li></ul>",
+      "s2": "<h3>2. Directeur de la publication</h3><p>Le directeur de la publication est le Président de la société ARTISAN COMPÉTENT, Guelfout Himad.</p>",
+      "s3": "<h3>3. Hébergement du site</h3><p>Le site est hébergé par :</p><ul><li><strong>Raison sociale de l'hébergeur :</strong> [À COMPLÉTER — NOM JURIDIQUE EXACT]</li><li><strong>Adresse postale :</strong> [À COMPLÉTER — ADRESSE DE L'HÉBERGEUR]</li><li><strong>Téléphone :</strong> [À COMPLÉTER — NUMÉRO DE TÉLÉPHONE]</li><li><strong>Site internet :</strong> [À COMPLÉTER — URL DE L'HÉBERGEUR]</li></ul>",
+      "s4": "<h3>4. Activité du site</h3><p>ARTISAN COMPÉTENT exploite une plateforme numérique de mise en relation entre particuliers et professionnels, notamment dans les secteurs du bâtiment, des services et de la réparation. La plateforme propose des outils numériques de mise en relation, de suivi, de coordination, de gestion des échanges et de réception des prestations, dans les limites décrites dans ses documents contractuels.</p>",
+      "s5": "<h3>5. Propriété intellectuelle</h3><p>Sauf mention contraire, les éléments composant le site (textes, éléments graphiques, logos, marques, photographies, illustrations, vidéos, bases de données et présentation) sont protégés par les droits de propriété intellectuelle et appartiennent à ARTISAN COMPÉTENT ou à leurs titulaires respectifs. Toute reproduction, représentation, adaptation ou exploitation sans autorisation préalable lorsqu'elle est requise est interdite.</p>",
+      "s6": "<h3>6. Responsabilité et disponibilité</h3><p>ARTISAN COMPÉTENT s'efforce de fournir des informations exactes et de maintenir le site accessible. Des interruptions peuvent intervenir pour maintenance, mise à jour ou en raison d'événements indépendants de sa volonté. Les rôles, obligations et limites de responsabilité de la plateforme, des particuliers et des professionnels sont précisés dans les documents contractuels applicables.</p>",
+      "s7": "<h3>7. Liens hypertextes</h3><p>Le site peut contenir des liens vers des sites ou services de tiers. ARTISAN COMPÉTENT ne contrôle pas nécessairement ces ressources externes et ne saurait être tenue responsable de leur contenu ou de leurs pratiques.</p>",
+      "s8": "<h3>8. Médiation de la consommation</h3><p>Lorsque les dispositions relatives à la médiation de la consommation sont applicables, le consommateur peut recourir gratuitement au médiateur de la consommation dont relève ARTISAN COMPÉTENT, après une réclamation écrite préalable à la société et conformément aux conditions légales.</p><ul><li><strong>Médiateur :</strong> [À CONFIRMER — DÉNOMINATION JURIDIQUE ET ADRESSE EXACTES]</li><li><strong>Site internet :</strong> [À COMPLÉTER]</li><li><strong>Adresse postale :</strong> [À COMPLÉTER]</li></ul>",
+      "s9": "<h3>9. Documents contractuels et contact</h3><p>Les conditions d'utilisation, de vente et d'annulation sont détaillées dans les CGU, les CGV et la Politique d'annulation accessibles sur le site. Pour toute question, consultez notre <a href=\"/contact\">formulaire de contact</a> ou écrivez-nous à contact@artisancompetent.com.</p>"
     }
   },
   "blog": {
@@ -4017,11 +4027,32 @@
     },
     "confidentialite": {
       "tab": "Confidentialité",
-      "title": "Politique de confidentialité"
+      "title": "Politique de confidentialité",
+      "s1": "<h3>1. Responsable du traitement et contact</h3><p>Le responsable des traitements est ARTISAN COMPÉTENT, SASU au capital de 30 000 euros, dont le siège social est situé 66 avenue des Champs-Élysées, 75008 Paris, immatriculée au RCS de Paris sous le numéro 104 445 671.</p><ul><li><strong>Contact relatif aux données personnelles :</strong> [À COMPLÉTER — ADRESSE E-MAIL RGPD]</li><li><strong>Adresse postale :</strong> ARTISAN COMPÉTENT, 66 avenue des Champs-Élysées, 75008 Paris</li><li><strong>Délégué à la protection des données (DPO) :</strong> Himad GUELFOUT</li></ul>",
+      "s2": "<h3>2. Catégories de données traitées</h3><ul><li>Données d'identification et de compte : nom, prénom, identifiants de connexion, type de compte et paramètres ;</li><li>Coordonnées : adresse e-mail, téléphone, adresse postale et informations nécessaires à la localisation d'une demande ou d'une intervention ;</li><li>Données relatives aux prestations : description du besoin, échanges, rendez-vous, devis, documents contractuels, suivi des travaux, photographies, procès-verbaux de réception et réclamations ;</li><li>Données professionnelles des artisans : dénomination, SIREN/SIRET, coordonnées professionnelles, justificatifs d'identité lorsque requis, assurances, qualifications et documents administratifs ;</li><li>Données de facturation et de transaction : informations relatives aux paiements, remboursements, commissions et justificatifs ;</li><li>Données techniques et de navigation : adresse IP, journaux de connexion, navigateur, terminal, pages consultées, cookies et traceurs selon les choix exprimés ;</li><li>Données de prospection et d'affiliation : préférences de communication, consentements, liens de parrainage et suivi des commissions lorsque ces fonctionnalités sont utilisées.</li></ul>",
+      "s3": "<h3>3. Finalités et bases légales</h3><p>Les données sont utilisées pour des finalités déterminées, sur la base légale appropriée à chaque traitement :</p><ul><li><strong>Gestion des comptes</strong> (inscription, authentification, profil, assistance) : exécution du contrat / mesures précontractuelles ;</li><li><strong>Mise en relation et prestations</strong> (demandes, devis, échanges, suivi, réception) : exécution du contrat ;</li><li><strong>Paiements et remboursements</strong> : exécution du contrat / obligations légales ;</li><li><strong>Vérification des professionnels</strong> (SIRET, assurances, justificatifs) : exécution du contrat / intérêt légitime / obligation légale selon le cas ;</li><li><strong>Réclamations et litiges</strong> (analyse du dossier, conservation de preuves) : exécution du contrat / intérêt légitime / obligations légales ;</li><li><strong>Prospection par Artisan Compétent</strong> : consentement lorsque requis ou autre base autorisée ;</li><li><strong>Prospection par des partenaires</strong> : consentement préalable lorsque requis ;</li><li><strong>Sécurité du site</strong> (prévention des abus, journaux techniques) : intérêt légitime / obligations légales ;</li><li><strong>Cookies et mesure d'audience</strong> : consentement lorsque requis, sous réserve des exemptions applicables.</li></ul><p>L'acceptation des CGU est distincte du consentement à recevoir de la prospection commerciale.</p>",
+      "s4": "<h3>4. Caractère obligatoire ou facultatif</h3><p>Les champs obligatoires sont signalés au moment de la collecte. Si les informations indispensables ne sont pas fournies, ARTISAN COMPÉTENT peut ne pas être en mesure de créer le compte, traiter la demande ou fournir la fonctionnalité concernée.</p>",
+      "s5": "<h3>5. Destinataires des données</h3><p>Dans la limite de leurs attributions et du besoin d'en connaître, les données peuvent être accessibles :</p><ul><li>aux équipes habilitées d'ARTISAN COMPÉTENT, notamment support client, comptabilité et sécurité informatique ;</li><li>au particulier et à l'artisan concernés, pour la demande, le devis ou le chantier ;</li><li>aux prestataires techniques nécessaires au fonctionnement de la plateforme (hébergement, maintenance, courriels, signature électronique) ;</li><li>aux prestataires de paiement utilisés, notamment Stripe et, lorsque l'option est proposée et utilisée, Klarna ;</li><li>au CMOD ou à tout intervenant mandaté dans le cadre prévu par les documents contractuels ;</li><li>aux autorités ou organismes habilités lorsque la loi l'exige ou lorsque cela est nécessaire à la défense des droits de la société.</li></ul><p>Certains prestataires techniques ou outils pouvant être localisés hors de l'Union européenne, des transferts hors UE peuvent intervenir dans les conditions décrites à l'article suivant.</p>",
+      "s6": "<h3>6. Transferts hors de l'Espace économique européen</h3><p>Si un prestataire ou sous-traitant traite des données en dehors de l'Espace économique européen, ARTISAN COMPÉTENT s'assure qu'un mécanisme de transfert conforme au RGPD est applicable (décision d'adéquation, clauses contractuelles types ou autre mécanisme) et informe les personnes concernées des garanties pertinentes.</p>",
+      "s7": "<h3>7. Durées de conservation</h3><p>Les données sont conservées pendant une durée n'excédant pas celle nécessaire aux finalités poursuivies, sous réserve des obligations légales, comptables, fiscales et des nécessités de preuve ou de gestion des litiges :</p><ul><li>Données de gestion du compte (identification, coordonnées, connexion, justificatifs professionnels) : pendant toute la durée d'activation du compte, puis suppression après 3 ans d'inactivité ;</li><li>Données de mise en relation (profil, annonces) : durée d'activation du compte, puis suppression après 3 ans d'inactivité ;</li><li>Données de gestion des prestations (devis, photos, procès-verbaux, échanges) : durée de la relation contractuelle, puis archivage jusqu'à 10 ans à des fins de preuve ;</li><li>Documents contractuels et signatures électroniques : durée de la relation contractuelle, puis archivage de 5 à 10 ans ;</li><li>Données de transaction (historique, montants, factures) : 10 ans à compter de la clôture de l'exercice comptable ;</li><li>Données de sécurité (logs, adresses IP) : 6 mois à 1 an, archivage possible en cas d'incident ;</li><li>Support client : durée de traitement de la demande, puis archivage 5 ans ;</li><li>Prospection commerciale : 3 ans à compter du dernier contact ou du retrait du consentement.</li></ul>",
+      "s8": "<h3>8. Droits des personnes</h3><p>Selon les conditions et limites prévues par la réglementation, les personnes concernées peuvent disposer des droits suivants :</p><ul><li>accès à leurs données ;</li><li>rectification des données inexactes ou incomplètes ;</li><li>effacement dans les cas prévus ;</li><li>limitation du traitement dans les cas prévus ;</li><li>opposition à certains traitements, notamment à la prospection commerciale ;</li><li>portabilité lorsque les conditions légales sont réunies ;</li><li>retrait du consentement à tout moment lorsque le traitement repose sur celui-ci ;</li><li>directives relatives au sort des données après le décès, dans les conditions prévues par la loi.</li></ul><p>Pour exercer ces droits : [À COMPLÉTER — E-MAIL RGPD] ou courrier à ARTISAN COMPÉTENT, 66 avenue des Champs-Élysées, 75008 Paris. Une preuve d'identité ne sera demandée que si nécessaire. Toute personne peut également introduire une réclamation auprès de la CNIL : www.cnil.fr.</p>",
+      "s9": "<h3>9. Prospection commerciale</h3><p>Les communications commerciales sont envoyées dans le respect des règles applicables. Lorsque le consentement est requis, il est recueilli au moyen d'une case distincte, facultative et non précochée. Le refus de prospection ne doit pas empêcher l'utilisation des services qui ne nécessitent pas cette prospection.</p><p>Les données ne sont transmises à des partenaires pour leur propre prospection que si les conditions légales sont réunies, notamment le consentement préalable lorsque celui-ci est requis.</p>",
+      "s10": "<h3>10. Cookies et traceurs</h3><p>Le site peut utiliser des cookies ou autres traceurs nécessaires à son fonctionnement et, sous réserve des choix de l'utilisateur, des traceurs de mesure d'audience, de personnalisation ou de publicité. Les traceurs non exemptés ne sont déposés qu'après recueil du consentement lorsque celui-ci est requis. L'utilisateur peut accepter, refuser ou paramétrer les traceurs à tout moment. Les catégories, finalités, durées et destinataires sont détaillés dans notre Politique de cookies.</p>",
+      "s11": "<h3>11. Sécurité</h3><p>ARTISAN COMPÉTENT met en œuvre des mesures techniques et organisationnelles adaptées aux risques afin de protéger les données contre la perte, l'altération, la divulgation ou l'accès non autorisé, notamment le chiffrement des échanges via HTTPS et le hashage des mots de passe. Les accès sont limités aux personnes et prestataires qui en ont besoin. Les mesures sont réévaluées en fonction de l'évolution de la plateforme et des risques.</p>",
+      "s12": "<h3>12. Décisions automatisées et profilage</h3><p>[À CONFIRMER] En l'état, la plateforme ne met pas en œuvre de décision exclusivement automatisée ou de profilage produisant des effets juridiques ou affectant significativement les utilisateurs — notamment l'intervention du CMOD repose sur une analyse humaine du dossier, pas sur un algorithme de décision. Cette section sera mise à jour si un tel dispositif venait à être déployé.</p>",
+      "s13": "<h3>13. Mise à jour</h3><p>ARTISAN COMPÉTENT peut mettre à jour la présente politique pour tenir compte des évolutions légales, techniques ou fonctionnelles. La version applicable est celle publiée sur le site à la date de consultation. En cas de modification substantielle, les utilisateurs seront informés par un moyen approprié.</p>"
     },
     "cookies": {
       "tab": "Cookies",
-      "title": "Politique des cookies"
+      "title": "Politique des cookies",
+      "s1": "<h3>Bandeau cookies</h3><p>Afin de vous offrir la meilleure expérience possible, nous, Artisan Compétent et nos partenaires, utilisons des cookies ou traceurs.</p><p>Pour vous garantir le bon fonctionnement de notre site et l'utilisation sécurisée de nos services, certains cookies ou traceurs sont indispensables et déposés automatiquement.</p><p>D'autres cookies ou traceurs sont utiles mais facultatifs, afin de diffuser des publicités personnalisées, réaliser des mesures d'audience, personnaliser le contenu et les communications et améliorer les produits et l'expérience utilisateur.</p><p>En cliquant sur « Accepter », vous consentez à l'utilisation de cookies pour l'ensemble des finalités ci-dessus. Vous pouvez également configurer vos choix finalité par finalité en cliquant sur « Paramétrer vos choix » ou refuser en cliquant sur « Refuser ».</p><p>Vos choix sont exclusivement valables sur le navigateur que vous utilisez actuellement. Si vous supprimez vos cookies, nous ne serons plus en mesure de connaître vos choix et vous solliciterons à nouveau.</p>",
+      "s2": "<h3>Qu'est-ce qu'un cookie/traceur ?</h3><p>La notion de traceur englobe les outils permettant la lecture et/ou l'écriture sur le terminal de l'utilisateur. Le cookie est un petit fichier texte transmis à votre navigateur et stocké par celui-ci lorsque vous consultez des sites internet ou une application mobile, quel que soit le type de terminal utilisé. Ce fichier permet de conserver une trace de votre navigation et de vous proposer notamment des contenus et des publicités personnalisés.</p><p>Un cookie a une durée de validité limitée. Son dépôt et son stockage se font dans le respect de la législation applicable et sous réserve des choix que vous avez exprimés et que vous pouvez modifier à tout moment.</p>",
+      "s3": "<h3>Les cookies ou traceurs essentiels au fonctionnement du site</h3><p>Ces cookies sont indispensables aux fonctionnalités essentielles du service et ne peuvent pas être désactivés.</p>",
+      "s4": "<h3>Les cookies ou traceurs de mesure d'audience</h3><p>Ces cookies servent à réaliser des statistiques pour mesurer et analyser l'audience de notre site et de nos applications et nous aident ainsi à améliorer la qualité de nos services. L'utilisation de ces cookies ou traceurs ne peut se faire qu'avec votre consentement. Le refus de ces cookies ou traceurs n'a pas d'impact sur l'utilisation de notre site internet.</p>",
+      "s5": "<h3>Les cookies ou traceurs de personnalisation du contenu et des communications marketing</h3><p>Ces cookies vous permettent de bénéficier de communications et/ou d'offres promotionnelles adaptées à votre profil, votre navigation et vos usages de notre service. L'utilisation de ces cookies ou traceurs ne peut se faire qu'avec votre consentement.</p>",
+      "s6": "<h3>Les cookies ou traceurs d'optimisation de l'expérience utilisateur</h3><p>Ces cookies vous permettent de bénéficier d'une meilleure expérience sur notre site. L'utilisation de ces cookies ou traceurs ne peut se faire qu'avec votre consentement.</p>",
+      "s7": "<h3>Les cookies ou traceurs publicitaires</h3><p>Les cookies ou traceurs publicitaires sont utilisés pour vous proposer des publicités personnalisées adaptées à votre profil, vos centres d'intérêt et vos usages de notre service. Le refus de ces cookies ou traceurs n'a pas d'impact sur l'utilisation de notre site internet ; il a seulement pour effet d'afficher une publicité qui ne tiendra pas compte de vos centres d'intérêt.</p>",
+      "s8": "<h3>Les cookies ou traceurs d'affiliation</h3><p>Ces cookies permettent d'assurer le suivi de l'activité des utilisateurs lorsqu'ils accèdent à la plateforme via des sites ou partenaires affiliés. Lorsqu'un utilisateur clique sur un lien d'affiliation, un identifiant unique est enregistré dans un cookie, permettant d'identifier l'origine de la visite et d'associer les actions réalisées sur la plateforme au partenaire affilié concerné. L'utilisation de ces cookies ou traceurs ne peut se faire qu'avec votre consentement.</p><p>Vous pouvez à tout moment modifier vos préférences sur le dépôt et l'utilisation des cookies ou traceurs par le biais de votre navigateur.</p>"
     }
   },
   "seoBatiment": {

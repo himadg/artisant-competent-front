@@ -355,6 +355,11 @@
 
         <legal-modal [modal]="legalModalOpen()" (closed)="legalModalOpen.set(false)" />
 
+        <p class="text-xs opacity-70">
+            {{ 'register.privacyNotice' | transloco }}
+            <a routerLink="/politique-confidentialite" class="underline">{{ 'footer.legal.privacy' | transloco }}</a>.
+        </p>
+
         <div class="flex flex-col gap-2 items-center mt-4">
             <button
                 type="submit"

@@ -86,31 +86,42 @@ export const routes: Routes = [
     title: 'comingSoon.title',
     loadComponent: () => import('./shared/components/coming-soon/coming-soon').then((p) => p.ComingSoon),
   },
-  // Pages légales : 5 routes pointent toutes vers le même composant placeholder.
-  // TODO_HIMAD: contenu définitif à fournir pour chaque page.
+  // Pages légales : 5 routes, un même composant qui choisit son contenu selon `data.legalDoc`
+  // (cf. legal-placeholder.ts) — contenu partagé avec les modales CGU/CGV/politiques.
   {
     path: 'cgu',
     title: 'footer.legal.cgu',
+    data: { legalDoc: 'cgu' },
     loadComponent: () => import('./pages/legal-placeholder/legal-placeholder').then((p) => p.LegalPlaceholderPage),
   },
   {
     path: 'cgv',
     title: 'footer.legal.cgv',
+    data: { legalDoc: 'cgv' },
     loadComponent: () => import('./pages/legal-placeholder/legal-placeholder').then((p) => p.LegalPlaceholderPage),
   },
   {
     path: 'politique-confidentialite',
     title: 'footer.legal.privacy',
+    data: { legalDoc: 'confidentialite' },
     loadComponent: () => import('./pages/legal-placeholder/legal-placeholder').then((p) => p.LegalPlaceholderPage),
   },
   {
     path: 'mentions-legales',
     title: 'footer.legal.notice',
+    data: { legalDoc: 'mentionsLegales' },
     loadComponent: () => import('./pages/legal-placeholder/legal-placeholder').then((p) => p.LegalPlaceholderPage),
   },
   {
     path: 'politique-cookies',
     title: 'footer.legal.cookies',
+    data: { legalDoc: 'cookies' },
+    loadComponent: () => import('./pages/legal-placeholder/legal-placeholder').then((p) => p.LegalPlaceholderPage),
+  },
+  {
+    path: 'politique-annulation',
+    title: 'footer.legal.cancellation',
+    data: { legalDoc: 'annulation' },
     loadComponent: () => import('./pages/legal-placeholder/legal-placeholder').then((p) => p.LegalPlaceholderPage),
   },
   {

@@ -116,6 +116,12 @@
   </url>
 
   <url>
+    <loc>https://artisan-competent.com/politique-annulation</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
     <loc>https://artisan-competent.com/job/electrician</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

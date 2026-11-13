@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, input, output, signal } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
+import { LegalSections } from '../legal-sections/legal-sections';
+import { CGU_SECTION_KEYS, CGV_SECTION_KEYS } from './legal-modal.content';
 
 export type LegalTab = 'cgu' | 'cgv';
 
@@ -8,7 +10,7 @@ export type LegalTab = 'cgu' | 'cgv';
   selector: 'legal-modal',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TranslocoModule, NgTemplateOutlet],
+  imports: [TranslocoModule, NgTemplateOutlet, LegalSections],
   templateUrl: './legal-modal.html',
   styleUrl: './legal-modal.scss',
 })
@@ -18,6 +20,8 @@ export class LegalModal {
   readonly closed = output<void>();
 
   readonly activeTab = signal<LegalTab>('cgu');
+  readonly cguKeys = CGU_SECTION_KEYS;
+  readonly cgvKeys = CGV_SECTION_KEYS;
 
   setTab(tab: LegalTab) {
     this.activeTab.set(tab);

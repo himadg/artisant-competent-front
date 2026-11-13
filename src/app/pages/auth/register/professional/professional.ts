@@ -37,7 +37,7 @@ import { Trade } from '../../../../shared/interfaces/trade';
 import { TurnstileComponent } from '../../../../shared/components/turnstile/turnstile';
 import { LegalModal } from '../../../../shared/components/legal-modal/legal-modal';
 import { VideoModal } from '../../../../shared/components/video-modal/video-modal';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserApiService } from '../../../../core/services/user-api.service';
 import { FlashMessageService } from '../../../../core/services/flash-message.service';
 import { ALLOWED_IMAGE_TYPES, ALLOWED_DOCUMENT_TYPES, DocTarget, IMAGE_ONLY_TARGETS, isFileTypeAllowed } from '../../../../core/utils/file-types';
@@ -62,7 +62,7 @@ import { DiplomaEntry } from '../../../../shared/interfaces/diploma-entry';
   selector: 'register-professional',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent, LegalModal, VideoModal],
+  imports: [ReactiveFormsModule, TranslocoModule, TurnstileComponent, LegalModal, VideoModal, RouterLink],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './professional.html',
   styleUrl: './professional.scss',
