@@ -15,6 +15,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, TranslocoModule],
   templateUrl: './reject-pro-modal.html',
+  styleUrl: './reject-pro-modal.scss',
 })
 export class RejectProModal {
   /** Nom affiché dans le titre (prénom nom — entreprise). */
