@@ -45,7 +45,11 @@
         </div>
     } @else if (pro.status === 'ACTIVE') {
         <div class="h-dvh pro-layout">
-            <div class="mobile-notification-bell">
+            <div
+                class="mobile-notification-bell"
+                [class.top.1rem]="!stripeSetupNeeded() && !stripeActionNeeded()"
+                [class.top.12rem]="stripeSetupNeeded() || stripeActionNeeded()"
+            >
                 <notification-bell></notification-bell>
             </div>
 

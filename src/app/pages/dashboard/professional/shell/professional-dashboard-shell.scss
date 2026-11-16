@@ -168,6 +168,7 @@
   .stripe-status-banner {
     align-items: flex-start;
     flex-direction: column;
+    margin-bottom: 0;
   }
 }
 
@@ -429,7 +430,6 @@
   .mobile-notification-bell {
     display: block;
     position: fixed;
-    top: 1rem;
     right: 1rem;
     z-index: 10;
   }

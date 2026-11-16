@@ -1220,7 +1220,7 @@
                         <p class="font-medium">{{ 'professional.fields.trustTitle' | transloco }}</p>
                         <p class="text-sm text-gray-500">{{ 'professional.fields.trustSubtitle' | transloco }}</p>
                     </div>
-                    <div class="flex gap-3">
+                    <div class="flex gap-3 flex-col md:flex-row">
                         <input
                             type="text"
                             formControlName="trustName"
@@ -1260,7 +1260,7 @@
                         </p>
                         <p class="text-sm text-gray-500">{{ 'professional.fields.suppliersSubtitle' | transloco }}</p>
                     </div>
-                    <div class="flex gap-2">
+                    <div class="flex gap-2 flex-col md:flex-row">
                         <input
                             type="text"
                             [value]="supplierQuery()"
