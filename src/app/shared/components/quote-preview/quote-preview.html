@@ -279,7 +279,7 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
     <section class="mt-6">
         <h3 class="quote-preview-section-title">{{ 'quote.agreement.title' | transloco }}</h3>
         <div class="quote-preview-box flex flex-col gap-3">
-            <!-- @if (printMode()) { -->
+            @if (printMode()) {
                 <p>
                     <span class="text-white quote-anchor quote-anchor--field quote-anchor--checkbox">{{ '{{s2|checkbox|16|f|f|QuoteAgreement}}' }}</span>
                     <span [innerHTML]="'quote.agreement.quoteAgreementAccepted' | transloco"></span>
@@ -288,10 +288,10 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
                     <span class="text-white quote-anchor quote-anchor--field quote-anchor--checkbox">{{ '{{s2|checkbox|16|f|f|EarlyStart}}' }}</span>
                     <span [innerHTML]="'quote.agreement.earlyStartAccepted' | transloco"></span>
                 </p>
-            <!-- } @else {
+            } @else {
                 <p [innerHTML]="'quote.agreement.quoteAgreementAcceptedSummary' | transloco"></p>
                 <p [innerHTML]="'quote.agreement.earlyStartAcceptedSummary' | transloco"></p>
-            } -->
+            }
         </div>
     </section>
 
@@ -331,7 +331,7 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
     <div class="quote-eidas-block">
         <p class="mt-6 text-xs italic text-gray-500">{{ 'quote.agreement.eidasNotice' | transloco }}</p>
 
-        <!-- @if (printMode()) { -->
+        @if (printMode()) {
             <!-- s1 = pro (1er signataire créé), s2 = client (2e) — ordre indépendant de la position ici : client à gauche,
                 pro à droite, comme le bloc d'identité en haut du devis (client en 1re colonne, professionnel en 2e). -->
             <div class="mt-16 grid grid-cols-2 text-center">
@@ -348,7 +348,7 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
                     </div>
                 </div>
             </div>
-        <!-- } -->
+        }
     </div>
 
     <!-- Jamais en printMode : propre à l'aperçu consulté dans l'app (pas une mention du document

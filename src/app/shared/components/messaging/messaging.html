@@ -17,6 +17,7 @@
                 (loadMore)="loadMoreMessages()"
                 (createQuote)="openQuoteModal($event)"
                 (viewQuote)="openQuoteViewer($event)"
+                (reportDispute)="openReportDispute()"
             />
         } @else {
             <div class="messaging-empty">{{ 'dashboard.messages.selectPrompt' | transloco }}</div>
@@ -30,4 +31,24 @@
 
 @if (quoteViewerOpen(); as quoteId) {
     <quote-client-view [quoteId]="quoteId" (closed)="quoteViewerOpen.set(null)" />
+}
+
+@if (reportDisputeOpen()) {
+    <div class="dispute-overlay" (click)="closeReportDispute()">
+        <div class="dispute-modal" (click)="$event.stopPropagation()">
+            <h3>{{ 'mission.infos.reportConflict' | transloco }}</h3>
+            <textarea
+                rows="4"
+                [value]="disputeReason()"
+                (input)="disputeReason.set($any($event.target).value)"
+                [placeholder]="'mission.conflict.placeholder' | transloco"
+            ></textarea>
+            <div class="dispute-modal__actions">
+                <button type="button" (click)="closeReportDispute()">{{ 'common.cancel' | transloco }}</button>
+                <button type="button" [disabled]="submittingDispute()" (click)="submitReportDispute()">
+                    {{ 'mission.conflict.submit' | transloco }}
+                </button>
+            </div>
+        </div>
+    </div>
 }

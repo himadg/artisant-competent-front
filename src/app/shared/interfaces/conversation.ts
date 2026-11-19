@@ -26,6 +26,7 @@ export interface ConversationMessage {
   // message donne à voir en le rouvrant.
   quoteId: string | null;
   quoteStatus: QuoteStatus | null;
+  isCmodMessage: boolean;
   createdAt: string;
 }
 
@@ -36,6 +37,7 @@ export interface ConversationSummary {
   demandCreatedAt: string | null;
   demandStatus: DemandStatus | null;
   quoteStatus: QuoteStatus | null;
+  missionId: string | null;
   isAuthor: boolean;
   otherParticipant: ConversationParticipant;
   lastMessage: { content: string; type: MessageType; createdAt: string } | null;

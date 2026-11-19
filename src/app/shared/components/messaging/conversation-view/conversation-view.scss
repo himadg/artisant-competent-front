@@ -137,7 +137,10 @@
 }
 
 .chat-demand-banner {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
   width: 100%;
   flex-shrink: 0;
   padding: 0.5rem 1rem;
@@ -147,9 +150,6 @@
   color: var(--color);
   font-size: 0.78rem;
   text-align: left;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   cursor: pointer;
   transition: background 0.15s;
 
@@ -158,9 +158,21 @@
   }
 }
 
+.chat-demand-banner-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
 .chat-demand-banner-label {
   font-weight: 700;
   margin-right: 0.4rem;
+}
+
+.chat-demand-banner-icon {
+  flex-shrink: 0;
+  opacity: 0.6;
 }
 
 .chat-messages {
@@ -229,6 +241,11 @@
 
   &--paid {
     box-shadow: 0 0 .5rem 2px green;
+  }
+
+  &--cmod {
+    background: #6d28d9;
+    color: #fff;
   }
 }
 

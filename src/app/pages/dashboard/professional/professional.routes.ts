@@ -22,6 +22,16 @@ export const professionalDashboardRoutes: Routes = [
         loadComponent: () => import('./sections/messages/professional-messages-section').then((m) => m.ProfessionalMessagesSection),
       },
       {
+        path: 'missions',
+        title: 'dashboard.sections.missions.title',
+        loadComponent: () => import('./sections/missions/professional-missions-section').then((m) => m.ProfessionalMissionsSection),
+      },
+      {
+        path: 'missions/:id',
+        title: 'dashboard.sections.missions.detailTitle',
+        loadComponent: () => import('../../../shared/components/mission-detail/mission-detail').then((m) => m.MissionDetailComponent),
+      },
+      {
         path: 'payments',
         title: 'dashboard.pro.nav.payments',
         loadComponent: () => import('./stripe-payments/stripe-payments-section').then((m) => m.StripePaymentsSection),

@@ -10,10 +10,12 @@ export class DemandService {
   private readonly http = inject(HttpClient);
 
   /** `address` : le texte de recherche choisi dans l'autocomplete (label) — le reste de l'adresse
-   * (city/postalCode/lat/lng) est re-dérivé côté serveur, jamais envoyé par le client. */
-  create(description: string, professionalsId: string[], address: string): Promise<CreateDemandResponse> {
+   * (city/postalCode/lat/lng) est re-dérivé côté serveur, jamais envoyé par le client. `trade` : le
+   * même nom de métier que celui déjà utilisé pour la recherche de pros, résolu en tradeId côté
+   * serveur. */
+  create(description: string, professionalsId: string[], address: string, trade: string): Promise<CreateDemandResponse> {
     return firstValueFrom(
-      this.http.post<CreateDemandResponse>(BASE_URL, { description, professionalsId, address }),
+      this.http.post<CreateDemandResponse>(BASE_URL, { description, professionalsId, address, trade }),
     );
   }
 

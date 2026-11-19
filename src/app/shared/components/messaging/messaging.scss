@@ -76,3 +76,58 @@
     }
   }
 }
+
+.dispute-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+}
+
+.dispute-modal {
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface, #fff);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  textarea {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    background: var(--primary-beige);
+    color: var(--color);
+    font: inherit;
+    resize: vertical;
+  }
+}
+
+.dispute-modal__actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+
+  button {
+    padding: 0.4rem 0.9rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    background: none;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+}

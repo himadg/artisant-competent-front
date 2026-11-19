@@ -8,6 +8,8 @@ import { ChatService } from '../../../core/services/chat.service';
 import { QuoteModal } from '../quote-modal/quote-modal';
 import { QuoteClientView } from '../quote-client-view/quote-client-view';
 import { AppConfigService } from '../../../core/services/app-config.service';
+import { MissionService } from '../../../core/services/mission.service';
+import { FlashMessageService } from '../../../core/services/flash-message.service';
 
 const MESSAGES_PAGE_SIZE = 50;
 
@@ -22,6 +24,8 @@ const MESSAGES_PAGE_SIZE = 50;
 export class Messaging {
   private readonly chatService = inject(ChatService);
   private readonly configService = inject(AppConfigService);
+  private readonly missionService = inject(MissionService);
+  private readonly flashMessage = inject(FlashMessageService);
 
   readonly comingSoonEnabled = this.configService.get('comingSoonEnabled') === 'true';
 
@@ -44,6 +48,11 @@ export class Messaging {
   readonly quoteModalOpen = signal<string | null>(null);
   // `null` = fermé, sinon l'id du devis précis à afficher en lecture seule (client, cmod plus tard).
   readonly quoteViewerOpen = signal<string | null>(null);
+  // Signalement d'un litige depuis le chat — n'a de sens que si la conversation a une mission liée
+  // (devis payé), condition déjà vérifiée côté template (conversation-view) avant d'émettre.
+  readonly reportDisputeOpen = signal(false);
+  readonly disputeReason = signal('');
+  readonly submittingDispute = signal(false);
 
   readonly selectedConversation = computed(
     () => this.conversations().find((c) => c.id === this.selectedConversationId()) ?? null,
@@ -176,6 +185,31 @@ export class Messaging {
   openQuoteViewer(quoteId: string): void {
     if (this.comingSoonEnabled) return;
     this.quoteViewerOpen.set(quoteId);
+  }
+
+  openReportDispute(): void {
+    this.disputeReason.set('');
+    this.reportDisputeOpen.set(true);
+  }
+
+  closeReportDispute(): void {
+    this.reportDisputeOpen.set(false);
+  }
+
+  submitReportDispute(): void {
+    const missionId = this.selectedConversation()?.missionId;
+    const reason = this.disputeReason().trim();
+    if (!missionId || reason.length < 10) return;
+
+    this.submittingDispute.set(true);
+    this.missionService
+      .reportConflict(missionId, reason)
+      .then(() => {
+        this.flashMessage.set({ type: 'success', key: 'mission.conflict.success' });
+        this.reportDisputeOpen.set(false);
+      })
+      .catch(() => this.flashMessage.set({ type: 'error', key: 'mission.conflict.error' }))
+      .finally(() => this.submittingDispute.set(false));
   }
 
   closeConversation(): void {

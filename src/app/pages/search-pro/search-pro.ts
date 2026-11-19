@@ -115,7 +115,12 @@ export class SearchProPage implements OnInit {
   async submit(value: DemandFormValue): Promise<void> {
     this.demandLoading.set(true);
     try {
-      const { id } = await this.demandService.create(value.description, [...this.selectedIds()], this.address);
+      const { id } = await this.demandService.create(
+        value.description,
+        [...this.selectedIds()],
+        this.address,
+        this.trade,
+      );
 
       if (value.files.length > 0) {
         try {

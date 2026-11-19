@@ -18,7 +18,7 @@
             }
         </div>
 
-        @if (conversation().demandStatus !== 'CANCELLED') {
+        @if (!isLocked()) {
             <div class="chat-actions">
                 <button type="button" class="chat-actions-btn" (click)="toggleActionsMenu()" [attr.aria-label]="'dashboard.messages.actions.title' | transloco">
                     <iconify-icon icon="lucide:more-vertical"></iconify-icon>
@@ -27,7 +27,7 @@
                 @if (actionsMenuOpen()) {
                     <div class="chat-actions-overlay" (click)="closeActionsMenu()"></div>
                     <div class="chat-actions-menu">
-                        @if (!conversation().isAuthor && canManageQuote() && !comingSoonEnabled) {
+                        @if (canManageQuote() && !comingSoonEnabled) {
                             <button type="button" (click)="createQuote.emit(conversation().demandId); closeActionsMenu()">
                                 <iconify-icon icon="lucide:file-plus"></iconify-icon>
                                 {{
@@ -37,13 +37,15 @@
                                 }}
                             </button>
                         }
+                        @if (conversation().missionId) {
+                            <button type="button" (click)="reportDispute.emit(); closeActionsMenu()">
+                                <iconify-icon icon="lucide:flag"></iconify-icon>
+                                {{ 'dashboard.messages.actions.dispute' | transloco }}
+                            </button>
+                        }
                         <button type="button" (click)="leaveReview.emit(); closeActionsMenu()">
                             <iconify-icon icon="lucide:star"></iconify-icon>
                             {{ 'dashboard.messages.actions.review' | transloco }}
-                        </button>
-                        <button type="button" (click)="reportDispute.emit(); closeActionsMenu()">
-                            <iconify-icon icon="lucide:flag"></iconify-icon>
-                            {{ 'dashboard.messages.actions.dispute' | transloco }}
                         </button>
                     </div>
                 }
@@ -52,8 +54,11 @@
     </div>
 
     <button type="button" class="chat-demand-banner" (click)="openDemand.emit(conversation().demandId)">
-        <p class="chat-demand-banner-label">{{ 'dashboard.messages.demandLabel' | transloco }} • {{ conversation().demandCreatedAt | localizedDate:'compact' }}</p>
-        {{ demandPreview() }}
+        <span class="chat-demand-banner-text">
+            <span class="chat-demand-banner-label">{{ 'dashboard.messages.demandLabel' | transloco }} • {{ conversation().demandCreatedAt | localizedDate:'compact' }}</span>
+            {{ demandPreview() }}
+        </span>
+        <iconify-icon icon="lucide:chevron-right" class="chat-demand-banner-icon"></iconify-icon>
     </button>
 
     <div class="chat-messages" #messagesContainer>
@@ -66,6 +71,7 @@
                     [class.chat-bubble--signed]="message.type === 'QUOTE' && message.quoteStatus === 'SIGNED_BY_PRO'"
                     [class.chat-bubble--pending]="message.type === 'QUOTE' && message.quoteStatus === 'PENDING_PAYMENT'"
                     [class.chat-bubble--paid]="message.type === 'QUOTE' && message.quoteStatus === 'PAID'"
+                    [class.chat-bubble--cmod]="message.isCmodMessage"
                 >
                     @switch (message.type) {
                         @case ('IMAGE') {
@@ -126,8 +132,10 @@
         }
     </div>
 
-    @if (conversation().demandStatus === 'CANCELLED') {
-        <p class="chat-demand-cancelled">{{ 'dashboard.messages.demandCancelled' | transloco }}</p>
+    @if (isLocked()) {
+        <p class="chat-demand-cancelled">
+            {{ (conversation().demandStatus === 'CANCELLED' ? 'dashboard.messages.demandCancelled' : 'dashboard.messages.demandUnavailable') | transloco }}
+        </p>
     } @else {
         <form class="chat-input-bar" (ngSubmit)="submit()">
             <div class="chat-input-wrap">

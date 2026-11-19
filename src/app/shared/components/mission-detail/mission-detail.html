@@ -1,0 +1,314 @@
+@if (missionResource.isLoading()) {
+    <div class="loading">
+        <span class="spinner"></span>
+    </div>
+} @else if (missionResource.value(); as mission) {
+    <div class="mission-detail">
+        <div class="mission-detail__header">
+            <div class="mission-detail__title-row">
+                <h1 class="mission-detail__reference">{{ mission.reference }}</h1>
+                <span class="mission-status" [class]="'mission-status--' + mission.status">
+                    {{ 'dashboard.missions.status.' + mission.status | transloco }}
+                </span>
+            </div>
+            <a routerLink="/dashboard/missions" class="mission-detail__back">
+                {{ 'common.back' | transloco }}
+            </a>
+        </div>
+
+        <div class="mission-tabs">
+            <button type="button" class="mission-tab" [class.active]="activeTab() === 'infos'" (click)="setTab('infos')">
+                {{ 'mission.tabs.infos' | transloco }}
+            </button>
+            <button type="button" class="mission-tab" [class.active]="activeTab() === 'suivi'" (click)="setTab('suivi')">
+                {{ 'mission.tabs.suivi' | transloco }}
+            </button>
+            <button type="button" class="mission-tab" [class.active]="activeTab() === 'documents'" (click)="setTab('documents')">
+                {{ 'mission.tabs.documents' | transloco }}
+            </button>
+        </div>
+
+        <div class="mission-body">
+            @if (activeTab() === 'infos') {
+                <section class="mission-section">
+                    <h2>{{ 'mission.infos.description' | transloco }}</h2>
+                    <p class="mb-6">{{ mission.demand.description }}</p>
+
+                    @if (mission.demand.photoKeys.length > 0) {
+                        <h2>{{ 'mission.infos.photos' | transloco }}</h2>
+                        <p class="mission-meta mb-6">
+                            {{ 'mission.infos.photoCount' | transloco: { count: mission.demand.photoKeys.length } }}
+                        </p>
+                    }
+
+                    <h2>{{ 'mission.infos.trade' | transloco }}</h2>
+                    <p class="mb-6">{{ ('jobs.list.' + mission.demand.trade.name + '.shortName') | transloco }}</p>
+
+                    <h2>{{ 'mission.infos.client' | transloco }}</h2>
+                    @if (mission.demand.individualProfile; as individual) {
+                        <div class="mission-infos-identity mb-6">
+                            <user-avatar
+                                style="--avatar-size: 2.5rem"
+                                [photoUrl]="individual.photoKey"
+                                [alt]="individual.user.firstName + ' ' + individual.user.lastName"
+                            />
+                            <p>{{ individual.user.firstName }} {{ individual.user.lastName }}</p>
+                        </div>
+                    } @else if (mission.demand.professionalProfile; as professional) {
+                        <div class="mission-infos-identity mb-6">
+                            <user-avatar
+                                style="--avatar-size: 2.5rem"
+                                [photoUrl]="professional.companyLogoKey"
+                                [alt]="professional.companyName"
+                            />
+                            <p>{{ professional.companyName }}</p>
+                        </div>
+                    }
+
+                    <h2>{{ 'mission.infos.professional' | transloco }}</h2>
+                    <div class="mission-infos-identity">
+                        <user-avatar
+                            style="--avatar-size: 2.5rem"
+                            [photoUrl]="mission.conversation.recipientProfessionalProfile.companyLogoKey"
+                            [alt]="mission.conversation.recipientProfessionalProfile.companyName"
+                        />
+                        <p>{{ mission.conversation.recipientProfessionalProfile.companyName }}</p>
+                    </div>
+
+                    @if (mission.cmodProfile) {
+                        <h2 class="mt-6">{{ 'mission.infos.cmod' | transloco }}</h2>
+                        <p>{{ mission.cmodProfile.companyName }}</p>
+                    }
+                </section>
+            }
+
+            @if (activeTab() === 'suivi') {
+                <section class="mission-section">
+                    @if (followUpResource.isLoading()) {
+                        <div class="loading"><span class="spinner"></span></div>
+                    } @else {
+                        <div class="mission-follow-up-list">
+                            @for (entry of followUpResource.value(); track entry.id) {
+                                <div class="mission-follow-up-entry">
+                                    <div class="mission-follow-up-entry__header">
+                                        @if (editingEntryId() === entry.id) {
+                                            <input
+                                                type="date"
+                                                class="mission-follow-up-entry__date-input"
+                                                [attr.aria-label]="'mission.followUp.date' | transloco"
+                                                [value]="editEntryDate()"
+                                                (input)="editEntryDate.set($any($event.target).value)"
+                                                [max]="today"
+                                            />
+                                        } @else {
+                                            <span class="text-[0.8rem]">{{ entry.date | localizedDate:'compact' }}</span>
+                                        }
+                                        @if (isProfessional()) {
+                                            <div class="mission-follow-up-entry__actions">
+                                                <inline-edit-actions
+                                                    [editing]="editingEntryId() === entry.id"
+                                                    [saving]="savingEditEntry()"
+                                                    [saveDisabled]="!editEntryNote().trim() || !editEntryDate()"
+                                                    (edit)="startEditEntry(entry)"
+                                                    (cancel)="cancelEditEntry()"
+                                                    (save)="saveEditEntry(entry.id)"
+                                                />
+                                                @if (editingEntryId() !== entry.id) {
+                                                    <button
+                                                        type="button"
+                                                        class="mission-follow-up-entry__delete-btn"
+                                                        [attr.aria-label]="'common.delete' | transloco"
+                                                        (click)="deleteEntry(entry.id)"
+                                                    >
+                                                        <iconify-icon icon="lucide:trash-2"></iconify-icon>
+                                                    </button>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                    @if (editingEntryId() === entry.id) {
+                                        <div class="mission-inline-form">
+                                            <p class="mission-inline-form__title">{{ 'mission.followUp.descriptionLabel' | transloco }}</p>
+                                            <textarea
+                                                rows="3"
+                                                [value]="editEntryNote()"
+                                                (input)="editEntryNote.set($any($event.target).value)"
+                                                [placeholder]="'mission.followUp.placeholder' | transloco"
+                                            ></textarea>
+                                            <p class="mission-inline-form__title">{{ 'mission.followUp.addPhoto' | transloco }}</p>
+                                            <div class="mission-doc-grid mission-doc-grid--sm">
+                                                @for (photo of entry.photos; track photo.key) {
+                                                    <button type="button" class="mission-doc-tile" [class.mission-doc-tile--pdf]="isPdfKey(photo.key)" (click)="openDoc(photo.url, 'Fichier')">
+                                                        @if (isPdfKey(photo.key)) {
+                                                            <iconify-icon icon="vscode-icons:file-type-pdf2"></iconify-icon>
+                                                        } @else {
+                                                            <img [src]="photo.url" [alt]="`Fichier ${entry.photos.indexOf(photo) + 1}`" />
+                                                        }
+                                                    </button>
+                                                }
+                                                @for (preview of editEntryPhotoPreviews(); track preview; let i = $index) {
+                                                    <div class="mission-doc-tile mission-doc-tile--preview" [class.mission-doc-tile--pdf]="editEntryPhotoFiles()[i].type === 'application/pdf'">
+                                                        @if (editEntryPhotoFiles()[i].type === 'application/pdf') {
+                                                            <iconify-icon icon="vscode-icons:file-type-pdf2"></iconify-icon>
+                                                        } @else {
+                                                            <img [src]="preview" alt="" />
+                                                        }
+                                                        <button
+                                                            type="button"
+                                                            class="mission-doc-tile__remove"
+                                                            [attr.aria-label]="'common.delete' | transloco"
+                                                            (click)="removeEditEntryPhoto(i)"
+                                                        >✕</button>
+                                                    </div>
+                                                }
+                                                <label class="mission-doc-tile mission-doc-tile--add">
+                                                    <span>+</span>
+                                                    <input type="file" accept="image/jpeg,image/png,image/webp,application/pdf" class="hidden" (change)="onAddEditEntryPhotoFile($event)" />
+                                                </label>
+                                            </div>
+                                        </div>
+                                    } @else {
+                                        @if (entry.note) {
+                                            <p class="mission-follow-up-entry__note">{{ entry.note }}</p>
+                                        }
+                                        @if (entry.photos.length > 0) {
+                                            <div class="mission-doc-grid mission-doc-grid--sm">
+                                                @for (photo of entry.photos; track photo.key) {
+                                                    <button type="button" class="mission-doc-tile" [class.mission-doc-tile--pdf]="isPdfKey(photo.key)" (click)="openDoc(photo.url, 'Fichier')">
+                                                        @if (isPdfKey(photo.key)) {
+                                                            <iconify-icon icon="vscode-icons:file-type-pdf2"></iconify-icon>
+                                                        } @else {
+                                                            <img [src]="photo.url" [alt]="`Fichier ${entry.photos.indexOf(photo) + 1}`" />
+                                                        }
+                                                    </button>
+                                                }
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            } @empty {
+                                <p class="pro-empty text-center">{{ 'mission.followUp.empty' | transloco }}</p>
+                            }
+                        </div>
+                    }
+
+                    @if (isProfessional()) {
+                        @if (addingEntry()) {
+                            <div class="mission-inline-form">
+                                <label class="mission-inline-form__date-label">
+                                    <p class="text-[0.8rem] font-semibold">{{ 'mission.followUp.date' | transloco }}</p>
+                                    <input
+                                        type="date"
+                                        [value]="newEntryDate()"
+                                        (input)="newEntryDate.set($any($event.target).value)"
+                                        [max]="today"
+                                    />
+                                </label>
+                                <p class="mission-inline-form__title">{{ 'mission.followUp.descriptionLabel' | transloco }}</p>
+                                <textarea
+                                    rows="3"
+                                    [value]="newEntryNote()"
+                                    (input)="newEntryNote.set($any($event.target).value)"
+                                    [placeholder]="'mission.followUp.placeholder' | transloco"
+                                ></textarea>
+                                <p class="mission-inline-form__title">{{ 'mission.followUp.addPhoto' | transloco }}</p>
+                                <div class="mission-doc-grid mission-doc-grid--sm">
+                                    @for (preview of newEntryPhotoPreviews(); track preview; let i = $index) {
+                                        <div class="mission-doc-tile mission-doc-tile--preview" [class.mission-doc-tile--pdf]="newEntryPhotoFiles()[i].type === 'application/pdf'">
+                                            @if (newEntryPhotoFiles()[i].type === 'application/pdf') {
+                                                <iconify-icon icon="vscode-icons:file-type-pdf2" class="size-2xl"></iconify-icon>
+                                            } @else {
+                                                <img [src]="preview" alt="" />
+                                            }
+                                            <button
+                                                type="button"
+                                                class="mission-doc-tile__remove"
+                                                [attr.aria-label]="'common.delete' | transloco"
+                                                (click)="removeNewEntryPhoto(i)"
+                                            >✕</button>
+                                        </div>
+                                    }
+                                    <label class="mission-doc-tile mission-doc-tile--add">
+                                        <span>+</span>
+                                        <input type="file" accept="image/jpeg,image/png,image/webp,application/pdf" class="hidden" (change)="onAddNewEntryPhotoFile($event)" />
+                                    </label>
+                                </div>
+                                <div class="mission-inline-form__actions">
+                                    <button type="button" class="mission-btn-secondary" (click)="cancelAddEntry()">{{ 'common.cancel' | transloco }}</button>
+                                    <button type="button" class="mission-btn-primary" [disabled]="savingEntry()" (click)="saveNewEntry()">
+                                        {{ 'common.save' | transloco }}
+                                    </button>
+                                </div>
+                            </div>
+                        } @else {
+                            <button type="button" class="mission-action-btn mission-btn-primary" (click)="startAddEntry()">
+                                {{ 'mission.followUp.add' | transloco }}
+                            </button>
+                        }
+                    }
+                </section>
+            }
+
+            @if (activeTab() === 'documents') {
+                <section class="mission-section">
+                    @if (documentsResource.isLoading()) {
+                        <div class="loading"><span class="spinner"></span></div>
+                    } @else if (documentsResource.value(); as documents) {
+                        <h3>{{ 'mission.documents.quote' | transloco }}</h3>
+                        <div class="mission-doc-quote">
+                            <doc-card
+                                [label]="mission.quote.quoteNumber"
+                                [url]="documents.quoteSignedPdfUrl"
+                                (open)="openDoc(documents.quoteSignedPdfUrl, mission.quote.quoteNumber)"
+                            />
+                        </div>
+
+                        @if (documents.demandPhotos.length > 0) {
+                            <h3>{{ 'mission.documents.demandPhotos' | transloco }}</h3>
+                            <div class="mission-doc-grid">
+                                @for (photo of documents.demandPhotos; track photo.key) {
+                                    <button type="button" class="mission-doc-tile" (click)="openDoc(photo.url, 'Photo')">
+                                        <img [src]="photo.url" alt="" />
+                                    </button>
+                                }
+                            </div>
+                        }
+
+                        @if (documents.messageAttachments.length > 0) {
+                            <h3>{{ 'mission.documents.attachments' | transloco }}</h3>
+                            <div class="mission-doc-grid">
+                                @for (attachment of documents.messageAttachments; track attachment.id) {
+                                    <button type="button" class="mission-doc-tile" (click)="openDoc(attachment.url, 'Pièce jointe')">
+                                        <img [src]="attachment.url" alt="" />
+                                    </button>
+                                }
+                            </div>
+                        }
+
+                        <h3>{{ 'mission.documents.completionReport' | transloco }}</h3>
+                        @if (documents.completionReportUrl) {
+                            <button type="button" class="mission-doc-link" (click)="openDoc(documents.completionReportUrl, 'PV')">
+                                {{ 'mission.documents.viewCompletionReport' | transloco }}
+                            </button>
+                        } @else {
+                            <p class="mission-meta">{{ 'mission.documents.notAvailableYet' | transloco }}</p>
+                        }
+
+                        <h3>{{ 'mission.documents.invoice' | transloco }}</h3>
+                        @if (documents.invoiceUrl) {
+                            <button type="button" class="mission-doc-link" (click)="openDoc(documents.invoiceUrl, 'Facture')">
+                                {{ 'mission.documents.viewInvoice' | transloco }}
+                            </button>
+                        } @else {
+                            <p class="mission-meta">{{ 'mission.documents.notAvailableYet' | transloco }}</p>
+                        }
+                    }
+                </section>
+            }
+        </div>
+    </div>
+}
+
+@if (docToPreview()) {
+    <doc-modal [document]="docToPreview()" (closeModal)="docToPreview.set(null)" />
+}

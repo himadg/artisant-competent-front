@@ -117,7 +117,15 @@ export class ConversationView {
 
   readonly canManageQuote = computed(() => {
     const status = this.conversation().quoteStatus;
-    return !(status === 'SIGNED_BY_PRO' || status === 'PENDING_PAYMENT' || status === 'PAID');
+    return !this.conversation().isAuthor && !(status === 'SIGNED_BY_PRO' || status === 'PENDING_PAYMENT' || status === 'PAID');
+  });
+
+  /** Verrouille la conversation (saisie désactivée) si la demande est annulée, ou si elle est
+   * devenue indisponible parce qu'un AUTRE pro a été retenu (son devis à lui n'est pas PAID) — la
+   * conversation du pro dont le devis est payé (devenue la mission) reste ouverte. */
+  readonly isLocked = computed(() => {
+    const conversation = this.conversation();
+    return conversation.demandStatus === 'CANCELLED' || (conversation.demandStatus === 'UNAVAILABLE' && conversation.quoteStatus !== 'PAID');
   });
 
   formatBubbleTime(iso: string): string {

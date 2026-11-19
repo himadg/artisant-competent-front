@@ -23,7 +23,7 @@ import { PreviewDocument } from '../../../shared/interfaces/preview-document';
 import { StripeConnectStatus } from '../../../shared/interfaces/stripe-connect';
 
 export type ProSection = 'profile' | 'requests' | 'messages' | 'payments' | 'practices' | 'legal' | 'affiliation';
-export type ProTab = 'presentation' | 'missions' | 'reviews' | 'documents';
+export type ProTab = 'presentation' | 'reviews' | 'documents';
 export type RequestsTab = 'mine' | 'received';
 export type StoryTriggerType = 'PRESENTATION' | 'TIPS';
 

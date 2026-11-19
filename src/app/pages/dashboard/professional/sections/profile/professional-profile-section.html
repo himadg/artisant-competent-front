@@ -452,7 +452,7 @@
                         <div class="pro-chips">
                             @for (trade of allTrades(); track trade.id) {
                                 <button class="pro-chip" type="button" [class.pro-chip--active]="editTradeIds().includes(trade.id)" (click)="toggleTrade(trade.id)">
-                                    {{ `jobs.list.${trade.name}.name` | transloco }}
+                                    {{ `jobs.list.${trade.name}.shortName` | transloco }}
                                 </button>
                             }
                         </div>
@@ -460,7 +460,7 @@
                 } @else if (pro.professionalProfile.trades.length) {
                     <ul class="pro-list pro-list--arrow">
                         @for (trade of pro.professionalProfile.trades; track trade.id) {
-                            <li>{{ `jobs.list.${trade.name}.name` | transloco }}</li>
+                            <li>{{ `jobs.list.${trade.name}.shortName` | transloco }}</li>
                         }
                     </ul>
                 } @else {
@@ -623,10 +623,6 @@
             </div>
         }
 
-        @case ('missions') {
-            <p class="pro-empty">{{ 'dashboard.empty.missions' | transloco }}</p>
-        }
-
         @case ('reviews') {
             <p class="pro-empty">{{ 'dashboard.empty.reviews' | transloco }}</p>
         }
@@ -644,51 +640,21 @@
                     ];
                     track doc.key
                 ) {
-                    <div class="doc-card">
-                        <div class="doc-card-preview" [style.cursor]="doc.url ? 'pointer' : 'default'" (click)="openDocModal(doc.url, doc.label)">
-                            @if (doc.url && doc.key.endsWith('.webp')) {
-                                <img [src]="doc.url" [alt]="doc.label | transloco" class="doc-card-img" />
-                            } @else {
-                                <iconify-icon icon="lucide:file-text" class="doc-card-icon"></iconify-icon>
-                            }
-                        </div>
-                        <div class="doc-card-body">
-                            <p class="doc-card-label">{{ doc.label | transloco }}</p>
-                            @if (doc.url) {
-                                <a [href]="doc.url" target="_blank" rel="noopener" class="doc-card-btn">
-                                    <iconify-icon icon="lucide:download"></iconify-icon>
-                                    {{ 'dashboard.pro.docs.download' | transloco }}
-                                </a>
-                            } @else {
-                                <span class="doc-card-missing">{{ 'dashboard.pro.docs.missing' | transloco }}</span>
-                            }
-                        </div>
-                    </div>
+                    <doc-card
+                        [label]="doc.label | transloco"
+                        [url]="doc.url"
+                        [previewImageUrl]="doc.url && doc.key.endsWith('.webp') ? doc.url : null"
+                        (open)="openDocModal(doc.url, doc.label)"
+                    />
                 }
                 <!-- Diplômes -->
                 @for (diploma of pro.professionalProfile.diplomas; track diploma.id) {
-                    <div class="doc-card">
-                        <div class="doc-card-preview" [style.cursor]="diploma.url ? 'pointer' : 'default'" (click)="openDocModal(diploma.url, 'dashboard.pro.docs.diploma')">
-                            <iconify-icon icon="lucide:file-text" class="doc-card-icon"></iconify-icon>
-                        </div>
-                        <div class="doc-card-body">
-                            <p class="doc-card-label">{{ diploma.documentName }}</p>
-                            @if (diploma.expiryDate) {
-                                <p class="doc-card-expiry">
-                                    {{ 'dashboard.pro.expiresOn' | transloco }}
-                                    {{ diploma.expiryDate | localizedDate:'compact' }}
-                                </p>
-                            }
-                            @if (diploma.url) {
-                                <a [href]="diploma.url" target="_blank" rel="noopener" class="doc-card-btn">
-                                    <iconify-icon icon="lucide:download"></iconify-icon>
-                                    {{ 'dashboard.pro.docs.download' | transloco }}
-                                </a>
-                            } @else {
-                                <span class="doc-card-missing">{{ 'dashboard.pro.docs.missing' | transloco }}</span>
-                            }
-                        </div>
-                    </div>
+                    <doc-card
+                        [label]="diploma.documentName"
+                        [url]="diploma.url"
+                        [meta]="diploma.expiryDate ? (('dashboard.pro.expiresOn' | transloco) + ' ' + (diploma.expiryDate | localizedDate:'compact')) : null"
+                        (open)="openDocModal(diploma.url, 'dashboard.pro.docs.diploma')"
+                    />
                 }
             </div>
         }

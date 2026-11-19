@@ -22,6 +22,16 @@ export const individualDashboardRoutes: Routes = [
         loadComponent: () => import('./sections/messages/individual-messages-section').then((m) => m.IndividualMessagesSection),
       },
       {
+        path: 'missions',
+        title: 'dashboard.sections.missions.title',
+        loadComponent: () => import('./sections/missions/individual-missions-section').then((m) => m.IndividualMissionsSection),
+      },
+      {
+        path: 'missions/:id',
+        title: 'dashboard.sections.missions.detailTitle',
+        loadComponent: () => import('../../../shared/components/mission-detail/mission-detail').then((m) => m.MissionDetailComponent),
+      },
+      {
         path: 'practices',
         title: 'dashboard.sections.practices.title',
         loadComponent: () => import('./sections/practices/individual-practices-section').then((m) => m.IndividualPracticesSection),
