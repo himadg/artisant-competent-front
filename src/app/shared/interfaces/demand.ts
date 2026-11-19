@@ -1,4 +1,5 @@
 import { RoleType } from './user';
+import { MissionStatus } from './mission';
 
 export type DemandStatus = 'AVAILABLE' | 'UNAVAILABLE' | 'CANCELLED';
 
@@ -51,6 +52,7 @@ export interface Demand {
   id: string;
   description: string;
   status: DemandStatus;
+  missionStatus: MissionStatus | null;
   createdAt: string;
   address: DemandAddress | null;
   author: DemandAuthor;

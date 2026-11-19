@@ -541,40 +541,40 @@
     flex: 1;
     min-height: 0;
     overflow-y: auto;
-    padding: 1.25rem 1rem 2rem;
+    padding: 1rem 1rem 2rem;
     border: none !important;
     border-radius: 0 !important;
   }
 
-    .pro-story-add-btn {
-      &--presentation {
-        top: 5px;
-        left: -3px;
-      }
+  .pro-story-add-btn {
+    &--presentation {
+      top: 5px;
+      left: -3px;
+    }
+  }
+
+  .pro-photo--story-presentation {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px
+    color-mix(in srgb, #2563eb 25%, transparent);
+  }
+
+  // Nom distinct plutôt qu'une redéfinition du même @keyframes dans le @media : évite de dépendre
+  // de l'écrasement par nom identique (peu fiable selon la façon dont le bundler traite les
+  // @keyframes imbriqués dans un @media), on choisit explicitement la bonne animation à la place.
+  .pro-story-uploading-ring--photo {
+    animation-name: story-ring-spin-photo-mobile;
+  }
+
+  @keyframes story-ring-spin-photo-mobile {
+    from {
+      transform: translateY(0) rotate(0deg);
     }
 
-    .pro-photo--story-presentation {
-      border-color: #2563eb;
-      box-shadow: 0 0 0 3px
-      color-mix(in srgb, #2563eb 25%, transparent);
+    to {
+      transform: translateY(0) rotate(360deg);
     }
-
-    // Nom distinct plutôt qu'une redéfinition du même @keyframes dans le @media : évite de dépendre
-    // de l'écrasement par nom identique (peu fiable selon la façon dont le bundler traite les
-    // @keyframes imbriqués dans un @media), on choisit explicitement la bonne animation à la place.
-    .pro-story-uploading-ring--photo {
-      animation-name: story-ring-spin-photo-mobile;
-    }
-
-    @keyframes story-ring-spin-photo-mobile {
-      from {
-        transform: translateY(0) rotate(0deg);
-      }
-
-      to {
-        transform: translateY(0) rotate(360deg);
-      }
-    }
+  }
 
   /* ── Menu "Plus" ── */
   .more-overlay {

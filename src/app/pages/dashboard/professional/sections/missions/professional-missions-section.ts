@@ -1,0 +1,20 @@
+import { ChangeDetectionStrategy, Component, inject, resource } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { TranslocoModule } from '@jsverse/transloco';
+import { MissionService } from '../../../../../core/services/mission.service';
+import { LocalizedDatePipe } from '../../../../../shared/pipes/localized-date.pipe';
+
+@Component({
+  selector: 'professional-missions-section',
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CommonModule, RouterLink, TranslocoModule, LocalizedDatePipe],
+  templateUrl: './professional-missions-section.html',
+  styleUrl: './professional-missions-section.scss',
+})
+export class ProfessionalMissionsSection {
+  private readonly missionService = inject(MissionService);
+
+  readonly missionsResource = resource({ loader: () => this.missionService.getMine() });
+}

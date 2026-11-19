@@ -1,0 +1,23 @@
+<div class="doc-card">
+    <div class="doc-card-preview" [style.cursor]="url() ? 'pointer' : 'default'" (click)="onPreviewClick()">
+        @if (previewImageUrl()) {
+            <img [src]="previewImageUrl()" [alt]="label()" class="doc-card-img" />
+        } @else {
+            <iconify-icon [icon]="pdfIcon()" class="doc-card-icon"></iconify-icon>
+        }
+    </div>
+    <div class="doc-card-body">
+        <p class="doc-card-label">{{ label() }}</p>
+        @if (meta()) {
+            <p class="doc-card-meta">{{ meta() }}</p>
+        }
+        @if (url(); as url) {
+            <a [href]="url" target="_blank" rel="noopener" class="doc-card-btn">
+                <iconify-icon icon="lucide:download"></iconify-icon>
+                {{ 'dashboard.pro.docs.download' | transloco }}
+            </a>
+        } @else {
+            <span class="doc-card-missing">{{ 'dashboard.pro.docs.missing' | transloco }}</span>
+        }
+    </div>
+</div>

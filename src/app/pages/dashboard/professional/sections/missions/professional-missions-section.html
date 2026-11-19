@@ -1,0 +1,22 @@
+@if (missionsResource.isLoading()) {
+    <div class="loading">
+        <span class="spinner"></span>
+    </div>
+} @else {
+    <div class="mission-list">
+        @for (mission of missionsResource.value(); track mission.id) {
+            <a class="mission-card" [routerLink]="['/dashboard/missions', mission.id]">
+                <div class="mission-card-header">
+                    <span class="mission-reference">{{ mission.reference }}</span>
+                    <span class="mission-status" [class]="'mission-status--' + mission.status">
+                        {{ 'dashboard.missions.status.' + mission.status | transloco }}
+                    </span>
+                </div>
+                <p class="mission-description">{{ mission.demand.description }}</p>
+                <p class="mission-meta">{{ mission.createdAt | localizedDate:'compact' }}</p>
+            </a>
+        } @empty {
+            <p class="pro-empty text-center">{{ 'dashboard.empty.missions' | transloco }}</p>
+        }
+    </div>
+}

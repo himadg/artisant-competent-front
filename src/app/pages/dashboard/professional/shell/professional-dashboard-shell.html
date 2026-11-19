@@ -47,8 +47,7 @@
         <div class="h-dvh pro-layout">
             <div
                 class="mobile-notification-bell"
-                [class.top.1rem]="!stripeSetupNeeded() && !stripeActionNeeded()"
-                [class.top.12rem]="stripeSetupNeeded() || stripeActionNeeded()"
+                [style.top.rem]="(stripeSetupNeeded() || stripeActionNeeded()) ? '12' : '1'"
             >
                 <notification-bell></notification-bell>
             </div>
@@ -96,6 +95,10 @@
                     <button class="nav-item" routerLink="/dashboard/requests" routerLinkActive="active">
                         <iconify-icon icon="lucide:search"></iconify-icon>
                         {{ 'dashboard.pro.nav.requests' | transloco }}
+                    </button>
+                    <button class="nav-item" routerLink="/dashboard/missions" routerLinkActive="active">
+                        <iconify-icon icon="lucide:briefcase"></iconify-icon>
+                        {{ 'dashboard.pro.nav.missions' | transloco }}
                     </button>
                     <button class="nav-item" routerLink="/dashboard/payments" routerLinkActive="active">
                         <iconify-icon icon="lucide:credit-card"></iconify-icon>
@@ -267,10 +270,10 @@
                                 </button>
                                 <button
                                     class="pro-tab"
-                                    [class.active]="activeTab() === 'missions'"
-                                    (click)="setTab('missions')"
+                                    [class.active]="activeTab() === 'documents'"
+                                    (click)="setTab('documents')"
                                 >
-                                    {{ 'dashboard.pro.tabs.missions' | transloco }}
+                                    {{ 'dashboard.pro.tabs.documents' | transloco }}
                                 </button>
                                 <button
                                     class="pro-tab"
@@ -278,13 +281,6 @@
                                     (click)="setTab('reviews')"
                                 >
                                     {{ 'dashboard.pro.tabs.reviews' | transloco }}
-                                </button>
-                                <button
-                                    class="pro-tab"
-                                    [class.active]="activeTab() === 'documents'"
-                                    (click)="setTab('documents')"
-                                >
-                                    {{ 'dashboard.pro.tabs.documents' | transloco }}
                                 </button>
                             </div>
                         }
@@ -348,6 +344,15 @@
             @if (moreMenuOpen()) {
                 <div class="more-overlay" (click)="closeMoreMenu()"></div>
                 <div class="more-menu">
+                    <button
+                        class="nav-item"
+                        routerLink="/dashboard/missions"
+                        routerLinkActive="active"
+                        (click)="toggleMoreMenu(); moreMenuContentDisplayed.set(true)"
+                    >
+                        <iconify-icon icon="lucide:briefcase"></iconify-icon>
+                        {{ 'dashboard.pro.nav.missions' | transloco }}
+                    </button>
                     <button
                         class="nav-item"
                         routerLink="/dashboard/payments"

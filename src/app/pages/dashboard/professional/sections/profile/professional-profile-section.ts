@@ -8,6 +8,7 @@ import { GeocodingService } from '../../../../../core/services/geocoding.service
 import { UserApiService } from '../../../../../core/services/user-api.service';
 import { AddressSuggestion } from '../../../../../shared/interfaces/address-suggestion';
 import { OpeningHoursDay } from '../../../../../shared/interfaces/professional-dashboard';
+import { DocCard } from '../../../../../shared/components/doc-card/doc-card';
 import { InlineEditActions } from '../../../../../shared/components/inline-edit-actions/inline-edit-actions';
 import { LocalizedDatePipe } from '../../../../../shared/pipes/localized-date.pipe';
 import { FlashMessageService } from '../../../../../core/services/flash-message.service';
@@ -20,7 +21,7 @@ const WEEK_DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'satu
   selector: 'professional-profile-section',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, FormsModule, TranslocoModule, InlineEditActions, LocalizedDatePipe],
+  imports: [CommonModule, FormsModule, TranslocoModule, DocCard, InlineEditActions, LocalizedDatePipe],
   templateUrl: './professional-profile-section.html',
   styleUrl: './professional-profile-section.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

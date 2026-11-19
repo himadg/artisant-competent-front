@@ -46,6 +46,10 @@
                     <iconify-icon icon="lucide:search"></iconify-icon>
                     {{ 'dashboard.individual.nav.requests' | transloco }}
                 </button>
+                <button class="nav-item" routerLink="/dashboard/missions" routerLinkActive="active">
+                    <iconify-icon icon="lucide:briefcase"></iconify-icon>
+                    {{ 'dashboard.individual.nav.missions' | transloco }}
+                </button>
                 <button class="nav-item" routerLink="/dashboard/practices" routerLinkActive="active">
                     <iconify-icon icon="lucide:alert-circle"></iconify-icon>
                     {{ 'dashboard.individual.nav.practices' | transloco }}
@@ -147,6 +151,10 @@
         @if (moreMenuOpen()) {
             <div class="more-overlay" (click)="closeMoreMenu()"></div>
             <div class="more-menu">
+                <button class="nav-item" routerLink="/dashboard/missions" routerLinkActive="active" (click)="toggleMoreMenu()">
+                    <iconify-icon icon="lucide:briefcase"></iconify-icon>
+                    {{ 'dashboard.individual.nav.missions' | transloco }}
+                </button>
                 <button class="nav-item" routerLink="/dashboard/practices" routerLinkActive="active" (click)="toggleMoreMenu()">
                     <iconify-icon icon="lucide:alert-circle"></iconify-icon>
                     {{ 'dashboard.individual.nav.practices' | transloco }}

@@ -30,7 +30,12 @@
                                     [class.demand-status--available]="demand.status === 'AVAILABLE'"
                                     [class.demand-status--cancelled]="demand.status === 'CANCELLED'"
                                 >
-                                    {{ 'dashboard.requests.status.' + demand.status | transloco }}
+                                    @if (demand.missionStatus; as missionStatus) {
+                                        {{ 'dashboard.requests.missionPrefix' | transloco }}
+                                        {{ 'dashboard.missions.status.' + missionStatus | transloco }}
+                                    } @else {
+                                        {{ 'dashboard.requests.status.' + demand.status | transloco }}
+                                    }
                                 </span>
                                 <span class="demand-date">{{ demand.createdAt | localizedDate:'compact' }}</span>
                             </div>
@@ -57,7 +62,12 @@
                                     [class.demand-status--available]="demand.status === 'AVAILABLE'"
                                     [class.demand-status--cancelled]="demand.status === 'CANCELLED'"
                                 >
-                                    {{ 'dashboard.requests.status.' + demand.status | transloco }}
+                                    @if (demand.missionStatus; as missionStatus) {
+                                        {{ 'dashboard.requests.missionPrefix' | transloco }}
+                                        {{ 'dashboard.missions.status.' + missionStatus | transloco }}
+                                    } @else {
+                                        {{ 'dashboard.requests.status.' + demand.status | transloco }}
+                                    }
                                 </span>
                                 <span class="demand-date">{{ demand.createdAt | localizedDate:'compact' }}</span>
                             </div>

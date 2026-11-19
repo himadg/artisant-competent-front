@@ -16,7 +16,7 @@
       "draftSaveSuccess": "Brouillon enregistré.",
       "send": "Envoyer le devis",
       "sendSuccess": "Devis envoyé au client.",
-      "sendMissingFields": "Le devis ne peut pas être envoyé : certains champs obligatoires sont manquants ou incomplets.",
+      "sendMissingFields": "Le devis ne peut pas être envoyé : certains champs obligatoires sont manquants, erronés ou incomplets.",
       "pendingClientResponse": "Ce devis est en attente de réponse du client, impossible d'en créer un nouveau pour l'instant.",
       "alreadyAccepted": "Ce devis a déjà été accepté par le client, la mission peut démarrer.",
       "alreadySent": "Ce devis a déjà été envoyé.",
@@ -612,6 +612,7 @@
     "close": "Fermer",
     "dashboard": "Mon espace",
     "cancel": "Annuler",
+    "save": "Enregistrer",
     "yes": "Oui",
     "no": "Non",
     "menu": "Menu",
@@ -629,6 +630,51 @@
     "previewUnavailable": "Aperçu non disponible pour ce type de fichier.",
     "openDocument": "Ouvrir le document",
     "cancel": "Annuler"
+  },
+  "mission": {
+    "tabs": {
+      "infos": "Infos",
+      "suivi": "Suivi",
+      "documents": "Documents"
+    },
+    "infos": {
+      "description": "Description",
+      "photos": "Photos",
+      "photoCount": "{{ count }} photo(s)",
+      "trade": "Métier",
+      "client": "Client",
+      "professional": "Professionnel",
+      "cmod": "CMOD",
+      "reportConflict": "Signaler un litige"
+    },
+    "conflict": {
+      "placeholder": "Décrivez le motif du litige",
+      "submit": "Envoyer le signalement",
+      "success": "Signalement envoyé — notre équipe va examiner votre dossier.",
+      "error": "Le signalement a échoué. Veuillez réessayer."
+    },
+    "followUp": {
+      "add": "Ajouter une prestation quotidienne",
+      "date": "Date",
+      "descriptionLabel": "Description des travaux du jour",
+      "addPhoto": "Ajouter un fichier",
+      "placeholder": "Travaux effectués ce jour-là",
+      "empty": "Aucune prestation quotidienne pour le moment",
+      "error": "L'enregistrement a échoué. Veuillez réessayer.",
+      "invalidFormat": "Format invalide. Seuls les fichiers JPEG, PNG, WebP et PDF sont acceptés.",
+      "photoUploadError": "La prestation a été enregistrée, mais l'ajout des fichiers a échoué. Vous pourrez réessayer depuis l'entrée.",
+      "deleteConfirm": "Êtes-vous sûr de vouloir supprimer cette prestation quotidienne ? Cette action est irréversible."
+    },
+    "documents": {
+      "quote": "Devis",
+      "demandPhotos": "Photos de la demande",
+      "attachments": "Pièces jointes de la conversation",
+      "completionReport": "Procès-verbal de fin de mission",
+      "viewCompletionReport": "Voir le procès-verbal",
+      "invoice": "Facture",
+      "viewInvoice": "Voir la facture",
+      "notAvailableYet": "Disponible une fois la mission terminée"
+    }
   },
   "demand": {
     "modal": {
@@ -747,6 +793,7 @@
         "pageTitle": "Électricité & Appareils connectés | Artisan Compétent",
         "title": "Électricien vérifié, du devis à la mise sous tension encadrée (24/7)",
         "name": "Électricité & Appareils connectés (24/7)",
+        "shortName": "Électricité & Appareils connectés",
         "metaTitle": "Électricien vérifié à {{ city }} : SIRET, NF C 18-510, paiement encadré Stripe | Artisan Compétent",
         "metaDescription": "Électricien vérifié à {{ city }} : SIRET contrôlé, RC pro et décennale à jour, habilitation NF C 18-510, qualification IRVE pour bornes de recharge. Paiement encadré via Stripe : règlement versé à l'artisan 96h après le chantier.",
         "metaKeywords": "électricien vérifié {{ city }}, habilitation NF C 18-510 {{ city }}, borne recharge IRVE {{ city }}, domotique {{ city }}, mise aux normes NF C 15-100 {{ city }}",
@@ -949,6 +996,7 @@
         "pageTitle": "Serrurier | Artisan Compétent",
         "title": "Serrurier vérifié, sans subir le devis nocturne (24/7)",
         "name": "Serrurier (24/7)",
+        "shortName": "Serrurier",
         "metaTitle": "Serrurier à {{ city }} — Urgence 24h/24 | Artisan Compétent",
         "metaDescription": "Serrurier disponible 24h/24 à {{ city }}. Porte claquée, serrure forcée, changement de serrure : intervention rapide et tarif juste. Paiement sécurisé sur Artisan Compétent.",
         "metaKeywords": "serrurier {{ city }}, serrurier urgence {{ city }}, porte claquée {{ city }}, changement serrure {{ city }}",
@@ -1168,6 +1216,7 @@
         "pageTitle": "Plombier sanitaire | Artisan Compétent",
         "title": "Plombier sanitaire vérifié, du devis au versement du règlement à l'artisan encadrée (24/7)",
         "name": "Plombier sanitaire (24/7)",
+        "shortName": "Plombier sanitaire",
         "metaTitle": "Plombier à {{ city }} — Dépannage urgent | Artisan Compétent",
         "metaDescription": "Trouvez un plombier qualifié à {{ city }} pour une fuite, une installation sanitaire ou un dépannage d'urgence. Devis gratuit, paiement sécurisé, disponible 24h/24.",
         "metaKeywords": "plombier {{ city }}, dépannage plomberie {{ city }}, fuite d'eau {{ city }}, plombier urgence {{ city }}",
@@ -1375,6 +1424,7 @@
         "pageTitle": "Déboucheur canalisation & chemisage | Artisan Compétent",
         "title": "Trouver un déboucheur de canalisations vérifié : débouchage, hydrocurage et chemisage sans travaux lourds (24/7)",
         "name": "Déboucheur de canalisations & chemisage (24/7)",
+        "shortName": "Déboucheur de canalisations & chemisage",
         "metaTitle": "Déboucheur de canalisations & chemisage à {{ city }} — Urgent | Artisan Compétent",
         "metaDescription": "Canalisation bouchée ou un chemisage à faire à {{ city }} ? Intervention urgente d'un déboucheur qualifié. Évier, WC, canalisation engorgée : résolu rapidement avec paiement sécurisé. Déboucheur vérifié : débouchage, hydrocurage, inspection caméra et chemisage sans tranchée. SIRET et assurances contrôlés, paiement encadré Stripe.",
         "metaKeywords": "débouchage canalisation & chemisage {{ city }}, plombier déboucheur {{ city }}, canalisation bouchée {{ city }}, WC bouché {{ city}}, chemisage canalisation {{ city }}, gainage de canalisation {{ city }}, réparation canalisation sans tranchée {{ city }}, réhabilitation canalisation sans creuser {{ city }}, chemisage canalisation prix {{ city }}",
@@ -1605,6 +1655,7 @@
         "pageTitle": "Chauffagiste & VMC & Pompe à chaleur | Artisan Compétent",
         "title": "Chauffagiste vérifié, du devis à la mise en chauffe encadrée (24/7)",
         "name": "Chauffagiste & VMC & Pompe à chaleur (24/7)",
+        "shortName": "Chauffagiste & VMC & Pompe à chaleur",
         "metaTitle": "Chauffagiste & VMC & Pompe à chaleur à {{ city }} | Artisan Compétent",
         "metaDescription": "Chauffagiste qualifié à {{ city }} pour l'installation, l'entretien ou la réparation de votre chaudière, VMC ou pompe à chaleur. Devis gratuit et paiement sécurisé.",
         "metaKeywords": "chauffagiste {{ city }}, VMC {{ city }}, pompe à chaleur {{ city }}, entretien chaudière {{ city }}",
@@ -1824,6 +1875,7 @@
         "pageTitle": "Technicien climatisation & Frigoriste | Artisan Compétent",
         "title": "Technicien climatisation vérifié, du devis au versement du règlement à l'artisan encadrée",
         "name": "Technicien climatisation & Frigoriste",
+        "shortName": "Technicien climatisation & Frigoriste",
         "metaTitle": "Technicien climatisation & Frigoriste à {{ city }} | Artisan Compétent",
         "metaDescription": "Technicien climatisation et frigoriste à {{ city }}. Installation, entretien et réparation de climatisation. Devis gratuit, artisans certifiés, paiement sécurisé.",
         "metaKeywords": "technicien climatisation {{ city }}, frigoriste {{ city }}, installation climatisation {{ city }}, réparation climatisation {{ city }}",
@@ -2046,6 +2098,7 @@
         "pageTitle": "Vitrerie & Miroiterie | Artisan Compétent",
         "title": "Vitrier vérifié, du devis au versement du règlement à l'artisan encadrée",
         "name": "Vitrerie & Miroiterie",
+        "shortName": "Vitrerie & Miroiterie",
         "metaTitle": "Vitrerie & Miroiterie à {{ city }} — Devis gratuit | Artisan Compétent",
         "metaDescription": "Vitrier et miroitier qualifié à {{ city }} pour vos vitrages, miroirs, fenêtres et verrières. Devis gratuit, paiement sécurisé sur Artisan Compétent.",
         "metaKeywords": "vitrier {{ city }}, miroitier {{ city }}, remplacement vitrage {{ city }}, pose miroir {{ city }}",
@@ -2275,6 +2328,7 @@
         "pageTitle": "Traitement anti-nuisibles (rongeurs, punaises...) | Artisan Compétent",
         "title": "Spécialiste anti-nuisibles vérifié, du devis au versement du règlement à l'artisan encadrée",
         "name": "Traitement anti-nuisibles (rongeurs, punaises...)",
+        "shortName": "Traitement anti-nuisibles",
         "metaTitle": "Traitement anti-nuisibles à {{ city }} — Rongeurs, punaises | Artisan Compétent",
         "metaDescription": "Spécialiste en traitement des nuisibles à {{ city }}. Rongeurs, punaises de lit, cafards, guêpes : intervention rapide et efficace. Paiement sécurisé sur Artisan Compétent.",
         "metaKeywords": "nuisibles {{ city }}, dératisation {{ city }}, punaises de lit {{ city }}, désinsectisation {{ city }}",
@@ -3402,7 +3456,17 @@
       },
       "filesCount": "{{ count }} fichier(s) joint(s)",
       "createDemand": "Créer une demande",
-      "location": "Intervention à {{ city }} ({{ postalCode }})"
+      "location": "Intervention à {{ city }} ({{ postalCode }})",
+      "missionPrefix": "Mission :"
+    },
+    "missions": {
+      "status": {
+        "IN_PROGRESS": "En cours",
+        "DISPUTED": "En conflit",
+        "STOPPED": "Stoppée",
+        "AWAITING_PAYMENT": "En attente de paiement",
+        "COMPLETED": "Terminée"
+      }
     },
     "nav": {
       "requests": "Mes demandes",
@@ -3507,7 +3571,8 @@
     "individual": {
       "nav": {
         "profile": "Infos personnelles",
-        "requests": "Mes demandes",
+        "requests": "Demandes",
+        "missions": "Missions",
         "quotes": "Mes devis",
         "invoices": "Mes factures",
         "legal": "Informations légales",
@@ -3551,7 +3616,8 @@
     },
     "pro": {
       "nav": {
-        "requests": "Mes demandes",
+        "requests": "Demandes",
+        "missions": "Missions",
         "quotes": "Mes devis",
         "invoices": "Mes factures",
         "payments": "Paiements",
@@ -3579,7 +3645,6 @@
       "tabs": {
         "presentation": "Présentation",
         "services": "Services",
-        "missions": "Missions",
         "reviews": "Avis",
         "documents": "Documents"
       },
@@ -3748,13 +3813,14 @@
       "demandLabel": "Demande",
       "attach": "Joindre un fichier",
       "demandCancelled": "Cette demande a été annulée par son auteur. Il n'est plus possible d'envoyer de message ni d'agir sur cette conversation.",
+      "demandUnavailable": "Le client a retenu un autre professionnel pour cette demande. Il n'est plus possible d'envoyer de message sur cette conversation.",
       "actions": {
         "title": "Actions",
         "decline": "Décliner l'offre",
         "createQuote": "Créer un devis",
         "resumeQuote": "Reprendre le devis",
         "review": "Laisser un avis",
-        "dispute": "Signaler un conflit"
+        "dispute": "Signaler un litige"
       },
       "invalidAttachment": "Format de fichier non supporté. Formats acceptés : JPG, JPEG, PNG, WEBP, PDF."
     },
@@ -3764,6 +3830,10 @@
       },
       "requests": {
         "title": "Mes demandes — Mon compte"
+      },
+      "missions": {
+        "title": "Mes missions — Mon compte",
+        "detailTitle": "Mission — Mon compte"
       },
       "messages": {
         "title": "Messages — Mon compte"

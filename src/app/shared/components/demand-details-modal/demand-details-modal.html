@@ -31,7 +31,12 @@
                         [class.demand-status--available]="demand.status === 'AVAILABLE'"
                         [class.demand-status--cancelled]="demand.status === 'CANCELLED'"
                     >
-                        {{ ('dashboard.requests.status.' + demand.status) | transloco }}
+                        @if (demand.missionStatus; as missionStatus) {
+                            {{ 'dashboard.requests.missionPrefix' | transloco }}
+                            {{ 'dashboard.missions.status.' + missionStatus | transloco }}
+                        } @else {
+                            {{ 'dashboard.requests.status.' + demand.status | transloco }}
+                        }
                     </span>
                     <span class="text-xs opacity-60">{{ demand.createdAt | localizedDate:'compact' }}</span>
                 </div>
@@ -48,7 +53,7 @@
                 <!-- Description -->
                 <div class="detail-section-header">
                     <h3 class="text-sm font-semibold">{{ 'demand.detail.descriptionTitle' | transloco }}</h3>
-                    @if (canEdit() && demand.status !== 'CANCELLED') {
+                    @if (canEdit() && demand.status === 'AVAILABLE') {
                         <inline-edit-actions
                             [editing]="editDescriptionMode()"
                             [saving]="savingDescription()"
@@ -80,7 +85,7 @@
                                     | transloco: { count: editPhotosMode() ? totalEditedPhotos() : demand.photos.length }
                             }}
                         </h3>
-                        @if (canEdit() && demand.status !== 'CANCELLED') {
+                        @if (canEdit() && demand.status === 'AVAILABLE') {
                             <inline-edit-actions
                                 [editing]="editPhotosMode()"
                                 [saving]="savingPhotos()"
@@ -176,7 +181,7 @@
                     </button>
                 }
 
-                @if (canEdit() && demand.status !== 'CANCELLED') {
+                @if (canEdit() && demand.status === 'AVAILABLE') {
                     <button
                         type="button"
                         class="detail-cancel-demand-btn"

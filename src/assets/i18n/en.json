@@ -16,7 +16,7 @@
       "draftSaveSuccess": "Draft saved.",
       "send": "Send quote",
       "sendSuccess": "Quote sent to the client.",
-      "sendMissingFields": "This quote cannot be sent: some required fields are missing or incomplete.",
+      "sendMissingFields": "This quote cannot be sent: some required fields are missing, incorrect or incomplete.",
       "pendingClientResponse": "This quote is awaiting the client's response, you cannot create a new one yet.",
       "alreadyAccepted": "This quote has already been accepted by the client, the project can start.",
       "alreadySent": "This quote has already been sent.",
@@ -612,6 +612,7 @@
     "close": "Close",
     "dashboard": "My space",
     "cancel": "Cancel",
+    "save": "Save",
     "yes": "Yes",
     "no": "No",
     "menu": "Menu",
@@ -629,6 +630,51 @@
     "previewUnavailable": "Preview unavailable for this file type.",
     "openDocument": "Open document",
     "cancel": "Cancel"
+  },
+  "mission": {
+    "tabs": {
+      "infos": "Info",
+      "suivi": "Follow-up",
+      "documents": "Documents"
+    },
+    "infos": {
+      "description": "Description",
+      "photos": "Photos",
+      "photoCount": "{{ count }} photo(s)",
+      "trade": "Trade",
+      "client": "Client",
+      "professional": "Professional",
+      "cmod": "CMOD",
+      "reportConflict": "Report a dispute"
+    },
+    "conflict": {
+      "placeholder": "Describe the reason for the dispute",
+      "submit": "Send the report",
+      "success": "Report sent — our team will review your case.",
+      "error": "The report failed. Please try again."
+    },
+    "followUp": {
+      "add": "Add a daily service",
+      "date": "Date",
+      "descriptionLabel": "Description of today's work",
+      "addPhoto": "Add a file",
+      "placeholder": "Work done that day",
+      "empty": "No daily service yet",
+      "error": "Saving failed. Please try again.",
+      "invalidFormat": "Invalid format. Only JPEG, PNG, WebP and PDF files are accepted.",
+      "photoUploadError": "The daily service was saved, but adding the files failed. You can retry from the entry.",
+      "deleteConfirm": "Are you sure you want to delete this daily service? This action cannot be undone."
+    },
+    "documents": {
+      "quote": "Quote",
+      "demandPhotos": "Request photos",
+      "attachments": "Conversation attachments",
+      "completionReport": "Completion report",
+      "viewCompletionReport": "View the completion report",
+      "invoice": "Invoice",
+      "viewInvoice": "View the invoice",
+      "notAvailableYet": "Available once the mission is completed"
+    }
   },
   "demand": {
     "modal": {
@@ -747,6 +793,7 @@
         "pageTitle": "Electricity & Connected Devices | Artisan Compétent",
         "title": "Verified electrician, from quote to supervised live work (24/7)",
         "name": "Electricity & Connected Devices (24/7)",
+        "shortName": "Electricity & Connected Devices",
         "metaTitle": "Verified electrician in {{ city }} : SIRET, NF C 18-510, framed payment via Stripe | Artisan Compétent",
         "metaDescription": "Verified electrician in {{ city }}: checked SIRET, up-to-date RC pro and decennial insurance, NF C 18-510 certification, IRVE qualification for charging stations. Payment processed via Stripe: the professional is paid 96h after the job.",
         "metaKeywords": "verified electrician {{ city }}, NF C 18-510 certification {{ city }}, IRVE charging station {{ city }}, home automation {{ city }}, NF C 15-100 compliance {{ city }}",
@@ -949,6 +996,7 @@
         "pageTitle": "Locksmith | Artisan Compétent",
         "title": "Verified locksmith, without suffering the night quote (24/7)",
         "name": "Locksmith (24/7)",
+        "shortName": "Locksmith",
         "metaTitle": "Locksmith in {{ city }} — 24/7 emergency | Artisan Compétent",
         "metaDescription": "Locksmith available 24/7 in {{ city }}. Slammed door, forced lock, lock replacement: fast intervention at a fair price. Secure payment on Artisan Compétent.",
         "metaKeywords": "locksmith {{ city }}, emergency locksmith {{ city }}, slammed door {{ city }}, lock replacement {{ city }}",
@@ -1168,6 +1216,7 @@
         "pageTitle": "Plumber Sanitary | Artisan Compétent",
         "title": "Verified Sanitary Plumber, from quote to overseen settlement (24/7)",
         "name": "Plumber Sanitary (24/7)",
+        "shortName": "Plumber Sanitary",
         "metaTitle": "Plumber in {{ city }} — Emergency repair | Artisan Compétent",
         "metaDescription": "Find a qualified plumber in {{ city }} for a leak, a sanitary installation or an emergency repair. Free quote, secure payment, available 24/7.",
         "metaKeywords": "plumber {{ city }}, plumbing repair {{ city }}, water leak {{ city }}, emergency plumber {{ city }}",
@@ -1375,6 +1424,7 @@
         "pageTitle": "Drain unblocking & pipe relining | Artisan Compétent",
         "title": "Find a verified drain unblocker: unblocking, hydro-jetting and pipe relining without heavy works (24/7)",
         "name": "Drain unblocker & pipe relining (24/7)",
+        "shortName": "Drain unblocker & pipe relining",
         "metaTitle": "Drain unblocking & pipe relining in {{ city }} — Urgent | Artisan Compétent",
         "metaDescription": "Blocked or pipe relining in {{ city }}? Urgent intervention from a qualified drain specialist. Sink, toilet, clogged pipes: resolved quickly with secure payment. Verified drain unblocker: unblocking, hydro-jetting, camera inspection and trenchless pipe relining. SIRET and insurance checked, framed payment via Stripe.",
         "metaKeywords": "drain unblocking & pipe relining {{ city }}, drain plumber {{ city }}, blocked drain {{ city }}, blocked toilet {{ city }}, pipe relining {{ city }}, drain lining {{ city }}, trenchless pipe repair {{ city }}, no-dig pipe rehabilitation {{ city }}, pipe relining cost {{ city }}",
@@ -1605,6 +1655,7 @@
         "pageTitle": "Heating & VMC & Heat Pump | Artisan Compétent",
         "title": "Verified heating engineer, from quote to overseen start-up (24/7)",
         "name": "Heating & VMC & Heat Pump",
+        "shortName": "Heating & VMC & Heat Pump",
         "metaTitle": "Heating engineer, ventilation & heat pump in {{ city }} | Artisan Compétent",
         "metaDescription": "Qualified heating engineer in {{ city }} for the installation, maintenance or repair of your boiler, ventilation system or heat pump. Free quote and secure payment.",
         "metaKeywords": "heating engineer {{ city }}, ventilation {{ city }}, heat pump {{ city }}, boiler maintenance {{ city }}",
@@ -1824,6 +1875,7 @@
         "pageTitle": "HVAC Technician & Refrigeration Engineer | Artisan Compétent",
         "title": "Verified HVAC technician, from quote to overseen settlement",
         "name": "HVAC Technician & Refrigeration Engineer",
+        "shortName": "HVAC Technician & Refrigeration Engineer",
         "metaTitle": "Air conditioning technician & refrigeration engineer in {{ city }} | Artisan Compétent",
         "metaDescription": "Air conditioning technician and refrigeration engineer in {{ city }}. Installation, maintenance and repair of air conditioning. Free quote, certified tradespeople, secure payment.",
         "metaKeywords": "air conditioning technician {{ city }}, refrigeration engineer {{ city }}, air conditioning installation {{ city }}, air conditioning repair {{ city }}",
@@ -2046,6 +2098,7 @@
         "pageTitle": "Glazing & Mirror Work | Artisan Compétent",
         "title": "Verified glazier, from quote to overseen settlement",
         "name": "Glazing & Mirror Work",
+        "shortName": "Glazing & Mirror Work",
         "metaTitle": "Glazing & mirror work in {{ city }} — Free quote | Artisan Compétent",
         "metaDescription": "Qualified glazier and mirror maker in {{ city }} for your glazing, mirrors, windows and glass roofs. Free quote, secure payment on Artisan Compétent.",
         "metaKeywords": "glazier {{ city }}, mirror maker {{ city }}, glazing replacement {{ city }}, mirror installation {{ city }}",
@@ -2275,6 +2328,7 @@
         "pageTitle": "Pest Control (rodents, bedbugs, etc.) | Artisan Compétent",
         "title": "Verified pest control specialist, from quote to overseen settlement",
         "name": "Pest Control (rodents, bedbugs, etc.)",
+        "shortName": "Pest Control",
         "metaTitle": "Pest control in {{ city }} — Rodents, bed bugs | Artisan Compétent",
         "metaDescription": "Pest control specialist in {{ city }}. Rodents, bed bugs, cockroaches, wasps: fast and effective intervention. Secure payment on Artisan Compétent.",
         "metaKeywords": "pest control {{ city }}, rodent control {{ city }}, bed bugs {{ city }}, insect control {{ city }}",
@@ -3402,7 +3456,17 @@
       },
       "filesCount": "{{ count }} file(s) attached",
       "createDemand": "Create a request",
-      "location": "Job in {{ city }} ({{ postalCode }})"
+      "location": "Job in {{ city }} ({{ postalCode }})",
+      "missionPrefix": "Mission:"
+    },
+    "missions": {
+      "status": {
+        "IN_PROGRESS": "In progress",
+        "DISPUTED": "In dispute",
+        "STOPPED": "Stopped",
+        "AWAITING_PAYMENT": "Awaiting payment",
+        "COMPLETED": "Completed"
+      }
     },
     "nav": {
       "requests": "My requests",
@@ -3507,7 +3571,8 @@
     "individual": {
       "nav": {
         "profile": "Personal info",
-        "requests": "My requests",
+        "requests": "Requests",
+        "missions": "Missions",
         "quotes": "My quotes",
         "invoices": "My invoices",
         "legal": "Legal information",
@@ -3551,7 +3616,8 @@
     },
     "pro": {
       "nav": {
-        "requests": "My requests",
+        "requests": "Requests",
+        "missions": "Missions",
         "quotes": "My quotes",
         "invoices": "My invoices",
         "payments": "Payments",
@@ -3579,7 +3645,6 @@
       "tabs": {
         "presentation": "Presentation",
         "services": "Services",
-        "missions": "Missions",
         "reviews": "Reviews",
         "documents": "Documents"
       },
@@ -3748,6 +3813,7 @@
       "demandLabel": "Demand",
       "attach": "Attach a file",
       "demandCancelled": "This request has been cancelled by its author. You can no longer send messages or act on this conversation.",
+      "demandUnavailable": "The client has selected another professional for this request. You can no longer send messages on this conversation.",
       "actions": {
         "title": "Actions",
         "decline": "Decline the offer",
@@ -3764,6 +3830,10 @@
       },
       "requests": {
         "title": "My requests — My account"
+      },
+      "missions": {
+        "title": "My missions — My account",
+        "detailTitle": "Mission — My account"
       },
       "messages": {
         "title": "Messages — My account"
