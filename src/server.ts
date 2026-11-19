@@ -69,7 +69,8 @@ function buildContentSecurityPolicy(): string {
     "default-src 'self'",
     `script-src 'self' ${scriptHashes} https://www.googletagmanager.com https://www.google-analytics.com https://challenges.cloudflare.com https://connect-js.stripe.com https://cdn.yousign.tech`,
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: https://*.backblazeb2.com",
+    // blob: pour les previews locales (photo sélectionnée, pas encore uploadée) via URL.createObjectURL.
+    "img-src 'self' data: blob: https://*.backblazeb2.com",
     "font-src 'self' data:",
     `connect-src ${connectSrc.join(' ')}`,
     // Backblaze : aperçu PDF affiché en iframe (doc-modal) depuis une URL signée du bucket.
