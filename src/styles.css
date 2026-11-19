@@ -150,6 +150,11 @@
     border-left: 0.25rem solid var(--primary-brown);
     padding-left: 1rem;
   }
+
+  textarea::placeholder {
+    color: var(--color);
+    opacity: 0.5; /* Firefox applique une opacité réduite par défaut, à forcer à 1 */
+  }
 }
 
 /* Le texte du bandeau de pré-lancement passe sur moins de lignes en sm/md, on resserre la hauteur. */
