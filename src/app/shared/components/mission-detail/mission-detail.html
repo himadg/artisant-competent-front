@@ -254,53 +254,65 @@
                     @if (documentsResource.isLoading()) {
                         <div class="loading"><span class="spinner"></span></div>
                     } @else if (documentsResource.value(); as documents) {
-                        <h3>{{ 'mission.documents.quote' | transloco }}</h3>
-                        <div class="mission-doc-quote">
-                            <doc-card
-                                [label]="mission.quote.quoteNumber"
-                                [url]="documents.quoteSignedPdfUrl"
-                                (open)="openDoc(documents.quoteSignedPdfUrl, mission.quote.quoteNumber)"
-                            />
+                        <div class="flex flex-col md:flex-row justify-between gap-8">
+                            <div class="flex-1">
+                                <h3>{{ 'mission.documents.quote' | transloco }}</h3>
+                                <div class="mission-doc-quote">
+                                    <doc-card
+                                        [label]="mission.quote.quoteNumber"
+                                        [url]="documents.quoteSignedPdfUrl"
+                                        (open)="openDoc(documents.quoteSignedPdfUrl, mission.quote.quoteNumber)"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="flex-1">
+                                <h3>{{ 'mission.documents.completionReport' | transloco }}</h3>
+                                @if (documents.completionReportUrl) {
+                                    <button type="button" class="mission-doc-link" (click)="openDoc(documents.completionReportUrl, 'PV')">
+                                        {{ 'mission.documents.viewCompletionReport' | transloco }}
+                                    </button>
+                                } @else {
+                                    <p class="mission-meta">{{ 'mission.documents.notAvailableYet' | transloco }}</p>
+                                }
+                            </div>
+
+                            <div class="flex-1">
+                                <h3>{{ 'mission.documents.invoice' | transloco }}</h3>
+                                @if (documents.invoiceUrl) {
+                                    <button type="button" class="mission-doc-link" (click)="openDoc(documents.invoiceUrl, 'Facture')">
+                                        {{ 'mission.documents.viewInvoice' | transloco }}
+                                    </button>
+                                } @else {
+                                    <p class="mission-meta">{{ 'mission.documents.notAvailableYet' | transloco }}</p>
+                                }
+                            </div>
                         </div>
 
                         @if (documents.demandPhotos.length > 0) {
-                            <h3>{{ 'mission.documents.demandPhotos' | transloco }}</h3>
-                            <div class="mission-doc-grid">
-                                @for (photo of documents.demandPhotos; track photo.key) {
-                                    <button type="button" class="mission-doc-tile" (click)="openDoc(photo.url, 'Photo')">
-                                        <img [src]="photo.url" alt="" />
-                                    </button>
-                                }
+                            <div>
+                                <h3>{{ 'mission.documents.demandPhotos' | transloco }}</h3>
+                                <div class="mission-doc-grid">
+                                    @for (photo of documents.demandPhotos; track photo.key) {
+                                        <button type="button" class="mission-doc-tile" (click)="openDoc(photo.url, 'Photo')">
+                                            <img [src]="photo.url" alt="" />
+                                        </button>
+                                    }
+                                </div>
                             </div>
                         }
 
                         @if (documents.messageAttachments.length > 0) {
-                            <h3>{{ 'mission.documents.attachments' | transloco }}</h3>
-                            <div class="mission-doc-grid">
-                                @for (attachment of documents.messageAttachments; track attachment.id) {
-                                    <button type="button" class="mission-doc-tile" (click)="openDoc(attachment.url, 'Pièce jointe')">
-                                        <img [src]="attachment.url" alt="" />
-                                    </button>
-                                }
+                            <div>
+                                <h3>{{ 'mission.documents.attachments' | transloco }}</h3>
+                                <div class="mission-doc-grid">
+                                    @for (attachment of documents.messageAttachments; track attachment.id) {
+                                        <button type="button" class="mission-doc-tile" (click)="openDoc(attachment.url, 'Pièce jointe')">
+                                            <img [src]="attachment.url" alt="" />
+                                        </button>
+                                    }
+                                </div>
                             </div>
-                        }
-
-                        <h3>{{ 'mission.documents.completionReport' | transloco }}</h3>
-                        @if (documents.completionReportUrl) {
-                            <button type="button" class="mission-doc-link" (click)="openDoc(documents.completionReportUrl, 'PV')">
-                                {{ 'mission.documents.viewCompletionReport' | transloco }}
-                            </button>
-                        } @else {
-                            <p class="mission-meta">{{ 'mission.documents.notAvailableYet' | transloco }}</p>
-                        }
-
-                        <h3>{{ 'mission.documents.invoice' | transloco }}</h3>
-                        @if (documents.invoiceUrl) {
-                            <button type="button" class="mission-doc-link" (click)="openDoc(documents.invoiceUrl, 'Facture')">
-                                {{ 'mission.documents.viewInvoice' | transloco }}
-                            </button>
-                        } @else {
-                            <p class="mission-meta">{{ 'mission.documents.notAvailableYet' | transloco }}</p>
                         }
                     }
                 </section>
