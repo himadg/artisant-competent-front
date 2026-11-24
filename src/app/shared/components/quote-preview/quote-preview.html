@@ -61,6 +61,7 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
         </div>
         <div class="text-right">
             <p class="text-lg font-bold">{{ 'quote.title' | transloco }} n&deg; {{ data().quoteNumber }}</p>
+            <p class="text-xs text-gray-500">{{ 'quote.preview.freeQuoteNotice' | transloco }}</p>
             <p class="text-xs text-gray-500">{{ 'quote.preview.printedOn' | transloco }} {{ data().createdAt | localizedDate }}</p>
             @if (data().validUntil) {
                 <p class="text-xs text-gray-500">{{ 'quote.preview.validUntil' | transloco }} {{ data().validUntil | localizedDate }}</p>
@@ -280,12 +281,15 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
         <h3 class="quote-preview-section-title">{{ 'quote.agreement.title' | transloco }}</h3>
         <div class="quote-preview-box flex flex-col gap-3">
             @if (printMode()) {
-                <p>
+                <!-- padding-left : réserve la place de la vraie case à cocher que YouTrust incruste
+                    aux coordonnées de l'ancre (position:absolute) au moment de la signature client,
+                    pour qu'elle ne chevauche pas les premières lettres du texte. -->
+                <p class="relative pl-5">
                     <span class="text-white quote-anchor quote-anchor--field quote-anchor--checkbox">{{ '{{s2|checkbox|16|f|f|QuoteAgreement}}' }}</span>
                     <span [innerHTML]="'quote.agreement.quoteAgreementAccepted' | transloco"></span>
                 </p>
-                <p>
-                    <span class="text-white quote-anchor quote-anchor--field quote-anchor--checkbox">{{ '{{s2|checkbox|16|f|f|EarlyStart}}' }}</span>
+                <p class="relative pl-5">
+                    <span class="text-white quote-anchor quote-anchor--field quote-anchor--checkbox">{{ '{{s2|checkbox|16|t|f|EarlyStart}}' }}</span>
                     <span [innerHTML]="'quote.agreement.earlyStartAccepted' | transloco"></span>
                 </p>
             } @else {
@@ -325,9 +329,6 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
         </div>
     }
 
-    <!-- Regroupées pour ne jamais être coupées entre deux pages du PDF généré (Playwright/Chromium
-        respecte break-inside sur la pagination réelle) : si l'ensemble ne tient pas dans le reste
-        de la page courante, il bascule intact en page suivante plutôt que d'être scindé. -->
     <div class="quote-eidas-block">
         <p class="mt-6 text-xs italic text-gray-500">{{ 'quote.agreement.eidasNotice' | transloco }}</p>
 
@@ -337,16 +338,13 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
             <div class="mt-16 grid grid-cols-2 text-center">
                 <div>
                     <p class="text-xs text-gray-500">{{ 'quote.preview.clientSignature' | transloco }}</p>
-                    <div class="quote-anchor-signature-center">
-                        <p class="text-white quote-anchor quote-anchor--signature">{{ '{{s2|signature|150|65|detailed|dd/MM/yyyy HH:mm|t|f}}' }}</p>
-                    </div>
+                    <p class="text-xs font-semibold text-gray-700">{{ 'quote.preview.clientBonPourAccord' | transloco }}</p>
                 </div>
-                <div>
-                    <p class="text-xs text-gray-500">{{ 'quote.preview.professionalSignature' | transloco }}</p>
-                    <div class="quote-anchor-signature-center">
-                        <p class="text-white quote-anchor quote-anchor--signature">{{ '{{s1|signature|150|65|detailed|dd/MM/yyyy HH:mm|t|f}}' }}</p>
-                    </div>
-                </div>
+                <p class="text-xs text-gray-500">{{ 'quote.preview.professionalSignature' | transloco }}</p>
+            </div>
+            <div class="quote-anchor-signature-row">
+                <p class="text-white quote-anchor quote-anchor--signature">{{ '{{s2|signature|150|65|detailed|dd/MM/yyyy HH:mm|t|f}}' }}</p>
+                <p class="text-white quote-anchor quote-anchor--signature">{{ '{{s1|signature|150|65|detailed|dd/MM/yyyy HH:mm|t|f}}' }}</p>
             </div>
         }
     </div>

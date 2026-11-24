@@ -96,7 +96,7 @@
                         }
                     </div>
 
-                    <div class="grid grid-cols-3 gap-2 mb-5">
+                    <div class="grid grid-cols-4 gap-2 mb-5">
                         @if (!editPhotosMode()) {
                             @for (photo of demand.photos; track photo; let i = $index) {
                                 <button type="button" class="photo-tile" (click)="openPhoto(photo, demand.photoKeys[i])">

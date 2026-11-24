@@ -40,7 +40,9 @@
       "professional": "Professionnel",
       "client": "Client",
       "clientSignature": "Signature du client",
+      "clientBonPourAccord": "Bon pour accord",
       "professionalSignature": "Signature de l'artisan",
+      "freeQuoteNotice": "Devis gratuit",
       "civilityMale": "M.",
       "civilityFemale": "Mme",
       "interventionAddress": "Adresse du chantier",
@@ -639,8 +641,6 @@
     },
     "infos": {
       "description": "Description",
-      "photos": "Photos",
-      "photoCount": "{{ count }} photo(s)",
       "trade": "Métier",
       "client": "Client",
       "professional": "Professionnel",

@@ -34,13 +34,6 @@
                     <h2>{{ 'mission.infos.description' | transloco }}</h2>
                     <p class="mb-6">{{ mission.demand.description }}</p>
 
-                    @if (mission.demand.photoKeys.length > 0) {
-                        <h2>{{ 'mission.infos.photos' | transloco }}</h2>
-                        <p class="mission-meta mb-6">
-                            {{ 'mission.infos.photoCount' | transloco: { count: mission.demand.photoKeys.length } }}
-                        </p>
-                    }
-
                     <h2>{{ 'mission.infos.trade' | transloco }}</h2>
                     <p class="mb-6">{{ ('jobs.list.' + mission.demand.trade.name + '.shortName') | transloco }}</p>
 
@@ -290,9 +283,9 @@
                         </div>
 
                         @if (documents.demandPhotos.length > 0) {
-                            <div>
+                            <div class="mt-12">
                                 <h3>{{ 'mission.documents.demandPhotos' | transloco }}</h3>
-                                <div class="mission-doc-grid">
+                                <div class="mission-doc-grid mission-doc-grid--sm">
                                     @for (photo of documents.demandPhotos; track photo.key) {
                                         <button type="button" class="mission-doc-tile" (click)="openDoc(photo.url, 'Photo')">
                                             <img [src]="photo.url" alt="" />
@@ -303,12 +296,16 @@
                         }
 
                         @if (documents.messageAttachments.length > 0) {
-                            <div>
+                            <div class="mt-12">
                                 <h3>{{ 'mission.documents.attachments' | transloco }}</h3>
-                                <div class="mission-doc-grid">
+                                <div class="mission-doc-grid mission-doc-grid--sm">
                                     @for (attachment of documents.messageAttachments; track attachment.id) {
-                                        <button type="button" class="mission-doc-tile" (click)="openDoc(attachment.url, 'Pièce jointe')">
-                                            <img [src]="attachment.url" alt="" />
+                                        <button type="button" class="mission-doc-tile" [class.mission-doc-tile--pdf]="attachment.type === 'DOCUMENT'" (click)="openDoc(attachment.url, 'Pièce jointe')">
+                                            @if (attachment.type === 'DOCUMENT') {
+                                                <iconify-icon icon="vscode-icons:file-type-pdf2"></iconify-icon>
+                                            } @else {
+                                                <img [src]="attachment.url" alt="" />
+                                            }
                                         </button>
                                     }
                                 </div>
