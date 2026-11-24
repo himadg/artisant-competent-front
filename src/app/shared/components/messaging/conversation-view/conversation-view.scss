@@ -173,6 +173,7 @@
 .chat-demand-banner-icon {
   flex-shrink: 0;
   opacity: 0.6;
+  font-size: x-large;
 }
 
 .chat-messages {
@@ -246,6 +247,11 @@
   &--cmod {
     background: #6d28d9;
     color: #fff;
+  }
+
+  // Photos réduites d'un tiers (75% * 2/3 = 50%) sans toucher à la largeur des bulles texte/devis.
+  &--image {
+    max-width: 50%;
   }
 }
 

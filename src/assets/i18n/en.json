@@ -40,7 +40,9 @@
       "professional": "Professional",
       "client": "Client",
       "clientSignature": "Client signature",
+      "clientBonPourAccord": "Approved",
       "professionalSignature": "Tradesperson signature",
+      "freeQuoteNotice": "Free quote",
       "civilityMale": "Mr",
       "civilityFemale": "Ms",
       "interventionAddress": "Project address",
@@ -639,8 +641,6 @@
     },
     "infos": {
       "description": "Description",
-      "photos": "Photos",
-      "photoCount": "{{ count }} photo(s)",
       "trade": "Trade",
       "client": "Client",
       "professional": "Professional",

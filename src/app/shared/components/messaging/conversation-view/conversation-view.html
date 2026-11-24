@@ -72,6 +72,7 @@
                     [class.chat-bubble--pending]="message.type === 'QUOTE' && message.quoteStatus === 'PENDING_PAYMENT'"
                     [class.chat-bubble--paid]="message.type === 'QUOTE' && message.quoteStatus === 'PAID'"
                     [class.chat-bubble--cmod]="message.isCmodMessage"
+                    [class.chat-bubble--image]="message.type === 'IMAGE'"
                 >
                     @switch (message.type) {
                         @case ('IMAGE') {

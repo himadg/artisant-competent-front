@@ -1,5 +1,5 @@
 import { Address } from './address';
-import { DemandAddress } from './demand';
+import { DemandAddress, DemandStatus } from './demand';
 
 export type MaterialOrigin = 'new' | 'refurbished' | 'custom';
 export type QuoteStatus = 'DRAFT' | 'SIGNED_BY_PRO' | 'PENDING_PAYMENT' | 'PAID' | 'DECLINED';
@@ -98,6 +98,7 @@ export interface QuoteViewerData extends Quote {
   client: QuotePreviewClient;
   interventionAddress: DemandAddress | null;
   isDemandAuthor: boolean;
+  demandStatus: DemandStatus;
 }
 
 export interface SignatureLinkResult {

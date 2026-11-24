@@ -57,7 +57,7 @@ export class QuoteClientView implements OnInit, OnDestroy {
 
   readonly loading = signal(true);
   readonly previewData = signal<QuotePreviewData | null>(null);
-  // Masquée pendant l'attente du paiement après signature, réaffichée si le paiement échoue.
+  // Masque l'apperçu dès la signature du devis.
   readonly previewVisible = signal(true);
   readonly canSign = signal(false);
   readonly statusNotice = signal<string | null>(null);
@@ -134,7 +134,7 @@ export class QuoteClientView implements OnInit, OnDestroy {
       .getForViewer(this.quoteId())
       .then((quote) => {
         this.previewData.set(toPreviewData(quote));
-        this.canSign.set(quote.isDemandAuthor && quote.status === 'SIGNED_BY_PRO');
+        this.canSign.set(quote.isDemandAuthor && quote.status === 'SIGNED_BY_PRO' && quote.demandStatus === 'AVAILABLE');
         this.statusNotice.set(this.computeStatusNotice(quote.status, quote.isDemandAuthor));
       })
       .catch(() => {
@@ -182,7 +182,7 @@ export class QuoteClientView implements OnInit, OnDestroy {
       this.awaitingPayment.set(false);
       this.processingPayment.set(false);
       this.flash.set({ type: 'error', key: 'quote.agreement.paymentError' });
-      this.previewVisible.set(true);
+      this.closed.emit();
     }, 30000);
   }
 
@@ -195,7 +195,7 @@ export class QuoteClientView implements OnInit, OnDestroy {
       })
       .catch(() => {
         this.flash.set({ type: 'error', key: 'quote.agreement.paymentError' });
-        this.previewVisible.set(true);
+        this.closed.emit();
       })
       .finally(() => this.processingPayment.set(false));
   }
