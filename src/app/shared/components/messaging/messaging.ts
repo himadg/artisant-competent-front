@@ -223,15 +223,34 @@ export class Messaging {
     const conversationId = this.selectedConversationId();
     if (!conversationId) return;
 
-    const message = await this.chatService.sendMessage(conversationId, content);
-    this.messages.update((list) => (list.some((m) => m.id === message.id) ? list : [message, ...list]));
+    try {
+      const message = await this.chatService.sendMessage(conversationId, content);
+      this.messages.update((list) => (list.some((m) => m.id === message.id) ? list : [message, ...list]));
+    } catch (err) {
+      this.handleSendError(err, conversationId);
+    }
   }
 
   async sendAttachment(file: File): Promise<void> {
     const conversationId = this.selectedConversationId();
     if (!conversationId) return;
 
-    const message = await this.chatService.sendAttachment(conversationId, file);
-    this.messages.update((list) => (list.some((m) => m.id === message.id) ? list : [message, ...list]));
+    try {
+      const message = await this.chatService.sendAttachment(conversationId, file);
+      this.messages.update((list) => (list.some((m) => m.id === message.id) ? list : [message, ...list]));
+    } catch (err) {
+      this.handleSendError(err, conversationId);
+    }
+  }
+
+  // CONVERSATION_LOCKED : rafraîchit la conversation (le message "demande annulée/indisponible"
+  // prend le relais à la place de l'input, inutile de dupliquer l'info dans un toast).
+  private handleSendError(err: unknown, conversationId: string): void {
+    const code = (err as { error?: { code?: string } })?.error?.code;
+    if (code === 'CONVERSATION_LOCKED') {
+      void this.chatService.loadConversationDetail(conversationId);
+    } else {
+      this.flashMessage.set({ type: 'error', key: 'errors.unknown' });
+    }
   }
 }

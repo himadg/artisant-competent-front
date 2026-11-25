@@ -102,13 +102,15 @@ export class ChatService {
   }
 
   private touchConversation(conversationId: string, message: ConversationMessage): void {
-    this.conversations.update((list) =>
-      list.map((c) =>
-        c.id === conversationId
-          ? { ...c, lastMessage: { content: message.content, type: message.type, createdAt: message.createdAt } }
-          : c,
-      ),
-    );
+    this.conversations.update((list) => {
+      const conversation = list.find((c) => c.id === conversationId);
+      if (!conversation) return list;
+      const updated = {
+        ...conversation,
+        lastMessage: { content: message.content, type: message.type, createdAt: message.createdAt },
+      };
+      return [updated, ...list.filter((c) => c.id !== conversationId)];
+    });
   }
 
   private connect(): void {
