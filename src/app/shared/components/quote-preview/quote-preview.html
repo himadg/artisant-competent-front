@@ -27,6 +27,27 @@
     </div>
 }
 
+@if (withdrawalInfoImage(); as withdrawalImage) {
+    <div class="fixed inset-0 z-[70] flex items-center justify-center bg-black/70 p-2 sm:p-4" (click)="closeWithdrawalInfo()">
+        <div class="withdrawal-info-modal" (click)="$event.stopPropagation()">
+            <div class="flex items-center justify-between gap-3 border-b border-gray-200 px-4 py-3">
+                <h2 class="text-base font-bold text-gray-900">{{ 'legal.withdrawalRight.title' | transloco }}</h2>
+                <button
+                    type="button"
+                    class="quote-preview-close-btn"
+                    [attr.aria-label]="'common.close' | transloco"
+                    (click)="closeWithdrawalInfo()"
+                >
+                    <iconify-icon icon="lucide:x" width="20"></iconify-icon>
+                </button>
+            </div>
+            <div class="withdrawal-info-modal__body">
+                <img [src]="withdrawalImage" [alt]="'legal.withdrawalRight.title' | transloco" />
+            </div>
+        </div>
+    </div>
+}
+
 <!-- Rendu partagé entre l'adresse personnelle du client et celle du chantier (même règle de
 masquage hidden/full, cf. QuoteService.shapeAddress) — évite de dupliquer la logique 2 fois. -->
 <ng-template #addressBlock let-address="address">
@@ -281,9 +302,10 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
         <h3 class="quote-preview-section-title">{{ 'quote.agreement.title' | transloco }}</h3>
         <div class="quote-preview-box flex flex-col gap-3">
             @if (printMode()) {
-                <!-- padding-left : réserve la place de la vraie case à cocher que YouTrust incruste
-                    aux coordonnées de l'ancre (position:absolute) au moment de la signature client,
-                    pour qu'elle ne chevauche pas les premières lettres du texte. -->
+                <p class="relative pl-5 mb-5">
+                    <span class="text-white quote-anchor quote-anchor--field quote-anchor--checkbox">{{ '{{s1|checkbox|16|f|f|ProFeesAndWithdrawal}}' }}</span>
+                    <span [innerHTML]="'quote.agreement.proFeesAccepted' | transloco"></span>
+                </p>
                 <p class="relative pl-5">
                     <span class="text-white quote-anchor quote-anchor--field quote-anchor--checkbox">{{ '{{s2|checkbox|16|f|f|QuoteAgreement}}' }}</span>
                     <span [innerHTML]="'quote.agreement.quoteAgreementAccepted' | transloco"></span>
@@ -293,8 +315,33 @@ Playwright, cf. quote-print-page) — évite de dupliquer tout le document à ch
                     <span [innerHTML]="'quote.agreement.earlyStartAccepted' | transloco"></span>
                 </p>
             } @else {
+                <p class="flex items-start gap-2 mb-5">
+                    <span [innerHTML]="'quote.agreement.proFeesAcceptedSummary' | transloco"></span>
+                    @if (viewerRole() === 'pro') {
+                        <button
+                            type="button"
+                            class="withdrawal-help-btn"
+                            [attr.aria-label]="'legal.withdrawalRight.title' | transloco"
+                            (click)="openWithdrawalInfo('pro')"
+                        >
+                            <iconify-icon icon="lucide:circle-help" width="16"></iconify-icon>
+                        </button>
+                    }
+                </p>
                 <p [innerHTML]="'quote.agreement.quoteAgreementAcceptedSummary' | transloco"></p>
-                <p [innerHTML]="'quote.agreement.earlyStartAcceptedSummary' | transloco"></p>
+                <p class="flex items-start gap-2">
+                    <span [innerHTML]="'quote.agreement.earlyStartAcceptedSummary' | transloco"></span>
+                    @if (viewerRole() === 'client') {
+                        <button
+                            type="button"
+                            class="withdrawal-help-btn"
+                            [attr.aria-label]="'legal.withdrawalRight.title' | transloco"
+                            (click)="openWithdrawalInfo('client')"
+                        >
+                            <iconify-icon icon="lucide:circle-help" width="16"></iconify-icon>
+                        </button>
+                    }
+                </p>
             }
         </div>
     </section>

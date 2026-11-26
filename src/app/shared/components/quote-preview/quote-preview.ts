@@ -1,6 +1,7 @@
-import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA, computed, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA, computed, inject, input, output, signal } from '@angular/core';
 import { DecimalPipe, NgTemplateOutlet } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
+import { AuthService } from '../../../core/services/auth.service';
 import { QuoteLineItem, QuotePreviewData } from '../../interfaces/quote';
 import { LocalizedDatePipe } from '../../pipes/localized-date.pipe';
 
@@ -24,6 +25,12 @@ export class QuotePreview {
   readonly printMode = input(false);
 
   readonly statusNotice = input<string | null>(null);
+
+  private readonly authService = inject(AuthService);
+
+  readonly viewerRole = computed<'pro' | 'client'>(() =>
+    this.authService.currentUser()?.role.code === 'PROFESSIONAL' ? 'pro' : 'client',
+  );
 
   readonly accept = output<void>();
   readonly decline = output<void>();
@@ -60,5 +67,22 @@ export class QuotePreview {
 
   civilityKey(gender: string): string {
     return gender === 'male' ? 'quote.preview.civilityMale' : 'quote.preview.civilityFemale';
+  }
+
+  private readonly withdrawalInfoParty = signal<'pro' | 'client' | null>(null);
+
+  readonly withdrawalInfoImage = computed(() => {
+    const party = this.withdrawalInfoParty();
+    if (party === 'pro') return 'assets/img/right-of-withdrawal-pro.jpeg';
+    if (party === 'client') return 'assets/img/right-of-withdrawal-client.jpeg';
+    return null;
+  });
+
+  openWithdrawalInfo(party: 'pro' | 'client'): void {
+    this.withdrawalInfoParty.set(party);
+  }
+
+  closeWithdrawalInfo(): void {
+    this.withdrawalInfoParty.set(null);
   }
 }
